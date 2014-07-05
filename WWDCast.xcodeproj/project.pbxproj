@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B6F929BF1D2A5DD5009E4B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929BE1D2A5DD5009E4B83 /* AppDelegate.swift */; };
-		B6F929C11D2A5DD5009E4B83 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929C01D2A5DD5009E4B83 /* ViewController.swift */; };
-		B6F929C41D2A5DD5009E4B83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F929C21D2A5DD5009E4B83 /* Main.storyboard */; };
 		B6F929C61D2A5DD5009E4B83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F929C51D2A5DD5009E4B83 /* Assets.xcassets */; };
-		B6F929C91D2A5DD5009E4B83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F929C71D2A5DD5009E4B83 /* LaunchScreen.storyboard */; };
-		B6F929D41D2A5DD6009E4B83 /* WWDCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929D31D2A5DD6009E4B83 /* WWDCastTests.swift */; };
-		B6F929DF1D2A8B5C009E4B83 /* WWDCEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929DE1D2A8B5C009E4B83 /* WWDCEnvironment.swift */; };
+		B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */; };
+		B6F929E61D2AB0FD009E4B83 /* WWDCEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E31D2AB0FC009E4B83 /* WWDCEnvironment.swift */; };
+		B6F929EA1D2AB197009E4B83 /* WWDCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E81D2AB111009E4B83 /* WWDCastTests.swift */; };
+		B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */; };
+		B6F929F51D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929F41D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift */; };
+		B6F929F71D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929F61D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift */; };
+		B6F929FA1D2AB5E3009E4B83 /* SessionsSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929F91D2AB5E3009E4B83 /* SessionsSearchPresenter.swift */; };
+		B6F929FC1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929FB1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift */; };
+		B6F929FE1D2AB5F8009E4B83 /* SessionsSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929FD1D2AB5F8009E4B83 /* SessionsSearchView.swift */; };
+		B6F92A001D2AB713009E4B83 /* SessionsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929FF1D2AB713009E4B83 /* SessionsSearchViewController.swift */; };
+		B6F92A021D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A011D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift */; };
 		C15C7AF0CD910DD2C075FDF4 /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AEAC6CBF3477E0D5939053 /* Pods_WWDCast.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,16 +36,21 @@
 		9268B945EC535EADBF480376 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 		ADBD730D2EDFBB9DC1ECCA3B /* Pods-WWDCast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.release.xcconfig"; sourceTree = "<group>"; };
 		B6F929BB1D2A5DD5009E4B83 /* WWDCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWDCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6F929BE1D2A5DD5009E4B83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B6F929C01D2A5DD5009E4B83 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B6F929C31D2A5DD5009E4B83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B6F929C51D2A5DD5009E4B83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B6F929C81D2A5DD5009E4B83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B6F929CA1D2A5DD5009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6F929C51D2A5DD5009E4B83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Resources/Assets.xcassets; sourceTree = "<group>"; };
+		B6F929CA1D2A5DD5009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Resources/Info.plist; sourceTree = "<group>"; };
 		B6F929CF1D2A5DD6009E4B83 /* WWDCastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WWDCastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6F929D31D2A5DD6009E4B83 /* WWDCastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWDCastTests.swift; sourceTree = "<group>"; };
 		B6F929D51D2A5DD6009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B6F929DE1D2A8B5C009E4B83 /* WWDCEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCEnvironment.swift; sourceTree = "<group>"; };
+		B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B6F929E31D2AB0FC009E4B83 /* WWDCEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCEnvironment.swift; sourceTree = "<group>"; };
+		B6F929E81D2AB111009E4B83 /* WWDCastTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastTests.swift; sourceTree = "<group>"; };
+		B6F929EC1D2AB283009E4B83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
+		B6F929F41D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchPresenterImpl.swift; sourceTree = "<group>"; };
+		B6F929F61D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchInteractorImpl.swift; sourceTree = "<group>"; };
+		B6F929F91D2AB5E3009E4B83 /* SessionsSearchPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchPresenter.swift; sourceTree = "<group>"; };
+		B6F929FB1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchInteractor.swift; sourceTree = "<group>"; };
+		B6F929FD1D2AB5F8009E4B83 /* SessionsSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchView.swift; sourceTree = "<group>"; };
+		B6F929FF1D2AB713009E4B83 /* SessionsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewController.swift; sourceTree = "<group>"; };
+		B6F92A011D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchWireframeImpl.swift; sourceTree = "<group>"; };
 		B7AEAC6CBF3477E0D5939053 /* Pods_WWDCast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -83,8 +93,9 @@
 		B6F929B21D2A5DD5009E4B83 = {
 			isa = PBXGroup;
 			children = (
-				B6F929BD1D2A5DD5009E4B83 /* WWDCast */,
-				B6F929D21D2A5DD6009E4B83 /* WWDCastTests */,
+				B6F929E01D2AB0FC009E4B83 /* Source */,
+				B6F929E71D2AB111009E4B83 /* Tests */,
+				B6F929BD1D2A5DD5009E4B83 /* Resources */,
 				B6F929BC1D2A5DD5009E4B83 /* Products */,
 				63B3B75418355327AA57CE62 /* Pods */,
 				A9ED2A2DE62008254CE47CF0 /* Frameworks */,
@@ -100,27 +111,72 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B6F929BD1D2A5DD5009E4B83 /* WWDCast */ = {
+		B6F929BD1D2A5DD5009E4B83 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B6F929BE1D2A5DD5009E4B83 /* AppDelegate.swift */,
-				B6F929C01D2A5DD5009E4B83 /* ViewController.swift */,
-				B6F929C21D2A5DD5009E4B83 /* Main.storyboard */,
+				B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */,
 				B6F929C51D2A5DD5009E4B83 /* Assets.xcassets */,
-				B6F929C71D2A5DD5009E4B83 /* LaunchScreen.storyboard */,
 				B6F929CA1D2A5DD5009E4B83 /* Info.plist */,
-				B6F929DE1D2A8B5C009E4B83 /* WWDCEnvironment.swift */,
 			);
+			name = Resources;
 			path = WWDCast;
 			sourceTree = "<group>";
 		};
-		B6F929D21D2A5DD6009E4B83 /* WWDCastTests */ = {
+		B6F929E01D2AB0FC009E4B83 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				B6F929D31D2A5DD6009E4B83 /* WWDCastTests.swift */,
+				B6F929F11D2AB2BE009E4B83 /* Classes */,
+				B6F929F21D2AB2BE009E4B83 /* Protocols */,
+				B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */,
+				B6F929E31D2AB0FC009E4B83 /* WWDCEnvironment.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		B6F929E71D2AB111009E4B83 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B6F929E81D2AB111009E4B83 /* WWDCastTests.swift */,
 				B6F929D51D2A5DD6009E4B83 /* Info.plist */,
 			);
-			path = WWDCastTests;
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		B6F929F11D2AB2BE009E4B83 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B6F929F31D2AB54B009E4B83 /* SessionsSearch */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		B6F929F21D2AB2BE009E4B83 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B6F929F81D2AB5D8009E4B83 /* SessionsSearch */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		B6F929F31D2AB54B009E4B83 /* SessionsSearch */ = {
+			isa = PBXGroup;
+			children = (
+				B6F929FF1D2AB713009E4B83 /* SessionsSearchViewController.swift */,
+				B6F929F41D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift */,
+				B6F929F61D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift */,
+				B6F92A011D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift */,
+			);
+			path = SessionsSearch;
+			sourceTree = "<group>";
+		};
+		B6F929F81D2AB5D8009E4B83 /* SessionsSearch */ = {
+			isa = PBXGroup;
+			children = (
+				B6F929F91D2AB5E3009E4B83 /* SessionsSearchPresenter.swift */,
+				B6F929FB1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift */,
+				B6F929FD1D2AB5F8009E4B83 /* SessionsSearchView.swift */,
+			);
+			path = SessionsSearch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,9 +263,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6F929C91D2A5DD5009E4B83 /* LaunchScreen.storyboard in Resources */,
 				B6F929C61D2A5DD5009E4B83 /* Assets.xcassets in Resources */,
-				B6F929C41D2A5DD5009E4B83 /* Main.storyboard in Resources */,
+				B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,9 +330,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6F929DF1D2A8B5C009E4B83 /* WWDCEnvironment.swift in Sources */,
-				B6F929C11D2A5DD5009E4B83 /* ViewController.swift in Sources */,
-				B6F929BF1D2A5DD5009E4B83 /* AppDelegate.swift in Sources */,
+				B6F929FC1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift in Sources */,
+				B6F92A001D2AB713009E4B83 /* SessionsSearchViewController.swift in Sources */,
+				B6F929FA1D2AB5E3009E4B83 /* SessionsSearchPresenter.swift in Sources */,
+				B6F929FE1D2AB5F8009E4B83 /* SessionsSearchView.swift in Sources */,
+				B6F929F51D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift in Sources */,
+				B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */,
+				B6F929E61D2AB0FD009E4B83 /* WWDCEnvironment.swift in Sources */,
+				B6F92A021D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift in Sources */,
+				B6F929F71D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,7 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6F929D41D2A5DD6009E4B83 /* WWDCastTests.swift in Sources */,
+				B6F929EA1D2AB197009E4B83 /* WWDCastTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,18 +361,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B6F929C21D2A5DD5009E4B83 /* Main.storyboard */ = {
+		B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B6F929C31D2A5DD5009E4B83 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B6F929C71D2A5DD5009E4B83 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B6F929C81D2A5DD5009E4B83 /* Base */,
+				B6F929EC1D2AB283009E4B83 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -407,7 +460,7 @@
 			baseConfigurationReference = 9268B945EC535EADBF480376 /* Pods-WWDCast.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = WWDCast/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -419,7 +472,7 @@
 			baseConfigurationReference = ADBD730D2EDFBB9DC1ECCA3B /* Pods-WWDCast.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = WWDCast/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
