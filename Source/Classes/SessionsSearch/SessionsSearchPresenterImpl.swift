@@ -24,7 +24,7 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
             .loadSessions()
             .map({ sessions in
                 return sessions.map() { session in
-                    return SessionViewModel(title: session.title, shelfImageURL: session.shelfImageURL)
+                    return SessionViewModel(title: session.title, summary: session.summary, shelfImageURL: session.shelfImageURL)
                 }
             })
             .subscribeNext { sessions in

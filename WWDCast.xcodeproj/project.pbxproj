@@ -29,6 +29,12 @@
 		B6F929FE1D2AB5F8009E4B83 /* SessionsSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929FD1D2AB5F8009E4B83 /* SessionsSearchView.swift */; };
 		B6F92A001D2AB713009E4B83 /* SessionsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929FF1D2AB713009E4B83 /* SessionsSearchViewController.swift */; };
 		B6F92A021D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A011D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift */; };
+		B6F92A071D2C00F1009E4B83 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A061D2C00F1009E4B83 /* SessionTableViewCell.swift */; };
+		B6F92A181D2C0E7E009E4B83 /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A141D2C0E7E009E4B83 /* RxExtensions.swift */; };
+		B6F92A191D2C0E7E009E4B83 /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A151D2C0E7E009E4B83 /* RxTableViewCell.swift */; };
+		B6F92A1A1D2C0E7E009E4B83 /* UITableView+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A161D2C0E7E009E4B83 /* UITableView+Common.swift */; };
+		B6F92A1B1D2C0E7E009E4B83 /* UITableViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A171D2C0E7E009E4B83 /* UITableViewController+Common.swift */; };
+		B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */; };
 		D1DC9CD0CE753A657EB5B312 /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C468BC5648F502758794C41 /* Pods_WWDCast.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +78,12 @@
 		B6F929FD1D2AB5F8009E4B83 /* SessionsSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchView.swift; sourceTree = "<group>"; };
 		B6F929FF1D2AB713009E4B83 /* SessionsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewController.swift; sourceTree = "<group>"; };
 		B6F92A011D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchWireframeImpl.swift; sourceTree = "<group>"; };
+		B6F92A061D2C00F1009E4B83 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
+		B6F92A141D2C0E7E009E4B83 /* RxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
+		B6F92A151D2C0E7E009E4B83 /* RxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTableViewCell.swift; sourceTree = "<group>"; };
+		B6F92A161D2C0E7E009E4B83 /* UITableView+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Common.swift"; sourceTree = "<group>"; };
+		B6F92A171D2C0E7E009E4B83 /* UITableViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewController+Common.swift"; sourceTree = "<group>"; };
+		B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionTableViewCell.xib; path = Resources/SessionTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		DE1B81037F3BBEBF7E303E78 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 		F6A344ECAA8B26C368848535 /* Pods_WWDCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -166,6 +178,7 @@
 		B6F929BD1D2A5DD5009E4B83 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */,
 				B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */,
 				5EBEEF601D2B15BD007C44E3 /* SessionsSearchViewController.xib */,
 				B6F929C51D2A5DD5009E4B83 /* Assets.xcassets */,
@@ -201,6 +214,7 @@
 				B6F929F31D2AB54B009E4B83 /* SessionsSearch */,
 				5EBEEF521D2B0B32007C44E3 /* Entities */,
 				5EBEEF621D2B1C43007C44E3 /* ViewModels */,
+				B6F92A131D2C0E7E009E4B83 /* Common */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -221,6 +235,7 @@
 				B6F929F41D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift */,
 				B6F929F61D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift */,
 				B6F92A011D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift */,
+				B6F92A061D2C00F1009E4B83 /* SessionTableViewCell.swift */,
 			);
 			path = SessionsSearch;
 			sourceTree = "<group>";
@@ -233,6 +248,17 @@
 				B6F929FD1D2AB5F8009E4B83 /* SessionsSearchView.swift */,
 			);
 			path = SessionsSearch;
+			sourceTree = "<group>";
+		};
+		B6F92A131D2C0E7E009E4B83 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B6F92A141D2C0E7E009E4B83 /* RxExtensions.swift */,
+				B6F92A151D2C0E7E009E4B83 /* RxTableViewCell.swift */,
+				B6F92A161D2C0E7E009E4B83 /* UITableView+Common.swift */,
+				B6F92A171D2C0E7E009E4B83 /* UITableViewController+Common.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		CE07BF3F3C976FDC0821931E /* Pods */ = {
@@ -259,6 +285,7 @@
 				B6F929B91D2A5DD5009E4B83 /* Resources */,
 				AA720D3C39D46761CAD54C0B /* [CP] Embed Pods Frameworks */,
 				DE9F671286CAF4D10C6EC682 /* [CP] Copy Pods Resources */,
+				E0018B3E62642BA4E2FE38F4 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -333,6 +360,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */,
 				B6F929C61D2A5DD5009E4B83 /* Assets.xcassets in Resources */,
 				B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */,
 				5EBEEF611D2B15BD007C44E3 /* SessionsSearchViewController.xib in Resources */,
@@ -424,6 +452,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E0018B3E62642BA4E2FE38F4 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E5248526D49A453158D9CD89 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -449,6 +492,7 @@
 				B6F929FC1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift in Sources */,
 				5EBEEF511D2B0AEA007C44E3 /* AppConfig.swift in Sources */,
 				5EBEEF541D2B0B42007C44E3 /* AppConfigImpl.swift in Sources */,
+				B6F92A191D2C0E7E009E4B83 /* RxTableViewCell.swift in Sources */,
 				B6F92A001D2AB713009E4B83 /* SessionsSearchViewController.swift in Sources */,
 				B6F929FA1D2AB5E3009E4B83 /* SessionsSearchPresenter.swift in Sources */,
 				B6F929FE1D2AB5F8009E4B83 /* SessionsSearchView.swift in Sources */,
@@ -456,10 +500,14 @@
 				B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */,
 				5EBEEF641D2B1C6A007C44E3 /* SessionViewModel.swift in Sources */,
 				5EBEEF561D2B0B5B007C44E3 /* Session.swift in Sources */,
+				B6F92A071D2C00F1009E4B83 /* SessionTableViewCell.swift in Sources */,
+				B6F92A1B1D2C0E7E009E4B83 /* UITableViewController+Common.swift in Sources */,
 				B6F929E61D2AB0FD009E4B83 /* WWDCEnvironment.swift in Sources */,
 				5EBEEF5F1D2B0C3F007C44E3 /* SessionBuilder.swift in Sources */,
 				5EBEEF5A1D2B0BB4007C44E3 /* EntityBuilder.swift in Sources */,
+				B6F92A181D2C0E7E009E4B83 /* RxExtensions.swift in Sources */,
 				5EBEEF581D2B0B87007C44E3 /* SessionImpl.swift in Sources */,
+				B6F92A1A1D2C0E7E009E4B83 /* UITableView+Common.swift in Sources */,
 				B6F92A021D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift in Sources */,
 				B6F929F71D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift in Sources */,
 				5EBEEF5D1D2B0BEA007C44E3 /* AppConfigBuilder.swift in Sources */,

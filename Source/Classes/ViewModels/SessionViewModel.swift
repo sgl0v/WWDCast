@@ -12,5 +12,6 @@ typealias SessionViewModels=[SessionViewModel]
 
 struct SessionViewModel {
     var title: String
+    var summary: String
     var shelfImageURL: String
 }

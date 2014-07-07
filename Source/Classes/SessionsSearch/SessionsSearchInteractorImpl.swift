@@ -55,20 +55,3 @@ extension SessionsSearchInteractorImpl: SessionsSearchInteractor {
     }
 
 }
-
-func rx_request(method: Alamofire.Method, _ URLString: URLStringConvertible) -> Observable<AnyObject> {
-    return Observable<AnyObject>.create({ (observer) -> Disposable in
-        let request = Alamofire.request(method, URLString)
-            .responseJSON(completionHandler: { (firedResponse) -> Void in
-                if let value = firedResponse.result.value {
-                    observer.onNext(value)
-                    observer.onCompleted()
-                } else if let error = firedResponse.result.error {
-                    observer.onError(error)
-                }
-            })
-        return AnonymousDisposable {
-            request.cancel()
-        }
-    })
-}

@@ -8,22 +8,22 @@
 
 import UIKit
 
-class SessionsSearchViewController: UITableViewController {
+class SessionsSearchViewController: TableViewController<SessionViewModel, SessionTableViewCell> {
     var presenter: SessionsSearchPresenter!
 
-    convenience init() {
-        self.init(nibName: "SessionsSearchViewController", bundle: NSBundle.mainBundle())
-    }
+//    convenience init() {
+//        self.init(nibName: "SessionsSearchViewController", bundle: NSBundle.mainBundle())
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter.updateView()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+//
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
 
 }
 
