@@ -14,20 +14,22 @@ class AppConfigBuilder: EntityBuilder {
     typealias EntityType = AppConfig
 
     static func build(json: JSON) -> EntityType {
-        var config = AppConfigImpl()
-
+        var videosURL: NSURL? = nil
         if let videos = json["urls"]["videos"].string {
-            config.videosURL = videos
+            videosURL = NSURL(string: videos)
         }
+
+        var sessionsURL: NSURL? = nil
         if let sessions = json["urls"]["sessions"].string {
-            config.sessionsURL = sessions
+            sessionsURL = NSURL(string: sessions)
         }
 
+        var isWWDCWeek = false
         if let streaming = json["features"]["liveStreaming"].bool {
-            config.isWWDCWeek = streaming
+            isWWDCWeek = streaming
         }
 
-        return config
+        return AppConfigImpl(sessionsURL: sessionsURL!, videosURL: videosURL!, isWWDCWeek: isWWDCWeek)
     }
     
 }

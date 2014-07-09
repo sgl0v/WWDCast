@@ -9,18 +9,16 @@
 import Foundation
 
 struct SessionImpl: Session {
-    var uniqueId: String = ""
-    var id: Int = 0
-    var year: Int = 0
-    var date: NSDate? = nil
-    var track: String = ""
-    var focus: String = ""
-    var title: String = ""
-    var summary: String = ""
-    var videoURL: String = ""
-    var hdVideoURL: String = ""
-    var slidesURL: String = ""
-    var shelfImageURL: String = ""
+    var uniqueId: String { return "#\(year)-\(id)" }
+    let id: Int
+    let year: Int
+    let track: Track
+    let focus: [Focus]
+    let title: String
+    let summary: String
+    let videoURL: NSURL
+    let hdVideoURL: NSURL
+    let shelfImageURL: NSURL
 }
 
 extension SessionImpl: Hashable {

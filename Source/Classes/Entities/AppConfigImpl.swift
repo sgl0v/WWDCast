@@ -9,9 +9,9 @@
 import Foundation
 
 struct AppConfigImpl: AppConfig {
-    var sessionsURL: String = ""
-    var videosURL: String = ""
-    var isWWDCWeek: Bool = false
+    let sessionsURL: NSURL
+    let videosURL: NSURL
+    let isWWDCWeek: Bool
 }
 
 extension AppConfigImpl: Hashable {

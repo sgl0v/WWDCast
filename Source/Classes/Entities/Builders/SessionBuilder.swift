@@ -13,37 +13,27 @@ class SessionBuilder: EntityBuilder {
 
     typealias EntityType = Session
 
-    static var dateFormatter: NSDateFormatter {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter
-    }
-
     static func build(json: JSON) -> EntityType {
-        var session = SessionImpl()
+        let id = json["id"].intValue
+        let year = json["year"].intValue 
+        let title = json["title"].stringValue
+        let summary = json["description"].stringValue
+        let track = Track(rawValue: json["track"].stringValue)!
+        let videoURL = NSURL(string: json["url"].stringValue)!
+        let hdVideoURL = NSURL(string: json["download_hd"].stringValue)!
 
-        session.id = json["id"].intValue
-        session.year = json["year"].intValue
-        session.uniqueId = "#" + String(session.year) + "-" + String(session.id)
-        session.title = json["title"].stringValue
-        session.summary = json["description"].stringValue
-        session.date = self.dateFormatter.dateFromString(json["date"].stringValue)
-        session.track = json["track"].stringValue
-        session.videoURL = json["url"].stringValue
-        session.hdVideoURL = json["download_hd"].stringValue
-        session.slidesURL = json["slides"].stringValue
-        session.track = json["track"].stringValue
-
-
-        if let focus = json["focus"].arrayObject as? [String] {
-            session.focus = focus.joinWithSeparator(", ")
+        var focus = [Focus]()
+        if let focusJSON = json["focus"].arrayObject as? [String] {
+            focus = focusJSON.map() { Focus(rawValue: $0)! }
         }
 
-        if let images = json["images"].dictionaryObject as? [String: String] {
-            session.shelfImageURL = images["shelf"] ?? ""
+        var shelfImageURL: NSURL? = nil
+        if let images = json["images"].dictionaryObject as? [String: String], imageURL = images["shelf"] {
+            shelfImageURL = NSURL(string: imageURL)!
         }
         
-        return session
+        return SessionImpl(id: id, year: year, track: track, focus: focus, title: title,
+                           summary: summary, videoURL: videoURL, hdVideoURL: hdVideoURL, shelfImageURL: shelfImageURL!)
     }
     
 }

@@ -34,6 +34,7 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
             .catchErrorJustReturn([])
             .map(self.createSessionViewModels)
             .subscribeNext {[unowned self] sessions in
+                print(sessions)
                 self.view.showSessions(sessions)
         }
         subscription.addDisposableTo(self.disposeBag)
@@ -53,7 +54,7 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
     private func createSessionViewModels(sessions: [Session]) -> SessionViewModels {
         print(sessions)
         return sessions.map() { session in
-            return SessionViewModel(title: session.title, summary: session.summary, thumbnailURL: NSURL(string: session.shelfImageURL)!)
+            return SessionViewModel(title: session.title, summary: session.summary, thumbnailURL: session.shelfImageURL)
         }
     }
 

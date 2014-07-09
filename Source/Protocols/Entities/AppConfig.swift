@@ -9,7 +9,7 @@
 import Foundation
 
 protocol AppConfig {
-    var sessionsURL: String { get }
-    var videosURL: String { get }
+    var sessionsURL: NSURL { get }
+    var videosURL: NSURL { get }
     var isWWDCWeek: Bool { get }
 }

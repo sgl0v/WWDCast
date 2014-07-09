@@ -8,17 +8,24 @@
 
 import Foundation
 
+enum Track: String {
+    case AppFrameworks = "App Frameworks", SystemFrameworks = "System Frameworks", DeveloperTools = "Developer Tools",
+        Featured = "Featured", GraphicsAndGames = "Graphics and Games", Design = "Design", Media = "Media", Distribution = "Distribution"
+}
+
+enum Focus: String {
+    case iOS, macOS, tvOS, watchOS
+}
+
 protocol Session {
     var uniqueId: String { get }
     var id: Int { get }
     var year: Int { get }
-    var date: NSDate? { get }
-    var track: String { get }
-    var focus: String { get }
+    var track: Track { get }
+    var focus: [Focus] { get }
     var title: String { get }
     var summary: String { get }
-    var videoURL: String { get }
-    var hdVideoURL: String { get }
-    var slidesURL: String { get }
-    var shelfImageURL: String { get }
+    var videoURL: NSURL { get }
+    var hdVideoURL: NSURL { get }
+    var shelfImageURL: NSURL { get }
 }
