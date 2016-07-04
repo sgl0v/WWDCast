@@ -1,0 +1,35 @@
+PODS:
+  - Alamofire (3.4.1)
+  - google-cast-sdk (3.0.0):
+    - google-cast-sdk/Core (= 3.0.0)
+  - google-cast-sdk/Core (3.0.0)
+  - RxAlamofire (2.5):
+    - RxAlamofire/Core (= 2.5)
+  - RxAlamofire/Core (2.5):
+    - Alamofire (~> 3.4)
+    - RxSwift (~> 2.5)
+  - RxCocoa (2.6.0):
+    - RxSwift (~> 2.5)
+  - RxOptional (2.0.0):
+    - RxCocoa (~> 2.0)
+    - RxSwift (~> 2.0)
+  - RxSwift (2.6.0)
+  - SwiftyJSON (2.3.2)
+
+DEPENDENCIES:
+  - google-cast-sdk (~> 3.0)
+  - RxAlamofire (~> 2.5)
+  - RxCocoa (~> 2.6)
+  - RxOptional (~> 2.0)
+  - SwiftyJSON (~> 2.3)
+
+SPEC CHECKSUMS:
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  google-cast-sdk: de04dc1edf2eececd00716044399e0715bdbddf6
+  RxAlamofire: b4572a077b6b2410c8732a27266299df4c00736e
+  RxCocoa: 89ab00d5753502520227940e3a0e0a0413683c6b
+  RxOptional: b77fb47a0190213cf8a37c7a2b7fda28160b4563
+  RxSwift: 77f3a0b15324baa7a1c9bfa9f199648a82424e26
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+
+COCOAPODS: 0.39.0

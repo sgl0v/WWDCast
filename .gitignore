@@ -34,3 +34,6 @@ Carthage/Build
 
 # Scrypto-specific: dummy frameworks
 Frameworks
+
+# Cocoapods
+Pods
