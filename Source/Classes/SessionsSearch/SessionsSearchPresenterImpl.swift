@@ -21,8 +21,8 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
 
     func updateView() {
         _ = self.interactor.loadSessions()
-            .subscribeNext { response in
-                print(response)
+            .subscribeNext { sessions in
+                print(sessions[0])
         }
     }
 }

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52F73CC2EAC05B658A6653BA /* Pods_WWDCastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6A344ECAA8B26C368848535 /* Pods_WWDCastTests.framework */; };
+		5EBEEF511D2B0AEA007C44E3 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF501D2B0AEA007C44E3 /* AppConfig.swift */; };
+		5EBEEF541D2B0B42007C44E3 /* AppConfigImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF531D2B0B42007C44E3 /* AppConfigImpl.swift */; };
+		5EBEEF561D2B0B5B007C44E3 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF551D2B0B5B007C44E3 /* Session.swift */; };
+		5EBEEF581D2B0B87007C44E3 /* SessionImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF571D2B0B87007C44E3 /* SessionImpl.swift */; };
+		5EBEEF5A1D2B0BB4007C44E3 /* EntityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF591D2B0BB4007C44E3 /* EntityBuilder.swift */; };
+		5EBEEF5D1D2B0BEA007C44E3 /* AppConfigBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF5C1D2B0BEA007C44E3 /* AppConfigBuilder.swift */; };
+		5EBEEF5F1D2B0C3F007C44E3 /* SessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF5E1D2B0C3F007C44E3 /* SessionBuilder.swift */; };
 		B6F929C61D2A5DD5009E4B83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F929C51D2A5DD5009E4B83 /* Assets.xcassets */; };
 		B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */; };
 		B6F929E61D2AB0FD009E4B83 /* WWDCEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E31D2AB0FC009E4B83 /* WWDCEnvironment.swift */; };
@@ -19,7 +27,7 @@
 		B6F929FE1D2AB5F8009E4B83 /* SessionsSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929FD1D2AB5F8009E4B83 /* SessionsSearchView.swift */; };
 		B6F92A001D2AB713009E4B83 /* SessionsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929FF1D2AB713009E4B83 /* SessionsSearchViewController.swift */; };
 		B6F92A021D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A011D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift */; };
-		C15C7AF0CD910DD2C075FDF4 /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AEAC6CBF3477E0D5939053 /* Pods_WWDCast.framework */; };
+		D1DC9CD0CE753A657EB5B312 /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C468BC5648F502758794C41 /* Pods_WWDCast.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,8 +41,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9268B945EC535EADBF480376 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
-		ADBD730D2EDFBB9DC1ECCA3B /* Pods-WWDCast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.release.xcconfig"; sourceTree = "<group>"; };
+		10FDE67A196B0F089597E394 /* Pods-WWDCastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.release.xcconfig"; sourceTree = "<group>"; };
+		5EBEEF501D2B0AEA007C44E3 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		5EBEEF531D2B0B42007C44E3 /* AppConfigImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigImpl.swift; sourceTree = "<group>"; };
+		5EBEEF551D2B0B5B007C44E3 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		5EBEEF571D2B0B87007C44E3 /* SessionImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionImpl.swift; sourceTree = "<group>"; };
+		5EBEEF591D2B0BB4007C44E3 /* EntityBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityBuilder.swift; sourceTree = "<group>"; };
+		5EBEEF5C1D2B0BEA007C44E3 /* AppConfigBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigBuilder.swift; sourceTree = "<group>"; };
+		5EBEEF5E1D2B0C3F007C44E3 /* SessionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionBuilder.swift; sourceTree = "<group>"; };
+		7C468BC5648F502758794C41 /* Pods_WWDCast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8142A5ADD0BDD457AF1B3946 /* Pods-WWDCast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.release.xcconfig"; sourceTree = "<group>"; };
+		A6ED42B84F1732DF1EF86521 /* Pods-WWDCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B6F929BB1D2A5DD5009E4B83 /* WWDCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWDCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F929C51D2A5DD5009E4B83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Resources/Assets.xcassets; sourceTree = "<group>"; };
 		B6F929CA1D2A5DD5009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Resources/Info.plist; sourceTree = "<group>"; };
@@ -51,7 +68,8 @@
 		B6F929FD1D2AB5F8009E4B83 /* SessionsSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchView.swift; sourceTree = "<group>"; };
 		B6F929FF1D2AB713009E4B83 /* SessionsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewController.swift; sourceTree = "<group>"; };
 		B6F92A011D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchWireframeImpl.swift; sourceTree = "<group>"; };
-		B7AEAC6CBF3477E0D5939053 /* Pods_WWDCast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE1B81037F3BBEBF7E303E78 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
+		F6A344ECAA8B26C368848535 /* Pods_WWDCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C15C7AF0CD910DD2C075FDF4 /* Pods_WWDCast.framework in Frameworks */,
+				D1DC9CD0CE753A657EB5B312 /* Pods_WWDCast.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,27 +85,49 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F73CC2EAC05B658A6653BA /* Pods_WWDCastTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		63B3B75418355327AA57CE62 /* Pods */ = {
+		25189EC1DD0C97DAD0A5AA18 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9268B945EC535EADBF480376 /* Pods-WWDCast.debug.xcconfig */,
-				ADBD730D2EDFBB9DC1ECCA3B /* Pods-WWDCast.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		A9ED2A2DE62008254CE47CF0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B7AEAC6CBF3477E0D5939053 /* Pods_WWDCast.framework */,
+				7C468BC5648F502758794C41 /* Pods_WWDCast.framework */,
+				F6A344ECAA8B26C368848535 /* Pods_WWDCastTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5EBEEF4F1D2B0AD8007C44E3 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				5EBEEF501D2B0AEA007C44E3 /* AppConfig.swift */,
+				5EBEEF551D2B0B5B007C44E3 /* Session.swift */,
+				5EBEEF591D2B0BB4007C44E3 /* EntityBuilder.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		5EBEEF521D2B0B32007C44E3 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				5EBEEF5B1D2B0BE3007C44E3 /* Builders */,
+				5EBEEF531D2B0B42007C44E3 /* AppConfigImpl.swift */,
+				5EBEEF571D2B0B87007C44E3 /* SessionImpl.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		5EBEEF5B1D2B0BE3007C44E3 /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				5EBEEF5C1D2B0BEA007C44E3 /* AppConfigBuilder.swift */,
+				5EBEEF5E1D2B0C3F007C44E3 /* SessionBuilder.swift */,
+			);
+			path = Builders;
 			sourceTree = "<group>";
 		};
 		B6F929B21D2A5DD5009E4B83 = {
@@ -97,8 +137,8 @@
 				B6F929E71D2AB111009E4B83 /* Tests */,
 				B6F929BD1D2A5DD5009E4B83 /* Resources */,
 				B6F929BC1D2A5DD5009E4B83 /* Products */,
-				63B3B75418355327AA57CE62 /* Pods */,
-				A9ED2A2DE62008254CE47CF0 /* Frameworks */,
+				CE07BF3F3C976FDC0821931E /* Pods */,
+				25189EC1DD0C97DAD0A5AA18 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -146,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				B6F929F31D2AB54B009E4B83 /* SessionsSearch */,
+				5EBEEF521D2B0B32007C44E3 /* Entities */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -154,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				B6F929F81D2AB5D8009E4B83 /* SessionsSearch */,
+				5EBEEF4F1D2B0AD8007C44E3 /* Entities */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -179,6 +221,17 @@
 			path = SessionsSearch;
 			sourceTree = "<group>";
 		};
+		CE07BF3F3C976FDC0821931E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DE1B81037F3BBEBF7E303E78 /* Pods-WWDCast.debug.xcconfig */,
+				8142A5ADD0BDD457AF1B3946 /* Pods-WWDCast.release.xcconfig */,
+				A6ED42B84F1732DF1EF86521 /* Pods-WWDCastTests.debug.xcconfig */,
+				10FDE67A196B0F089597E394 /* Pods-WWDCastTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -186,12 +239,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6F929D81D2A5DD6009E4B83 /* Build configuration list for PBXNativeTarget "WWDCast" */;
 			buildPhases = (
-				61B044505CD985605D22E4B2 /* Check Pods Manifest.lock */,
+				D214ACFBD5C00700D8C35E13 /* [CP] Check Pods Manifest.lock */,
 				B6F929B71D2A5DD5009E4B83 /* Sources */,
 				B6F929B81D2A5DD5009E4B83 /* Frameworks */,
 				B6F929B91D2A5DD5009E4B83 /* Resources */,
-				32E408C7721207673B79B3F4 /* Embed Pods Frameworks */,
-				6790CB3C3DC5C7C5B20B1F51 /* Copy Pods Resources */,
+				AA720D3C39D46761CAD54C0B /* [CP] Embed Pods Frameworks */,
+				DE9F671286CAF4D10C6EC682 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -206,9 +259,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6F929DB1D2A5DD6009E4B83 /* Build configuration list for PBXNativeTarget "WWDCastTests" */;
 			buildPhases = (
+				8E3AA1B0C4AD391EF6533174 /* [CP] Check Pods Manifest.lock */,
 				B6F929CB1D2A5DD6009E4B83 /* Sources */,
 				B6F929CC1D2A5DD6009E4B83 /* Frameworks */,
 				B6F929CD1D2A5DD6009E4B83 /* Resources */,
+				E5248526D49A453158D9CD89 /* [CP] Embed Pods Frameworks */,
+				5242DE3CBC7A13DD7008ECA0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -278,29 +334,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		32E408C7721207673B79B3F4 /* Embed Pods Frameworks */ = {
+		5242DE3CBC7A13DD7008ECA0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		61B044505CD985605D22E4B2 /* Check Pods Manifest.lock */ = {
+		8E3AA1B0C4AD391EF6533174 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,19 +364,64 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		6790CB3C3DC5C7C5B20B1F51 /* Copy Pods Resources */ = {
+		AA720D3C39D46761CAD54C0B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D214ACFBD5C00700D8C35E13 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DE9F671286CAF4D10C6EC682 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5248526D49A453158D9CD89 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -331,14 +432,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6F929FC1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift in Sources */,
+				5EBEEF511D2B0AEA007C44E3 /* AppConfig.swift in Sources */,
+				5EBEEF541D2B0B42007C44E3 /* AppConfigImpl.swift in Sources */,
 				B6F92A001D2AB713009E4B83 /* SessionsSearchViewController.swift in Sources */,
 				B6F929FA1D2AB5E3009E4B83 /* SessionsSearchPresenter.swift in Sources */,
 				B6F929FE1D2AB5F8009E4B83 /* SessionsSearchView.swift in Sources */,
 				B6F929F51D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift in Sources */,
 				B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */,
+				5EBEEF561D2B0B5B007C44E3 /* Session.swift in Sources */,
 				B6F929E61D2AB0FD009E4B83 /* WWDCEnvironment.swift in Sources */,
+				5EBEEF5F1D2B0C3F007C44E3 /* SessionBuilder.swift in Sources */,
+				5EBEEF5A1D2B0BB4007C44E3 /* EntityBuilder.swift in Sources */,
+				5EBEEF581D2B0B87007C44E3 /* SessionImpl.swift in Sources */,
 				B6F92A021D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift in Sources */,
 				B6F929F71D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift in Sources */,
+				5EBEEF5D1D2B0BEA007C44E3 /* AppConfigBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,7 +565,7 @@
 		};
 		B6F929D91D2A5DD6009E4B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9268B945EC535EADBF480376 /* Pods-WWDCast.debug.xcconfig */;
+			baseConfigurationReference = DE1B81037F3BBEBF7E303E78 /* Pods-WWDCast.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Resources/Info.plist;
@@ -469,7 +577,7 @@
 		};
 		B6F929DA1D2A5DD6009E4B83 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ADBD730D2EDFBB9DC1ECCA3B /* Pods-WWDCast.release.xcconfig */;
+			baseConfigurationReference = 8142A5ADD0BDD457AF1B3946 /* Pods-WWDCast.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Resources/Info.plist;
@@ -481,6 +589,7 @@
 		};
 		B6F929DC1D2A5DD6009E4B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6ED42B84F1732DF1EF86521 /* Pods-WWDCastTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = WWDCastTests/Info.plist;
@@ -493,6 +602,7 @@
 		};
 		B6F929DD1D2A5DD6009E4B83 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10FDE67A196B0F089597E394 /* Pods-WWDCastTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = WWDCastTests/Info.plist;
