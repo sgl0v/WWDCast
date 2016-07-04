@@ -22,7 +22,7 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
     func updateView() {
         _ = self.interactor.loadSessions()
             .subscribeNext { sessions in
-                print(sessions[0])
+                print(sessions)
         }
     }
 }

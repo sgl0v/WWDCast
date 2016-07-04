@@ -8,11 +8,11 @@
 
 import UIKit
 
-class SessionsSearchViewController: UIViewController {
+class SessionsSearchViewController: UITableViewController {
     var presenter: SessionsSearchPresenter!
 
     convenience init() {
-        self.init(nibName: nil, bundle: nil)
+        self.init(nibName: "SessionsSearchViewController", bundle: NSBundle.mainBundle())
     }
 
     override func viewDidLoad() {

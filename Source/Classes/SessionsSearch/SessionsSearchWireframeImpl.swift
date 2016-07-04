@@ -16,7 +16,7 @@ class SessionsSearchWireframeImpl {
         let interactor = SessionsSearchInteractorImpl(presenter: presenter)
         view.presenter = presenter
         presenter.interactor = interactor
-        return view
+        return UINavigationController(rootViewController: view)
     }
 
 }

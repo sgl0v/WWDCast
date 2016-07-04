@@ -15,6 +15,7 @@
 		5EBEEF5A1D2B0BB4007C44E3 /* EntityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF591D2B0BB4007C44E3 /* EntityBuilder.swift */; };
 		5EBEEF5D1D2B0BEA007C44E3 /* AppConfigBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF5C1D2B0BEA007C44E3 /* AppConfigBuilder.swift */; };
 		5EBEEF5F1D2B0C3F007C44E3 /* SessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF5E1D2B0C3F007C44E3 /* SessionBuilder.swift */; };
+		5EBEEF611D2B15BD007C44E3 /* SessionsSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EBEEF601D2B15BD007C44E3 /* SessionsSearchViewController.xib */; };
 		B6F929C61D2A5DD5009E4B83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F929C51D2A5DD5009E4B83 /* Assets.xcassets */; };
 		B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */; };
 		B6F929E61D2AB0FD009E4B83 /* WWDCEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E31D2AB0FC009E4B83 /* WWDCEnvironment.swift */; };
@@ -49,6 +50,7 @@
 		5EBEEF591D2B0BB4007C44E3 /* EntityBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityBuilder.swift; sourceTree = "<group>"; };
 		5EBEEF5C1D2B0BEA007C44E3 /* AppConfigBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigBuilder.swift; sourceTree = "<group>"; };
 		5EBEEF5E1D2B0C3F007C44E3 /* SessionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionBuilder.swift; sourceTree = "<group>"; };
+		5EBEEF601D2B15BD007C44E3 /* SessionsSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionsSearchViewController.xib; path = Resources/SessionsSearchViewController.xib; sourceTree = SOURCE_ROOT; };
 		7C468BC5648F502758794C41 /* Pods_WWDCast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8142A5ADD0BDD457AF1B3946 /* Pods-WWDCast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.release.xcconfig"; sourceTree = "<group>"; };
 		A6ED42B84F1732DF1EF86521 /* Pods-WWDCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */,
+				5EBEEF601D2B15BD007C44E3 /* SessionsSearchViewController.xib */,
 				B6F929C51D2A5DD5009E4B83 /* Assets.xcassets */,
 				B6F929CA1D2A5DD5009E4B83 /* Info.plist */,
 			);
@@ -321,6 +324,7 @@
 			files = (
 				B6F929C61D2A5DD5009E4B83 /* Assets.xcassets in Resources */,
 				B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */,
+				5EBEEF611D2B15BD007C44E3 /* SessionsSearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

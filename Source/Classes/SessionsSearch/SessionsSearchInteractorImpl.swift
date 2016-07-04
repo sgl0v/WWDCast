@@ -37,7 +37,7 @@ extension SessionsSearchInteractorImpl: SessionsSearchInteractor {
     }
 
     private func loadSessions(config: AppConfig) -> Observable<[Session]> {
-        return rx_request(.GET, config.sessionsURL).map({ data in
+        return rx_request(.GET, config.videosURL).map({ data in
 //            let json = JSON(data)
 //            print(json)
             return JSON(data)["sessions"].arrayValue.map() { sessionJSON in
