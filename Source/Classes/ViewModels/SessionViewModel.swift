@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+typealias SessionViewModels=[SessionViewModel]
+
+struct SessionViewModel {
+    var title: String
+    var shelfImageURL: String
+}

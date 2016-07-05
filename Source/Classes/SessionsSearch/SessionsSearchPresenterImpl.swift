@@ -20,7 +20,13 @@ class SessionsSearchPresenterImpl {
 extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
 
     func updateView() {
-        _ = self.interactor.loadSessions()
+        _ = self.interactor
+            .loadSessions()
+            .map({ sessions in
+                return sessions.map() { session in
+                    return SessionViewModel(title: session.title, shelfImageURL: session.shelfImageURL)
+                }
+            })
             .subscribeNext { sessions in
                 print(sessions)
         }
