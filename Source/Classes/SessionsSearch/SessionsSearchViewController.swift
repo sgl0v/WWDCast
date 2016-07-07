@@ -11,14 +11,11 @@ import UIKit
 class SessionsSearchViewController: TableViewController<SessionViewModel, SessionTableViewCell> {
     var presenter: SessionsSearchPresenter!
 
-//    convenience init() {
-//        self.init(nibName: "SessionsSearchViewController", bundle: NSBundle.mainBundle())
-//    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter.updateView()
     }
+
 //
 //    override func didReceiveMemoryWarning() {
 //        super.didReceiveMemoryWarning()
@@ -28,5 +25,13 @@ class SessionsSearchViewController: TableViewController<SessionViewModel, Sessio
 }
 
 extension SessionsSearchViewController: SessionsSearchView {
+
+    func showSessions(sessions: [SessionViewModel]) {
+        self.data = sessions
+    }
+
+    func setTitle(title: String) {
+        self.title = title
+    }
 
 }

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 import RxSwift
 import SwiftyJSON
 
@@ -30,6 +29,8 @@ extension SessionsSearchInteractorImpl: SessionsSearchInteractor {
             .observeOn(MainScheduler.instance)
     }
 
+    // MARK: Private
+
     private func loadConfig() -> Observable<AppConfig> {
         return rx_request(.GET, WWDCEnvironment.indexURL).map({ data in
             return AppConfigBuilder.build(JSON(data))
@@ -38,19 +39,7 @@ extension SessionsSearchInteractorImpl: SessionsSearchInteractor {
 
     private func loadSessions(config: AppConfig) -> Observable<[Session]> {
         return rx_request(.GET, config.videosURL).map({ data in
-//            let json = JSON(data)
-//            print(json)
-            return JSON(data)["sessions"].arrayValue.map() { sessionJSON in
-                return SessionBuilder.build(sessionJSON)
-            }
-
-//            // create and store/update each video
-//            for jsonSession in sessionsArray {
-//                // ignored videos from 2016 without a duration specified
-//                if jsonSession["duration"].intValue == 0 && jsonSession["year"].intValue > 2015 { continue }
-//
-//                let session = SessionAdapter.adapt(jsonSession)
-//            }
+            return SessionsBuilder.build(JSON(data))
         })
     }
 

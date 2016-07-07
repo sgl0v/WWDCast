@@ -13,17 +13,7 @@ public protocol BindableView {
     func bindViewModel(viewModel: ViewModel)
 }
 
-protocol NibProvidable {
-    static var nibName: String {get}
-}
-
-extension NibProvidable {
-    static var nibName: String {
-        return "\(self)"
-    }
-}
-
-public class TableViewController<T, Cell: UITableViewCell where Cell: protocol<BindableView, ReusableView>, Cell.ViewModel == T>: UITableViewController,  NibProvidable {
+public class TableViewController<T, Cell: UITableViewCell where Cell: protocol<BindableView, NibProvidable, ReusableView>, Cell.ViewModel == T>: UITableViewController,  NibProvidable {
 
     public var data = [T]() {
         didSet {
@@ -38,7 +28,7 @@ public class TableViewController<T, Cell: UITableViewCell where Cell: protocol<B
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(cellClass: Cell.self)
+        self.tableView.registerNib(cellClass: Cell.self)
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 60
     }

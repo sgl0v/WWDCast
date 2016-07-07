@@ -7,10 +7,16 @@
 //
 
 import Foundation
+import RxSwift
+
+struct Titles {
+    static let SessionsSearchViewTitle = NSLocalizedString("WWDCast", comment: "Session search title")
+}
 
 class SessionsSearchPresenterImpl {
     weak var view: SessionsSearchView!
     var interactor: SessionsSearchInteractor!
+    private let disposeBag = DisposeBag()
 
     init(view: SessionsSearchView) {
         self.view = view
@@ -20,15 +26,20 @@ class SessionsSearchPresenterImpl {
 extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
 
     func updateView() {
-        _ = self.interactor
+        self.view.setTitle(Titles.SessionsSearchViewTitle)
+        let subscription = self.interactor
             .loadSessions()
+            .catchErrorJustReturn([])
             .map({ sessions in
                 return sessions.map() { session in
-                    return SessionViewModel(title: session.title, summary: session.summary, shelfImageURL: session.shelfImageURL)
+                    return SessionViewModel(title: session.title, summary: session.summary, thumbnailURL: NSURL(string: session.shelfImageURL)!)
                 }
             })
-            .subscribeNext { sessions in
-                print(sessions)
+            .subscribeNext {[unowned self] sessions in
+                self.view.showSessions(sessions)
+//                print(sessions)
         }
+        subscription.addDisposableTo(self.disposeBag)
     }
+
 }

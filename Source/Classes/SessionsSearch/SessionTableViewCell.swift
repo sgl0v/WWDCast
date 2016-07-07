@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView {
+class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvidable {
     @IBOutlet weak var thumbnailImage: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var summary: UILabel!
@@ -22,9 +22,9 @@ class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView {
     func bindViewModel(viewModel: ViewModel) {
         self.title.text = viewModel.title
         self.summary.text = viewModel.summary
-//        Observable.just(viewModel.shelfImageURL)
-//            .asObservable()
-//            .takeUntil(self.onPrepareForReuse)
-//            .bindTo(self.thumbnailImage.rx_imageURL)
+        _ = Observable.just(viewModel.thumbnailURL)
+            .asObservable()
+            .takeUntil(self.onPrepareForReuse)
+            .bindTo(self.thumbnailImage.rx_imageURL)
     }
 }

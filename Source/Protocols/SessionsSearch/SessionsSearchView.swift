@@ -9,5 +9,6 @@
 import Foundation
 
 protocol SessionsSearchView: class {
-
+    func setTitle(title: String)
+    func showSessions(sessions: [SessionViewModel])
 }

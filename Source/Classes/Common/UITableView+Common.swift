@@ -8,6 +8,20 @@
 
 import UIKit
 
+public protocol NibProvidable {
+    static var nibName: String { get }
+    static var nib: UINib { get }
+}
+
+extension NibProvidable {
+    public static var nibName: String {
+        return "\(self)"
+    }
+    public static var nib: UINib {
+        return UINib(nibName: self.nibName, bundle: nil)
+    }
+}
+
 public protocol ReusableView {
     static var reuseIdentifier: String { get }
 }
@@ -20,12 +34,12 @@ extension ReusableView {
 
 // Cell
 extension UITableView {
-    public func register<T : UITableViewCell where T: ReusableView>(cellClass `class`: T.Type) {
+    public func registerClass<T : UITableViewCell where T: ReusableView>(cellClass `class`: T.Type) {
         registerClass(`class`, forCellReuseIdentifier: `class`.reuseIdentifier)
     }
 
-    public func register<T: UITableViewCell where T: ReusableView>(nib: UINib, forClass `class`: T.Type) {
-        registerNib(nib, forCellReuseIdentifier: `class`.reuseIdentifier)
+    public func registerNib<T: UITableViewCell where T: protocol<NibProvidable, ReusableView>>(cellClass `class`: T.Type) {
+        registerNib(`class`.nib, forCellReuseIdentifier: `class`.reuseIdentifier)
     }
 
     public func dequeueReusableCell<T: UITableViewCell where T: ReusableView>(withClass `class`: T.Type) -> T? {
