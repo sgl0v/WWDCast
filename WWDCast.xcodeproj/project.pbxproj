@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		5E2680961D2C43440054E90B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E2680951D2C43440054E90B /* Assets.xcassets */; };
+		5E2680991D2D98AE0054E90B /* SessionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680981D2D98AE0054E90B /* SessionDetailsViewController.swift */; };
+		5E26809B1D2D98C60054E90B /* SessionsDetailsPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26809A1D2D98C60054E90B /* SessionsDetailsPresenterImpl.swift */; };
+		5E26809D1D2D98D10054E90B /* SessionsDetailsInteractorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26809C1D2D98D10054E90B /* SessionsDetailsInteractorImpl.swift */; };
+		5E26809F1D2D99E60054E90B /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26809E1D2D99E60054E90B /* ModuleFactory.swift */; };
+		5E2680A11D2D9A130054E90B /* ModuleFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A01D2D9A130054E90B /* ModuleFactoryImpl.swift */; };
+		5E2680A41D2D9BC90054E90B /* SessionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A31D2D9BC90054E90B /* SessionDetailsView.swift */; };
+		5E2680A61D2D9BD30054E90B /* SessionDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A51D2D9BD30054E90B /* SessionDetailsPresenter.swift */; };
+		5E2680A81D2D9BDD0054E90B /* SessionDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A71D2D9BDD0054E90B /* SessionDetailsInteractor.swift */; };
+		5E4EA1D41D2D9F9A0097C2FB /* SessionsSearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1D31D2D9F9A0097C2FB /* SessionsSearchRouter.swift */; };
+		5E4EA1D61D2D9FBA0097C2FB /* SessionsSearchRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1D51D2D9FBA0097C2FB /* SessionsSearchRouterImpl.swift */; };
 		5EBEEF511D2B0AEA007C44E3 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF501D2B0AEA007C44E3 /* AppConfig.swift */; };
 		5EBEEF541D2B0B42007C44E3 /* AppConfigImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF531D2B0B42007C44E3 /* AppConfigImpl.swift */; };
 		5EBEEF561D2B0B5B007C44E3 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF551D2B0B5B007C44E3 /* Session.swift */; };
@@ -29,7 +39,6 @@
 		B6F929FC1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929FB1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift */; };
 		B6F929FE1D2AB5F8009E4B83 /* SessionsSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929FD1D2AB5F8009E4B83 /* SessionsSearchView.swift */; };
 		B6F92A001D2AB713009E4B83 /* SessionsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929FF1D2AB713009E4B83 /* SessionsSearchViewController.swift */; };
-		B6F92A021D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A011D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift */; };
 		B6F92A071D2C00F1009E4B83 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A061D2C00F1009E4B83 /* SessionTableViewCell.swift */; };
 		B6F92A181D2C0E7E009E4B83 /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A141D2C0E7E009E4B83 /* RxExtensions.swift */; };
 		B6F92A191D2C0E7E009E4B83 /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A151D2C0E7E009E4B83 /* RxTableViewCell.swift */; };
@@ -55,6 +64,16 @@
 		3B7363DE118FE7825FC36051 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 		598F3224BE6A8136DC32B3FA /* Pods-WWDCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5E2680951D2C43440054E90B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		5E2680981D2D98AE0054E90B /* SessionDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewController.swift; sourceTree = "<group>"; };
+		5E26809A1D2D98C60054E90B /* SessionsDetailsPresenterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsDetailsPresenterImpl.swift; sourceTree = "<group>"; };
+		5E26809C1D2D98D10054E90B /* SessionsDetailsInteractorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsDetailsInteractorImpl.swift; sourceTree = "<group>"; };
+		5E26809E1D2D99E60054E90B /* ModuleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
+		5E2680A01D2D9A130054E90B /* ModuleFactoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleFactoryImpl.swift; sourceTree = "<group>"; };
+		5E2680A31D2D9BC90054E90B /* SessionDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsView.swift; sourceTree = "<group>"; };
+		5E2680A51D2D9BD30054E90B /* SessionDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsPresenter.swift; sourceTree = "<group>"; };
+		5E2680A71D2D9BDD0054E90B /* SessionDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsInteractor.swift; sourceTree = "<group>"; };
+		5E4EA1D31D2D9F9A0097C2FB /* SessionsSearchRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchRouter.swift; sourceTree = "<group>"; };
+		5E4EA1D51D2D9FBA0097C2FB /* SessionsSearchRouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchRouterImpl.swift; sourceTree = "<group>"; };
 		5EBEEF501D2B0AEA007C44E3 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		5EBEEF531D2B0B42007C44E3 /* AppConfigImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigImpl.swift; sourceTree = "<group>"; };
 		5EBEEF551D2B0B5B007C44E3 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -80,7 +99,6 @@
 		B6F929FB1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchInteractor.swift; sourceTree = "<group>"; };
 		B6F929FD1D2AB5F8009E4B83 /* SessionsSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchView.swift; sourceTree = "<group>"; };
 		B6F929FF1D2AB713009E4B83 /* SessionsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewController.swift; sourceTree = "<group>"; };
-		B6F92A011D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchWireframeImpl.swift; sourceTree = "<group>"; };
 		B6F92A061D2C00F1009E4B83 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		B6F92A141D2C0E7E009E4B83 /* RxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
 		B6F92A151D2C0E7E009E4B83 /* RxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTableViewCell.swift; sourceTree = "<group>"; };
@@ -119,6 +137,26 @@
 				97D47C97043273CC8923D479 /* Pods-WWDCastTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		5E2680971D2D98820054E90B /* SessionDetails */ = {
+			isa = PBXGroup;
+			children = (
+				5E2680981D2D98AE0054E90B /* SessionDetailsViewController.swift */,
+				5E26809A1D2D98C60054E90B /* SessionsDetailsPresenterImpl.swift */,
+				5E26809C1D2D98D10054E90B /* SessionsDetailsInteractorImpl.swift */,
+			);
+			path = SessionDetails;
+			sourceTree = "<group>";
+		};
+		5E2680A21D2D9BB70054E90B /* SessionDetails */ = {
+			isa = PBXGroup;
+			children = (
+				5E2680A31D2D9BC90054E90B /* SessionDetailsView.swift */,
+				5E2680A51D2D9BD30054E90B /* SessionDetailsPresenter.swift */,
+				5E2680A71D2D9BDD0054E90B /* SessionDetailsInteractor.swift */,
+			);
+			path = SessionDetails;
 			sourceTree = "<group>";
 		};
 		5EBEEF4F1D2B0AD8007C44E3 /* Entities */ = {
@@ -225,7 +263,9 @@
 		B6F929F11D2AB2BE009E4B83 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5E2680A01D2D9A130054E90B /* ModuleFactoryImpl.swift */,
 				B6F929F31D2AB54B009E4B83 /* SessionsSearch */,
+				5E2680971D2D98820054E90B /* SessionDetails */,
 				5EBEEF521D2B0B32007C44E3 /* Entities */,
 				5EBEEF621D2B1C43007C44E3 /* ViewModels */,
 				B6F92A131D2C0E7E009E4B83 /* Common */,
@@ -237,7 +277,9 @@
 			isa = PBXGroup;
 			children = (
 				B6F929F81D2AB5D8009E4B83 /* SessionsSearch */,
+				5E2680A21D2D9BB70054E90B /* SessionDetails */,
 				5EBEEF4F1D2B0AD8007C44E3 /* Entities */,
+				5E26809E1D2D99E60054E90B /* ModuleFactory.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -248,8 +290,8 @@
 				B6F929FF1D2AB713009E4B83 /* SessionsSearchViewController.swift */,
 				B6F929F41D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift */,
 				B6F929F61D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift */,
-				B6F92A011D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift */,
 				B6F92A061D2C00F1009E4B83 /* SessionTableViewCell.swift */,
+				5E4EA1D51D2D9FBA0097C2FB /* SessionsSearchRouterImpl.swift */,
 			);
 			path = SessionsSearch;
 			sourceTree = "<group>";
@@ -260,6 +302,7 @@
 				B6F929F91D2AB5E3009E4B83 /* SessionsSearchPresenter.swift */,
 				B6F929FB1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift */,
 				B6F929FD1D2AB5F8009E4B83 /* SessionsSearchView.swift */,
+				5E4EA1D31D2D9F9A0097C2FB /* SessionsSearchRouter.swift */,
 			);
 			path = SessionsSearch;
 			sourceTree = "<group>";
@@ -477,11 +520,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6F929FC1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift in Sources */,
+				5E4EA1D41D2D9F9A0097C2FB /* SessionsSearchRouter.swift in Sources */,
+				5E26809F1D2D99E60054E90B /* ModuleFactory.swift in Sources */,
 				5EBEEF661D2C24EF007C44E3 /* SessionsBuilder.swift in Sources */,
 				5EBEEF511D2B0AEA007C44E3 /* AppConfig.swift in Sources */,
 				5EBEEF541D2B0B42007C44E3 /* AppConfigImpl.swift in Sources */,
 				B6F92A191D2C0E7E009E4B83 /* RxTableViewCell.swift in Sources */,
+				5E2680A11D2D9A130054E90B /* ModuleFactoryImpl.swift in Sources */,
 				B6F92A001D2AB713009E4B83 /* SessionsSearchViewController.swift in Sources */,
+				5E2680A81D2D9BDD0054E90B /* SessionDetailsInteractor.swift in Sources */,
 				B6F929FA1D2AB5E3009E4B83 /* SessionsSearchPresenter.swift in Sources */,
 				B6F929FE1D2AB5F8009E4B83 /* SessionsSearchView.swift in Sources */,
 				B6F929F51D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift in Sources */,
@@ -490,14 +537,19 @@
 				5EBEEF561D2B0B5B007C44E3 /* Session.swift in Sources */,
 				B6F92A071D2C00F1009E4B83 /* SessionTableViewCell.swift in Sources */,
 				B6F92A1B1D2C0E7E009E4B83 /* UITableViewController+Common.swift in Sources */,
+				5E2680A41D2D9BC90054E90B /* SessionDetailsView.swift in Sources */,
 				B6F929E61D2AB0FD009E4B83 /* WWDCEnvironment.swift in Sources */,
 				5EBEEF5F1D2B0C3F007C44E3 /* SessionBuilder.swift in Sources */,
 				5EBEEF5A1D2B0BB4007C44E3 /* EntityBuilder.swift in Sources */,
 				B6F92A181D2C0E7E009E4B83 /* RxExtensions.swift in Sources */,
+				5E26809B1D2D98C60054E90B /* SessionsDetailsPresenterImpl.swift in Sources */,
 				5EBEEF581D2B0B87007C44E3 /* SessionImpl.swift in Sources */,
+				5E4EA1D61D2D9FBA0097C2FB /* SessionsSearchRouterImpl.swift in Sources */,
+				5E26809D1D2D98D10054E90B /* SessionsDetailsInteractorImpl.swift in Sources */,
+				5E2680A61D2D9BD30054E90B /* SessionDetailsPresenter.swift in Sources */,
 				B6F92A1A1D2C0E7E009E4B83 /* UITableView+Common.swift in Sources */,
-				B6F92A021D2AB801009E4B83 /* SessionsSearchWireframeImpl.swift in Sources */,
 				B6F929F71D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift in Sources */,
+				5E2680991D2D98AE0054E90B /* SessionDetailsViewController.swift in Sources */,
 				5EBEEF5D1D2B0BEA007C44E3 /* AppConfigBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

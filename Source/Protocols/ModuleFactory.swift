@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ModuleFactory {
-    static func sessionsSearchModule() -> UIViewController
-    static func sessionDetailsModule() -> UIViewController
+protocol ModuleFactory: class {
+    func sessionsSearchModule() -> UIViewController
+    func sessionDetailsModule(withId Id: String) -> UIViewController
 }

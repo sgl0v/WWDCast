@@ -11,8 +11,7 @@ import RxSwift
 import SwiftyJSON
 
 class SessionsSearchInteractorImpl {
-    var presenter: SessionsSearchPresenter
-    let disposeBag = DisposeBag()
+    weak var presenter: SessionsSearchPresenter!
 
     init(presenter: SessionsSearchPresenter) {
         self.presenter = presenter
@@ -27,6 +26,7 @@ extension SessionsSearchInteractorImpl: SessionsSearchInteractor {
         })
             .subscribeOn(OperationQueueScheduler(operationQueue: NSOperationQueue()))
             .observeOn(MainScheduler.instance)
+            .shareReplayLatestWhileConnected()
     }
 
     // MARK: Private

@@ -10,4 +10,5 @@ import Foundation
 
 protocol SessionsSearchPresenter: class {
     func updateView()
+    func selectItem(atIndex index: Int)
 }

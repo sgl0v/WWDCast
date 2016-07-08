@@ -13,9 +13,13 @@ class SessionsSearchViewController: TableViewController<SessionViewModel, Sessio
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.clearsSelectionOnViewWillAppear = true
         self.presenter.updateView()
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.presenter.selectItem(atIndex: indexPath.row)
+    }
 //
 //    override func didReceiveMemoryWarning() {
 //        super.didReceiveMemoryWarning()

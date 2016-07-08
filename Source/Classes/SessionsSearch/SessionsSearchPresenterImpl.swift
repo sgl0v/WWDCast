@@ -16,10 +16,12 @@ struct Titles {
 class SessionsSearchPresenterImpl {
     weak var view: SessionsSearchView!
     var interactor: SessionsSearchInteractor!
+    var router: SessionsSearchRouter
     private let disposeBag = DisposeBag()
 
-    init(view: SessionsSearchView) {
+    init(view: SessionsSearchView, router: SessionsSearchRouter) {
         self.view = view
+        self.router = router
     }
 }
 
@@ -30,16 +32,29 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
         let subscription = self.interactor
             .loadSessions()
             .catchErrorJustReturn([])
-            .map({ sessions in
-                return sessions.map() { session in
-                    return SessionViewModel(title: session.title, summary: session.summary, thumbnailURL: NSURL(string: session.shelfImageURL)!)
-                }
-            })
+            .map(self.createSessionViewModels)
             .subscribeNext {[unowned self] sessions in
                 self.view.showSessions(sessions)
-//                print(sessions)
         }
         subscription.addDisposableTo(self.disposeBag)
+    }
+
+    func selectItem(atIndex index: Int) {
+        let subscription = self.interactor
+            .loadSessions()
+            .subscribeNext { sessions in
+                self.router.showSessionDetails(withId: sessions[index].uniqueId)
+        }
+        subscription.addDisposableTo(self.disposeBag)
+    }
+
+    // MARK: Private
+
+    private func createSessionViewModels(sessions: [Session]) -> SessionViewModels {
+        print(sessions)
+        return sessions.map() { session in
+            return SessionViewModel(title: session.title, summary: session.summary, thumbnailURL: NSURL(string: session.shelfImageURL)!)
+        }
     }
 
 }

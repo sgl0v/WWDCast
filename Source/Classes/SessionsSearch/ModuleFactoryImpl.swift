@@ -8,15 +8,24 @@
 
 import UIKit
 
-class SessionsSearchWireframeImpl {
+protocol ModuleFactory {
+    static func sessionsSearchModule() -> UIViewController
+    static func sessionDetailsModule() -> UIViewController
+}
 
-    static func createModule() -> UIViewController {
+class ModuleFactoryImpl: ModuleFactory {
+
+    static func sessionsSearchModule() -> UIViewController {
         let view = SessionsSearchViewController()
         let presenter = SessionsSearchPresenterImpl(view: view)
         let interactor = SessionsSearchInteractorImpl(presenter: presenter)
         view.presenter = presenter
         presenter.interactor = interactor
         return UINavigationController(rootViewController: view)
+    }
+
+    static func sessionDetailsModule() -> UIViewController {
+
     }
 
 }
