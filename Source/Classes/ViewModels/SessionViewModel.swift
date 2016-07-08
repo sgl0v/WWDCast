@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias SessionViewModels=[SessionViewModel]
+typealias SessionViewModels = [SessionViewModel]
 
 struct SessionViewModel {
     var title: String

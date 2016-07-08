@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         self.window =  UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = SessionsSearchWireframeImpl.createModule()
+        self.window?.rootViewController = ModuleFactoryImpl.sessionsSearchModule()
         self.window?.makeKeyAndVisible()
 
         return true
