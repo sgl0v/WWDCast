@@ -12,9 +12,11 @@ import SwiftyJSON
 
 class SessionsSearchInteractorImpl {
     weak var presenter: SessionsSearchPresenter!
+    private let serviceProvider: ServiceProvider
 
-    init(presenter: SessionsSearchPresenter) {
+    init(presenter: SessionsSearchPresenter, serviceProvider: ServiceProvider) {
         self.presenter = presenter
+        self.serviceProvider = serviceProvider
     }
 }
 

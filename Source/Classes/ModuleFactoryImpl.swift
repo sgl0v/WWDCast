@@ -11,10 +11,11 @@ import UIKit
 class ModuleFactoryImpl: ModuleFactory {
 
     func sessionsSearchModule() -> UIViewController {
+        let serviceProvider = ServiceProviderImpl.defaultServiceProvider()
         let view = SessionsSearchViewController()
         let router = SessionsSearchRouterImpl(moduleFactory: self)
         let presenter = SessionsSearchPresenterImpl(view: view, router: router)
-        let interactor = SessionsSearchInteractorImpl(presenter: presenter)
+        let interactor = SessionsSearchInteractorImpl(presenter: presenter, serviceProvider: serviceProvider)
         view.presenter = presenter
         presenter.interactor = interactor
         let navigationController = UINavigationController(rootViewController: view)

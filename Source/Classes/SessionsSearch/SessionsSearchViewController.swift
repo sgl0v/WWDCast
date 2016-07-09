@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleCast
 
 class SessionsSearchViewController: TableViewController<SessionViewModel, SessionTableViewCell> {
     var presenter: SessionsSearchPresenter!
@@ -15,6 +16,19 @@ class SessionsSearchViewController: TableViewController<SessionViewModel, Sessio
         super.viewDidLoad()
         self.clearsSelectionOnViewWillAppear = true
         self.presenter.updateView()
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+//        self.navigationItem.rightBarButtonItems = UIBarButtonItem(customView: CastButton())
+//        // Assign ourselves as delegate ONLY in viewWillAppear of a view controller.
+//        CastDeviceController *controller = [CastDeviceController sharedInstance];
+//        controller.delegate = self;
+//
+//        UIBarButtonItem *item = [controller queueItemForController:self];
+//        self.navigationItem.rightBarButtonItems = @[item];
+
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
