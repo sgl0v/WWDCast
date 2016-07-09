@@ -26,23 +26,25 @@ extension SessionsSearchInteractorImpl: SessionsSearchInteractor {
         return loadConfig().flatMapLatest({ appConfig -> Observable<[Session]> in
             return self.loadSessions(appConfig)
         })
-            .subscribeOn(OperationQueueScheduler(operationQueue: NSOperationQueue()))
-            .observeOn(MainScheduler.instance)
+            .subscribeOn(self.serviceProvider.schedulerService.backgroundWorkScheduler)
+            .observeOn(self.serviceProvider.schedulerService.mainScheduler)
             .shareReplayLatestWhileConnected()
     }
 
     // MARK: Private
 
     private func loadConfig() -> Observable<AppConfig> {
-        return rx_request(.GET, WWDCEnvironment.indexURL).map({ data in
-            return AppConfigBuilder.build(JSON(data))
-        })
+        return loadData(WWDCEnvironment.indexURL, builder: AppConfigBuilder.self)
     }
 
     private func loadSessions(config: AppConfig) -> Observable<[Session]> {
-        return rx_request(.GET, config.videosURL).map({ data in
-            return SessionsBuilder.build(JSON(data))
-        })
+        return loadData(config.videosURL, builder: SessionsBuilder.self)
+    }
+
+    private func loadData<Builder: EntityBuilder>(url: String, builder: Builder.Type) -> Observable<Builder.EntityType> {
+        return self.serviceProvider.networkService.GET(url, parameters: [:]).map() { data in
+            return builder.build(JSON(data: data))
+        }
     }
 
 }

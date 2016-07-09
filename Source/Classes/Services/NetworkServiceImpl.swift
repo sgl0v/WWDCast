@@ -8,7 +8,6 @@
 
 import Foundation
 import RxSwift
-import SwiftyJSON
 
 extension String {
     var URLEscaped: String {
@@ -24,13 +23,13 @@ final class NetworkServiceImpl: NetworkService {
         self.session = session
     }
 
-    func GET<Type, Builder: EntityBuilder where Builder.EntityType == Type>(URLString: String, parameters: [String: AnyObject] = [:], builder: Builder) -> Observable<Type> {
+    func GET(URLString: String, parameters: [String: AnyObject] = [:]) -> Observable<NSData> {
         let query = parameters.keys.map( { "\($0)=\(parameters[$0])" }).joinWithSeparator("&")
         let escapedQuery = query.URLEscaped
         let urlContent = "\(URLString)?\(escapedQuery)"
         let url = NSURL(string: urlContent)!
 
-        return self.session.rx_JSON(url).map { Builder.build(JSON($0)) }
+        return self.session.rx_data(NSURLRequest(URL: url))
     }
 
 }
