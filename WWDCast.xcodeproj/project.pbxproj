@@ -27,6 +27,8 @@
 		5E4EA1ED1D315F070097C2FB /* ServiceProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1EC1D315F070097C2FB /* ServiceProviderImpl.swift */; };
 		5E4EA1EF1D3160DF0097C2FB /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1EE1D3160DF0097C2FB /* NetworkService.swift */; };
 		5E4EA1F11D3160F40097C2FB /* NetworkServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1F01D3160F40097C2FB /* NetworkServiceImpl.swift */; };
+		5E4EA1F51D31791F0097C2FB /* GoogleCastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1F41D31791F0097C2FB /* GoogleCastService.swift */; };
+		5E4EA1F71D3179460097C2FB /* GoogleCastServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1F61D3179460097C2FB /* GoogleCastServiceImpl.swift */; };
 		5EBEEF511D2B0AEA007C44E3 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF501D2B0AEA007C44E3 /* AppConfig.swift */; };
 		5EBEEF541D2B0B42007C44E3 /* AppConfigImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF531D2B0B42007C44E3 /* AppConfigImpl.swift */; };
 		5EBEEF561D2B0B5B007C44E3 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF551D2B0B5B007C44E3 /* Session.swift */; };
@@ -92,6 +94,8 @@
 		5E4EA1EC1D315F070097C2FB /* ServiceProviderImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderImpl.swift; sourceTree = "<group>"; };
 		5E4EA1EE1D3160DF0097C2FB /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5E4EA1F01D3160F40097C2FB /* NetworkServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceImpl.swift; sourceTree = "<group>"; };
+		5E4EA1F41D31791F0097C2FB /* GoogleCastService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastService.swift; sourceTree = "<group>"; };
+		5E4EA1F61D3179460097C2FB /* GoogleCastServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastServiceImpl.swift; sourceTree = "<group>"; };
 		5EBEEF501D2B0AEA007C44E3 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		5EBEEF531D2B0B42007C44E3 /* AppConfigImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigImpl.swift; sourceTree = "<group>"; };
 		5EBEEF551D2B0B5B007C44E3 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 				5E4EA1E61D315B8F0097C2FB /* Reachability.swift */,
 				5E4EA1EA1D315D4D0097C2FB /* SchedulerServiceImpl.swift */,
 				5E4EA1F01D3160F40097C2FB /* NetworkServiceImpl.swift */,
+				5E4EA1F61D3179460097C2FB /* GoogleCastServiceImpl.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 				5E4EA1E21D3156AD0097C2FB /* ReachabilityService.swift */,
 				5E4EA1E81D315C580097C2FB /* SchedulerService.swift */,
 				5E4EA1EE1D3160DF0097C2FB /* NetworkService.swift */,
+				5E4EA1F41D31791F0097C2FB /* GoogleCastService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -583,10 +589,12 @@
 				B6F929F51D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift in Sources */,
 				5E4EA1F11D3160F40097C2FB /* NetworkServiceImpl.swift in Sources */,
 				5E4EA1EB1D315D4D0097C2FB /* SchedulerServiceImpl.swift in Sources */,
+				5E4EA1F51D31791F0097C2FB /* GoogleCastService.swift in Sources */,
 				B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */,
 				5EBEEF641D2B1C6A007C44E3 /* SessionViewModel.swift in Sources */,
 				5EBEEF561D2B0B5B007C44E3 /* Session.swift in Sources */,
 				B6F92A071D2C00F1009E4B83 /* SessionTableViewCell.swift in Sources */,
+				5E4EA1F71D3179460097C2FB /* GoogleCastServiceImpl.swift in Sources */,
 				B6F92A1B1D2C0E7E009E4B83 /* UITableViewController+Common.swift in Sources */,
 				5E2680A41D2D9BC90054E90B /* SessionDetailsView.swift in Sources */,
 				B6F929E61D2AB0FD009E4B83 /* WWDCEnvironment.swift in Sources */,

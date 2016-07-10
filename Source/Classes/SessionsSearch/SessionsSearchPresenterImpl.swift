@@ -34,7 +34,7 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
             .catchErrorJustReturn([])
             .map(self.createSessionViewModels)
             .subscribeNext {[unowned self] sessions in
-                print(sessions)
+//                print(sessions)
                 self.view.showSessions(sessions)
         }
         subscription.addDisposableTo(self.disposeBag)
@@ -43,8 +43,10 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
     func selectItem(atIndex index: Int) {
         let subscription = self.interactor
             .loadSessions()
-            .subscribeNext { sessions in
-                self.router.showSessionDetails(withId: sessions[index].uniqueId)
+            .map({ sessions in return sessions[index] })
+            .subscribeNext {[unowned self] session in
+                self.interactor.playSession(session)
+//                self.router.showSessionDetails(withId: session.uniqueId)
         }
         subscription.addDisposableTo(self.disposeBag)
     }
@@ -52,7 +54,7 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
     // MARK: Private
 
     private func createSessionViewModels(sessions: [Session]) -> SessionViewModels {
-        print(sessions)
+//        print(sessions)
         return sessions.map() { session in
             return SessionViewModel(title: session.title, summary: session.summary, thumbnailURL: session.shelfImageURL)
         }

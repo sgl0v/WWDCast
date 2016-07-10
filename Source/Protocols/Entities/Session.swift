@@ -24,6 +24,7 @@ protocol Session {
     var track: Track { get }
     var focus: [Focus] { get }
     var title: String { get }
+    var subtitle: String { get }
     var summary: String { get }
     var videoURL: NSURL { get }
     var hdVideoURL: NSURL { get }

@@ -31,7 +31,7 @@ extension ServiceProvider {
         }
         let scheduler = SchedulerServiceImpl()
         let network = NetworkServiceImpl()
-        let googleCast = GoogleCastServiceImpl(applicationID: WWDCEnvironment.applicationID)
+        let googleCast = GoogleCastServiceImpl(applicationID: WWDCEnvironment.googleCastAppID)
         return ServiceProviderImpl(reachability: reachability, scheduler: scheduler, network: network, googleCast: googleCast)
     }
 
