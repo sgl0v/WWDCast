@@ -26,8 +26,8 @@ extension SessionsSearchInteractorImpl: SessionsSearchInteractor {
         return loadConfig().flatMapLatest({ appConfig -> Observable<[Session]> in
             return self.loadSessions(appConfig)
         })
-            .subscribeOn(self.serviceProvider.schedulerService.backgroundWorkScheduler)
-            .observeOn(self.serviceProvider.schedulerService.mainScheduler)
+            .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
+            .observeOn(self.serviceProvider.scheduler.mainScheduler)
             .shareReplayLatestWhileConnected()
     }
 
@@ -42,7 +42,7 @@ extension SessionsSearchInteractorImpl: SessionsSearchInteractor {
     }
 
     private func loadData<Builder: EntityBuilder>(url: NSURL, builder: Builder.Type) -> Observable<Builder.EntityType> {
-        return self.serviceProvider.networkService.GET(url, parameters: [:]).map() { data in
+        return self.serviceProvider.network.GET(url, parameters: [:]).map() { data in
             return builder.build(JSON(data: data))
         }
     }

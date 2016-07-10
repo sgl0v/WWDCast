@@ -10,26 +10,29 @@ import Foundation
 
 final class ServiceProviderImpl: ServiceProvider {
 
-    private(set) var reachabilityService: ReachabilityService
-    private(set) var schedulerService: SchedulerService
-    private(set) var networkService: NetworkService
+    private(set) var reachability: ReachabilityService
+    private(set) var scheduler: SchedulerService
+    private(set) var network: NetworkService
+    private(set) var googleCast: GoogleCastService
 
-    init(reachabilityService: ReachabilityService, schedulerService: SchedulerService, networkService: NetworkService) {
-        self.reachabilityService = reachabilityService
-        self.schedulerService = schedulerService
-        self.networkService = networkService
+    init(reachability: ReachabilityService, scheduler: SchedulerService, network: NetworkService, googleCast: GoogleCastService) {
+        self.reachability = reachability
+        self.scheduler = scheduler
+        self.network = network
+        self.googleCast = googleCast
     }
 }
 
 extension ServiceProvider {
 
     static func defaultServiceProvider() -> ServiceProvider {
-        guard let reachabilityService = try? ReachabilityServiceImpl() else {
+        guard let reachability = try? ReachabilityServiceImpl() else {
             fatalError("Failed to create reachability service!")
         }
-        let schedulerService = SchedulerServiceImpl()
-        let networkService = NetworkServiceImpl()
-        return ServiceProviderImpl(reachabilityService: reachabilityService, schedulerService: schedulerService, networkService: networkService)
+        let scheduler = SchedulerServiceImpl()
+        let network = NetworkServiceImpl()
+        let googleCast = GoogleCastServiceImpl(applicationID: WWDCEnvironment.applicationID)
+        return ServiceProviderImpl(reachability: reachability, scheduler: scheduler, network: network, googleCast: googleCast)
     }
 
 }

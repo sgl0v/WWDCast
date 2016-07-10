@@ -9,7 +9,8 @@
 import Foundation
 
 protocol ServiceProvider: class {
-    var reachabilityService: ReachabilityService { get }
-    var schedulerService: SchedulerService { get }
-    var networkService: NetworkService { get }
+    var reachability: ReachabilityService { get }
+    var scheduler: SchedulerService { get }
+    var network: NetworkService { get }
+    var googleCast: GoogleCastService { get }
 }
