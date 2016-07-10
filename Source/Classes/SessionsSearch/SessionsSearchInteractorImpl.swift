@@ -41,7 +41,7 @@ extension SessionsSearchInteractorImpl: SessionsSearchInteractor {
         return loadData(config.videosURL, builder: SessionsBuilder.self)
     }
 
-    private func loadData<Builder: EntityBuilder>(url: String, builder: Builder.Type) -> Observable<Builder.EntityType> {
+    private func loadData<Builder: EntityBuilder>(url: NSURL, builder: Builder.Type) -> Observable<Builder.EntityType> {
         return self.serviceProvider.networkService.GET(url, parameters: [:]).map() { data in
             return builder.build(JSON(data: data))
         }
