@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol SessionsSearchView: class {
     func setTitle(title: String)
-    func showSessions(sessions: [SessionViewModel])
+    var showSessions: AnyObserver<[SessionViewModel]> { get }
 }

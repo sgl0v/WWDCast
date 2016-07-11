@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import GoogleCast
+import RxSwift
 
 class SessionsSearchViewController: TableViewController<SessionViewModel, SessionTableViewCell> {
     var presenter: SessionsSearchPresenter!
@@ -44,8 +44,13 @@ class SessionsSearchViewController: TableViewController<SessionViewModel, Sessio
 
 extension SessionsSearchViewController: SessionsSearchView {
 
-    func showSessions(sessions: [SessionViewModel]) {
-        self.data = sessions
+    var showSessions: AnyObserver<[SessionViewModel]> {
+        return AnyObserver {[unowned self] event in
+            guard case .Next(let sessions) = event else {
+                return
+            }
+            self.data = sessions
+        }
     }
 
     func setTitle(title: String) {

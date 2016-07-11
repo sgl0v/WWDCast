@@ -42,6 +42,16 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
         }
     }
 
+    var playSession: AnyObserver<Session> {
+        return AnyObserver {[unowned self] event in
+            guard case .Next(let session) = event, let device = self.deviceScanner.devices.first else {
+                return
+            }
+            self.sessionQueue.append(session)
+            self.connectToDevice(device as! GCKDevice)
+        }
+    }
+
     init(applicationID: String) {
         self.applicationID = applicationID
         // Create filter criteria to only show devices that can run your app
@@ -56,14 +66,6 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
         self.enableLogging()
         self.deviceScanner.addListener(self)
         self.deviceScanner.startScan()
-    }
-
-    func playSession(session: Session) {
-        guard let device = self.deviceScanner.devices.first else {
-            return
-        }
-        self.sessionQueue.append(session)
-        connectToDevice(device as! GCKDevice)
     }
 
     func connectToDevice(device: GCKDevice) {

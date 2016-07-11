@@ -23,16 +23,14 @@ class SessionsSearchInteractorImpl {
 extension SessionsSearchInteractorImpl: SessionsSearchInteractor {
 
     func loadSessions() -> Observable<[Session]> {
-        return loadConfig().flatMapLatest({ appConfig -> Observable<[Session]> in
-            return self.loadSessions(appConfig)
-        })
+        return loadConfig().flatMapLatest(self.loadSessions)
             .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
             .observeOn(self.serviceProvider.scheduler.mainScheduler)
             .shareReplayLatestWhileConnected()
     }
 
-    func playSession(session: Session) {
-        self.serviceProvider.googleCast.playSession(session)
+    var playSession: AnyObserver<Session> {
+        return self.serviceProvider.googleCast.playSession
     }
 
     // MARK: Private

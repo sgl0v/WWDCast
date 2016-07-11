@@ -33,10 +33,7 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
             .loadSessions()
             .catchErrorJustReturn([])
             .map(self.createSessionViewModels)
-            .subscribeNext {[unowned self] sessions in
-//                print(sessions)
-                self.view.showSessions(sessions)
-        }
+            .bindTo(self.view.showSessions)
         subscription.addDisposableTo(self.disposeBag)
     }
 
@@ -44,10 +41,8 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
         let subscription = self.interactor
             .loadSessions()
             .map({ sessions in return sessions[index] })
-            .subscribeNext {[unowned self] session in
-                self.interactor.playSession(session)
+            .bindTo(self.interactor.playSession)
 //                self.router.showSessionDetails(withId: session.uniqueId)
-        }
         subscription.addDisposableTo(self.disposeBag)
     }
 

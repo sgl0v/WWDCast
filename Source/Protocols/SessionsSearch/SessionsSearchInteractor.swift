@@ -11,5 +11,5 @@ import RxSwift
 
 protocol SessionsSearchInteractor: class {
     func loadSessions() -> Observable<[Session]>
-    func playSession(session: Session)
+    var playSession: AnyObserver<Session> { get }
 }
