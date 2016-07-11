@@ -21,6 +21,9 @@ class SessionBuilder: EntityBuilder {
         let track = Track(rawValue: json["track"].stringValue)!
         let videoURL = NSURL(string: json["url"].stringValue)!
         let hdVideoURL = NSURL(string: json["download_hd"].stringValue)!
+        let sdVideoURL = NSURL(string: json["download_sd"].stringValue)!
+        let webpageURL = NSURL(string: json["webpageURL"].stringValue)!
+        let subtitles = NSURL(string: json["subtitles"].stringValue)!
 
         var focus = [Focus]()
         if let focusJSON = json["focus"].arrayObject as? [String] {
@@ -33,7 +36,9 @@ class SessionBuilder: EntityBuilder {
         }
         
         return SessionImpl(id: id, year: year, track: track, focus: focus, title: title,
-                           summary: summary, videoURL: videoURL, hdVideoURL: hdVideoURL, shelfImageURL: shelfImageURL!)
+                           summary: summary, videoURL: videoURL, hdVideoURL: hdVideoURL,
+                           sdVideoURL: sdVideoURL, webpageURL: webpageURL, subtitles: subtitles,
+                           shelfImageURL: shelfImageURL!)
     }
     
 }

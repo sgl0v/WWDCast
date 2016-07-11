@@ -23,9 +23,9 @@ extension GCKMediaInformation {
         metadata.setString(session.subtitle, forKey: kGCKMetadataKeySubtitle)
         metadata.setString(session.shelfImageURL.absoluteString, forKey: "castComponentPosterURL")
         metadata.addImage(GCKImage(URL: session.shelfImageURL, width: 734, height: 413))
-//        let mediaTrack = GCKMediaTrack(identifier: session.id, contentIdentifier: session.hdVideoURL.absoluteString, contentType: "text/vtt", type: "video", textSubtype: <#T##GCKMediaTextTrackSubtype#>, name: <#T##String!#>, languageCode: <#T##String!#>, customData: <#T##AnyObject!#>)
+        let mediaTrack = GCKMediaTrack(identifier: session.id, contentIdentifier: session.subtitles.absoluteString, contentType: "text/vtt", type: .Text, textSubtype: .Captions, name: "English Subtitle", languageCode: "en-US", customData: nil)
 
-        self.init(contentID: session.hdVideoURL.absoluteString, streamType: .None, contentType: "video/mp4", metadata: metadata, streamDuration: 0, mediaTracks: [], textTrackStyle: GCKMediaTextTrackStyle.createDefault(), customData: nil)
+        self.init(contentID: session.sdVideoURL.absoluteString, streamType: .None, contentType: "video/mp4", metadata: metadata, streamDuration: 0, mediaTracks: [mediaTrack], textTrackStyle: GCKMediaTextTrackStyle.createDefault(), customData: nil)
     }
 }
 
@@ -135,7 +135,7 @@ extension GoogleCastServiceImpl: GCKLoggerDelegate {
     }
 
     func logFromFunction(function: UnsafePointer<Int8>, message: String!) {
-        NSLog("%s %@", function, message)
+//        NSLog("%s %@", function, message)
     }
 
 }
