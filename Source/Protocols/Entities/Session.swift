@@ -13,7 +13,7 @@ enum Track: String {
         Featured = "Featured", GraphicsAndGames = "Graphics and Games", Design = "Design", Media = "Media", Distribution = "Distribution"
 
     static var allTracks: [Track] {
-        return [.Featured, .AppFrameworks, .SystemFrameworks, .DeveloperTools, .GraphicsAndGames, .Design, .Media, .Distribution]
+        return [.Featured, .Media, .DeveloperTools, .GraphicsAndGames, .SystemFrameworks, .AppFrameworks, .Design, .Distribution]
     }
 }
 

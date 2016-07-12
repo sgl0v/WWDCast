@@ -32,23 +32,3 @@ extension SessionViewModel: Hashable {
 func == (lhs: SessionViewModel, rhs: SessionViewModel) -> Bool {
     return lhs.title == rhs.title && lhs.summary == rhs.summary && lhs.thumbnailURL == rhs.thumbnailURL
 }
-
-struct SessionViewModels: SectionModelType {
-    let title: String
-    let items: [SessionViewModel]
-
-    init(title: String, items: [SessionViewModel]) {
-        self.title = title
-        self.items = items
-    }
-
-    // MARK: SectionModelType
-
-    typealias Identity = String
-    typealias Item = SessionViewModel
-
-    init(original: SessionViewModels, items: [Item]) {
-        self.title = original.title
-        self.items = items
-    }
-}

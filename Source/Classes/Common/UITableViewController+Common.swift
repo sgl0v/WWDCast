@@ -15,7 +15,7 @@ public protocol BindableView {
     func bindViewModel(viewModel: ViewModel)
 }
 
-public class TableViewController<SectionViewModel: SectionModelType, Cell: UITableViewCell where Cell: protocol<BindableView, NibProvidable, ReusableView>, Cell.ViewModel == SectionViewModel.Item>: UITableViewController,  NibProvidable {
+public class TableViewController<SectionViewModel: protocol<SectionModelType, CustomStringConvertible>, Cell: UITableViewCell where Cell: protocol<BindableView, NibProvidable, ReusableView>, Cell.ViewModel == SectionViewModel.Item>: UITableViewController,  NibProvidable {
 
     let disposeBag = DisposeBag()
 
@@ -25,6 +25,9 @@ public class TableViewController<SectionViewModel: SectionModelType, Cell: UITab
             let cell = tableView.dequeueReusableCell(withClass: Cell.self, forIndexPath: indexPath)
             cell.bindViewModel(element)
             return cell
+        }
+        dataSource.titleForHeaderInSection = { (dataSource, section) in
+            return dataSource.sectionAtIndex(section).description
         }
         return dataSource
     }
