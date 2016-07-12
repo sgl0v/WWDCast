@@ -10,6 +10,6 @@ import Foundation
 import RxSwift
 
 protocol SessionsSearchView: class {
-    func setTitle(title: String)
-    var showSessions: AnyObserver<[SessionViewModel]> { get }
+    var titleText: AnyObserver<String> { get }
+    var showSessions: AnyObserver<[SessionViewModels]> { get }
 }

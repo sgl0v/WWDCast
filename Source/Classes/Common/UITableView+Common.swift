@@ -57,12 +57,12 @@ extension UITableView {
 
 // Header / Footer
 extension UITableView {
-    public func register<T: UITableViewHeaderFooterView where T: ReusableView>(headerFooterClass `class`: T.Type) {
+    public func registerHeaderFooterClass<T: UITableViewHeaderFooterView where T: ReusableView>(headerFooterClass `class`: T.Type) {
         registerClass(`class`, forHeaderFooterViewReuseIdentifier: `class`.reuseIdentifier)
     }
 
-    public func register<T: UITableViewHeaderFooterView where T: ReusableView>(nib: UINib, forHeaderFooterClass `class`: T.Type) {
-        registerNib(nib, forHeaderFooterViewReuseIdentifier: `class`.reuseIdentifier)
+    public func registerHeaderFooterNib<T: UITableViewHeaderFooterView where T: protocol<NibProvidable, ReusableView>>(forHeaderFooterClass `class`: T.Type) {
+        registerNib(`class`.nib, forHeaderFooterViewReuseIdentifier: `class`.reuseIdentifier)
     }
 
     public func dequeueResuableHeaderFooterView<T: UITableViewHeaderFooterView where T: ReusableView>(withClass `class`: T.Type) -> T? {

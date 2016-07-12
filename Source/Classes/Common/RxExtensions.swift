@@ -49,3 +49,23 @@ extension UIImageView {
         }
     }
 }
+
+//extension ObservableType where E: SequenceType {
+//    /**
+//     Projects each element of an observable sequence into a new form.
+//
+//     - seealso: [map operator on reactivex.io](http://reactivex.io/documentation/operators/map.html)
+//
+//     - parameter selector: A transform function to apply to each source element.
+//     - returns: An observable sequence whose elements are the result of invoking the transform function on each element of source.
+//
+//     */
+//    @warn_unused_result(message="http://git.io/rxs.uo")
+//    public func mapSequence<R: SequenceType where R.Generator.Element == AnyObject>(selector: Self.E.Generator.Element throws -> R.Generator.Element) -> RxSwift.Observable<R> {
+//        return self.map({ sequence in
+//            return try selector(sequence.generate().next()!) //sequence.map() { element in
+//            //                return try selector(element)
+//            //            }
+//        })
+//    }
+//}

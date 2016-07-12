@@ -26,7 +26,7 @@ final class NetworkServiceImpl: NetworkService {
     func GET(url: NSURL, parameters: [String: AnyObject] = [:]) -> Observable<NSData> {
         let components = NSURLComponents(URL: url, resolvingAgainstBaseURL: false)!
         components.queryItems = parameters.keys.map { NSURLQueryItem(name: $0, value: "\(parameters[$0])") }
-        return self.session.rx_data(NSURLRequest(URL: components.URL!))
+        return self.session.rx_data(NSURLRequest(URL: components.URL!)).debug("http")
     }
 
 }

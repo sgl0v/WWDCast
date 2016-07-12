@@ -11,6 +11,10 @@ import Foundation
 enum Track: String {
     case AppFrameworks = "App Frameworks", SystemFrameworks = "System Frameworks", DeveloperTools = "Developer Tools",
         Featured = "Featured", GraphicsAndGames = "Graphics and Games", Design = "Design", Media = "Media", Distribution = "Distribution"
+
+    static var allTracks: [Track] {
+        return [.Featured, .AppFrameworks, .SystemFrameworks, .DeveloperTools, .GraphicsAndGames, .Design, .Media, .Distribution]
+    }
 }
 
 enum Focus: String {

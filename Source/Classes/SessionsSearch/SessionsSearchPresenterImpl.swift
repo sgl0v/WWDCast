@@ -27,32 +27,48 @@ class SessionsSearchPresenterImpl {
 
 extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
 
-    func updateView() {
-        self.view.setTitle(Titles.SessionsSearchViewTitle)
-        let subscription = self.interactor
-            .loadSessions()
-            .catchErrorJustReturn([])
-            .map(self.createSessionViewModels)
-            .bindTo(self.view.showSessions)
-        subscription.addDisposableTo(self.disposeBag)
+    var updateView: AnyObserver<Void> {
+        return AnyObserver {[unowned self] event in
+            guard case .Next = event else {
+                return
+            }
+            Observable.just(Titles.SessionsSearchViewTitle)
+                .asDriver(onErrorJustReturn: "")
+                .drive(self.view.titleText)
+                .addDisposableTo(self.disposeBag)
+            self.interactor
+                .loadSessions()
+                .map(self.createSessionViewModels)
+                .asDriver(onErrorJustReturn: [])
+                .drive(self.view.showSessions)
+                .addDisposableTo(self.disposeBag)
+        }
     }
 
-    func selectItem(atIndex index: Int) {
-        let subscription = self.interactor
-            .loadSessions()
-            .map({ sessions in return sessions[index] })
-            .bindTo(self.interactor.playSession)
-//                self.router.showSessionDetails(withId: session.uniqueId)
-        subscription.addDisposableTo(self.disposeBag)
+    var itemSelected: AnyObserver<Int> {
+        return AnyObserver {[unowned self] event in
+            guard case .Next(let index) = event else {
+                return
+            }
+            let subscription = self.interactor
+                .loadSessions()
+                .map({ sessions in return sessions[index]})
+                .bindTo(self.interactor.playSession)
+            //                self.router.showSessionDetails(withId: session.uniqueId)
+            subscription.addDisposableTo(self.disposeBag)
+        }
     }
 
     // MARK: Private
 
-    private func createSessionViewModels(sessions: [Session]) -> SessionViewModels {
-//        print(sessions)
-        return sessions.map() { session in
-            return SessionViewModel(title: session.title, summary: session.summary, thumbnailURL: session.shelfImageURL)
-        }
+    private func createSessionViewModels(sessions: [Session]) -> [SessionViewModels] {
+        let sessions: [SessionViewModels] = Track.allTracks.map( { track in
+            let sessions = sessions.filter({ session in session.track == track }).map() { session in
+                return SessionViewModel(title: session.title, summary: session.summary, thumbnailURL: session.shelfImageURL)
+            }
+            return SessionViewModels(title: track.rawValue, items: sessions)
+        })
+        return sessions
     }
 
 }

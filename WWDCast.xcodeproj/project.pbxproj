@@ -1,813 +1,2193 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		5E2680961D2C43440054E90B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E2680951D2C43440054E90B /* Assets.xcassets */; };
-		5E2680991D2D98AE0054E90B /* SessionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680981D2D98AE0054E90B /* SessionDetailsViewController.swift */; };
-		5E26809B1D2D98C60054E90B /* SessionsDetailsPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26809A1D2D98C60054E90B /* SessionsDetailsPresenterImpl.swift */; };
-		5E26809D1D2D98D10054E90B /* SessionsDetailsInteractorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26809C1D2D98D10054E90B /* SessionsDetailsInteractorImpl.swift */; };
-		5E26809F1D2D99E60054E90B /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26809E1D2D99E60054E90B /* ModuleFactory.swift */; };
-		5E2680A11D2D9A130054E90B /* ModuleFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A01D2D9A130054E90B /* ModuleFactoryImpl.swift */; };
-		5E2680A41D2D9BC90054E90B /* SessionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A31D2D9BC90054E90B /* SessionDetailsView.swift */; };
-		5E2680A61D2D9BD30054E90B /* SessionDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A51D2D9BD30054E90B /* SessionDetailsPresenter.swift */; };
-		5E2680A81D2D9BDD0054E90B /* SessionDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A71D2D9BDD0054E90B /* SessionDetailsInteractor.swift */; };
-		5E4EA1D41D2D9F9A0097C2FB /* SessionsSearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1D31D2D9F9A0097C2FB /* SessionsSearchRouter.swift */; };
-		5E4EA1D61D2D9FBA0097C2FB /* SessionsSearchRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1D51D2D9FBA0097C2FB /* SessionsSearchRouterImpl.swift */; };
-		5E4EA1E11D3155970097C2FB /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1E01D3155970097C2FB /* ServiceProvider.swift */; };
-		5E4EA1E31D3156AD0097C2FB /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1E21D3156AD0097C2FB /* ReachabilityService.swift */; };
-		5E4EA1E51D315A640097C2FB /* ReachabilityServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1E41D315A640097C2FB /* ReachabilityServiceImpl.swift */; };
-		5E4EA1E71D315B8F0097C2FB /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1E61D315B8F0097C2FB /* Reachability.swift */; };
-		5E4EA1E91D315C580097C2FB /* SchedulerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1E81D315C580097C2FB /* SchedulerService.swift */; };
-		5E4EA1EB1D315D4D0097C2FB /* SchedulerServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1EA1D315D4D0097C2FB /* SchedulerServiceImpl.swift */; };
-		5E4EA1ED1D315F070097C2FB /* ServiceProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1EC1D315F070097C2FB /* ServiceProviderImpl.swift */; };
-		5E4EA1EF1D3160DF0097C2FB /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1EE1D3160DF0097C2FB /* NetworkService.swift */; };
-		5E4EA1F11D3160F40097C2FB /* NetworkServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1F01D3160F40097C2FB /* NetworkServiceImpl.swift */; };
-		5E4EA1F51D31791F0097C2FB /* GoogleCastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1F41D31791F0097C2FB /* GoogleCastService.swift */; };
-		5E4EA1F71D3179460097C2FB /* GoogleCastServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1F61D3179460097C2FB /* GoogleCastServiceImpl.swift */; };
-		5EBEEF511D2B0AEA007C44E3 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF501D2B0AEA007C44E3 /* AppConfig.swift */; };
-		5EBEEF541D2B0B42007C44E3 /* AppConfigImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF531D2B0B42007C44E3 /* AppConfigImpl.swift */; };
-		5EBEEF561D2B0B5B007C44E3 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF551D2B0B5B007C44E3 /* Session.swift */; };
-		5EBEEF581D2B0B87007C44E3 /* SessionImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF571D2B0B87007C44E3 /* SessionImpl.swift */; };
-		5EBEEF5A1D2B0BB4007C44E3 /* EntityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF591D2B0BB4007C44E3 /* EntityBuilder.swift */; };
-		5EBEEF5D1D2B0BEA007C44E3 /* AppConfigBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF5C1D2B0BEA007C44E3 /* AppConfigBuilder.swift */; };
-		5EBEEF5F1D2B0C3F007C44E3 /* SessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF5E1D2B0C3F007C44E3 /* SessionBuilder.swift */; };
-		5EBEEF611D2B15BD007C44E3 /* SessionsSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EBEEF601D2B15BD007C44E3 /* SessionsSearchViewController.xib */; };
-		5EBEEF641D2B1C6A007C44E3 /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF631D2B1C6A007C44E3 /* SessionViewModel.swift */; };
-		5EBEEF661D2C24EF007C44E3 /* SessionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF651D2C24EF007C44E3 /* SessionsBuilder.swift */; };
-		AD0F8F6B4FE481431967AF90 /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F7FD297C24AD13DCC673AC6 /* Pods_WWDCast.framework */; };
-		B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */; };
-		B6F929E61D2AB0FD009E4B83 /* WWDCEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E31D2AB0FC009E4B83 /* WWDCEnvironment.swift */; };
-		B6F929EA1D2AB197009E4B83 /* WWDCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E81D2AB111009E4B83 /* WWDCastTests.swift */; };
-		B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */; };
-		B6F929F51D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929F41D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift */; };
-		B6F929F71D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929F61D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift */; };
-		B6F929FA1D2AB5E3009E4B83 /* SessionsSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929F91D2AB5E3009E4B83 /* SessionsSearchPresenter.swift */; };
-		B6F929FC1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929FB1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift */; };
-		B6F929FE1D2AB5F8009E4B83 /* SessionsSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929FD1D2AB5F8009E4B83 /* SessionsSearchView.swift */; };
-		B6F92A001D2AB713009E4B83 /* SessionsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929FF1D2AB713009E4B83 /* SessionsSearchViewController.swift */; };
-		B6F92A071D2C00F1009E4B83 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A061D2C00F1009E4B83 /* SessionTableViewCell.swift */; };
-		B6F92A181D2C0E7E009E4B83 /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A141D2C0E7E009E4B83 /* RxExtensions.swift */; };
-		B6F92A191D2C0E7E009E4B83 /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A151D2C0E7E009E4B83 /* RxTableViewCell.swift */; };
-		B6F92A1A1D2C0E7E009E4B83 /* UITableView+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A161D2C0E7E009E4B83 /* UITableView+Common.swift */; };
-		B6F92A1B1D2C0E7E009E4B83 /* UITableViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A171D2C0E7E009E4B83 /* UITableViewController+Common.swift */; };
-		B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */; };
-		CB3D814A9AEA228A24C69179 /* Pods_WWDCastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC47894FCED35C8A3DF9DC0A /* Pods_WWDCastTests.framework */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		B6F929D01D2A5DD6009E4B83 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B6F929B31D2A5DD5009E4B83 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B6F929BA1D2A5DD5009E4B83;
-			remoteInfo = WWDCast;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		0F7FD297C24AD13DCC673AC6 /* Pods_WWDCast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		164188D0B2DA290E2BCA3B32 /* Pods-WWDCast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.release.xcconfig"; sourceTree = "<group>"; };
-		3B7363DE118FE7825FC36051 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
-		598F3224BE6A8136DC32B3FA /* Pods-WWDCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5E2680951D2C43440054E90B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = SOURCE_ROOT; };
-		5E2680981D2D98AE0054E90B /* SessionDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewController.swift; sourceTree = "<group>"; };
-		5E26809A1D2D98C60054E90B /* SessionsDetailsPresenterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsDetailsPresenterImpl.swift; sourceTree = "<group>"; };
-		5E26809C1D2D98D10054E90B /* SessionsDetailsInteractorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsDetailsInteractorImpl.swift; sourceTree = "<group>"; };
-		5E26809E1D2D99E60054E90B /* ModuleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
-		5E2680A01D2D9A130054E90B /* ModuleFactoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleFactoryImpl.swift; sourceTree = "<group>"; };
-		5E2680A31D2D9BC90054E90B /* SessionDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsView.swift; sourceTree = "<group>"; };
-		5E2680A51D2D9BD30054E90B /* SessionDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsPresenter.swift; sourceTree = "<group>"; };
-		5E2680A71D2D9BDD0054E90B /* SessionDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsInteractor.swift; sourceTree = "<group>"; };
-		5E4EA1D31D2D9F9A0097C2FB /* SessionsSearchRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchRouter.swift; sourceTree = "<group>"; };
-		5E4EA1D51D2D9FBA0097C2FB /* SessionsSearchRouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchRouterImpl.swift; sourceTree = "<group>"; };
-		5E4EA1E01D3155970097C2FB /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
-		5E4EA1E21D3156AD0097C2FB /* ReachabilityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
-		5E4EA1E41D315A640097C2FB /* ReachabilityServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityServiceImpl.swift; sourceTree = "<group>"; };
-		5E4EA1E61D315B8F0097C2FB /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		5E4EA1E81D315C580097C2FB /* SchedulerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerService.swift; sourceTree = "<group>"; };
-		5E4EA1EA1D315D4D0097C2FB /* SchedulerServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerServiceImpl.swift; sourceTree = "<group>"; };
-		5E4EA1EC1D315F070097C2FB /* ServiceProviderImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderImpl.swift; sourceTree = "<group>"; };
-		5E4EA1EE1D3160DF0097C2FB /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		5E4EA1F01D3160F40097C2FB /* NetworkServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceImpl.swift; sourceTree = "<group>"; };
-		5E4EA1F41D31791F0097C2FB /* GoogleCastService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastService.swift; sourceTree = "<group>"; };
-		5E4EA1F61D3179460097C2FB /* GoogleCastServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastServiceImpl.swift; sourceTree = "<group>"; };
-		5EBEEF501D2B0AEA007C44E3 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
-		5EBEEF531D2B0B42007C44E3 /* AppConfigImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigImpl.swift; sourceTree = "<group>"; };
-		5EBEEF551D2B0B5B007C44E3 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		5EBEEF571D2B0B87007C44E3 /* SessionImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionImpl.swift; sourceTree = "<group>"; };
-		5EBEEF591D2B0BB4007C44E3 /* EntityBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityBuilder.swift; sourceTree = "<group>"; };
-		5EBEEF5C1D2B0BEA007C44E3 /* AppConfigBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigBuilder.swift; sourceTree = "<group>"; };
-		5EBEEF5E1D2B0C3F007C44E3 /* SessionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionBuilder.swift; sourceTree = "<group>"; };
-		5EBEEF601D2B15BD007C44E3 /* SessionsSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionsSearchViewController.xib; path = Resources/SessionsSearchViewController.xib; sourceTree = SOURCE_ROOT; };
-		5EBEEF631D2B1C6A007C44E3 /* SessionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
-		5EBEEF651D2C24EF007C44E3 /* SessionsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsBuilder.swift; sourceTree = "<group>"; };
-		97D47C97043273CC8923D479 /* Pods-WWDCastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.release.xcconfig"; sourceTree = "<group>"; };
-		B6F929BB1D2A5DD5009E4B83 /* WWDCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWDCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6F929CA1D2A5DD5009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
-		B6F929CF1D2A5DD6009E4B83 /* WWDCastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WWDCastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6F929D51D2A5DD6009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B6F929E31D2AB0FC009E4B83 /* WWDCEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCEnvironment.swift; sourceTree = "<group>"; };
-		B6F929E81D2AB111009E4B83 /* WWDCastTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastTests.swift; sourceTree = "<group>"; };
-		B6F929EC1D2AB283009E4B83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
-		B6F929F41D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchPresenterImpl.swift; sourceTree = "<group>"; };
-		B6F929F61D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchInteractorImpl.swift; sourceTree = "<group>"; };
-		B6F929F91D2AB5E3009E4B83 /* SessionsSearchPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchPresenter.swift; sourceTree = "<group>"; };
-		B6F929FB1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchInteractor.swift; sourceTree = "<group>"; };
-		B6F929FD1D2AB5F8009E4B83 /* SessionsSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchView.swift; sourceTree = "<group>"; };
-		B6F929FF1D2AB713009E4B83 /* SessionsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewController.swift; sourceTree = "<group>"; };
-		B6F92A061D2C00F1009E4B83 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
-		B6F92A141D2C0E7E009E4B83 /* RxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
-		B6F92A151D2C0E7E009E4B83 /* RxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTableViewCell.swift; sourceTree = "<group>"; };
-		B6F92A161D2C0E7E009E4B83 /* UITableView+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Common.swift"; sourceTree = "<group>"; };
-		B6F92A171D2C0E7E009E4B83 /* UITableViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewController+Common.swift"; sourceTree = "<group>"; };
-		B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionTableViewCell.xib; path = Resources/SessionTableViewCell.xib; sourceTree = SOURCE_ROOT; };
-		DC47894FCED35C8A3DF9DC0A /* Pods_WWDCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		B6F929B81D2A5DD5009E4B83 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AD0F8F6B4FE481431967AF90 /* Pods_WWDCast.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B6F929CC1D2A5DD6009E4B83 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CB3D814A9AEA228A24C69179 /* Pods_WWDCastTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		056BEE961354AD19FEAEFB57 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3B7363DE118FE7825FC36051 /* Pods-WWDCast.debug.xcconfig */,
-				164188D0B2DA290E2BCA3B32 /* Pods-WWDCast.release.xcconfig */,
-				598F3224BE6A8136DC32B3FA /* Pods-WWDCastTests.debug.xcconfig */,
-				97D47C97043273CC8923D479 /* Pods-WWDCastTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		5E2680971D2D98820054E90B /* SessionDetails */ = {
-			isa = PBXGroup;
-			children = (
-				5E2680981D2D98AE0054E90B /* SessionDetailsViewController.swift */,
-				5E26809A1D2D98C60054E90B /* SessionsDetailsPresenterImpl.swift */,
-				5E26809C1D2D98D10054E90B /* SessionsDetailsInteractorImpl.swift */,
-			);
-			path = SessionDetails;
-			sourceTree = "<group>";
-		};
-		5E2680A21D2D9BB70054E90B /* SessionDetails */ = {
-			isa = PBXGroup;
-			children = (
-				5E2680A31D2D9BC90054E90B /* SessionDetailsView.swift */,
-				5E2680A51D2D9BD30054E90B /* SessionDetailsPresenter.swift */,
-				5E2680A71D2D9BDD0054E90B /* SessionDetailsInteractor.swift */,
-			);
-			path = SessionDetails;
-			sourceTree = "<group>";
-		};
-		5E4EA1DE1D3155780097C2FB /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				5E4EA1EC1D315F070097C2FB /* ServiceProviderImpl.swift */,
-				5E4EA1E41D315A640097C2FB /* ReachabilityServiceImpl.swift */,
-				5E4EA1E61D315B8F0097C2FB /* Reachability.swift */,
-				5E4EA1EA1D315D4D0097C2FB /* SchedulerServiceImpl.swift */,
-				5E4EA1F01D3160F40097C2FB /* NetworkServiceImpl.swift */,
-				5E4EA1F61D3179460097C2FB /* GoogleCastServiceImpl.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		5E4EA1DF1D3155840097C2FB /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				5E4EA1E01D3155970097C2FB /* ServiceProvider.swift */,
-				5E4EA1E21D3156AD0097C2FB /* ReachabilityService.swift */,
-				5E4EA1E81D315C580097C2FB /* SchedulerService.swift */,
-				5E4EA1EE1D3160DF0097C2FB /* NetworkService.swift */,
-				5E4EA1F41D31791F0097C2FB /* GoogleCastService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		5EBEEF4F1D2B0AD8007C44E3 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				5EBEEF501D2B0AEA007C44E3 /* AppConfig.swift */,
-				5EBEEF551D2B0B5B007C44E3 /* Session.swift */,
-				5EBEEF591D2B0BB4007C44E3 /* EntityBuilder.swift */,
-			);
-			path = Entities;
-			sourceTree = "<group>";
-		};
-		5EBEEF521D2B0B32007C44E3 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				5EBEEF5B1D2B0BE3007C44E3 /* Builders */,
-				5EBEEF531D2B0B42007C44E3 /* AppConfigImpl.swift */,
-				5EBEEF571D2B0B87007C44E3 /* SessionImpl.swift */,
-			);
-			path = Entities;
-			sourceTree = "<group>";
-		};
-		5EBEEF5B1D2B0BE3007C44E3 /* Builders */ = {
-			isa = PBXGroup;
-			children = (
-				5EBEEF5C1D2B0BEA007C44E3 /* AppConfigBuilder.swift */,
-				5EBEEF5E1D2B0C3F007C44E3 /* SessionBuilder.swift */,
-				5EBEEF651D2C24EF007C44E3 /* SessionsBuilder.swift */,
-			);
-			path = Builders;
-			sourceTree = "<group>";
-		};
-		5EBEEF621D2B1C43007C44E3 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				5EBEEF631D2B1C6A007C44E3 /* SessionViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		9DFE4D549FA91AA0D43B71B6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0F7FD297C24AD13DCC673AC6 /* Pods_WWDCast.framework */,
-				DC47894FCED35C8A3DF9DC0A /* Pods_WWDCastTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B6F929B21D2A5DD5009E4B83 = {
-			isa = PBXGroup;
-			children = (
-				B6F929E01D2AB0FC009E4B83 /* Source */,
-				B6F929E71D2AB111009E4B83 /* Tests */,
-				B6F929BD1D2A5DD5009E4B83 /* Resources */,
-				B6F929BC1D2A5DD5009E4B83 /* Products */,
-				056BEE961354AD19FEAEFB57 /* Pods */,
-				9DFE4D549FA91AA0D43B71B6 /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		B6F929BC1D2A5DD5009E4B83 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B6F929BB1D2A5DD5009E4B83 /* WWDCast.app */,
-				B6F929CF1D2A5DD6009E4B83 /* WWDCastTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B6F929BD1D2A5DD5009E4B83 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				5E2680951D2C43440054E90B /* Assets.xcassets */,
-				B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */,
-				B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */,
-				5EBEEF601D2B15BD007C44E3 /* SessionsSearchViewController.xib */,
-				B6F929CA1D2A5DD5009E4B83 /* Info.plist */,
-			);
-			name = Resources;
-			path = WWDCast;
-			sourceTree = "<group>";
-		};
-		B6F929E01D2AB0FC009E4B83 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				B6F929F11D2AB2BE009E4B83 /* Classes */,
-				B6F929F21D2AB2BE009E4B83 /* Protocols */,
-				B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */,
-				B6F929E31D2AB0FC009E4B83 /* WWDCEnvironment.swift */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		B6F929E71D2AB111009E4B83 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				B6F929E81D2AB111009E4B83 /* WWDCastTests.swift */,
-				B6F929D51D2A5DD6009E4B83 /* Info.plist */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		B6F929F11D2AB2BE009E4B83 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				5E2680A01D2D9A130054E90B /* ModuleFactoryImpl.swift */,
-				B6F929F31D2AB54B009E4B83 /* SessionsSearch */,
-				5E2680971D2D98820054E90B /* SessionDetails */,
-				5EBEEF521D2B0B32007C44E3 /* Entities */,
-				5EBEEF621D2B1C43007C44E3 /* ViewModels */,
-				B6F92A131D2C0E7E009E4B83 /* Common */,
-				5E4EA1DE1D3155780097C2FB /* Services */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		B6F929F21D2AB2BE009E4B83 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				5E26809E1D2D99E60054E90B /* ModuleFactory.swift */,
-				B6F929F81D2AB5D8009E4B83 /* SessionsSearch */,
-				5E2680A21D2D9BB70054E90B /* SessionDetails */,
-				5EBEEF4F1D2B0AD8007C44E3 /* Entities */,
-				5E4EA1DF1D3155840097C2FB /* Services */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		B6F929F31D2AB54B009E4B83 /* SessionsSearch */ = {
-			isa = PBXGroup;
-			children = (
-				B6F929FF1D2AB713009E4B83 /* SessionsSearchViewController.swift */,
-				B6F929F41D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift */,
-				B6F929F61D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift */,
-				B6F92A061D2C00F1009E4B83 /* SessionTableViewCell.swift */,
-				5E4EA1D51D2D9FBA0097C2FB /* SessionsSearchRouterImpl.swift */,
-			);
-			path = SessionsSearch;
-			sourceTree = "<group>";
-		};
-		B6F929F81D2AB5D8009E4B83 /* SessionsSearch */ = {
-			isa = PBXGroup;
-			children = (
-				B6F929F91D2AB5E3009E4B83 /* SessionsSearchPresenter.swift */,
-				B6F929FB1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift */,
-				B6F929FD1D2AB5F8009E4B83 /* SessionsSearchView.swift */,
-				5E4EA1D31D2D9F9A0097C2FB /* SessionsSearchRouter.swift */,
-			);
-			path = SessionsSearch;
-			sourceTree = "<group>";
-		};
-		B6F92A131D2C0E7E009E4B83 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				B6F92A141D2C0E7E009E4B83 /* RxExtensions.swift */,
-				B6F92A151D2C0E7E009E4B83 /* RxTableViewCell.swift */,
-				B6F92A161D2C0E7E009E4B83 /* UITableView+Common.swift */,
-				B6F92A171D2C0E7E009E4B83 /* UITableViewController+Common.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		B6F929BA1D2A5DD5009E4B83 /* WWDCast */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B6F929D81D2A5DD6009E4B83 /* Build configuration list for PBXNativeTarget "WWDCast" */;
-			buildPhases = (
-				D214ACFBD5C00700D8C35E13 /* [CP] Check Pods Manifest.lock */,
-				B6F929B71D2A5DD5009E4B83 /* Sources */,
-				B6F929B81D2A5DD5009E4B83 /* Frameworks */,
-				B6F929B91D2A5DD5009E4B83 /* Resources */,
-				AA720D3C39D46761CAD54C0B /* [CP] Embed Pods Frameworks */,
-				DE9F671286CAF4D10C6EC682 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = WWDCast;
-			productName = WWDCast;
-			productReference = B6F929BB1D2A5DD5009E4B83 /* WWDCast.app */;
-			productType = "com.apple.product-type.application";
-		};
-		B6F929CE1D2A5DD6009E4B83 /* WWDCastTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B6F929DB1D2A5DD6009E4B83 /* Build configuration list for PBXNativeTarget "WWDCastTests" */;
-			buildPhases = (
-				8E3AA1B0C4AD391EF6533174 /* [CP] Check Pods Manifest.lock */,
-				B6F929CB1D2A5DD6009E4B83 /* Sources */,
-				B6F929CC1D2A5DD6009E4B83 /* Frameworks */,
-				B6F929CD1D2A5DD6009E4B83 /* Resources */,
-				E5248526D49A453158D9CD89 /* [CP] Embed Pods Frameworks */,
-				5242DE3CBC7A13DD7008ECA0 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B6F929D11D2A5DD6009E4B83 /* PBXTargetDependency */,
-			);
-			name = WWDCastTests;
-			productName = WWDCastTests;
-			productReference = B6F929CF1D2A5DD6009E4B83 /* WWDCastTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		B6F929B31D2A5DD5009E4B83 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = "Maksym Shcheglov";
-				TargetAttributes = {
-					B6F929BA1D2A5DD5009E4B83 = {
-						CreatedOnToolsVersion = 7.3;
-					};
-					B6F929CE1D2A5DD6009E4B83 = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = B6F929BA1D2A5DD5009E4B83;
-					};
-				};
-			};
-			buildConfigurationList = B6F929B61D2A5DD5009E4B83 /* Build configuration list for PBXProject "WWDCast" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = B6F929B21D2A5DD5009E4B83;
-			productRefGroup = B6F929BC1D2A5DD5009E4B83 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				B6F929BA1D2A5DD5009E4B83 /* WWDCast */,
-				B6F929CE1D2A5DD6009E4B83 /* WWDCastTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		B6F929B91D2A5DD5009E4B83 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */,
-				B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */,
-				5E2680961D2C43440054E90B /* Assets.xcassets in Resources */,
-				5EBEEF611D2B15BD007C44E3 /* SessionsSearchViewController.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B6F929CD1D2A5DD6009E4B83 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		5242DE3CBC7A13DD7008ECA0 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8E3AA1B0C4AD391EF6533174 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		AA720D3C39D46761CAD54C0B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D214ACFBD5C00700D8C35E13 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		DE9F671286CAF4D10C6EC682 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E5248526D49A453158D9CD89 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		B6F929B71D2A5DD5009E4B83 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B6F929FC1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift in Sources */,
-				5E4EA1D41D2D9F9A0097C2FB /* SessionsSearchRouter.swift in Sources */,
-				5E26809F1D2D99E60054E90B /* ModuleFactory.swift in Sources */,
-				5EBEEF661D2C24EF007C44E3 /* SessionsBuilder.swift in Sources */,
-				5EBEEF511D2B0AEA007C44E3 /* AppConfig.swift in Sources */,
-				5E4EA1ED1D315F070097C2FB /* ServiceProviderImpl.swift in Sources */,
-				5EBEEF541D2B0B42007C44E3 /* AppConfigImpl.swift in Sources */,
-				5E4EA1E91D315C580097C2FB /* SchedulerService.swift in Sources */,
-				B6F92A191D2C0E7E009E4B83 /* RxTableViewCell.swift in Sources */,
-				5E2680A11D2D9A130054E90B /* ModuleFactoryImpl.swift in Sources */,
-				5E4EA1EF1D3160DF0097C2FB /* NetworkService.swift in Sources */,
-				B6F92A001D2AB713009E4B83 /* SessionsSearchViewController.swift in Sources */,
-				5E4EA1E11D3155970097C2FB /* ServiceProvider.swift in Sources */,
-				5E2680A81D2D9BDD0054E90B /* SessionDetailsInteractor.swift in Sources */,
-				B6F929FA1D2AB5E3009E4B83 /* SessionsSearchPresenter.swift in Sources */,
-				5E4EA1E51D315A640097C2FB /* ReachabilityServiceImpl.swift in Sources */,
-				B6F929FE1D2AB5F8009E4B83 /* SessionsSearchView.swift in Sources */,
-				5E4EA1E71D315B8F0097C2FB /* Reachability.swift in Sources */,
-				B6F929F51D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift in Sources */,
-				5E4EA1F11D3160F40097C2FB /* NetworkServiceImpl.swift in Sources */,
-				5E4EA1EB1D315D4D0097C2FB /* SchedulerServiceImpl.swift in Sources */,
-				5E4EA1F51D31791F0097C2FB /* GoogleCastService.swift in Sources */,
-				B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */,
-				5EBEEF641D2B1C6A007C44E3 /* SessionViewModel.swift in Sources */,
-				5EBEEF561D2B0B5B007C44E3 /* Session.swift in Sources */,
-				B6F92A071D2C00F1009E4B83 /* SessionTableViewCell.swift in Sources */,
-				5E4EA1F71D3179460097C2FB /* GoogleCastServiceImpl.swift in Sources */,
-				B6F92A1B1D2C0E7E009E4B83 /* UITableViewController+Common.swift in Sources */,
-				5E2680A41D2D9BC90054E90B /* SessionDetailsView.swift in Sources */,
-				B6F929E61D2AB0FD009E4B83 /* WWDCEnvironment.swift in Sources */,
-				5EBEEF5F1D2B0C3F007C44E3 /* SessionBuilder.swift in Sources */,
-				5EBEEF5A1D2B0BB4007C44E3 /* EntityBuilder.swift in Sources */,
-				B6F92A181D2C0E7E009E4B83 /* RxExtensions.swift in Sources */,
-				5E26809B1D2D98C60054E90B /* SessionsDetailsPresenterImpl.swift in Sources */,
-				5EBEEF581D2B0B87007C44E3 /* SessionImpl.swift in Sources */,
-				5E4EA1E31D3156AD0097C2FB /* ReachabilityService.swift in Sources */,
-				5E4EA1D61D2D9FBA0097C2FB /* SessionsSearchRouterImpl.swift in Sources */,
-				5E26809D1D2D98D10054E90B /* SessionsDetailsInteractorImpl.swift in Sources */,
-				5E2680A61D2D9BD30054E90B /* SessionDetailsPresenter.swift in Sources */,
-				B6F92A1A1D2C0E7E009E4B83 /* UITableView+Common.swift in Sources */,
-				B6F929F71D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift in Sources */,
-				5E2680991D2D98AE0054E90B /* SessionDetailsViewController.swift in Sources */,
-				5EBEEF5D1D2B0BEA007C44E3 /* AppConfigBuilder.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B6F929CB1D2A5DD6009E4B83 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B6F929EA1D2AB197009E4B83 /* WWDCastTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B6F929D11D2A5DD6009E4B83 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B6F929BA1D2A5DD5009E4B83 /* WWDCast */;
-			targetProxy = B6F929D01D2A5DD6009E4B83 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B6F929EC1D2AB283009E4B83 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		B6F929D61D2A5DD6009E4B83 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		B6F929D71D2A5DD6009E4B83 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		B6F929D91D2A5DD6009E4B83 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B7363DE118FE7825FC36051 /* Pods-WWDCast.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCast;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		B6F929DA1D2A5DD6009E4B83 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 164188D0B2DA290E2BCA3B32 /* Pods-WWDCast.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCast;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		B6F929DC1D2A5DD6009E4B83 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 598F3224BE6A8136DC32B3FA /* Pods-WWDCastTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = WWDCastTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCastTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WWDCast.app/WWDCast";
-			};
-			name = Debug;
-		};
-		B6F929DD1D2A5DD6009E4B83 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97D47C97043273CC8923D479 /* Pods-WWDCastTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = WWDCastTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCastTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WWDCast.app/WWDCast";
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		B6F929B61D2A5DD5009E4B83 /* Build configuration list for PBXProject "WWDCast" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B6F929D61D2A5DD6009E4B83 /* Debug */,
-				B6F929D71D2A5DD6009E4B83 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B6F929D81D2A5DD6009E4B83 /* Build configuration list for PBXNativeTarget "WWDCast" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B6F929D91D2A5DD6009E4B83 /* Debug */,
-				B6F929DA1D2A5DD6009E4B83 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B6F929DB1D2A5DD6009E4B83 /* Build configuration list for PBXNativeTarget "WWDCastTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B6F929DC1D2A5DD6009E4B83 /* Debug */,
-				B6F929DD1D2A5DD6009E4B83 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = B6F929B31D2A5DD5009E4B83 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>056BEE961354AD19FEAEFB57</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>3B7363DE118FE7825FC36051</string>
+				<string>164188D0B2DA290E2BCA3B32</string>
+				<string>598F3224BE6A8136DC32B3FA</string>
+				<string>97D47C97043273CC8923D479</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0F7FD297C24AD13DCC673AC6</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods_WWDCast.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>164188D0B2DA290E2BCA3B32</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-WWDCast.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3B7363DE118FE7825FC36051</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-WWDCast.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5242DE3CBC7A13DD7008ECA0</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>[CP] Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>598F3224BE6A8136DC32B3FA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-WWDCastTests.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E2680951D2C43440054E90B</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>name</key>
+			<string>Assets.xcassets</string>
+			<key>path</key>
+			<string>Resources/Assets.xcassets</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>5E2680961D2C43440054E90B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E2680951D2C43440054E90B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E2680971D2D98820054E90B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5E2680981D2D98AE0054E90B</string>
+				<string>5E26809A1D2D98C60054E90B</string>
+				<string>5E26809C1D2D98D10054E90B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>SessionDetails</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E2680981D2D98AE0054E90B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionDetailsViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E2680991D2D98AE0054E90B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E2680981D2D98AE0054E90B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E26809A1D2D98C60054E90B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionsDetailsPresenterImpl.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E26809B1D2D98C60054E90B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E26809A1D2D98C60054E90B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E26809C1D2D98D10054E90B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionsDetailsInteractorImpl.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E26809D1D2D98D10054E90B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E26809C1D2D98D10054E90B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E26809E1D2D99E60054E90B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ModuleFactory.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E26809F1D2D99E60054E90B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E26809E1D2D99E60054E90B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E2680A01D2D9A130054E90B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ModuleFactoryImpl.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E2680A11D2D9A130054E90B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E2680A01D2D9A130054E90B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E2680A21D2D9BB70054E90B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5E2680A31D2D9BC90054E90B</string>
+				<string>5E2680A51D2D9BD30054E90B</string>
+				<string>5E2680A71D2D9BDD0054E90B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>SessionDetails</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E2680A31D2D9BC90054E90B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionDetailsView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E2680A41D2D9BC90054E90B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E2680A31D2D9BC90054E90B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E2680A51D2D9BD30054E90B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionDetailsPresenter.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E2680A61D2D9BD30054E90B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E2680A51D2D9BD30054E90B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E2680A71D2D9BDD0054E90B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionDetailsInteractor.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E2680A81D2D9BDD0054E90B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E2680A71D2D9BDD0054E90B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E4EA1D31D2D9F9A0097C2FB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionsSearchRouter.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E4EA1D41D2D9F9A0097C2FB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E4EA1D31D2D9F9A0097C2FB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E4EA1D51D2D9FBA0097C2FB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionsSearchRouterImpl.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E4EA1D61D2D9FBA0097C2FB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E4EA1D51D2D9FBA0097C2FB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E4EA1DE1D3155780097C2FB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5E4EA1EC1D315F070097C2FB</string>
+				<string>5E4EA1E41D315A640097C2FB</string>
+				<string>5E4EA1E61D315B8F0097C2FB</string>
+				<string>5E4EA1EA1D315D4D0097C2FB</string>
+				<string>5E4EA1F01D3160F40097C2FB</string>
+				<string>5E4EA1F61D3179460097C2FB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Services</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E4EA1DF1D3155840097C2FB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5E4EA1E01D3155970097C2FB</string>
+				<string>5E4EA1E21D3156AD0097C2FB</string>
+				<string>5E4EA1E81D315C580097C2FB</string>
+				<string>5E4EA1EE1D3160DF0097C2FB</string>
+				<string>5E4EA1F41D31791F0097C2FB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Services</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E4EA1E01D3155970097C2FB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ServiceProvider.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E4EA1E11D3155970097C2FB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E4EA1E01D3155970097C2FB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E4EA1E21D3156AD0097C2FB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ReachabilityService.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E4EA1E31D3156AD0097C2FB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E4EA1E21D3156AD0097C2FB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E4EA1E41D315A640097C2FB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ReachabilityServiceImpl.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E4EA1E51D315A640097C2FB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E4EA1E41D315A640097C2FB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E4EA1E61D315B8F0097C2FB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Reachability.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E4EA1E71D315B8F0097C2FB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E4EA1E61D315B8F0097C2FB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E4EA1E81D315C580097C2FB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SchedulerService.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E4EA1E91D315C580097C2FB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E4EA1E81D315C580097C2FB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E4EA1EA1D315D4D0097C2FB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SchedulerServiceImpl.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E4EA1EB1D315D4D0097C2FB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E4EA1EA1D315D4D0097C2FB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E4EA1EC1D315F070097C2FB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ServiceProviderImpl.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E4EA1ED1D315F070097C2FB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E4EA1EC1D315F070097C2FB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E4EA1EE1D3160DF0097C2FB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>NetworkService.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E4EA1EF1D3160DF0097C2FB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E4EA1EE1D3160DF0097C2FB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E4EA1F01D3160F40097C2FB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>NetworkServiceImpl.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E4EA1F11D3160F40097C2FB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E4EA1F01D3160F40097C2FB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E4EA1F41D31791F0097C2FB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>GoogleCastService.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E4EA1F51D31791F0097C2FB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E4EA1F41D31791F0097C2FB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5E4EA1F61D3179460097C2FB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>GoogleCastServiceImpl.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E4EA1F71D3179460097C2FB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E4EA1F61D3179460097C2FB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5EBEEF4F1D2B0AD8007C44E3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5EBEEF501D2B0AEA007C44E3</string>
+				<string>5EBEEF551D2B0B5B007C44E3</string>
+				<string>5EBEEF591D2B0BB4007C44E3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Entities</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5EBEEF501D2B0AEA007C44E3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AppConfig.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5EBEEF511D2B0AEA007C44E3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5EBEEF501D2B0AEA007C44E3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5EBEEF521D2B0B32007C44E3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5EBEEF5B1D2B0BE3007C44E3</string>
+				<string>5EBEEF531D2B0B42007C44E3</string>
+				<string>5EBEEF571D2B0B87007C44E3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Entities</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5EBEEF531D2B0B42007C44E3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AppConfigImpl.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5EBEEF541D2B0B42007C44E3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5EBEEF531D2B0B42007C44E3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5EBEEF551D2B0B5B007C44E3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Session.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5EBEEF561D2B0B5B007C44E3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5EBEEF551D2B0B5B007C44E3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5EBEEF571D2B0B87007C44E3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionImpl.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5EBEEF581D2B0B87007C44E3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5EBEEF571D2B0B87007C44E3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5EBEEF591D2B0BB4007C44E3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>EntityBuilder.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5EBEEF5A1D2B0BB4007C44E3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5EBEEF591D2B0BB4007C44E3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5EBEEF5B1D2B0BE3007C44E3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5EBEEF5C1D2B0BEA007C44E3</string>
+				<string>5EBEEF5E1D2B0C3F007C44E3</string>
+				<string>5EBEEF651D2C24EF007C44E3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Builders</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5EBEEF5C1D2B0BEA007C44E3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AppConfigBuilder.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5EBEEF5D1D2B0BEA007C44E3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5EBEEF5C1D2B0BEA007C44E3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5EBEEF5E1D2B0C3F007C44E3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionBuilder.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5EBEEF5F1D2B0C3F007C44E3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5EBEEF5E1D2B0C3F007C44E3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5EBEEF601D2B15BD007C44E3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>name</key>
+			<string>SessionsSearchViewController.xib</string>
+			<key>path</key>
+			<string>Resources/SessionsSearchViewController.xib</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>5EBEEF611D2B15BD007C44E3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5EBEEF601D2B15BD007C44E3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5EBEEF621D2B1C43007C44E3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5EBEEF631D2B1C6A007C44E3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>ViewModels</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5EBEEF631D2B1C6A007C44E3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionViewModel.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5EBEEF641D2B1C6A007C44E3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5EBEEF631D2B1C6A007C44E3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5EBEEF651D2C24EF007C44E3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionsBuilder.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5EBEEF661D2C24EF007C44E3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5EBEEF651D2C24EF007C44E3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8E3AA1B0C4AD391EF6533174</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>[CP] Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>97D47C97043273CC8923D479</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-WWDCastTests.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9DFE4D549FA91AA0D43B71B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>0F7FD297C24AD13DCC673AC6</string>
+				<string>DC47894FCED35C8A3DF9DC0A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>AA720D3C39D46761CAD54C0B</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>[CP] Embed Pods Frameworks</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-frameworks.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>AD0F8F6B4FE481431967AF90</key>
+		<dict>
+			<key>fileRef</key>
+			<string>0F7FD297C24AD13DCC673AC6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F929B21D2A5DD5009E4B83</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B6F929E01D2AB0FC009E4B83</string>
+				<string>B6F929E71D2AB111009E4B83</string>
+				<string>B6F929BD1D2A5DD5009E4B83</string>
+				<string>B6F929BC1D2A5DD5009E4B83</string>
+				<string>056BEE961354AD19FEAEFB57</string>
+				<string>9DFE4D549FA91AA0D43B71B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929B31D2A5DD5009E4B83</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastSwiftUpdateCheck</key>
+				<string>0730</string>
+				<key>LastUpgradeCheck</key>
+				<string>0730</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>Maksym Shcheglov</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>B6F929BA1D2A5DD5009E4B83</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>7.3</string>
+					</dict>
+					<key>B6F929CE1D2A5DD6009E4B83</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>7.3</string>
+						<key>TestTargetID</key>
+						<string>B6F929BA1D2A5DD5009E4B83</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>B6F929B61D2A5DD5009E4B83</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>B6F929B21D2A5DD5009E4B83</string>
+			<key>productRefGroup</key>
+			<string>B6F929BC1D2A5DD5009E4B83</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>B6F929BA1D2A5DD5009E4B83</string>
+				<string>B6F929CE1D2A5DD6009E4B83</string>
+			</array>
+		</dict>
+		<key>B6F929B61D2A5DD5009E4B83</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>B6F929D61D2A5DD6009E4B83</string>
+				<string>B6F929D71D2A5DD6009E4B83</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>B6F929B71D2A5DD5009E4B83</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>B6F929FC1D2AB5EB009E4B83</string>
+				<string>5E4EA1D41D2D9F9A0097C2FB</string>
+				<string>5E26809F1D2D99E60054E90B</string>
+				<string>5EBEEF661D2C24EF007C44E3</string>
+				<string>5EBEEF511D2B0AEA007C44E3</string>
+				<string>5E4EA1ED1D315F070097C2FB</string>
+				<string>5EBEEF541D2B0B42007C44E3</string>
+				<string>5E4EA1E91D315C580097C2FB</string>
+				<string>B6F92A191D2C0E7E009E4B83</string>
+				<string>5E2680A11D2D9A130054E90B</string>
+				<string>5E4EA1EF1D3160DF0097C2FB</string>
+				<string>B6F92A001D2AB713009E4B83</string>
+				<string>5E4EA1E11D3155970097C2FB</string>
+				<string>5E2680A81D2D9BDD0054E90B</string>
+				<string>B6F929FA1D2AB5E3009E4B83</string>
+				<string>5E4EA1E51D315A640097C2FB</string>
+				<string>B6F929FE1D2AB5F8009E4B83</string>
+				<string>5E4EA1E71D315B8F0097C2FB</string>
+				<string>B6F929F51D2AB562009E4B83</string>
+				<string>5E4EA1F11D3160F40097C2FB</string>
+				<string>5E4EA1EB1D315D4D0097C2FB</string>
+				<string>5E4EA1F51D31791F0097C2FB</string>
+				<string>B6F929E41D2AB0FC009E4B83</string>
+				<string>5EBEEF641D2B1C6A007C44E3</string>
+				<string>5EBEEF561D2B0B5B007C44E3</string>
+				<string>B6F92A071D2C00F1009E4B83</string>
+				<string>5E4EA1F71D3179460097C2FB</string>
+				<string>B6F92A1B1D2C0E7E009E4B83</string>
+				<string>5E2680A41D2D9BC90054E90B</string>
+				<string>B6F929E61D2AB0FD009E4B83</string>
+				<string>5EBEEF5F1D2B0C3F007C44E3</string>
+				<string>5EBEEF5A1D2B0BB4007C44E3</string>
+				<string>B6F92A181D2C0E7E009E4B83</string>
+				<string>5E26809B1D2D98C60054E90B</string>
+				<string>5EBEEF581D2B0B87007C44E3</string>
+				<string>5E4EA1E31D3156AD0097C2FB</string>
+				<string>5E4EA1D61D2D9FBA0097C2FB</string>
+				<string>5E26809D1D2D98D10054E90B</string>
+				<string>5E2680A61D2D9BD30054E90B</string>
+				<string>B6F92A1A1D2C0E7E009E4B83</string>
+				<string>B6F929F71D2AB58A009E4B83</string>
+				<string>5E2680991D2D98AE0054E90B</string>
+				<string>5EBEEF5D1D2B0BEA007C44E3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>B6F929B81D2A5DD5009E4B83</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>AD0F8F6B4FE481431967AF90</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>B6F929B91D2A5DD5009E4B83</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>B6F92A1D1D2C0E8A009E4B83</string>
+				<string>B6F929EF1D2AB283009E4B83</string>
+				<string>5E2680961D2C43440054E90B</string>
+				<string>5EBEEF611D2B15BD007C44E3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>B6F929BA1D2A5DD5009E4B83</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>B6F929D81D2A5DD6009E4B83</string>
+			<key>buildPhases</key>
+			<array>
+				<string>D214ACFBD5C00700D8C35E13</string>
+				<string>B6F929B71D2A5DD5009E4B83</string>
+				<string>B6F929B81D2A5DD5009E4B83</string>
+				<string>B6F929B91D2A5DD5009E4B83</string>
+				<string>AA720D3C39D46761CAD54C0B</string>
+				<string>DE9F671286CAF4D10C6EC682</string>
+				<string>B75E77FF808C4A8FC0FCDABC</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>WWDCast</string>
+			<key>productName</key>
+			<string>WWDCast</string>
+			<key>productReference</key>
+			<string>B6F929BB1D2A5DD5009E4B83</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>B6F929BB1D2A5DD5009E4B83</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>WWDCast.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>B6F929BC1D2A5DD5009E4B83</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B6F929BB1D2A5DD5009E4B83</string>
+				<string>B6F929CF1D2A5DD6009E4B83</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929BD1D2A5DD5009E4B83</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5E2680951D2C43440054E90B</string>
+				<string>B6F92A1C1D2C0E8A009E4B83</string>
+				<string>B6F929EB1D2AB283009E4B83</string>
+				<string>5EBEEF601D2B15BD007C44E3</string>
+				<string>B6F929CA1D2A5DD5009E4B83</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Resources</string>
+			<key>path</key>
+			<string>WWDCast</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929CA1D2A5DD5009E4B83</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist</string>
+			<key>name</key>
+			<string>Info.plist</string>
+			<key>path</key>
+			<string>Resources/Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929CB1D2A5DD6009E4B83</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>B6F929EA1D2AB197009E4B83</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>B6F929CC1D2A5DD6009E4B83</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>CB3D814A9AEA228A24C69179</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>B6F929CD1D2A5DD6009E4B83</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>B6F929CE1D2A5DD6009E4B83</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>B6F929DB1D2A5DD6009E4B83</string>
+			<key>buildPhases</key>
+			<array>
+				<string>8E3AA1B0C4AD391EF6533174</string>
+				<string>B6F929CB1D2A5DD6009E4B83</string>
+				<string>B6F929CC1D2A5DD6009E4B83</string>
+				<string>B6F929CD1D2A5DD6009E4B83</string>
+				<string>E5248526D49A453158D9CD89</string>
+				<string>5242DE3CBC7A13DD7008ECA0</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>B6F929D11D2A5DD6009E4B83</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>WWDCastTests</string>
+			<key>productName</key>
+			<string>WWDCastTests</string>
+			<key>productReference</key>
+			<string>B6F929CF1D2A5DD6009E4B83</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>B6F929CF1D2A5DD6009E4B83</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>WWDCastTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>B6F929D01D2A5DD6009E4B83</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>B6F929B31D2A5DD5009E4B83</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>B6F929BA1D2A5DD5009E4B83</string>
+			<key>remoteInfo</key>
+			<string>WWDCast</string>
+		</dict>
+		<key>B6F929D11D2A5DD6009E4B83</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>B6F929BA1D2A5DD5009E4B83</string>
+			<key>targetProxy</key>
+			<string>B6F929D01D2A5DD6009E4B83</string>
+		</dict>
+		<key>B6F929D51D2A5DD6009E4B83</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929D61D2A5DD6009E4B83</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>ENABLE_TESTABILITY</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>B6F929D71D2A5DD6009E4B83</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf-with-dsym</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>B6F929D81D2A5DD6009E4B83</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>B6F929D91D2A5DD6009E4B83</string>
+				<string>B6F929DA1D2A5DD6009E4B83</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>B6F929D91D2A5DD6009E4B83</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>3B7363DE118FE7825FC36051</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Resources/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.mshcheglov.WWDCast</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>B6F929DA1D2A5DD6009E4B83</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>164188D0B2DA290E2BCA3B32</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Resources/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.mshcheglov.WWDCast</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>B6F929DB1D2A5DD6009E4B83</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>B6F929DC1D2A5DD6009E4B83</string>
+				<string>B6F929DD1D2A5DD6009E4B83</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>B6F929DC1D2A5DD6009E4B83</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>598F3224BE6A8136DC32B3FA</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>INFOPLIST_FILE</key>
+				<string>WWDCastTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.mshcheglov.WWDCastTests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/WWDCast.app/WWDCast</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>B6F929DD1D2A5DD6009E4B83</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>97D47C97043273CC8923D479</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>INFOPLIST_FILE</key>
+				<string>WWDCastTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.mshcheglov.WWDCastTests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/WWDCast.app/WWDCast</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>B6F929E01D2AB0FC009E4B83</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B6F929F11D2AB2BE009E4B83</string>
+				<string>B6F929F21D2AB2BE009E4B83</string>
+				<string>B6F929E11D2AB0FC009E4B83</string>
+				<string>B6F929E31D2AB0FC009E4B83</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Source</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929E11D2AB0FC009E4B83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AppDelegate.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929E31D2AB0FC009E4B83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>WWDCEnvironment.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929E41D2AB0FC009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F929E11D2AB0FC009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F929E61D2AB0FD009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F929E31D2AB0FC009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F929E71D2AB111009E4B83</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B6F929E81D2AB111009E4B83</string>
+				<string>B6F929D51D2A5DD6009E4B83</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Tests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929E81D2AB111009E4B83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>WWDCastTests.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929EA1D2AB197009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F929E81D2AB111009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F929EB1D2AB283009E4B83</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B6F929EC1D2AB283009E4B83</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929EC1D2AB283009E4B83</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Resources/Base.lproj/LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>B6F929EF1D2AB283009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F929EB1D2AB283009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F929F11D2AB2BE009E4B83</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5E2680A01D2D9A130054E90B</string>
+				<string>B6F929F31D2AB54B009E4B83</string>
+				<string>5E2680971D2D98820054E90B</string>
+				<string>5EBEEF521D2B0B32007C44E3</string>
+				<string>5EBEEF621D2B1C43007C44E3</string>
+				<string>B6F92A131D2C0E7E009E4B83</string>
+				<string>5E4EA1DE1D3155780097C2FB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Classes</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929F21D2AB2BE009E4B83</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5E26809E1D2D99E60054E90B</string>
+				<string>B6F929F81D2AB5D8009E4B83</string>
+				<string>5E2680A21D2D9BB70054E90B</string>
+				<string>5EBEEF4F1D2B0AD8007C44E3</string>
+				<string>5E4EA1DF1D3155840097C2FB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Protocols</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929F31D2AB54B009E4B83</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B6F929FF1D2AB713009E4B83</string>
+				<string>B6F929F41D2AB562009E4B83</string>
+				<string>B6F929F61D2AB58A009E4B83</string>
+				<string>B6F92A061D2C00F1009E4B83</string>
+				<string>5E4EA1D51D2D9FBA0097C2FB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>SessionsSearch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929F41D2AB562009E4B83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionsSearchPresenterImpl.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929F51D2AB562009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F929F41D2AB562009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F929F61D2AB58A009E4B83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionsSearchInteractorImpl.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929F71D2AB58A009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F929F61D2AB58A009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F929F81D2AB5D8009E4B83</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B6F929F91D2AB5E3009E4B83</string>
+				<string>B6F929FB1D2AB5EB009E4B83</string>
+				<string>B6F929FD1D2AB5F8009E4B83</string>
+				<string>5E4EA1D31D2D9F9A0097C2FB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>SessionsSearch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929F91D2AB5E3009E4B83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionsSearchPresenter.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929FA1D2AB5E3009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F929F91D2AB5E3009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F929FB1D2AB5EB009E4B83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionsSearchInteractor.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929FC1D2AB5EB009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F929FB1D2AB5EB009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F929FD1D2AB5F8009E4B83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionsSearchView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F929FE1D2AB5F8009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F929FD1D2AB5F8009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F929FF1D2AB713009E4B83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionsSearchViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F92A001D2AB713009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F929FF1D2AB713009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F92A061D2C00F1009E4B83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SessionTableViewCell.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F92A071D2C00F1009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F92A061D2C00F1009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F92A131D2C0E7E009E4B83</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B6F92A141D2C0E7E009E4B83</string>
+				<string>B6F92A151D2C0E7E009E4B83</string>
+				<string>B6F92A161D2C0E7E009E4B83</string>
+				<string>B6F92A171D2C0E7E009E4B83</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Common</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F92A141D2C0E7E009E4B83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>RxExtensions.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F92A151D2C0E7E009E4B83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>RxTableViewCell.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F92A161D2C0E7E009E4B83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>UITableView+Common.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F92A171D2C0E7E009E4B83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>UITableViewController+Common.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B6F92A181D2C0E7E009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F92A141D2C0E7E009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F92A191D2C0E7E009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F92A151D2C0E7E009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F92A1A1D2C0E7E009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F92A161D2C0E7E009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F92A1B1D2C0E7E009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F92A171D2C0E7E009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B6F92A1C1D2C0E8A009E4B83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>name</key>
+			<string>SessionTableViewCell.xib</string>
+			<key>path</key>
+			<string>Resources/SessionTableViewCell.xib</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>B6F92A1D1D2C0E8A009E4B83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B6F92A1C1D2C0E8A009E4B83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B75E77FF808C4A8FC0FCDABC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Embed Pods Frameworks</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-frameworks.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>CB3D814A9AEA228A24C69179</key>
+		<dict>
+			<key>fileRef</key>
+			<string>DC47894FCED35C8A3DF9DC0A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D214ACFBD5C00700D8C35E13</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>[CP] Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>DC47894FCED35C8A3DF9DC0A</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods_WWDCastTests.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>DE9F671286CAF4D10C6EC682</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>[CP] Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>E5248526D49A453158D9CD89</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>[CP] Embed Pods Frameworks</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests-frameworks.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>B6F929B31D2A5DD5009E4B83</string>
+</dict>
+</plist>

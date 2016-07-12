@@ -45,7 +45,6 @@ extension SessionsSearchInteractorImpl: SessionsSearchInteractor {
 
     private func loadData<Builder: EntityBuilder>(url: NSURL, builder: Builder.Type) -> Observable<Builder.EntityType> {
         return self.serviceProvider.network.GET(url, parameters: [:]).map() { data in
-            print(JSON(data: data))
             return builder.build(JSON(data: data))
         }
     }

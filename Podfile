@@ -9,6 +9,7 @@ target 'WWDCast' do
   pod 'RxAlamofire', '~> 2.5'
   pod 'RxCocoa', '~> 2.6'
   pod 'RxOptional', '~> 2.0'
+  pod 'RxDataSources', '~> 0.9'
   pod 'SwiftyJSON', '~> 2.3'
   pod 'SDWebImage', '~> 3.8'
 end

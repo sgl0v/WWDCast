@@ -8,14 +8,25 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
+import RxDataSources
 
-class SessionsSearchViewController: TableViewController<SessionViewModel, SessionTableViewCell> {
+class SessionsSearchViewController: TableViewController<SessionViewModels, SessionTableViewCell> {
     var presenter: SessionsSearchPresenter!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.clearsSelectionOnViewWillAppear = true
-        self.presenter.updateView()
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 100
+        self.tableView.delegate = nil
+        self.tableView.dataSource = nil
+
+        self.tableView.rx_itemSelected.map({ indexPath in return indexPath.row })
+            .bindTo(self.presenter.itemSelected)
+            .addDisposableTo(self.disposeBag)
+
+        self.presenter.updateView.onNext()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -31,9 +42,6 @@ class SessionsSearchViewController: TableViewController<SessionViewModel, Sessio
 
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.presenter.selectItem(atIndex: indexPath.row)
-    }
 //
 //    override func didReceiveMemoryWarning() {
 //        super.didReceiveMemoryWarning()
@@ -44,17 +52,17 @@ class SessionsSearchViewController: TableViewController<SessionViewModel, Sessio
 
 extension SessionsSearchViewController: SessionsSearchView {
 
-    var showSessions: AnyObserver<[SessionViewModel]> {
+    var showSessions: AnyObserver<[SessionViewModels]> {
         return AnyObserver {[unowned self] event in
             guard case .Next(let sessions) = event else {
                 return
             }
-            self.data = sessions
+            Observable.just(sessions).bindTo(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
         }
     }
 
-    func setTitle(title: String) {
-        self.title = title
+    var titleText: AnyObserver<String> {
+        return self.rx_title
     }
 
 }

@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol SessionsSearchPresenter: class {
-    func updateView()
-    func selectItem(atIndex index: Int)
+    var itemSelected: AnyObserver<Int> { get }
+    var updateView: AnyObserver<Void> { get }
 }

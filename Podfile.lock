@@ -10,6 +10,9 @@ PODS:
     - RxSwift (~> 2.5)
   - RxCocoa (2.6.0):
     - RxSwift (~> 2.5)
+  - RxDataSources (0.9):
+    - RxCocoa (~> 2.2)
+    - RxSwift (~> 2.2)
   - RxOptional (2.0.0):
     - RxCocoa (~> 2.0)
     - RxSwift (~> 2.0)
@@ -23,6 +26,7 @@ DEPENDENCIES:
   - google-cast-sdk (~> 3.0)
   - RxAlamofire (~> 2.5)
   - RxCocoa (~> 2.6)
+  - RxDataSources (~> 0.9)
   - RxOptional (~> 2.0)
   - SDWebImage (~> 3.8)
   - SwiftyJSON (~> 2.3)
@@ -32,6 +36,7 @@ SPEC CHECKSUMS:
   google-cast-sdk: de04dc1edf2eececd00716044399e0715bdbddf6
   RxAlamofire: b4572a077b6b2410c8732a27266299df4c00736e
   RxCocoa: 89ab00d5753502520227940e3a0e0a0413683c6b
+  RxDataSources: e169bba94a7be584df7c1e1487fa56edc8753ae6
   RxOptional: b77fb47a0190213cf8a37c7a2b7fda28160b4563
   RxSwift: 77f3a0b15324baa7a1c9bfa9f199648a82424e26
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
