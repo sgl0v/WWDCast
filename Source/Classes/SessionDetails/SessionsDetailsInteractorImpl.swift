@@ -31,6 +31,10 @@ extension SessionDetailsInteractorImpl: SessionDetailsInteractor {
             .shareReplayLatestWhileConnected()
     }
 
+    var playSession: AnyObserver<Session> {
+        return self.serviceProvider.googleCast.playSession
+    }
+
     // MARK: Private
 
     private func filterSessions(sessions: [Session]) -> [Session] {

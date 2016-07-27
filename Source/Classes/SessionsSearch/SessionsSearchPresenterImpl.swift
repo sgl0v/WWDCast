@@ -50,11 +50,6 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
             guard case .Next(let session) = event else {
                 return
             }
-//            let subscription = self.interactor
-//                .loadSessions()
-//                .map({ sessions in return sessions[index]})
-//                .bindTo(self.interactor.playSession)
-//            subscription.addDisposableTo(self.disposeBag)
             self.router.showSessionDetails(withId: session.uniqueID)
         }
     }

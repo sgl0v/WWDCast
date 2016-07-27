@@ -12,4 +12,5 @@ import RxCocoa
 
 protocol SessionDetailsPresenter: class {
     var session: Driver<SessionViewModel?> { get }
+    var playSession: AnyObserver<Void> { get }
 }

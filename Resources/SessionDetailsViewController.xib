@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,10 +8,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SessionDetailsViewController" customModule="WWDCast" customModuleProvider="target">
             <connections>
-                <outlet property="focus" destination="YDJ-JT-CIQ" id="D7X-Vc-4K6"/>
                 <outlet property="header" destination="bYJ-b5-beW" id="ie0-Ov-ag4"/>
-                <outlet property="image" destination="Xp6-Xa-YsW" id="1pF-GB-OeJ"/>
+                <outlet property="image" destination="GMc-GO-X0z" id="UyY-xn-cx6"/>
+                <outlet property="subtitle" destination="YDJ-JT-CIQ" id="Ges-wG-ijN"/>
                 <outlet property="summary" destination="jcp-LC-bdZ" id="Hvz-0t-pZV"/>
+                <outlet property="tapGestureRecognizer" destination="tNq-5u-0rD" id="0VR-wD-hZy"/>
                 <outlet property="view" destination="iN0-l3-epB" id="520-1a-bVm"/>
             </connections>
         </placeholder>
@@ -23,26 +24,29 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="BzN-ar-fuA">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xp6-Xa-YsW">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="GMc-GO-X0z">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="tNq-5u-0rD" appends="YES" id="YBf-0J-dQB"/>
+                            </connections>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1b-lL-fw1">
                             <rect key="frame" x="0.0" y="300" width="600" height="300"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Platforms State of the Union" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYJ-b5-beW">
-                                    <rect key="frame" x="8" y="8" width="584" height="32"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                    <rect key="frame" x="8" y="8" width="584" height="27"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWDC 2016 Platforms State of the Union" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcp-LC-bdZ">
-                                    <rect key="frame" x="8" y="50" width="584" height="20"/>
+                                    <rect key="frame" x="8" y="45" width="584" height="20"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWDC 2016 - Session 102 - iOS, macOS, tvOS, watchOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDJ-JT-CIQ">
-                                    <rect key="frame" x="8" y="80" width="584" height="18"/>
+                                    <rect key="frame" x="8" y="75" width="584" height="18"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" red="0.38823529411764707" green="0.38823529411764707" blue="0.38823529411764707" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -65,6 +69,7 @@
                 </stackView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="BzN-ar-fuA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5gd-Xn-xGt"/>
                 <constraint firstItem="BzN-ar-fuA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="F6E-HV-L5e"/>
@@ -73,5 +78,10 @@
             </constraints>
             <point key="canvasLocation" x="227" y="336"/>
         </view>
+        <tapGestureRecognizer id="tNq-5u-0rD">
+            <connections>
+                <action selector="didTapPlayButton:" destination="-1" id="DeD-q6-ILV"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

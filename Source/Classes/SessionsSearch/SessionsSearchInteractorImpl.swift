@@ -29,10 +29,6 @@ extension SessionsSearchInteractorImpl: SessionsSearchInteractor {
             .shareReplayLatestWhileConnected()
     }
 
-    var playSession: AnyObserver<Session> {
-        return self.serviceProvider.googleCast.playSession
-    }
-
     // MARK: Private
 
     private func loadConfig() -> Observable<AppConfig> {

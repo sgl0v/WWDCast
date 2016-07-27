@@ -29,4 +29,15 @@ extension SessionDetailsPresenterImpl: SessionDetailsPresenter {
             .startWith(nil)
     }
 
+    var playSession: AnyObserver<Void> {
+        return AnyObserver {[unowned self] event in
+            guard case .Next = event else {
+                return
+            }
+            let subscription = self.interactor.session
+                .bindTo(self.interactor.playSession)
+            subscription.addDisposableTo(self.disposeBag)
+        }
+    }
+
 }

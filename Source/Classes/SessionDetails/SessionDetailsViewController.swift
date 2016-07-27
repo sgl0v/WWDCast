@@ -14,7 +14,8 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var header: UILabel!
     @IBOutlet weak var summary: UILabel!
-    @IBOutlet weak var focus: UILabel!
+    @IBOutlet weak var subtitle: UILabel!
+    @IBOutlet weak var tapGestureRecognizer: UITapGestureRecognizer!
 
     var presenter: SessionDetailsPresenter!
     let disposeBag = DisposeBag()
@@ -31,6 +32,8 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         super.viewDidLoad()
         self.presenter.session.drive(self.viewModelObserver)
             .addDisposableTo(self.disposeBag)
+        self.tapGestureRecognizer.rx_event.map({ _ in }).bindTo(self.presenter.playSession)
+            .addDisposableTo(disposeBag)
     }
 
     // MARK: Private
@@ -49,6 +52,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
                 .addDisposableTo(self.disposeBag)
             self.header.text = viewModel.title
             self.summary.text = viewModel.summary
+            self.subtitle.text = viewModel.subtitle
         }
     }
 

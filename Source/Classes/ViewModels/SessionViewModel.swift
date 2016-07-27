@@ -12,9 +12,9 @@ import RxDataSources
 struct SessionViewModel {
     var uniqueID: String
     var title: String
+    var subtitle: String
     var summary: String
     var thumbnailURL: NSURL
-    var additionalInfo: String
 }
 
 extension SessionViewModel: IdentifiableType {
