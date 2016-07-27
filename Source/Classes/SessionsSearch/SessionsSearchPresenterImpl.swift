@@ -38,7 +38,7 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
                 .addDisposableTo(self.disposeBag)
             self.interactor
                 .loadSessions()
-                .map(self.createSessionViewModels)
+                .map(SessionViewModelBuilder.build)
                 .asDriver(onErrorJustReturn: [])
                 .drive(self.view.showSessions)
                 .addDisposableTo(self.disposeBag)
@@ -57,18 +57,6 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
 //            subscription.addDisposableTo(self.disposeBag)
             self.router.showSessionDetails(withId: session.uniqueID)
         }
-    }
-
-    // MARK: Private
-
-    private func createSessionViewModels(sessions: [Session]) -> [SessionViewModels] {
-        let sessions: [SessionViewModels] = Track.allTracks.map( { track in
-            let sessions = sessions.filter({ session in session.track == track }).map() { session in
-                return SessionViewModel(uniqueID: session.uniqueId, title: session.title, summary: session.summary, thumbnailURL: session.shelfImageURL)
-            }
-            return SessionViewModels(title: track.rawValue, items: sessions)
-        })
-        return sessions
     }
 
 }

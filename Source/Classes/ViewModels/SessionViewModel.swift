@@ -14,6 +14,7 @@ struct SessionViewModel {
     var title: String
     var summary: String
     var thumbnailURL: NSURL
+    var additionalInfo: String
 }
 
 extension SessionViewModel: IdentifiableType {

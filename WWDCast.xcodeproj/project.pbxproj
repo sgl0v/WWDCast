@@ -43,6 +43,7 @@
 		5EBEEF661D2C24EF007C44E3 /* SessionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF651D2C24EF007C44E3 /* SessionsBuilder.swift */; };
 		793BE38BE046FD3EF8742CF9 /* Pods_WWDCastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */; };
 		9E8282ED357ECD3D75624DDB /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */; };
+		B645F3381D491893002A40C1 /* SessionViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B645F3371D491893002A40C1 /* SessionViewModelBuilder.swift */; };
 		B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */; };
 		B6F929E61D2AB0FD009E4B83 /* WWDCEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E31D2AB0FC009E4B83 /* WWDCEnvironment.swift */; };
 		B6F929EA1D2AB197009E4B83 /* WWDCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E81D2AB111009E4B83 /* WWDCastTests.swift */; };
@@ -110,6 +111,7 @@
 		5EBEEF601D2B15BD007C44E3 /* SessionsSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionsSearchViewController.xib; path = Resources/SessionsSearchViewController.xib; sourceTree = SOURCE_ROOT; };
 		5EBEEF631D2B1C6A007C44E3 /* SessionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
 		5EBEEF651D2C24EF007C44E3 /* SessionsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsBuilder.swift; sourceTree = "<group>"; };
+		B645F3371D491893002A40C1 /* SessionViewModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionViewModelBuilder.swift; sourceTree = "<group>"; };
 		B6F929BB1D2A5DD5009E4B83 /* WWDCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWDCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F929CA1D2A5DD5009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		B6F929CF1D2A5DD6009E4B83 /* WWDCastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WWDCastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,6 +245,7 @@
 			children = (
 				5EBEEF631D2B1C6A007C44E3 /* SessionViewModel.swift */,
 				5E4EA1F81D32870C0097C2FB /* SessionViewModels.swift */,
+				B645F3371D491893002A40C1 /* SessionViewModelBuilder.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				B6F929F71D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift in Sources */,
 				5E2680991D2D98AE0054E90B /* SessionDetailsViewController.swift in Sources */,
 				5EBEEF5D1D2B0BEA007C44E3 /* AppConfigBuilder.swift in Sources */,
+				B645F3381D491893002A40C1 /* SessionViewModelBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

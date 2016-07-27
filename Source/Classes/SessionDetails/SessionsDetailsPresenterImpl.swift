@@ -24,14 +24,9 @@ extension SessionDetailsPresenterImpl: SessionDetailsPresenter {
 
     var session: Driver<SessionViewModel?> {
         return self.interactor.session
-            .map(self.createSessionViewModel)
+            .map(SessionViewModelBuilder.build)
             .asDriver(onErrorJustReturn: nil)
             .startWith(nil)
     }
 
-    // MARK: Private
-
-    func createSessionViewModel(session: Session) -> SessionViewModel {
-        return SessionViewModel(uniqueID: session.uniqueId, title: session.title, summary: session.summary, thumbnailURL: session.shelfImageURL)
-    }
 }
