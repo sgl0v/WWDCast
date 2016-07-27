@@ -22,7 +22,7 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
         self.tableView.delegate = nil
         self.tableView.dataSource = nil
 
-        self.tableView.rx_itemSelected.map({ indexPath in return indexPath.row })
+        self.tableView.rx_modelSelected(SessionViewModel.self)
             .bindTo(self.presenter.itemSelected)
             .addDisposableTo(self.disposeBag)
 

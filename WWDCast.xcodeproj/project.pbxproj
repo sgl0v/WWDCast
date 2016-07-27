@@ -30,6 +30,7 @@
 		5E4EA1F51D31791F0097C2FB /* GoogleCastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1F41D31791F0097C2FB /* GoogleCastService.swift */; };
 		5E4EA1F71D3179460097C2FB /* GoogleCastServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1F61D3179460097C2FB /* GoogleCastServiceImpl.swift */; };
 		5E4EA1F91D32870C0097C2FB /* SessionViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1F81D32870C0097C2FB /* SessionViewModels.swift */; };
+		5E89B1D61D480B6300E611AC /* SessionDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */; };
 		5EBEEF511D2B0AEA007C44E3 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF501D2B0AEA007C44E3 /* AppConfig.swift */; };
 		5EBEEF541D2B0B42007C44E3 /* AppConfigImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF531D2B0B42007C44E3 /* AppConfigImpl.swift */; };
 		5EBEEF561D2B0B5B007C44E3 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF551D2B0B5B007C44E3 /* Session.swift */; };
@@ -40,7 +41,8 @@
 		5EBEEF611D2B15BD007C44E3 /* SessionsSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EBEEF601D2B15BD007C44E3 /* SessionsSearchViewController.xib */; };
 		5EBEEF641D2B1C6A007C44E3 /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF631D2B1C6A007C44E3 /* SessionViewModel.swift */; };
 		5EBEEF661D2C24EF007C44E3 /* SessionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEEF651D2C24EF007C44E3 /* SessionsBuilder.swift */; };
-		AD0F8F6B4FE481431967AF90 /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F7FD297C24AD13DCC673AC6 /* Pods_WWDCast.framework */; };
+		793BE38BE046FD3EF8742CF9 /* Pods_WWDCastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */; };
+		9E8282ED357ECD3D75624DDB /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */; };
 		B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */; };
 		B6F929E61D2AB0FD009E4B83 /* WWDCEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E31D2AB0FC009E4B83 /* WWDCEnvironment.swift */; };
 		B6F929EA1D2AB197009E4B83 /* WWDCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E81D2AB111009E4B83 /* WWDCastTests.swift */; };
@@ -57,7 +59,6 @@
 		B6F92A1A1D2C0E7E009E4B83 /* UITableView+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A161D2C0E7E009E4B83 /* UITableView+Common.swift */; };
 		B6F92A1B1D2C0E7E009E4B83 /* UITableViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A171D2C0E7E009E4B83 /* UITableViewController+Common.swift */; };
 		B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */; };
-		CB3D814A9AEA228A24C69179 /* Pods_WWDCastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC47894FCED35C8A3DF9DC0A /* Pods_WWDCastTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,10 +72,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0F7FD297C24AD13DCC673AC6 /* Pods_WWDCast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		164188D0B2DA290E2BCA3B32 /* Pods-WWDCast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.release.xcconfig"; sourceTree = "<group>"; };
-		3B7363DE118FE7825FC36051 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
-		598F3224BE6A8136DC32B3FA /* Pods-WWDCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.debug.xcconfig"; sourceTree = "<group>"; };
+		057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		081F76A23C03510729799A91 /* Pods-WWDCast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.release.xcconfig"; sourceTree = "<group>"; };
+		218FDCB7EB2025EE42E172F6 /* Pods-WWDCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4A6EBFABAC79034FF2973338 /* Pods-WWDCastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.release.xcconfig"; sourceTree = "<group>"; };
 		5E2680951D2C43440054E90B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		5E2680981D2D98AE0054E90B /* SessionDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewController.swift; sourceTree = "<group>"; };
 		5E26809A1D2D98C60054E90B /* SessionsDetailsPresenterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsDetailsPresenterImpl.swift; sourceTree = "<group>"; };
@@ -98,6 +99,7 @@
 		5E4EA1F41D31791F0097C2FB /* GoogleCastService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastService.swift; sourceTree = "<group>"; };
 		5E4EA1F61D3179460097C2FB /* GoogleCastServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastServiceImpl.swift; sourceTree = "<group>"; };
 		5E4EA1F81D32870C0097C2FB /* SessionViewModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionViewModels.swift; sourceTree = "<group>"; };
+		5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionDetailsViewController.xib; path = Resources/SessionDetailsViewController.xib; sourceTree = SOURCE_ROOT; };
 		5EBEEF501D2B0AEA007C44E3 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		5EBEEF531D2B0B42007C44E3 /* AppConfigImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigImpl.swift; sourceTree = "<group>"; };
 		5EBEEF551D2B0B5B007C44E3 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -108,7 +110,6 @@
 		5EBEEF601D2B15BD007C44E3 /* SessionsSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionsSearchViewController.xib; path = Resources/SessionsSearchViewController.xib; sourceTree = SOURCE_ROOT; };
 		5EBEEF631D2B1C6A007C44E3 /* SessionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
 		5EBEEF651D2C24EF007C44E3 /* SessionsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsBuilder.swift; sourceTree = "<group>"; };
-		97D47C97043273CC8923D479 /* Pods-WWDCastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.release.xcconfig"; sourceTree = "<group>"; };
 		B6F929BB1D2A5DD5009E4B83 /* WWDCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWDCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F929CA1D2A5DD5009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		B6F929CF1D2A5DD6009E4B83 /* WWDCastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WWDCastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,7 +130,8 @@
 		B6F92A161D2C0E7E009E4B83 /* UITableView+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Common.swift"; sourceTree = "<group>"; };
 		B6F92A171D2C0E7E009E4B83 /* UITableViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewController+Common.swift"; sourceTree = "<group>"; };
 		B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionTableViewCell.xib; path = Resources/SessionTableViewCell.xib; sourceTree = SOURCE_ROOT; };
-		DC47894FCED35C8A3DF9DC0A /* Pods_WWDCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD0F8F6B4FE481431967AF90 /* Pods_WWDCast.framework in Frameworks */,
+				9E8282ED357ECD3D75624DDB /* Pods_WWDCast.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,22 +147,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB3D814A9AEA228A24C69179 /* Pods_WWDCastTests.framework in Frameworks */,
+				793BE38BE046FD3EF8742CF9 /* Pods_WWDCastTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		056BEE961354AD19FEAEFB57 /* Pods */ = {
+		33442D9E13E505A9141431FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3B7363DE118FE7825FC36051 /* Pods-WWDCast.debug.xcconfig */,
-				164188D0B2DA290E2BCA3B32 /* Pods-WWDCast.release.xcconfig */,
-				598F3224BE6A8136DC32B3FA /* Pods-WWDCastTests.debug.xcconfig */,
-				97D47C97043273CC8923D479 /* Pods-WWDCastTests.release.xcconfig */,
+				057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */,
+				BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		5E2680971D2D98820054E90B /* SessionDetails */ = {
@@ -247,15 +247,6 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		9DFE4D549FA91AA0D43B71B6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0F7FD297C24AD13DCC673AC6 /* Pods_WWDCast.framework */,
-				DC47894FCED35C8A3DF9DC0A /* Pods_WWDCastTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		B6F929B21D2A5DD5009E4B83 = {
 			isa = PBXGroup;
 			children = (
@@ -263,8 +254,8 @@
 				B6F929E71D2AB111009E4B83 /* Tests */,
 				B6F929BD1D2A5DD5009E4B83 /* Resources */,
 				B6F929BC1D2A5DD5009E4B83 /* Products */,
-				056BEE961354AD19FEAEFB57 /* Pods */,
-				9DFE4D549FA91AA0D43B71B6 /* Frameworks */,
+				E48D05A0B2806D9C6BFBB79F /* Pods */,
+				33442D9E13E505A9141431FD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -284,6 +275,7 @@
 				B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */,
 				B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */,
 				5EBEEF601D2B15BD007C44E3 /* SessionsSearchViewController.xib */,
+				5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */,
 				B6F929CA1D2A5DD5009E4B83 /* Info.plist */,
 			);
 			name = Resources;
@@ -370,6 +362,17 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		E48D05A0B2806D9C6BFBB79F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */,
+				081F76A23C03510729799A91 /* Pods-WWDCast.release.xcconfig */,
+				218FDCB7EB2025EE42E172F6 /* Pods-WWDCastTests.debug.xcconfig */,
+				4A6EBFABAC79034FF2973338 /* Pods-WWDCastTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -383,7 +386,6 @@
 				B6F929B91D2A5DD5009E4B83 /* Resources */,
 				AA720D3C39D46761CAD54C0B /* [CP] Embed Pods Frameworks */,
 				DE9F671286CAF4D10C6EC682 /* [CP] Copy Pods Resources */,
-				B75E77FF808C4A8FC0FCDABC /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -458,6 +460,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E89B1D61D480B6300E611AC /* SessionDetailsViewController.xib in Resources */,
 				B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */,
 				B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */,
 				5E2680961D2C43440054E90B /* Assets.xcassets in Resources */,
@@ -513,21 +516,6 @@
 			inputPaths = (
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B75E77FF808C4A8FC0FCDABC /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -749,7 +737,7 @@
 		};
 		B6F929D91D2A5DD6009E4B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B7363DE118FE7825FC36051 /* Pods-WWDCast.debug.xcconfig */;
+			baseConfigurationReference = EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Resources/Info.plist;
@@ -761,7 +749,7 @@
 		};
 		B6F929DA1D2A5DD6009E4B83 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 164188D0B2DA290E2BCA3B32 /* Pods-WWDCast.release.xcconfig */;
+			baseConfigurationReference = 081F76A23C03510729799A91 /* Pods-WWDCast.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Resources/Info.plist;
@@ -773,7 +761,7 @@
 		};
 		B6F929DC1D2A5DD6009E4B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 598F3224BE6A8136DC32B3FA /* Pods-WWDCastTests.debug.xcconfig */;
+			baseConfigurationReference = 218FDCB7EB2025EE42E172F6 /* Pods-WWDCastTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = WWDCastTests/Info.plist;
@@ -786,7 +774,7 @@
 		};
 		B6F929DD1D2A5DD6009E4B83 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97D47C97043273CC8923D479 /* Pods-WWDCastTests.release.xcconfig */;
+			baseConfigurationReference = 4A6EBFABAC79034FF2973338 /* Pods-WWDCastTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = WWDCastTests/Info.plist;

@@ -10,6 +10,6 @@ import Foundation
 import RxSwift
 
 protocol SessionsSearchPresenter: class {
-    var itemSelected: AnyObserver<Int> { get }
+    var itemSelected: AnyObserver<SessionViewModel> { get }
     var updateView: AnyObserver<Void> { get }
 }

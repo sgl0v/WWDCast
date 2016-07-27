@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class SessionDetailsPresenterImpl {
     weak var view: SessionDetailsView!
@@ -21,4 +22,16 @@ class SessionDetailsPresenterImpl {
 
 extension SessionDetailsPresenterImpl: SessionDetailsPresenter {
 
+    var session: Driver<SessionViewModel?> {
+        return self.interactor.session
+            .map(self.createSessionViewModel)
+            .asDriver(onErrorJustReturn: nil)
+            .startWith(nil)
+    }
+
+    // MARK: Private
+
+    func createSessionViewModel(session: Session) -> SessionViewModel {
+        return SessionViewModel(uniqueID: session.uniqueId, title: session.title, summary: session.summary, thumbnailURL: session.shelfImageURL)
+    }
 }

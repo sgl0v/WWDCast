@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol SessionDetailsInteractor: class {
 
+    var session: Observable<Session> { get }
 }

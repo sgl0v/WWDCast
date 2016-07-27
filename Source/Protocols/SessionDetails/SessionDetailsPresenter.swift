@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 protocol SessionDetailsPresenter: class {
-
+    var session: Driver<SessionViewModel?> { get }
 }

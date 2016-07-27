@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol SessionDetailsView: class {
-
+//    var showSession: AnyObserver<SessionViewModel?> { get }
 }

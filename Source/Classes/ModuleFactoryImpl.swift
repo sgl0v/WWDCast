@@ -24,9 +24,10 @@ class ModuleFactoryImpl: ModuleFactory {
     }
 
     func sessionDetailsModule(withId Id: String) -> UIViewController {
+        let serviceProvider = ServiceProviderImpl.defaultServiceProvider()
         let view = SessionDetailsViewController()
         let presenter = SessionDetailsPresenterImpl(view: view)
-        let interactor = SessionDetailsInteractorImpl(presenter: presenter, sessionId: Id)
+        let interactor = SessionDetailsInteractorImpl(presenter: presenter, serviceProvider: serviceProvider, sessionId: Id)
         view.presenter = presenter
         presenter.interactor = interactor
         return view

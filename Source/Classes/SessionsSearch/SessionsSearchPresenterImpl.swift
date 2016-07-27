@@ -45,17 +45,17 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
         }
     }
 
-    var itemSelected: AnyObserver<Int> {
+    var itemSelected: AnyObserver<SessionViewModel> {
         return AnyObserver {[unowned self] event in
-            guard case .Next(let index) = event else {
+            guard case .Next(let session) = event else {
                 return
             }
-            let subscription = self.interactor
-                .loadSessions()
-                .map({ sessions in return sessions[index]})
-                .bindTo(self.interactor.playSession)
-            //                self.router.showSessionDetails(withId: session.uniqueId)
-            subscription.addDisposableTo(self.disposeBag)
+//            let subscription = self.interactor
+//                .loadSessions()
+//                .map({ sessions in return sessions[index]})
+//                .bindTo(self.interactor.playSession)
+//            subscription.addDisposableTo(self.disposeBag)
+            self.router.showSessionDetails(withId: session.uniqueID)
         }
     }
 
@@ -64,7 +64,7 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
     private func createSessionViewModels(sessions: [Session]) -> [SessionViewModels] {
         let sessions: [SessionViewModels] = Track.allTracks.map( { track in
             let sessions = sessions.filter({ session in session.track == track }).map() { session in
-                return SessionViewModel(title: session.title, summary: session.summary, thumbnailURL: session.shelfImageURL)
+                return SessionViewModel(uniqueID: session.uniqueId, title: session.title, summary: session.summary, thumbnailURL: session.shelfImageURL)
             }
             return SessionViewModels(title: track.rawValue, items: sessions)
         })

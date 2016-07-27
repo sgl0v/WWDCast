@@ -10,6 +10,7 @@ import Foundation
 import RxDataSources
 
 struct SessionViewModel {
+    var uniqueID: String
     var title: String
     var summary: String
     var thumbnailURL: NSURL
@@ -25,10 +26,10 @@ extension SessionViewModel: IdentifiableType {
 
 extension SessionViewModel: Hashable {
     var hashValue: Int {
-        return self.title.hash ^ self.summary.hash ^ self.thumbnailURL.hash
+        return self.uniqueID.hash
     }
 }
 
 func == (lhs: SessionViewModel, rhs: SessionViewModel) -> Bool {
-    return lhs.title == rhs.title && lhs.summary == rhs.summary && lhs.thumbnailURL == rhs.thumbnailURL
+    return lhs.uniqueID == rhs.uniqueID
 }
