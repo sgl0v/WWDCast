@@ -12,7 +12,7 @@ struct SessionViewModelBuilder {
 
     static func build(session: Session) -> SessionViewModel {
         let focus = session.focus.map({ $0.rawValue }).joinWithSeparator(", ")
-        let subtitle = "WWDC \(session.year) - Session \(session.id) - \(focus)"
+        let subtitle = ["WWDC \(session.year)", "Session \(session.id)", focus].filter({ $0.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0}) .joinWithSeparator(" · ")
         return SessionViewModel(uniqueID: session.uniqueId, title: session.title, subtitle: subtitle, summary: session.summary, thumbnailURL: session.shelfImageURL)
     }
 

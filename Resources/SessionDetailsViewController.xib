@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -11,14 +11,13 @@
             <connections>
                 <outlet property="header" destination="84X-H4-YfT" id="aNv-TJ-qSF"/>
                 <outlet property="image" destination="9T3-Ic-VSi" id="dMK-c0-4Ld"/>
+                <outlet property="playButton" destination="2qp-JW-fbJ" id="9Jc-n0-XBO"/>
                 <outlet property="subtitle" destination="L6n-WU-77j" id="a56-ZE-FPe"/>
                 <outlet property="summary" destination="wcL-VK-WEE" id="xFq-V1-kg5"/>
-                <outlet property="tapGestureRecognizer" destination="tNq-5u-0rD" id="0VR-wD-hZy"/>
                 <outlet property="view" destination="uYk-mG-uIy" id="1dU-yR-dNQ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tapGestureRecognizer id="tNq-5u-0rD"/>
         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="uYk-mG-uIy">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -68,22 +67,36 @@
                                         <constraint firstAttribute="bottom" secondItem="L6n-WU-77j" secondAttribute="bottom" constant="10" id="rqZ-fY-JQq"/>
                                     </constraints>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qp-JW-fbJ">
+                                    <rect key="frame" x="282" y="135" width="36" height="30"/>
+                                    <state key="normal" title="PLAY"/>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="9T3-Ic-VSi" firstAttribute="top" secondItem="Lvc-KU-ZAF" secondAttribute="top" id="2sL-lV-iFF"/>
                                 <constraint firstItem="3Ae-ES-fcX" firstAttribute="top" secondItem="9T3-Ic-VSi" secondAttribute="bottom" id="6YK-ea-SPz"/>
+                                <constraint firstAttribute="bottom" secondItem="3Ae-ES-fcX" secondAttribute="bottom" id="D8U-EG-cbn"/>
                                 <constraint firstAttribute="trailing" secondItem="9T3-Ic-VSi" secondAttribute="trailing" id="Eft-HQ-3jU"/>
                                 <constraint firstAttribute="trailing" secondItem="3Ae-ES-fcX" secondAttribute="trailing" id="G1H-ML-jSh"/>
                                 <constraint firstItem="9T3-Ic-VSi" firstAttribute="leading" secondItem="Lvc-KU-ZAF" secondAttribute="leading" id="JFj-Gr-w5C"/>
                                 <constraint firstItem="3Ae-ES-fcX" firstAttribute="leading" secondItem="Lvc-KU-ZAF" secondAttribute="leading" id="MCs-7a-KIN"/>
                                 <constraint firstAttribute="bottom" secondItem="3Ae-ES-fcX" secondAttribute="bottom" id="efC-Iy-mX4"/>
+                                <constraint firstItem="2qp-JW-fbJ" firstAttribute="centerX" secondItem="9T3-Ic-VSi" secondAttribute="centerX" id="w6H-s3-k2T"/>
+                                <constraint firstItem="2qp-JW-fbJ" firstAttribute="centerY" secondItem="9T3-Ic-VSi" secondAttribute="centerY" id="yof-wa-iBM"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="efC-Iy-mX4"/>
+                                </mask>
+                            </variation>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Lvc-KU-ZAF" secondAttribute="trailing" id="8kB-Zs-K8k"/>
+                        <constraint firstAttribute="bottom" secondItem="Lvc-KU-ZAF" secondAttribute="bottom" id="KfS-4Q-B3b"/>
                         <constraint firstAttribute="trailing" secondItem="Lvc-KU-ZAF" secondAttribute="trailing" id="SsZ-8I-FjR"/>
                         <constraint firstItem="Lvc-KU-ZAF" firstAttribute="leading" secondItem="VY3-8o-xJr" secondAttribute="leading" id="Wco-FM-60V"/>
                         <constraint firstItem="Lvc-KU-ZAF" firstAttribute="width" secondItem="VY3-8o-xJr" secondAttribute="width" id="Wqo-sO-OqV"/>
@@ -93,6 +106,7 @@
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="SsZ-8I-FjR"/>
+                            <exclude reference="Wqo-sO-OqV"/>
                             <exclude reference="luk-1O-no2"/>
                         </mask>
                     </variation>
@@ -106,6 +120,7 @@
                 <constraint firstAttribute="bottom" secondItem="VY3-8o-xJr" secondAttribute="bottom" id="Les-JL-Wsy"/>
                 <constraint firstItem="VY3-8o-xJr" firstAttribute="width" secondItem="uYk-mG-uIy" secondAttribute="width" id="MTS-tB-Qbi"/>
                 <constraint firstItem="VY3-8o-xJr" firstAttribute="top" secondItem="uYk-mG-uIy" secondAttribute="top" id="UAh-sM-5zK"/>
+                <constraint firstItem="9T3-Ic-VSi" firstAttribute="width" secondItem="uYk-mG-uIy" secondAttribute="width" id="woX-pD-JJG"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
