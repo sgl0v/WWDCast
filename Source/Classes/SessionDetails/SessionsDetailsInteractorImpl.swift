@@ -31,8 +31,12 @@ extension SessionDetailsInteractorImpl: SessionDetailsInteractor {
             .shareReplayLatestWhileConnected()
     }
 
-    var playSession: AnyObserver<Session> {
+    var playSession: AnyObserver<(GoogleCastDevice, Session)> {
         return self.serviceProvider.googleCast.playSession
+    }
+
+    var devices: [GoogleCastDevice] {
+        return self.serviceProvider.googleCast.devices
     }
 
     // MARK: Private

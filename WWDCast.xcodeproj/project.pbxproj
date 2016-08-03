@@ -432,6 +432,7 @@
 				TargetAttributes = {
 					B6F929BA1D2A5DD5009E4B83 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 76874MD7C6;
 					};
 					B6F929CE1D2A5DD6009E4B83 = {
 						CreatedOnToolsVersion = 7.3;
@@ -744,10 +745,13 @@
 			baseConfigurationReference = EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: maxscheglov@gmail.com (7BFN2333WS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: maxscheglov@gmail.com (7BFN2333WS)";
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2c0fc2d2-fe70-4a46-a7b2-7b72784c6104";
 			};
 			name = Debug;
 		};
@@ -756,10 +760,13 @@
 			baseConfigurationReference = 081F76A23C03510729799A91 /* Pods-WWDCast.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: maxscheglov@gmail.com (7BFN2333WS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: maxscheglov@gmail.com (7BFN2333WS)";
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2c0fc2d2-fe70-4a46-a7b2-7b72784c6104";
 			};
 			name = Release;
 		};

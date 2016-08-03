@@ -34,9 +34,26 @@ extension SessionDetailsPresenterImpl: SessionDetailsPresenter {
             guard case .Next = event else {
                 return
             }
-            let subscription = self.interactor.session
-                .bindTo(self.interactor.playSession)
-            subscription.addDisposableTo(self.disposeBag)
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            let handler =  {[unowned self] (action: UIAlertAction) in
+                guard let idx = alert.actions.indexOf(action) else {
+                    return
+                }
+                let device = Observable.just(self.interactor.devices[idx])
+                let seq = Observable.combineLatest(device, self.interactor.session) { ($0, $1) }
+                seq.bindTo(self.interactor.playSession).addDisposableTo(self.disposeBag)
+            }
+            for device in self.interactor.devices {
+                let playOnDeviceAction = UIAlertAction(title: device.name, style: .Default, handler: handler)
+                alert.addAction(playOnDeviceAction)
+            }
+            let cancelButton = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { _ in
+                print("Cancel Pressed")
+            }
+
+            alert.addAction(cancelButton)
+            let ctrl = UIApplication.sharedApplication().delegate?.window!?.rootViewController
+            ctrl!.presentViewController(alert, animated: true, completion: nil)
         }
     }
 

@@ -36,15 +36,15 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
     private var mediaControlChannel: GCKMediaControlChannel!
     private var sessionQueue = [Session]()
 
-    var devices: Observable<GoogleCastDevice> {
-        return self.deviceScanner.devices.toObservable().map() {device in
+    var devices: [GoogleCastDevice] {
+        return self.deviceScanner.devices.map() {device in
             return GoogleCastDeviceImpl(name: device.friendlyName, id: device.deviceID)
         }
     }
 
-    var playSession: AnyObserver<Session> {
+    var playSession: AnyObserver<(GoogleCastDevice, Session)> {
         return AnyObserver {[unowned self] event in
-            guard case .Next(let session) = event, let device = self.deviceScanner.devices.first else {
+            guard case .Next(let device, let session) = event else {
                 return
             }
             self.sessionQueue.append(session)
