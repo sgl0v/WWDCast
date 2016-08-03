@@ -15,6 +15,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     @IBOutlet weak var header: UILabel!
     @IBOutlet weak var summary: UILabel!
     @IBOutlet weak var subtitle: UILabel!
+    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var tapGestureRecognizer: UITapGestureRecognizer!
 
     var presenter: SessionDetailsPresenter!
@@ -30,9 +31,11 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = castBarButtonItem()
+        
         self.presenter.session.drive(self.viewModelObserver)
             .addDisposableTo(self.disposeBag)
-        self.tapGestureRecognizer.rx_event.map({ _ in }).bindTo(self.presenter.playSession)
+        self.playButton.rx_tap.map({ _ in }).bindTo(self.presenter.playSession)
             .addDisposableTo(disposeBag)
     }
 

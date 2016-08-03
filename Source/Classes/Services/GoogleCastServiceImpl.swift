@@ -47,8 +47,11 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
             guard case .Next(let device, let session) = event else {
                 return
             }
+            guard let gckDevice = self.deviceScanner.devices.filter({ device.id == $0.deviceID }).first else {
+                return
+            }
             self.sessionQueue.append(session)
-            self.connectToDevice(device as! GCKDevice)
+            self.connectToDevice(gckDevice as! GCKDevice)
         }
     }
 
@@ -63,6 +66,8 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
         // whitelisted dongles
         self.deviceScanner = GCKDeviceScanner(filterCriteria: filterCriteria)
         super.init()
+        let options = GCKCastOptions(receiverApplicationID: self.applicationID)
+        GCKCastContext.setSharedInstanceWithOptions(options)
         self.enableLogging()
         self.deviceScanner.addListener(self)
         self.deviceScanner.startScan()

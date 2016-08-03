@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="header" destination="84X-H4-YfT" id="aNv-TJ-qSF"/>
                 <outlet property="image" destination="9T3-Ic-VSi" id="dMK-c0-4Ld"/>
+                <outlet property="playButton" destination="cpY-D6-OBi" id="oE3-dG-jUL"/>
                 <outlet property="subtitle" destination="L6n-WU-77j" id="a56-ZE-FPe"/>
                 <outlet property="summary" destination="wcL-VK-WEE" id="xFq-V1-kg5"/>
                 <outlet property="tapGestureRecognizer" destination="tNq-5u-0rD" id="0VR-wD-hZy"/>
@@ -68,14 +69,20 @@
                                         <constraint firstAttribute="bottom" secondItem="L6n-WU-77j" secondAttribute="bottom" constant="10" id="rqZ-fY-JQq"/>
                                     </constraints>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpY-D6-OBi">
+                                    <rect key="frame" x="285" y="135" width="30" height="30"/>
+                                    <state key="normal" title="Play"/>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="9T3-Ic-VSi" firstAttribute="top" secondItem="Lvc-KU-ZAF" secondAttribute="top" id="2sL-lV-iFF"/>
                                 <constraint firstItem="3Ae-ES-fcX" firstAttribute="top" secondItem="9T3-Ic-VSi" secondAttribute="bottom" id="6YK-ea-SPz"/>
+                                <constraint firstItem="cpY-D6-OBi" firstAttribute="centerX" secondItem="9T3-Ic-VSi" secondAttribute="centerX" id="6m0-vl-mgc"/>
                                 <constraint firstAttribute="trailing" secondItem="9T3-Ic-VSi" secondAttribute="trailing" id="Eft-HQ-3jU"/>
                                 <constraint firstAttribute="trailing" secondItem="3Ae-ES-fcX" secondAttribute="trailing" id="G1H-ML-jSh"/>
+                                <constraint firstItem="cpY-D6-OBi" firstAttribute="centerY" secondItem="9T3-Ic-VSi" secondAttribute="centerY" id="Ic4-yx-x60"/>
                                 <constraint firstItem="9T3-Ic-VSi" firstAttribute="leading" secondItem="Lvc-KU-ZAF" secondAttribute="leading" id="JFj-Gr-w5C"/>
                                 <constraint firstItem="3Ae-ES-fcX" firstAttribute="leading" secondItem="Lvc-KU-ZAF" secondAttribute="leading" id="MCs-7a-KIN"/>
                                 <constraint firstAttribute="bottom" secondItem="3Ae-ES-fcX" secondAttribute="bottom" id="efC-Iy-mX4"/>

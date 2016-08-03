@@ -16,15 +16,9 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.clearsSelectionOnViewWillAppear = true
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 100
-        self.tableView.delegate = nil
-        self.tableView.dataSource = nil
+        self.navigationItem.rightBarButtonItem = castBarButtonItem()
 
-        self.tableView.rx_modelSelected(SessionViewModel.self)
-            .bindTo(self.presenter.itemSelected)
-            .addDisposableTo(self.disposeBag)
+        setupTableView()
 
         self.presenter.updateView.onNext()
     }
@@ -32,7 +26,7 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-//        self.navigationItem.rightBarButtonItems = UIBarButtonItem(customView: CastButton())
+
 //        // Assign ourselves as delegate ONLY in viewWillAppear of a view controller.
 //        CastDeviceController *controller = [CastDeviceController sharedInstance];
 //        controller.delegate = self;
@@ -42,11 +36,19 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
 
     }
 
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
+    // MARK - Private
+
+    func setupTableView() {
+        self.clearsSelectionOnViewWillAppear = true
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 100
+        self.tableView.delegate = nil
+        self.tableView.dataSource = nil
+
+        self.tableView.rx_modelSelected(SessionViewModel.self)
+            .bindTo(self.presenter.itemSelected)
+            .addDisposableTo(self.disposeBag)
+    }
 
 }
 
