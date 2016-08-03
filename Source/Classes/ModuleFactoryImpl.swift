@@ -22,7 +22,9 @@ class ModuleFactoryImpl: ModuleFactory {
         let navigationController = UINavigationController(rootViewController: view)
         router.navigationController = navigationController
 
-        let castContainerVC = GCKCastContext.sharedInstance().createCastContainerControllerForViewController(navigationController)
+        let castContext = GCKCastContext.sharedInstance()
+        let castContainerVC = castContext.createCastContainerControllerForViewController(navigationController)
+        castContext.useDefaultExpandedMediaControls = true
         castContainerVC.miniMediaControlsItemEnabled = true
 
         return castContainerVC
