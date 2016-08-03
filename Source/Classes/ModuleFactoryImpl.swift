@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import GoogleCast
 
 class ModuleFactoryImpl: ModuleFactory {
 
     func sessionsSearchModule() -> UIViewController {
-        let serviceProvider = ServiceProviderImpl.defaultServiceProvider()
+        let serviceProvider = ServiceProviderImpl.defaultServiceProvider
         let view = SessionsSearchViewController()
         let router = SessionsSearchRouterImpl(moduleFactory: self)
         let presenter = SessionsSearchPresenterImpl(view: view, router: router)
@@ -20,11 +21,15 @@ class ModuleFactoryImpl: ModuleFactory {
         presenter.interactor = interactor
         let navigationController = UINavigationController(rootViewController: view)
         router.navigationController = navigationController
-        return navigationController
+
+        let castContainerVC = GCKCastContext.sharedInstance().createCastContainerControllerForViewController(navigationController)
+        castContainerVC.miniMediaControlsItemEnabled = true
+
+        return castContainerVC
     }
 
     func sessionDetailsModule(withId Id: String) -> UIViewController {
-        let serviceProvider = ServiceProviderImpl.defaultServiceProvider()
+        let serviceProvider = ServiceProviderImpl.defaultServiceProvider
         let view = SessionDetailsViewController()
         let presenter = SessionDetailsPresenterImpl(view: view)
         let interactor = SessionDetailsInteractorImpl(presenter: presenter, serviceProvider: serviceProvider, sessionId: Id)

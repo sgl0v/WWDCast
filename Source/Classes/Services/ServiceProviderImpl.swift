@@ -21,11 +21,11 @@ final class ServiceProviderImpl: ServiceProvider {
         self.network = network
         self.googleCast = googleCast
     }
-}
+//}
+//
+//extension ServiceProvider {
 
-extension ServiceProvider {
-
-    static func defaultServiceProvider() -> ServiceProvider {
+    static let defaultServiceProvider: ServiceProvider = {
         guard let reachability = try? ReachabilityServiceImpl() else {
             fatalError("Failed to create reachability service!")
         }
@@ -33,6 +33,6 @@ extension ServiceProvider {
         let network = NetworkServiceImpl()
         let googleCast = GoogleCastServiceImpl(applicationID: WWDCEnvironment.googleCastAppID)
         return ServiceProviderImpl(reachability: reachability, scheduler: scheduler, network: network, googleCast: googleCast)
-    }
+    }()
 
 }
