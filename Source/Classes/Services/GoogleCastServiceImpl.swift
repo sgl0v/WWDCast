@@ -74,7 +74,7 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
     }
 
     func connectToDevice(device: GCKDevice) {
-        let appIdentifier = NSBundle.mainBundle().infoDictionary?["CFBundleIdentifier"] as? String
+        let appIdentifier = NSBundle.mainBundle().infoDictionary?["CFBundleIdentifier"] as! String
         self.deviceManager = GCKDeviceManager(device: device, clientPackageName: appIdentifier)
         self.deviceManager.delegate = self
         self.deviceManager.connect()
@@ -84,11 +84,11 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
 
 extension GoogleCastServiceImpl: GCKDeviceManagerDelegate {
 
-    func deviceManagerDidConnect(deviceManager: GCKDeviceManager!) {
+    func deviceManagerDidConnect(deviceManager: GCKDeviceManager) {
         self.deviceManager.launchApplication(self.applicationID)
     }
 
-    func deviceManager(deviceManager: GCKDeviceManager!, didConnectToCastApplication applicationMetadata: GCKApplicationMetadata!, sessionID: String!, launchedApplication: Bool) {
+    func deviceManager(deviceManager: GCKDeviceManager, didConnectToCastApplication applicationMetadata: GCKApplicationMetadata, sessionID: String, launchedApplication: Bool) {
         guard let session = self.sessionQueue.last else {
             return
         }
@@ -98,39 +98,41 @@ extension GoogleCastServiceImpl: GCKDeviceManagerDelegate {
         self.mediaControlChannel.delegate = self
         self.deviceManager.addChannel(self.mediaControlChannel)
         let id = self.mediaControlChannel.loadMedia(mediaInfo, autoplay: true)
-        print(id == kGCKInvalidRequestID)
+        if (id == kGCKInvalidRequestID) {
+            NSLog("Failed to load media!")
+        }
     }
 
-    func deviceManager(deviceManager: GCKDeviceManager!, didDisconnectWithError error: NSError!) {
+    func deviceManager(deviceManager: GCKDeviceManager, didFailToConnectWithError error: NSError) {
         NSLog("%@", error)
     }
 
-    func deviceManager(deviceManager: GCKDeviceManager!, didFailToConnectToApplicationWithError error: NSError!) {
+    func deviceManager(deviceManager: GCKDeviceManager, didFailToConnectToApplicationWithError error: NSError) {
         NSLog("%@", error)
     }
 }
 
 extension GoogleCastServiceImpl: GCKMediaControlChannelDelegate {
-    func mediaControlChannelDidUpdateStatus(mediaControlChannel: GCKMediaControlChannel!) {
+    func mediaControlChannelDidUpdateStatus(mediaControlChannel: GCKMediaControlChannel) {
         NSLog("%@", mediaControlChannel)
     }
 
-    func mediaControlChannelDidUpdateMetadata(mediaControlChannel: GCKMediaControlChannel!) {
+    func mediaControlChannelDidUpdateMetadata(mediaControlChannel: GCKMediaControlChannel) {
         NSLog("%@", mediaControlChannel)
     }
 }
 
 extension GoogleCastServiceImpl: GCKDeviceScannerListener {
 
-    func deviceDidComeOnline(device: GCKDevice!) {
+    func deviceDidComeOnline(device: GCKDevice) {
 
     }
 
-    func deviceDidGoOffline(device: GCKDevice!) {
+    func deviceDidGoOffline(device: GCKDevice) {
 
     }
 
-    func deviceDidChange(device: GCKDevice!) {
+    func deviceDidChange(device: GCKDevice) {
 
     }
 }
@@ -141,8 +143,8 @@ extension GoogleCastServiceImpl: GCKLoggerDelegate {
         GCKLogger.sharedInstance().delegate = self
     }
 
-    func logFromFunction(function: UnsafePointer<Int8>, message: String!) {
-//        NSLog("%s %@", function, message)
+    func logFromFunction(function: UnsafePointer<Int8>, message: String) {
+        NSLog("%s %@", function, message)
     }
 
 }
