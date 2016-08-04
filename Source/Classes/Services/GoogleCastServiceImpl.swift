@@ -35,12 +35,9 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
     private var deviceManager: GCKDeviceManager!
     private var mediaControlChannel: GCKMediaControlChannel!
     private var sessionQueue = [Session]()
-
-    var devices: Observable<GoogleCastDevice> {
-        return self.deviceScanner.devices.toObservable().map() {device in
-            return GoogleCastDeviceImpl(name: device.friendlyName, id: device.deviceID)
-        }
-    }
+    private let _devices = BehaviorSubject<[GoogleCastDevice]>(value: [])
+    
+    var devices: Observable<[GoogleCastDevice]> {return self._devices.asObservable() }
 
     var playSession: AnyObserver<Session> {
         return AnyObserver {[unowned self] event in
@@ -118,15 +115,18 @@ extension GoogleCastServiceImpl: GCKMediaControlChannelDelegate {
 extension GoogleCastServiceImpl: GCKDeviceScannerListener {
 
     func deviceDidComeOnline(device: GCKDevice!) {
-
+        notify(self.deviceScanner.devices)
     }
 
     func deviceDidGoOffline(device: GCKDevice!) {
-
+        notify(self.deviceScanner.devices)
     }
 
-    func deviceDidChange(device: GCKDevice!) {
-
+    private func notify(devices: [AnyObject]) {
+        let devices: Array<GoogleCastDevice> = devices.map() {device in
+            return GoogleCastDeviceImpl(name: device.friendlyName, id: device.deviceID)
+        }
+        self._devices.on(.Next(devices))
     }
 }
 

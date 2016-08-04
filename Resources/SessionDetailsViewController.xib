@@ -67,9 +67,9 @@
                                         <constraint firstAttribute="bottom" secondItem="L6n-WU-77j" secondAttribute="bottom" constant="10" id="rqZ-fY-JQq"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qp-JW-fbJ">
-                                    <rect key="frame" x="282" y="135" width="36" height="30"/>
-                                    <state key="normal" title="PLAY"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qp-JW-fbJ">
+                                    <rect key="frame" x="276" y="126" width="48" height="48"/>
+                                    <state key="normal" image="play_circle"/>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -130,4 +130,7 @@
             </variation>
         </scrollView>
     </objects>
+    <resources>
+        <image name="play_circle" width="48" height="48"/>
+    </resources>
 </document>

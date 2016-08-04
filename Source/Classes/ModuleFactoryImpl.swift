@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleCast
 
 class ModuleFactoryImpl: ModuleFactory {
 
@@ -20,7 +21,16 @@ class ModuleFactoryImpl: ModuleFactory {
         presenter.interactor = interactor
         let navigationController = UINavigationController(rootViewController: view)
         router.navigationController = navigationController
-        return navigationController
+        
+        let options = GCKCastOptions(receiverApplicationID: WWDCEnvironment.googleCastAppID)
+        GCKCastContext.setSharedInstanceWithOptions(options)
+        
+        let castContext = GCKCastContext.sharedInstance()
+        
+        let castContainerVC = castContext.createCastContainerControllerForViewController(navigationController)
+        castContainerVC.miniMediaControlsItemEnabled = true
+
+        return castContainerVC
     }
 
     func sessionDetailsModule(withId Id: String) -> UIViewController {

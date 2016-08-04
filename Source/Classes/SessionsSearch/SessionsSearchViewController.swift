@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import GoogleCast
 
 class SessionsSearchViewController: TableViewController<SessionViewModels, SessionTableViewCell> {
     var presenter: SessionsSearchPresenter!
@@ -27,6 +28,14 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
             .addDisposableTo(self.disposeBag)
 
         self.presenter.updateView.onNext()
+        
+
+//        let castContext = GCKCastContext.sharedInstance()
+//        let miniMediaControlsViewController = castContext.createMiniMediaControlsViewController()
+//        self.addChildViewController(miniMediaControlsViewController)
+//        miniMediaControlsViewController.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, 100)
+//        self.view.addSubview(miniMediaControlsViewController.view)
+//        miniMediaControlsViewController.didMoveToParentViewController(self)
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -39,7 +48,6 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
 //
 //        UIBarButtonItem *item = [controller queueItemForController:self];
 //        self.navigationItem.rightBarButtonItems = @[item];
-
     }
 
 //
