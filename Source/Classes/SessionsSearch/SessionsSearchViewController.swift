@@ -12,15 +12,31 @@ import RxCocoa
 import RxDataSources
 
 class SessionsSearchViewController: TableViewController<SessionViewModels, SessionTableViewCell> {
+    
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.dimsBackgroundDuringPresentation = false
+        return searchController
+    }()
+    
+    private var searchBar: UISearchBar {
+        return self.searchController.searchBar
+    }
+    
     var presenter: SessionsSearchPresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = castBarButtonItem()
 
-        setupTableView()
-
-        self.presenter.updateView.onNext()
+        configureTableView()
+        
+        self.searchBar.rx_text
+            .asDriver()
+            .throttle(0.3)
+            .distinctUntilChanged()
+            .drive(self.presenter.updateView)
+            .addDisposableTo(disposeBag)
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -38,12 +54,13 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
 
     // MARK - Private
 
-    func setupTableView() {
+    func configureTableView() {
         self.clearsSelectionOnViewWillAppear = true
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
         self.tableView.delegate = nil
         self.tableView.dataSource = nil
+        self.tableView.tableHeaderView = self.searchController.searchBar
 
         self.tableView.rx_modelSelected(SessionViewModel.self)
             .bindTo(self.presenter.itemSelected)

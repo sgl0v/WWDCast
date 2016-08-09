@@ -27,9 +27,9 @@ class SessionsSearchPresenterImpl {
 
 extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
 
-    var updateView: AnyObserver<Void> {
+    var updateView: AnyObserver<String> {
         return AnyObserver {[unowned self] event in
-            guard case .Next = event else {
+            guard case .Next(let query) = event else {
                 return
             }
             Observable.just(Titles.SessionsSearchViewTitle)
@@ -40,6 +40,7 @@ extension SessionsSearchPresenterImpl: SessionsSearchPresenter {
                 .loadSessions()
                 .map(SessionViewModelBuilder.build)
                 .asDriver(onErrorJustReturn: [])
+                .map({ sessions in query.isEmpty ? sessions : sessions.filter({ elem in elem.title.containsString(query)}) })
                 .drive(self.view.showSessions)
                 .addDisposableTo(self.disposeBag)
         }

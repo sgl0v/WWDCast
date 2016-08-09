@@ -11,5 +11,5 @@ import RxSwift
 
 protocol SessionsSearchPresenter: class {
     var itemSelected: AnyObserver<SessionViewModel> { get }
-    var updateView: AnyObserver<Void> { get }
+    var updateView: AnyObserver<String> { get }
 }

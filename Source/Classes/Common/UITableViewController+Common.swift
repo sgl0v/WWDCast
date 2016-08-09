@@ -19,7 +19,7 @@ public class TableViewController<SectionViewModel: protocol<SectionModelType, Cu
 
     let disposeBag = DisposeBag()
 
-    var source: RxTableViewSectionedReloadDataSource<SectionViewModel> {
+    lazy var source: RxTableViewSectionedReloadDataSource<SectionViewModel> = {
         let dataSource = RxTableViewSectionedReloadDataSource<SectionViewModel>()
         dataSource.configureCell = { (dataSource, tableView, indexPath, element) in
             let cell = tableView.dequeueReusableCell(withClass: Cell.self, forIndexPath: indexPath)
@@ -30,7 +30,7 @@ public class TableViewController<SectionViewModel: protocol<SectionModelType, Cu
             return dataSource.sectionAtIndex(section).description
         }
         return dataSource
-    }
+    }()
 
     public init() {
         super.init(nibName: self.dynamicType.nibName, bundle: NSBundle.mainBundle())
