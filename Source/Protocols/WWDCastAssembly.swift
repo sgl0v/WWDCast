@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ModuleFactory: class {
+protocol WWDCastAssembly: class {
     func sessionsSearchModule() -> UIViewController
     func sessionDetailsModule(withId Id: String) -> UIViewController
 }

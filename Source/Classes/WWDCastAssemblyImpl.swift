@@ -9,7 +9,7 @@
 import UIKit
 import GoogleCast
 
-class ModuleFactoryImpl: ModuleFactory {
+class WWDCastAssemblyImpl: WWDCastAssembly {
 
     func sessionsSearchModule() -> UIViewController {
         let serviceProvider = ServiceProviderImpl.defaultServiceProvider
