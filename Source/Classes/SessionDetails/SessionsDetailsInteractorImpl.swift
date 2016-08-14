@@ -31,8 +31,8 @@ extension SessionDetailsInteractorImpl: SessionDetailsInteractor {
             .shareReplayLatestWhileConnected()
     }
 
-    var playSession: AnyObserver<(GoogleCastDevice, Session)> {
-        return self.serviceProvider.googleCast.playSession
+    func playSession(device: GoogleCastDevice, session: Session) -> Observable<Void> {
+        return self.serviceProvider.googleCast.playSession(device, session: session)
     }
 
     var devices: [GoogleCastDevice] {

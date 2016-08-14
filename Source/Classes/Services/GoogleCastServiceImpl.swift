@@ -21,7 +21,6 @@ extension GCKMediaInformation {
         let metadata = GCKMediaMetadata(metadataType: .Generic)
         metadata.setString(session.title, forKey: kGCKMetadataKeyTitle)
         metadata.setString(session.subtitle, forKey: kGCKMetadataKeySubtitle)
-        metadata.setString(session.shelfImageURL.absoluteString, forKey: "castComponentPosterURL")
         metadata.addImage(GCKImage(URL: session.shelfImageURL, width: 734, height: 413))
         let mediaTrack = GCKMediaTrack(identifier: session.id, contentIdentifier: session.subtitles.absoluteString, contentType: "text/vtt", type: .Text, textSubtype: .Captions, name: "English Captions", languageCode: "en", customData: nil)
 
@@ -29,12 +28,14 @@ extension GCKMediaInformation {
     }
 }
 
+enum GoogleCastServiceError : ErrorType {
+    case ConnectionError, PlaybackError
+}
+
 final class GoogleCastServiceImpl: NSObject, GoogleCastService {
-    private var applicationID: String
-    private var deviceScanner: GCKDeviceScanner
-    private var deviceManager: GCKDeviceManager!
-    private var mediaControlChannel: GCKMediaControlChannel!
-    private var sessionQueue = [Session]()
+    private let applicationID: String
+    private let disposeBag = DisposeBag()
+    private let deviceScanner: GCKDeviceScanner
 
     var devices: [GoogleCastDevice] {
         return self.deviceScanner.devices.map() {device in
@@ -42,16 +43,51 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
         }
     }
 
-    var playSession: AnyObserver<(GoogleCastDevice, Session)> {
-        return AnyObserver {[unowned self] event in
-            guard case .Next(let device, let session) = event else {
-                return
-            }
-            guard let gckDevice = self.deviceScanner.devices.filter({ device.id == $0.deviceID }).first else {
-                return
-            }
-            self.sessionQueue.append(session)
-            self.connectToDevice(gckDevice as! GCKDevice)
+    func playSession(device: GoogleCastDevice, session: Session) -> Observable<Void> {
+        return Observable.just(device)
+            .flatMap(self.connectToDevice)
+            .flatMap(self.launchApplication(self.applicationID))
+            .flatMap(self.playSession(session))
+    }
+    
+    func launchApplication(applicationId: String) -> GCKDeviceManager -> Observable<GCKDeviceManager> {
+        return { deviceManager in
+            return Observable.create({[unowned self] observer in
+                
+                deviceManager.rx_didConnectToCastApplication.subscribeNext({ _ in
+                    observer.onNext(deviceManager)
+                }).addDisposableTo(self.disposeBag)
+                
+                deviceManager.didFailToConnectToApplication.subscribeNext({ _ in
+                    observer.onError(GoogleCastServiceError.ConnectionError)
+                    observer.onCompleted()
+                }).addDisposableTo(self.disposeBag)
+                
+                deviceManager.launchApplication(applicationId)
+                
+                return AnonymousDisposable({
+                    deviceManager.disconnect()
+                })
+            })
+        }
+    }
+    
+    func playSession(session: Session) -> GCKDeviceManager -> Observable<Void> {
+        return { deviceManager in
+            return Observable.create({ observer in
+                let mediaInfo = GCKMediaInformation(session: session)
+                let mediaControlChannel = GCKMediaControlChannel()
+//                mediaControlChannel.delegate = self
+                deviceManager.addChannel(mediaControlChannel)
+                let id = mediaControlChannel.loadMedia(mediaInfo, autoplay: true)
+                if (id == kGCKInvalidRequestID) {
+                    observer.onError(GoogleCastServiceError.PlaybackError)
+                } else {
+                    observer.onNext()
+                }
+                observer.onCompleted()
+                return NopDisposable.instance
+            })
         }
     }
 
@@ -73,34 +109,43 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
         self.deviceScanner.startScan()
     }
 
-    func connectToDevice(device: GCKDevice) {
-        let appIdentifier = NSBundle.mainBundle().infoDictionary?["CFBundleIdentifier"] as! String
-        self.deviceManager = GCKDeviceManager(device: device, clientPackageName: appIdentifier)
-        self.deviceManager.delegate = self
-        self.deviceManager.connect()
-    }
+    
+    func connectToDevice(device: GoogleCastDevice) -> Observable<GCKDeviceManager> {
+        return Observable.create({[unowned self] observer in
+            guard let gckDevice = self.deviceScanner.devices.filter({ device.id == $0.deviceID }).first else {
+                observer.onError(GoogleCastServiceError.ConnectionError)
+                observer.onCompleted()
+                return NopDisposable.instance
+            }
+            
+            let appIdentifier = NSBundle.mainBundle().infoDictionary?["CFBundleIdentifier"] as! String
+            let deviceManager = GCKDeviceManager(device: gckDevice as! GCKDevice, clientPackageName: appIdentifier)
+            
+            deviceManager.rx_didFailToConnect.subscribeNext({ _ in
+                observer.onError(GoogleCastServiceError.ConnectionError)
+                observer.onCompleted()
+            }).addDisposableTo(self.disposeBag)
+            
+            deviceManager.rx_didConnect.subscribeNext({ deviceManager in
+                observer.onNext(deviceManager)
+//                observer.onCompleted()
+            }).addDisposableTo(self.disposeBag)
+            
+            deviceManager.connect()
 
+            return AnonymousDisposable({
+                deviceManager.disconnect()
+            })
+        })
+    }
 }
 
 extension GoogleCastServiceImpl: GCKDeviceManagerDelegate {
 
     func deviceManagerDidConnect(deviceManager: GCKDeviceManager) {
-        self.deviceManager.launchApplication(self.applicationID)
     }
 
     func deviceManager(deviceManager: GCKDeviceManager, didConnectToCastApplication applicationMetadata: GCKApplicationMetadata, sessionID: String, launchedApplication: Bool) {
-        guard let session = self.sessionQueue.last else {
-            return
-        }
-        self.sessionQueue.removeLast()
-        let mediaInfo = GCKMediaInformation(session: session)
-        self.mediaControlChannel = GCKMediaControlChannel()
-        self.mediaControlChannel.delegate = self
-        self.deviceManager.addChannel(self.mediaControlChannel)
-        let id = self.mediaControlChannel.loadMedia(mediaInfo, autoplay: true)
-        if (id == kGCKInvalidRequestID) {
-            NSLog("Failed to load media!")
-        }
     }
 
     func deviceManager(deviceManager: GCKDeviceManager, didFailToConnectWithError error: NSError) {

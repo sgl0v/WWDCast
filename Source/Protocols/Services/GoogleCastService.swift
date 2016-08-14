@@ -17,5 +17,5 @@ protocol GoogleCastDevice {
 protocol GoogleCastService: class {
 
     var devices: [GoogleCastDevice] { get }
-    var playSession: AnyObserver<(GoogleCastDevice, Session)> { get }
+    func playSession(device: GoogleCastDevice, session: Session) -> Observable<Void>
 }
