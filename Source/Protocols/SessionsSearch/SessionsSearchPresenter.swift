@@ -8,8 +8,10 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 protocol SessionsSearchPresenter: class {
     var itemSelected: AnyObserver<SessionViewModel> { get }
     var updateView: AnyObserver<String> { get }
+    var sessions: Driver<[SessionViewModels]>! { get }
 }

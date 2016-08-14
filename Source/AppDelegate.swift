@@ -12,12 +12,12 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let factory = ModuleFactoryImpl()
+    let assembly = WWDCastAssemblyImpl()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         self.window =  UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = self.factory.sessionsSearchModule()
+        self.window?.rootViewController = self.assembly.sessionsSearchModule()
         self.window?.makeKeyAndVisible()
 
         return true

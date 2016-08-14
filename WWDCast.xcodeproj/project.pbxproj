@@ -11,8 +11,8 @@
 		5E2680991D2D98AE0054E90B /* SessionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680981D2D98AE0054E90B /* SessionDetailsViewController.swift */; };
 		5E26809B1D2D98C60054E90B /* SessionsDetailsPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26809A1D2D98C60054E90B /* SessionsDetailsPresenterImpl.swift */; };
 		5E26809D1D2D98D10054E90B /* SessionsDetailsInteractorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26809C1D2D98D10054E90B /* SessionsDetailsInteractorImpl.swift */; };
-		5E26809F1D2D99E60054E90B /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26809E1D2D99E60054E90B /* ModuleFactory.swift */; };
-		5E2680A11D2D9A130054E90B /* ModuleFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A01D2D9A130054E90B /* ModuleFactoryImpl.swift */; };
+		5E26809F1D2D99E60054E90B /* WWDCastAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26809E1D2D99E60054E90B /* WWDCastAssembly.swift */; };
+		5E2680A11D2D9A130054E90B /* WWDCastAssemblyImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A01D2D9A130054E90B /* WWDCastAssemblyImpl.swift */; };
 		5E2680A41D2D9BC90054E90B /* SessionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A31D2D9BC90054E90B /* SessionDetailsView.swift */; };
 		5E2680A61D2D9BD30054E90B /* SessionDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A51D2D9BD30054E90B /* SessionDetailsPresenter.swift */; };
 		5E2680A81D2D9BDD0054E90B /* SessionDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A71D2D9BDD0054E90B /* SessionDetailsInteractor.swift */; };
@@ -61,6 +61,7 @@
 		B6F92A1A1D2C0E7E009E4B83 /* UITableView+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A161D2C0E7E009E4B83 /* UITableView+Common.swift */; };
 		B6F92A1B1D2C0E7E009E4B83 /* UITableViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F92A171D2C0E7E009E4B83 /* UITableViewController+Common.swift */; };
 		B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */; };
+		E79717F21D5F5A5100C4DD7C /* RxGCKDeviceManagerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79717F11D5F5A5100C4DD7C /* RxGCKDeviceManagerDelegateProxy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,8 +83,8 @@
 		5E2680981D2D98AE0054E90B /* SessionDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewController.swift; sourceTree = "<group>"; };
 		5E26809A1D2D98C60054E90B /* SessionsDetailsPresenterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsDetailsPresenterImpl.swift; sourceTree = "<group>"; };
 		5E26809C1D2D98D10054E90B /* SessionsDetailsInteractorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsDetailsInteractorImpl.swift; sourceTree = "<group>"; };
-		5E26809E1D2D99E60054E90B /* ModuleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
-		5E2680A01D2D9A130054E90B /* ModuleFactoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleFactoryImpl.swift; sourceTree = "<group>"; };
+		5E26809E1D2D99E60054E90B /* WWDCastAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAssembly.swift; sourceTree = "<group>"; };
+		5E2680A01D2D9A130054E90B /* WWDCastAssemblyImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAssemblyImpl.swift; sourceTree = "<group>"; };
 		5E2680A31D2D9BC90054E90B /* SessionDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsView.swift; sourceTree = "<group>"; };
 		5E2680A51D2D9BD30054E90B /* SessionDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsPresenter.swift; sourceTree = "<group>"; };
 		5E2680A71D2D9BDD0054E90B /* SessionDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsInteractor.swift; sourceTree = "<group>"; };
@@ -135,6 +136,7 @@
 		B6F92A171D2C0E7E009E4B83 /* UITableViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewController+Common.swift"; sourceTree = "<group>"; };
 		B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionTableViewCell.xib; path = Resources/SessionTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79717F11D5F5A5100C4DD7C /* RxGCKDeviceManagerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGCKDeviceManagerDelegateProxy.swift; sourceTree = "<group>"; };
 		EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -196,6 +198,7 @@
 				5E4EA1EA1D315D4D0097C2FB /* SchedulerServiceImpl.swift */,
 				5E4EA1F01D3160F40097C2FB /* NetworkServiceImpl.swift */,
 				5E4EA1F61D3179460097C2FB /* GoogleCastServiceImpl.swift */,
+				E79717F11D5F5A5100C4DD7C /* RxGCKDeviceManagerDelegateProxy.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -310,7 +313,7 @@
 		B6F929F11D2AB2BE009E4B83 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				5E2680A01D2D9A130054E90B /* ModuleFactoryImpl.swift */,
+				5E2680A01D2D9A130054E90B /* WWDCastAssemblyImpl.swift */,
 				B6F929F31D2AB54B009E4B83 /* SessionsSearch */,
 				5E2680971D2D98820054E90B /* SessionDetails */,
 				5EBEEF521D2B0B32007C44E3 /* Entities */,
@@ -324,7 +327,7 @@
 		B6F929F21D2AB2BE009E4B83 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				5E26809E1D2D99E60054E90B /* ModuleFactory.swift */,
+				5E26809E1D2D99E60054E90B /* WWDCastAssembly.swift */,
 				B6F929F81D2AB5D8009E4B83 /* SessionsSearch */,
 				5E2680A21D2D9BB70054E90B /* SessionDetails */,
 				5EBEEF4F1D2B0AD8007C44E3 /* Entities */,
@@ -584,14 +587,14 @@
 			files = (
 				B6F929FC1D2AB5EB009E4B83 /* SessionsSearchInteractor.swift in Sources */,
 				5E4EA1D41D2D9F9A0097C2FB /* SessionsSearchRouter.swift in Sources */,
-				5E26809F1D2D99E60054E90B /* ModuleFactory.swift in Sources */,
+				5E26809F1D2D99E60054E90B /* WWDCastAssembly.swift in Sources */,
 				5EBEEF661D2C24EF007C44E3 /* SessionsBuilder.swift in Sources */,
 				5EBEEF511D2B0AEA007C44E3 /* AppConfig.swift in Sources */,
 				5E4EA1ED1D315F070097C2FB /* ServiceProviderImpl.swift in Sources */,
 				5EBEEF541D2B0B42007C44E3 /* AppConfigImpl.swift in Sources */,
 				5E4EA1E91D315C580097C2FB /* SchedulerService.swift in Sources */,
 				B6F92A191D2C0E7E009E4B83 /* RxTableViewCell.swift in Sources */,
-				5E2680A11D2D9A130054E90B /* ModuleFactoryImpl.swift in Sources */,
+				5E2680A11D2D9A130054E90B /* WWDCastAssemblyImpl.swift in Sources */,
 				5E4EA1EF1D3160DF0097C2FB /* NetworkService.swift in Sources */,
 				B6F92A001D2AB713009E4B83 /* SessionsSearchViewController.swift in Sources */,
 				5E4EA1E11D3155970097C2FB /* ServiceProvider.swift in Sources */,
@@ -626,6 +629,7 @@
 				B6F92A1A1D2C0E7E009E4B83 /* UITableView+Common.swift in Sources */,
 				B6F929F71D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift in Sources */,
 				5E2680991D2D98AE0054E90B /* SessionDetailsViewController.swift in Sources */,
+				E79717F21D5F5A5100C4DD7C /* RxGCKDeviceManagerDelegateProxy.swift in Sources */,
 				5EBEEF5D1D2B0BEA007C44E3 /* AppConfigBuilder.swift in Sources */,
 				B645F3381D491893002A40C1 /* SessionViewModelBuilder.swift in Sources */,
 			);

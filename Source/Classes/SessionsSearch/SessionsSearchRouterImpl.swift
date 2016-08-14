@@ -9,10 +9,10 @@
 import UIKit
 
 class SessionsSearchRouterImpl: SessionsSearchRouter {
-    weak var moduleFactory: ModuleFactory!
+    weak var moduleFactory: WWDCastAssembly!
     weak var navigationController: UINavigationController!
 
-    init(moduleFactory: ModuleFactory) {
+    init(moduleFactory: WWDCastAssembly) {
         self.moduleFactory = moduleFactory
     }
 
