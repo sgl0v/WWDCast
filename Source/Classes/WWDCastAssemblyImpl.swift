@@ -10,17 +10,20 @@ import UIKit
 import GoogleCast
 
 class WWDCastAssemblyImpl: WWDCastAssembly {
-
+    
+    lazy var router: WWDCastRouterImpl = {
+        return WWDCastRouterImpl(moduleFactory: self)
+    }()
+    
     func sessionsSearchModule() -> UIViewController {
         let serviceProvider = ServiceProviderImpl.defaultServiceProvider
         let view = SessionsSearchViewController()
-        let router = SessionsSearchRouterImpl(moduleFactory: self)
         let presenter = SessionsSearchPresenterImpl(view: view, router: router)
         let interactor = SessionsSearchInteractorImpl(presenter: presenter, serviceProvider: serviceProvider)
         view.presenter = presenter
         presenter.interactor = interactor
         let navigationController = UINavigationController(rootViewController: view)
-        router.navigationController = navigationController
+        self.router.navigationController = navigationController
 
         let castContext = GCKCastContext.sharedInstance()
         let castContainerVC = castContext.createCastContainerControllerForViewController(navigationController)
@@ -33,7 +36,7 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
     func sessionDetailsModule(withId Id: String) -> UIViewController {
         let serviceProvider = ServiceProviderImpl.defaultServiceProvider
         let view = SessionDetailsViewController()
-        let presenter = SessionDetailsPresenterImpl(view: view)
+        let presenter = SessionDetailsPresenterImpl(view: view, router: self.router)
         let interactor = SessionDetailsInteractorImpl(presenter: presenter, serviceProvider: serviceProvider, sessionId: Id)
         view.presenter = presenter
         presenter.interactor = interactor
