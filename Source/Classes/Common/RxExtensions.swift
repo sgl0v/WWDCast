@@ -50,6 +50,35 @@ extension UIImageView {
     }
 }
 
+extension UIAlertController {
+    enum Selection {
+        case Action(UInt), Cancel
+    }
+    
+    static func promptFor<Action : CustomStringConvertible>(title: String?, message: String?, style: UIAlertControllerStyle, cancelAction: Action, actions: [Action]) -> UIViewController -> Observable<Action> {
+        return { viewController in
+            return Observable.create { observer in
+                let alertView = UIAlertController(title: title, message: message, preferredStyle: style)
+                alertView.addAction(UIAlertAction(title: cancelAction.description, style: .Cancel) { _ in
+                    observer.onNext(cancelAction)
+                })
+                
+                for action in actions {
+                    alertView.addAction(UIAlertAction(title: action.description, style: .Default) { _ in
+                        observer.onNext(action)
+                    })
+                }
+                
+                viewController.presentViewController(alertView, animated: true, completion: nil)
+                
+                return AnonymousDisposable {
+                    alertView.dismissViewControllerAnimated(false, completion: nil)
+                }
+            }
+        }
+    }
+}
+
 //extension ObservableType where E: SequenceType {
 //    /**
 //     Projects each element of an observable sequence into a new form.
