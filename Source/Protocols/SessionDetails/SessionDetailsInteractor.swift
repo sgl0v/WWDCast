@@ -12,6 +12,7 @@ import RxSwift
 protocol SessionDetailsInteractor: class {
 
     var session: Observable<Session> { get }
-    var playSession: AnyObserver<(GoogleCastDevice, Session)> { get }
     var devices: [GoogleCastDevice] { get }
+    
+    func playSession(device: GoogleCastDevice, session: Session) -> Observable<Void>
 }

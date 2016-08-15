@@ -40,8 +40,10 @@ extension SessionDetailsPresenterImpl: SessionDetailsPresenter {
                     return
                 }
                 let device = Observable.just(self.interactor.devices[idx])
-                let seq = Observable.combineLatest(device, self.interactor.session) { ($0, $1) }
-                seq.bindTo(self.interactor.playSession).addDisposableTo(self.disposeBag)
+                Observable.combineLatest(device, self.interactor.session, resultSelector: { ($0, $1) })
+                    .flatMap(self.interactor.playSession).subscribeNext({ _ in
+                    
+                }).addDisposableTo(self.disposeBag)
             }
             for device in self.interactor.devices {
                 let playOnDeviceAction = UIAlertAction(title: device.name, style: .Default, handler: handler)

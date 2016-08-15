@@ -31,12 +31,13 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
 
         configureTableView()
         
-        self.searchBar.rx_text
-            .asDriver()
-            .throttle(0.3)
-            .distinctUntilChanged()
-            .drive(self.presenter.updateView)
-            .addDisposableTo(disposeBag)
+//        self.searchBar.rx_text
+//            .asDriver()
+//            .throttle(0.3)
+//            .distinctUntilChanged()
+//            .drive(self.presenter.updateView)
+//            .addDisposableTo(disposeBag)
+        self.presenter.sessions.drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -71,17 +72,23 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
 
 extension SessionsSearchViewController: SessionsSearchView {
 
-    var showSessions: AnyObserver<[SessionViewModels]> {
-        return AnyObserver {[unowned self] event in
-            guard case .Next(let sessions) = event else {
-                return
-            }
-            Observable.just(sessions).bindTo(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
-        }
-    }
+//    var showSessions: AnyObserver<[SessionViewModels]> {
+//        return AnyObserver {[unowned self] event in
+//            guard case .Next(let sessions) = event else {
+//                return
+//            }
+//            Observable.just(sessions).bindTo(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
+//        }
+//    }
 
     var titleText: AnyObserver<String> {
         return self.rx_title
+    }
+    
+    var searchQuery: Observable<String> {
+        return self.searchBar.rx_text
+            .asObservable()
+            .distinctUntilChanged()
     }
 
 }
