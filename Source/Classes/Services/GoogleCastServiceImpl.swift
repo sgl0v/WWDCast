@@ -14,6 +14,10 @@ import RxCocoa
 struct GoogleCastDeviceImpl: GoogleCastDevice {
     var name: String
     var id: String
+    
+    var description: String {
+        return name
+    }
 }
 
 extension GCKMediaInformation {
@@ -43,11 +47,58 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
         }
     }
 
+    init(applicationID: String) {
+        self.applicationID = applicationID
+        // Create filter criteria to only show devices that can run your app
+        let filterCriteria = GCKFilterCriteria(forAvailableApplicationWithID: applicationID)
+        // Add the criteria to the scanner to only show devices that can run your app.
+        // This allows you to publish your app to the Apple App store before before publishing in Cast
+        // console. Once the app is published in Cast console the cast icon will begin showing up on ios
+        // devices. If an app is not published in the Cast console the cast icon will only appear for
+        // whitelisted dongles
+        self.deviceScanner = GCKDeviceScanner(filterCriteria: filterCriteria)
+        super.init()
+        let options = GCKCastOptions(receiverApplicationID: self.applicationID)
+        GCKCastContext.setSharedInstanceWithOptions(options)
+        self.enableLogging()
+        self.deviceScanner.addListener(self)
+        self.deviceScanner.startScan()
+    }
+    
     func playSession(device: GoogleCastDevice, session: Session) -> Observable<Void> {
         return Observable.just(device)
             .flatMap(self.connectToDevice)
             .flatMap(self.launchApplication(self.applicationID))
             .flatMap(self.playSession(session))
+    }
+    
+    func connectToDevice(device: GoogleCastDevice) -> Observable<GCKDeviceManager> {
+        return Observable.create({[unowned self] observer in
+            guard let gckDevice = self.deviceScanner.devices.filter({ device.id == $0.deviceID }).first else {
+                observer.onError(GoogleCastServiceError.ConnectionError)
+                observer.onCompleted()
+                return NopDisposable.instance
+            }
+            
+            let appIdentifier = NSBundle.mainBundle().infoDictionary?["CFBundleIdentifier"] as! String
+            let deviceManager = GCKDeviceManager(device: gckDevice as! GCKDevice, clientPackageName: appIdentifier)
+            
+            deviceManager.rx_didFailToConnect.subscribeNext({ _ in
+                observer.onError(GoogleCastServiceError.ConnectionError)
+                observer.onCompleted()
+            }).addDisposableTo(self.disposeBag)
+            
+            deviceManager.rx_didConnect.subscribeNext({ deviceManager in
+                observer.onNext(deviceManager)
+//                observer.onCompleted()
+            }).addDisposableTo(self.disposeBag)
+            
+            deviceManager.connect()
+            
+            return AnonymousDisposable({
+                deviceManager.disconnect()
+            })
+        })
     }
     
     func launchApplication(applicationId: String) -> GCKDeviceManager -> Observable<GCKDeviceManager> {
@@ -77,7 +128,7 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
             return Observable.create({ observer in
                 let mediaInfo = GCKMediaInformation(session: session)
                 let mediaControlChannel = GCKMediaControlChannel()
-//                mediaControlChannel.delegate = self
+                //                mediaControlChannel.delegate = self
                 deviceManager.addChannel(mediaControlChannel)
                 let id = mediaControlChannel.loadMedia(mediaInfo, autoplay: true)
                 if (id == kGCKInvalidRequestID) {
@@ -90,71 +141,7 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
             })
         }
     }
-
-    init(applicationID: String) {
-        self.applicationID = applicationID
-        // Create filter criteria to only show devices that can run your app
-        let filterCriteria = GCKFilterCriteria(forAvailableApplicationWithID: applicationID)
-        // Add the criteria to the scanner to only show devices that can run your app.
-        // This allows you to publish your app to the Apple App store before before publishing in Cast
-        // console. Once the app is published in Cast console the cast icon will begin showing up on ios
-        // devices. If an app is not published in the Cast console the cast icon will only appear for
-        // whitelisted dongles
-        self.deviceScanner = GCKDeviceScanner(filterCriteria: filterCriteria)
-        super.init()
-        let options = GCKCastOptions(receiverApplicationID: self.applicationID)
-        GCKCastContext.setSharedInstanceWithOptions(options)
-        self.enableLogging()
-        self.deviceScanner.addListener(self)
-        self.deviceScanner.startScan()
-    }
-
     
-    func connectToDevice(device: GoogleCastDevice) -> Observable<GCKDeviceManager> {
-        return Observable.create({[unowned self] observer in
-            guard let gckDevice = self.deviceScanner.devices.filter({ device.id == $0.deviceID }).first else {
-                observer.onError(GoogleCastServiceError.ConnectionError)
-                observer.onCompleted()
-                return NopDisposable.instance
-            }
-            
-            let appIdentifier = NSBundle.mainBundle().infoDictionary?["CFBundleIdentifier"] as! String
-            let deviceManager = GCKDeviceManager(device: gckDevice as! GCKDevice, clientPackageName: appIdentifier)
-            
-            deviceManager.rx_didFailToConnect.subscribeNext({ _ in
-                observer.onError(GoogleCastServiceError.ConnectionError)
-                observer.onCompleted()
-            }).addDisposableTo(self.disposeBag)
-            
-            deviceManager.rx_didConnect.subscribeNext({ deviceManager in
-                observer.onNext(deviceManager)
-//                observer.onCompleted()
-            }).addDisposableTo(self.disposeBag)
-            
-            deviceManager.connect()
-
-            return AnonymousDisposable({
-                deviceManager.disconnect()
-            })
-        })
-    }
-}
-
-extension GoogleCastServiceImpl: GCKDeviceManagerDelegate {
-
-    func deviceManagerDidConnect(deviceManager: GCKDeviceManager) {
-    }
-
-    func deviceManager(deviceManager: GCKDeviceManager, didConnectToCastApplication applicationMetadata: GCKApplicationMetadata, sessionID: String, launchedApplication: Bool) {
-    }
-
-    func deviceManager(deviceManager: GCKDeviceManager, didFailToConnectWithError error: NSError) {
-        NSLog("%@", error)
-    }
-
-    func deviceManager(deviceManager: GCKDeviceManager, didFailToConnectToApplicationWithError error: NSError) {
-        NSLog("%@", error)
-    }
 }
 
 extension GoogleCastServiceImpl: GCKMediaControlChannelDelegate {

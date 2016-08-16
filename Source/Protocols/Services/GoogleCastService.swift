@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-protocol GoogleCastDevice {
+protocol GoogleCastDevice: CustomStringConvertible {
     var name: String { get }
     var id: String { get }
 }

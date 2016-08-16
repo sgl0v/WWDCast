@@ -28,7 +28,9 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = castBarButtonItem()
-
+        self.navigationItem.title = Titles.SessionsSearchViewTitle
+        self.definesPresentationContext = true
+        
         configureTableView()
         
 //        self.searchBar.rx_text
@@ -71,15 +73,6 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
 }
 
 extension SessionsSearchViewController: SessionsSearchView {
-
-//    var showSessions: AnyObserver<[SessionViewModels]> {
-//        return AnyObserver {[unowned self] event in
-//            guard case .Next(let sessions) = event else {
-//                return
-//            }
-//            Observable.just(sessions).bindTo(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
-//        }
-//    }
 
     var titleText: AnyObserver<String> {
         return self.rx_title

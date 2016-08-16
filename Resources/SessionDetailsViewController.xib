@@ -67,7 +67,7 @@
                                         <constraint firstAttribute="bottom" secondItem="L6n-WU-77j" secondAttribute="bottom" constant="10" id="rqZ-fY-JQq"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qp-JW-fbJ">
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qp-JW-fbJ">
                                     <rect key="frame" x="276" y="126" width="48" height="48"/>
                                     <state key="normal" image="play_circle"/>
                                 </button>

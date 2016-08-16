@@ -16,7 +16,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     @IBOutlet weak var summary: UILabel!
     @IBOutlet weak var subtitle: UILabel!
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var tapGestureRecognizer: UITapGestureRecognizer!
+    var showSession: Observable<Void> { return self.playButton.rx_tap.asObservable() }
 
     var presenter: SessionDetailsPresenter!
     let disposeBag = DisposeBag()
@@ -33,10 +33,9 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = castBarButtonItem()
         
+        self.presenter.onStart()
         self.presenter.session.drive(self.viewModelObserver)
             .addDisposableTo(self.disposeBag)
-        self.playButton.rx_tap.map({ _ in }).bindTo(self.presenter.playSession)
-            .addDisposableTo(disposeBag)
     }
 
     // MARK: Private
