@@ -28,31 +28,29 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = castBarButtonItem()
-        self.navigationItem.title = Titles.SessionsSearchViewTitle
         self.definesPresentationContext = true
         
-        configureTableView()
+        self.configureTableView()
+        self.setupBindings()
+    }
+    
+    func setupBindings() {
+        // dismiss keyboard on scroll
+        self.tableView.rx_contentOffset.subscribe({[unowned self] _ in
+            if self.searchBar.isFirstResponder() {
+                _ = self.searchBar.resignFirstResponder()
+            }
+        }).addDisposableTo(disposeBag)
+        self.tableView.rx_modelSelected(SessionViewModel.self)
+            .bindTo(self.presenter.itemSelected)
+            .addDisposableTo(self.disposeBag)
         
-//        self.searchBar.rx_text
-//            .asDriver()
-//            .throttle(0.3)
-//            .distinctUntilChanged()
-//            .drive(self.presenter.updateView)
-//            .addDisposableTo(disposeBag)
         self.presenter.sessions.drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
+        self.presenter.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
-
-//        // Assign ourselves as delegate ONLY in viewWillAppear of a view controller.
-//        CastDeviceController *controller = [CastDeviceController sharedInstance];
-//        controller.delegate = self;
-//
-//        UIBarButtonItem *item = [controller queueItemForController:self];
-//        self.navigationItem.rightBarButtonItems = @[item];
-
     }
 
     // MARK - Private
@@ -64,10 +62,6 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
         self.tableView.delegate = nil
         self.tableView.dataSource = nil
         self.tableView.tableHeaderView = self.searchController.searchBar
-
-        self.tableView.rx_modelSelected(SessionViewModel.self)
-            .bindTo(self.presenter.itemSelected)
-            .addDisposableTo(self.disposeBag)
     }
 
 }
@@ -78,9 +72,10 @@ extension SessionsSearchViewController: SessionsSearchView {
         return self.rx_title
     }
     
-    var searchQuery: Observable<String> {
+    var searchQuery: Driver<String> {
         return self.searchBar.rx_text
-            .asObservable()
+            .asDriver()
+            .throttle(0.3)
             .distinctUntilChanged()
     }
 

@@ -8,9 +8,9 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 protocol SessionsSearchView: class {
     var titleText: AnyObserver<String> { get }
-//    var showSessions: AnyObserver<[SessionViewModels]> { get }
-    var searchQuery: Observable<String> { get }
+    var searchQuery: Driver<String> { get }
 }

@@ -11,7 +11,10 @@ import RxSwift
 import RxCocoa
 
 protocol SessionsSearchPresenter: class {
+    // Item selection observer
     var itemSelected: AnyObserver<SessionViewModel> { get }
-    var updateView: AnyObserver<String> { get }
+    // The view's title
+    var title: Driver<String> { get }
+    // The array of available WWDC sessions
     var sessions: Driver<[SessionViewModels]>! { get }
 }
