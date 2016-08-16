@@ -32,6 +32,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = castBarButtonItem()
+        self.edgesForExtendedLayout = .None
         
         self.presenter.onStart()
         self.presenter.session.drive(self.viewModelObserver)
