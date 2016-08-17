@@ -15,7 +15,7 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         return WWDCastRouterImpl(moduleFactory: self)
     }()
     
-    func sessionsSearchModule() -> UIViewController {
+    func sessionsSearchController() -> UIViewController {
         let serviceProvider = ServiceProviderImpl.defaultServiceProvider
         let view = SessionsSearchViewController()
         let presenter = SessionsSearchPresenterImpl(view: view, router: router)
@@ -32,8 +32,13 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
 
         return castContainerVC
     }
+    
+    func filterController() -> UIViewController {
+        let view = FilterViewController()
+        return UINavigationController(rootViewController: view)
+    }
 
-    func sessionDetailsModule(withId Id: String) -> UIViewController {
+    func sessionDetailsController(withId Id: String) -> UIViewController {
         let serviceProvider = ServiceProviderImpl.defaultServiceProvider
         let view = SessionDetailsViewController()
         let presenter = SessionDetailsPresenterImpl(view: view, router: self.router)

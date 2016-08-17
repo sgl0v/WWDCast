@@ -11,7 +11,8 @@ import RxSwift
 import RxCocoa
 
 struct Titles {
-    static let SessionsSearchViewTitle = NSLocalizedString("WWDCast", comment: "Session search title")
+    static let SessionsSearchViewTitle = NSLocalizedString("WWDCast", comment: "Session search view title")
+    static let SessionDetailsViewTitle = NSLocalizedString("Session Details", comment: "Session details view title")
 }
 
 class SessionsSearchPresenterImpl: SessionsSearchPresenter {
@@ -36,7 +37,7 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
             .loadSessions()
             .asDriver(onErrorJustReturn: [])
             .map({ sessions in query.isEmpty ? sessions : sessions.filter({ elem in elem.title.containsString(query)}) })
-            .map(SessionViewModelBuilder.build)
+            .map(SessionViewModelBuilder.build) // create viewModels & group them by track
     }
     
     // MARK: SessionsSearchPresenter
@@ -50,6 +51,15 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
                 return
             }
             self.router.showSessionDetails(withId: session.uniqueID)
+        }
+    }
+    
+    var filter: AnyObserver<Void> {
+        return AnyObserver {[unowned self] event in
+            guard case .Next = event else {
+                return
+            }
+            self.router.showFilterController()
         }
     }
 

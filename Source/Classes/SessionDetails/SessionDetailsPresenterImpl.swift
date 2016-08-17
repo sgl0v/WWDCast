@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SessionDetailsPresenterImpl {
+class SessionDetailsPresenterImpl: SessionDetailsPresenter {
     var interactor: SessionDetailsInteractor!
     private weak var view: SessionDetailsView!
     private var router: SessionDetailsRouter!
@@ -20,6 +20,8 @@ class SessionDetailsPresenterImpl {
     init(view: SessionDetailsView, router: SessionDetailsRouter) {
         self.view = view
         self.router = router
+        
+        self.title = Driver.just(Titles.SessionDetailsViewTitle)
     }
     
     private func playSession() -> Observable<Void> {
@@ -33,10 +35,10 @@ class SessionDetailsPresenterImpl {
             .flatMap(self.interactor.playSession)
     }
 
-}
+    // MARK: SessionDetailsPresenter
 
-extension SessionDetailsPresenterImpl: SessionDetailsPresenter {
-
+    let title: Driver<String>
+    
     var session: Driver<SessionViewModel?> {
         return self.interactor.session
             .map(SessionViewModelBuilder.build)

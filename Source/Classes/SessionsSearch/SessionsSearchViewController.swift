@@ -27,35 +27,32 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = castBarButtonItem()
-        self.definesPresentationContext = true
-        
-        self.configureTableView()
+        self.configureUI()
         self.setupBindings()
     }
     
-    func setupBindings() {
+    // MARK - Private
+    
+    private func setupBindings() {
         // dismiss keyboard on scroll
         self.tableView.rx_contentOffset.subscribe({[unowned self] _ in
             if self.searchBar.isFirstResponder() {
                 _ = self.searchBar.resignFirstResponder()
             }
-        }).addDisposableTo(disposeBag)
+            }).addDisposableTo(disposeBag)
         self.tableView.rx_modelSelected(SessionViewModel.self)
             .bindTo(self.presenter.itemSelected)
             .addDisposableTo(self.disposeBag)
-        
+        self.navigationItem.leftBarButtonItem!.rx_tap.bindTo(self.presenter.filter).addDisposableTo(self.disposeBag)
         self.presenter.sessions.drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
         self.presenter.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
     }
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-    }
+    private func configureUI() {
+        self.definesPresentationContext = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
+        self.navigationItem.leftBarButtonItem = self.filterButton()
 
-    // MARK - Private
-
-    func configureTableView() {
         self.clearsSelectionOnViewWillAppear = true
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
@@ -63,7 +60,13 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
         self.tableView.dataSource = nil
         self.tableView.tableHeaderView = self.searchController.searchBar
     }
-
+    
+    private func filterButton() -> UIBarButtonItem {
+        let filterButton = UIBarButtonItem(title: NSLocalizedString("Filter", comment: "Filter"), style: .Plain, target: nil, action: nil)
+        filterButton.tintColor = UIColor.blackColor()
+        return filterButton
+    }
+    
 }
 
 extension SessionsSearchViewController: SessionsSearchView {

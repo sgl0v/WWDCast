@@ -13,6 +13,8 @@ import RxCocoa
 protocol SessionDetailsPresenter: class {
     var session: Driver<SessionViewModel?> { get }
     var isPlaying: Variable<Bool> { get }
+    // The view's title
+    var title: Driver<String> { get }
     
     func onStart()
 }

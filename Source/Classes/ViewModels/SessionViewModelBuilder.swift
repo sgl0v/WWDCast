@@ -20,6 +20,8 @@ struct SessionViewModelBuilder {
         let sessions: [SessionViewModels] = Track.allTracks.map( { track in
             let sessions = sessions.filter({ session in session.track == track }).map(self.build)
             return SessionViewModels(title: track.rawValue, items: sessions)
+        }).filter({ sessionViewModels in
+            return !sessionViewModels.items.isEmpty
         })
         return sessions
     }

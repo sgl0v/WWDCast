@@ -18,8 +18,13 @@ class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter {
     }
 
     func showSessionDetails(withId Id: String) {
-        let module = self.moduleFactory.sessionDetailsModule(withId: Id)
-        self.navigationController.pushViewController(module, animated: true)
+        let controller = self.moduleFactory.sessionDetailsController(withId: Id)
+        self.navigationController.pushViewController(controller, animated: true)
+    }
+    
+    func showFilterController() {
+        let controller = self.moduleFactory.filterController()
+        self.navigationController.presentViewController(controller, animated: true, completion: nil)
     }
     
     func showAlert<Action : CustomStringConvertible>(title: String?, message: String?, style: UIAlertControllerStyle, cancelAction: Action, actions: [Action]) -> Observable<Action> {

@@ -9,8 +9,12 @@
 import Foundation
 import GoogleCast
 
-func castBarButtonItem() -> UIBarButtonItem {
-    let castButton = GCKUICastButton(frame: CGRectMake(0, 0, 24, 24))
-    castButton.tintColor = UIColor.blackColor()
-    return UIBarButtonItem(customView: castButton)
+extension UIBarButtonItem {
+
+    static func castBarButtonItem() -> UIBarButtonItem {
+        let castButton = GCKUICastButton(frame: CGRectMake(0, 0, 24, 24))
+        castButton.tintColor = UIColor.blackColor()
+        return UIBarButtonItem(customView: castButton)
+    }
+
 }

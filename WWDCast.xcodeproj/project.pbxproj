@@ -62,6 +62,8 @@
 		E79717F21D5F5A5100C4DD7C /* RxGCKDeviceManagerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79717F11D5F5A5100C4DD7C /* RxGCKDeviceManagerDelegateProxy.swift */; };
 		E79717F41D5F76B800C4DD7C /* WWDCastRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79717F31D5F76B800C4DD7C /* WWDCastRouter.swift */; };
 		E79717F61D5F76BD00C4DD7C /* WWDCastRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79717F51D5F76BD00C4DD7C /* WWDCastRouterImpl.swift */; };
+		E79718031D5FB60600C4DD7C /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79718021D5FB60600C4DD7C /* FilterViewController.swift */; };
+		E79718071D5FB9E900C4DD7C /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718061D5FB9E900C4DD7C /* FilterViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +139,8 @@
 		E79717F11D5F5A5100C4DD7C /* RxGCKDeviceManagerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGCKDeviceManagerDelegateProxy.swift; sourceTree = "<group>"; };
 		E79717F31D5F76B800C4DD7C /* WWDCastRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastRouter.swift; sourceTree = "<group>"; };
 		E79717F51D5F76BD00C4DD7C /* WWDCastRouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastRouterImpl.swift; sourceTree = "<group>"; };
+		E79718021D5FB60600C4DD7C /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		E79718061D5FB9E900C4DD7C /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterViewController.xib; path = Resources/FilterViewController.xib; sourceTree = SOURCE_ROOT; };
 		EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -279,6 +283,7 @@
 		B6F929BD1D2A5DD5009E4B83 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E79718061D5FB9E900C4DD7C /* FilterViewController.xib */,
 				5E2680951D2C43440054E90B /* Assets.xcassets */,
 				B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */,
 				B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */,
@@ -313,6 +318,7 @@
 		B6F929F11D2AB2BE009E4B83 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E79718011D5FB5EB00C4DD7C /* Filter */,
 				5E2680A01D2D9A130054E90B /* WWDCastAssemblyImpl.swift */,
 				E79717F51D5F76BD00C4DD7C /* WWDCastRouterImpl.swift */,
 				B6F929F31D2AB54B009E4B83 /* SessionsSearch */,
@@ -380,6 +386,14 @@
 				4A6EBFABAC79034FF2973338 /* Pods-WWDCastTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E79718011D5FB5EB00C4DD7C /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				E79718021D5FB60600C4DD7C /* FilterViewController.swift */,
+			);
+			path = Filter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -474,6 +488,7 @@
 				B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */,
 				B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */,
 				5E2680961D2C43440054E90B /* Assets.xcassets in Resources */,
+				E79718071D5FB9E900C4DD7C /* FilterViewController.xib in Resources */,
 				5EBEEF611D2B15BD007C44E3 /* SessionsSearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -627,6 +642,7 @@
 				5E26809D1D2D98D10054E90B /* SessionDetailsInteractorImpl.swift in Sources */,
 				5E2680A61D2D9BD30054E90B /* SessionDetailsPresenter.swift in Sources */,
 				B6F92A1A1D2C0E7E009E4B83 /* UITableView+Common.swift in Sources */,
+				E79718031D5FB60600C4DD7C /* FilterViewController.swift in Sources */,
 				B6F929F71D2AB58A009E4B83 /* SessionsSearchInteractorImpl.swift in Sources */,
 				5E2680991D2D98AE0054E90B /* SessionDetailsViewController.swift in Sources */,
 				E79717F21D5F5A5100C4DD7C /* RxGCKDeviceManagerDelegateProxy.swift in Sources */,
