@@ -33,14 +33,8 @@ class FilterViewController: TableViewController<SessionViewModels, SessionTableV
 
     private func configureUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
-        self.navigationItem.leftBarButtonItem = self.barButton(withStyle: .Cancel)
-        self.navigationItem.rightBarButtonItem = self.barButton(withStyle: .Done)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: nil, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: nil, action: nil)
     }
     
-    private func barButton(withStyle style: UIBarButtonSystemItem) -> UIBarButtonItem {
-        let button = UIBarButtonItem(barButtonSystemItem: style, target: nil, action: nil)
-        button.tintColor = UIColor.blackColor()
-        return button
-    }
-
 }

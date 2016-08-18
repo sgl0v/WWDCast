@@ -23,6 +23,7 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         view.presenter = presenter
         presenter.interactor = interactor
         let navigationController = UINavigationController(rootViewController: view)
+        navigationController.navigationBar.tintColor = UIColor.blackColor()
         self.router.navigationController = navigationController
 
         let castContext = GCKCastContext.sharedInstance()
@@ -35,7 +36,9 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
     
     func filterController() -> UIViewController {
         let view = FilterViewController()
-        return UINavigationController(rootViewController: view)
+        let navigationController = UINavigationController(rootViewController: view)
+        navigationController.navigationBar.tintColor = UIColor.blackColor()
+        return navigationController
     }
 
     func sessionDetailsController(withId Id: String) -> UIViewController {

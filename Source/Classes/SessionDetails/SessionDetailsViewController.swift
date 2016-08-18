@@ -37,8 +37,9 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         self.presenter.onStart()
         self.presenter.session.drive(self.viewModelObserver)
             .addDisposableTo(self.disposeBag)
+        self.presenter.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
     }
-
+    
     // MARK: Private
 
     var viewModelObserver: AnyObserver<SessionViewModel?> {

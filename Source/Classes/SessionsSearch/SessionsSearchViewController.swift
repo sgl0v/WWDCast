@@ -48,10 +48,10 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
         self.presenter.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
     }
 
-    private func configureUI() {
+    private func configureUI() {        
         self.definesPresentationContext = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
-        self.navigationItem.leftBarButtonItem = self.filterButton()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Filter", comment: "Filter"), style: .Plain, target: nil, action: nil)
 
         self.clearsSelectionOnViewWillAppear = true
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -60,13 +60,7 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
         self.tableView.dataSource = nil
         self.tableView.tableHeaderView = self.searchController.searchBar
     }
-    
-    private func filterButton() -> UIBarButtonItem {
-        let filterButton = UIBarButtonItem(title: NSLocalizedString("Filter", comment: "Filter"), style: .Plain, target: nil, action: nil)
-        filterButton.tintColor = UIColor.blackColor()
-        return filterButton
-    }
-    
+        
 }
 
 extension SessionsSearchViewController: SessionsSearchView {
