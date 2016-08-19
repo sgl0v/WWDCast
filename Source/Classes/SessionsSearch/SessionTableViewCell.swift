@@ -26,5 +26,7 @@ class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProv
             .asObservable()
             .takeUntil(self.onPrepareForReuse)
             .bindTo(self.thumbnailImage.rx_imageURL)
+        self.layoutMargins = UIEdgeInsetsZero
+        self.separatorInset = UIEdgeInsetsZero
     }
 }

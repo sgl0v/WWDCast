@@ -25,9 +25,9 @@ class SessionBuilder: EntityBuilder {
         let webpageURL = NSURL(string: json["webpageURL"].stringValue)!
         let subtitles = NSURL(string: json["subtitles"].stringValue)!
 
-        var focus = [Focus]()
+        var platforms = [Platform]()
         if let focusJSON = json["focus"].arrayObject as? [String] {
-            focus = focusJSON.map() { Focus(rawValue: $0)! }
+            platforms = focusJSON.map() { Platform(rawValue: $0)! }
         }
 
         var shelfImageURL: NSURL? = nil
@@ -35,7 +35,7 @@ class SessionBuilder: EntityBuilder {
             shelfImageURL = NSURL(string: imageURL)!
         }
         
-        return SessionImpl(id: id, year: year, track: track, focus: focus, title: title,
+        return SessionImpl(id: id, year: year, track: track, platforms: platforms, title: title,
                            summary: summary, videoURL: videoURL, hdVideoURL: hdVideoURL,
                            sdVideoURL: sdVideoURL, webpageURL: webpageURL, subtitles: subtitles,
                            shelfImageURL: shelfImageURL!)

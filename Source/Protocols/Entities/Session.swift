@@ -17,7 +17,7 @@ enum Track: String {
     }
 }
 
-enum Focus: String {
+enum Platform: String {
     case iOS, macOS, tvOS, watchOS
 }
 
@@ -26,7 +26,7 @@ protocol Session {
     var id: Int { get }
     var year: Int { get }
     var track: Track { get }
-    var focus: [Focus] { get }
+    var platforms: [Platform] { get }
     var title: String { get }
     var subtitle: String { get }
     var summary: String { get }

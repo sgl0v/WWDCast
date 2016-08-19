@@ -13,10 +13,10 @@ struct SessionImpl: Session {
     let id: Int
     let year: Int
     let track: Track
-    let focus: [Focus]
+    let platforms: [Platform]
     let title: String
     var subtitle: String {
-        let focusString = self.focus.map({ $0.rawValue }).joinWithSeparator(", ")
+        let focusString = self.platforms.map({ $0.rawValue }).joinWithSeparator(", ")
         return "WWDC \(year) - Session \(id) - \(focusString)"
     }
     let summary: String

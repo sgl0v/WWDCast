@@ -59,8 +59,10 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
         self.tableView.delegate = nil
         self.tableView.dataSource = nil
         self.tableView.tableHeaderView = self.searchController.searchBar
+        self.tableView.layoutMargins = UIEdgeInsetsZero
+        self.tableView.tableFooterView = UIView()
     }
-        
+    
 }
 
 extension SessionsSearchViewController: SessionsSearchView {
