@@ -12,12 +12,19 @@ import RxCocoa
 import RxDataSources
 
 struct FilterDrawable: CustomStringConvertible {
+    
+    enum Style {
+        case Checkmark, Switch
+    }
+
     let title: String
     let selected: Variable<Bool>
+    let style: Style
     
-    init(title: String, selected: Variable<Bool> = Variable(false)) {
+    init(title: String, style: Style = .Checkmark, selected: Bool = false) {
         self.title = title
-        self.selected = selected
+        self.style = style
+        self.selected = Variable(selected)
     }
     
     // MARK: CustomStringConvertible
@@ -27,12 +34,16 @@ struct FilterDrawable: CustomStringConvertible {
 }
 
 struct FilterSectionDrawable: SectionModelType, CustomStringConvertible {
+
+    enum Type: String {
+        case Years, Platforms, Tracks
+    }
     
-    let title: String
+    let type: Type
     let items: [FilterDrawable]
     
-    init(title: String, items: [FilterDrawable]) {
-        self.title = title
+    init(type: Type, items: [FilterDrawable]) {
+        self.type = type
         self.items = items
     }
     
@@ -48,13 +59,13 @@ struct FilterSectionDrawable: SectionModelType, CustomStringConvertible {
     typealias Item = FilterDrawable
     
     init(original: FilterSectionDrawable, items: [FilterDrawable]) {
-        self.title = original.title
+        self.type = original.type
         self.items = items
     }
     
     // MARK: CustomStringConvertible
     var description : String {
-        return self.title
+        return self.type.rawValue
     }
     
 }
@@ -69,9 +80,9 @@ class FilterViewModel {
 
     init() {
         self.filter = Variable(Filter())
-        let years = FilterSectionDrawable(title: "Years", items: [FilterDrawable(title: "All years"), FilterDrawable(title: "WWDC 2016"), FilterDrawable(title: "WWDC 2015"), FilterDrawable(title: "WWDC 2014")])
-        let platforms = FilterSectionDrawable(title: "Platforms", items: [FilterDrawable(title: "All Platforms"), FilterDrawable(title: "iOS"), FilterDrawable(title: "macOS"), FilterDrawable(title: "tvOS"), FilterDrawable(title: "watchOS")])
-        let tracks = FilterSectionDrawable(title: "Tracks", items: [FilterDrawable(title: "Featured"), FilterDrawable(title: "Media"), FilterDrawable(title: "Developer Tools"), FilterDrawable(title: "Graphics and Games"), FilterDrawable(title: "System Frameworks"), FilterDrawable(title: "App Frameworks"), FilterDrawable(title: "Design"), FilterDrawable(title: "Distribution")])
+        let years = FilterSectionDrawable(type: .Years, items: [FilterDrawable(title: "All years"), FilterDrawable(title: "WWDC 2016"), FilterDrawable(title: "WWDC 2015"), FilterDrawable(title: "WWDC 2014")])
+        let platforms = FilterSectionDrawable(type: .Platforms, items: [FilterDrawable(title: "All Platforms"), FilterDrawable(title: "iOS"), FilterDrawable(title: "macOS"), FilterDrawable(title: "tvOS"), FilterDrawable(title: "watchOS")])
+        let tracks = FilterSectionDrawable(type: .Tracks, items: [FilterDrawable(title: "Featured", style: .Switch, selected: true), FilterDrawable(title: "Media", style: .Switch, selected: true), FilterDrawable(title: "Developer Tools", style: .Switch, selected: true), FilterDrawable(title: "Graphics and Games", style: .Switch, selected: true), FilterDrawable(title: "System Frameworks", style: .Switch, selected: true), FilterDrawable(title: "App Frameworks", style: .Switch, selected: true), FilterDrawable(title: "Design", style: .Switch, selected: true), FilterDrawable(title: "Distribution", style: .Switch, selected: true)])
         
         self.filterItemsVariable = Variable([years, platforms, tracks])
     }
@@ -83,7 +94,9 @@ class FilterViewModel {
             }
             
             let filterSection = self.filterItemsVariable.value[indexPath.section]
-            filterSection.selectItem(atIndex: indexPath.row)
+            if .Tracks != filterSection.type {
+                filterSection.selectItem(atIndex: indexPath.row)
+            }
         }
     }
 

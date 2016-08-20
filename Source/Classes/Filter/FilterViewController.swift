@@ -21,19 +21,38 @@ extension UITableViewCell {
 
 class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvidable {
     
-    let disposeBag = DisposeBag()
+    var disposeBag: DisposeBag?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.layoutMargins = UIEdgeInsetsZero
+        self.separatorInset = UIEdgeInsetsZero
+    }
     
     // MARK: SessionTableViewCell
     typealias ViewModel = FilterDrawable
     
     func bindViewModel(viewModel: ViewModel) {
+        let disposeBag = DisposeBag()
+        self.onPrepareForReuse.subscribeNext({
+            self.disposeBag = nil
+            self.accessoryView = nil
+        }).addDisposableTo(disposeBag)
+        
         self.textLabel?.text = viewModel.title
-        viewModel.selected.asObservable()
-            .takeUntil(self.onPrepareForReuse)
-            .bindTo(self.rx_checkmarkObserver)
-            .addDisposableTo(self.disposeBag)
-        self.layoutMargins = UIEdgeInsetsZero
-        self.separatorInset = UIEdgeInsetsZero
+        
+        if case .Switch = viewModel.style {
+            let switchButton = UISwitch()
+            switchButton.rx_value <-> viewModel.selected
+            self.accessoryView = switchButton
+        } else {
+            viewModel.selected.asObservable()
+                .takeUntil(self.onPrepareForReuse)
+                .bindTo(self.rx_checkmarkObserver)
+                .addDisposableTo(disposeBag)
+        }
+        
+        self.disposeBag = disposeBag
     }
     
 }

@@ -8,25 +8,35 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 import Alamofire
 import SDWebImage
 
 // One way binding operator
 
-infix operator <~ {
+infix operator <-> {
 }
 
-func <~ <T>(property: AnyObserver<T>, variable: Variable<T>) -> Disposable {
-    return variable.asObservable()
-        .bindTo(property)
+infix operator <~ {
 }
 
 infix operator ~> {
 }
 
-func ~> <T>(variable: Variable<T>, property: AnyObserver<T>) -> Disposable {
-    return variable.asObservable()
+// Two way binding operator between control property and variable, that's all it takes {
+
+func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disposable {
+    let bindToUIDisposable = variable.asObservable()
         .bindTo(property)
+    let bindToVariable = property
+        .subscribe(onNext: { n in
+            variable.value = n
+            },
+                   onCompleted: {
+                    bindToUIDisposable.dispose()
+        })
+    
+    return StableCompositeDisposable.create(bindToUIDisposable, bindToVariable)
 }
 
 func rx_request(method: Alamofire.Method, _ URLString: URLStringConvertible) -> Observable<AnyObject> {
