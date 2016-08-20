@@ -11,6 +11,24 @@ import RxSwift
 import Alamofire
 import SDWebImage
 
+// One way binding operator
+
+infix operator <~ {
+}
+
+func <~ <T>(property: AnyObserver<T>, variable: Variable<T>) -> Disposable {
+    return variable.asObservable()
+        .bindTo(property)
+}
+
+infix operator ~> {
+}
+
+func ~> <T>(variable: Variable<T>, property: AnyObserver<T>) -> Disposable {
+    return variable.asObservable()
+        .bindTo(property)
+}
+
 func rx_request(method: Alamofire.Method, _ URLString: URLStringConvertible) -> Observable<AnyObject> {
     return Observable<AnyObject>.create({ (observer) -> Disposable in
         let request = Alamofire.request(method, URLString)

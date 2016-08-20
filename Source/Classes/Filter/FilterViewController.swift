@@ -11,45 +11,37 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-struct FilterDrawable: SectionModelType, CustomStringConvertible {
-    let items: [String]
-    
-    init(items: [String]) {
-        self.items = items
+extension UITableViewCell {
+    public var rx_checkmarkObserver: AnyObserver<Bool> {
+        return UIBindingObserver(UIElement: self, binding: { cell, selected in
+            cell.accessoryType = selected ? .Checkmark : .None
+        }).asObserver()
     }
-    
-    // MARK: SectionModelType
-    
-    typealias Item = String
-    
-    init(original: FilterDrawable, items: [Item]) {
-        self.items = items
-    }
-    
-    // MARK: CustomStringConvertible
-    var description : String {
-        return " "
-    }
-
 }
 
 class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvidable {
     
+    let disposeBag = DisposeBag()
+    
     // MARK: SessionTableViewCell
-    typealias ViewModel = String
+    typealias ViewModel = FilterDrawable
     
     func bindViewModel(viewModel: ViewModel) {
-        self.textLabel?.text = viewModel
-        self.accessoryType = .None
+        self.textLabel?.text = viewModel.title
+        viewModel.selected.asObservable()
+            .takeUntil(self.onPrepareForReuse)
+            .bindTo(self.rx_checkmarkObserver)
+            .addDisposableTo(self.disposeBag)
         self.layoutMargins = UIEdgeInsetsZero
         self.separatorInset = UIEdgeInsetsZero
     }
+    
 }
 
 
-class FilterViewController: TableViewController<FilterDrawable, FilterTableViewCell> {
+class FilterViewController: TableViewController<FilterSectionDrawable, FilterTableViewCell> {
     var viewModel: FilterViewModel!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
@@ -70,12 +62,10 @@ class FilterViewController: TableViewController<FilterDrawable, FilterTableViewC
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }).addDisposableTo(self.disposeBag)
 
-        let models = [FilterDrawable(items: ["All years", "WWDC 2016", "WWDC 2015", "WWDC 2014"]),
-                      FilterDrawable(items: ["All Platforms", "iOS", "macOS", "tvOS", "watchOS"]),
-                      FilterDrawable(items: ["Featured", "Media", "Developer Tools", "Graphics and Games", "System Frameworks", "App Frameworks", "Design", "Distribution"])]
-        Observable.just(models).asDriver(onErrorJustReturn: []).drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
-        self.tableView.rx_modelSelected(FilterDrawable.self)
-            .bindTo(self.viewModel.itemSelected)
+        self.viewModel.filterItems.drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
+//        self.viewModel.filterTrigger = self.tableView.rx_itemSelected.asDriver()
+        self.tableView.rx_itemSelected.asDriver()
+            .drive(self.viewModel.itemSelected)
             .addDisposableTo(self.disposeBag)
     }
 

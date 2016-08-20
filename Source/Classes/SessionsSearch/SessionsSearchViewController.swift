@@ -39,7 +39,7 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
             if self.searchBar.isFirstResponder() {
                 _ = self.searchBar.resignFirstResponder()
             }
-            }).addDisposableTo(disposeBag)
+            }).addDisposableTo(self.disposeBag)
         self.tableView.rx_modelSelected(SessionViewModel.self)
             .bindTo(self.presenter.itemSelected)
             .addDisposableTo(self.disposeBag)
