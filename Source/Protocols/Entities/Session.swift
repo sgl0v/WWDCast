@@ -19,6 +19,10 @@ enum Track: String {
 
 enum Platform: String {
     case iOS, macOS, tvOS, watchOS
+    
+    static var allPlatforms: [Platform] {
+        return [.iOS, .macOS, .tvOS, .watchOS]
+    }
 }
 
 protocol Session {

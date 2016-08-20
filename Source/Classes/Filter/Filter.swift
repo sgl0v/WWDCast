@@ -7,10 +7,17 @@
 //
 
 import Foundation
+import RxSwift
 
-struct Filter {
+struct Filter: CustomStringConvertible {
     var query: String = ""
     var year = [Int]()
     var platforms = [Platform]()
     var tracks = [Track]()
+    
+    // MARK: CustomStringConvertible
+    var description : String {
+        return "query='\(query)' year='\(year)' platforms='\(platforms)' tracks='\(tracks)'"
+    }
+
 }
