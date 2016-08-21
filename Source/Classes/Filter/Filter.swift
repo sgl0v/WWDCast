@@ -12,8 +12,8 @@ import RxSwift
 struct Filter: CustomStringConvertible {
     var query: String = ""
     var year = [Int]()
-    var platforms = [Platform]()
-    var tracks = [Track]()
+    var platforms = Platform.allPlatforms
+    var tracks = Track.allTracks
     
     // MARK: CustomStringConvertible
     var description : String {

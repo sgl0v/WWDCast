@@ -11,11 +11,25 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-extension UITableViewCell {
-    public var rx_checkmarkObserver: AnyObserver<Bool> {
-        return UIBindingObserver(UIElement: self, binding: { cell, selected in
+extension RxTableViewCell {
+    
+    var rx_accessoryCheckmark: ControlProperty<Bool> {
+        let getter: UITableViewCell -> Bool = { cell in
+            cell.accessoryType == .Checkmark
+        }
+        let setter: (UITableViewCell, Bool) -> Void = { cell, selected in
             cell.accessoryType = selected ? .Checkmark : .None
-        }).asObserver()
+        }
+        let values: Observable<Bool> = Observable.deferred { [weak self] in
+            guard let existingSelf = self else {
+                return Observable.empty()
+            }
+            
+            return existingSelf.onSelected.map({ _ in true }).startWith(getter(existingSelf))
+        }
+        return ControlProperty(values: values, valueSink: UIBindingObserver(UIElement: self) { control, value in
+            setter(control, value)
+        })
     }
 }
 
@@ -34,7 +48,7 @@ class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvi
     
     func bindViewModel(viewModel: ViewModel) {
         let disposeBag = DisposeBag()
-        self.onPrepareForReuse.subscribeNext({
+        self.onPrepareForReuse.subscribeNext({[unowned self] in
             self.disposeBag = nil
             self.accessoryView = nil
         }).addDisposableTo(disposeBag)
@@ -46,10 +60,7 @@ class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvi
             switchButton.rx_value <-> viewModel.selected
             self.accessoryView = switchButton
         } else {
-            viewModel.selected.asObservable()
-                .takeUntil(self.onPrepareForReuse)
-                .bindTo(self.rx_checkmarkObserver)
-                .addDisposableTo(disposeBag)
+            self.rx_accessoryCheckmark <-> viewModel.selected
         }
         
         self.disposeBag = disposeBag
@@ -83,9 +94,9 @@ class FilterViewController: TableViewController<FilterSectionDrawable, FilterTab
 
         self.viewModel.filterItems.drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
 //        self.viewModel.filterTrigger = self.tableView.rx_itemSelected.asDriver()
-        self.tableView.rx_itemSelected.asDriver()
-            .drive(self.viewModel.itemSelected)
-            .addDisposableTo(self.disposeBag)
+//        self.tableView.rx_itemSelected.asDriver()
+//            .drive(self.viewModel.itemSelected)
+//            .addDisposableTo(self.disposeBag)
     }
 
     private func configureUI() {
