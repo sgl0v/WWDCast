@@ -43,7 +43,7 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
         self.tableView.rx_modelSelected(SessionViewModel.self)
             .bindTo(self.presenter.itemSelected)
             .addDisposableTo(self.disposeBag)
-        self.navigationItem.leftBarButtonItem!.rx_tap.bindTo(self.presenter.filter).addDisposableTo(self.disposeBag)
+        self.navigationItem.leftBarButtonItem!.rx_tap.bindTo(self.presenter.filterObserver).addDisposableTo(self.disposeBag)
         self.presenter.sessions.drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
         self.presenter.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
     }

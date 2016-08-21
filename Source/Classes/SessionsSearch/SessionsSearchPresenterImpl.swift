@@ -19,6 +19,7 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
     weak var view: SessionsSearchView!
     var interactor: SessionsSearchInteractor!
     var router: SessionsSearchRouter
+    var filter: Variable<Filter>
     var isLoading: Observable<Bool> {
         return _isLoading
     }
@@ -28,16 +29,30 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
     init(view: SessionsSearchView, router: SessionsSearchRouter) {
         self.view = view
         self.router = router
+        self.filter = Variable(Filter())
         self.title = Driver.just(Titles.SessionsSearchViewTitle)
-        self.sessions = view.searchQuery.flatMapLatest(self.sessionsSearch)
+        self.sessions = self.filter.asDriver().flatMapLatest(self.sessionsSearch)
+//        self.sessions = view.searchQuery.driveNext({ query in
+//            self.filter.value = 
+//        })
     }
     
-    private func sessionsSearch(query: String) -> Driver<[SessionViewModels]> {
+    private func sessionsSearch(filter: Filter) -> Driver<[SessionViewModels]> {
         return self.interactor
             .loadSessions()
             .asDriver(onErrorJustReturn: [])
-            .map({ sessions in query.isEmpty ? sessions : sessions.filter({ elem in elem.title.containsString(query)}) })
+            .map(self.applyFilter(filter))
             .map(SessionViewModelBuilder.build) // create viewModels & group them by track
+    }
+    
+    private func applyFilter(filter: Filter) -> [Session] -> [Session] {
+        return { sessions in
+            sessions.filter { session in
+                (filter.query.isEmpty || session.title.containsString(filter.query)) &&
+                    filter.tracks.contains(session.track) &&
+                    !Set(filter.platforms).intersect(session.platforms).isEmpty
+            }
+        }
     }
     
     // MARK: SessionsSearchPresenter
@@ -54,12 +69,14 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
         }
     }
     
-    var filter: AnyObserver<Void> {
+    var filterObserver: AnyObserver<Void> {
         return AnyObserver {[unowned self] event in
             guard case .Next = event else {
                 return
             }
-            self.router.showFilterController(Filter())
+            self.router.showFilterController(withFilter: self.filter.value) {[unowned self] filter in
+                self.filter.value = filter
+            }
         }
     }
 

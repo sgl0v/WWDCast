@@ -14,7 +14,7 @@ protocol SessionsSearchPresenter: class {
     // Item selection observer
     var itemSelected: AnyObserver<SessionViewModel> { get }
     // Filter button tap observer
-    var filter: AnyObserver<Void> { get }
+    var filterObserver: AnyObserver<Void> { get }
     // The view's title
     var title: Driver<String> { get }
     // The array of available WWDC sessions

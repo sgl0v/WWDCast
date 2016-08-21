@@ -82,12 +82,8 @@ class FilterViewController: TableViewController<FilterSectionViewModel, FilterTa
     
     private func setupBindings() {
         // dismiss keyboard on scroll
-        self.navigationItem.leftBarButtonItem!.rx_tap.subscribeNext({
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }).addDisposableTo(self.disposeBag)
-        self.navigationItem.rightBarButtonItem!.rx_tap.subscribeNext({
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }).addDisposableTo(self.disposeBag)
+        self.navigationItem.leftBarButtonItem!.rx_tap.map({ true }).subscribeNext(self.viewModel.finished).addDisposableTo(self.disposeBag)
+        self.navigationItem.rightBarButtonItem!.rx_tap.map({ false }).subscribeNext(self.viewModel.finished).addDisposableTo(self.disposeBag)
         self.tableView.rx_itemSelected.subscribeNext({ indexPath in
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }).addDisposableTo(self.disposeBag)

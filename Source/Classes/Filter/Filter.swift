@@ -11,7 +11,7 @@ import RxSwift
 
 struct Filter {
     var query: String = ""
-    var year = [Int]()
+    var year = Set<Int>()
     var platforms = Platform.allPlatforms
     var tracks = Track.allTracks
 }

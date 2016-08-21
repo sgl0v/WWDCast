@@ -78,15 +78,22 @@ struct FilterSectionViewModel: SectionModelType, CustomStringConvertible {
 }
 
 class FilterViewModel {
+    enum Result {
+        case Cancelled, Finished(Filter)
+    }
+    typealias Completion = (Result) -> ()
+    
     private var filter: Filter
+    private let completion: Completion
     private let filterItemsVariable: Variable<Array<FilterSectionViewModel>>
 //    var filterTrigger: Driver<NSIndexPath>?
     var filterItems: Driver<Array<FilterSectionViewModel>> {
         return self.filterItemsVariable.asDriver()
     }
 
-    init(filter: Filter) {
+    init(filter: Filter, completion: Completion) {
         self.filter = filter
+        self.completion = completion
         let years = FilterSectionViewModel(type: .Years, items: [
             FilterItemViewModel(title: "All years"),
             FilterItemViewModel(title: "WWDC 2016"),
@@ -144,6 +151,12 @@ class FilterViewModel {
                 return Observable.just(selectedPlatforms)
             }
             return Observable.empty()
+        }
+    }
+    
+    var finished: Bool -> Void {
+        return {[unowned self] cancelled in
+            cancelled ? self.completion(.Cancelled) : self.completion(.Finished(self.filter))
         }
     }
 
