@@ -33,7 +33,7 @@ struct FilterItemViewModel : CustomStringConvertible {
     }
 }
 
-struct FilterSectionDrawable: SectionModelType, CustomStringConvertible {
+struct FilterSectionViewModel: SectionModelType, CustomStringConvertible {
 
     enum Type: String {
         case Years, Platforms, Tracks
@@ -65,7 +65,7 @@ struct FilterSectionDrawable: SectionModelType, CustomStringConvertible {
     
     typealias Item = FilterItemViewModel
     
-    init(original: FilterSectionDrawable, items: [FilterItemViewModel]) {
+    init(original: FilterSectionViewModel, items: [FilterItemViewModel]) {
         self.type = original.type
         self.items = items
     }
@@ -79,28 +79,28 @@ struct FilterSectionDrawable: SectionModelType, CustomStringConvertible {
 
 class FilterViewModel {
     private var filter: Filter
-    private let filterItemsVariable: Variable<Array<FilterSectionDrawable>>
+    private let filterItemsVariable: Variable<Array<FilterSectionViewModel>>
 //    var filterTrigger: Driver<NSIndexPath>?
-    var filterItems: Driver<Array<FilterSectionDrawable>> {
+    var filterItems: Driver<Array<FilterSectionViewModel>> {
         return self.filterItemsVariable.asDriver()
     }
 
     init(filter: Filter) {
         self.filter = filter
-        let years = FilterSectionDrawable(type: .Years, items: [
+        let years = FilterSectionViewModel(type: .Years, items: [
             FilterItemViewModel(title: "All years"),
             FilterItemViewModel(title: "WWDC 2016"),
             FilterItemViewModel(title: "WWDC 2015"),
             FilterItemViewModel(title: "WWDC 2014")
             ])
-        let platforms = FilterSectionDrawable(type: .Platforms, items: [
+        let platforms = FilterSectionViewModel(type: .Platforms, items: [
             FilterItemViewModel(title: "All Platforms", style: .Checkmark, selected: self.filter.platforms == Platform.allPlatforms),
             FilterItemViewModel(title: Platform.iOS.rawValue, style: .Checkmark, selected: self.filter.platforms == [.iOS]),
             FilterItemViewModel(title: Platform.macOS.rawValue, style: .Checkmark, selected: self.filter.platforms == [.macOS]),
             FilterItemViewModel(title: Platform.tvOS.rawValue, style: .Checkmark, selected: self.filter.platforms == [.tvOS]),
             FilterItemViewModel(title: Platform.watchOS.rawValue, style: .Checkmark, selected: self.filter.platforms == [.watchOS])
             ])
-        let tracks = FilterSectionDrawable(type: .Tracks, items: [
+        let tracks = FilterSectionViewModel(type: .Tracks, items: [
             FilterItemViewModel(title: Track.Featured.rawValue, style: .Switch, selected: self.filter.tracks.contains(.Featured)),
             FilterItemViewModel(title: Track.Media.rawValue, style: .Switch, selected: self.filter.tracks.contains(.Media)),
             FilterItemViewModel(title: Track.DeveloperTools.rawValue, style: .Switch, selected: self.filter.tracks.contains(.DeveloperTools)),
@@ -130,7 +130,7 @@ class FilterViewModel {
         })
     }
     
-    func platformsSelection(platforms: FilterSectionDrawable) -> (Int, Bool) -> Observable<[Platform]> {
+    func platformsSelection(platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Platform]> {
         return { _ in
             let selectedPlatforms: [Platform]? = platforms.items.filter({ item in
                 item.selected.value

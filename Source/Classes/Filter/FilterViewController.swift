@@ -69,7 +69,7 @@ class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvi
 }
 
 
-class FilterViewController: TableViewController<FilterSectionDrawable, FilterTableViewCell> {
+class FilterViewController: TableViewController<FilterSectionViewModel, FilterTableViewCell> {
     var viewModel: FilterViewModel!
     
     override func viewDidLoad() {

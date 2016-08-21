@@ -59,7 +59,7 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
             guard case .Next = event else {
                 return
             }
-            self.router.showFilterController()
+            self.router.showFilterController(Filter())
         }
     }
 

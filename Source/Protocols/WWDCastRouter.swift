@@ -11,7 +11,7 @@ import RxSwift
 
 protocol SessionsSearchRouter: class {
     func showSessionDetails(withId Id: String)
-    func showFilterController()
+    func showFilterController(filter: Filter)
 }
 
 protocol SessionDetailsRouter: class {

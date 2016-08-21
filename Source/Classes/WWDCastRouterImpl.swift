@@ -22,8 +22,8 @@ class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter {
         self.navigationController.pushViewController(controller, animated: true)
     }
     
-    func showFilterController() {
-        let controller = self.moduleFactory.filterController()
+    func showFilterController(filter: Filter) {
+        let controller = self.moduleFactory.filterController(filter)
         self.navigationController.presentViewController(controller, animated: true, completion: nil)
     }
     
