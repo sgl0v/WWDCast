@@ -37,6 +37,7 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.dimsBackgroundDuringPresentation = false
+//        searchController.hidesNavigationBarDuringPresentation = false
         return searchController
     }()
     
@@ -46,11 +47,15 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
     
     private func setupBindings() {
         // dismiss keyboard on scroll
-        self.tableView.rx_contentOffset.subscribe({[unowned self] _ in
-            if self.searchBar.isFirstResponder() {
-                _ = self.searchBar.resignFirstResponder()
-            }
-            }).addDisposableTo(self.disposeBag)
+        self.tableView.rx_contentOffset.asDriver()
+            .filter({[unowned self] _ -> Bool in
+                return !self.searchController.isBeingPresented()
+            }).driveNext({[unowned self] _ in
+                if self.searchBar.isFirstResponder() {
+                    _ = self.searchBar.resignFirstResponder()
+                }
+                }).addDisposableTo(self.disposeBag)
+        
         // ViewModel's input
         self.navigationItem.leftBarButtonItem!.rx_tap.bindTo(self.viewModel.filterObserver).addDisposableTo(self.disposeBag)
         self.searchQuery.drive(self.viewModel.searchStringObserver).addDisposableTo(self.disposeBag)
@@ -79,8 +84,11 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
     }
 
     private var searchQuery: Driver<String> {
-        return self.searchBar.rx_text
-            .asDriver()
+        let cancel = searchController.searchBar.rx_delegate.observe(#selector(UISearchBarDelegate.searchBarCancelButtonClicked(_:))).map( { _ in return "" })
+        
+        return Observable.of(self.searchBar.rx_text.asObservable(), cancel)
+            .merge()
+            .asDriver(onErrorJustReturn: "")
             .throttle(0.1)
             .distinctUntilChanged()
     }
