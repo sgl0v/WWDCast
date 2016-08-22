@@ -11,6 +11,5 @@ import RxSwift
 import RxCocoa
 
 protocol SessionsSearchView: class {
-    var titleText: AnyObserver<String> { get }
-    var searchQuery: Driver<String> { get }
+
 }

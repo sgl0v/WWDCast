@@ -18,9 +18,9 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
     func sessionsSearchController() -> UIViewController {
         let serviceProvider = ServiceProviderImpl.defaultServiceProvider
         let view = SessionsSearchViewController()
-        let presenter = SessionsSearchPresenterImpl(view: view, router: router)
+        let presenter = SessionsSearchPresenterImpl(router: router)
         let interactor = SessionsSearchInteractorImpl(presenter: presenter, serviceProvider: serviceProvider)
-        view.presenter = presenter
+        view.viewModel = presenter
         presenter.interactor = interactor
         let navigationController = UINavigationController(rootViewController: view)
         navigationController.navigationBar.tintColor = UIColor.blackColor()

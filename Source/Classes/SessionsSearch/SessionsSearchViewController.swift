@@ -13,6 +13,27 @@ import RxDataSources
 
 class SessionsSearchViewController: TableViewController<SessionViewModels, SessionTableViewCell> {
     
+    var viewModel: SessionsSearchPresenter!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.configureUI()
+        self.setupBindings()
+        self.viewModel.active = true
+    }
+    
+//    override func viewWillAppear(animated: Bool) {
+//        super.viewWillAppear(animated)
+//        self.viewModel.active = true
+//    }
+//    
+//    override func viewWillDisappear(animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        self.viewModel.active = false
+//    }
+    
+    // MARK - Private
+    
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.dimsBackgroundDuringPresentation = false
@@ -23,16 +44,6 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
         return self.searchController.searchBar
     }
     
-    var presenter: SessionsSearchPresenter!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.configureUI()
-        self.setupBindings()
-    }
-    
-    // MARK - Private
-    
     private func setupBindings() {
         // dismiss keyboard on scroll
         self.tableView.rx_contentOffset.subscribe({[unowned self] _ in
@@ -40,12 +51,16 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
                 _ = self.searchBar.resignFirstResponder()
             }
             }).addDisposableTo(self.disposeBag)
+        // ViewModel's input
+        self.navigationItem.leftBarButtonItem!.rx_tap.bindTo(self.viewModel.filterObserver).addDisposableTo(self.disposeBag)
+        self.searchQuery.drive(self.viewModel.searchStringObserver).addDisposableTo(self.disposeBag)
+        
+        // ViewModel's output
         self.tableView.rx_modelSelected(SessionViewModel.self)
-            .bindTo(self.presenter.itemSelected)
+            .bindTo(self.viewModel.itemSelected)
             .addDisposableTo(self.disposeBag)
-        self.navigationItem.leftBarButtonItem!.rx_tap.bindTo(self.presenter.filterObserver).addDisposableTo(self.disposeBag)
-        self.presenter.sessions.drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
-        self.presenter.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
+        self.viewModel.sessions.asDriver().drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
+        self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
     }
 
     private func configureUI() {        
@@ -62,19 +77,11 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
         self.tableView.layoutMargins = UIEdgeInsetsZero
         self.tableView.tableFooterView = UIView()
     }
-    
-}
 
-extension SessionsSearchViewController: SessionsSearchView {
-
-    var titleText: AnyObserver<String> {
-        return self.rx_title
-    }
-    
-    var searchQuery: Driver<String> {
+    private var searchQuery: Driver<String> {
         return self.searchBar.rx_text
             .asDriver()
-            .throttle(0.3)
+            .throttle(0.1)
             .distinctUntilChanged()
     }
 
