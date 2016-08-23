@@ -15,7 +15,7 @@ public protocol BindableView {
     func bindViewModel(viewModel: ViewModel)
 }
 
-public class TableViewController<SectionViewModel: protocol<SectionModelType, CustomStringConvertible>, Cell: UITableViewCell where Cell: protocol<BindableView, NibProvidable, ReusableView>, Cell.ViewModel == SectionViewModel.Item>: UITableViewController,  NibProvidable {
+public class TableViewController<SectionViewModel: protocol<SectionModelType, CustomStringConvertible>, Cell: UITableViewCell where Cell: protocol<BindableView, NibProvidable, ReusableView>, Cell.ViewModel == SectionViewModel.Item>: UITableViewController {
 
     let disposeBag = DisposeBag()
 
@@ -33,7 +33,7 @@ public class TableViewController<SectionViewModel: protocol<SectionModelType, Cu
     }()
 
     public init() {
-        super.init(nibName: self.dynamicType.nibName, bundle: NSBundle.mainBundle())
+        super.init(nibName: nil, bundle: nil)
     }
 
     override public func viewDidLoad() {

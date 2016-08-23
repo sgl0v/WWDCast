@@ -22,7 +22,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     let disposeBag = DisposeBag()
 
     init() {
-        super.init(nibName: self.dynamicType.nibName, bundle: NSBundle.mainBundle())
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
