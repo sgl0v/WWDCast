@@ -61,7 +61,7 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
         self.searchQuery.drive(self.viewModel.searchStringObserver).addDisposableTo(self.disposeBag)
         
         // ViewModel's output
-        self.tableView.rx_modelSelected(SessionViewModel.self)
+        self.tableView.rx_itemSelected
             .bindTo(self.viewModel.itemSelected)
             .addDisposableTo(self.disposeBag)
         self.viewModel.sessions.asDriver().drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)

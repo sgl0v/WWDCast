@@ -22,7 +22,7 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
     var isLoading: Observable<Bool> {
         return _isLoading
     }
-    private let _sessions: Variable<[SessionViewModels]>
+    private let _sessions: Variable<[Session]>
     private let _isLoading = BehaviorSubject(value: false);
     private let disposeBag = DisposeBag()
     
@@ -71,7 +71,6 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
         self.didBecomeActive.subscribeNext({ viewModel in
             Observable.combineLatest(viewModel.interactor.loadSessions(), viewModel.filter.asObservable(), resultSelector: self.applyFilter)
                 .asDriver(onErrorJustReturn: [])
-                .map(SessionViewModelBuilder.build)
                 .drive(viewModel._sessions)
                 .addDisposableTo(viewModel.disposeBag)
         }).addDisposableTo(self.disposeBag)
@@ -89,16 +88,16 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
     // MARK: SessionsSearchPresenter
     
     var sessions: Driver<[SessionViewModels]> {
-        return self._sessions.asDriver()
+        return self._sessions.asDriver().map(SessionViewModelBuilder.build)
     }
     let title: Driver<String>
 
-    var itemSelected: AnyObserver<SessionViewModel> {
+    var itemSelected: AnyObserver<NSIndexPath> {
         return AnyObserver {[unowned self] event in
-            guard case .Next(let session) = event else {
+            guard case .Next(let indexPath) = event else {
                 return
             }
-            self.router.showSessionDetails(withId: session.uniqueID)
+            self.router.showSessionDetails(self._sessions.value[indexPath.row])
         }
     }
     

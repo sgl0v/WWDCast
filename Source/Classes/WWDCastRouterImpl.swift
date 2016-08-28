@@ -17,8 +17,8 @@ class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter {
         self.moduleFactory = moduleFactory
     }
 
-    func showSessionDetails(withId Id: String) {
-        let controller = self.moduleFactory.sessionDetailsController(withId: Id)
+    func showSessionDetails(session: Session) {
+        let controller = self.moduleFactory.sessionDetailsController(session)
         self.navigationController.pushViewController(controller, animated: true)
     }
     

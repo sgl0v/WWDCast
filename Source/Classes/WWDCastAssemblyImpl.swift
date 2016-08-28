@@ -42,11 +42,11 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         return navigationController
     }
 
-    func sessionDetailsController(withId Id: String) -> UIViewController {
+    func sessionDetailsController(session: Session) -> UIViewController {
         let serviceProvider = ServiceProviderImpl.defaultServiceProvider
         let view = SessionDetailsViewController()
         let presenter = SessionDetailsPresenterImpl(view: view, router: self.router)
-        let interactor = SessionDetailsInteractorImpl(presenter: presenter, serviceProvider: serviceProvider, sessionId: Id)
+        let interactor = SessionDetailsInteractorImpl(session: session, serviceProvider: serviceProvider)
         view.presenter = presenter
         presenter.interactor = interactor
         return view

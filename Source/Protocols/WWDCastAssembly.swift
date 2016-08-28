@@ -10,6 +10,6 @@ import UIKit
 
 protocol WWDCastAssembly: class {
     func sessionsSearchController() -> UIViewController
-    func sessionDetailsController(withId Id: String) -> UIViewController
+    func sessionDetailsController(session: Session) -> UIViewController
     func filterController(filter: Filter, completion: FilterViewModel.Completion) -> UIViewController
 }

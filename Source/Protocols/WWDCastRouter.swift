@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 protocol SessionsSearchRouter: class {
-    func showSessionDetails(withId Id: String)
+    func showSessionDetails(session: Session)
     func showFilterController(withFilter filter: Filter, completion: (Filter) -> Void)
 }
 

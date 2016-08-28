@@ -11,25 +11,16 @@ import RxSwift
 import SwiftyJSON
 
 class SessionDetailsInteractorImpl {
-    weak var presenter: SessionDetailsPresenter!
     let serviceProvider: ServiceProvider
-    let sessionId: String
+    let session: Observable<Session>
 
-    init(presenter: SessionDetailsPresenter, serviceProvider: ServiceProvider, sessionId: String) {
-        self.presenter = presenter
+    init(session: Session, serviceProvider: ServiceProvider) {
         self.serviceProvider = serviceProvider
-        self.sessionId = sessionId
+        self.session = Observable.just(session)
     }
 }
 
 extension SessionDetailsInteractorImpl: SessionDetailsInteractor {
-
-    var session: Observable<Session> {
-        return loadConfig().flatMapLatest(self.loadSessions).map(self.filterSessions).map({ $0.first! })
-            .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
-            .observeOn(self.serviceProvider.scheduler.mainScheduler)
-            .shareReplayLatestWhileConnected()
-    }
 
     func playSession(device: GoogleCastDevice, session: Session) -> Observable<Void> {
         return self.serviceProvider.googleCast.playSession(device, session: session)
@@ -37,26 +28,6 @@ extension SessionDetailsInteractorImpl: SessionDetailsInteractor {
 
     var devices: [GoogleCastDevice] {
         return self.serviceProvider.googleCast.devices
-    }
-
-    // MARK: Private
-
-    private func filterSessions(sessions: [Session]) -> [Session] {
-        return sessions.filter() {session in session.uniqueId == self.sessionId}
-    }
-
-    private func loadConfig() -> Observable<AppConfig> {
-        return loadData(WWDCEnvironment.indexURL, builder: AppConfigBuilder.self)
-    }
-
-    private func loadSessions(config: AppConfig) -> Observable<[Session]> {
-        return loadData(config.videosURL, builder: SessionsBuilder.self)
-    }
-
-    private func loadData<Builder: EntityBuilder>(url: NSURL, builder: Builder.Type) -> Observable<Builder.EntityType> {
-        return self.serviceProvider.network.GET(url, parameters: [:]).map() { data in
-            return builder.build(JSON(data: data))
-        }
     }
 
 }

@@ -13,7 +13,7 @@ import RxCocoa
 protocol SessionsSearchPresenter: class {
     var active: Bool { get set }
     // Item selection observer
-    var itemSelected: AnyObserver<SessionViewModel> { get }
+    var itemSelected: AnyObserver<NSIndexPath> { get }
     // Filter button tap observer
     var filterObserver: AnyObserver<Void> { get }
     // Search string observer
