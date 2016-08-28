@@ -11,7 +11,7 @@ import Foundation
 struct SessionImpl: Session {
     var uniqueId: String { return "#\(year)-\(id)" }
     let id: Int
-    let year: Int
+    let year: Year
     let track: Track
     let platforms: [Platform]
     let title: String

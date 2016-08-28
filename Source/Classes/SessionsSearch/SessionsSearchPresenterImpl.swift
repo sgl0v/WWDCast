@@ -80,6 +80,7 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
     private func applyFilter(sessions: [Session], filter: Filter) -> [Session] {
         return sessions.filter { session in
             (filter.query.isEmpty || session.title.containsString(filter.query)) &&
+                filter.years.contains(session.year) &&
                 filter.tracks.contains(session.track) &&
                 !Set(filter.platforms).intersect(session.platforms).isEmpty
         }

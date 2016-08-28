@@ -15,7 +15,7 @@ class SessionBuilder: EntityBuilder {
 
     static func build(json: JSON) -> EntityType {
         let id = json["id"].intValue
-        let year = json["year"].intValue 
+        let year = Year(rawValue: json["year"].uIntValue)!
         let title = json["title"].stringValue
         let summary = json["description"].stringValue
         let track = Track(rawValue: json["track"].stringValue)!

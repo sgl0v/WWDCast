@@ -11,14 +11,14 @@ import RxSwift
 
 struct Filter {
     var query: String = ""
-    var year = Set<Int>()
+    var years = Year.allYears
     var platforms = Platform.allPlatforms
     var tracks = Track.allTracks
 }
 
 extension Filter: CustomStringConvertible {
     var description : String {
-        return "query='\(query)' year='\(year)' platforms='\(platforms)' tracks='\(tracks)'"
+        return "query='\(query)' years='\(years)' platforms='\(platforms)' tracks='\(tracks)'"
     }
 }
 

@@ -8,6 +8,22 @@
 
 import Foundation
 
+enum Year: UInt {
+    case _2012 = 2012, _2013 = 2013, _2014 = 2014, _2015 = 2015, _2016 = 2016
+    
+    static var allYears: [Year] {
+        return [._2012, ._2013, ._2014, ._2015, ._2016]
+    }
+
+}
+
+extension Year: CustomStringConvertible {
+
+    var description: String {
+        return "WWDC \(self.rawValue)"
+    }
+}
+
 enum Track: String {
     case AppFrameworks = "App Frameworks", SystemFrameworks = "System Frameworks", DeveloperTools = "Developer Tools",
         Featured = "Featured", GraphicsAndGames = "Graphics and Games", Design = "Design", Media = "Media", Distribution = "Distribution"
@@ -28,7 +44,7 @@ enum Platform: String {
 protocol Session {
     var uniqueId: String { get }
     var id: Int { get }
-    var year: Int { get }
+    var year: Year { get }
     var track: Track { get }
     var platforms: [Platform] { get }
     var title: String { get }
