@@ -17,6 +17,8 @@ class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter {
         self.moduleFactory = moduleFactory
     }
 
+    // MARK: SessionsSearchRouter
+    
     func showSessionDetails(session: Session) {
         let controller = self.moduleFactory.sessionDetailsController(session)
         self.navigationController.pushViewController(controller, animated: true)
@@ -34,8 +36,17 @@ class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter {
         self.navigationController.presentViewController(controller, animated: true, completion: nil)
     }
     
-    func showAlert<Action : CustomStringConvertible>(title: String?, message: String?, style: UIAlertControllerStyle, cancelAction: Action, actions: [Action]) -> Observable<Action> {
-        let alertView = UIAlertController.promptFor(title, message: message, style: style, cancelAction: cancelAction, actions: actions)
+    // MARK: SessionDetailsRouter
+    
+    func showAlert(title: String, message: String) {
+        let alertView = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK button title"), style: .Cancel) { _ in
+            })
+        self.navigationController.presentViewController(alertView, animated: true, completion: nil)
+    }
+    
+    func promptFor<Action : CustomStringConvertible>(title: String?, message: String?, cancelAction: Action, actions: [Action]) -> Observable<Action> {
+        let alertView = UIAlertController.promptFor(title, message: message, cancelAction: cancelAction, actions: actions)
         return alertView(self.navigationController)
     }
     

@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		5E2680961D2C43440054E90B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E2680951D2C43440054E90B /* Assets.xcassets */; };
 		5E2680991D2D98AE0054E90B /* SessionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680981D2D98AE0054E90B /* SessionDetailsViewController.swift */; };
-		5E26809B1D2D98C60054E90B /* SessionDetailsPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26809A1D2D98C60054E90B /* SessionDetailsPresenterImpl.swift */; };
+		5E26809B1D2D98C60054E90B /* SessionDetailsViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26809A1D2D98C60054E90B /* SessionDetailsViewModelImpl.swift */; };
 		5E26809D1D2D98D10054E90B /* SessionDetailsInteractorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26809C1D2D98D10054E90B /* SessionDetailsInteractorImpl.swift */; };
 		5E26809F1D2D99E60054E90B /* WWDCastAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26809E1D2D99E60054E90B /* WWDCastAssembly.swift */; };
 		5E2680A11D2D9A130054E90B /* WWDCastAssemblyImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A01D2D9A130054E90B /* WWDCastAssemblyImpl.swift */; };
 		5E2680A41D2D9BC90054E90B /* SessionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A31D2D9BC90054E90B /* SessionDetailsView.swift */; };
-		5E2680A61D2D9BD30054E90B /* SessionDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A51D2D9BD30054E90B /* SessionDetailsPresenter.swift */; };
+		5E2680A61D2D9BD30054E90B /* SessionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A51D2D9BD30054E90B /* SessionDetailsViewModel.swift */; };
 		5E2680A81D2D9BDD0054E90B /* SessionDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2680A71D2D9BDD0054E90B /* SessionDetailsInteractor.swift */; };
 		5E3C4A9E1D52868A002D1145 /* UIBarButtonItem+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3C4A9D1D52868A002D1145 /* UIBarButtonItem+Common.swift */; };
 		5E4EA1E11D3155970097C2FB /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1E01D3155970097C2FB /* ServiceProvider.swift */; };
@@ -86,12 +86,12 @@
 		4A6EBFABAC79034FF2973338 /* Pods-WWDCastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.release.xcconfig"; sourceTree = "<group>"; };
 		5E2680951D2C43440054E90B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		5E2680981D2D98AE0054E90B /* SessionDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewController.swift; sourceTree = "<group>"; };
-		5E26809A1D2D98C60054E90B /* SessionDetailsPresenterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsPresenterImpl.swift; sourceTree = "<group>"; };
+		5E26809A1D2D98C60054E90B /* SessionDetailsViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewModelImpl.swift; sourceTree = "<group>"; };
 		5E26809C1D2D98D10054E90B /* SessionDetailsInteractorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsInteractorImpl.swift; sourceTree = "<group>"; };
 		5E26809E1D2D99E60054E90B /* WWDCastAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAssembly.swift; sourceTree = "<group>"; };
 		5E2680A01D2D9A130054E90B /* WWDCastAssemblyImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAssemblyImpl.swift; sourceTree = "<group>"; };
 		5E2680A31D2D9BC90054E90B /* SessionDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsView.swift; sourceTree = "<group>"; };
-		5E2680A51D2D9BD30054E90B /* SessionDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsPresenter.swift; sourceTree = "<group>"; };
+		5E2680A51D2D9BD30054E90B /* SessionDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewModel.swift; sourceTree = "<group>"; };
 		5E2680A71D2D9BDD0054E90B /* SessionDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsInteractor.swift; sourceTree = "<group>"; };
 		5E3C4A9D1D52868A002D1145 /* UIBarButtonItem+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Common.swift"; sourceTree = "<group>"; };
 		5E4EA1E01D3155970097C2FB /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				5E2680981D2D98AE0054E90B /* SessionDetailsViewController.swift */,
-				5E26809A1D2D98C60054E90B /* SessionDetailsPresenterImpl.swift */,
+				5E26809A1D2D98C60054E90B /* SessionDetailsViewModelImpl.swift */,
 				5E26809C1D2D98D10054E90B /* SessionDetailsInteractorImpl.swift */,
 			);
 			path = SessionDetails;
@@ -193,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				5E2680A31D2D9BC90054E90B /* SessionDetailsView.swift */,
-				5E2680A51D2D9BD30054E90B /* SessionDetailsPresenter.swift */,
+				5E2680A51D2D9BD30054E90B /* SessionDetailsViewModel.swift */,
 				5E2680A71D2D9BDD0054E90B /* SessionDetailsInteractor.swift */,
 			);
 			path = SessionDetails;
@@ -645,13 +645,13 @@
 				5EBEEF5F1D2B0C3F007C44E3 /* SessionBuilder.swift in Sources */,
 				5EBEEF5A1D2B0BB4007C44E3 /* EntityBuilder.swift in Sources */,
 				B6F92A181D2C0E7E009E4B83 /* RxExtensions.swift in Sources */,
-				5E26809B1D2D98C60054E90B /* SessionDetailsPresenterImpl.swift in Sources */,
+				5E26809B1D2D98C60054E90B /* SessionDetailsViewModelImpl.swift in Sources */,
 				5E3C4A9E1D52868A002D1145 /* UIBarButtonItem+Common.swift in Sources */,
 				5EBEEF581D2B0B87007C44E3 /* SessionImpl.swift in Sources */,
 				5E4EA1E31D3156AD0097C2FB /* ReachabilityService.swift in Sources */,
 				E79717F61D5F76BD00C4DD7C /* WWDCastRouterImpl.swift in Sources */,
 				5E26809D1D2D98D10054E90B /* SessionDetailsInteractorImpl.swift in Sources */,
-				5E2680A61D2D9BD30054E90B /* SessionDetailsPresenter.swift in Sources */,
+				5E2680A61D2D9BD30054E90B /* SessionDetailsViewModel.swift in Sources */,
 				B6F92A1A1D2C0E7E009E4B83 /* UITableView+Common.swift in Sources */,
 				E7412AD01D60C12000B925A5 /* FilterViewModel.swift in Sources */,
 				E79718031D5FB60600C4DD7C /* FilterViewController.swift in Sources */,

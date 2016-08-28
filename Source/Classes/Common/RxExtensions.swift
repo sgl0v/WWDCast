@@ -83,10 +83,10 @@ extension UIAlertController {
         case Action(UInt), Cancel
     }
     
-    static func promptFor<Action : CustomStringConvertible>(title: String?, message: String?, style: UIAlertControllerStyle, cancelAction: Action, actions: [Action]) -> UIViewController -> Observable<Action> {
+    static func promptFor<Action : CustomStringConvertible>(title: String?, message: String?, cancelAction: Action, actions: [Action]) -> UIViewController -> Observable<Action> {
         return { viewController in
             return Observable.create { observer in
-                let alertView = UIAlertController(title: title, message: message, preferredStyle: style)
+                let alertView = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
                 alertView.addAction(UIAlertAction(title: cancelAction.description, style: .Cancel) { _ in
                     observer.onNext(cancelAction)
                 })

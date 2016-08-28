@@ -18,7 +18,7 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
-        self.setupBindings()
+        self.bindViewModel()
         self.viewModel.active = true
     }
     
@@ -45,25 +45,15 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
         return self.searchController.searchBar
     }
     
-    private func setupBindings() {
-        // dismiss keyboard on scroll
-        self.tableView.rx_contentOffset.asDriver()
-            .filter({[unowned self] _ -> Bool in
-                return !self.searchController.isBeingPresented()
-            }).driveNext({[unowned self] _ in
-                if self.searchBar.isFirstResponder() {
-                    _ = self.searchBar.resignFirstResponder()
-                }
-                }).addDisposableTo(self.disposeBag)
-        
+    private func bindViewModel() {
         // ViewModel's input
         self.navigationItem.leftBarButtonItem!.rx_tap.bindTo(self.viewModel.filterObserver).addDisposableTo(self.disposeBag)
         self.searchQuery.drive(self.viewModel.searchStringObserver).addDisposableTo(self.disposeBag)
-        
-        // ViewModel's output
         self.tableView.rx_itemSelected
             .bindTo(self.viewModel.itemSelected)
             .addDisposableTo(self.disposeBag)
+        
+        // ViewModel's output
         self.viewModel.sessions.asDriver().drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
         self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
     }
@@ -81,6 +71,16 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
         self.tableView.tableHeaderView = self.searchController.searchBar
         self.tableView.layoutMargins = UIEdgeInsetsZero
         self.tableView.tableFooterView = UIView()
+        
+        // dismiss keyboard on scroll
+        self.tableView.rx_contentOffset.asDriver()
+            .filter({[unowned self] _ -> Bool in
+                return !self.searchController.isBeingPresented()
+                }).driveNext({[unowned self] _ in
+                    if self.searchBar.isFirstResponder() {
+                        _ = self.searchBar.resignFirstResponder()
+                    }
+                    }).addDisposableTo(self.disposeBag)
     }
 
     private var searchQuery: Driver<String> {

@@ -8,7 +8,6 @@
 
 import Foundation
 import RxSwift
-import SwiftyJSON
 
 class SessionDetailsInteractorImpl {
     let serviceProvider: ServiceProvider

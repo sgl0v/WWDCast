@@ -16,17 +16,17 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     @IBOutlet weak var summary: UILabel!
     @IBOutlet weak var subtitle: UILabel!
     @IBOutlet weak var playButton: UIButton!
-    var showSession: Observable<Void> { return self.playButton.rx_tap.asObservable() }
 
-    var presenter: SessionDetailsPresenter!
-    let disposeBag = DisposeBag()
+    private let viewModel: SessionDetailsViewModel
+    private let  disposeBag = DisposeBag()
 
-    init() {
+    init(viewModel: SessionDetailsViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
@@ -34,15 +34,17 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
         self.edgesForExtendedLayout = .None
         
-        self.presenter.onStart()
-        self.presenter.session.drive(self.viewModelObserver)
-            .addDisposableTo(self.disposeBag)
-        self.presenter.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
+        // ViewModel's input
+        self.playButton.rx_tap.subscribeNext(self.viewModel.playSession).addDisposableTo(self.disposeBag)
+        
+        // ViewModel's output
+        self.viewModel.session.drive(self.viewModelObserver).addDisposableTo(self.disposeBag)
+        self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
     }
     
     // MARK: Private
 
-    var viewModelObserver: AnyObserver<SessionViewModel?> {
+    private var viewModelObserver: AnyObserver<SessionViewModel?> {
         return AnyObserver<SessionViewModel?> { event in
             guard case .Next(let tmp) = event else {
                 return
@@ -59,9 +61,5 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
             self.subtitle.text = viewModel.subtitle
         }
     }
-
-}
-
-extension SessionDetailsViewController: SessionDetailsView {
 
 }
