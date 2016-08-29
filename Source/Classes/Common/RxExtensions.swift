@@ -89,11 +89,13 @@ extension UIAlertController {
                 let alertView = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
                 alertView.addAction(UIAlertAction(title: cancelAction.description, style: .Cancel) { _ in
                     observer.onNext(cancelAction)
+                    observer.onCompleted()
                 })
                 
                 for action in actions {
                     alertView.addAction(UIAlertAction(title: action.description, style: .Default) { _ in
                         observer.onNext(action)
+                        observer.onCompleted()
                     })
                 }
                 

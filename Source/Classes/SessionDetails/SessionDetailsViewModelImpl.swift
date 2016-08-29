@@ -15,8 +15,6 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
     private let disposeBag = DisposeBag()
     private let serviceProvider: ServiceProvider
     private let _session: Variable<Session>
-    
-    let isPlaying = Variable(false)
 
     init(session: Session, serviceProvider: ServiceProvider, router: SessionDetailsRouter) {
         self._session = Variable(session)
@@ -28,7 +26,7 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
 
     let title = Driver.just(Titles.SessionDetailsViewTitle)
     
-    var session: Driver<SessionViewModel?> {
+    var session: Driver<SessionViewModel> {
         return self._session.asDriver().map(SessionViewModelBuilder.build)
     }
     
@@ -41,8 +39,7 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
             .map({ idx in self.devices[idx] })
         Observable.combineLatest(self._session.asObservable(), deviceObservable, resultSelector: { ($0, $1) })
             .flatMap(self.serviceProvider.googleCast.play)
-            .doOnError(self.didFailToPlaySession)
-            .subscribeNext({ [unowned self] in self.isPlaying.value = true })
+            .subscribeError(self.didFailToPlaySession)
             .addDisposableTo(self.disposeBag)
     }
     

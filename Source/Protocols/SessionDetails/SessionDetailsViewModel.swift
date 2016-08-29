@@ -12,10 +12,9 @@ import RxCocoa
 
 protocol SessionDetailsViewModel: class {
     // INPUT
-    func playSession()
+    func playSession() // start the current session payback
 
     // OUTPUT
     var title: Driver<String> { get } // The view's title
-    var session: Driver<SessionViewModel?> { get } // the session to present details for
-    var isPlaying: Variable<Bool> { get }
+    var session: Driver<SessionViewModel> { get } // the session to present details for
 }

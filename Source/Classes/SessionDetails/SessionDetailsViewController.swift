@@ -31,35 +31,34 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureUI()
+        self.bindViewModel()
+    }
+    
+    // MARK: Private
+    
+    private func configureUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
         self.edgesForExtendedLayout = .None
-        
+    }
+
+    private func bindViewModel() {
         // ViewModel's input
         self.playButton.rx_tap.subscribeNext(self.viewModel.playSession).addDisposableTo(self.disposeBag)
         
         // ViewModel's output
-        self.viewModel.session.drive(self.viewModelObserver).addDisposableTo(self.disposeBag)
+        self.viewModel.session.driveNext(self.viewModelObserver).addDisposableTo(self.disposeBag)
         self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
     }
     
-    // MARK: Private
-
-    private var viewModelObserver: AnyObserver<SessionViewModel?> {
-        return AnyObserver<SessionViewModel?> { event in
-            guard case .Next(let tmp) = event else {
-                return
-            }
-            guard let viewModel = tmp else {
-                return
-            }
-            Observable.just(viewModel.thumbnailURL)
-                .asObservable()
-                .bindTo(self.image.rx_imageURL)
-                .addDisposableTo(self.disposeBag)
-            self.header.text = viewModel.title
-            self.summary.text = viewModel.summary
-            self.subtitle.text = viewModel.subtitle
-        }
+    private func viewModelObserver(viewModel: SessionViewModel) {
+        Observable.just(viewModel.thumbnailURL)
+            .asObservable()
+            .bindTo(self.image.rx_imageURL)
+            .addDisposableTo(self.disposeBag)
+        self.header.text = viewModel.title
+        self.summary.text = viewModel.summary
+        self.subtitle.text = viewModel.subtitle
     }
-
+    
 }
