@@ -32,17 +32,10 @@ extension SessionsSearchInteractorImpl: SessionsSearchInteractor {
     // MARK: Private
 
     private func loadConfig() -> Observable<AppConfig> {
-        return loadData(WWDCEnvironment.indexURL, builder: AppConfigBuilder.self)
+        return self.serviceProvider.network.GET(WWDCEnvironment.indexURL, parameters: [:], builder: AppConfigBuilder.self)
     }
 
     private func loadSessions(config: AppConfig) -> Observable<[Session]> {
-        return loadData(config.videosURL, builder: SessionsBuilder.self)
+        return self.serviceProvider.network.GET(config.videosURL, parameters: [:], builder: SessionsBuilder.self)
     }
-
-    private func loadData<Builder: EntityBuilder>(url: NSURL, builder: Builder.Type) -> Observable<Builder.EntityType> {
-        return self.serviceProvider.network.GET(url, parameters: [:]).map() { data in
-            return builder.build(JSON(data: data))
-        }
-    }
-
 }

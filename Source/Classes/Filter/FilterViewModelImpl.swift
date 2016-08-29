@@ -78,22 +78,14 @@ struct FilterSectionViewModel: SectionModelType, CustomStringConvertible {
     
 }
 
-class FilterViewModel {
-    enum Result {
-        case Cancelled, Finished(Filter)
-    }
-    typealias Completion = (Result) -> ()
+class FilterViewModelImpl : FilterViewModel {
     
     private var filter: Filter
-    private let completion: Completion
+    private let completion: FilterModuleCompletion
     private let filterItemsVariable: Variable<Array<FilterSectionViewModel>>
     private let disposeBag = DisposeBag()
-//    var filterTrigger: Driver<NSIndexPath>?
-    var filterItems: Driver<Array<FilterSectionViewModel>> {
-        return self.filterItemsVariable.asDriver()
-    }
 
-    init(filter: Filter, completion: Completion) {
+    init(filter: Filter, completion: FilterModuleCompletion) {
         self.filter = filter
         self.completion = completion
         let years = FilterSectionViewModel(type: .Years, items: [
@@ -150,6 +142,22 @@ class FilterViewModel {
         }).addDisposableTo(self.disposeBag)
     }
     
+    // MARK: SessionFilterViewModel
+    
+    var filterItems: Driver<Array<FilterSectionViewModel>> {
+        return self.filterItemsVariable.asDriver()
+    }
+    
+    func dismissObserver(cancelled: Bool) {
+        if (cancelled) {
+            self.completion(.Cancelled)
+            return
+        }
+        self.completion(.Finished(self.filter))
+    }
+    
+    // MARK: Private
+    
     private func yearsSelection(platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Year]> {
         return { _ in
             let selectedYears: [Year]? = platforms.items.filter({ item in
@@ -184,23 +192,4 @@ class FilterViewModel {
         }
     }
     
-    var finished: Bool -> Void {
-        return {[unowned self] cancelled in
-            cancelled ? self.completion(.Cancelled) : self.completion(.Finished(self.filter))
-        }
-    }
-
-//    var itemSelected: AnyObserver<NSIndexPath> {
-//        return AnyObserver {[unowned self] event in
-//            guard case .Next(let indexPath) = event else {
-//                return
-//            }
-//            
-//            let filterSection = self.filterItemsVariable.value[indexPath.section]
-//            if .Tracks != filterSection.type {
-//                filterSection.selectItem(atIndex: indexPath.row)
-//            }
-//        }
-//    }
-
 }

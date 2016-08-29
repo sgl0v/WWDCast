@@ -6,7 +6,6 @@ inhibit_all_warnings!
 
 target 'WWDCast' do
   pod 'google-cast-sdk', '~> 3.1.1'
-  pod 'RxAlamofire', '~> 2.5'
   pod 'RxCocoa', '~> 2.6'
   pod 'RxOptional', '~> 2.0'
   pod 'RxDataSources', '~> 0.9'

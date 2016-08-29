@@ -34,9 +34,9 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         return castContainerVC
     }
     
-    func filterController(filter: Filter, completion: FilterViewModel.Completion) -> UIViewController {
-        let view = FilterViewController()
-        view.viewModel = FilterViewModel(filter: filter, completion: completion)
+    func filterController(filter: Filter, completion: FilterModuleCompletion) -> UIViewController {
+        let viewModel = FilterViewModelImpl(filter: filter, completion: completion)
+        let view = FilterViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: view)
         navigationController.navigationBar.tintColor = UIColor.blackColor()
         return navigationController

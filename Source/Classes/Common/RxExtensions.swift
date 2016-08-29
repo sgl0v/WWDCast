@@ -9,7 +9,6 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import Alamofire
 import SDWebImage
 
 // One way binding operator
@@ -38,24 +37,6 @@ func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disposable 
     
     return StableCompositeDisposable.create(bindToUIDisposable, bindToVariable)
 }
-
-func rx_request(method: Alamofire.Method, _ URLString: URLStringConvertible) -> Observable<AnyObject> {
-    return Observable<AnyObject>.create({ (observer) -> Disposable in
-        let request = Alamofire.request(method, URLString)
-            .responseJSON(completionHandler: { (firedResponse) -> Void in
-                if let value = firedResponse.result.value {
-                    observer.onNext(value)
-                    observer.onCompleted()
-                } else if let error = firedResponse.result.error {
-                    observer.onError(error)
-                }
-            })
-        return AnonymousDisposable {
-            request.cancel()
-        }
-    })
-}
-
 
 extension UIImageView {
     var rx_imageURL: AnyObserver<NSURL> {
@@ -108,23 +89,3 @@ extension UIAlertController {
         }
     }
 }
-
-//extension ObservableType where E: SequenceType {
-//    /**
-//     Projects each element of an observable sequence into a new form.
-//
-//     - seealso: [map operator on reactivex.io](http://reactivex.io/documentation/operators/map.html)
-//
-//     - parameter selector: A transform function to apply to each source element.
-//     - returns: An observable sequence whose elements are the result of invoking the transform function on each element of source.
-//
-//     */
-//    @warn_unused_result(message="http://git.io/rxs.uo")
-//    public func mapSequence<R: SequenceType where R.Generator.Element == AnyObject>(selector: Self.E.Generator.Element throws -> R.Generator.Element) -> RxSwift.Observable<R> {
-//        return self.map({ sequence in
-//            return try selector(sequence.generate().next()!) //sequence.map() { element in
-//            //                return try selector(element)
-//            //            }
-//        })
-//    }
-//}

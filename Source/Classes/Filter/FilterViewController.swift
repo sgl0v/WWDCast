@@ -11,28 +11,6 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-extension RxTableViewCell {
-    
-    var rx_accessoryCheckmark: ControlProperty<Bool> {
-        let getter: UITableViewCell -> Bool = { cell in
-            cell.accessoryType == .Checkmark
-        }
-        let setter: (UITableViewCell, Bool) -> Void = { cell, selected in
-            cell.accessoryType = selected ? .Checkmark : .None
-        }
-        let values: Observable<Bool> = Observable.deferred { [weak self] in
-            guard let existingSelf = self else {
-                return Observable.empty()
-            }
-            
-            return existingSelf.onSelected.map({ _ in true }).startWith(getter(existingSelf))
-        }
-        return ControlProperty(values: values, valueSink: UIBindingObserver(UIElement: self) { control, value in
-            setter(control, value)
-        })
-    }
-}
-
 class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvidable {
     
     var disposeBag: DisposeBag?
@@ -70,7 +48,12 @@ class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvi
 
 
 class FilterViewController: TableViewController<FilterSectionViewModel, FilterTableViewCell> {
-    var viewModel: FilterViewModel!
+    let viewModel: FilterViewModel
+    
+    init(viewModel: FilterViewModel) {
+        self.viewModel = viewModel
+        super.init()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,17 +65,13 @@ class FilterViewController: TableViewController<FilterSectionViewModel, FilterTa
     
     private func setupBindings() {
         // dismiss keyboard on scroll
-        self.navigationItem.leftBarButtonItem!.rx_tap.map({ true }).subscribeNext(self.viewModel.finished).addDisposableTo(self.disposeBag)
-        self.navigationItem.rightBarButtonItem!.rx_tap.map({ false }).subscribeNext(self.viewModel.finished).addDisposableTo(self.disposeBag)
+        self.navigationItem.leftBarButtonItem!.rx_tap.map({ true }).subscribeNext(self.viewModel.dismissObserver).addDisposableTo(self.disposeBag)
+        self.navigationItem.rightBarButtonItem!.rx_tap.map({ false }).subscribeNext(self.viewModel.dismissObserver).addDisposableTo(self.disposeBag)
         self.tableView.rx_itemSelected.subscribeNext({ indexPath in
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }).addDisposableTo(self.disposeBag)
 
         self.viewModel.filterItems.drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
-//        self.viewModel.filterTrigger = self.tableView.rx_itemSelected.asDriver()
-//        self.tableView.rx_itemSelected.asDriver()
-//            .drive(self.viewModel.itemSelected)
-//            .addDisposableTo(self.disposeBag)
     }
 
     private func configureUI() {

@@ -1,13 +1,7 @@
 PODS:
-  - Alamofire (3.4.1)
   - google-cast-sdk (3.1.1):
     - google-cast-sdk/Core (= 3.1.1)
   - google-cast-sdk/Core (3.1.1)
-  - RxAlamofire (2.5):
-    - RxAlamofire/Core (= 2.5)
-  - RxAlamofire/Core (2.5):
-    - Alamofire (~> 3.4)
-    - RxSwift (~> 2.5)
   - RxCocoa (2.6.0):
     - RxSwift (~> 2.5)
   - RxDataSources (0.9):
@@ -24,7 +18,6 @@ PODS:
 
 DEPENDENCIES:
   - google-cast-sdk (~> 3.1.1)
-  - RxAlamofire (~> 2.5)
   - RxCocoa (~> 2.6)
   - RxDataSources (~> 0.9)
   - RxOptional (~> 2.0)
@@ -32,9 +25,7 @@ DEPENDENCIES:
   - SwiftyJSON (~> 2.3)
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   google-cast-sdk: 3aec099807bf818897e896a8abdb25c29981cec8
-  RxAlamofire: b4572a077b6b2410c8732a27266299df4c00736e
   RxCocoa: 89ab00d5753502520227940e3a0e0a0413683c6b
   RxDataSources: e169bba94a7be584df7c1e1487fa56edc8753ae6
   RxOptional: b77fb47a0190213cf8a37c7a2b7fda28160b4563
@@ -42,6 +33,6 @@ SPEC CHECKSUMS:
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 4423e6081c7c6bdad319703414ed4f68329d76db
+PODFILE CHECKSUM: 838bf2ebbd8a14081d66e3ee692583188d653ef8
 
 COCOAPODS: 1.0.1

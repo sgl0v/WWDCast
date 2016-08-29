@@ -11,5 +11,5 @@ import RxSwift
 
 protocol NetworkService: class {
 
-    func GET(url: NSURL, parameters: [String: AnyObject]) -> Observable<NSData>
+    func GET<Builder: EntityBuilder>(url: NSURL, parameters: [String: AnyObject], builder: Builder.Type) -> Observable<Builder.EntityType>
 }
