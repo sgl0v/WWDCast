@@ -17,5 +17,15 @@ protocol GoogleCastDevice: CustomStringConvertible {
 protocol GoogleCastService: class {
 
     var devices: [GoogleCastDevice] { get }
-    func playSession(device: GoogleCastDevice, session: Session) -> Observable<Void>
+    func play(session: Session, onDevice device: GoogleCastDevice) -> Observable<Void>
+    
+    /**
+     Pauses playback of the current session.
+     */
+    func pausePlayback()
+    
+    /**
+     Resumes playback of the current session.
+     */
+    func resumePlayback()
 }

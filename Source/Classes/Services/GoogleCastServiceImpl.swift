@@ -41,12 +41,6 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
     private let disposeBag = DisposeBag()
     private let deviceScanner: GCKDeviceScanner
 
-    var devices: [GoogleCastDevice] {
-        return self.deviceScanner.devices.map() {device in
-            return GoogleCastDeviceImpl(name: device.friendlyName, id: device.deviceID)
-        }
-    }
-
     init(applicationID: String) {
         self.applicationID = applicationID
         // Create filter criteria to only show devices that can run your app
@@ -65,14 +59,44 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
         self.deviceScanner.startScan()
     }
     
-    func playSession(device: GoogleCastDevice, session: Session) -> Observable<Void> {
+    // MARK: GoogleCastService
+    
+    var devices: [GoogleCastDevice] {
+        return self.deviceScanner.devices.map() {device in
+            return GoogleCastDeviceImpl(name: device.friendlyName, id: device.deviceID)
+        }
+    }
+    
+    func play(session: Session, onDevice device: GoogleCastDevice) -> Observable<Void> {
         return Observable.just(device)
             .flatMap(self.connectToDevice)
             .flatMap(self.launchApplication(self.applicationID))
             .flatMap(self.playSession(session))
+            .doOnNext({ channel in
+                self.castChannel = channel
+            })
+            .map({ _ in })
     }
     
-    func connectToDevice(device: GoogleCastDevice) -> Observable<GCKDeviceManager> {
+    func pausePlayback() {
+        guard let castChannel = self.castChannel else {
+            return
+        }
+        castChannel.pause()
+    }
+    
+    func resumePlayback() {
+        guard let castChannel = self.castChannel else {
+            return
+        }
+        castChannel.play()
+    }
+    
+    // MARK: Private
+    
+    private var castChannel: GCKMediaControlChannel?
+    
+    private func connectToDevice(device: GoogleCastDevice) -> Observable<GCKDeviceManager> {
         return Observable.create({[unowned self] observer in
             guard let gckDevice = self.deviceScanner.devices.filter({ device.id == $0.deviceID }).first else {
                 observer.onError(GoogleCastServiceError.ConnectionError)
@@ -101,7 +125,7 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
         })
     }
     
-    func launchApplication(applicationId: String) -> GCKDeviceManager -> Observable<GCKDeviceManager> {
+    private func launchApplication(applicationId: String) -> GCKDeviceManager -> Observable<GCKDeviceManager> {
         return { deviceManager in
             return Observable.create({[unowned self] observer in
                 
@@ -123,7 +147,7 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
         }
     }
     
-    func playSession(session: Session) -> GCKDeviceManager -> Observable<Void> {
+    private func playSession(session: Session) -> GCKDeviceManager -> Observable<GCKMediaControlChannel> {
         return { deviceManager in
             return Observable.create({ observer in
                 let mediaInfo = GCKMediaInformation(session: session)
@@ -134,7 +158,7 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
                 if (id == kGCKInvalidRequestID) {
                     observer.onError(GoogleCastServiceError.PlaybackError)
                 } else {
-                    observer.onNext()
+                    observer.onNext(mediaControlChannel)
                 }
                 observer.onCompleted()
                 return NopDisposable.instance

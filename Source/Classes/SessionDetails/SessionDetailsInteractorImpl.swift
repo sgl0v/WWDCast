@@ -22,7 +22,7 @@ class SessionDetailsInteractorImpl {
 extension SessionDetailsInteractorImpl: SessionDetailsInteractor {
 
     func playSession(device: GoogleCastDevice, session: Session) -> Observable<Void> {
-        return self.serviceProvider.googleCast.playSession(device, session: session)
+        return self.serviceProvider.googleCast.play(session, onDevice: device)
     }
 
     var devices: [GoogleCastDevice] {
