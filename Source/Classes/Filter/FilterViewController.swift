@@ -29,16 +29,17 @@ class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvi
         self.onPrepareForReuse.subscribeNext({[unowned self] in
             self.disposeBag = nil
             self.accessoryView = nil
+            self.accessoryType = .None
         }).addDisposableTo(disposeBag)
         
         self.textLabel?.text = viewModel.title
         
         if case .Switch = viewModel.style {
             let switchButton = UISwitch()
-            switchButton.rx_value <-> viewModel.selected
+            (switchButton.rx_value <-> viewModel.selected).addDisposableTo(disposeBag)
             self.accessoryView = switchButton
         } else {
-            self.rx_accessoryCheckmark <-> viewModel.selected
+            (self.rx_accessoryCheckmark <-> viewModel.selected).addDisposableTo(disposeBag)
         }
         
         self.disposeBag = disposeBag
