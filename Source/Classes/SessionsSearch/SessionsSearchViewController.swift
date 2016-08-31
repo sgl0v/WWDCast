@@ -13,7 +13,17 @@ import RxDataSources
 
 class SessionsSearchViewController: TableViewController<SessionViewModels, SessionTableViewCell> {
     
-    var viewModel: SessionsSearchPresenter!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    private let viewModel: SessionsSearchPresenter
+    
+    init(viewModel: SessionsSearchPresenter) {
+        self.viewModel = viewModel
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,15 +57,16 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
     
     private func bindViewModel() {
         // ViewModel's input
-        self.navigationItem.leftBarButtonItem!.rx_tap.bindTo(self.viewModel.filterObserver).addDisposableTo(self.disposeBag)
-        self.searchQuery.drive(self.viewModel.searchStringObserver).addDisposableTo(self.disposeBag)
-        self.tableView.rx_itemSelected
-            .bindTo(self.viewModel.itemSelected)
+        self.navigationItem.leftBarButtonItem!.rx_tap.bindNext(self.viewModel.filterObserver).addDisposableTo(self.disposeBag)
+        self.searchQuery.driveNext(self.viewModel.searchStringObserver).addDisposableTo(self.disposeBag)
+        self.tableView.rx_modelSelected(SessionViewModel.self)
+            .bindNext(self.viewModel.itemSelectionObserver)
             .addDisposableTo(self.disposeBag)
         
         // ViewModel's output
         self.viewModel.sessions.asDriver().drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
         self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
+//        self.viewModel.isLoading.drive(self.view.rx_hidden).addDisposableTo(self.disposeBag)
     }
 
     private func configureUI() {        
@@ -76,11 +87,11 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
         self.tableView.rx_contentOffset.asDriver()
             .filter({[unowned self] _ -> Bool in
                 return !self.searchController.isBeingPresented()
-                }).driveNext({[unowned self] _ in
-                    if self.searchBar.isFirstResponder() {
-                        _ = self.searchBar.resignFirstResponder()
-                    }
-                    }).addDisposableTo(self.disposeBag)
+            }).driveNext({[unowned self] _ in
+                if self.searchBar.isFirstResponder() {
+                    _ = self.searchBar.resignFirstResponder()
+                }
+            }).addDisposableTo(self.disposeBag)
     }
 
     private var searchQuery: Driver<String> {

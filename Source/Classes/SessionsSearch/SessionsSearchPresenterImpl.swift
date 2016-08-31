@@ -13,17 +13,14 @@ import RxCocoa
 struct Titles {
     static let SessionsSearchViewTitle = NSLocalizedString("WWDCast", comment: "Session search view title")
     static let SessionDetailsViewTitle = NSLocalizedString("Session Details", comment: "Session details view title")
+    static let FilterViewTitle = NSLocalizedString("Filter", comment: "Filter view title")
 }
 
 class SessionsSearchPresenterImpl: SessionsSearchPresenter {
     var interactor: SessionsSearchInteractor!
     var router: SessionsSearchRouter
     private var filter: Variable<Filter>
-    var isLoading: Observable<Bool> {
-        return _isLoading
-    }
     private let _sessions: Variable<[Session]>
-    private let _isLoading = BehaviorSubject(value: false);
     private let disposeBag = DisposeBag()
     
     /// Underlying variable that we'll listen to for changes
@@ -41,26 +38,26 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
     }
     
     /**
-  Rx `Observable` for the `active` flag. (when it becomes `true`).
-  
-  Will send messages only to *new* & *different* values.
-  */
-  lazy var didBecomeActive: Observable<SessionsSearchPresenterImpl> = { [unowned self] in
-    return self._active.asObservable()
-        .filter { $0 == true }
-        .map { _ in return self }
-  }()
-  
-  /**
-  Rx `Observable` for the `active` flag. (when it becomes `false`).
-  
-  Will send messages only to *new* & *different* values.
-  */
-  lazy var didBecomeInactive: Observable<SessionsSearchPresenterImpl> = { [unowned self] in
-    return self._active.asObservable()
-        .filter { $0 == false }
-        .map { _ in return self }
-  }()
+    Rx `Observable` for the `active` flag. (when it becomes `true`).
+
+    Will send messages only to *new* & *different* values.
+    */
+    lazy var didBecomeActive: Observable<SessionsSearchPresenterImpl> = { [unowned self] in
+        return self._active.asObservable()
+            .filter { $0 == true }
+            .map { _ in return self }
+    }()
+
+    /**
+    Rx `Observable` for the `active` flag. (when it becomes `false`).
+
+    Will send messages only to *new* & *different* values.
+    */
+    lazy var didBecomeInactive: Observable<SessionsSearchPresenterImpl> = { [unowned self] in
+        return self._active.asObservable()
+            .filter { $0 == false }
+            .map { _ in return self }
+    }()
 
     init(router: SessionsSearchRouter) {
         self.router = router
@@ -68,8 +65,12 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
         self.title = Driver.just(Titles.SessionsSearchViewTitle)
         self._sessions = Variable([])
 
+        let isLoading = ActivityIndicator()
+        self.isLoading = isLoading.asDriver()
+        
         self.didBecomeActive.subscribeNext({ viewModel in
-            Observable.combineLatest(viewModel.interactor.loadSessions(), viewModel.filter.asObservable(), resultSelector: self.applyFilter)
+            let sessionsObservable = self.interactor.loadSessions().startWith([]).trackActivity(isLoading)
+            Observable.combineLatest(sessionsObservable, viewModel.filter.asObservable(), resultSelector: self.applyFilter)
                 .asDriver(onErrorJustReturn: [])
                 .drive(viewModel._sessions)
                 .addDisposableTo(viewModel.disposeBag)
@@ -90,37 +91,28 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
     var sessions: Driver<[SessionViewModels]> {
         return self._sessions.asDriver().map(SessionViewModelBuilder.build)
     }
+    let isLoading: Driver<Bool>
     let title: Driver<String>
 
-    var itemSelected: AnyObserver<NSIndexPath> {
-        return AnyObserver {[unowned self] event in
-            guard case .Next(let indexPath) = event else {
-                return
-            }
-            self.router.showSessionDetails(self._sessions.value[indexPath.row])
+    func itemSelectionObserver(viewModel: SessionViewModel) {
+        guard let session = self._sessions.value.filter({ session in
+            session.uniqueId == viewModel.uniqueID
+        }).first else {
+            return
         }
+        self.router.showSessionDetails(session)
     }
     
-    var filterObserver: AnyObserver<Void> {
-        return AnyObserver {[unowned self] event in
-            guard case .Next = event else {
-                return
-            }
-            self.router.showFilterController(withFilter: self.filter.value) {[unowned self] filter in
-                self.filter.value = filter
-            }
-        }
-    }
-    
-    var searchStringObserver: AnyObserver<String> {
-        return AnyObserver {[unowned self] event in
-            guard case .Next(let query) = event else {
-                return
-            }
-            var filter = self.filter.value
-            filter.query = query
+    func filterObserver() {
+        self.router.showFilterController(withFilter: self.filter.value) {[unowned self] filter in
             self.filter.value = filter
         }
+    }
+    
+    func searchStringObserver(query: String) {
+        var filter = self.filter.value
+        filter.query = query
+        self.filter.value = filter
     }
 
 }
