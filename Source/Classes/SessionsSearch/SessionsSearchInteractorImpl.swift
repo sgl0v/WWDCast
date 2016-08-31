@@ -24,6 +24,7 @@ extension SessionsSearchInteractorImpl: SessionsSearchInteractor {
 
     func loadSessions() -> Observable<[Session]> {
         return loadConfig().flatMapLatest(self.loadSessions)
+            .retryOnBecomesReachable([], reachabilityService: self.serviceProvider.reachability)
             .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
             .observeOn(self.serviceProvider.scheduler.mainScheduler)
             .shareReplayLatestWhileConnected()

@@ -19,7 +19,6 @@
 		5E4EA1E11D3155970097C2FB /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1E01D3155970097C2FB /* ServiceProvider.swift */; };
 		5E4EA1E31D3156AD0097C2FB /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1E21D3156AD0097C2FB /* ReachabilityService.swift */; };
 		5E4EA1E51D315A640097C2FB /* ReachabilityServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1E41D315A640097C2FB /* ReachabilityServiceImpl.swift */; };
-		5E4EA1E71D315B8F0097C2FB /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1E61D315B8F0097C2FB /* Reachability.swift */; };
 		5E4EA1E91D315C580097C2FB /* SchedulerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1E81D315C580097C2FB /* SchedulerService.swift */; };
 		5E4EA1EB1D315D4D0097C2FB /* SchedulerServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1EA1D315D4D0097C2FB /* SchedulerServiceImpl.swift */; };
 		5E4EA1ED1D315F070097C2FB /* ServiceProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EA1EC1D315F070097C2FB /* ServiceProviderImpl.swift */; };
@@ -66,8 +65,10 @@
 		E79718031D5FB60600C4DD7C /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79718021D5FB60600C4DD7C /* FilterViewController.swift */; };
 		E79718071D5FB9E900C4DD7C /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718061D5FB9E900C4DD7C /* FilterViewController.xib */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
+		E7AAA2CA1D7782E40034D07A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AAA2C91D7782E40034D07A /* Reachability.swift */; };
 		E7CC01E61D732306001A37C6 /* SessionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CC01E51D732306001A37C6 /* SessionDetailsViewModel.swift */; };
 		E7CC01E81D732320001A37C6 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CC01E71D732320001A37C6 /* FilterViewModel.swift */; };
+		E7CC01EA1D73929C001A37C6 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CC01E91D73929C001A37C6 /* ActivityIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +98,6 @@
 		5E4EA1E01D3155970097C2FB /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		5E4EA1E21D3156AD0097C2FB /* ReachabilityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		5E4EA1E41D315A640097C2FB /* ReachabilityServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityServiceImpl.swift; sourceTree = "<group>"; };
-		5E4EA1E61D315B8F0097C2FB /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		5E4EA1E81D315C580097C2FB /* SchedulerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerService.swift; sourceTree = "<group>"; };
 		5E4EA1EA1D315D4D0097C2FB /* SchedulerServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerServiceImpl.swift; sourceTree = "<group>"; };
 		5E4EA1EC1D315F070097C2FB /* ServiceProviderImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderImpl.swift; sourceTree = "<group>"; };
@@ -147,8 +147,10 @@
 		E79718021D5FB60600C4DD7C /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		E79718061D5FB9E900C4DD7C /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterViewController.xib; path = Resources/FilterViewController.xib; sourceTree = SOURCE_ROOT; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		E7AAA2C91D7782E40034D07A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		E7CC01E51D732306001A37C6 /* SessionDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewModel.swift; sourceTree = "<group>"; };
 		E7CC01E71D732320001A37C6 /* FilterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
+		E7CC01E91D73929C001A37C6 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,7 +207,6 @@
 			children = (
 				5E4EA1EC1D315F070097C2FB /* ServiceProviderImpl.swift */,
 				5E4EA1E41D315A640097C2FB /* ReachabilityServiceImpl.swift */,
-				5E4EA1E61D315B8F0097C2FB /* Reachability.swift */,
 				5E4EA1EA1D315D4D0097C2FB /* SchedulerServiceImpl.swift */,
 				5E4EA1F01D3160F40097C2FB /* NetworkServiceImpl.swift */,
 				5E4EA1F61D3179460097C2FB /* GoogleCastServiceImpl.swift */,
@@ -326,6 +327,7 @@
 		B6F929F11D2AB2BE009E4B83 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E7AAA2C81D7782E40034D07A /* Vendor */,
 				E79718011D5FB5EB00C4DD7C /* Filter */,
 				5E2680A01D2D9A130054E90B /* WWDCastAssemblyImpl.swift */,
 				E79717F51D5F76BD00C4DD7C /* WWDCastRouterImpl.swift */,
@@ -382,6 +384,7 @@
 				B6F92A161D2C0E7E009E4B83 /* UITableView+Common.swift */,
 				B6F92A171D2C0E7E009E4B83 /* UITableViewController+Common.swift */,
 				5E3C4A9D1D52868A002D1145 /* UIBarButtonItem+Common.swift */,
+				E7CC01E91D73929C001A37C6 /* ActivityIndicator.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -405,6 +408,14 @@
 				E7412AD11D60C1C200B925A5 /* Filter.swift */,
 			);
 			path = Filter;
+			sourceTree = "<group>";
+		};
+		E7AAA2C81D7782E40034D07A /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				E7AAA2C91D7782E40034D07A /* Reachability.swift */,
+			);
+			path = Vendor;
 			sourceTree = "<group>";
 		};
 		E7CC01E41D732306001A37C6 /* ViewModels */ = {
@@ -625,6 +636,7 @@
 				E7412AD21D60C1C200B925A5 /* Filter.swift in Sources */,
 				5E26809F1D2D99E60054E90B /* WWDCastAssembly.swift in Sources */,
 				5EBEEF661D2C24EF007C44E3 /* SessionsBuilder.swift in Sources */,
+				E7CC01EA1D73929C001A37C6 /* ActivityIndicator.swift in Sources */,
 				5EBEEF511D2B0AEA007C44E3 /* AppConfig.swift in Sources */,
 				E79717F41D5F76B800C4DD7C /* WWDCastRouter.swift in Sources */,
 				5E4EA1ED1D315F070097C2FB /* ServiceProviderImpl.swift in Sources */,
@@ -641,7 +653,6 @@
 				B6F929FA1D2AB5E3009E4B83 /* SessionsSearchPresenter.swift in Sources */,
 				5E4EA1E51D315A640097C2FB /* ReachabilityServiceImpl.swift in Sources */,
 				B6F929FE1D2AB5F8009E4B83 /* SessionsSearchView.swift in Sources */,
-				5E4EA1E71D315B8F0097C2FB /* Reachability.swift in Sources */,
 				B6F929F51D2AB562009E4B83 /* SessionsSearchPresenterImpl.swift in Sources */,
 				5E4EA1F11D3160F40097C2FB /* NetworkServiceImpl.swift in Sources */,
 				5E4EA1EB1D315D4D0097C2FB /* SchedulerServiceImpl.swift in Sources */,
@@ -659,6 +670,7 @@
 				5EBEEF5A1D2B0BB4007C44E3 /* EntityBuilder.swift in Sources */,
 				B6F92A181D2C0E7E009E4B83 /* RxExtensions.swift in Sources */,
 				5E26809B1D2D98C60054E90B /* SessionDetailsViewModelImpl.swift in Sources */,
+				E7AAA2CA1D7782E40034D07A /* Reachability.swift in Sources */,
 				5E3C4A9E1D52868A002D1145 /* UIBarButtonItem+Common.swift in Sources */,
 				5EBEEF581D2B0B87007C44E3 /* SessionImpl.swift in Sources */,
 				5E4EA1E31D3156AD0097C2FB /* ReachabilityService.swift in Sources */,
@@ -723,8 +735,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -746,6 +758,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -769,8 +782,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -785,6 +798,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
