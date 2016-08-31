@@ -57,3 +57,15 @@ protocol Session {
     var subtitles: NSURL { get }
     var shelfImageURL: NSURL { get }
 }
+
+extension SequenceType where Generator.Element == Session {
+    
+    func apply(filter: Filter) -> [Generator.Element] {
+        return self.filter { session in
+            (filter.query.isEmpty || session.title.lowercaseString.containsString(filter.query.lowercaseString)) &&
+                filter.years.contains(session.year) &&
+                filter.tracks.contains(session.track) &&
+                !Set(filter.platforms).intersect(session.platforms).isEmpty
+        }
+    }
+}
