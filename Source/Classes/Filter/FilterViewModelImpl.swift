@@ -47,17 +47,14 @@ struct FilterSectionViewModel: SectionModelType, CustomStringConvertible {
         self.type = type
         self.items = items
         self.selection = items.enumerate().map({ idx, item in
-            return item.selected.asObservable().map({ (idx, $0) })
+            return item.selected.asObservable().distinctUntilChanged().map({ (idx, $0) })
         }).toObservable().merge()
     }
     
     func selectItem(atIndex index: Int) {
         assert(index < self.items.count)
         for (idx, item) in self.items.enumerate() {
-            let selected = idx == index
-            if (item.selected.value != selected) {
-                item.selected.value = selected
-            }
+            item.selected.value = idx == index
         }
     }
     

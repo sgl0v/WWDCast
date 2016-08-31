@@ -11,13 +11,21 @@ import RxSwift
 import RxCocoa
 
 protocol SessionsSearchPresenter: class {
+    // INPUT
+    
+    // Defines whether or not the viewModel is active
     var active: Bool { get set }
+    // Defines whether or not there are any ongoing network operation
+    var isLoading: Driver<Bool> { get }
     // Item selection observer
-    var itemSelected: AnyObserver<NSIndexPath> { get }
+    func itemSelectionObserver(viewModel: SessionViewModel)
     // Filter button tap observer
-    var filterObserver: AnyObserver<Void> { get }
+    func filterObserver()
     // Search string observer
-    var searchStringObserver: AnyObserver<String> { get }
+    func searchStringObserver(query: String)
+    
+    // OUTPUT
+    
     // The view's title
     var title: Driver<String> { get }
     // The array of available WWDC sessions

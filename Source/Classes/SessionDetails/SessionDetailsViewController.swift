@@ -18,7 +18,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     @IBOutlet weak var playButton: UIButton!
 
     private let viewModel: SessionDetailsViewModel
-    private let  disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     init(viewModel: SessionDetailsViewModel) {
         self.viewModel = viewModel

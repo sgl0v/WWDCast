@@ -66,9 +66,9 @@
 		E79718071D5FB9E900C4DD7C /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718061D5FB9E900C4DD7C /* FilterViewController.xib */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
 		E7AAA2CA1D7782E40034D07A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AAA2C91D7782E40034D07A /* Reachability.swift */; };
+		E7AAA2CC1D77885D0034D07A /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AAA2CB1D77885D0034D07A /* ActivityIndicator.swift */; };
 		E7CC01E61D732306001A37C6 /* SessionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CC01E51D732306001A37C6 /* SessionDetailsViewModel.swift */; };
 		E7CC01E81D732320001A37C6 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CC01E71D732320001A37C6 /* FilterViewModel.swift */; };
-		E7CC01EA1D73929C001A37C6 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CC01E91D73929C001A37C6 /* ActivityIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,9 +148,9 @@
 		E79718061D5FB9E900C4DD7C /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterViewController.xib; path = Resources/FilterViewController.xib; sourceTree = SOURCE_ROOT; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		E7AAA2C91D7782E40034D07A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		E7AAA2CB1D77885D0034D07A /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		E7CC01E51D732306001A37C6 /* SessionDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewModel.swift; sourceTree = "<group>"; };
 		E7CC01E71D732320001A37C6 /* FilterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
-		E7CC01E91D73929C001A37C6 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -384,7 +384,6 @@
 				B6F92A161D2C0E7E009E4B83 /* UITableView+Common.swift */,
 				B6F92A171D2C0E7E009E4B83 /* UITableViewController+Common.swift */,
 				5E3C4A9D1D52868A002D1145 /* UIBarButtonItem+Common.swift */,
-				E7CC01E91D73929C001A37C6 /* ActivityIndicator.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -413,6 +412,7 @@
 		E7AAA2C81D7782E40034D07A /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				E7AAA2CB1D77885D0034D07A /* ActivityIndicator.swift */,
 				E7AAA2C91D7782E40034D07A /* Reachability.swift */,
 			);
 			path = Vendor;
@@ -636,7 +636,7 @@
 				E7412AD21D60C1C200B925A5 /* Filter.swift in Sources */,
 				5E26809F1D2D99E60054E90B /* WWDCastAssembly.swift in Sources */,
 				5EBEEF661D2C24EF007C44E3 /* SessionsBuilder.swift in Sources */,
-				E7CC01EA1D73929C001A37C6 /* ActivityIndicator.swift in Sources */,
+				E7AAA2CC1D77885D0034D07A /* ActivityIndicator.swift in Sources */,
 				5EBEEF511D2B0AEA007C44E3 /* AppConfig.swift in Sources */,
 				E79717F41D5F76B800C4DD7C /* WWDCastRouter.swift in Sources */,
 				5E4EA1ED1D315F070097C2FB /* ServiceProviderImpl.swift in Sources */,
