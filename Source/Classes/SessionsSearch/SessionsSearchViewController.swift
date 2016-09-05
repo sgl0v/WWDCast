@@ -14,9 +14,9 @@ import RxDataSources
 class SessionsSearchViewController: TableViewController<SessionViewModels, SessionTableViewCell> {
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-    private let viewModel: SessionsSearchPresenter
+    private let viewModel: SessionsSearchViewModel
     
-    init(viewModel: SessionsSearchPresenter) {
+    init(viewModel: SessionsSearchViewModel) {
         self.viewModel = viewModel
         super.init()
     }

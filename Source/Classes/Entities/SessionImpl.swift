@@ -17,7 +17,7 @@ struct SessionImpl: Session {
     let title: String
     var subtitle: String {
         let focusString = self.platforms.map({ $0.rawValue }).joinWithSeparator(", ")
-        return "WWDC \(year) - Session \(id) - \(focusString)"
+        return "\(year) - Session \(id) - \(focusString)"
     }
     let summary: String
     let videoURL: NSURL

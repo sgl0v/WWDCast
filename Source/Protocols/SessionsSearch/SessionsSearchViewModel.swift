@@ -1,5 +1,5 @@
 //
-//  SessionsSearchPresenter.swift
+//  SessionsSearchViewModel.swift
 //  WWDCast
 //
 //  Created by Maksym Shcheglov on 04/07/16.
@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol SessionsSearchPresenter: class {
+protocol SessionsSearchViewModel: class {
     // INPUT
     
     // Defines whether or not the viewModel is active

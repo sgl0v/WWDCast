@@ -1,5 +1,5 @@
 //
-//  SessionsSearchPresenterImpl.swift
+//  SessionsSearchViewModelImpl.swift
 //  WWDCast
 //
 //  Created by Maksym Shcheglov on 04/07/16.
@@ -16,9 +16,9 @@ struct Titles {
     static let FilterViewTitle = NSLocalizedString("Filter", comment: "Filter view title")
 }
 
-class SessionsSearchPresenterImpl: SessionsSearchPresenter {
-    var interactor: SessionsSearchInteractor!
-    var router: SessionsSearchRouter
+class SessionsSearchViewModelImpl: SessionsSearchViewModel {
+    private let serviceProvider: ServiceProvider
+    private let router: SessionsSearchRouter
     private var filter: Variable<Filter>
     private let _sessions: Variable<[Session]>
     private let disposeBag = DisposeBag()
@@ -42,7 +42,7 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
 
     Will send messages only to *new* & *different* values.
     */
-    lazy var didBecomeActive: Observable<SessionsSearchPresenterImpl> = { [unowned self] in
+    lazy var didBecomeActive: Observable<SessionsSearchViewModelImpl> = { [unowned self] in
         return self._active.asObservable()
             .filter { $0 == true }
             .map { _ in return self }
@@ -53,13 +53,14 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
 
     Will send messages only to *new* & *different* values.
     */
-    lazy var didBecomeInactive: Observable<SessionsSearchPresenterImpl> = { [unowned self] in
+    lazy var didBecomeInactive: Observable<SessionsSearchViewModelImpl> = { [unowned self] in
         return self._active.asObservable()
             .filter { $0 == false }
             .map { _ in return self }
     }()
 
-    init(router: SessionsSearchRouter) {
+    init(serviceProvider: ServiceProvider, router: SessionsSearchRouter) {
+        self.serviceProvider = serviceProvider
         self.router = router
         self.filter = Variable(Filter())
         self.title = Driver.just(Titles.SessionsSearchViewTitle)
@@ -69,7 +70,7 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
         self.isLoading = isLoading.asDriver()
         
         self.didBecomeActive.subscribeNext({ viewModel in
-            let sessionsObservable = self.interactor.loadSessions().startWith([]).trackActivity(isLoading)
+            let sessionsObservable = self.loadSessions().startWith([]).trackActivity(isLoading)
             Observable.combineLatest(sessionsObservable, viewModel.filter.asObservable(), resultSelector: self.applyFilter)
                 .asDriver(onErrorJustReturn: [])
                 .drive(viewModel._sessions)
@@ -81,7 +82,7 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
         return sessions.apply(filter)
     }
     
-    // MARK: SessionsSearchPresenter
+    // MARK: SessionsSearchViewModel
     
     var sessions: Driver<[SessionViewModels]> {
         return self._sessions.asDriver().map(SessionViewModelBuilder.build)
@@ -108,6 +109,24 @@ class SessionsSearchPresenterImpl: SessionsSearchPresenter {
         var filter = self.filter.value
         filter.query = query
         self.filter.value = filter
+    }
+    
+    // MARK: Private
+    
+    private func loadSessions() -> Observable<[Session]> {
+        return loadConfig().flatMapLatest(self.loadSessions)
+            .retryOnBecomesReachable([], reachabilityService: self.serviceProvider.reachability)
+            .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
+            .observeOn(self.serviceProvider.scheduler.mainScheduler)
+            .shareReplayLatestWhileConnected()
+    }
+    
+    private func loadConfig() -> Observable<AppConfig> {
+        return self.serviceProvider.network.GET(WWDCEnvironment.indexURL, parameters: [:], builder: AppConfigBuilder.self)
+    }
+    
+    private func loadSessions(config: AppConfig) -> Observable<[Session]> {
+        return self.serviceProvider.network.GET(config.videosURL, parameters: [:], builder: SessionsBuilder.self)
     }
 
 }
