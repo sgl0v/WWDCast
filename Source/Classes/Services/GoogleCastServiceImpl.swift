@@ -72,6 +72,7 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
             .flatMap(self.connectToDevice)
             .flatMap(self.launchApplication(self.applicationID))
             .flatMap(self.playSession(session))
+            .take(1)
             .doOnNext({ channel in
                 self.castChannel = channel
             })
@@ -95,17 +96,18 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
     // MARK: Private
     
     private var castChannel: GCKMediaControlChannel?
+    private var deviceManager: GCKDeviceManager?
     
     private func connectToDevice(device: GoogleCastDevice) -> Observable<GCKDeviceManager> {
         return Observable.create({[unowned self] observer in
-            guard let gckDevice = self.deviceScanner.devices.filter({ device.id == $0.deviceID }).first else {
+            guard let gckDevice = self.deviceScanner.devices.filter({ device.id == $0.deviceID }).first as? GCKDevice else {
                 observer.onError(GoogleCastServiceError.ConnectionError)
                 observer.onCompleted()
                 return NopDisposable.instance
             }
             
             let appIdentifier = NSBundle.mainBundle().infoDictionary?["CFBundleIdentifier"] as! String
-            let deviceManager = GCKDeviceManager(device: gckDevice as! GCKDevice, clientPackageName: appIdentifier)
+            let deviceManager = GCKDeviceManager(device: gckDevice, clientPackageName: appIdentifier)
             
             deviceManager.rx_didFailToConnect.subscribeNext({ _ in
                 observer.onError(GoogleCastServiceError.ConnectionError)
@@ -114,14 +116,14 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
             
             deviceManager.rx_didConnect.subscribeNext({ deviceManager in
                 observer.onNext(deviceManager)
-//                observer.onCompleted()
+                observer.onCompleted()
             }).addDisposableTo(self.disposeBag)
             
             deviceManager.connect()
             
-            return AnonymousDisposable({
-                deviceManager.disconnect()
-            })
+            self.deviceManager = deviceManager
+            
+            return NopDisposable.instance
         })
     }
     
@@ -131,18 +133,17 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
                 
                 deviceManager.rx_didConnectToCastApplication.subscribeNext({ _ in
                     observer.onNext(deviceManager)
+                    observer.onCompleted()
                 }).addDisposableTo(self.disposeBag)
                 
-                deviceManager.didFailToConnectToApplication.subscribeNext({ _ in
+                deviceManager.didFailToConnectToApplication.subscribeNext({ error in
                     observer.onError(GoogleCastServiceError.ConnectionError)
                     observer.onCompleted()
                 }).addDisposableTo(self.disposeBag)
                 
                 deviceManager.launchApplication(applicationId)
                 
-                return AnonymousDisposable({
-                    deviceManager.disconnect()
-                })
+                return NopDisposable.instance
             })
         }
     }
@@ -152,7 +153,6 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
             return Observable.create({ observer in
                 let mediaInfo = GCKMediaInformation(session: session)
                 let mediaControlChannel = GCKMediaControlChannel()
-                //                mediaControlChannel.delegate = self
                 deviceManager.addChannel(mediaControlChannel)
                 let id = mediaControlChannel.loadMedia(mediaInfo, autoplay: true)
                 if (id == kGCKInvalidRequestID) {
@@ -161,7 +161,10 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
                     observer.onNext(mediaControlChannel)
                 }
                 observer.onCompleted()
-                return NopDisposable.instance
+                
+                return AnonymousDisposable({
+                    deviceManager.disconnect()
+                })
             })
         }
     }
