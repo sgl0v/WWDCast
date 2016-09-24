@@ -21,9 +21,6 @@ struct SessionImpl: Session {
     }
     let summary: String
     let videoURL: NSURL
-    let hdVideoURL: NSURL
-    let sdVideoURL: NSURL
-    let webpageURL: NSURL
     let subtitles: NSURL
     let shelfImageURL: NSURL
 }

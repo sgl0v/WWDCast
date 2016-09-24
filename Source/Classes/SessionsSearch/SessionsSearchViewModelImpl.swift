@@ -114,11 +114,16 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
     // MARK: Private
     
     private func loadSessions() -> Observable<[Session]> {
-        return loadConfig().flatMapLatest(self.loadSessions)
+        let loadFromNetwork = loadConfig().flatMapLatest(self.loadSessions)
             .retryOnBecomesReachable([], reachabilityService: self.serviceProvider.reachability)
             .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
             .observeOn(self.serviceProvider.scheduler.mainScheduler)
             .shareReplayLatestWhileConnected()
+            .doOnNext(self.saveToCache)
+        
+        let loadFromFile = self.loadFromCache()
+        
+        return Observable.of(loadFromFile, loadFromNetwork).concat().take(1)
     }
     
     private func loadConfig() -> Observable<AppConfig> {
@@ -128,5 +133,13 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
     private func loadSessions(config: AppConfig) -> Observable<[Session]> {
         return self.serviceProvider.network.GET(config.videosURL, parameters: [:], builder: SessionsBuilder.self)
     }
-
+    
+    private func saveToCache(sessions: [Session]) {
+        
+    }
+    
+    private func loadFromCache() -> Observable<[Session]> {
+        return Observable.empty()
+    }
+    
 }

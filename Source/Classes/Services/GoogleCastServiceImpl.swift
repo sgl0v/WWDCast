@@ -28,7 +28,7 @@ extension GCKMediaInformation {
         metadata.addImage(GCKImage(URL: session.shelfImageURL, width: 734, height: 413))
         let mediaTrack = GCKMediaTrack(identifier: session.id, contentIdentifier: session.subtitles.absoluteString, contentType: "text/vtt", type: .Text, textSubtype: .Captions, name: "English Captions", languageCode: "en", customData: nil)
 
-        self.init(contentID: session.sdVideoURL.absoluteString, streamType: .None, contentType: "video/mp4", metadata: metadata, streamDuration: 0, mediaTracks: [mediaTrack], textTrackStyle: GCKMediaTextTrackStyle.createDefault(), customData: nil)
+        self.init(contentID: session.videoURL.absoluteString, streamType: .None, contentType: "video/mp4", metadata: metadata, streamDuration: 0, mediaTracks: [mediaTrack], textTrackStyle: GCKMediaTextTrackStyle.createDefault(), customData: nil)
     }
 }
 

@@ -31,6 +31,10 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
     }
     
     func playSession() {
+        if (self.devices.isEmpty) {
+            self.router.showAlert(nil, message: NSLocalizedString("Google Cast device is not found!", comment: ""))
+        }
+        
         let actions = self.devices.map({ device in return device.description })
         let cancelAction = NSLocalizedString("Cancel", comment: "Cancel ActionSheet button title")
         let alert = self.router.promptFor(nil, message: nil, cancelAction: cancelAction, actions: actions)
@@ -50,7 +54,7 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
     }
     
     private func didFailToPlaySession(error: ErrorType) {
-        self.router.showAlert("Ooops...", message: "Failed to play WWDC session.")
+        self.router.showAlert(NSLocalizedString("Ooops...", comment: ""), message: NSLocalizedString("Failed to play WWDC session.", comment: ""))
     }
     
 }

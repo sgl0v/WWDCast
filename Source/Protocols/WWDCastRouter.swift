@@ -15,6 +15,6 @@ protocol SessionsSearchRouter: class {
 }
 
 protocol SessionDetailsRouter: class {
-    func showAlert(title: String, message: String)
+    func showAlert(title: String?, message: String)
     func promptFor<Action : CustomStringConvertible>(title: String?, message: String?, cancelAction: Action, actions: [Action]) -> Observable<Action>
 }

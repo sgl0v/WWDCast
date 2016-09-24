@@ -19,10 +19,10 @@ class SessionBuilder: EntityBuilder {
         let title = json["title"].stringValue
         let summary = json["description"].stringValue
         let track = Track(rawValue: json["track"].stringValue)!
-        let videoURL = NSURL(string: json["url"].stringValue)!
-        let hdVideoURL = NSURL(string: json["download_hd"].stringValue)!
-        let sdVideoURL = NSURL(string: json["download_sd"].stringValue)!
-        let webpageURL = NSURL(string: json["webpageURL"].stringValue)!
+        let videoURL = NSURL(string: json["download_hd"].stringValue)!
+//        let hdVideoURL = NSURL(string: json["download_hd"].stringValue)!
+//        let sdVideoURL = NSURL(string: json["download_sd"].stringValue)!
+//        let webpageURL = NSURL(string: json["webpageURL"].stringValue)!
         let subtitles = NSURL(string: json["subtitles"].stringValue)!
 
         var platforms = [Platform]()
@@ -36,8 +36,7 @@ class SessionBuilder: EntityBuilder {
         }
         
         return SessionImpl(id: id, year: year, track: track, platforms: platforms, title: title,
-                           summary: summary, videoURL: videoURL, hdVideoURL: hdVideoURL,
-                           sdVideoURL: sdVideoURL, webpageURL: webpageURL, subtitles: subtitles,
+                           summary: summary, videoURL: videoURL, subtitles: subtitles,
                            shelfImageURL: shelfImageURL!)
     }
     

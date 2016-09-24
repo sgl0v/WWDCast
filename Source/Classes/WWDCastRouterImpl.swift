@@ -38,7 +38,7 @@ class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter {
     
     // MARK: SessionDetailsRouter
     
-    func showAlert(title: String, message: String) {
+    func showAlert(title: String?, message: String) {
         let alertView = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK button title"), style: .Cancel) { _ in
             })

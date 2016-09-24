@@ -51,9 +51,6 @@ protocol Session {
     var subtitle: String { get }
     var summary: String { get }
     var videoURL: NSURL { get }
-    var hdVideoURL: NSURL { get }
-    var sdVideoURL: NSURL { get }
-    var webpageURL: NSURL { get }
     var subtitles: NSURL { get }
     var shelfImageURL: NSURL { get }
 }
