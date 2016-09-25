@@ -24,12 +24,23 @@ final class NetworkServiceImpl: NetworkService {
         self.session = session
     }
 
-    func GET<Builder: EntityBuilder>(url: NSURL, parameters: [String: AnyObject] = [:], builder: Builder.Type) -> Observable<Builder.EntityType> {
+    func request<Builder: EntityBuilder>(url: NSURL, parameters: [String: AnyObject] = [:], builder: Builder.Type) -> Observable<Builder.EntityType> {
         let components = NSURLComponents(URL: url, resolvingAgainstBaseURL: false)!
-        components.queryItems = parameters.keys.map { NSURLQueryItem(name: $0, value: "\(parameters[$0])") }
+        components.queryItems = parameters.keys.map { NSURLQueryItem(name: $0.URLEscaped, value: "\(parameters[$0])".URLEscaped) }
         return self.session.rx_data(NSURLRequest(URL: components.URL!))
-            .map({ data in builder.build(JSON(data: data)) })
+            .flatMap(build(builder))
             .debug("http")
+    }
+    
+    private func build<Builder: EntityBuilder>(builder: Builder.Type) -> NSData -> Observable<Builder.EntityType> {
+        return { data in
+            do {
+                let entity = try builder.build(JSON(data: data))
+                return Observable.just(entity)
+            } catch let error {
+                return Observable.error(error)
+            }
+        }
     }
 
 }

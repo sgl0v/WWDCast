@@ -47,7 +47,7 @@ extension ObservableConvertibleType {
                 reachabilityService.reachability
                     .filter { $0.boolValue }
                     .flatMap { _ in Observable.error(e) }
-                    .startWith(valueOnFailure)
+//                    .startWith(valueOnFailure)
             }
             .retry()
     }

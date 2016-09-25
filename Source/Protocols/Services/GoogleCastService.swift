@@ -16,7 +16,9 @@ protocol GoogleCastDevice: CustomStringConvertible {
 
 protocol GoogleCastService: class {
 
+    /// The array of available devices
     var devices: [GoogleCastDevice] { get }
+    
     func play(session: Session, onDevice device: GoogleCastDevice) -> Observable<Void>
     
     /**

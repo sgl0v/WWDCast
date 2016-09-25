@@ -65,6 +65,8 @@
 		E7AC02D41D7E26660090F8A3 /* SessionsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC02A51D7E26660090F8A3 /* SessionsSearchViewModel.swift */; };
 		E7AC02D51D7E26660090F8A3 /* WWDCastAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC02A61D7E26660090F8A3 /* WWDCastAssembly.swift */; };
 		E7AC02D61D7E26660090F8A3 /* WWDCastRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC02A71D7E26660090F8A3 /* WWDCastRouter.swift */; };
+		E7D2C6A31D98337700C82153 /* WWDCastAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D2C6A21D98337700C82153 /* WWDCastAPI.swift */; };
+		E7D2C6A51D98347B00C82153 /* WWDCastAPIImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D2C6A41D98347B00C82153 /* WWDCastAPIImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +145,8 @@
 		E7AC02A51D7E26660090F8A3 /* SessionsSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewModel.swift; sourceTree = "<group>"; };
 		E7AC02A61D7E26660090F8A3 /* WWDCastAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAssembly.swift; sourceTree = "<group>"; };
 		E7AC02A71D7E26660090F8A3 /* WWDCastRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastRouter.swift; sourceTree = "<group>"; };
+		E7D2C6A21D98337700C82153 /* WWDCastAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAPI.swift; sourceTree = "<group>"; };
+		E7D2C6A41D98347B00C82153 /* WWDCastAPIImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WWDCastAPIImpl.swift; path = API/WWDCastAPIImpl.swift; sourceTree = "<group>"; };
 		EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -255,6 +259,7 @@
 				E7AC028E1D7E26660090F8A3 /* Vendor */,
 				E7AC02911D7E26660090F8A3 /* WWDCastAssemblyImpl.swift */,
 				E7AC02921D7E26660090F8A3 /* WWDCastRouterImpl.swift */,
+				E7D2C6A41D98347B00C82153 /* WWDCastAPIImpl.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -348,6 +353,7 @@
 		E7AC02931D7E26660090F8A3 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				E7D2C6A11D98337700C82153 /* API */,
 				E7AC02941D7E26660090F8A3 /* Entities */,
 				E7AC02981D7E26660090F8A3 /* Filter */,
 				E7AC029A1D7E26660090F8A3 /* Services */,
@@ -405,6 +411,14 @@
 				E7AC02A51D7E26660090F8A3 /* SessionsSearchViewModel.swift */,
 			);
 			path = SessionsSearch;
+			sourceTree = "<group>";
+		};
+		E7D2C6A11D98337700C82153 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E7D2C6A21D98337700C82153 /* WWDCastAPI.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -628,7 +642,9 @@
 				E7AC02AC1D7E26660090F8A3 /* UITableViewController+Common.swift in Sources */,
 				E7AC02D51D7E26660090F8A3 /* WWDCastAssembly.swift in Sources */,
 				E7AC02A91D7E26660090F8A3 /* RxTableViewCell.swift in Sources */,
+				E7D2C6A51D98347B00C82153 /* WWDCastAPIImpl.swift in Sources */,
 				E7AC02B41D7E26660090F8A3 /* FilterViewModelImpl.swift in Sources */,
+				E7D2C6A31D98337700C82153 /* WWDCastAPI.swift in Sources */,
 				E7AC02BA1D7E26660090F8A3 /* ServiceProviderImpl.swift in Sources */,
 				E7AC02AA1D7E26660090F8A3 /* UIBarButtonItem+Common.swift in Sources */,
 				E7AC02D21D7E26660090F8A3 /* SessionDetailsViewModel.swift in Sources */,

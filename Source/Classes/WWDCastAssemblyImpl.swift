@@ -15,9 +15,13 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         return WWDCastRouterImpl(moduleFactory: self)
     }()
     
-    func sessionsSearchController() -> UIViewController {
+    lazy var api: WWDCastAPI = {
         let serviceProvider = ServiceProviderImpl.defaultServiceProvider
-        let viewModel = SessionsSearchViewModelImpl(serviceProvider: serviceProvider, router: router)
+        return WWDCastAPIImpl(serviceProvider: serviceProvider)
+    }()
+    
+    func sessionsSearchController() -> UIViewController {
+        let viewModel = SessionsSearchViewModelImpl(api: self.api, router: self.router)
         let view = SessionsSearchViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: view)
         navigationController.navigationBar.tintColor = UIColor.blackColor()
@@ -40,8 +44,7 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
     }
 
     func sessionDetailsController(session: Session) -> UIViewController {
-        let serviceProvider = ServiceProviderImpl.defaultServiceProvider
-        let viewModel = SessionDetailsViewModelImpl(session: session, serviceProvider: serviceProvider, router: self.router)
+        let viewModel = SessionDetailsViewModelImpl(session: session, api: self.api, router: self.router)
         return SessionDetailsViewController(viewModel: viewModel)
     }
 

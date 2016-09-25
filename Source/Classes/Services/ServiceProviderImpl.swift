@@ -21,10 +21,10 @@ final class ServiceProviderImpl: ServiceProvider {
         self.network = network
         self.googleCast = googleCast
     }
-//}
-//
-//extension ServiceProvider {
+}
 
+extension ServiceProviderImpl {
+    
     static let defaultServiceProvider: ServiceProvider = {
         guard let reachability = try? ReachabilityServiceImpl() else {
             fatalError("Failed to create reachability service!")

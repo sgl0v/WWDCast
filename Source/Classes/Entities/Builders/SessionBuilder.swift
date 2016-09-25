@@ -13,31 +13,32 @@ class SessionBuilder: EntityBuilder {
 
     typealias EntityType = Session
 
-    static func build(json: JSON) -> EntityType {
+    static func build(json: JSON) throws -> EntityType {
+        guard let year = Year(rawValue: json["year"].uIntValue),
+            let track = Track(rawValue: json["track"].stringValue),
+            let videoURL = NSURL(string: json["download_hd"].stringValue),
+            let subtitles = NSURL(string: json["subtitles"].stringValue),
+            let focusJSON = json["focus"].arrayObject as? [String],
+            let images = json["images"].dictionaryObject as? [String: String],
+            let imageURLString = images["shelf"],
+            let shelfImageURL = NSURL(string: imageURLString) else {
+            throw EntityBuilderError.ParsingError
+        }
         let id = json["id"].intValue
-        let year = Year(rawValue: json["year"].uIntValue)!
         let title = json["title"].stringValue
         let summary = json["description"].stringValue
-        let track = Track(rawValue: json["track"].stringValue)!
-        let videoURL = NSURL(string: json["download_hd"].stringValue)!
-//        let hdVideoURL = NSURL(string: json["download_hd"].stringValue)!
-//        let sdVideoURL = NSURL(string: json["download_sd"].stringValue)!
-//        let webpageURL = NSURL(string: json["webpageURL"].stringValue)!
-        let subtitles = NSURL(string: json["subtitles"].stringValue)!
 
         var platforms = [Platform]()
-        if let focusJSON = json["focus"].arrayObject as? [String] {
-            platforms = focusJSON.map() { Platform(rawValue: $0)! }
+        platforms = try focusJSON.map() { focus in
+            guard let platform = Platform(rawValue: focus) else {
+                throw EntityBuilderError.ParsingError
+            }
+            return platform
         }
 
-        var shelfImageURL: NSURL? = nil
-        if let images = json["images"].dictionaryObject as? [String: String], imageURL = images["shelf"] {
-            shelfImageURL = NSURL(string: imageURL)!
-        }
-        
         return SessionImpl(id: id, year: year, track: track, platforms: platforms, title: title,
                            summary: summary, videoURL: videoURL, subtitles: subtitles,
-                           shelfImageURL: shelfImageURL!)
+                           shelfImageURL: shelfImageURL)
     }
     
 }

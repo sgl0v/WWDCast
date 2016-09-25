@@ -17,7 +17,7 @@ struct Titles {
 }
 
 class SessionsSearchViewModelImpl: SessionsSearchViewModel {
-    private let serviceProvider: ServiceProvider
+    private let api: WWDCastAPI
     private let router: SessionsSearchRouter
     private var filter: Variable<Filter>
     private let _sessions: Variable<[Session]>
@@ -59,8 +59,8 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
             .map { _ in return self }
     }()
 
-    init(serviceProvider: ServiceProvider, router: SessionsSearchRouter) {
-        self.serviceProvider = serviceProvider
+    init(api: WWDCastAPI, router: SessionsSearchRouter) {
+        self.api = api
         self.router = router
         self.filter = Variable(Filter())
         self.title = Driver.just(Titles.SessionsSearchViewTitle)
@@ -70,7 +70,7 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
         self.isLoading = isLoading.asDriver()
         
         self.didBecomeActive.subscribeNext({ viewModel in
-            let sessionsObservable = self.loadSessions().startWith([]).trackActivity(isLoading)
+            let sessionsObservable = self.api.sessions().trackActivity(isLoading)
             Observable.combineLatest(sessionsObservable, viewModel.filter.asObservable(), resultSelector: self.applyFilter)
                 .asDriver(onErrorJustReturn: [])
                 .drive(viewModel._sessions)
@@ -109,37 +109,6 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
         var filter = self.filter.value
         filter.query = query
         self.filter.value = filter
-    }
-    
-    // MARK: Private
-    
-    private func loadSessions() -> Observable<[Session]> {
-        let loadFromNetwork = loadConfig().flatMapLatest(self.loadSessions)
-            .retryOnBecomesReachable([], reachabilityService: self.serviceProvider.reachability)
-            .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
-            .observeOn(self.serviceProvider.scheduler.mainScheduler)
-            .shareReplayLatestWhileConnected()
-            .doOnNext(self.saveToCache)
-        
-        let loadFromFile = self.loadFromCache()
-        
-        return Observable.of(loadFromFile, loadFromNetwork).concat().take(1)
-    }
-    
-    private func loadConfig() -> Observable<AppConfig> {
-        return self.serviceProvider.network.GET(WWDCEnvironment.indexURL, parameters: [:], builder: AppConfigBuilder.self)
-    }
-    
-    private func loadSessions(config: AppConfig) -> Observable<[Session]> {
-        return self.serviceProvider.network.GET(config.videosURL, parameters: [:], builder: SessionsBuilder.self)
-    }
-    
-    private func saveToCache(sessions: [Session]) {
-        
-    }
-    
-    private func loadFromCache() -> Observable<[Session]> {
-        return Observable.empty()
     }
     
 }
