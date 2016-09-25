@@ -59,9 +59,7 @@
 		E7AC02CE1D7E26660090F8A3 /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC029D1D7E26660090F8A3 /* ReachabilityService.swift */; };
 		E7AC02CF1D7E26660090F8A3 /* SchedulerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC029E1D7E26660090F8A3 /* SchedulerService.swift */; };
 		E7AC02D01D7E26660090F8A3 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC029F1D7E26660090F8A3 /* ServiceProvider.swift */; };
-		E7AC02D11D7E26660090F8A3 /* SessionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC02A11D7E26660090F8A3 /* SessionDetailsView.swift */; };
 		E7AC02D21D7E26660090F8A3 /* SessionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC02A21D7E26660090F8A3 /* SessionDetailsViewModel.swift */; };
-		E7AC02D31D7E26660090F8A3 /* SessionsSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC02A41D7E26660090F8A3 /* SessionsSearchView.swift */; };
 		E7AC02D41D7E26660090F8A3 /* SessionsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC02A51D7E26660090F8A3 /* SessionsSearchViewModel.swift */; };
 		E7AC02D51D7E26660090F8A3 /* WWDCastAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC02A61D7E26660090F8A3 /* WWDCastAssembly.swift */; };
 		E7AC02D61D7E26660090F8A3 /* WWDCastRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC02A71D7E26660090F8A3 /* WWDCastRouter.swift */; };
@@ -139,9 +137,7 @@
 		E7AC029D1D7E26660090F8A3 /* ReachabilityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		E7AC029E1D7E26660090F8A3 /* SchedulerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerService.swift; sourceTree = "<group>"; };
 		E7AC029F1D7E26660090F8A3 /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
-		E7AC02A11D7E26660090F8A3 /* SessionDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsView.swift; sourceTree = "<group>"; };
 		E7AC02A21D7E26660090F8A3 /* SessionDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewModel.swift; sourceTree = "<group>"; };
-		E7AC02A41D7E26660090F8A3 /* SessionsSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchView.swift; sourceTree = "<group>"; };
 		E7AC02A51D7E26660090F8A3 /* SessionsSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewModel.swift; sourceTree = "<group>"; };
 		E7AC02A61D7E26660090F8A3 /* WWDCastAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAssembly.swift; sourceTree = "<group>"; };
 		E7AC02A71D7E26660090F8A3 /* WWDCastRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastRouter.swift; sourceTree = "<group>"; };
@@ -398,7 +394,6 @@
 		E7AC02A01D7E26660090F8A3 /* SessionDetails */ = {
 			isa = PBXGroup;
 			children = (
-				E7AC02A11D7E26660090F8A3 /* SessionDetailsView.swift */,
 				E7AC02A21D7E26660090F8A3 /* SessionDetailsViewModel.swift */,
 			);
 			path = SessionDetails;
@@ -407,7 +402,6 @@
 		E7AC02A31D7E26660090F8A3 /* SessionsSearch */ = {
 			isa = PBXGroup;
 			children = (
-				E7AC02A41D7E26660090F8A3 /* SessionsSearchView.swift */,
 				E7AC02A51D7E26660090F8A3 /* SessionsSearchViewModel.swift */,
 			);
 			path = SessionsSearch;
@@ -649,7 +643,6 @@
 				E7AC02AA1D7E26660090F8A3 /* UIBarButtonItem+Common.swift in Sources */,
 				E7AC02D21D7E26660090F8A3 /* SessionDetailsViewModel.swift in Sources */,
 				E7AC02C61D7E26660090F8A3 /* WWDCastAssemblyImpl.swift in Sources */,
-				E7AC02D31D7E26660090F8A3 /* SessionsSearchView.swift in Sources */,
 				E7AC02A81D7E26660090F8A3 /* RxExtensions.swift in Sources */,
 				E7AC02CF1D7E26660090F8A3 /* SchedulerService.swift in Sources */,
 				E7AC02AB1D7E26660090F8A3 /* UITableView+Common.swift in Sources */,
@@ -663,7 +656,6 @@
 				E7AC02B61D7E26660090F8A3 /* NetworkServiceImpl.swift in Sources */,
 				E7AC02AF1D7E26660090F8A3 /* SessionBuilder.swift in Sources */,
 				E7AC02D01D7E26660090F8A3 /* ServiceProvider.swift in Sources */,
-				E7AC02D11D7E26660090F8A3 /* SessionDetailsView.swift in Sources */,
 				E7AC02C41D7E26660090F8A3 /* ActivityIndicator.swift in Sources */,
 				E7AC02B21D7E26660090F8A3 /* Filter.swift in Sources */,
 				E7AC02D41D7E26660090F8A3 /* SessionsSearchViewModel.swift in Sources */,
