@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import SwiftyJSON
 
 class WWDCastAPIImpl : WWDCastAPI {
     
@@ -44,11 +45,22 @@ class WWDCastAPIImpl : WWDCastAPI {
     // MARK: Private
     
     private func loadConfig() -> Observable<AppConfig> {
-        return self.serviceProvider.network.request(WWDCEnvironment.indexURL, parameters: [:], builder: AppConfigBuilder.self)
+        return self.serviceProvider.network.request(WWDCEnvironment.indexURL, parameters: [:]).flatMap(build(AppConfigBuilder.self))
     }
     
     private func loadSessions(config: AppConfig) -> Observable<[Session]> {
-        return self.serviceProvider.network.request(config.videosURL, parameters: [:], builder: SessionsBuilder.self)
+        return self.serviceProvider.network.request(config.videosURL, parameters: [:]).flatMap(build(SessionsBuilder.self))
+    }
+    
+    private func build<Builder: EntityBuilder>(builder: Builder.Type) -> NSData -> Observable<Builder.EntityType> {
+        return { data in
+            do {
+                let entity = try builder.build(JSON(data: data))
+                return Observable.just(entity)
+            } catch let error {
+                return Observable.error(error)
+            }
+        }
     }
     
     private func saveToCache(sessions: [Session]) {
