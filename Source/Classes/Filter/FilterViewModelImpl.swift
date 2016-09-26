@@ -141,6 +141,8 @@ class FilterViewModelImpl : FilterViewModel {
     
     // MARK: SessionFilterViewModel
     
+    let title = Driver.just(NSLocalizedString("Filter", comment: "Filter view title"))
+    
     var filterItems: Driver<Array<FilterSectionViewModel>> {
         return self.filterItemsVariable.asDriver()
     }

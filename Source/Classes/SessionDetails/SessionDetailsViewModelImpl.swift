@@ -24,7 +24,7 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
     
     // MARK: SessionDetailsViewModel
 
-    let title = Driver.just(Titles.SessionDetailsViewTitle)
+    let title = Driver.just(NSLocalizedString("Session Details", comment: "Session details view title"))
     
     var session: Driver<SessionViewModel> {
         return self._session.asDriver().map(SessionViewModelBuilder.build)

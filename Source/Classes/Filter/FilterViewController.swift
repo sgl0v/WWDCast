@@ -73,6 +73,7 @@ class FilterViewController: TableViewController<FilterSectionViewModel, FilterTa
         }).addDisposableTo(self.disposeBag)
 
         self.viewModel.filterItems.drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
+        self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
     }
 
     private func configureUI() {

@@ -10,12 +10,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct Titles {
-    static let SessionsSearchViewTitle = NSLocalizedString("WWDCast", comment: "Session search view title")
-    static let SessionDetailsViewTitle = NSLocalizedString("Session Details", comment: "Session details view title")
-    static let FilterViewTitle = NSLocalizedString("Filter", comment: "Filter view title")
-}
-
 class SessionsSearchViewModelImpl: SessionsSearchViewModel {
     private let api: WWDCastAPI
     private let router: SessionsSearchRouter
@@ -63,7 +57,7 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
         self.api = api
         self.router = router
         self.filter = Variable(Filter())
-        self.title = Driver.just(Titles.SessionsSearchViewTitle)
+        self.title = Driver.just(NSLocalizedString("WWDCast", comment: "Session search view title"))
         self._sessions = Variable([])
 
         let isLoading = ActivityIndicator()

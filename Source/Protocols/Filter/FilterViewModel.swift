@@ -20,5 +20,8 @@ protocol FilterViewModel {
     func dismissObserver(cancelled: Bool) // called when the view is about to dismiss
 
     // OUTPUT
+    // The view's title
+    var title: Driver<String> { get }
+    // The filter items
     var filterItems: Driver<Array<FilterSectionViewModel>> { get }
 }
