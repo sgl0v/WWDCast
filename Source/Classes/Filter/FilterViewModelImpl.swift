@@ -86,7 +86,7 @@ class FilterViewModelImpl : FilterViewModel {
         self.filter = filter
         self.completion = completion
         let years = FilterSectionViewModel(type: .Years, items: [
-            FilterItemViewModel(title: "All years", style: .Checkmark, selected: self.filter.years == Year.allYears),
+            FilterItemViewModel(title: NSLocalizedString("All years", comment: ""), style: .Checkmark, selected: self.filter.years == Year.allYears),
             FilterItemViewModel(title: Year._2016.description, style: .Checkmark, selected: self.filter.years == [._2016]),
             FilterItemViewModel(title: Year._2015.description, style: .Checkmark, selected: self.filter.years == [._2015]),
             FilterItemViewModel(title: Year._2014.description, style: .Checkmark, selected: self.filter.years == [._2014]),
@@ -94,7 +94,7 @@ class FilterViewModelImpl : FilterViewModel {
             FilterItemViewModel(title: Year._2012.description, style: .Checkmark, selected: self.filter.years == [._2012]),
             ])
         let platforms = FilterSectionViewModel(type: .Platforms, items: [
-            FilterItemViewModel(title: "All Platforms", style: .Checkmark, selected: self.filter.platforms == Platform.allPlatforms),
+            FilterItemViewModel(title: NSLocalizedString("All platforms", comment: ""), style: .Checkmark, selected: self.filter.platforms == Platform.allPlatforms),
             FilterItemViewModel(title: Platform.iOS.rawValue, style: .Checkmark, selected: self.filter.platforms == [.iOS]),
             FilterItemViewModel(title: Platform.macOS.rawValue, style: .Checkmark, selected: self.filter.platforms == [.macOS]),
             FilterItemViewModel(title: Platform.tvOS.rawValue, style: .Checkmark, selected: self.filter.platforms == [.tvOS]),
@@ -156,36 +156,22 @@ class FilterViewModelImpl : FilterViewModel {
     // MARK: Private
     
     private func yearsSelection(platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Year]> {
-        return { _ in
-            let selectedYears: [Year]? = platforms.items.filter({ item in
-                item.selected.value
-            }).first.map { item in
-                if let tmp = UInt(item.title.substringFromIndex(item.title.startIndex.advancedBy(5))), year = Year(rawValue: tmp) {
-                    return [year]
-                }
-                return Year.allYears
+        return { (idx, _) in
+            if idx == 0 {
+                return Observable.just(Year.allYears)
             }
-            if let selectedYears = selectedYears {
-                return Observable.just(selectedYears)
-            }
-            return Observable.empty()
+            let selectedYear = Year.allYears[idx - 1]
+            return Observable.just([selectedYear])
         }
     }
     
     private func platformsSelection(platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Platform]> {
-        return { _ in
-            let selectedPlatforms: [Platform]? = platforms.items.filter({ item in
-                item.selected.value
-            }).first.map { item in
-                if let platform = Platform(rawValue: item.title) {
-                    return [platform]
-                }
-                return Platform.allPlatforms
+        return { (idx, _) in
+            if idx == 0 {
+                return Observable.just(Platform.allPlatforms)
             }
-            if let selectedPlatforms = selectedPlatforms {
-                return Observable.just(selectedPlatforms)
-            }
-            return Observable.empty()
+            let selectedPlatform = Platform.allPlatforms[idx - 1]
+            return Observable.just([selectedPlatform])
         }
     }
     
