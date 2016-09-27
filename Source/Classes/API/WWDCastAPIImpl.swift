@@ -64,7 +64,7 @@ class WWDCastAPIImpl : WWDCastAPI {
     }
     
     private func saveToCache(sessions: [Session]) {
-        NSLog("%@", sessions.description);
+//        NSLog("%@", sessions.description);
     }
     
     private func loadFromCache() -> Observable<[Session]> {

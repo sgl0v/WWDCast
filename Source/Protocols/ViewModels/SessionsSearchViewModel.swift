@@ -18,7 +18,7 @@ protocol SessionsSearchViewModel: class {
     // Defines whether or not there are any ongoing network operation
     var isLoading: Driver<Bool> { get }
     // Item selection observer
-    func itemSelectionObserver(viewModel: SessionViewModel)
+    func itemSelectionObserver(viewModel: SessionItemViewModel)
     // Filter button tap observer
     func filterObserver()
     // Search string observer
@@ -29,5 +29,5 @@ protocol SessionsSearchViewModel: class {
     // The view's title
     var title: Driver<String> { get }
     // The array of available WWDC sessions
-    var sessions: Driver<[SessionViewModels]> { get }
+    var sessions: Driver<[SessionSectionViewModel]> { get }
 }

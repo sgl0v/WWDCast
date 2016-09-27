@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class SessionsSearchViewController: TableViewController<SessionViewModels, SessionTableViewCell> {
+class SessionsSearchViewController: TableViewController<SessionSectionViewModel, SessionTableViewCell> {
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     private let viewModel: SessionsSearchViewModel
@@ -59,7 +59,7 @@ class SessionsSearchViewController: TableViewController<SessionViewModels, Sessi
         // ViewModel's input
         self.navigationItem.leftBarButtonItem!.rx_tap.bindNext(self.viewModel.filterObserver).addDisposableTo(self.disposeBag)
         self.searchQuery.driveNext(self.viewModel.searchStringObserver).addDisposableTo(self.disposeBag)
-        self.tableView.rx_modelSelected(SessionViewModel.self)
+        self.tableView.rx_modelSelected(SessionItemViewModel.self)
             .bindNext(self.viewModel.itemSelectionObserver)
             .addDisposableTo(self.disposeBag)
         

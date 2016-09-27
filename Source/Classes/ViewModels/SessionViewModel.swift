@@ -1,5 +1,5 @@
 //
-//  SessionViewModel.swift
+//  SessionItemViewModel.swift
 //  WWDCast
 //
 //  Created by Maksym Shcheglov on 05/07/16.
@@ -9,7 +9,7 @@
 import Foundation
 import RxDataSources
 
-struct SessionViewModel {
+struct SessionItemViewModel {
     var uniqueID: String
     var title: String
     var subtitle: String
@@ -17,7 +17,7 @@ struct SessionViewModel {
     var thumbnailURL: NSURL
 }
 
-extension SessionViewModel: IdentifiableType {
+extension SessionItemViewModel: IdentifiableType {
     typealias Identity = Int
 
     var identity : Identity {
@@ -25,12 +25,12 @@ extension SessionViewModel: IdentifiableType {
     }
 }
 
-extension SessionViewModel: Hashable {
+extension SessionItemViewModel: Hashable {
     var hashValue: Int {
         return self.uniqueID.hash
     }
 }
 
-func == (lhs: SessionViewModel, rhs: SessionViewModel) -> Bool {
+func == (lhs: SessionItemViewModel, rhs: SessionItemViewModel) -> Bool {
     return lhs.uniqueID == rhs.uniqueID
 }

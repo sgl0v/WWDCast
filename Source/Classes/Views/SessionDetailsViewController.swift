@@ -51,7 +51,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
     }
     
-    private func viewModelObserver(viewModel: SessionViewModel) {
+    private func viewModelObserver(viewModel: SessionItemViewModel) {
         Observable.just(viewModel.thumbnailURL)
             .asObservable()
             .bindTo(self.image.rx_imageURL)

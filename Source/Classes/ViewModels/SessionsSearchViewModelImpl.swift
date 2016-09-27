@@ -13,7 +13,7 @@ import RxCocoa
 class SessionsSearchViewModelImpl: SessionsSearchViewModel {
     private let api: WWDCastAPI
     private let router: SessionsSearchRouter
-    private var filter: Variable<Filter>
+    private let filter: Variable<Filter>
     private let _sessions: Variable<[Session]>
     private let disposeBag = DisposeBag()
     
@@ -36,7 +36,7 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
 
     Will send messages only to *new* & *different* values.
     */
-    lazy var didBecomeActive: Observable<SessionsSearchViewModelImpl> = { [unowned self] in
+    lazy var didBecomeActive: Observable<SessionsSearchViewModelImpl> = {
         return self._active.asObservable()
             .filter { $0 == true }
             .map { _ in return self }
@@ -47,7 +47,7 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
 
     Will send messages only to *new* & *different* values.
     */
-    lazy var didBecomeInactive: Observable<SessionsSearchViewModelImpl> = { [unowned self] in
+    lazy var didBecomeInactive: Observable<SessionsSearchViewModelImpl> = {
         return self._active.asObservable()
             .filter { $0 == false }
             .map { _ in return self }
@@ -57,7 +57,6 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
         self.api = api
         self.router = router
         self.filter = Variable(Filter())
-        self.title = Driver.just(NSLocalizedString("WWDCast", comment: "Session search view title"))
         self._sessions = Variable([])
 
         let isLoading = ActivityIndicator()
@@ -78,13 +77,13 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
     
     // MARK: SessionsSearchViewModel
     
-    var sessions: Driver<[SessionViewModels]> {
-        return self._sessions.asDriver().map(SessionViewModelBuilder.build)
+    var sessions: Driver<[SessionSectionViewModel]> {
+        return self._sessions.asDriver().map(SessionItemViewModelBuilder.build)
     }
     let isLoading: Driver<Bool>
-    let title: Driver<String>
+    let title = Driver.just(NSLocalizedString("WWDCast", comment: "Session search view title"))
 
-    func itemSelectionObserver(viewModel: SessionViewModel) {
+    func itemSelectionObserver(viewModel: SessionItemViewModel) {
         guard let session = self._sessions.value.filter({ session in
             session.uniqueId == viewModel.uniqueID
         }).first else {

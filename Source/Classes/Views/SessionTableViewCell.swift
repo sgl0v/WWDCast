@@ -17,7 +17,7 @@ class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProv
 //}
 //
 //extension SessionTableViewCell: BindableView {
-    typealias ViewModel = SessionViewModel
+    typealias ViewModel = SessionItemViewModel
 
     func bindViewModel(viewModel: ViewModel) {
         self.title.text = viewModel.title

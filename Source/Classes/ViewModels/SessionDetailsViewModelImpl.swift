@@ -26,8 +26,8 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
 
     let title = Driver.just(NSLocalizedString("Session Details", comment: "Session details view title"))
     
-    var session: Driver<SessionViewModel> {
-        return self._session.asDriver().map(SessionViewModelBuilder.build)
+    var session: Driver<SessionItemViewModel> {
+        return self._session.asDriver().map(SessionItemViewModelBuilder.build)
     }
     
     func playSession() {

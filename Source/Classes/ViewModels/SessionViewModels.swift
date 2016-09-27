@@ -1,5 +1,5 @@
 //
-//  SessionViewModels.swift
+//  SessionSectionViewModel.swift
 //  WWDCast
 //
 //  Created by Maksym Shcheglov on 10/07/16.
@@ -9,20 +9,20 @@
 import Foundation
 import RxDataSources
 
-struct SessionViewModels: SectionModelType, CustomStringConvertible {
+struct SessionSectionViewModel: SectionModelType, CustomStringConvertible {
     let title: String
-    let items: [SessionViewModel]
+    let items: [SessionItemViewModel]
 
-    init(title: String, items: [SessionViewModel]) {
+    init(title: String, items: [SessionItemViewModel]) {
         self.title = title
         self.items = items
     }
 
     // MARK: SectionModelType
 
-    typealias Item = SessionViewModel
+    typealias Item = SessionItemViewModel
 
-    init(original: SessionViewModels, items: [Item]) {
+    init(original: SessionSectionViewModel, items: [Item]) {
         self.title = original.title
         self.items = items
     }
@@ -34,12 +34,12 @@ struct SessionViewModels: SectionModelType, CustomStringConvertible {
 
 }
 
-extension SessionViewModels: Hashable {
+extension SessionSectionViewModel: Hashable {
     var hashValue: Int {
         return self.title.hash
     }
 }
 
-func == (lhs: SessionViewModels, rhs: SessionViewModels) -> Bool {
+func == (lhs: SessionSectionViewModel, rhs: SessionSectionViewModel) -> Bool {
     return lhs.title == rhs.title && lhs.items == rhs.items
 }
