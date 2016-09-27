@@ -79,12 +79,32 @@ class FilterViewModelImpl : FilterViewModel {
     
     private var filter: Filter
     private let completion: FilterModuleCompletion
-    private let filterItemsVariable: Variable<Array<FilterSectionViewModel>>
     private let disposeBag = DisposeBag()
 
     init(filter: Filter, completion: FilterModuleCompletion) {
         self.filter = filter
         self.completion = completion
+    }
+    
+    // MARK: SessionFilterViewModel
+    
+    let title = Driver.just(NSLocalizedString("Filter", comment: "Filter view title"))
+    
+    lazy var filterItems: Driver<Array<FilterSectionViewModel>> = {
+        return Driver.just(self.filterViewModels())
+    }()
+    
+    func dismissObserver(cancelled: Bool) {
+        if (cancelled) {
+            self.completion(.Cancelled)
+            return
+        }
+        self.completion(.Finished(self.filter))
+    }
+    
+    // MARK: Private
+    
+    private func filterViewModels() -> [FilterSectionViewModel] {
         let years = FilterSectionViewModel(type: .Years, items: [
             FilterItemViewModel(title: NSLocalizedString("All years", comment: ""), style: .Checkmark, selected: self.filter.years == Year.allYears),
             FilterItemViewModel(title: Year._2016.description, style: .Checkmark, selected: self.filter.years == [._2016]),
@@ -111,8 +131,6 @@ class FilterViewModelImpl : FilterViewModel {
             FilterItemViewModel(title: Track.Distribution.rawValue, style: .Switch, selected: self.filter.tracks.contains(.Distribution))
             ])
         
-        self.filterItemsVariable = Variable([years, platforms, tracks])
-        
         years.selection.filter({ _ , selected in
             return selected
         }).doOnNext({ index, _ in
@@ -137,25 +155,9 @@ class FilterViewModelImpl : FilterViewModel {
             self.filter.tracks = tracks
             print(self.filter)
         }).addDisposableTo(self.disposeBag)
+            
+        return [years, platforms, tracks]
     }
-    
-    // MARK: SessionFilterViewModel
-    
-    let title = Driver.just(NSLocalizedString("Filter", comment: "Filter view title"))
-    
-    var filterItems: Driver<Array<FilterSectionViewModel>> {
-        return self.filterItemsVariable.asDriver()
-    }
-    
-    func dismissObserver(cancelled: Bool) {
-        if (cancelled) {
-            self.completion(.Cancelled)
-            return
-        }
-        self.completion(.Finished(self.filter))
-    }
-    
-    // MARK: Private
     
     private func yearsSelection(platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Year]> {
         return { (idx, _) in

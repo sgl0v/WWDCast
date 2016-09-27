@@ -40,15 +40,35 @@ final class ReachabilityServiceImpl: ReachabilityService {
     }
 }
 
+extension NSError {
+    func isConnectionError() -> Bool {
+        let connectionErrorCodes = Set([NSURLErrorTimedOut, NSURLErrorCannotFindHost, NSURLErrorTimedOut, NSURLErrorCannotFindHost, NSURLErrorCannotConnectToHost, NSURLErrorNetworkConnectionLost, NSURLErrorNotConnectedToInternet, NSURLErrorDataNotAllowed])
+        return self.domain == NSURLErrorDomain && connectionErrorCodes.contains(self.code)
+    }
+}
+
 extension ObservableConvertibleType {
     func retryOnBecomesReachable(valueOnFailure:E, reachabilityService: ReachabilityService) -> Observable<E> {
         return self.asObservable()
-            .catchError { (e) -> Observable<E> in
-                reachabilityService.reachability
-                    .filter { $0.boolValue }
-                    .flatMap { _ in Observable.error(e) }
-//                    .startWith(valueOnFailure)
-            }
-            .retry()
+//            .catchError { (e) -> Observable<E> in
+//                reachabilityService.reachability
+//                    .filter { $0.boolValue }
+//                    .flatMap { _ in Observable.error(e) }
+////                    .startWith(valueOnFailure)
+//            }
+//            .retry()
+            .retryWhen { error -> Observable<E> in
+                return error.flatMap({ (generatedError) -> Observable<E> in
+                    let networkingError = generatedError as NSError
+                    if networkingError.isConnectionError() {
+                        return reachabilityService.reachability
+                            .filter {
+                                $0.boolValue
+                            }
+                            .flatMap { _ in self.asObservable() }
+                    }
+                    return Observable.error(generatedError)
+                })
+        }
     }
 }
