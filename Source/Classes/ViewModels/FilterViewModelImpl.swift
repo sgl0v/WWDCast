@@ -25,7 +25,7 @@ class FilterViewModelImpl : FilterViewModel {
     
     let title = Driver.just(NSLocalizedString("Filter", comment: "Filter view title"))
     
-    lazy var filterItems: Driver<Array<FilterSectionViewModel>> = {
+    lazy var filterSections: Driver<[FilterSectionViewModel]> = {
         return Driver.just(self.filterViewModels())
     }()
     

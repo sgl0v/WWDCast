@@ -13,62 +13,14 @@ import RxCocoa
 class SessionsSearchViewModelImpl: SessionsSearchViewModel {
     private let api: WWDCastAPI
     private let router: SessionsSearchRouter
-    private let filter: Variable<Filter>
-    private let _sessions: Variable<[Session]>
+    private let filter = Variable(Filter())
+    private var sessions = [Session]()
     private let disposeBag = DisposeBag()
-    
-    /// Underlying variable that we'll listen to for changes
-    private var _active = Variable(false)
-    
-    /// Public «active» variable
-    var active: Bool {
-        get { return _active.value }
-        set {
-            // Skip KVO notifications when the property hasn't actually changed.
-            if newValue == _active.value { return }
-            
-            _active.value = newValue
-        }
-    }
-    
-    /**
-    Rx `Observable` for the `active` flag. (when it becomes `true`).
-
-    Will send messages only to *new* & *different* values.
-    */
-    lazy var didBecomeActive: Observable<SessionsSearchViewModelImpl> = {
-        return self._active.asObservable()
-            .filter { $0 == true }
-            .map { _ in return self }
-    }()
-
-    /**
-    Rx `Observable` for the `active` flag. (when it becomes `false`).
-
-    Will send messages only to *new* & *different* values.
-    */
-    lazy var didBecomeInactive: Observable<SessionsSearchViewModelImpl> = {
-        return self._active.asObservable()
-            .filter { $0 == false }
-            .map { _ in return self }
-    }()
+    private let activityIndicator = ActivityIndicator()
 
     init(api: WWDCastAPI, router: SessionsSearchRouter) {
         self.api = api
         self.router = router
-        self.filter = Variable(Filter())
-        self._sessions = Variable([])
-
-        let isLoading = ActivityIndicator()
-        self.isLoading = isLoading.asDriver()
-        
-        self.didBecomeActive.subscribeNext({ viewModel in
-            let sessionsObservable = self.api.sessions().trackActivity(isLoading)
-            Observable.combineLatest(sessionsObservable, viewModel.filter.asObservable(), resultSelector: self.applyFilter)
-                .asDriver(onErrorJustReturn: [])
-                .drive(viewModel._sessions)
-                .addDisposableTo(viewModel.disposeBag)
-        }).addDisposableTo(self.disposeBag)
     }
     
     private func applyFilter(sessions: [Session], filter: Filter) -> [Session] {
@@ -77,14 +29,22 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
     
     // MARK: SessionsSearchViewModel
     
-    var sessions: Driver<[SessionSectionViewModel]> {
-        return self._sessions.asDriver().map(SessionItemViewModelBuilder.build)
+    lazy var sessionSections: Driver<[SessionSectionViewModel]> = {
+        let sessionsObservable = self.api.sessions().trackActivity(self.activityIndicator)
+        return Observable.combineLatest(sessionsObservable, self.filter.asObservable(), resultSelector: self.applyFilter)
+            .doOnNext({ self.sessions = $0 })
+            .map(SessionItemViewModelBuilder.build)
+            .asDriver(onErrorJustReturn: [])
+    }()
+    
+    var isLoading: Driver<Bool> {
+        return self.activityIndicator.asDriver()
     }
-    let isLoading: Driver<Bool>
+    
     let title = Driver.just(NSLocalizedString("WWDCast", comment: "Session search view title"))
 
     func itemSelectionObserver(viewModel: SessionItemViewModel) {
-        guard let session = self._sessions.value.filter({ session in
+        guard let session = self.sessions.filter({ session in
             session.uniqueId == viewModel.uniqueID
         }).first else {
             return

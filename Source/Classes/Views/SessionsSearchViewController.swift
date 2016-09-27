@@ -29,18 +29,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         super.viewDidLoad()
         self.configureUI()
         self.bindViewModel()
-        self.viewModel.active = true
     }
-    
-//    override func viewWillAppear(animated: Bool) {
-//        super.viewWillAppear(animated)
-//        self.viewModel.active = true
-//    }
-//    
-//    override func viewWillDisappear(animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        self.viewModel.active = false
-//    }
     
     // MARK - Private
     
@@ -64,9 +53,9 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
             .addDisposableTo(self.disposeBag)
         
         // ViewModel's output
-        self.viewModel.sessions.asDriver().drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
+        self.viewModel.sessionSections.drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
         self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
-//        self.viewModel.isLoading.drive(self.view.rx_hidden).addDisposableTo(self.disposeBag)
+        self.viewModel.isLoading.drive(self.view.rx_hidden).addDisposableTo(self.disposeBag)
     }
 
     private func configureUI() {        

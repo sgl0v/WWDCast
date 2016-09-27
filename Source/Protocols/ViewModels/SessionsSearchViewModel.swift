@@ -13,10 +13,6 @@ import RxCocoa
 protocol SessionsSearchViewModel: class {
     // INPUT
     
-    // Defines whether or not the viewModel is active
-    var active: Bool { get set }
-    // Defines whether or not there are any ongoing network operation
-    var isLoading: Driver<Bool> { get }
     // Item selection observer
     func itemSelectionObserver(viewModel: SessionItemViewModel)
     // Filter button tap observer
@@ -25,9 +21,11 @@ protocol SessionsSearchViewModel: class {
     func searchStringObserver(query: String)
     
     // OUTPUT
-    
+
+    // Defines whether or not there are any ongoing network operation
+    var isLoading: Driver<Bool> { get }
     // The view's title
     var title: Driver<String> { get }
-    // The array of available WWDC sessions
-    var sessions: Driver<[SessionSectionViewModel]> { get }
+    // The array of available WWDC sessions divided into sections
+    var sessionSections: Driver<[SessionSectionViewModel]> { get }
 }
