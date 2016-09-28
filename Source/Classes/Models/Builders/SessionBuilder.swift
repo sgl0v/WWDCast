@@ -16,12 +16,12 @@ class SessionBuilder: EntityBuilder {
     static func build(json: JSON) throws -> EntityType {
         guard let year = Year(rawValue: json["year"].uIntValue),
             let track = Track(rawValue: json["track"].stringValue),
-            let videoURL = NSURL(string: json["download_hd"].stringValue),
-            let subtitles = NSURL(string: json["subtitles"].stringValue),
+            let video = NSURL(string: json["download_hd"].stringValue),
+            let captions = NSURL(string: json["subtitles"].stringValue),
             let focusJSON = json["focus"].arrayObject as? [String],
             let images = json["images"].dictionaryObject as? [String: String],
-            let imageURLString = images["shelf"],
-            let shelfImageURL = NSURL(string: imageURLString) else {
+            let thumbnailURLString = images["shelf"],
+            let thumbnailURL = NSURL(string: thumbnailURLString) else {
             throw EntityBuilderError.ParsingError
         }
         let id = json["id"].intValue
@@ -37,8 +37,8 @@ class SessionBuilder: EntityBuilder {
         }
 
         return SessionImpl(id: id, year: year, track: track, platforms: platforms, title: title,
-                           summary: summary, videoURL: videoURL, subtitles: subtitles,
-                           shelfImageURL: shelfImageURL)
+                           summary: summary, video: video, captions: captions,
+                           thumbnail: thumbnailURL)
     }
     
 }

@@ -66,6 +66,9 @@ class SessionsSearchViewController: UIViewController {
         self.tableView.rx_modelSelected(SessionItemViewModel.self)
             .bindNext(self.viewModel.itemSelectionObserver)
             .addDisposableTo(self.disposeBag)
+        self.tableView.rx_itemSelected.subscribeNext({ indexPath in
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }).addDisposableTo(self.disposeBag)
         
         // ViewModel's output
         
@@ -75,7 +78,8 @@ class SessionsSearchViewController: UIViewController {
         self.viewModel.isLoading.drive(self.loadingIndicator.rx_animating).addDisposableTo(self.disposeBag)
     }
 
-    private func configureUI() {        
+    private func configureUI() {
+        self.edgesForExtendedLayout = .None
         self.definesPresentationContext = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Filter", comment: "Filter"), style: .Plain, target: nil, action: nil)

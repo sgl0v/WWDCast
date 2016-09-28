@@ -9,11 +9,6 @@
 import Foundation
 import RxSwift
 
-protocol GoogleCastDevice: CustomStringConvertible {
-    var name: String { get }
-    var id: String { get }
-}
-
 protocol GoogleCastService: class {
 
     /// The array of available devices

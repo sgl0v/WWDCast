@@ -68,6 +68,8 @@
 		E7121D071D9B0935003F5DCC /* WWDCastAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */; };
 		E79718071D5FB9E900C4DD7C /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718061D5FB9E900C4DD7C /* FilterViewController.xib */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
+		E7B287871D9C11A200BF4707 /* GoogleCastDeviceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B287861D9C11A200BF4707 /* GoogleCastDeviceImpl.swift */; };
+		E7B287891D9C11C000BF4707 /* GoogleCastDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B287881D9C11C000BF4707 /* GoogleCastDevice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +151,8 @@
 		E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAssembly.swift; sourceTree = "<group>"; };
 		E79718061D5FB9E900C4DD7C /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterViewController.xib; path = Resources/FilterViewController.xib; sourceTree = SOURCE_ROOT; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		E7B287861D9C11A200BF4707 /* GoogleCastDeviceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDeviceImpl.swift; sourceTree = "<group>"; };
+		E7B287881D9C11C000BF4707 /* GoogleCastDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDevice.swift; sourceTree = "<group>"; };
 		EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -305,6 +309,7 @@
 				E7121CA91D9AFFE4003F5DCC /* AppConfigImpl.swift */,
 				E7121CAE1D9AFFE4003F5DCC /* Filter.swift */,
 				E7121CAF1D9AFFE4003F5DCC /* SessionImpl.swift */,
+				E7B287861D9C11A200BF4707 /* GoogleCastDeviceImpl.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -399,6 +404,7 @@
 				E7121CF61D9B0935003F5DCC /* AppConfig.swift */,
 				E7121CF71D9B0935003F5DCC /* EntityBuilder.swift */,
 				E7121CF81D9B0935003F5DCC /* Session.swift */,
+				E7B287881D9C11C000BF4707 /* GoogleCastDevice.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -636,6 +642,7 @@
 				E7121CFC1D9B0935003F5DCC /* SessionsSearchViewModel.swift in Sources */,
 				E7121CDD1D9AFFE4003F5DCC /* SessionsSearchViewController.swift in Sources */,
 				E7121CD31D9AFFE4003F5DCC /* ActivityIndicator.swift in Sources */,
+				E7B287871D9C11A200BF4707 /* GoogleCastDeviceImpl.swift in Sources */,
 				E7121CFB1D9B0935003F5DCC /* SessionDetailsViewModel.swift in Sources */,
 				E7121D021D9B0935003F5DCC /* WWDCastAPI.swift in Sources */,
 				E7121CCB1D9AFFE4003F5DCC /* UITableView+Common.swift in Sources */,
@@ -660,6 +667,7 @@
 				E7121CD91D9AFFE4003F5DCC /* SessionViewModelBuilder.swift in Sources */,
 				E7121CC41D9AFFE4003F5DCC /* RxGCKDeviceManagerDelegateProxy.swift in Sources */,
 				E7121CCA1D9AFFE4003F5DCC /* UIBarButtonItem+Common.swift in Sources */,
+				E7B287891D9C11C000BF4707 /* GoogleCastDevice.swift in Sources */,
 				E7121CDA1D9AFFE4003F5DCC /* SessionViewModels.swift in Sources */,
 				E7121CDE1D9AFFE4003F5DCC /* SessionTableViewCell.swift in Sources */,
 				E7121CC71D9AFFE4003F5DCC /* WWDCastAPIImpl.swift in Sources */,

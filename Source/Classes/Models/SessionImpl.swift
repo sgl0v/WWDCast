@@ -20,9 +20,9 @@ struct SessionImpl: Session {
         return "\(year) - Session \(id) - \(focusString)"
     }
     let summary: String
-    let videoURL: NSURL
-    let subtitles: NSURL
-    let shelfImageURL: NSURL
+    let video: NSURL
+    let captions: NSURL
+    let thumbnail: NSURL
 }
 
 extension SessionImpl: Hashable {

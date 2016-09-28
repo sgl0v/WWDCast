@@ -11,10 +11,7 @@ import Foundation
 enum Year: UInt {
     case _2012 = 2012, _2013 = 2013, _2014 = 2014, _2015 = 2015, _2016 = 2016
     
-    static var allYears: [Year] {
-        return [._2016, ._2015, ._2014, ._2013, ._2012]
-    }
-
+    static let allYears: [Year] = [._2016, ._2015, ._2014, ._2013, ._2012]
 }
 
 extension Year: CustomStringConvertible {
@@ -28,17 +25,13 @@ enum Track: String {
     case AppFrameworks = "App Frameworks", SystemFrameworks = "System Frameworks", DeveloperTools = "Developer Tools",
         Featured = "Featured", GraphicsAndGames = "Graphics and Games", Design = "Design", Media = "Media", Distribution = "Distribution"
 
-    static var allTracks: [Track] {
-        return [.Featured, .Media, .DeveloperTools, .GraphicsAndGames, .SystemFrameworks, .AppFrameworks, .Design, .Distribution]
-    }
+    static let allTracks: [Track] = [.Featured, .Media, .DeveloperTools, .GraphicsAndGames, .SystemFrameworks, .AppFrameworks, .Design, .Distribution]
 }
 
 enum Platform: String {
     case iOS, macOS, tvOS, watchOS
     
-    static var allPlatforms: [Platform] {
-        return [.iOS, .macOS, .tvOS, .watchOS]
-    }
+    static let allPlatforms: [Platform] = [.iOS, .macOS, .tvOS, .watchOS]
 }
 
 protocol Session {
@@ -50,9 +43,9 @@ protocol Session {
     var title: String { get }
     var subtitle: String { get }
     var summary: String { get }
-    var videoURL: NSURL { get }
-    var subtitles: NSURL { get }
-    var shelfImageURL: NSURL { get }
+    var video: NSURL { get }
+    var captions: NSURL { get }
+    var thumbnail: NSURL { get }
 }
 
 extension SequenceType where Generator.Element == Session {
