@@ -7,33 +7,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SessionsSearchViewController" customModule="WWDCast" customModuleProvider="target">
             <connections>
-                <outlet property="loadingIndicator" destination="1nb-WL-iYB" id="nEb-bD-ziQ"/>
-                <outlet property="tableView" destination="HqD-qb-n2v" id="JCS-BK-zq8"/>
-                <outlet property="view" destination="BF9-DT-dlQ" id="rcN-Ey-QkU"/>
+                <outlet property="view" destination="6qS-Ug-F6C" id="H0f-iv-Qlq"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="BF9-DT-dlQ">
+        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="6qS-Ug-F6C">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1nb-WL-iYB">
-                    <rect key="frame" x="290" y="290" width="20" height="20"/>
-                </activityIndicatorView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HqD-qb-n2v">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
-            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="HqD-qb-n2v" firstAttribute="leading" secondItem="BF9-DT-dlQ" secondAttribute="leading" id="D9h-7I-oPS"/>
-                <constraint firstItem="1nb-WL-iYB" firstAttribute="centerY" secondItem="BF9-DT-dlQ" secondAttribute="centerY" id="Foo-GN-Hhc"/>
-                <constraint firstItem="HqD-qb-n2v" firstAttribute="top" secondItem="BF9-DT-dlQ" secondAttribute="top" id="Tvk-PO-i43"/>
-                <constraint firstAttribute="trailing" secondItem="HqD-qb-n2v" secondAttribute="trailing" id="WvE-1T-dtP"/>
-                <constraint firstAttribute="bottom" secondItem="HqD-qb-n2v" secondAttribute="bottom" id="kgn-H0-hD7"/>
-                <constraint firstItem="1nb-WL-iYB" firstAttribute="centerX" secondItem="BF9-DT-dlQ" secondAttribute="centerX" id="rVP-NP-H0s"/>
-            </constraints>
-        </view>
+            <connections>
+                <outlet property="dataSource" destination="-1" id="hQ4-gQ-3pq"/>
+                <outlet property="delegate" destination="-1" id="IuU-dt-eXn"/>
+            </connections>
+        </tableView>
     </objects>
 </document>
