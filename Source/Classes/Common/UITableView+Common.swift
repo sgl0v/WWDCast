@@ -8,45 +8,50 @@
 
 import UIKit
 
-public protocol NibProvidable {
+protocol NibProvidable {
     static var nibName: String { get }
     static var nib: UINib { get }
 }
 
 extension NibProvidable {
-    public static var nibName: String {
+    static var nibName: String {
         return "\(self)"
     }
-    public static var nib: UINib {
+    static var nib: UINib {
         return UINib(nibName: self.nibName, bundle: nil)
     }
 }
 
-public protocol ReusableView {
+protocol ReusableView {
     static var reuseIdentifier: String { get }
 }
 
 extension ReusableView {
-    public static var reuseIdentifier: String {
+    static var reuseIdentifier: String {
         return "\(self)"
     }
 }
 
+protocol BindableView {
+    associatedtype ViewModel
+    func bindViewModel(viewModel: ViewModel)
+}
+
 // Cell
 extension UITableView {
-    public func registerClass<T : UITableViewCell where T: ReusableView>(cellClass `class`: T.Type) {
+    func registerClass<T : UITableViewCell where T: ReusableView>(cellClass `class`: T.Type) {
         registerClass(`class`, forCellReuseIdentifier: `class`.reuseIdentifier)
     }
 
-    public func registerNib<T: UITableViewCell where T: protocol<NibProvidable, ReusableView>>(cellClass `class`: T.Type) {
+    func registerNib<T: UITableViewCell where T: protocol<NibProvidable, ReusableView>>(cellClass `class`: T.Type) {
         registerNib(`class`.nib, forCellReuseIdentifier: `class`.reuseIdentifier)
     }
 
-    public func dequeueReusableCell<T: UITableViewCell where T: ReusableView>(withClass `class`: T.Type) -> T? {
+    func dequeueReusableCell<T: UITableViewCell where T: ReusableView>(withClass `class`: T.Type) -> T? {
         return dequeueReusableCellWithIdentifier(`class`.reuseIdentifier) as? T
     }
 
-    public func dequeueReusableCell<T: UITableViewCell where T: ReusableView>(withClass `class`: T.Type, forIndexPath indexPath: NSIndexPath) -> T! {
+    func dequeueReusableCell<T: UITableViewCell where T: ReusableView>(withClass `class`: T.Type, forIndexPath indexPath: NSIndexPath) -> T! {
         guard let cell = dequeueReusableCellWithIdentifier(`class`.reuseIdentifier, forIndexPath: indexPath) as? T else {
             assert(false, "Error: cell with identifier: \(`class`.reuseIdentifier) for index path: \(indexPath) is not \(T.self)")
             return nil
@@ -57,15 +62,15 @@ extension UITableView {
 
 // Header / Footer
 extension UITableView {
-    public func registerHeaderFooterClass<T: UITableViewHeaderFooterView where T: ReusableView>(headerFooterClass `class`: T.Type) {
+    func registerHeaderFooterClass<T: UITableViewHeaderFooterView where T: ReusableView>(headerFooterClass `class`: T.Type) {
         registerClass(`class`, forHeaderFooterViewReuseIdentifier: `class`.reuseIdentifier)
     }
 
-    public func registerHeaderFooterNib<T: UITableViewHeaderFooterView where T: protocol<NibProvidable, ReusableView>>(forHeaderFooterClass `class`: T.Type) {
+    func registerHeaderFooterNib<T: UITableViewHeaderFooterView where T: protocol<NibProvidable, ReusableView>>(forHeaderFooterClass `class`: T.Type) {
         registerNib(`class`.nib, forHeaderFooterViewReuseIdentifier: `class`.reuseIdentifier)
     }
 
-    public func dequeueResuableHeaderFooterView<T: UITableViewHeaderFooterView where T: ReusableView>(withClass `class`: T.Type) -> T? {
+    func dequeueResuableHeaderFooterView<T: UITableViewHeaderFooterView where T: ReusableView>(withClass `class`: T.Type) -> T? {
         return dequeueReusableHeaderFooterViewWithIdentifier(`class`.reuseIdentifier) as? T
     }
 }

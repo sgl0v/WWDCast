@@ -28,12 +28,14 @@ class FilterViewController: TableViewController<FilterSectionViewModel, FilterTa
     // MARK - Private
     
     private func setupBindings() {
+        // ViewModel's input
         self.navigationItem.leftBarButtonItem!.rx_tap.map({ true }).subscribeNext(self.viewModel.dismissObserver).addDisposableTo(self.disposeBag)
         self.navigationItem.rightBarButtonItem!.rx_tap.map({ false }).subscribeNext(self.viewModel.dismissObserver).addDisposableTo(self.disposeBag)
         self.tableView.rx_itemSelected.subscribeNext({ indexPath in
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }).addDisposableTo(self.disposeBag)
         
+        // ViewModel's output
         self.viewModel.filterSections.drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
         self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
     }

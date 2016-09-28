@@ -26,26 +26,26 @@ final class RxGCKDeviceManagerDelegateProxy: DelegateProxy, GCKDeviceManagerDele
 
 extension GCKDeviceManager {
     
-    public var rx_delegate: DelegateProxy {
+    var rx_delegate: DelegateProxy {
         return RxGCKDeviceManagerDelegateProxy.proxyForObject(self)
     }
     
-    public var rx_didConnect: Observable<GCKDeviceManager> {
+    var rx_didConnect: Observable<GCKDeviceManager> {
         return self.rx_delegate.observe(#selector(GCKDeviceManagerDelegate.deviceManagerDidConnect(_:)))
             .map { params in params.first as! GCKDeviceManager }
     }
     
-    public var rx_didFailToConnect: Observable<NSError> {
+    var rx_didFailToConnect: Observable<NSError> {
         return self.rx_delegate.observe(#selector(GCKDeviceManagerDelegate.deviceManager(_:didFailToConnectWithError:)))
             .map { params in params.last as! NSError }
     }
     
-    public var rx_didConnectToCastApplication: Observable<(GCKApplicationMetadata, String, Bool)> {
+    var rx_didConnectToCastApplication: Observable<(GCKApplicationMetadata, String, Bool)> {
         return rx_delegate.observe(#selector(GCKDeviceManagerDelegate.deviceManager(_:didConnectToCastApplication:sessionID:launchedApplication:)))
             .map { params in (params[1] as! GCKApplicationMetadata, params[2] as! String, (params[3] as! NSNumber).boolValue) }
     }
     
-    public var didFailToConnectToApplication: Observable<NSError> {
+    var didFailToConnectToApplication: Observable<NSError> {
         return rx_delegate.observe(#selector(GCKDeviceManagerDelegate.deviceManager(_:didFailToConnectToApplicationWithError:)))
             .map { params in params.last as! NSError }
     }

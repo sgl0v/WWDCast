@@ -22,18 +22,25 @@ extension Filter: CustomStringConvertible {
     }
 }
 
-//extension Filter: Hashable {
-//    var hashValue: Int {
-//        let prime = 31
-//        var result = 17
-//        result = prime * result + self.query.hashValue
-//        result = prime * result + self.year.hashValue
-//        result = prime * result + self.platforms.hashValue
-//        result = prime * result + self.tracks.hashValue
-//        return result
-//    }
-//}
-//
-//func ==(lhs: Filter, rhs: Filter) -> Bool {
-//    return lhs.query == rhs.query && lhs.year == rhs.year && lhs.platforms == rhs.platforms && lhs.tracks == rhs.tracks
-//}
+extension Filter: Hashable {
+    var hashValue: Int {
+        let prime = 31
+        let hash = 5381
+        var result = 17
+        result = prime * result + self.query.hashValue
+        result = prime * result + self.years.reduce(hash, combine: { acc, year in
+            return acc ^ year.hashValue
+        })
+        result = prime * result + self.platforms.reduce(hash, combine: { acc, platform in
+            return acc ^ platform.hashValue
+        })
+        result = prime * result + self.tracks.reduce(hash, combine: { acc, track in
+            return acc ^ track.hashValue
+        })
+        return result
+    }
+}
+
+func ==(lhs: Filter, rhs: Filter) -> Bool {
+    return lhs.query == rhs.query && lhs.years == rhs.years && lhs.platforms == rhs.platforms && lhs.tracks == rhs.tracks
+}

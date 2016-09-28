@@ -10,12 +10,7 @@ import UIKit
 import RxSwift
 import RxDataSources
 
-public protocol BindableView {
-    associatedtype ViewModel
-    func bindViewModel(viewModel: ViewModel)
-}
-
-public class TableViewController<SectionViewModel: protocol<SectionModelType, CustomStringConvertible>, Cell: UITableViewCell where Cell: protocol<BindableView, NibProvidable, ReusableView>, Cell.ViewModel == SectionViewModel.Item>: UITableViewController {
+class TableViewController<SectionViewModel: protocol<SectionModelType, CustomStringConvertible>, Cell: UITableViewCell where Cell: protocol<BindableView, NibProvidable, ReusableView>, Cell.ViewModel == SectionViewModel.Item>: UITableViewController {
 
     let disposeBag = DisposeBag()
 
@@ -32,11 +27,11 @@ public class TableViewController<SectionViewModel: protocol<SectionModelType, Cu
         return dataSource
     }()
 
-    public init() {
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
 
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.registerNib(cellClass: Cell.self)
     }
