@@ -11,14 +11,16 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class SessionsSearchViewController: TableViewController<SessionSectionViewModel, SessionTableViewCell> {
+class SessionsSearchViewController: UIViewController {
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var tableView: UITableView!
     private let viewModel: SessionsSearchViewModel
+    private let disposeBag = DisposeBag()
     
     init(viewModel: SessionsSearchViewModel) {
         self.viewModel = viewModel
-        super.init()
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -44,6 +46,19 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         return self.searchController.searchBar
     }
     
+    private lazy var source: RxTableViewSectionedReloadDataSource<SessionSectionViewModel> = {
+        let dataSource = RxTableViewSectionedReloadDataSource<SessionSectionViewModel>()
+        dataSource.configureCell = { (dataSource, tableView, indexPath, element) in
+            let cell = tableView.dequeueReusableCell(withClass: SessionTableViewCell.self, forIndexPath: indexPath)
+            cell.bindViewModel(element)
+            return cell
+        }
+        dataSource.titleForHeaderInSection = { (dataSource, section) in
+            return dataSource.sectionAtIndex(section).description
+        }
+        return dataSource
+    }()
+    
     private func bindViewModel() {
         // ViewModel's input
         self.navigationItem.leftBarButtonItem!.rx_tap.bindNext(self.viewModel.filterObserver).addDisposableTo(self.disposeBag)
@@ -53,9 +68,11 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
             .addDisposableTo(self.disposeBag)
         
         // ViewModel's output
+        
         self.viewModel.sessionSections.drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
         self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
-        self.viewModel.isLoading.drive(self.view.rx_hidden).addDisposableTo(self.disposeBag)
+        self.viewModel.isLoading.drive(self.tableView.rx_hidden).addDisposableTo(self.disposeBag)
+        self.viewModel.isLoading.drive(self.loadingIndicator.rx_animating).addDisposableTo(self.disposeBag)
     }
 
     private func configureUI() {        
@@ -63,7 +80,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Filter", comment: "Filter"), style: .Plain, target: nil, action: nil)
 
-        self.clearsSelectionOnViewWillAppear = true
+//        self.clearsSelectionOnViewWillAppear = true
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
         self.tableView.delegate = nil
@@ -71,6 +88,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.tableView.tableHeaderView = self.searchController.searchBar
         self.tableView.layoutMargins = UIEdgeInsetsZero
         self.tableView.tableFooterView = UIView()
+        self.tableView.registerNib(cellClass: SessionTableViewCell.self)
         
         // dismiss keyboard on scroll
         self.tableView.rx_contentOffset.asDriver()
