@@ -18,8 +18,13 @@ extension String {
 final class NetworkServiceImpl: NetworkService {
 
     private let session: NSURLSession
-
-    init(session: NSURLSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())) {
+    private static func defaultConfiguration() -> NSURLSessionConfiguration {
+        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        configuration.allowsCellularAccess = false
+        return configuration
+    }
+    
+    init(session: NSURLSession = NSURLSession(configuration: NetworkServiceImpl.defaultConfiguration())) {
         self.session = session
     }
     
