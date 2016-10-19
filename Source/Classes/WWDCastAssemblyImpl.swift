@@ -9,7 +9,37 @@
 import UIKit
 import GoogleCast
 
-class WWDCastAssemblyImpl: WWDCastAssembly {
+class TabBarController: UITabBarController, GCKUIMiniMediaControlsViewControllerDelegate {
+    
+    private var miniMediaControlsViewController: GCKUIMiniMediaControlsViewController!
+    private static let kMiniMediaControlsViewHeight: CGFloat = 60.0
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let castContext = GCKCastContext.sharedInstance()
+        castContext.useDefaultExpandedMediaControls = true
+        
+        miniMediaControlsViewController = castContext.createMiniMediaControlsViewController()
+        miniMediaControlsViewController.delegate = self
+        self.addChildViewController(miniMediaControlsViewController)
+        self.view.addSubview(miniMediaControlsViewController.view)
+        miniMediaControlsViewController.didMoveToParentViewController(self)
+        miniMediaControlsViewController.view.hidden = !miniMediaControlsViewController.active
+    }
+    
+    func miniMediaControlsViewController(miniMediaControlsViewController: GCKUIMiniMediaControlsViewController, shouldAppear: Bool) {
+        miniMediaControlsViewController.view.hidden = !miniMediaControlsViewController.active
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let y = CGRectGetMaxY(self.view.bounds) - TabBarController.kMiniMediaControlsViewHeight - CGRectGetHeight(self.tabBar.frame)
+        miniMediaControlsViewController.view.frame = CGRectMake(0, y, CGRectGetWidth(self.view.bounds), TabBarController.kMiniMediaControlsViewHeight)
+    }
+}
+
+@objc class WWDCastAssemblyImpl: NSObject, WWDCastAssembly {
     
     lazy var router: WWDCastRouterImpl = {
         return WWDCastRouterImpl(moduleFactory: self)
@@ -23,18 +53,20 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
     func sessionsSearchController() -> UIViewController {
         let viewModel = SessionsSearchViewModelImpl(api: self.api, router: self.router)
         let view = SessionsSearchViewController(viewModel: viewModel)
-        let navigationController = UINavigationController(rootViewController: view)
-        navigationController.navigationBar.tintColor = UIColor.blackColor()
-        self.router.navigationController = navigationController
+        let searchNavigationController = UINavigationController(rootViewController: view)
+        searchNavigationController.navigationBar.tintColor = UIColor.blackColor()
+        searchNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .Search, tag: 0)
+        self.router.navigationController = searchNavigationController
 
-        let castContext = GCKCastContext.sharedInstance()
-        let castContainerVC = castContext.createCastContainerControllerForViewController(navigationController)
-        castContext.useDefaultExpandedMediaControls = true
-        castContainerVC.miniMediaControlsItemEnabled = true
-
-        return castContainerVC
+        let favoritesNavigationController = UINavigationController()
+        favoritesNavigationController.navigationBar.tintColor = UIColor.blackColor()
+        favoritesNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .Favorites, tag: 1)
+        
+        let tabbarController = TabBarController()
+        tabbarController.viewControllers = [searchNavigationController, favoritesNavigationController]
+        return tabbarController
     }
-    
+
     func filterController(filter: Filter, completion: FilterModuleCompletion) -> UIViewController {
         let viewModel = FilterViewModelImpl(filter: filter, completion: completion)
         let view = FilterViewController(viewModel: viewModel)
