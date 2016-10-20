@@ -66,6 +66,7 @@
 		E7121D051D9B0935003F5DCC /* EntityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF71D9B0935003F5DCC /* EntityBuilder.swift */; };
 		E7121D061D9B0935003F5DCC /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF81D9B0935003F5DCC /* Session.swift */; };
 		E7121D071D9B0935003F5DCC /* WWDCastAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */; };
+		E777AE0D1DB8C3E00023192A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE0C1DB8C3E00023192A /* TabBarController.swift */; };
 		E79718071D5FB9E900C4DD7C /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718061D5FB9E900C4DD7C /* FilterViewController.xib */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
 		E7B287871D9C11A200BF4707 /* GoogleCastDeviceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B287861D9C11A200BF4707 /* GoogleCastDeviceImpl.swift */; };
@@ -149,6 +150,7 @@
 		E7121CF71D9B0935003F5DCC /* EntityBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityBuilder.swift; sourceTree = "<group>"; };
 		E7121CF81D9B0935003F5DCC /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAssembly.swift; sourceTree = "<group>"; };
+		E777AE0C1DB8C3E00023192A /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E79718061D5FB9E900C4DD7C /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterViewController.xib; path = Resources/FilterViewController.xib; sourceTree = SOURCE_ROOT; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		E7B287861D9C11A200BF4707 /* GoogleCastDeviceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDeviceImpl.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				E7121CB71D9AFFE4003F5DCC /* SessionViewModel.swift */,
 				E7121CB81D9AFFE4003F5DCC /* SessionViewModelBuilder.swift */,
 				E7121CB91D9AFFE4003F5DCC /* SessionViewModels.swift */,
+				E777AE0C1DB8C3E00023192A /* TabBarController.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				E7121CD81D9AFFE4003F5DCC /* SessionViewModel.swift in Sources */,
 				E7121CFD1D9B0935003F5DCC /* GoogleCastService.swift in Sources */,
 				B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */,
+				E777AE0D1DB8C3E00023192A /* TabBarController.swift in Sources */,
 				E7121CC31D9AFFE4003F5DCC /* ReachabilityServiceImpl.swift in Sources */,
 				E7121D031D9B0935003F5DCC /* WWDCastRouter.swift in Sources */,
 				E7121CCF1D9AFFE4003F5DCC /* SessionBuilder.swift in Sources */,
