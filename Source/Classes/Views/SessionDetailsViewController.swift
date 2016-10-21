@@ -9,6 +9,14 @@
 import UIKit
 import RxSwift
 
+//class ToggleButton: UIControl {
+//    
+//    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//        self.selected = !self.selected
+//        self.sendActionsForControlEvents(.ValueChanged)
+//    }
+//}
+
 class SessionDetailsViewController: UIViewController, NibProvidable {
 
     @IBOutlet weak var image: UIImageView!
@@ -16,6 +24,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     @IBOutlet weak var summary: UILabel!
     @IBOutlet weak var subtitle: UILabel!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
 
     private let viewModel: SessionDetailsViewModel
     private let disposeBag = DisposeBag()
@@ -45,6 +54,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     private func bindViewModel() {
         // ViewModel's input
         self.playButton.rx_tap.subscribeNext(self.viewModel.playSession).addDisposableTo(self.disposeBag)
+        self.favoriteButton.rx_tap.subscribeNext(self.viewModel.toggleFavorite).addDisposableTo(self.disposeBag)
         
         // ViewModel's output
         self.viewModel.session.driveNext(self.viewModelObserver).addDisposableTo(self.disposeBag)
@@ -59,6 +69,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         self.header.text = viewModel.title
         self.summary.text = viewModel.summary
         self.subtitle.text = viewModel.subtitle
+        self.favoriteButton.selected = viewModel.favorite
     }
     
 }

@@ -67,6 +67,8 @@
 		E7121D061D9B0935003F5DCC /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF81D9B0935003F5DCC /* Session.swift */; };
 		E7121D071D9B0935003F5DCC /* WWDCastAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */; };
 		E777AE0D1DB8C3E00023192A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE0C1DB8C3E00023192A /* TabBarController.swift */; };
+		E777AE0F1DBA3D8B0023192A /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE0E1DBA3D8B0023192A /* CacheService.swift */; };
+		E777AE111DBA3E300023192A /* CacheServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE101DBA3E300023192A /* CacheServiceImpl.swift */; };
 		E79718071D5FB9E900C4DD7C /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718061D5FB9E900C4DD7C /* FilterViewController.xib */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
 		E7B287871D9C11A200BF4707 /* GoogleCastDeviceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B287861D9C11A200BF4707 /* GoogleCastDeviceImpl.swift */; };
@@ -151,6 +153,8 @@
 		E7121CF81D9B0935003F5DCC /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAssembly.swift; sourceTree = "<group>"; };
 		E777AE0C1DB8C3E00023192A /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		E777AE0E1DBA3D8B0023192A /* CacheService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
+		E777AE101DBA3E300023192A /* CacheServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheServiceImpl.swift; sourceTree = "<group>"; };
 		E79718061D5FB9E900C4DD7C /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterViewController.xib; path = Resources/FilterViewController.xib; sourceTree = SOURCE_ROOT; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		E7B287861D9C11A200BF4707 /* GoogleCastDeviceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDeviceImpl.swift; sourceTree = "<group>"; };
@@ -288,6 +292,7 @@
 				E7121C9E1D9AFFE4003F5DCC /* RxGCKDeviceManagerDelegateProxy.swift */,
 				E7121C9F1D9AFFE4003F5DCC /* SchedulerServiceImpl.swift */,
 				E7121CA01D9AFFE4003F5DCC /* ServiceProviderImpl.swift */,
+				E777AE101DBA3E300023192A /* CacheServiceImpl.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 				E7121CEF1D9B0935003F5DCC /* ReachabilityService.swift */,
 				E7121CF01D9B0935003F5DCC /* SchedulerService.swift */,
 				E7121CF11D9B0935003F5DCC /* ServiceProvider.swift */,
+				E777AE0E1DBA3D8B0023192A /* CacheService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -678,12 +684,14 @@
 				E7121CFE1D9B0935003F5DCC /* NetworkService.swift in Sources */,
 				E7121CCC1D9AFFE4003F5DCC /* UITableViewController+Common.swift in Sources */,
 				E7121CD71D9AFFE4003F5DCC /* SessionsSearchViewModelImpl.swift in Sources */,
+				E777AE111DBA3E300023192A /* CacheServiceImpl.swift in Sources */,
 				E7121CE61D9B0859003F5DCC /* FilterSectionViewModel.swift in Sources */,
 				E7121CC51D9AFFE4003F5DCC /* SchedulerServiceImpl.swift in Sources */,
 				E7121D051D9B0935003F5DCC /* EntityBuilder.swift in Sources */,
 				E7121CD61D9AFFE4003F5DCC /* SessionDetailsViewModelImpl.swift in Sources */,
 				E7121CDC1D9AFFE4003F5DCC /* SessionDetailsViewController.swift in Sources */,
 				E7121CCE1D9AFFE4003F5DCC /* AppConfigBuilder.swift in Sources */,
+				E777AE0F1DBA3D8B0023192A /* CacheService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

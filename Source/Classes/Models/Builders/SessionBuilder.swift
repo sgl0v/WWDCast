@@ -38,7 +38,7 @@ class SessionBuilder: EntityBuilder {
 
         return SessionImpl(id: id, year: year, track: track, platforms: platforms, title: title,
                            summary: summary, video: video, captions: captions,
-                           thumbnail: thumbnailURL)
+                           thumbnail: thumbnailURL, favorite: false)
     }
     
 }

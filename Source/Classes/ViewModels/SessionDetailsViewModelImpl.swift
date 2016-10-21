@@ -48,6 +48,18 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
             .addDisposableTo(self.disposeBag)
     }
     
+    func toggleFavorite() {
+        if (self._session.value.favorite) {
+            self.api.removeFromFavorites(self._session.value).subscribeNext({ session in
+                self._session.value = session
+            }).addDisposableTo(self.disposeBag)
+        } else {
+            self.api.addToFavorites(self._session.value).subscribeNext({ session in
+                self._session.value = session
+            }).addDisposableTo(self.disposeBag)
+        }
+    }
+    
     // MARK: Private
     
     private func didFailToPlaySession(error: ErrorType) {

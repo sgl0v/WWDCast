@@ -16,4 +16,8 @@ protocol WWDCastAPI: class {
     func sessions() -> Observable<[Session]>
     
     func play(session: Session, onDevice device: GoogleCastDevice) -> Observable<Void>
+    
+    func addToFavorites(session: Session) -> Observable<Session>
+    
+    func removeFromFavorites(session: Session) -> Observable<Session>
 }

@@ -15,6 +15,7 @@ struct SessionItemViewModel {
     var subtitle: String
     var summary: String
     var thumbnailURL: NSURL
+    var favorite: Bool
 }
 
 extension SessionItemViewModel: IdentifiableType {

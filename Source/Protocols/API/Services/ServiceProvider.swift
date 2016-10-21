@@ -13,4 +13,5 @@ protocol ServiceProvider: class {
     var scheduler: SchedulerService { get }
     var network: NetworkService { get }
     var googleCast: GoogleCastService { get }
+    var cache: CacheService { get }
 }

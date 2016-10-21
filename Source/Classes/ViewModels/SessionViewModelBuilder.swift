@@ -13,7 +13,7 @@ struct SessionItemViewModelBuilder {
     static func build(session: Session) -> SessionItemViewModel {
         let focus = session.platforms.map({ $0.rawValue }).joinWithSeparator(", ")
         let subtitle = ["\(session.year)", "Session \(session.id)", focus].filter({ $0.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0}) .joinWithSeparator(" · ")
-        return SessionItemViewModel(uniqueID: session.uniqueId, title: session.title, subtitle: subtitle, summary: session.summary, thumbnailURL: session.thumbnail)
+        return SessionItemViewModel(uniqueID: session.uniqueId, title: session.title, subtitle: subtitle, summary: session.summary, thumbnailURL: session.thumbnail, favorite: session.favorite)
     }
 
     static func build(sessions: [Session]) -> [SessionSectionViewModel] {

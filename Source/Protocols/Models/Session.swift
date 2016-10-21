@@ -46,6 +46,7 @@ protocol Session {
     var video: NSURL { get }
     var captions: NSURL { get }
     var thumbnail: NSURL { get }
+    var favorite: Bool { get }
 }
 
 extension SequenceType where Generator.Element == Session {

@@ -23,6 +23,7 @@ struct SessionImpl: Session {
     let video: NSURL
     let captions: NSURL
     let thumbnail: NSURL
+    let favorite: Bool
 }
 
 extension SessionImpl: Hashable {

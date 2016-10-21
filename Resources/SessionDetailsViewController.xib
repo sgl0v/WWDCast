@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SessionDetailsViewController" customModule="WWDCast" customModuleProvider="target">
             <connections>
+                <outlet property="favoriteButton" destination="rAb-OD-0XQ" id="LBh-ra-eSg"/>
                 <outlet property="header" destination="84X-H4-YfT" id="aNv-TJ-qSF"/>
                 <outlet property="image" destination="9T3-Ic-VSi" id="dMK-c0-4Ld"/>
                 <outlet property="playButton" destination="2qp-JW-fbJ" id="9Jc-n0-XBO"/>
@@ -45,23 +46,34 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWDC 2016 Platforms State of the Union" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcL-VK-WEE">
-                                            <rect key="frame" x="8" y="37.5" width="584" height="17"/>
+                                            <rect key="frame" x="8" y="37" width="584" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WWDC 2016 - Session 102 - iOS, macOS, tvOS, watchOS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6n-WU-77j">
-                                            <rect key="frame" x="8" y="62.5" width="584" height="18"/>
+                                            <rect key="frame" x="8" y="62" width="584" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.38823529410000002" green="0.38823529410000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAb-OD-0XQ">
+                                            <rect key="frame" x="560" y="8" width="32" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="32" id="qj9-nI-rfE"/>
+                                                <constraint firstAttribute="width" constant="32" id="vNT-bq-isz"/>
+                                            </constraints>
+                                            <state key="normal" image="ico_favorite"/>
+                                            <state key="selected" image="ico_favorite_selected"/>
+                                            <state key="highlighted" image="ico_favorite_selected"/>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="L6n-WU-77j" secondAttribute="trailing" id="1h5-vr-hNe"/>
                                         <constraint firstItem="L6n-WU-77j" firstAttribute="leading" secondItem="3Ae-ES-fcX" secondAttribute="leadingMargin" id="2eA-pP-bPe"/>
                                         <constraint firstItem="84X-H4-YfT" firstAttribute="top" secondItem="3Ae-ES-fcX" secondAttribute="topMargin" id="5Sc-Mi-KWH"/>
+                                        <constraint firstAttribute="trailing" secondItem="rAb-OD-0XQ" secondAttribute="trailing" constant="8" id="7Xq-hA-RWm"/>
                                         <constraint firstItem="wcL-VK-WEE" firstAttribute="trailing" secondItem="3Ae-ES-fcX" secondAttribute="trailingMargin" id="O1b-Hf-Wb4"/>
                                         <constraint firstItem="84X-H4-YfT" firstAttribute="leading" secondItem="3Ae-ES-fcX" secondAttribute="leadingMargin" id="UKE-l4-NGr"/>
                                         <constraint firstItem="84X-H4-YfT" firstAttribute="trailing" secondItem="3Ae-ES-fcX" secondAttribute="trailingMargin" id="W6D-j1-OW3"/>
@@ -87,6 +99,7 @@
                                 <constraint firstAttribute="trailing" secondItem="3Ae-ES-fcX" secondAttribute="trailing" id="G1H-ML-jSh"/>
                                 <constraint firstItem="9T3-Ic-VSi" firstAttribute="leading" secondItem="Lvc-KU-ZAF" secondAttribute="leading" id="JFj-Gr-w5C"/>
                                 <constraint firstItem="3Ae-ES-fcX" firstAttribute="leading" secondItem="Lvc-KU-ZAF" secondAttribute="leading" id="MCs-7a-KIN"/>
+                                <constraint firstItem="rAb-OD-0XQ" firstAttribute="top" secondItem="9T3-Ic-VSi" secondAttribute="bottom" constant="8" id="VYn-Xp-cnw"/>
                                 <constraint firstItem="2qp-JW-fbJ" firstAttribute="centerX" secondItem="9T3-Ic-VSi" secondAttribute="centerX" id="w6H-s3-k2T"/>
                                 <constraint firstItem="2qp-JW-fbJ" firstAttribute="centerY" secondItem="9T3-Ic-VSi" secondAttribute="centerY" id="yof-wa-iBM"/>
                             </constraints>
@@ -111,6 +124,8 @@
         </scrollView>
     </objects>
     <resources>
+        <image name="ico_favorite" width="128" height="128"/>
+        <image name="ico_favorite_selected" width="128" height="128"/>
         <image name="play_circle" width="48" height="48"/>
     </resources>
 </document>
