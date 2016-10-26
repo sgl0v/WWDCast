@@ -69,6 +69,10 @@
 		E777AE0D1DB8C3E00023192A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE0C1DB8C3E00023192A /* TabBarController.swift */; };
 		E777AE0F1DBA3D8B0023192A /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE0E1DBA3D8B0023192A /* CacheService.swift */; };
 		E777AE111DBA3E300023192A /* CacheServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE101DBA3E300023192A /* CacheServiceImpl.swift */; };
+		E777AE131DBA63D80023192A /* FavoriteSessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */; };
+		E777AE151DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */; };
+		E777AE171DBA64610023192A /* FavoriteSessionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE161DBA64610023192A /* FavoriteSessionsViewModel.swift */; };
+		E777AE191DBA696B0023192A /* FavoriteSessionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E777AE181DBA696B0023192A /* FavoriteSessionsViewController.xib */; };
 		E79718071D5FB9E900C4DD7C /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718061D5FB9E900C4DD7C /* FilterViewController.xib */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
 		E7B287871D9C11A200BF4707 /* GoogleCastDeviceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B287861D9C11A200BF4707 /* GoogleCastDeviceImpl.swift */; };
@@ -155,6 +159,10 @@
 		E777AE0C1DB8C3E00023192A /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E777AE0E1DBA3D8B0023192A /* CacheService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
 		E777AE101DBA3E300023192A /* CacheServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheServiceImpl.swift; sourceTree = "<group>"; };
+		E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewController.swift; sourceTree = "<group>"; };
+		E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModelImpl.swift; sourceTree = "<group>"; };
+		E777AE161DBA64610023192A /* FavoriteSessionsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModel.swift; sourceTree = "<group>"; };
+		E777AE181DBA696B0023192A /* FavoriteSessionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FavoriteSessionsViewController.xib; path = Resources/FavoriteSessionsViewController.xib; sourceTree = SOURCE_ROOT; };
 		E79718061D5FB9E900C4DD7C /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterViewController.xib; path = Resources/FilterViewController.xib; sourceTree = SOURCE_ROOT; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		E7B287861D9C11A200BF4707 /* GoogleCastDeviceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDeviceImpl.swift; sourceTree = "<group>"; };
@@ -223,6 +231,7 @@
 				5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */,
 				B6F929CA1D2A5DD5009E4B83 /* Info.plist */,
 				E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */,
+				E777AE181DBA696B0023192A /* FavoriteSessionsViewController.xib */,
 			);
 			name = Resources;
 			path = WWDCast;
@@ -348,6 +357,7 @@
 				E7121CE51D9B0859003F5DCC /* FilterSectionViewModel.swift */,
 				E7121CB51D9AFFE4003F5DCC /* SessionDetailsViewModelImpl.swift */,
 				E7121CB61D9AFFE4003F5DCC /* SessionsSearchViewModelImpl.swift */,
+				E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */,
 				E7121CB71D9AFFE4003F5DCC /* SessionViewModel.swift */,
 				E7121CB81D9AFFE4003F5DCC /* SessionViewModelBuilder.swift */,
 				E7121CB91D9AFFE4003F5DCC /* SessionViewModels.swift */,
@@ -364,6 +374,7 @@
 				E7121CBC1D9AFFE4003F5DCC /* SessionDetailsViewController.swift */,
 				E7121CBD1D9AFFE4003F5DCC /* SessionsSearchViewController.swift */,
 				E7121CBE1D9AFFE4003F5DCC /* SessionTableViewCell.swift */,
+				E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -374,6 +385,7 @@
 				E7121CE81D9B0935003F5DCC /* FilterViewModel.swift */,
 				E7121CE91D9B0935003F5DCC /* SessionDetailsViewModel.swift */,
 				E7121CEA1D9B0935003F5DCC /* SessionsSearchViewModel.swift */,
+				E777AE161DBA64610023192A /* FavoriteSessionsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -524,6 +536,7 @@
 				B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */,
 				B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */,
 				5E2680961D2C43440054E90B /* Assets.xcassets in Resources */,
+				E777AE191DBA696B0023192A /* FavoriteSessionsViewController.xib in Resources */,
 				E79718071D5FB9E900C4DD7C /* FilterViewController.xib in Resources */,
 				5EBEEF611D2B15BD007C44E3 /* SessionsSearchViewController.xib in Resources */,
 			);
@@ -642,10 +655,12 @@
 				E777AE0D1DB8C3E00023192A /* TabBarController.swift in Sources */,
 				E7121CC31D9AFFE4003F5DCC /* ReachabilityServiceImpl.swift in Sources */,
 				E7121D031D9B0935003F5DCC /* WWDCastRouter.swift in Sources */,
+				E777AE131DBA63D80023192A /* FavoriteSessionsViewController.swift in Sources */,
 				E7121CCF1D9AFFE4003F5DCC /* SessionBuilder.swift in Sources */,
 				E7121CC21D9AFFE4003F5DCC /* NetworkServiceImpl.swift in Sources */,
 				E7121CDB1D9AFFE4003F5DCC /* FilterViewController.swift in Sources */,
 				E7121CFA1D9B0935003F5DCC /* FilterViewModel.swift in Sources */,
+				E777AE151DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift in Sources */,
 				E7121CCD1D9AFFE4003F5DCC /* AppConfigImpl.swift in Sources */,
 				E7121D061D9B0935003F5DCC /* Session.swift in Sources */,
 				E7121CC81D9AFFE4003F5DCC /* RxExtensions.swift in Sources */,
@@ -654,6 +669,7 @@
 				E7121CD31D9AFFE4003F5DCC /* ActivityIndicator.swift in Sources */,
 				E7B287871D9C11A200BF4707 /* GoogleCastDeviceImpl.swift in Sources */,
 				E7121CFB1D9B0935003F5DCC /* SessionDetailsViewModel.swift in Sources */,
+				E777AE171DBA64610023192A /* FavoriteSessionsViewModel.swift in Sources */,
 				E7121D021D9B0935003F5DCC /* WWDCastAPI.swift in Sources */,
 				E7121CCB1D9AFFE4003F5DCC /* UITableView+Common.swift in Sources */,
 				E7121CD41D9AFFE4003F5DCC /* Reachability.swift in Sources */,

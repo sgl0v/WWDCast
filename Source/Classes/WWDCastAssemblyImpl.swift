@@ -13,27 +13,30 @@ import UIKit
     lazy var router: WWDCastRouterImpl = {
         return WWDCastRouterImpl(moduleFactory: self)
     }()
-    
+
     lazy var api: WWDCastAPI = {
         let serviceProvider = ServiceProviderImpl.defaultServiceProvider
         return WWDCastAPIImpl(serviceProvider: serviceProvider)
     }()
+    
+    func tabbarController() -> UIViewController {
+        let sessionsSearchController = self.sessionsSearchController()
+        sessionsSearchController.tabBarItem = UITabBarItem(tabBarSystemItem: .Search, tag: 0)
+        let favoriteSessionsController = self.favoriteSessionsController()
+        favoriteSessionsController.tabBarItem = UITabBarItem(tabBarSystemItem: .Favorites, tag: 1)
+        let tabbarController = TabBarController()
+        tabbarController.viewControllers = [sessionsSearchController, favoriteSessionsController]
+        return tabbarController
+    }
     
     func sessionsSearchController() -> UIViewController {
         let viewModel = SessionsSearchViewModelImpl(api: self.api, router: self.router)
         let view = SessionsSearchViewController(viewModel: viewModel)
         let searchNavigationController = UINavigationController(rootViewController: view)
         searchNavigationController.navigationBar.tintColor = UIColor.blackColor()
-        searchNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .Search, tag: 0)
-        self.router.navigationController = searchNavigationController
-
-        let favoritesNavigationController = UINavigationController()
-        favoritesNavigationController.navigationBar.tintColor = UIColor.blackColor()
-        favoritesNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .Favorites, tag: 1)
         
-        let tabbarController = TabBarController()
-        tabbarController.viewControllers = [searchNavigationController, favoritesNavigationController]
-        return tabbarController
+        self.router.navigationController = searchNavigationController
+        return searchNavigationController
     }
 
     func filterController(filter: Filter, completion: FilterModuleCompletion) -> UIViewController {
@@ -47,6 +50,17 @@ import UIKit
     func sessionDetailsController(session: Session) -> UIViewController {
         let viewModel = SessionDetailsViewModelImpl(session: session, api: self.api, router: self.router)
         return SessionDetailsViewController(viewModel: viewModel)
+    }
+    
+    func favoriteSessionsController() -> UIViewController {
+        let router = WWDCastRouterImpl(moduleFactory: self)
+        let viewModel = FavoriteSessionsViewModelImpl(api: self.api, router: router)
+        let view = FavoriteSessionsViewController(viewModel: viewModel)
+        let searchNavigationController = UINavigationController(rootViewController: view)
+        searchNavigationController.navigationBar.tintColor = UIColor.blackColor()
+        
+        router.navigationController = searchNavigationController
+        return searchNavigationController
     }
 
 }

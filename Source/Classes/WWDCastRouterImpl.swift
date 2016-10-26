@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter {
+class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter, FavoriteSessionsRouter {
     weak var moduleFactory: WWDCastAssembly!
     weak var navigationController: UINavigationController!
 

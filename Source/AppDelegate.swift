@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         self.window =  UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = self.assembly.sessionsSearchController()
+        self.window?.rootViewController = self.assembly.tabbarController()
         self.window?.makeKeyAndVisible()
 
         return true
