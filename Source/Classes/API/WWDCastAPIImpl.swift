@@ -34,7 +34,7 @@ class WWDCastAPIImpl : WWDCastAPI {
             .doOnNext(self.saveToCache)
         let loadFromFile = self.loadFromCache()
         
-        return Observable.of(loadFromFile, loadFromNetwork).concat().take(1).startWith([])
+        return Observable.of(loadFromFile, loadFromNetwork).concat().take(1).map(markFavoriteSessions).startWith([])
         
         //        self.router.showAlert(nil, message: NSLocalizedString("Failed to load WWDC sessions!", comment: ""))
     }
@@ -72,7 +72,7 @@ class WWDCastAPIImpl : WWDCastAPI {
     }
     
     private func loadSessions(config: AppConfig) -> Observable<[Session]> {
-        return self.serviceProvider.network.request(config.videosURL, parameters: [:]).flatMap(build(SessionsBuilder.self)).map(markFavoriteSessions)
+        return self.serviceProvider.network.request(config.videosURL, parameters: [:]).flatMap(build(SessionsBuilder.self))
     }
     
     private func build<Builder: EntityBuilder>(builder: Builder.Type) -> NSData -> Observable<Builder.EntityType> {
@@ -99,12 +99,18 @@ class WWDCastAPIImpl : WWDCastAPI {
         })
     }
     
+    private var cachedSessions: [Session]?
+    
     private func saveToCache(sessions: [Session]) {
+        self.cachedSessions = sessions
 //        NSLog("%@", sessions.description);
     }
     
     private func loadFromCache() -> Observable<[Session]> {
-        return Observable.empty()
+        guard let cachedSessions = self.cachedSessions else {
+            return Observable.empty()
+        }
+        return Observable.of(cachedSessions)
     }
     
 }

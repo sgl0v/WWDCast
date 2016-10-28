@@ -45,9 +45,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         
         // ViewModel's output
         
-        self.rx_viewWillAppear.flatMap({ _ in
-            return self.viewModel.favoriteSessions.asObservable()
-        }).asDriver(onErrorJustReturn: []).drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
+        self.viewModel.favoriteSessions(self.rx_viewWillAppear).drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
         self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
     }
     

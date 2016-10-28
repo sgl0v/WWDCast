@@ -23,13 +23,12 @@ class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
     
     // MARK: FavoriteSessionsViewModel
     
-    lazy var favoriteSessions: Driver<[SessionSectionViewModel]> = {
-        let sessionsObservable = self.api.sessions().map(self.filterFavoriteSessions)
-        return sessionsObservable
+    func favoriteSessions(trigger: Observable<Void>) -> Driver<[SessionSectionViewModel]> {
+        return trigger.flatMap(self.api.sessions).map(self.filterFavoriteSessions)
             .doOnNext({ self.sessions = $0 })
             .map(SessionItemViewModelBuilder.build)
             .asDriver(onErrorJustReturn: [])
-    }()
+    }
     
     let title = Driver.just(NSLocalizedString("Favorites", comment: "Favorte sessions view title"))
     

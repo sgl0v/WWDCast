@@ -21,5 +21,5 @@ protocol FavoriteSessionsViewModel: class {
     // The view's title
     var title: Driver<String> { get }
     // The array of available WWDC sessions divided into sections
-    var favoriteSessions: Driver<[SessionSectionViewModel]> { get }
+    func favoriteSessions(trigger: Observable<Void>) -> Driver<[SessionSectionViewModel]>
 }
