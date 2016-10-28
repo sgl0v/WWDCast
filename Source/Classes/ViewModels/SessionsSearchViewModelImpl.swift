@@ -30,7 +30,7 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
     // MARK: SessionsSearchViewModel
     
     lazy var sessionSections: Driver<[SessionSectionViewModel]> = {
-        let sessionsObservable = self.api.sessions().trackActivity(self.activityIndicator)
+        let sessionsObservable = self.api.sessions //.trackActivity(self.activityIndicator)
         return Observable.combineLatest(sessionsObservable, self.filter.asObservable(), resultSelector: self.applyFilter)
             .doOnNext({ self.sessions = $0 })
             .map(SessionItemViewModelBuilder.build)

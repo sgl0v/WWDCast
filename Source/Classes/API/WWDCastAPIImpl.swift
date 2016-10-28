@@ -25,44 +25,61 @@ class WWDCastAPIImpl : WWDCastAPI {
         return self.serviceProvider.googleCast.devices
     }
 
-    func sessions() -> Observable<[Session]> {
-        let loadFromNetwork = loadConfig().flatMapLatest(self.loadSessions)
+    lazy var sessions: Observable<[Session]> = {
+        let loadFromNetwork = self.loadConfig().flatMapLatest(self.loadSessions)
             .retryOnBecomesReachable([], reachabilityService: self.serviceProvider.reachability)
             .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
             .observeOn(self.serviceProvider.scheduler.mainScheduler)
-            .shareReplayLatestWhileConnected()
             .doOnNext(self.saveToCache)
-        let loadFromFile = self.loadFromCache()
+        let loadFromCache = self.loadFromCache()
         
-        return Observable.of(loadFromFile, loadFromNetwork).concat().take(1).map(markFavoriteSessions).startWith([])
+        return Observable.of(loadFromCache, loadFromNetwork).merge().shareReplayLatestWhileConnected()
         
         //        self.router.showAlert(nil, message: NSLocalizedString("Failed to load WWDC sessions!", comment: ""))
+    }()
+    
+    func session(withId id: String) -> Observable<Session> {
+        return self.sessions.map({ sessions in
+            return sessions.filter({ session in
+                return session.uniqueId == id
+            }).first!
+        })
     }
     
     func play(session: Session, onDevice device: GoogleCastDevice) -> Observable<Void> {
         return self.serviceProvider.googleCast.play(session, onDevice: device)
     }
     
-    func addToFavorites(session: Session) -> Observable<Session> {
-        var favoriteSessions = self.favoriteSessions()
-        favoriteSessions.append(session.uniqueId)
-        self.serviceProvider.cache.setObject(favoriteSessions, forKey: favoriteSessionsKey)
-        
-        return Observable.just(SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title,
-                           summary: session.summary, video: session.video, captions: session.captions,
-                           thumbnail: session.thumbnail, favorite: true))
+    var favoriteSessions: Observable<[Session]> {
+        return self.sessions.map(filterFavoriteSessions)
     }
     
-    func removeFromFavorites(session: Session) -> Observable<Session> {
-        var favoriteSessions = self.favoriteSessions()
-        if let index = favoriteSessions.indexOf(session.uniqueId) {
-            favoriteSessions.removeAtIndex(index)
+    private func filterFavoriteSessions(sessions: [Session]) -> [Session] {
+        return sessions.filter({ session -> Bool in
+            return session.favorite
+        })
+    }
+    
+    func addToFavorites(session: Session) {
+        var cachedSessions = self.cachedSessions.value
+        guard let idx = cachedSessions.indexOf({ $0.uniqueId == session.uniqueId }) else {
+            return
         }
-        self.serviceProvider.cache.setObject(favoriteSessions, forKey: favoriteSessionsKey)
-
-        return Observable.just(SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title,
-                                  summary: session.summary, video: session.video, captions: session.captions,
-                                  thumbnail: session.thumbnail, favorite: false))
+        cachedSessions.removeAtIndex(idx)
+        let newSession = SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: true)
+        cachedSessions.insert(newSession, atIndex: idx)
+        self.cachedSessions.value = cachedSessions
+    }
+    
+    func removeFromFavorites(session: Session) {
+        var cachedSessions = self.cachedSessions.value
+        guard let idx = cachedSessions.indexOf({ $0.uniqueId == session.uniqueId }) else {
+            return
+        }
+        cachedSessions.removeAtIndex(idx)
+        let newSession = SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: false)
+        cachedSessions.insert(newSession, atIndex: idx)
+        self.cachedSessions.value = cachedSessions
     }
 
     // MARK: Private
@@ -86,31 +103,29 @@ class WWDCastAPIImpl : WWDCastAPI {
         }
     }
     
-    private func favoriteSessions() -> Array<String> {
-        return self.serviceProvider.cache.objectForKey(favoriteSessionsKey) as? Array<String> ?? Array<String>()
-    }
+//    private func favoriteSessions() -> Array<String> {
+//        return self.serviceProvider.cache.objectForKey(favoriteSessionsKey) as? Array<String> ?? Array<String>()
+//    }
     
-    private func markFavoriteSessions(sessions: [Session]) -> [Session] {
-        let favoriteSessions = self.favoriteSessions()
-        return sessions.map({ session in
-            SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title,
-                summary: session.summary, video: session.video, captions: session.captions,
-                thumbnail: session.thumbnail, favorite: favoriteSessions.contains(session.uniqueId))
-        })
-    }
+//    private func markFavoriteSessions(sessions: [Session]) -> [Session] {
+//        let favoriteSessions = self.favoriteSessions()
+//        return sessions.map({ session in
+//            SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title,
+//                summary: session.summary, video: session.video, captions: session.captions,
+//                thumbnail: session.thumbnail, favorite: favoriteSessions.contains(session.uniqueId))
+//        })
+//    }
     
-    private var cachedSessions: [Session]?
+    private var cachedSessions = Variable([Session]())
     
     private func saveToCache(sessions: [Session]) {
-        self.cachedSessions = sessions
+        self.cachedSessions.value = sessions
 //        NSLog("%@", sessions.description);
     }
     
     private func loadFromCache() -> Observable<[Session]> {
-        guard let cachedSessions = self.cachedSessions else {
-            return Observable.empty()
-        }
-        return Observable.of(cachedSessions)
+//        return Observable.empty()
+        return self.cachedSessions.asObservable()
     }
     
 }

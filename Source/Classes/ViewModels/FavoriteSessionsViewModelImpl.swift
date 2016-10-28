@@ -23,8 +23,8 @@ class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
     
     // MARK: FavoriteSessionsViewModel
     
-    func favoriteSessions(trigger: Observable<Void>) -> Driver<[SessionSectionViewModel]> {
-        return trigger.flatMap(self.api.sessions).map(self.filterFavoriteSessions)
+    var favoriteSessions: Driver<[SessionSectionViewModel]> {
+        return self.api.favoriteSessions
             .doOnNext({ self.sessions = $0 })
             .map(SessionItemViewModelBuilder.build)
             .asDriver(onErrorJustReturn: [])
@@ -39,12 +39,6 @@ class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
             return
         }
         self.router.showSessionDetails(session)
-    }
-    
-    func filterFavoriteSessions(sessions: [Session]) -> [Session] {
-        return sessions.filter({ session -> Bool in
-            return session.favorite
-        })
     }
     
 }

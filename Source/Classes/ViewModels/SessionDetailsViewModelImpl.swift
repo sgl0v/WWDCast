@@ -20,15 +20,18 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
         self._session = Variable(session)
         self.api = api
         self.router = router
+        self.api.session(withId: self._session.value.uniqueId).subscribeNext { session in
+            self._session.value = session
+        }.addDisposableTo(disposeBag)
     }
     
     // MARK: SessionDetailsViewModel
 
     let title = Driver.just(NSLocalizedString("Session Details", comment: "Session details view title"))
     
-    var session: Driver<SessionItemViewModel> {
+    lazy var session: Driver<SessionItemViewModel> = {
         return self._session.asDriver().map(SessionItemViewModelBuilder.build)
-    }
+    }()
     
     func playSession() {
         let devices = self.api.devices
@@ -50,13 +53,9 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
     
     func toggleFavorite() {
         if (self._session.value.favorite) {
-            self.api.removeFromFavorites(self._session.value).subscribeNext({ session in
-                self._session.value = session
-            }).addDisposableTo(self.disposeBag)
+            self.api.removeFromFavorites(self._session.value)
         } else {
-            self.api.addToFavorites(self._session.value).subscribeNext({ session in
-                self._session.value = session
-            }).addDisposableTo(self.disposeBag)
+            self.api.addToFavorites(self._session.value)
         }
     }
     

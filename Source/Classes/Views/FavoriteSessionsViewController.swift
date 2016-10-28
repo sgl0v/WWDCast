@@ -13,7 +13,6 @@ import RxDataSources
 
 class FavoriteSessionsViewController: TableViewController<SessionSectionViewModel, SessionTableViewCell> {
     private let viewModel: FavoriteSessionsViewModel
-    private let rx_viewWillAppear = PublishSubject<Void>()
     
     init(viewModel: FavoriteSessionsViewModel) {
         self.viewModel = viewModel
@@ -30,11 +29,6 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         self.bindViewModel()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        rx_viewWillAppear.on(.Next())
-    }
-
     // MARK - Private
     
     private func bindViewModel() {
@@ -45,7 +39,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         
         // ViewModel's output
         
-        self.viewModel.favoriteSessions(self.rx_viewWillAppear).drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
+        self.viewModel.favoriteSessions.drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
         self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
     }
     
