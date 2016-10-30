@@ -16,7 +16,8 @@ import UIKit
 
     lazy var api: WWDCastAPI = {
         let serviceProvider = ServiceProviderImpl.defaultServiceProvider
-        return WWDCastAPIImpl(serviceProvider: serviceProvider)
+        let cache = SessionsCacheImpl(db: serviceProvider.database)
+        return WWDCastAPIImpl(serviceProvider: serviceProvider, sessionsCache: cache)
     }()
     
     func tabbarController() -> UIViewController {

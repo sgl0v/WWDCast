@@ -37,6 +37,7 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
         let devices = self.api.devices
         if (devices.isEmpty) {
             self.router.showAlert(nil, message: NSLocalizedString("Google Cast device is not found!", comment: ""))
+            return
         }
         
         let actions = devices.map({ device in return device.description })

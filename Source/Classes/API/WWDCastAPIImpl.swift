@@ -13,10 +13,11 @@ import SwiftyJSON
 class WWDCastAPIImpl : WWDCastAPI {
     
     private let serviceProvider: ServiceProvider
-    private let favoriteSessionsKey = "FavoriteSessions"
+    private let sessionsCache: SessionsCache
     
-    init(serviceProvider: ServiceProvider) {
+    init(serviceProvider: ServiceProvider, sessionsCache: SessionsCache) {
         self.serviceProvider = serviceProvider
+        self.sessionsCache = sessionsCache
     }
     
     // MARK: WWDCastAPI
@@ -26,14 +27,14 @@ class WWDCastAPIImpl : WWDCastAPI {
     }
 
     lazy var sessions: Observable<[Session]> = {
-        let loadFromNetwork = self.loadConfig().flatMapLatest(self.loadSessions)
+        let network = self.loadConfig().flatMapLatest(self.loadSessions)
             .retryOnBecomesReachable([], reachabilityService: self.serviceProvider.reachability)
             .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
             .observeOn(self.serviceProvider.scheduler.mainScheduler)
-            .doOnNext(self.saveToCache)
-        let loadFromCache = self.loadFromCache()
+            .doOnNext(self.sessionsCache.save)
+        let cache = self.sessionsCache.sessions
         
-        return Observable.of(loadFromCache, loadFromNetwork).merge().map(self.markFavoriteSessions).shareReplayLatestWhileConnected()
+        return Observable.of(cache, network).merge().shareReplayLatestWhileConnected()
         
         //        self.router.showAlert(nil, message: NSLocalizedString("Failed to load WWDC sessions!", comment: ""))
     }()
@@ -61,33 +62,15 @@ class WWDCastAPIImpl : WWDCastAPI {
     }
     
     func addToFavorites(session: Session) {
-        var favoriteSessionsIds = self.favoriteSessionsIds()
-        favoriteSessionsIds.insert(session.uniqueId)
-        self.serviceProvider.cache.setObject(Array(favoriteSessionsIds), forKey: favoriteSessionsKey)
+        let newSession = SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: true)
 
-//        var cachedSessions = self.cachedSessions.value
-//        guard let idx = cachedSessions.indexOf({ $0.uniqueId == session.uniqueId }) else {
-//            return
-//        }
-//        cachedSessions.removeAtIndex(idx)
-//        let newSession = SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: true)
-//        cachedSessions.insert(newSession, atIndex: idx)
-        self.cachedSessions.value = markFavoriteSessions(self.cachedSessions.value)
+        self.sessionsCache.update([newSession])
     }
     
     func removeFromFavorites(session: Session) {
-        var favoriteSessionsIds = self.favoriteSessionsIds()
-        favoriteSessionsIds.remove(session.uniqueId)
-        self.serviceProvider.cache.setObject(Array(favoriteSessionsIds), forKey: favoriteSessionsKey)
-
-//        var cachedSessions = self.cachedSessions.value
-//        guard let idx = cachedSessions.indexOf({ $0.uniqueId == session.uniqueId }) else {
-//            return
-//        }
-//        cachedSessions.removeAtIndex(idx)
-//        let newSession = SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: false)
-//        cachedSessions.insert(newSession, atIndex: idx)
-        self.cachedSessions.value = markFavoriteSessions(self.cachedSessions.value)
+        let newSession = SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: false)
+        
+        self.sessionsCache.update([newSession])
     }
 
     // MARK: Private
@@ -110,33 +93,40 @@ class WWDCastAPIImpl : WWDCastAPI {
             }
         }
     }
-    
-    private func favoriteSessionsIds() -> Set<String> {
-        if let favoriteSessionsIds = self.serviceProvider.cache.objectForKey(favoriteSessionsKey) as? Array<String> {
-            return Set(favoriteSessionsIds)
-        }
-        return Set<String>()
-    }
-    
-    private func markFavoriteSessions(sessions: [Session]) -> [Session] {
-        let favoriteSessions = self.favoriteSessionsIds()
-        return sessions.map({ session in
-            SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title,
-                summary: session.summary, video: session.video, captions: session.captions,
-                thumbnail: session.thumbnail, favorite: favoriteSessions.contains(session.uniqueId))
-        })
-    }
-    
-    private var cachedSessions = Variable([Session]())
-    
-    private func saveToCache(sessions: [Session]) {
-        self.cachedSessions.value = sessions
-//        NSLog("%@", sessions.description);
-    }
-    
-    private func loadFromCache() -> Observable<[Session]> {
-//        return Observable.empty()
-        return self.cachedSessions.asObservable()
-    }
+        
+//    private var cachedSessions = Variable([Session]())
+//
+//    private func saveToCache(sessions: [Session]) {
+//        do {
+//            try SessionRecord.create(self.serviceProvider.database)
+//            let records = sessions.map() { SessionRecord(session: $0) }
+//            try self.serviceProvider.database.delete(records)
+//            try self.serviceProvider.database.insert(records)
+//        } catch {
+//            NSLog("Failed to save sessions with error: \(error).")
+//        }
+//        
+//        print("\(sessions)");
+//        self.cachedSessions.value = loadFromCache()
+//    }
+//    
+//    private func update(cachedSession session: Session) {
+//        do {
+//            let record = SessionRecord(session: session)
+//            try self.serviceProvider.database.update([record])
+//        } catch {
+//            NSLog("Failed to update cached session with error: \(error).")
+//        }
+//        self.cachedSessions.value = loadFromCache()
+//    }
+//    
+//    private func loadFromCache() -> [Session] {
+//        let records: [SessionRecord] = self.serviceProvider.database.fetch()
+//        let sessions = records.map() { session in
+//            return session.session
+//        }
+////        NSLog("%@", sessions.description);
+//        return sessions
+//    }
     
 }
