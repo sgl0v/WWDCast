@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ico_favorite_glyph.png",
+      "filename" : "bookmark-glyph-32.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "bookmark-glyph-64.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "bookmark-glyph-128.png",
       "scale" : "3x"
     }
   ],

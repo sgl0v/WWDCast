@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ico_favorite_stroke.png",
+      "filename" : "bookmark-outline-stroke-32.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "bookmark-outline-stroke-64.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "bookmark-outline-stroke-128.png",
       "scale" : "3x"
     }
   ],

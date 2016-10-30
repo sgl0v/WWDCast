@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "play_circle.png",
+      "filename" : "1477885459_audio-video-outline-play.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "play_circle@2x.png",
+      "filename" : "1477885413_audio-video-outline-play.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "play_circle@3x.png",
+      "filename" : "1477885417_audio-video-outline-play.png",
       "scale" : "3x"
     }
   ],
