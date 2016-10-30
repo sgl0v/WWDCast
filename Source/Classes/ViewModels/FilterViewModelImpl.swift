@@ -72,7 +72,7 @@ class FilterViewModelImpl : FilterViewModel {
             years.selectItem(atIndex: index)
         }).flatMap(self.yearsSelection(years)).distinctUntilChanged(==).subscribeNext({ years in
             self.filter.years = years
-            print(self.filter)
+            NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
         
         platforms.selection.filter({ _ , selected in
@@ -81,14 +81,14 @@ class FilterViewModelImpl : FilterViewModel {
             platforms.selectItem(atIndex: index)
         }).flatMap(self.platformsSelection(platforms)).distinctUntilChanged(==).subscribeNext({ platforms in
             self.filter.platforms = platforms
-            print(self.filter)
+            NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
         
         tracks.selection.map({ _ in
             return tracks.items.filter({item in item.selected.value }).map({ item in Track(rawValue: item.title)! })
         }).distinctUntilChanged(==).subscribeNext({ tracks in
             self.filter.tracks = tracks
-            print(self.filter)
+            NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
             
         return [years, platforms, tracks]

@@ -27,15 +27,18 @@ class WWDCastAPIImpl : WWDCastAPI {
     }
 
     lazy var sessions: Observable<[Session]> = {
-        let network = self.loadConfig().flatMapLatest(self.loadSessions)
+        let cache = self.sessionsCache.sessions
+        let network = self.loadConfig()
+            .flatMapLatest(self.loadSessions)
             .retryOnBecomesReachable([], reachabilityService: self.serviceProvider.reachability)
+            .doOnNext(self.sessionsCache.save)
+            .flatMap({ _ in return cache })
+        
+        return Observable.of(cache, network)
+            .merge()
             .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
             .observeOn(self.serviceProvider.scheduler.mainScheduler)
-            .doOnNext(self.sessionsCache.save)
-        let cache = self.sessionsCache.sessions
-        
-        return Observable.of(cache, network).merge().shareReplayLatestWhileConnected()
-        
+            .shareReplayLatestWhileConnected()
         //        self.router.showAlert(nil, message: NSLocalizedString("Failed to load WWDC sessions!", comment: ""))
     }()
     
@@ -52,12 +55,8 @@ class WWDCastAPIImpl : WWDCastAPI {
     }
     
     var favoriteSessions: Observable<[Session]> {
-        return self.sessions.map(filterFavoriteSessions)
-    }
-    
-    private func filterFavoriteSessions(sessions: [Session]) -> [Session] {
-        return sessions.filter({ session -> Bool in
-            return session.favorite
+        return self.sessions.map({ sessions in
+            return sessions.filter({ $0.favorite })
         })
     }
     
@@ -93,40 +92,5 @@ class WWDCastAPIImpl : WWDCastAPI {
             }
         }
     }
-        
-//    private var cachedSessions = Variable([Session]())
-//
-//    private func saveToCache(sessions: [Session]) {
-//        do {
-//            try SessionRecord.create(self.serviceProvider.database)
-//            let records = sessions.map() { SessionRecord(session: $0) }
-//            try self.serviceProvider.database.delete(records)
-//            try self.serviceProvider.database.insert(records)
-//        } catch {
-//            NSLog("Failed to save sessions with error: \(error).")
-//        }
-//        
-//        print("\(sessions)");
-//        self.cachedSessions.value = loadFromCache()
-//    }
-//    
-//    private func update(cachedSession session: Session) {
-//        do {
-//            let record = SessionRecord(session: session)
-//            try self.serviceProvider.database.update([record])
-//        } catch {
-//            NSLog("Failed to update cached session with error: \(error).")
-//        }
-//        self.cachedSessions.value = loadFromCache()
-//    }
-//    
-//    private func loadFromCache() -> [Session] {
-//        let records: [SessionRecord] = self.serviceProvider.database.fetch()
-//        let sessions = records.map() { session in
-//            return session.session
-//        }
-////        NSLog("%@", sessions.description);
-//        return sessions
-//    }
     
 }

@@ -68,10 +68,11 @@
 		E7121D071D9B0935003F5DCC /* WWDCastAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */; };
 		E74FE5D91DC617F200BFD2F5 /* DatabaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5D81DC617F200BFD2F5 /* DatabaseImpl.swift */; };
 		E74FE5DB1DC6183100BFD2F5 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5DA1DC6183100BFD2F5 /* Database.swift */; };
+		E74FE5E31DC645F600BFD2F5 /* SessionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5E11DC645F600BFD2F5 /* SessionRecord.swift */; };
+		E74FE5E41DC645F600BFD2F5 /* SessionsCacheImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5E21DC645F600BFD2F5 /* SessionsCacheImpl.swift */; };
 		E76BFDCA1DC3FE0900B269B8 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */; };
 		E777AE0D1DB8C3E00023192A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE0C1DB8C3E00023192A /* TabBarController.swift */; };
 		E777AE0F1DBA3D8B0023192A /* SessionsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE0E1DBA3D8B0023192A /* SessionsCache.swift */; };
-		E777AE111DBA3E300023192A /* SessionsCacheImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE101DBA3E300023192A /* SessionsCacheImpl.swift */; };
 		E777AE131DBA63D80023192A /* FavoriteSessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */; };
 		E777AE151DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */; };
 		E777AE171DBA64610023192A /* FavoriteSessionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE161DBA64610023192A /* FavoriteSessionsViewModel.swift */; };
@@ -161,11 +162,12 @@
 		E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAssembly.swift; sourceTree = "<group>"; };
 		E74FE5D81DC617F200BFD2F5 /* DatabaseImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseImpl.swift; sourceTree = "<group>"; };
 		E74FE5DA1DC6183100BFD2F5 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		E74FE5E11DC645F600BFD2F5 /* SessionRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionRecord.swift; sourceTree = "<group>"; };
+		E74FE5E21DC645F600BFD2F5 /* SessionsCacheImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsCacheImpl.swift; sourceTree = "<group>"; };
 		E76BFDC71DC3FD7400B269B8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		E777AE0C1DB8C3E00023192A /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E777AE0E1DBA3D8B0023192A /* SessionsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsCache.swift; sourceTree = "<group>"; };
-		E777AE101DBA3E300023192A /* SessionsCacheImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsCacheImpl.swift; sourceTree = "<group>"; };
 		E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewController.swift; sourceTree = "<group>"; };
 		E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModelImpl.swift; sourceTree = "<group>"; };
 		E777AE161DBA64610023192A /* FavoriteSessionsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModel.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				E7121C9A1D9AFFE4003F5DCC /* Services */,
+				E74FE5E01DC645F600BFD2F5 /* SessionsCache */,
 				E7121CA11D9AFFE4003F5DCC /* WWDCastAPIImpl.swift */,
 			);
 			path = API;
@@ -311,7 +314,6 @@
 				E7121C9E1D9AFFE4003F5DCC /* RxGCKDeviceManagerDelegateProxy.swift */,
 				E7121C9F1D9AFFE4003F5DCC /* SchedulerServiceImpl.swift */,
 				E7121CA01D9AFFE4003F5DCC /* ServiceProviderImpl.swift */,
-				E777AE101DBA3E300023192A /* SessionsCacheImpl.swift */,
 				E74FE5D81DC617F200BFD2F5 /* DatabaseImpl.swift */,
 			);
 			path = Services;
@@ -440,6 +442,15 @@
 				E7B287881D9C11C000BF4707 /* GoogleCastDevice.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E74FE5E01DC645F600BFD2F5 /* SessionsCache */ = {
+			isa = PBXGroup;
+			children = (
+				E74FE5E11DC645F600BFD2F5 /* SessionRecord.swift */,
+				E74FE5E21DC645F600BFD2F5 /* SessionsCacheImpl.swift */,
+			);
+			path = SessionsCache;
 			sourceTree = "<group>";
 		};
 		E7AC02931D7E26660090F8A3 /* Protocols */ = {
@@ -689,6 +700,7 @@
 				E7121CD41D9AFFE4003F5DCC /* Reachability.swift in Sources */,
 				E7121CE01D9AFFE4003F5DCC /* WWDCastRouterImpl.swift in Sources */,
 				E7121D001D9B0935003F5DCC /* SchedulerService.swift in Sources */,
+				E74FE5E31DC645F600BFD2F5 /* SessionRecord.swift in Sources */,
 				E7121CD11D9AFFE4003F5DCC /* Filter.swift in Sources */,
 				E7121CD21D9AFFE4003F5DCC /* SessionImpl.swift in Sources */,
 				E7121CD01D9AFFE4003F5DCC /* SessionsBuilder.swift in Sources */,
@@ -713,8 +725,8 @@
 				E7121CC71D9AFFE4003F5DCC /* WWDCastAPIImpl.swift in Sources */,
 				E7121CFE1D9B0935003F5DCC /* NetworkService.swift in Sources */,
 				E7121CCC1D9AFFE4003F5DCC /* UITableViewController+Common.swift in Sources */,
+				E74FE5E41DC645F600BFD2F5 /* SessionsCacheImpl.swift in Sources */,
 				E7121CD71D9AFFE4003F5DCC /* SessionsSearchViewModelImpl.swift in Sources */,
-				E777AE111DBA3E300023192A /* SessionsCacheImpl.swift in Sources */,
 				E7121CE61D9B0859003F5DCC /* FilterSectionViewModel.swift in Sources */,
 				E7121CC51D9AFFE4003F5DCC /* SchedulerServiceImpl.swift in Sources */,
 				E7121D051D9B0935003F5DCC /* EntityBuilder.swift in Sources */,
