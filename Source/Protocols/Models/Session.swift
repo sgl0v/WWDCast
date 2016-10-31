@@ -56,7 +56,7 @@ extension SequenceType where Generator.Element == Session {
             (filter.query.isEmpty || session.title.lowercaseString.containsString(filter.query.lowercaseString)) &&
                 filter.years.contains(session.year) &&
                 filter.tracks.contains(session.track) &&
-                !Set(filter.platforms).intersect(session.platforms).isEmpty
+                (session.platforms.isEmpty || !Set(filter.platforms).intersect(session.platforms).isEmpty)
         }
     }
 }
