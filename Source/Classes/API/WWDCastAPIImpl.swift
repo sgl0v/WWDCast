@@ -42,10 +42,13 @@ class WWDCastAPIImpl : WWDCastAPI {
     }()
     
     func session(withId id: String) -> Observable<Session> {
-        return self.sessions.map({ sessions in
-            return sessions.filter({ session in
+        return self.sessions.flatMap({ sessions -> Observable<Session> in
+            if let session = sessions.filter({ session in
                 return session.uniqueId == id
-            }).first!
+            }).first {
+                return Observable.just(session)
+            }
+            return Observable.empty()
         })
     }
     
