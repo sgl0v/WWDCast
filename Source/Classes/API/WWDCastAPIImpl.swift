@@ -36,6 +36,7 @@ class WWDCastAPIImpl : WWDCastAPI {
         
         return Observable.of(cache, network)
             .merge()
+            .map(self.sortSessions)
             .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
             .observeOn(self.serviceProvider.scheduler.mainScheduler)
             .shareReplayLatestWhileConnected()
@@ -88,6 +89,12 @@ class WWDCastAPIImpl : WWDCastAPI {
                 return Observable.error(error)
             }
         }
+    }
+    
+    private func sortSessions(sessions: [Session]) -> [Session] {
+        return sessions.sort({ lhs, rhs in
+            return lhs.id < rhs.id && lhs.year.rawValue >= rhs.year.rawValue
+        })
     }
     
 }
