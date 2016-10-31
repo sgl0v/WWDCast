@@ -48,8 +48,8 @@ import UIKit
         return navigationController
     }
 
-    func sessionDetailsController(session: Session) -> UIViewController {
-        let viewModel = SessionDetailsViewModelImpl(session: session, api: self.api, router: self.router)
+    func sessionDetailsController(sessionId: String) -> UIViewController {
+        let viewModel = SessionDetailsViewModelImpl(sessionId: sessionId, api: self.api, router: self.router)
         return SessionDetailsViewController(viewModel: viewModel)
     }
     

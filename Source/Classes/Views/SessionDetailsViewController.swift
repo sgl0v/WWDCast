@@ -9,14 +9,6 @@
 import UIKit
 import RxSwift
 
-//class ToggleButton: UIControl {
-//    
-//    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        self.selected = !self.selected
-//        self.sendActionsForControlEvents(.ValueChanged)
-//    }
-//}
-
 class SessionDetailsViewController: UIViewController, NibProvidable {
 
     @IBOutlet weak var image: UIImageView!
@@ -61,7 +53,10 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
     }
     
-    private func viewModelObserver(viewModel: SessionItemViewModel) {
+    private func viewModelObserver(viewModel: SessionItemViewModel?) {
+        guard let viewModel = viewModel else {
+            return
+        }
         Observable.just(viewModel.thumbnailURL)
             .asObservable()
             .bindTo(self.image.rx_imageURL)

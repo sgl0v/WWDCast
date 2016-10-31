@@ -39,7 +39,6 @@ class WWDCastAPIImpl : WWDCastAPI {
             .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
             .observeOn(self.serviceProvider.scheduler.mainScheduler)
             .shareReplayLatestWhileConnected()
-        //        self.router.showAlert(nil, message: NSLocalizedString("Failed to load WWDC sessions!", comment: ""))
     }()
     
     func session(withId id: String) -> Observable<Session> {
@@ -60,16 +59,11 @@ class WWDCastAPIImpl : WWDCastAPI {
         })
     }
     
-    func addToFavorites(session: Session) {
-        let newSession = SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: true)
-
-        self.sessionsCache.update([newSession])
-    }
-    
-    func removeFromFavorites(session: Session) {
-        let newSession = SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: false)
+    func toggleFavorite(session: Session) -> Observable<Session> {
+        let newSession = SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: !session.favorite)
         
         self.sessionsCache.update([newSession])
+        return Observable.just(newSession)
     }
 
     // MARK: Private

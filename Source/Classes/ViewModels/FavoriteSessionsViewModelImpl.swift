@@ -13,7 +13,6 @@ import RxCocoa
 class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
     private let api: WWDCastAPI
     private let router: FavoriteSessionsRouter
-    private var sessions = [Session]()
     private let disposeBag = DisposeBag()
     
     init(api: WWDCastAPI, router: FavoriteSessionsRouter) {
@@ -25,7 +24,6 @@ class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
     
     var favoriteSessions: Driver<[SessionSectionViewModel]> {
         return self.api.favoriteSessions
-            .doOnNext({ self.sessions = $0 })
             .map(SessionItemViewModelBuilder.build)
             .asDriver(onErrorJustReturn: [])
     }
@@ -33,12 +31,7 @@ class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
     let title = Driver.just(NSLocalizedString("Favorites", comment: "Favorte sessions view title"))
     
     func itemSelectionObserver(viewModel: SessionItemViewModel) {
-        guard let session = self.sessions.filter({ session in
-            session.uniqueId == viewModel.uniqueID
-        }).first else {
-            return
-        }
-        self.router.showSessionDetails(session)
+        self.router.showSessionDetails(viewModel.uniqueID)
     }
     
 }

@@ -17,5 +17,5 @@ protocol SessionDetailsViewModel: class {
 
     // OUTPUT
     var title: Driver<String> { get } // The view's title
-    var session: Driver<SessionItemViewModel> { get } // the session to present details for
+    var session: Driver<SessionItemViewModel?> { get } // the session to present details for
 }

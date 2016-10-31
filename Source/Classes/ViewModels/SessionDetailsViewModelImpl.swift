@@ -14,23 +14,23 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
     private let router: SessionDetailsRouter
     private let disposeBag = DisposeBag()
     private let api: WWDCastAPI
-    private let _session: Variable<Session>
+    private let sessionObservable: Observable<Session>
+    private let favoriteTrigger = PublishSubject<Void>()
 
-    init(session: Session, api: WWDCastAPI, router: SessionDetailsRouter) {
-        self._session = Variable(session)
+    init(sessionId: String, api: WWDCastAPI, router: SessionDetailsRouter) {
         self.api = api
         self.router = router
-        self.api.session(withId: self._session.value.uniqueId).subscribeNext { session in
-            self._session.value = session
-        }.addDisposableTo(disposeBag)
+        let sessionObservable = self.api.session(withId: sessionId)
+        let favoriteObservable = self.favoriteTrigger.withLatestFrom(sessionObservable).flatMap(self.api.toggleFavorite)
+        self.sessionObservable = Observable.of(sessionObservable, favoriteObservable).merge()
     }
     
     // MARK: SessionDetailsViewModel
 
     let title = Driver.just(NSLocalizedString("Session Details", comment: "Session details view title"))
     
-    lazy var session: Driver<SessionItemViewModel> = {
-        return self._session.asDriver().map(SessionItemViewModelBuilder.build)
+    lazy var session: Driver<SessionItemViewModel?> = {
+        return self.sessionObservable.map(SessionItemViewModelBuilder.build).asDriver(onErrorJustReturn: nil)
     }()
     
     func playSession() {
@@ -46,18 +46,14 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
         let deviceObservable = alert.filter({ $0 != cancelAction })
             .map({ action in actions.indexOf(action as String)! })
             .map({ idx in devices[idx] })
-        Observable.combineLatest(self._session.asObservable(), deviceObservable, resultSelector: { ($0, $1) })
+        Observable.combineLatest(self.sessionObservable, deviceObservable, resultSelector: { ($0, $1) })
             .flatMap(self.api.play)
             .subscribeError(self.didFailToPlaySession)
             .addDisposableTo(self.disposeBag)
     }
     
     func toggleFavorite() {
-        if (self._session.value.favorite) {
-            self.api.removeFromFavorites(self._session.value)
-        } else {
-            self.api.addToFavorites(self._session.value)
-        }
+        self.favoriteTrigger.onNext()
     }
     
     // MARK: Private

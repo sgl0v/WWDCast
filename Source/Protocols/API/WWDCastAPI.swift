@@ -21,7 +21,6 @@ protocol WWDCastAPI: class {
     
     var favoriteSessions: Observable<[Session]> { get }
     
-    func addToFavorites(session: Session)
+    func toggleFavorite(session: Session) -> Observable<Session>
     
-    func removeFromFavorites(session: Session)
 }

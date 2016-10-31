@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 protocol SessionsSearchRouter: class {
-    func showSessionDetails(session: Session)
+    func showSessionDetails(sessionId: String)
     func showFilterController(withFilter filter: Filter, completion: (Filter) -> Void)
 }
 
@@ -20,5 +20,5 @@ protocol SessionDetailsRouter: class {
 }
 
 protocol FavoriteSessionsRouter: class {
-    func showSessionDetails(session: Session)
+    func showSessionDetails(sessionId: String)
 }

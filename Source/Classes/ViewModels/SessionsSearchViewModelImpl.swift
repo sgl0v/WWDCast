@@ -14,7 +14,6 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
     private let api: WWDCastAPI
     private let router: SessionsSearchRouter
     private let filter = Variable(Filter())
-    private var sessions = [Session]()
     private let disposeBag = DisposeBag()
     private let activityIndicator = ActivityIndicator()
 
@@ -32,7 +31,6 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
     lazy var sessionSections: Driver<[SessionSectionViewModel]> = {
         let sessionsObservable = self.api.sessions //.trackActivity(self.activityIndicator)
         return Observable.combineLatest(sessionsObservable, self.filter.asObservable(), resultSelector: self.applyFilter)
-            .doOnNext({ self.sessions = $0 })
             .map(SessionItemViewModelBuilder.build)
             .asDriver(onErrorJustReturn: [])
     }()
@@ -44,12 +42,7 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
     let title = Driver.just(NSLocalizedString("WWDCast", comment: "Session search view title"))
 
     func itemSelectionObserver(viewModel: SessionItemViewModel) {
-        guard let session = self.sessions.filter({ session in
-            session.uniqueId == viewModel.uniqueID
-        }).first else {
-            return
-        }
-        self.router.showSessionDetails(session)
+        self.router.showSessionDetails(viewModel.uniqueID)
     }
     
     func filterObserver() {
