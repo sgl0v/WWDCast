@@ -50,4 +50,11 @@ class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter, FavoriteSes
         return alertView(self.navigationController)
     }
     
+    // MARK: FavoriteSessionsRouter
+    
+    func showFavoriteSessionDetails(_ sessionId: String) {
+        let controller = self.moduleFactory.favoriteSessionDetailsController(sessionId)
+        self.navigationController.pushViewController(controller, animated: true)
+    }
+    
 }

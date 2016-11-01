@@ -31,7 +31,7 @@ class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
     let title = Driver.just(NSLocalizedString("Favorites", comment: "Favorte sessions view title"))
     
     func itemSelectionObserver(_ viewModel: SessionItemViewModel) {
-        self.router.showSessionDetails(viewModel.uniqueID)
+        self.router.showFavoriteSessionDetails(viewModel.uniqueID)
     }
     
 }

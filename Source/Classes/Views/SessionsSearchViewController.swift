@@ -80,7 +80,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
                 return !self.searchController.isBeingPresented
                 }).drive(onNext: {[unowned self] _ in
                 if self.searchBar.isFirstResponder {
-                    _ = self.searchBar.resignFirstResponder()
+                    self.searchBar.resignFirstResponder()
                 }
             }).addDisposableTo(self.disposeBag)
     }

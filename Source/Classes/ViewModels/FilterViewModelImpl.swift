@@ -86,7 +86,7 @@ class FilterViewModelImpl : FilterViewModel {
         
         tracks.selection.map({ _ in
             return tracks.items.filter({item in item.selected.value }).map({ item in Track(rawValue: item.title)! })
-        }).distinctUntilChanged(==).subscribe(onNext: { tracks in
+        }).distinctUntilChanged(==).subscribe(onNext: {[unowned self] tracks in
             self.filter.tracks = tracks
             NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)

@@ -20,5 +20,5 @@ protocol SessionDetailsRouter: class {
 }
 
 protocol FavoriteSessionsRouter: class {
-    func showSessionDetails(_ sessionId: String)
+    func showFavoriteSessionDetails(_ sessionId: String)
 }
