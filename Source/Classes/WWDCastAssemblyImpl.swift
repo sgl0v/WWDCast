@@ -30,6 +30,7 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         let favoriteSessionsController = self.favoriteSessionsController()
         favoriteSessionsController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         let tabbarController = TabBarController()
+        tabbarController.tabBar.tintColor = UIColor.black
         tabbarController.viewControllers = [sessionsSearchController, favoriteSessionsController]
         return tabbarController
     }
