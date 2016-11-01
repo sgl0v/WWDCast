@@ -9,6 +9,6 @@
 import Foundation
 
 struct WWDCEnvironment {
-    static let indexURL = NSURL(string: "https://devimages-cdn.apple.com/wwdc-services/g7tk3guq/xhgbpyutb6wvn2xcrbcz/wwdc.json")!
+    static let indexURL = URL(string: "https://devimages-cdn.apple.com/wwdc-services/g7tk3guq/xhgbpyutb6wvn2xcrbcz/wwdc.json")!
     static let googleCastAppID = "B8373B04"
 }

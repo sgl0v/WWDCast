@@ -14,11 +14,11 @@ protocol SessionsSearchViewModel: class {
     // INPUT
     
     // Item selection observer
-    func itemSelectionObserver(viewModel: SessionItemViewModel)
+    func itemSelectionObserver(_ viewModel: SessionItemViewModel)
     // Filter button tap observer
     func filterObserver()
     // Search string observer
-    func searchStringObserver(query: String)
+    func searchStringObserver(_ query: String)
     
     // OUTPUT
 

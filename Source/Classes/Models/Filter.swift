@@ -28,13 +28,13 @@ extension Filter: Hashable {
         let hash = 5381
         var result = 17
         result = prime * result + self.query.hashValue
-        result = prime * result + self.years.reduce(hash, combine: { acc, year in
+        result = prime * result + self.years.reduce(hash, { acc, year in
             return acc ^ year.hashValue
         })
-        result = prime * result + self.platforms.reduce(hash, combine: { acc, platform in
+        result = prime * result + self.platforms.reduce(hash, { acc, platform in
             return acc ^ platform.hashValue
         })
-        result = prime * result + self.tracks.reduce(hash, combine: { acc, track in
+        result = prime * result + self.tracks.reduce(hash, { acc, track in
             return acc ^ track.hashValue
         })
         return result

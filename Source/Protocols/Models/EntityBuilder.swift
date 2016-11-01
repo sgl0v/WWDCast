@@ -9,14 +9,14 @@
 import Foundation
 import SwiftyJSON
 
-enum EntityBuilderError : ErrorType {
-    case ParsingError
+enum EntityBuilderError : Error {
+    case parsingError
 }
 
 protocol EntityBuilder {
 
     associatedtype EntityType
     
-    static func build(json: JSON) throws -> EntityType
+    static func build(_ json: JSON) throws -> EntityType
     
 }

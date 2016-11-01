@@ -12,8 +12,8 @@ import GoogleCast
 extension UIBarButtonItem {
 
     static func castBarButtonItem() -> UIBarButtonItem {
-        let castButton = GCKUICastButton(frame: CGRectMake(0, 0, 24, 24))
-        castButton.tintColor = UIColor.blackColor()
+        let castButton = GCKUICastButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        castButton.tintColor = UIColor.black
         return UIBarButtonItem(customView: castButton)
     }
 

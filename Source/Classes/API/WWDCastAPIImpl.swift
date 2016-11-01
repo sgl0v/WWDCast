@@ -12,8 +12,8 @@ import SwiftyJSON
 
 class WWDCastAPIImpl : WWDCastAPI {
     
-    private let serviceProvider: ServiceProvider
-    private let sessionsCache: SessionsCache
+    fileprivate let serviceProvider: ServiceProvider
+    fileprivate let sessionsCache: SessionsCache
     
     init(serviceProvider: ServiceProvider, sessionsCache: SessionsCache) {
         self.serviceProvider = serviceProvider
@@ -31,7 +31,7 @@ class WWDCastAPIImpl : WWDCastAPI {
         let network = self.loadConfig()
             .flatMapLatest(self.loadSessions)
             .retryOnBecomesReachable([], reachabilityService: self.serviceProvider.reachability)
-            .doOnNext(self.sessionsCache.save)
+            .do(onNext: self.sessionsCache.save)
             .flatMap({ _ in return cache })
         
         return Observable.of(cache, network)
@@ -53,7 +53,7 @@ class WWDCastAPIImpl : WWDCastAPI {
         })
     }
     
-    func play(session: Session, onDevice device: GoogleCastDevice) -> Observable<Void> {
+    func play(_ session: Session, onDevice device: GoogleCastDevice) -> Observable<Void> {
         return self.serviceProvider.googleCast.play(session, onDevice: device)
     }
     
@@ -63,7 +63,7 @@ class WWDCastAPIImpl : WWDCastAPI {
         })
     }
     
-    func toggleFavorite(session: Session) -> Observable<Session> {
+    func toggleFavorite(_ session: Session) -> Observable<Session> {
         let newSession = SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: !session.favorite)
         
         self.sessionsCache.update([newSession])
@@ -72,15 +72,15 @@ class WWDCastAPIImpl : WWDCastAPI {
 
     // MARK: Private
     
-    private func loadConfig() -> Observable<AppConfig> {
+    fileprivate func loadConfig() -> Observable<AppConfig> {
         return self.serviceProvider.network.request(WWDCEnvironment.indexURL, parameters: [:]).flatMap(build(AppConfigBuilder.self))
     }
     
-    private func loadSessions(config: AppConfig) -> Observable<[Session]> {
+    fileprivate func loadSessions(_ config: AppConfig) -> Observable<[Session]> {
         return self.serviceProvider.network.request(config.videosURL, parameters: [:]).flatMap(build(SessionsBuilder.self))
     }
     
-    private func build<Builder: EntityBuilder>(builder: Builder.Type) -> NSData -> Observable<Builder.EntityType> {
+    fileprivate func build<Builder: EntityBuilder>(_ builder: Builder.Type) -> (Data) -> Observable<Builder.EntityType> {
         return { data in
             do {
                 let entity = try builder.build(JSON(data: data))
@@ -91,8 +91,8 @@ class WWDCastAPIImpl : WWDCastAPI {
         }
     }
     
-    private func sortSessions(sessions: [Session]) -> [Session] {
-        return sessions.sort({ lhs, rhs in
+    fileprivate func sortSessions(_ sessions: [Session]) -> [Session] {
+        return sessions.sorted(by: { lhs, rhs in
             return lhs.id < rhs.id && lhs.year.rawValue >= rhs.year.rawValue
         })
     }

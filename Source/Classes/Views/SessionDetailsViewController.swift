@@ -18,8 +18,8 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
 
-    private let viewModel: SessionDetailsViewModel
-    private let disposeBag = DisposeBag()
+    fileprivate let viewModel: SessionDetailsViewModel
+    fileprivate let disposeBag = DisposeBag()
 
     init(viewModel: SessionDetailsViewModel) {
         self.viewModel = viewModel
@@ -38,33 +38,33 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     
     // MARK: Private
     
-    private func configureUI() {
+    fileprivate func configureUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
-        self.edgesForExtendedLayout = .None
+        self.edgesForExtendedLayout = UIRectEdge()
     }
 
-    private func bindViewModel() {
+    fileprivate func bindViewModel() {
         // ViewModel's input
-        self.playButton.rx_tap.subscribeNext(self.viewModel.playSession).addDisposableTo(self.disposeBag)
-        self.favoriteButton.rx_tap.subscribeNext(self.viewModel.toggleFavorite).addDisposableTo(self.disposeBag)
+        self.playButton.rx.tap.subscribe(onNext: self.viewModel.playSession).addDisposableTo(self.disposeBag)
+        self.favoriteButton.rx.tap.subscribe(onNext: self.viewModel.toggleFavorite).addDisposableTo(self.disposeBag)
         
         // ViewModel's output
-        self.viewModel.session.driveNext(self.viewModelObserver).addDisposableTo(self.disposeBag)
-        self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
+        self.viewModel.session.drive(onNext: self.viewModelObserver).addDisposableTo(self.disposeBag)
+        self.viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
     }
     
-    private func viewModelObserver(viewModel: SessionItemViewModel?) {
+    fileprivate func viewModelObserver(_ viewModel: SessionItemViewModel?) {
         guard let viewModel = viewModel else {
             return
         }
         Observable.just(viewModel.thumbnailURL)
             .asObservable()
-            .bindTo(self.image.rx_imageURL)
+            .bindTo(self.image.rx.imageURL)
             .addDisposableTo(self.disposeBag)
         self.header.text = viewModel.title
         self.summary.text = viewModel.summary
         self.subtitle.text = viewModel.subtitle
-        self.favoriteButton.selected = viewModel.favorite
+        self.favoriteButton.isSelected = viewModel.favorite
     }
     
 }

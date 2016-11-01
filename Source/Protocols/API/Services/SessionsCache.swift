@@ -13,7 +13,7 @@ protocol SessionsCache: class {
     
     var sessions: Observable<[Session]> { get }
     
-    func save(sessions: [Session])
+    func save(_ sessions: [Session])
     func load() -> [Session]
-    func update(sessions: [Session])
+    func update(_ sessions: [Session])
 }

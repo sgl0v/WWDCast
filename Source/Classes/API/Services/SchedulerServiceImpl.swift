@@ -12,9 +12,9 @@ import RxSwift
 final class SchedulerServiceImpl: SchedulerService {
 
     lazy var backgroundWorkScheduler: ImmediateSchedulerType = {
-        let operationQueue = NSOperationQueue()
+        let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 2
-        operationQueue.qualityOfService = NSQualityOfService.UserInitiated
+        operationQueue.qualityOfService = QualityOfService.userInitiated
         return OperationQueueScheduler(operationQueue: operationQueue)
     }()
 

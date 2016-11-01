@@ -9,8 +9,8 @@
 import Foundation
 
 struct AppConfigImpl: AppConfig {
-    let sessionsURL: NSURL
-    let videosURL: NSURL
+    let sessionsURL: URL
+    let videosURL: URL
     let isWWDCWeek: Bool
 }
 

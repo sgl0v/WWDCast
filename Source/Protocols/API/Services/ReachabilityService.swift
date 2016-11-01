@@ -16,15 +16,11 @@ import RxSwift
  - Unreachable: The network is not reachable
  */
 enum ReachabilityStatus {
-    case Reachable(viaWiFi: Bool)
-    case Unreachable
-}
-
-// Conform the ReachabilityStatus to BooleanType protocol and make it usable as the condition in control statements
-extension ReachabilityStatus: BooleanType {
-
+    case reachable(viaWiFi: Bool)
+    case unreachable
+    
     var boolValue: Bool {
-        if case .Reachable = self {
+        if case .reachable = self {
             return true
         }
         return false

@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
-    private let api: WWDCastAPI
-    private let router: FavoriteSessionsRouter
-    private let disposeBag = DisposeBag()
+    fileprivate let api: WWDCastAPI
+    fileprivate let router: FavoriteSessionsRouter
+    fileprivate let disposeBag = DisposeBag()
     
     init(api: WWDCastAPI, router: FavoriteSessionsRouter) {
         self.api = api
@@ -30,7 +30,7 @@ class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
     
     let title = Driver.just(NSLocalizedString("Favorites", comment: "Favorte sessions view title"))
     
-    func itemSelectionObserver(viewModel: SessionItemViewModel) {
+    func itemSelectionObserver(_ viewModel: SessionItemViewModel) {
         self.router.showSessionDetails(viewModel.uniqueID)
     }
     

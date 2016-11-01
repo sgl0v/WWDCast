@@ -13,16 +13,16 @@ class SessionBuilder: EntityBuilder {
 
     typealias EntityType = Session
 
-    static func build(json: JSON) throws -> EntityType {
+    static func build(_ json: JSON) throws -> EntityType {
+        let captions = URL(string: json["subtitles"].stringValue)
+        let video = URL(string: json["download_hd"].stringValue)
         guard let year = Year(rawValue: json["year"].uIntValue),
             let track = Track(rawValue: json["track"].stringValue),
-            let video = NSURL(string: json["download_hd"].stringValue),
-            let captions = NSURL(string: json["subtitles"].stringValue),
             let focusJSON = json["focus"].arrayObject as? [String],
             let images = json["images"].dictionaryObject as? [String: String],
             let thumbnailURLString = images["shelf"],
-            let thumbnailURL = NSURL(string: thumbnailURLString) else {
-            throw EntityBuilderError.ParsingError
+            let thumbnailURL = URL(string: thumbnailURLString) else {
+            throw EntityBuilderError.parsingError
         }
         let id = json["id"].intValue
         let title = json["title"].stringValue
@@ -31,7 +31,7 @@ class SessionBuilder: EntityBuilder {
         var platforms = [Platform]()
         platforms = try focusJSON.map() { focus in
             guard let platform = Platform(rawValue: focus) else {
-                throw EntityBuilderError.ParsingError
+                throw EntityBuilderError.parsingError
             }
             return platform
         }

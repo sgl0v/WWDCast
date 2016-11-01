@@ -13,7 +13,7 @@ import RxDataSources
 
 struct FilterSectionViewModel: SectionModelType, CustomStringConvertible {
     
-    enum Type: String {
+    enum `Type`: String {
         case Years, Platforms, Tracks
     }
     
@@ -24,14 +24,14 @@ struct FilterSectionViewModel: SectionModelType, CustomStringConvertible {
     init(type: Type, items: [FilterItemViewModel]) {
         self.type = type
         self.items = items
-        self.selection = items.enumerate().map({ idx, item in
+        self.selection = Observable.from(items.enumerated().map({ idx, item in
             return item.selected.asObservable().distinctUntilChanged().map({ (idx, $0) })
-        }).toObservable().merge()
+        })).merge()
     }
     
     func selectItem(atIndex index: Int) {
         assert(index < self.items.count)
-        for (idx, item) in self.items.enumerate() {
+        for (idx, item) in self.items.enumerated() {
             item.selected.value = idx == index
         }
     }

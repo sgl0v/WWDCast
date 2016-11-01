@@ -11,27 +11,32 @@ import RxSwift
 
 extension String {
     var URLEscaped: String {
-        return self.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()) ?? ""
+        return self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
     }
 }
 
 final class NetworkServiceImpl: NetworkService {
 
-    private let session: NSURLSession
-    private static func defaultConfiguration() -> NSURLSessionConfiguration {
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+    fileprivate let session: URLSession
+    fileprivate static func defaultConfiguration() -> URLSessionConfiguration {
+        let configuration = URLSessionConfiguration.default
         configuration.allowsCellularAccess = false
         return configuration
     }
     
-    init(session: NSURLSession = NSURLSession(configuration: NetworkServiceImpl.defaultConfiguration())) {
+    init(session: URLSession = URLSession(configuration: NetworkServiceImpl.defaultConfiguration())) {
         self.session = session
     }
     
-    func request(url: NSURL, parameters: [String: AnyObject] = [:]) -> Observable<NSData> {
-        let components = NSURLComponents(URL: url, resolvingAgainstBaseURL: false)!
-        components.queryItems = parameters.keys.map { NSURLQueryItem(name: $0.URLEscaped, value: "\(parameters[$0])".URLEscaped) }
-        return self.session.rx_data(NSURLRequest(URL: components.URL!)).debug("http")
+    func request(_ url: URL, parameters: [String: AnyObject] = [:]) -> Observable<Data> {
+        guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+            return Observable.empty()
+        }
+        components.queryItems = parameters.keys.map { URLQueryItem(name: $0.URLEscaped, value: "\(parameters[$0])".URLEscaped) }
+        guard let url = components.url else {
+            return Observable.empty()
+        }
+        return self.session.rx.data(request: URLRequest(url: url)).debug("http")
     }
 
 }

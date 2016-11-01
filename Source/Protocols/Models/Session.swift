@@ -43,20 +43,20 @@ protocol Session {
     var title: String { get }
     var subtitle: String { get }
     var summary: String { get }
-    var video: NSURL { get }
-    var captions: NSURL { get }
-    var thumbnail: NSURL { get }
+    var video: URL? { get }
+    var captions: URL? { get }
+    var thumbnail: URL { get }
     var favorite: Bool { get }
 }
 
-extension SequenceType where Generator.Element == Session {
+extension Sequence where Iterator.Element == Session {
     
-    func apply(filter: Filter) -> [Generator.Element] {
+    func apply(_ filter: Filter) -> [Iterator.Element] {
         return self.filter { session in
-            (filter.query.isEmpty || session.title.lowercaseString.containsString(filter.query.lowercaseString)) &&
+            (filter.query.isEmpty || session.title.lowercased().contains(filter.query.lowercased())) &&
                 filter.years.contains(session.year) &&
                 filter.tracks.contains(session.track) &&
-                (session.platforms.isEmpty || !Set(filter.platforms).intersect(session.platforms).isEmpty)
+                (session.platforms.isEmpty || !Set(filter.platforms).intersection(session.platforms).isEmpty)
         }
     }
 }

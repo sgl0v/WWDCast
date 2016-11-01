@@ -15,29 +15,29 @@ class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvi
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layoutMargins = UIEdgeInsetsZero
-        self.separatorInset = UIEdgeInsetsZero
+        self.layoutMargins = UIEdgeInsets.zero
+        self.separatorInset = UIEdgeInsets.zero
     }
     
     // MARK: SessionTableViewCell
     typealias ViewModel = FilterItemViewModel
     
-    func bindViewModel(viewModel: ViewModel) {
+    func bindViewModel(_ viewModel: ViewModel) {
         let disposeBag = DisposeBag()
-        self.onPrepareForReuse.subscribeNext({[unowned self] in
+        self.onPrepareForReuse.subscribe(onNext: {[unowned self] in
             self.disposeBag = nil
             self.accessoryView = nil
-            self.accessoryType = .None
+            self.accessoryType = .none
             }).addDisposableTo(disposeBag)
         
         self.textLabel?.text = viewModel.title
         
-        if case .Switch = viewModel.style {
+        if case .switch = viewModel.style {
             let switchButton = UISwitch()
-            (switchButton.rx_value <-> viewModel.selected).addDisposableTo(disposeBag)
+            (switchButton.rx.value <-> viewModel.selected).addDisposableTo(disposeBag)
             self.accessoryView = switchButton
         } else {
-            (self.rx_accessoryCheckmark <-> viewModel.selected).addDisposableTo(disposeBag)
+            (self.rx.accessoryCheckmark <-> viewModel.selected).addDisposableTo(disposeBag)
         }
         
         self.disposeBag = disposeBag

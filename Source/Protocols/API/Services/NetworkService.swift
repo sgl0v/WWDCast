@@ -11,5 +11,5 @@ import RxSwift
 
 protocol NetworkService: class {
 
-    func request(url: NSURL, parameters: [String: AnyObject]) -> Observable<NSData>
+    func request(_ url: URL, parameters: [String: AnyObject]) -> Observable<Data>
 }

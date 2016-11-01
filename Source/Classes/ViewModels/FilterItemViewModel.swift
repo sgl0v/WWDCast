@@ -12,14 +12,14 @@ import RxCocoa
 
 struct FilterItemViewModel : CustomStringConvertible {
     enum Style {
-        case Checkmark, Switch
+        case checkmark, `switch`
     }
     
     let title: String
     let selected: Variable<Bool>
     let style: Style
     
-    init(title: String, style: Style = .Checkmark, selected: Bool = false) {
+    init(title: String, style: Style = .checkmark, selected: Bool = false) {
         self.title = title
         self.style = style
         self.selected = Variable(selected)

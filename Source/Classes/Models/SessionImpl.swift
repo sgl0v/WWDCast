@@ -16,13 +16,13 @@ struct SessionImpl: Session {
     let platforms: [Platform]
     let title: String
     var subtitle: String {
-        let focusString = self.platforms.map({ $0.rawValue }).joinWithSeparator(", ")
+        let focusString = self.platforms.map({ $0.rawValue }).joined(separator: ", ")
         return "\(year) - Session \(id) - \(focusString)"
     }
     let summary: String
-    let video: NSURL
-    let captions: NSURL
-    let thumbnail: NSURL
+    let video: URL?
+    let captions: URL?
+    let thumbnail: URL
     let favorite: Bool
 }
 

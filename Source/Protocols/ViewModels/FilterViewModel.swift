@@ -11,13 +11,13 @@ import RxSwift
 import RxCocoa
 
 enum FilterModuleResult {
-    case Cancelled, Finished(Filter)
+    case cancelled, finished(Filter)
 }
 typealias FilterModuleCompletion = (FilterModuleResult) -> ()
 
 protocol FilterViewModel {
     // INPUT
-    func dismissObserver(cancelled: Bool) // called when the view is about to dismiss
+    func dismissObserver(_ cancelled: Bool) // called when the view is about to dismiss
 
     // OUTPUT
     // The view's title

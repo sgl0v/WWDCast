@@ -11,11 +11,11 @@ import RxSwift
 import RxCocoa
 
 class SessionDetailsViewModelImpl: SessionDetailsViewModel {
-    private let router: SessionDetailsRouter
-    private let disposeBag = DisposeBag()
-    private let api: WWDCastAPI
-    private let sessionObservable: Observable<Session>
-    private let favoriteTrigger = PublishSubject<Void>()
+    fileprivate let router: SessionDetailsRouter
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate let api: WWDCastAPI
+    fileprivate let sessionObservable: Observable<Session>
+    fileprivate let favoriteTrigger = PublishSubject<Void>()
 
     init(sessionId: String, api: WWDCastAPI, router: SessionDetailsRouter) {
         self.api = api
@@ -44,11 +44,11 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
         let cancelAction = NSLocalizedString("Cancel", comment: "Cancel ActionSheet button title")
         let alert = self.router.promptFor(nil, message: nil, cancelAction: cancelAction, actions: actions)
         let deviceObservable = alert.filter({ $0 != cancelAction })
-            .map({ action in actions.indexOf(action as String)! })
+            .map({ action in actions.index(of: action as String)! })
             .map({ idx in devices[idx] })
         Observable.combineLatest(self.sessionObservable, deviceObservable, resultSelector: { ($0, $1) })
             .flatMap(self.api.play)
-            .subscribeError(self.didFailToPlaySession)
+            .subscribe(onError: self.didFailToPlaySession)
             .addDisposableTo(self.disposeBag)
     }
     
@@ -58,7 +58,7 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
     
     // MARK: Private
     
-    private func didFailToPlaySession(error: ErrorType) {
+    fileprivate func didFailToPlaySession(_ error: Error) {
         self.router.showAlert(NSLocalizedString("Ooops...", comment: ""), message: NSLocalizedString("Failed to play WWDC session.", comment: ""))
     }
     

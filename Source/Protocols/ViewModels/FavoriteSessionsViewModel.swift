@@ -14,7 +14,7 @@ protocol FavoriteSessionsViewModel: class {
     // INPUT
     
     // Item selection observer
-    func itemSelectionObserver(viewModel: SessionItemViewModel)
+    func itemSelectionObserver(_ viewModel: SessionItemViewModel)
     
     // OUTPUT
     

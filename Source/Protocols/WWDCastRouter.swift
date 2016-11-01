@@ -10,15 +10,15 @@ import Foundation
 import RxSwift
 
 protocol SessionsSearchRouter: class {
-    func showSessionDetails(sessionId: String)
-    func showFilterController(withFilter filter: Filter, completion: (Filter) -> Void)
+    func showSessionDetails(_ sessionId: String)
+    func showFilterController(withFilter filter: Filter, completion: @escaping (Filter) -> Void)
 }
 
 protocol SessionDetailsRouter: class {
-    func showAlert(title: String?, message: String)
-    func promptFor<Action : CustomStringConvertible>(title: String?, message: String?, cancelAction: Action, actions: [Action]) -> Observable<Action>
+    func showAlert(_ title: String?, message: String)
+    func promptFor<Action : CustomStringConvertible>(_ title: String?, message: String?, cancelAction: Action, actions: [Action]) -> Observable<Action>
 }
 
 protocol FavoriteSessionsRouter: class {
-    func showSessionDetails(sessionId: String)
+    func showSessionDetails(_ sessionId: String)
 }

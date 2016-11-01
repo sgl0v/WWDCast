@@ -6,12 +6,12 @@ inhibit_all_warnings!
 
 target 'WWDCast' do
   pod 'google-cast-sdk', '~> 3.1.1'
-  pod 'RxCocoa', '~> 2.6'
-  pod 'RxOptional', '~> 2.0'
-  pod 'RxDataSources', '~> 0.9'
-  pod 'SwiftyJSON', '~> 2.3'
+  pod 'RxCocoa', '~> 3.0'
+  pod 'RxOptional', '~> 3.1'
+  pod 'RxDataSources', '~> 1.0'
+  pod 'SwiftyJSON', '~> 3.1'
   pod 'SDWebImage', '~> 3.8'
-  pod 'GRDB.swift', '~> 0.81.2'
+  pod 'GRDB.swift', '~> 0.89'
 end
 
 target 'WWDCastTests' do
@@ -21,7 +21,7 @@ end
 post_install do |installer|
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
-            config.build_settings['SWIFT_VERSION'] = '2.3'
+            config.build_settings['SWIFT_VERSION'] = '3.0'
         end
     end
 end

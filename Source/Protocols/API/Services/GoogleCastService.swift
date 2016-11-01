@@ -14,7 +14,7 @@ protocol GoogleCastService: class {
     /// The array of available devices
     var devices: [GoogleCastDevice] { get }
     
-    func play(session: Session, onDevice device: GoogleCastDevice) -> Observable<Void>
+    func play(_ session: Session, onDevice device: GoogleCastDevice) -> Observable<Void>
     
     /**
      Pauses playback of the current session.

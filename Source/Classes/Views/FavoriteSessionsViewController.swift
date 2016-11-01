@@ -12,7 +12,7 @@ import RxCocoa
 import RxDataSources
 
 class FavoriteSessionsViewController: TableViewController<SessionSectionViewModel, SessionTableViewCell> {
-    private let viewModel: FavoriteSessionsViewModel
+    fileprivate let viewModel: FavoriteSessionsViewModel
     
     init(viewModel: FavoriteSessionsViewModel) {
         self.viewModel = viewModel
@@ -31,19 +31,19 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
     
     // MARK - Private
     
-    private func bindViewModel() {
+    fileprivate func bindViewModel() {
         // ViewModel's input
-        self.tableView.rx_modelSelected(SessionItemViewModel.self)
+        self.tableView.rx.modelSelected(SessionItemViewModel.self)
             .bindNext(self.viewModel.itemSelectionObserver)
             .addDisposableTo(self.disposeBag)
         
         // ViewModel's output
         
-        self.viewModel.favoriteSessions.drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
-        self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
+        self.viewModel.favoriteSessions.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
+        self.viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
     }
     
-    private func configureUI() {
+    fileprivate func configureUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
         
         self.clearsSelectionOnViewWillAppear = true
@@ -51,7 +51,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         self.tableView.estimatedRowHeight = 100
         self.tableView.delegate = nil
         self.tableView.dataSource = nil
-        self.tableView.layoutMargins = UIEdgeInsetsZero
+        self.tableView.layoutMargins = UIEdgeInsets.zero
         self.tableView.tableFooterView = UIView()
         self.tableView.registerNib(cellClass: SessionTableViewCell.self)
     }

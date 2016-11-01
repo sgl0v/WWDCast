@@ -15,19 +15,19 @@ final class ReachabilityServiceImpl: ReachabilityService {
         return _reachabilitySubject.asObservable()
     }
 
-    private let _reachabilitySubject: BehaviorSubject<ReachabilityStatus>
-    private let _reachability: Reachability
+    fileprivate let _reachabilitySubject: BehaviorSubject<ReachabilityStatus>
+    fileprivate let _reachability: Reachability
 
     init() throws {
         let reachabilityRef = try Reachability.reachabilityForInternetConnection()
-        let reachabilitySubject = BehaviorSubject<ReachabilityStatus>(value: .Unreachable)
+        let reachabilitySubject = BehaviorSubject<ReachabilityStatus>(value: .unreachable)
 
         reachabilityRef.whenReachable = { reachability in
-            reachabilitySubject.on(.Next(.Reachable(viaWiFi: reachabilityRef.isReachableViaWiFi())))
+            reachabilitySubject.on(.next(.reachable(viaWiFi: reachabilityRef.isReachableViaWiFi())))
         }
 
         reachabilityRef.whenUnreachable = { reachability in
-            reachabilitySubject.on(.Next(.Unreachable))
+            reachabilitySubject.on(.next(.unreachable))
         }
 
         try reachabilityRef.startNotifier()
@@ -48,7 +48,7 @@ extension NSError {
 }
 
 extension ObservableConvertibleType {
-    func retryOnBecomesReachable(valueOnFailure:E, reachabilityService: ReachabilityService) -> Observable<E> {
+    func retryOnBecomesReachable(_ valueOnFailure:E, reachabilityService: ReachabilityService) -> Observable<E> {
         return self.asObservable()
 //            .catchError { (e) -> Observable<E> in
 //                reachabilityService.reachability

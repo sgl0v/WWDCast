@@ -19,14 +19,14 @@ class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProv
 //extension SessionTableViewCell: BindableView {
     typealias ViewModel = SessionItemViewModel
 
-    func bindViewModel(viewModel: ViewModel) {
+    func bindViewModel(_ viewModel: ViewModel) {
         self.title.text = viewModel.title
         self.summary.text = viewModel.summary
         _ = Observable.just(viewModel.thumbnailURL)
             .asObservable()
             .takeUntil(self.onPrepareForReuse)
-            .bindTo(self.thumbnailImage.rx_imageURL)
-        self.layoutMargins = UIEdgeInsetsZero
-        self.separatorInset = UIEdgeInsetsZero
+            .bindTo(self.thumbnailImage.rx.imageURL)
+        self.layoutMargins = UIEdgeInsets.zero
+        self.separatorInset = UIEdgeInsets.zero
     }
 }

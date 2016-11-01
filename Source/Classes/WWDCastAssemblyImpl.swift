@@ -22,9 +22,9 @@ import UIKit
     
     func tabbarController() -> UIViewController {
         let sessionsSearchController = self.sessionsSearchController()
-        sessionsSearchController.tabBarItem = UITabBarItem(tabBarSystemItem: .Search, tag: 0)
+        sessionsSearchController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         let favoriteSessionsController = self.favoriteSessionsController()
-        favoriteSessionsController.tabBarItem = UITabBarItem(tabBarSystemItem: .Favorites, tag: 1)
+        favoriteSessionsController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         let tabbarController = TabBarController()
         tabbarController.viewControllers = [sessionsSearchController, favoriteSessionsController]
         return tabbarController
@@ -34,21 +34,21 @@ import UIKit
         let viewModel = SessionsSearchViewModelImpl(api: self.api, router: self.router)
         let view = SessionsSearchViewController(viewModel: viewModel)
         let searchNavigationController = UINavigationController(rootViewController: view)
-        searchNavigationController.navigationBar.tintColor = UIColor.blackColor()
+        searchNavigationController.navigationBar.tintColor = UIColor.black
         
         self.router.navigationController = searchNavigationController
         return searchNavigationController
     }
 
-    func filterController(filter: Filter, completion: FilterModuleCompletion) -> UIViewController {
+    func filterController(_ filter: Filter, completion: @escaping FilterModuleCompletion) -> UIViewController {
         let viewModel = FilterViewModelImpl(filter: filter, completion: completion)
         let view = FilterViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: view)
-        navigationController.navigationBar.tintColor = UIColor.blackColor()
+        navigationController.navigationBar.tintColor = UIColor.black
         return navigationController
     }
 
-    func sessionDetailsController(sessionId: String) -> UIViewController {
+    func sessionDetailsController(_ sessionId: String) -> UIViewController {
         let viewModel = SessionDetailsViewModelImpl(sessionId: sessionId, api: self.api, router: self.router)
         return SessionDetailsViewController(viewModel: viewModel)
     }
@@ -58,7 +58,7 @@ import UIKit
         let viewModel = FavoriteSessionsViewModelImpl(api: self.api, router: router)
         let view = FavoriteSessionsViewController(viewModel: viewModel)
         let searchNavigationController = UINavigationController(rootViewController: view)
-        searchNavigationController.navigationBar.tintColor = UIColor.blackColor()
+        searchNavigationController.navigationBar.tintColor = UIColor.black
         
         router.navigationController = searchNavigationController
         return searchNavigationController

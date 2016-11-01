@@ -11,8 +11,8 @@ import RxSwift
 
 class SessionsCacheImpl: SessionsCache {
     
-    private let _sessions = Variable([Session]())
-    private let database: Database
+    fileprivate let _sessions = Variable([Session]())
+    fileprivate let database: Database
     lazy var sessions: Observable<[Session]> = {
         return self._sessions.asObservable()
     }()
@@ -23,7 +23,7 @@ class SessionsCacheImpl: SessionsCache {
         reload()
     }
     
-    func save(sessions: [Session]) {
+    func save(_ sessions: [Session]) {
         let sessionIds = Set(self._sessions.value.map({ $0.uniqueId }))
         let records = sessions.filter({ session in
             return !sessionIds.contains(session.uniqueId)
@@ -43,7 +43,7 @@ class SessionsCacheImpl: SessionsCache {
         reload()
     }
     
-    func update(sessions: [Session]) {
+    func update(_ sessions: [Session]) {
         do {
             NSLog("Sessions.Update: %lu;", sessions.count)
             let records = sessions.map() { SessionRecord(session: $0) }
@@ -64,7 +64,7 @@ class SessionsCacheImpl: SessionsCache {
         return sessions
     }
     
-    private func createSessionsTable() {
+    fileprivate func createSessionsTable() {
         do {
             try SessionRecord.create(self.database)
         } catch {
@@ -72,7 +72,7 @@ class SessionsCacheImpl: SessionsCache {
         }
     }
     
-    private func reload() {
+    fileprivate func reload() {
         self._sessions.value = load()
     }
 

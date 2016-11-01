@@ -13,14 +13,11 @@ import SDWebImage
 
 // One way binding operator
 
-infix operator <-> {
-}
+infix operator <->
 
-infix operator <~ {
-}
+infix operator <~
 
-infix operator ~> {
-}
+infix operator ~>
 
 // Two way binding operator between control property and variable, that's all it takes {
 
@@ -35,21 +32,22 @@ func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disposable 
                     bindToUIDisposable.dispose()
         })
     
-    return StableCompositeDisposable.create(bindToUIDisposable, bindToVariable)
+    return Disposables.create(bindToUIDisposable, bindToVariable)
 }
 
-extension UIImageView {
-    var rx_imageURL: AnyObserver<NSURL> {
-        return AnyObserver { [weak self] event in
+extension Reactive where Base: UIImageView {
+
+    var imageURL: AnyObserver<URL> {
+        return AnyObserver { [weak base] event in
             switch event {
-            case .Next(let value):
-                self?.image = nil
-                self?.sd_setImageWithURL(value, completed: { [weak self] _ in
+            case .next(let value):
+                base?.image = nil
+                base?.sd_setImage(with: value, completed: { [weak base] _ in
                     let transition = CATransition()
                     transition.duration = 0.3
                     transition.timingFunction =
                         CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-                    self?.layer.addAnimation(transition, forKey: kCATransition)
+                    base?.layer.add(transition, forKey: kCATransition)
                     })
             default:
                 break
@@ -61,29 +59,29 @@ extension UIImageView {
 
 extension UIAlertController {
     enum Selection {
-        case Action(UInt), Cancel
+        case action(UInt), cancel
     }
     
-    static func promptFor<Action : CustomStringConvertible>(title: String?, message: String?, cancelAction: Action, actions: [Action]) -> UIViewController -> Observable<Action> {
+    static func promptFor<Action : CustomStringConvertible>(_ title: String?, message: String?, cancelAction: Action, actions: [Action]) -> (UIViewController) -> Observable<Action> {
         return { viewController in
             return Observable.create { observer in
-                let alertView = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
-                alertView.addAction(UIAlertAction(title: cancelAction.description, style: .Cancel) { _ in
+                let alertView = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+                alertView.addAction(UIAlertAction(title: cancelAction.description, style: .cancel) { _ in
                     observer.onNext(cancelAction)
                     observer.onCompleted()
                 })
                 
                 for action in actions {
-                    alertView.addAction(UIAlertAction(title: action.description, style: .Default) { _ in
+                    alertView.addAction(UIAlertAction(title: action.description, style: .`default`) { _ in
                         observer.onNext(action)
                         observer.onCompleted()
                     })
                 }
                 
-                viewController.presentViewController(alertView, animated: true, completion: nil)
+                viewController.present(alertView, animated: true, completion: nil)
                 
-                return AnonymousDisposable {
-                    alertView.dismissViewControllerAnimated(false, completion: nil)
+                return Disposables.create {
+                    alertView.dismiss(animated: false, completion: nil)
                 }
             }
         }

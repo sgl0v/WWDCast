@@ -10,11 +10,11 @@ import Foundation
 
 final class ServiceProviderImpl: ServiceProvider {
 
-    private(set) var reachability: ReachabilityService
-    private(set) var scheduler: SchedulerService
-    private(set) var network: NetworkService
-    private(set) var googleCast: GoogleCastService
-    private(set) var database: Database
+    fileprivate(set) var reachability: ReachabilityService
+    fileprivate(set) var scheduler: SchedulerService
+    fileprivate(set) var network: NetworkService
+    fileprivate(set) var googleCast: GoogleCastService
+    fileprivate(set) var database: Database
 
     init(reachability: ReachabilityService, scheduler: SchedulerService, network: NetworkService, googleCast: GoogleCastService, database: Database) {
         self.reachability = reachability
@@ -33,10 +33,9 @@ extension ServiceProviderImpl {
         }
         
         let dbName = "db.sqlite"
-        let fileManager = NSFileManager.defaultManager()
-        guard let documentsURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first,
-            let databasePath = documentsURL.URLByAppendingPathComponent(dbName)?.path,
-            let database = DatabaseImpl(path: databasePath) else {
+        let fileManager = FileManager.default
+        guard let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first,
+            let database = DatabaseImpl(path: documentsURL.appendingPathComponent(dbName).path) else {
             fatalError("Failed to create database with name \(dbName)!")
         }
         

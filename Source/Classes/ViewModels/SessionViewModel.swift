@@ -14,7 +14,7 @@ struct SessionItemViewModel {
     var title: String
     var subtitle: String
     var summary: String
-    var thumbnailURL: NSURL
+    var thumbnailURL: URL
     var favorite: Bool
 }
 

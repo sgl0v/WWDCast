@@ -13,11 +13,11 @@ class AppConfigBuilder: EntityBuilder {
 
     typealias EntityType = AppConfig
 
-    static func build(json: JSON) throws -> EntityType {
-        guard let videosURL = NSURL(string: json["urls"]["videos"].stringValue),
-            let sessionsURL = NSURL(string: json["urls"]["sessions"].stringValue),
+    static func build(_ json: JSON) throws -> EntityType {
+        guard let videosURL = URL(string: json["urls"]["videos"].stringValue),
+            let sessionsURL = URL(string: json["urls"]["sessions"].stringValue),
             let isWWDCWeek = json["features"]["liveStreaming"].bool else {
-            throw EntityBuilderError.ParsingError
+            throw EntityBuilderError.parsingError
         }
         return AppConfigImpl(sessionsURL: sessionsURL, videosURL: videosURL, isWWDCWeek: isWWDCWeek)
     }

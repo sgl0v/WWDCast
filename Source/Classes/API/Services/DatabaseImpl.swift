@@ -18,11 +18,11 @@ final class DatabaseImpl: Database {
         guard let dbQueue = try? DatabaseQueue(path: path) else {
             return nil
         }
-        dbQueue.setupMemoryManagement(application: UIApplication.sharedApplication())
+        dbQueue.setupMemoryManagement(in: UIApplication.shared)
         self.dbQueue = dbQueue
     }
     
-    func create(table: String, @noescape block: (GRDB.TableDefinition) -> Void) throws {
+    func create(_ table: String, block: (GRDB.TableDefinition) -> Void) throws {
         try dbQueue.inDatabase({ db in
             try db.create(table: table, temporary: false, ifNotExists: true) { t in
                 block(t)
@@ -30,7 +30,7 @@ final class DatabaseImpl: Database {
         })
     }
     
-    func fetch<R: protocol<RowConvertible, TableMapping>>() -> [R] {
+    func fetch<R: RowConvertible & TableMapping>() -> [R] {
         var result = [R]()
         dbQueue.inDatabase({ db in
             result = R.fetchAll(db)
@@ -38,30 +38,30 @@ final class DatabaseImpl: Database {
         return result
     }
     
-    func update(records: [Record]) throws {
+    func update(_ records: [Record]) throws {
         try perform(records) { record, db in
             try record.update(db)
         }
     }
     
-    func insert(records: [Record]) throws {
+    func insert(_ records: [Record]) throws {
         try perform(records) { record, db in
             try record.insert(db)
         }
     }
     
-    func delete(records: [Record]) throws {
+    func delete(_ records: [Record]) throws {
         try perform(records) { record, db in
             try record.delete(db)
         }
     }
     
-    private func perform(records: [Record], @noescape block: (record: Record, db: GRDB.Database) throws -> Void) throws {
+    fileprivate func perform(_ records: [Record], block: (_ record: Record, _ db: GRDB.Database) throws -> Void) throws {
         try dbQueue.inTransaction { db in
             for record in records {
-                try block(record: record, db: db)
+                try block(record, db)
             }
-            return .Commit
+            return .commit
         }
     }
 

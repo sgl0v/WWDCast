@@ -11,18 +11,18 @@ import RxSwift
 import RxCocoa
 
 class SessionsSearchViewModelImpl: SessionsSearchViewModel {
-    private let api: WWDCastAPI
-    private let router: SessionsSearchRouter
-    private let filter = Variable(Filter())
-    private let disposeBag = DisposeBag()
-    private let activityIndicator = ActivityIndicator()
+    fileprivate let api: WWDCastAPI
+    fileprivate let router: SessionsSearchRouter
+    fileprivate let filter = Variable(Filter())
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate let activityIndicator = ActivityIndicator()
 
     init(api: WWDCastAPI, router: SessionsSearchRouter) {
         self.api = api
         self.router = router
     }
     
-    private func applyFilter(sessions: [Session], filter: Filter) -> [Session] {
+    fileprivate func applyFilter(_ sessions: [Session], filter: Filter) -> [Session] {
         return sessions.apply(filter)
     }
     
@@ -41,7 +41,7 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
     
     let title = Driver.just(NSLocalizedString("WWDCast", comment: "Session search view title"))
 
-    func itemSelectionObserver(viewModel: SessionItemViewModel) {
+    func itemSelectionObserver(_ viewModel: SessionItemViewModel) {
         self.router.showSessionDetails(viewModel.uniqueID)
     }
     
@@ -51,7 +51,7 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
         }
     }
     
-    func searchStringObserver(query: String) {
+    func searchStringObserver(_ query: String) {
         var filter = self.filter.value
         filter.query = query
         self.filter.value = filter

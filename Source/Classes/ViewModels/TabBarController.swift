@@ -12,8 +12,8 @@ import GoogleCast
 // The UITabBarController with GoogleCast media controls on top of the UITabBar
 class TabBarController: UITabBarController, GCKUIMiniMediaControlsViewControllerDelegate {
     
-    private var miniMediaControlsViewController: GCKUIMiniMediaControlsViewController!
-    private static let kMiniMediaControlsViewHeight: CGFloat = 64.0
+    fileprivate var miniMediaControlsViewController: GCKUIMiniMediaControlsViewController!
+    fileprivate static let kMiniMediaControlsViewHeight: CGFloat = 64.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,17 +25,17 @@ class TabBarController: UITabBarController, GCKUIMiniMediaControlsViewController
         miniMediaControlsViewController.delegate = self
         self.addChildViewController(miniMediaControlsViewController)
         self.view.addSubview(miniMediaControlsViewController.view)
-        miniMediaControlsViewController.didMoveToParentViewController(self)
-        miniMediaControlsViewController.view.hidden = !miniMediaControlsViewController.active
+        miniMediaControlsViewController.didMove(toParentViewController: self)
+        miniMediaControlsViewController.view.isHidden = !miniMediaControlsViewController.active
     }
     
-    func miniMediaControlsViewController(miniMediaControlsViewController: GCKUIMiniMediaControlsViewController, shouldAppear: Bool) {
-        miniMediaControlsViewController.view.hidden = !miniMediaControlsViewController.active
+    func miniMediaControlsViewController(_ miniMediaControlsViewController: GCKUIMiniMediaControlsViewController, shouldAppear: Bool) {
+        miniMediaControlsViewController.view.isHidden = !miniMediaControlsViewController.active
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let y = CGRectGetMaxY(self.view.bounds) - TabBarController.kMiniMediaControlsViewHeight - CGRectGetHeight(self.tabBar.frame)
-        miniMediaControlsViewController.view.frame = CGRectMake(0, y, CGRectGetWidth(self.view.bounds), TabBarController.kMiniMediaControlsViewHeight)
+        let y = self.view.bounds.maxY - TabBarController.kMiniMediaControlsViewHeight - self.tabBar.frame.height
+        miniMediaControlsViewController.view.frame = CGRect(x: 0, y: y, width: self.view.bounds.width, height: TabBarController.kMiniMediaControlsViewHeight)
     }
 }

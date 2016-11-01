@@ -19,6 +19,10 @@ class FilterViewController: TableViewController<FilterSectionViewModel, FilterTa
         super.init()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
@@ -27,29 +31,29 @@ class FilterViewController: TableViewController<FilterSectionViewModel, FilterTa
     
     // MARK - Private
     
-    private func setupBindings() {
+    fileprivate func setupBindings() {
         // ViewModel's input
-        self.navigationItem.leftBarButtonItem!.rx_tap.map({ true }).subscribeNext(self.viewModel.dismissObserver).addDisposableTo(self.disposeBag)
-        self.navigationItem.rightBarButtonItem!.rx_tap.map({ false }).subscribeNext(self.viewModel.dismissObserver).addDisposableTo(self.disposeBag)
-        self.tableView.rx_itemSelected.subscribeNext({ indexPath in
-            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.navigationItem.leftBarButtonItem!.rx.tap.map({ true }).subscribe(onNext: self.viewModel.dismissObserver).addDisposableTo(self.disposeBag)
+        self.navigationItem.rightBarButtonItem!.rx.tap.map({ false }).subscribe(onNext: self.viewModel.dismissObserver).addDisposableTo(self.disposeBag)
+        self.tableView.rx.itemSelected.subscribe(onNext: { indexPath in
+            self.tableView.deselectRow(at: indexPath, animated: true)
         }).addDisposableTo(self.disposeBag)
         
         // ViewModel's output
-        self.viewModel.filterSections.drive(self.tableView.rx_itemsWithDataSource(self.source)).addDisposableTo(self.disposeBag)
-        self.viewModel.title.drive(self.rx_title).addDisposableTo(self.disposeBag)
+        self.viewModel.filterSections.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
+        self.viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
     }
 
-    private func configureUI() {
+    fileprivate func configureUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: nil, action: nil)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: nil, action: nil)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
         
         self.clearsSelectionOnViewWillAppear = true
         self.tableView.rowHeight = 44
         self.tableView.delegate = nil
         self.tableView.dataSource = nil
-        self.tableView.layoutMargins = UIEdgeInsetsZero
+        self.tableView.layoutMargins = UIEdgeInsets.zero
         self.tableView.tableFooterView = UIView()
     }
     
