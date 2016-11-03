@@ -11,9 +11,9 @@ import RxSwift
 
 struct Filter {
     var query: String = ""
-    var years = Year.allYears
-    var platforms = Platform.allPlatforms
-    var tracks = Track.allTracks
+    var years = Session.Year.allYears
+    var platforms = Session.Platform.allPlatforms
+    var tracks = Session.Track.allTracks
 }
 
 extension Filter: CustomStringConvertible {
@@ -43,4 +43,16 @@ extension Filter: Hashable {
 
 func ==(lhs: Filter, rhs: Filter) -> Bool {
     return lhs.query == rhs.query && lhs.years == rhs.years && lhs.platforms == rhs.platforms && lhs.tracks == rhs.tracks
+}
+
+extension Sequence where Iterator.Element == Session {
+    
+    func apply(_ filter: Filter) -> [Iterator.Element] {
+        return self.filter { session in
+            (filter.query.isEmpty || session.title.lowercased().contains(filter.query.lowercased())) &&
+                filter.years.contains(session.year) &&
+                filter.tracks.contains(session.track) &&
+                (session.platforms.isEmpty || !Set(filter.platforms).intersection(session.platforms).isEmpty)
+        }
+    }
 }

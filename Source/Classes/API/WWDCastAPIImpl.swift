@@ -64,7 +64,7 @@ class WWDCastAPIImpl : WWDCastAPI {
     }
     
     func toggleFavorite(_ session: Session) -> Observable<Session> {
-        let newSession = SessionImpl(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: !session.favorite)
+        let newSession = Session(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: !session.favorite)
         
         self.sessionsCache.update([newSession])
         return Observable.just(newSession)

@@ -8,11 +8,15 @@
 
 import Foundation
 
-struct GoogleCastDeviceImpl: GoogleCastDevice {
+struct GoogleCastDevice {
     var name: String
     var id: String
-    
+}
+
+extension GoogleCastDevice: CustomStringConvertible {
+
     var description: String {
         return name
     }
+
 }

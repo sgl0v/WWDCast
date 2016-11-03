@@ -55,7 +55,7 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
     
     var devices: [GoogleCastDevice] {
         return self.deviceScanner.devices.map() {device in
-            return GoogleCastDeviceImpl(name: (device as AnyObject).friendlyName, id: (device as AnyObject).deviceID)
+            return GoogleCastDevice(name: (device as AnyObject).friendlyName, id: (device as AnyObject).deviceID)
         }
     }
     

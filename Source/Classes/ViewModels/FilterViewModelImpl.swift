@@ -44,10 +44,10 @@ class FilterViewModelImpl : FilterViewModel {
     }
     
     fileprivate func yearsFilterViewModel() -> FilterSectionViewModel {
-        var yearFilterItems = Year.allYears.map { year in
+        var yearFilterItems = Session.Year.allYears.map { year in
             return FilterItemViewModel(title: year.description, style: .checkmark, selected: self.filter.years == [year])
         }
-        yearFilterItems.insert(FilterItemViewModel(title: NSLocalizedString("All years", comment: ""), style: .checkmark, selected: self.filter.years == Year.allYears), at: 0)
+        yearFilterItems.insert(FilterItemViewModel(title: NSLocalizedString("All years", comment: ""), style: .checkmark, selected: self.filter.years == Session.Year.allYears), at: 0)
         
         let years = FilterSectionViewModel(type: .Years, items: yearFilterItems)
         years.selection.filter({ _ , selected in
@@ -63,10 +63,10 @@ class FilterViewModelImpl : FilterViewModel {
     }
     
     fileprivate func platformsFilterViewModel() -> FilterSectionViewModel {
-        var platformFilterItems = Platform.allPlatforms.map { platform in
+        var platformFilterItems = Session.Platform.allPlatforms.map { platform in
             return FilterItemViewModel(title: platform.rawValue, style: .checkmark, selected: self.filter.platforms == [platform])
         }
-        platformFilterItems.insert(FilterItemViewModel(title: NSLocalizedString("All platforms", comment: ""), style: .checkmark, selected: self.filter.platforms == Platform.allPlatforms), at: 0)
+        platformFilterItems.insert(FilterItemViewModel(title: NSLocalizedString("All platforms", comment: ""), style: .checkmark, selected: self.filter.platforms == Session.Platform.allPlatforms), at: 0)
 
         
         let platforms = FilterSectionViewModel(type: .Platforms, items: platformFilterItems)
@@ -83,13 +83,13 @@ class FilterViewModelImpl : FilterViewModel {
     }
     
     fileprivate func tracksFilterViewModel() -> FilterSectionViewModel {
-        let trackFilterItems = Track.allTracks.map { track in
+        let trackFilterItems = Session.Track.allTracks.map { track in
             return FilterItemViewModel(title: track.rawValue, style: .switch, selected: self.filter.tracks.contains(track))
         }
         
         let tracks = FilterSectionViewModel(type: .Tracks, items: trackFilterItems)
         tracks.selection.map({ _ in
-            return tracks.items.filter({item in item.selected.value }).map({ item in Track(rawValue: item.title)! })
+            return tracks.items.filter({item in item.selected.value }).map({ item in Session.Track(rawValue: item.title)! })
         }).distinctUntilChanged(==).subscribe(onNext: {[unowned self] tracks in
             self.filter.tracks = tracks
             NSLog("%@", self.filter.description)
@@ -98,22 +98,22 @@ class FilterViewModelImpl : FilterViewModel {
         return tracks
     }
     
-    fileprivate func yearsSelection(_ platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Year]> {
+    fileprivate func yearsSelection(_ platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Session.Year]> {
         return { (idx, _) in
             if idx == 0 {
-                return Observable.just(Year.allYears)
+                return Observable.just(Session.Year.allYears)
             }
-            let selectedYear = Year.allYears[idx - 1]
+            let selectedYear = Session.Year.allYears[idx - 1]
             return Observable.just([selectedYear])
         }
     }
     
-    fileprivate func platformsSelection(_ platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Platform]> {
+    fileprivate func platformsSelection(_ platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Session.Platform]> {
         return { (idx, _) in
             if idx == 0 {
-                return Observable.just(Platform.allPlatforms)
+                return Observable.just(Session.Platform.allPlatforms)
             }
-            let selectedPlatform = Platform.allPlatforms[idx - 1]
+            let selectedPlatform = Session.Platform.allPlatforms[idx - 1]
             return Observable.just([selectedPlatform])
         }
     }

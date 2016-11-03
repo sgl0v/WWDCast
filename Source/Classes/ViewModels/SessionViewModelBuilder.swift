@@ -17,7 +17,7 @@ struct SessionItemViewModelBuilder {
     }
 
     static func build(_ sessions: [Session]) -> [SessionSectionViewModel] {
-        let sessions: [SessionSectionViewModel] = Track.allTracks.map( { track in
+        let sessions: [SessionSectionViewModel] = Session.Track.allTracks.map( { track in
             let sessions = sessions.filter({ session in session.track == track }).map(self.build)
             return SessionSectionViewModel(title: track.rawValue, items: sessions)
         }).filter({ SessionSectionViewModel in

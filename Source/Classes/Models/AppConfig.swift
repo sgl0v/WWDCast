@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct AppConfigImpl: AppConfig {
+struct AppConfig {
     let sessionsURL: URL
     let videosURL: URL
     let isWWDCWeek: Bool
 }
 
-extension AppConfigImpl: Hashable {
+extension AppConfig: Hashable {
     var hashValue: Int {
         let prime = 31
         var result = 17
@@ -25,6 +25,6 @@ extension AppConfigImpl: Hashable {
     }
 }
 
-func ==(lhs: AppConfigImpl, rhs: AppConfigImpl) -> Bool {
+func ==(lhs: AppConfig, rhs: AppConfig) -> Bool {
     return lhs.sessionsURL == rhs.sessionsURL
 }

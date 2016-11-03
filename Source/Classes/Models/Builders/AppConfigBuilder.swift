@@ -19,7 +19,7 @@ class AppConfigBuilder: EntityBuilder {
             let isWWDCWeek = json["features"]["liveStreaming"].bool else {
             throw EntityBuilderError.parsingError
         }
-        return AppConfigImpl(sessionsURL: sessionsURL, videosURL: videosURL, isWWDCWeek: isWWDCWeek)
+        return AppConfig(sessionsURL: sessionsURL, videosURL: videosURL, isWWDCWeek: isWWDCWeek)
     }
     
 }

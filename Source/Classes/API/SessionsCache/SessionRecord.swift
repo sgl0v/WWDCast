@@ -39,11 +39,11 @@ class SessionRecord: Record {
         let platforms = allPlatforms.components(separatedBy: "#").filter({ platform in
             return !platform.isEmpty
         }).map({ platform in
-            return Platform(rawValue: platform)!
+            return Session.Platform(rawValue: platform)!
         })
         let videoUrl = video == nil ? nil : URL(string: video!)
         let captionsUrl = captions == nil ? nil : URL(string: captions!)
-        session = SessionImpl(id: id, year: Year(rawValue: UInt(year))!, track: Track(rawValue: track)!, platforms: platforms, title: title, summary: summary, video: videoUrl, captions: captionsUrl, thumbnail: URL(string: thumbnail)!, favorite: favorite)
+        session = Session(id: id, year: Session.Year(rawValue: UInt(year))!, track: Session.Track(rawValue: track)!, platforms: platforms, title: title, summary: summary, video: videoUrl, captions: captionsUrl, thumbnail: URL(string: thumbnail)!, favorite: favorite)
         
         super.init(row: row)
     }
