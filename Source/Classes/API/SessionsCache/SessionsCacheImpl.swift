@@ -66,7 +66,7 @@ class SessionsCacheImpl: SessionsCache {
     
     fileprivate func createSessionsTable() {
         do {
-            try SessionRecord.create(self.database)
+            try SessionTable.create(self.database)
         } catch {
             NSLog("Failed to create the sessions table with error: \(error).")
         }

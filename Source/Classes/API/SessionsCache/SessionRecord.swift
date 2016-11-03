@@ -21,7 +21,7 @@ class SessionRecord: Record {
     // MARK: Record overrides
     
     override static var databaseTableName: String {
-        return "sessions"
+        return SessionTable.databaseTableName
     }
     
     required init(row: Row) {
@@ -67,9 +67,12 @@ protocol SQLTable: TableMapping {
     static func create(_ db: Database) throws -> Void
 }
 
-extension SessionRecord: SQLTable {
+class SessionTable: SQLTable {
     
-    class func create(_ db: Database) throws {
+    /// The name of the database table
+    public static let databaseTableName = "sessions"
+    
+    static func create(_ db: Database) throws {
         try db.create(self.databaseTableName) { table in
             table.column("id", .integer)
             table.column("year", .integer)
