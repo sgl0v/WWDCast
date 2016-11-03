@@ -40,32 +40,16 @@ class FilterViewModelImpl : FilterViewModel {
     // MARK: Private
     
     fileprivate func filterViewModels() -> [FilterSectionViewModel] {
-        let years = FilterSectionViewModel(type: .Years, items: [
-            FilterItemViewModel(title: NSLocalizedString("All years", comment: ""), style: .checkmark, selected: self.filter.years == Year.allYears),
-            FilterItemViewModel(title: Year._2016.description, style: .checkmark, selected: self.filter.years == [._2016]),
-            FilterItemViewModel(title: Year._2015.description, style: .checkmark, selected: self.filter.years == [._2015]),
-            FilterItemViewModel(title: Year._2014.description, style: .checkmark, selected: self.filter.years == [._2014]),
-            FilterItemViewModel(title: Year._2013.description, style: .checkmark, selected: self.filter.years == [._2013]),
-            FilterItemViewModel(title: Year._2012.description, style: .checkmark, selected: self.filter.years == [._2012]),
-            ])
-        let platforms = FilterSectionViewModel(type: .Platforms, items: [
-            FilterItemViewModel(title: NSLocalizedString("All platforms", comment: ""), style: .checkmark, selected: self.filter.platforms == Platform.allPlatforms),
-            FilterItemViewModel(title: Platform.iOS.rawValue, style: .checkmark, selected: self.filter.platforms == [.iOS]),
-            FilterItemViewModel(title: Platform.macOS.rawValue, style: .checkmark, selected: self.filter.platforms == [.macOS]),
-            FilterItemViewModel(title: Platform.tvOS.rawValue, style: .checkmark, selected: self.filter.platforms == [.tvOS]),
-            FilterItemViewModel(title: Platform.watchOS.rawValue, style: .checkmark, selected: self.filter.platforms == [.watchOS])
-            ])
-        let tracks = FilterSectionViewModel(type: .Tracks, items: [
-            FilterItemViewModel(title: Track.Featured.rawValue, style: .switch, selected: self.filter.tracks.contains(.Featured)),
-            FilterItemViewModel(title: Track.Media.rawValue, style: .switch, selected: self.filter.tracks.contains(.Media)),
-            FilterItemViewModel(title: Track.DeveloperTools.rawValue, style: .switch, selected: self.filter.tracks.contains(.DeveloperTools)),
-            FilterItemViewModel(title: Track.GraphicsAndGames.rawValue, style: .switch, selected: self.filter.tracks.contains(.GraphicsAndGames)),
-            FilterItemViewModel(title: Track.SystemFrameworks.rawValue, style: .switch, selected: self.filter.tracks.contains(.SystemFrameworks)),
-            FilterItemViewModel(title: Track.AppFrameworks.rawValue, style: .switch, selected: self.filter.tracks.contains(.AppFrameworks)),
-            FilterItemViewModel(title: Track.Design.rawValue, style: .switch, selected: self.filter.tracks.contains(.Design)),
-            FilterItemViewModel(title: Track.Distribution.rawValue, style: .switch, selected: self.filter.tracks.contains(.Distribution))
-            ])
+        return [yearsFilterViewModel(), platformsFilterViewModel(), tracksFilterViewModel()]
+    }
+    
+    fileprivate func yearsFilterViewModel() -> FilterSectionViewModel {
+        var yearFilterItems = Year.allYears.map { year in
+            return FilterItemViewModel(title: year.description, style: .checkmark, selected: self.filter.years == [year])
+        }
+        yearFilterItems.insert(FilterItemViewModel(title: NSLocalizedString("All years", comment: ""), style: .checkmark, selected: self.filter.years == Year.allYears), at: 0)
         
+        let years = FilterSectionViewModel(type: .Years, items: yearFilterItems)
         years.selection.filter({ _ , selected in
             return selected
         }).do(onNext: { index, _ in
@@ -75,6 +59,17 @@ class FilterViewModelImpl : FilterViewModel {
             NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
         
+        return years
+    }
+    
+    fileprivate func platformsFilterViewModel() -> FilterSectionViewModel {
+        var platformFilterItems = Platform.allPlatforms.map { platform in
+            return FilterItemViewModel(title: platform.rawValue, style: .checkmark, selected: self.filter.platforms == [platform])
+        }
+        platformFilterItems.insert(FilterItemViewModel(title: NSLocalizedString("All platforms", comment: ""), style: .checkmark, selected: self.filter.platforms == Platform.allPlatforms), at: 0)
+
+        
+        let platforms = FilterSectionViewModel(type: .Platforms, items: platformFilterItems)
         platforms.selection.filter({ _ , selected in
             return selected
         }).do(onNext: { index, _ in
@@ -84,14 +79,23 @@ class FilterViewModelImpl : FilterViewModel {
             NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
         
+        return platforms
+    }
+    
+    fileprivate func tracksFilterViewModel() -> FilterSectionViewModel {
+        let trackFilterItems = Track.allTracks.map { track in
+            return FilterItemViewModel(title: track.rawValue, style: .switch, selected: self.filter.tracks.contains(track))
+        }
+        
+        let tracks = FilterSectionViewModel(type: .Tracks, items: trackFilterItems)
         tracks.selection.map({ _ in
             return tracks.items.filter({item in item.selected.value }).map({ item in Track(rawValue: item.title)! })
         }).distinctUntilChanged(==).subscribe(onNext: {[unowned self] tracks in
             self.filter.tracks = tracks
             NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
-            
-        return [years, platforms, tracks]
+        
+        return tracks
     }
     
     fileprivate func yearsSelection(_ platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Year]> {
