@@ -47,7 +47,7 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
             .map({ action in actions.index(of: action as String)! })
             .map({ idx in devices[idx] })
         Observable.combineLatest(self.sessionObservable, deviceObservable, resultSelector: { ($0, $1) })
-            .takeLast(1)
+            .take(1)
             .flatMap(self.api.play)
             .subscribe(onError: self.didFailToPlaySession)
             .addDisposableTo(self.disposeBag)

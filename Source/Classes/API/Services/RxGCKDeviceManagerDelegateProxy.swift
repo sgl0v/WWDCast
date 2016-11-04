@@ -31,22 +31,22 @@ extension Reactive where Base: GCKDeviceManager {
     }
     
     var didConnect: Observable<GCKDeviceManager> {
-        return self.methodInvoked(#selector(GCKDeviceManagerDelegate.deviceManagerDidConnect(_:)))
+        return self.delegate.methodInvoked(#selector(GCKDeviceManagerDelegate.deviceManagerDidConnect(_:)))
             .map { params in params.first as! GCKDeviceManager }
     }
     
     var didFailToConnect: Observable<NSError> {
-        return self.methodInvoked(#selector(GCKDeviceManagerDelegate.deviceManager(_:didFailToConnectWithError:)))
+        return self.delegate.methodInvoked(#selector(GCKDeviceManagerDelegate.deviceManager(_:didFailToConnectWithError:)))
             .map { params in params.last as! NSError }
     }
     
     var didConnectToCastApplication: Observable<(GCKApplicationMetadata, String, Bool)> {
-        return self.methodInvoked(#selector(GCKDeviceManagerDelegate.deviceManager(_:didConnectToCastApplication:sessionID:launchedApplication:)))
+        return self.delegate.methodInvoked(#selector(GCKDeviceManagerDelegate.deviceManager(_:didConnectToCastApplication:sessionID:launchedApplication:)))
             .map { params in (params[1] as! GCKApplicationMetadata, params[2] as! String, (params[3] as! NSNumber).boolValue) }
     }
     
     var didFailToConnectToApplication: Observable<NSError> {
-        return self.methodInvoked(#selector(GCKDeviceManagerDelegate.deviceManager(_:didFailToConnectToApplicationWithError:)))
+        return self.delegate.methodInvoked(#selector(GCKDeviceManagerDelegate.deviceManager(_:didFailToConnectToApplicationWithError:)))
             .map { params in params.last as! NSError }
     }
     
