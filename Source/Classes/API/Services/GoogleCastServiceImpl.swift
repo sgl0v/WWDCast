@@ -64,7 +64,6 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
             .flatMap(self.connectToDevice)
             .flatMap(self.launchApplication(self.applicationID))
             .flatMap(self.playSession(session))
-            .take(1)
             .do(onNext: { channel in
                 self.castChannel = channel
             })

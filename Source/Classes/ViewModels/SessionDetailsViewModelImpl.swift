@@ -11,11 +11,11 @@ import RxSwift
 import RxCocoa
 
 class SessionDetailsViewModelImpl: SessionDetailsViewModel {
-    fileprivate let router: SessionDetailsRouter
-    fileprivate let disposeBag = DisposeBag()
-    fileprivate let api: WWDCastAPI
-    fileprivate let sessionObservable: Observable<Session>
-    fileprivate let favoriteTrigger = PublishSubject<Void>()
+    private let router: SessionDetailsRouter
+    private let disposeBag = DisposeBag()
+    private let api: WWDCastAPI
+    private let sessionObservable: Observable<Session>
+    private let favoriteTrigger = PublishSubject<Void>()
 
     init(sessionId: String, api: WWDCastAPI, router: SessionDetailsRouter) {
         self.api = api
@@ -47,6 +47,7 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
             .map({ action in actions.index(of: action as String)! })
             .map({ idx in devices[idx] })
         Observable.combineLatest(self.sessionObservable, deviceObservable, resultSelector: { ($0, $1) })
+            .takeLast(1)
             .flatMap(self.api.play)
             .subscribe(onError: self.didFailToPlaySession)
             .addDisposableTo(self.disposeBag)
