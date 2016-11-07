@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5E2680961D2C43440054E90B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E2680951D2C43440054E90B /* Assets.xcassets */; };
 		5E89B1D61D480B6300E611AC /* SessionDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */; };
-		5EBEEF611D2B15BD007C44E3 /* SessionsSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EBEEF601D2B15BD007C44E3 /* SessionsSearchViewController.xib */; };
 		793BE38BE046FD3EF8742CF9 /* Pods_WWDCastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */; };
 		9E8282ED357ECD3D75624DDB /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */; };
 		B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */; };
@@ -68,7 +67,6 @@
 		E74FE5E31DC645F600BFD2F5 /* SessionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5E11DC645F600BFD2F5 /* SessionRecord.swift */; };
 		E74FE5E41DC645F600BFD2F5 /* SessionsCacheImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5E21DC645F600BFD2F5 /* SessionsCacheImpl.swift */; };
 		E76BFDCA1DC3FE0900B269B8 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */; };
-		E777AE0D1DB8C3E00023192A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE0C1DB8C3E00023192A /* TabBarController.swift */; };
 		E777AE0F1DBA3D8B0023192A /* SessionsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE0E1DBA3D8B0023192A /* SessionsCache.swift */; };
 		E777AE131DBA63D80023192A /* FavoriteSessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */; };
 		E777AE151DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */; };
@@ -77,6 +75,7 @@
 		E79718071D5FB9E900C4DD7C /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718061D5FB9E900C4DD7C /* FilterViewController.xib */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
 		E7B287871D9C11A200BF4707 /* GoogleCastDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B287861D9C11A200BF4707 /* GoogleCastDevice.swift */; };
+		E7C27F771DD0F0110082EC45 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C27F761DD0F0110082EC45 /* TabBarController.swift */; };
 		E7DAAFEE1DCBA37E009F18D2 /* EntityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DAAFED1DCBA37E009F18D2 /* EntityBuilder.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,7 +96,6 @@
 		4A6EBFABAC79034FF2973338 /* Pods-WWDCastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.release.xcconfig"; sourceTree = "<group>"; };
 		5E2680951D2C43440054E90B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionDetailsViewController.xib; path = Resources/SessionDetailsViewController.xib; sourceTree = SOURCE_ROOT; };
-		5EBEEF601D2B15BD007C44E3 /* SessionsSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionsSearchViewController.xib; path = Resources/SessionsSearchViewController.xib; sourceTree = SOURCE_ROOT; };
 		B6F929BB1D2A5DD5009E4B83 /* WWDCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWDCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F929CA1D2A5DD5009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		B6F929CF1D2A5DD6009E4B83 /* WWDCastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WWDCastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,7 +158,6 @@
 		E74FE5E21DC645F600BFD2F5 /* SessionsCacheImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsCacheImpl.swift; sourceTree = "<group>"; };
 		E76BFDC71DC3FD7400B269B8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		E777AE0C1DB8C3E00023192A /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E777AE0E1DBA3D8B0023192A /* SessionsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsCache.swift; sourceTree = "<group>"; };
 		E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewController.swift; sourceTree = "<group>"; };
 		E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModelImpl.swift; sourceTree = "<group>"; };
@@ -169,6 +166,7 @@
 		E79718061D5FB9E900C4DD7C /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterViewController.xib; path = Resources/FilterViewController.xib; sourceTree = SOURCE_ROOT; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		E7B287861D9C11A200BF4707 /* GoogleCastDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDevice.swift; sourceTree = "<group>"; };
+		E7C27F761DD0F0110082EC45 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E7DAAFED1DCBA37E009F18D2 /* EntityBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityBuilder.swift; sourceTree = "<group>"; };
 		EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -233,7 +231,6 @@
 				5E2680951D2C43440054E90B /* Assets.xcassets */,
 				B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */,
 				B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */,
-				5EBEEF601D2B15BD007C44E3 /* SessionsSearchViewController.xib */,
 				5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */,
 				B6F929CA1D2A5DD5009E4B83 /* Info.plist */,
 				E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */,
@@ -368,7 +365,6 @@
 				E7121CB71D9AFFE4003F5DCC /* SessionViewModel.swift */,
 				E7121CB81D9AFFE4003F5DCC /* SessionViewModelBuilder.swift */,
 				E7121CB91D9AFFE4003F5DCC /* SessionViewModels.swift */,
-				E777AE0C1DB8C3E00023192A /* TabBarController.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -382,6 +378,7 @@
 				E7121CBD1D9AFFE4003F5DCC /* SessionsSearchViewController.swift */,
 				E7121CBE1D9AFFE4003F5DCC /* SessionTableViewCell.swift */,
 				E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */,
+				E7C27F761DD0F0110082EC45 /* TabBarController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -505,7 +502,7 @@
 				TargetAttributes = {
 					B6F929BA1D2A5DD5009E4B83 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 76874MD7C6;
+						DevelopmentTeam = 3V62DN7HAG;
 						LastSwiftMigration = 0800;
 					};
 					B6F929CE1D2A5DD6009E4B83 = {
@@ -546,7 +543,6 @@
 				5E2680961D2C43440054E90B /* Assets.xcassets in Resources */,
 				E777AE191DBA696B0023192A /* FavoriteSessionsViewController.xib in Resources */,
 				E79718071D5FB9E900C4DD7C /* FilterViewController.xib in Resources */,
-				5EBEEF611D2B15BD007C44E3 /* SessionsSearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,8 +655,8 @@
 			files = (
 				E7121CD81D9AFFE4003F5DCC /* SessionViewModel.swift in Sources */,
 				E7121CFD1D9B0935003F5DCC /* GoogleCastService.swift in Sources */,
+				E7C27F771DD0F0110082EC45 /* TabBarController.swift in Sources */,
 				B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */,
-				E777AE0D1DB8C3E00023192A /* TabBarController.swift in Sources */,
 				E7121CC31D9AFFE4003F5DCC /* ReachabilityServiceImpl.swift in Sources */,
 				E7121D031D9B0935003F5DCC /* WWDCastRouter.swift in Sources */,
 				E777AE131DBA63D80023192A /* FavoriteSessionsViewController.swift in Sources */,
@@ -849,6 +845,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3V62DN7HAG;
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCast;
@@ -867,6 +864,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3V62DN7HAG;
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCast;
