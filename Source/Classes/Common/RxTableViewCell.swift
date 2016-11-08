@@ -17,8 +17,8 @@ class RxTableViewCell: UITableViewCell {
     var onSelected: Observable<Void> {
         return _onSelected
     }
-    fileprivate let _onPrepareForReuse = PublishSubject<Void>()
-    fileprivate let _onSelected = PublishSubject<Void>()
+    private let _onPrepareForReuse = PublishSubject<Void>()
+    private let _onSelected = PublishSubject<Void>()
 
     override func prepareForReuse() {
         super.prepareForReuse()

@@ -18,8 +18,8 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
 
-    fileprivate let viewModel: SessionDetailsViewModel
-    fileprivate let disposeBag = DisposeBag()
+    private let viewModel: SessionDetailsViewModel
+    private let disposeBag = DisposeBag()
 
     init(viewModel: SessionDetailsViewModel) {
         self.viewModel = viewModel
@@ -38,12 +38,12 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     
     // MARK: Private
     
-    fileprivate func configureUI() {
+    private func configureUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
         self.edgesForExtendedLayout = UIRectEdge()
     }
 
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         // ViewModel's input
         self.playButton.rx.tap.subscribe(onNext: self.viewModel.playSession).addDisposableTo(self.disposeBag)
         self.favoriteButton.rx.tap.subscribe(onNext: self.viewModel.toggleFavorite).addDisposableTo(self.disposeBag)
@@ -53,7 +53,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         self.viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
     }
     
-    fileprivate func viewModelObserver(_ viewModel: SessionItemViewModel?) {
+    private func viewModelObserver(_ viewModel: SessionItemViewModel?) {
         guard let viewModel = viewModel else {
             return
         }

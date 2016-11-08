@@ -17,8 +17,8 @@ extension String {
 
 final class NetworkServiceImpl: NetworkService {
 
-    fileprivate let session: URLSession
-    fileprivate static func defaultConfiguration() -> URLSessionConfiguration {
+    private let session: URLSession
+    private static func defaultConfiguration() -> URLSessionConfiguration {
         let configuration = URLSessionConfiguration.default
         configuration.allowsCellularAccess = false
         return configuration

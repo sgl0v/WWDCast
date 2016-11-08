@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
-    fileprivate let api: WWDCastAPI
-    fileprivate let router: FavoriteSessionsRouter
-    fileprivate let disposeBag = DisposeBag()
+    private let api: WWDCastAPI
+    private let router: FavoriteSessionsRouter
+    private let disposeBag = DisposeBag()
     
     init(api: WWDCastAPI, router: FavoriteSessionsRouter) {
         self.api = api

@@ -11,18 +11,18 @@ import RxSwift
 import RxCocoa
 
 class SessionsSearchViewModelImpl: SessionsSearchViewModel {
-    fileprivate let api: WWDCastAPI
-    fileprivate let router: SessionsSearchRouter
-    fileprivate let filter = Variable(Filter())
-    fileprivate let disposeBag = DisposeBag()
-    fileprivate let activityIndicator = ActivityIndicator()
+    private let api: WWDCastAPI
+    private let router: SessionsSearchRouter
+    private let filter = Variable(Filter())
+    private let disposeBag = DisposeBag()
+    private let activityIndicator = ActivityIndicator()
 
     init(api: WWDCastAPI, router: SessionsSearchRouter) {
         self.api = api
         self.router = router
     }
     
-    fileprivate func applyFilter(_ sessions: [Session], filter: Filter) -> [Session] {
+    private func applyFilter(_ sessions: [Session], filter: Filter) -> [Session] {
         return sessions.apply(filter)
     }
     

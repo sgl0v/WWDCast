@@ -12,8 +12,8 @@ import GoogleCast
 // The UITabBarController with GoogleCast media controls on top of the UITabBar
 class TabBarController: UITabBarController, GCKUIMiniMediaControlsViewControllerDelegate {
     
-    fileprivate var miniMediaControlsViewController: GCKUIMiniMediaControlsViewController!
-    fileprivate static let kMiniMediaControlsViewHeight: CGFloat = 64.0
+    private var miniMediaControlsViewController: GCKUIMiniMediaControlsViewController!
+    private static let kMiniMediaControlsViewHeight: CGFloat = 64.0
     
     override func viewDidLoad() {
         super.viewDidLoad()

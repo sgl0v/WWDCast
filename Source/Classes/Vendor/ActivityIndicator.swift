@@ -13,8 +13,8 @@ import Foundation
 #endif
 
 private struct ActivityToken<E> : ObservableConvertibleType, Disposable {
-    fileprivate let _source: Observable<E>
-    fileprivate let _dispose: Disposable
+    private let _source: Observable<E>
+    private let _dispose: Disposable
     
     init(source: Observable<E>, disposeAction: @escaping () -> ()) {
         _source = source
@@ -39,8 +39,8 @@ private struct ActivityToken<E> : ObservableConvertibleType, Disposable {
 class ActivityIndicator {
     public typealias E = Bool
     
-    fileprivate let _lock = NSRecursiveLock()
-    fileprivate let _variable = Variable(0)
+    private let _lock = NSRecursiveLock()
+    private let _variable = Variable(0)
     fileprivate let _loading: Driver<Bool>
     
     public init() {
@@ -50,7 +50,7 @@ class ActivityIndicator {
             .asDriver(onErrorRecover: ActivityIndicator.ifItStillErrors)
     }
     
-    fileprivate static func ifItStillErrors(_ error: Error) -> Driver<Bool> {
+    private static func ifItStillErrors(_ error: Error) -> Driver<Bool> {
         _ = fatalError("Loader can't fail")
     }
     
@@ -64,13 +64,13 @@ class ActivityIndicator {
         }
     }
     
-    fileprivate func increment() {
+    private func increment() {
         _lock.lock()
         _variable.value = _variable.value + 1
         _lock.unlock()
     }
     
-    fileprivate func decrement() {
+    private func decrement() {
         _lock.lock()
         _variable.value = _variable.value - 1
         _lock.unlock()

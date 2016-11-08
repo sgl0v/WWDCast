@@ -12,9 +12,9 @@ import RxCocoa
 
 class FilterViewModelImpl : FilterViewModel {
     
-    fileprivate var filter: Filter
-    fileprivate let completion: FilterModuleCompletion
-    fileprivate let disposeBag = DisposeBag()
+    private var filter: Filter
+    private let completion: FilterModuleCompletion
+    private let disposeBag = DisposeBag()
 
     init(filter: Filter, completion: @escaping FilterModuleCompletion) {
         self.filter = filter
@@ -39,11 +39,11 @@ class FilterViewModelImpl : FilterViewModel {
     
     // MARK: Private
     
-    fileprivate func filterViewModels() -> [FilterSectionViewModel] {
+    private func filterViewModels() -> [FilterSectionViewModel] {
         return [yearsFilterViewModel(), platformsFilterViewModel(), tracksFilterViewModel()]
     }
     
-    fileprivate func yearsFilterViewModel() -> FilterSectionViewModel {
+    private func yearsFilterViewModel() -> FilterSectionViewModel {
         var yearFilterItems = Session.Year.allYears.map { year in
             return FilterItemViewModel(title: year.description, style: .checkmark, selected: self.filter.years == [year])
         }
@@ -62,7 +62,7 @@ class FilterViewModelImpl : FilterViewModel {
         return years
     }
     
-    fileprivate func platformsFilterViewModel() -> FilterSectionViewModel {
+    private func platformsFilterViewModel() -> FilterSectionViewModel {
         var platformFilterItems = Session.Platform.allPlatforms.map { platform in
             return FilterItemViewModel(title: platform.rawValue, style: .checkmark, selected: self.filter.platforms == [platform])
         }
@@ -82,7 +82,7 @@ class FilterViewModelImpl : FilterViewModel {
         return platforms
     }
     
-    fileprivate func tracksFilterViewModel() -> FilterSectionViewModel {
+    private func tracksFilterViewModel() -> FilterSectionViewModel {
         let trackFilterItems = Session.Track.allTracks.map { track in
             return FilterItemViewModel(title: track.rawValue, style: .switch, selected: self.filter.tracks.contains(track))
         }
@@ -98,7 +98,7 @@ class FilterViewModelImpl : FilterViewModel {
         return tracks
     }
     
-    fileprivate func yearsSelection(_ platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Session.Year]> {
+    private func yearsSelection(_ platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Session.Year]> {
         return { (idx, _) in
             if idx == 0 {
                 return Observable.just(Session.Year.allYears)
@@ -108,7 +108,7 @@ class FilterViewModelImpl : FilterViewModel {
         }
     }
     
-    fileprivate func platformsSelection(_ platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Session.Platform]> {
+    private func platformsSelection(_ platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Session.Platform]> {
         return { (idx, _) in
             if idx == 0 {
                 return Observable.just(Session.Platform.allPlatforms)

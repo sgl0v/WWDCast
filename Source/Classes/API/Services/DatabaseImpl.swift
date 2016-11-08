@@ -56,7 +56,7 @@ final class DatabaseImpl: Database {
         }
     }
     
-    fileprivate func perform(_ records: [Record], block: (_ record: Record, _ db: GRDB.Database) throws -> Void) throws {
+    private func perform(_ records: [Record], block: (_ record: Record, _ db: GRDB.Database) throws -> Void) throws {
         try dbQueue.inTransaction { db in
             for record in records {
                 try block(record, db)

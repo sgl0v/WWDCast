@@ -29,9 +29,9 @@ enum GoogleCastServiceError : Error {
 }
 
 final class GoogleCastServiceImpl: NSObject, GoogleCastService {
-    fileprivate let applicationID: String
-    fileprivate let disposeBag = DisposeBag()
-    fileprivate let deviceScanner: GCKDeviceScanner
+    private let applicationID: String
+    private let disposeBag = DisposeBag()
+    private let deviceScanner: GCKDeviceScanner
 
     init(applicationID: String) {
         self.applicationID = applicationID
@@ -86,10 +86,10 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
     
     // MARK: Private
     
-    fileprivate var castChannel: GCKMediaControlChannel?
-    fileprivate var deviceManager: GCKDeviceManager?
+    private var castChannel: GCKMediaControlChannel?
+    private var deviceManager: GCKDeviceManager?
     
-    fileprivate func connectToDevice(_ device: GoogleCastDevice) -> Observable<GCKDeviceManager> {
+    private func connectToDevice(_ device: GoogleCastDevice) -> Observable<GCKDeviceManager> {
         return Observable.create({[unowned self] observer in
             guard let gckDevice = self.deviceScanner.devices.filter({ device.id == ($0 as! GCKDevice).deviceID }).first as? GCKDevice else {
                 observer.onError(GoogleCastServiceError.connectionError)
@@ -118,7 +118,7 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
         })
     }
     
-    fileprivate func launchApplication(_ applicationId: String) -> (GCKDeviceManager) -> Observable<GCKDeviceManager> {
+    private func launchApplication(_ applicationId: String) -> (GCKDeviceManager) -> Observable<GCKDeviceManager> {
         return { deviceManager in
             return Observable.create({[unowned self] observer in
                 
@@ -139,7 +139,7 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
         }
     }
     
-    fileprivate func playSession(_ session: Session) -> (GCKDeviceManager) -> Observable<GCKMediaControlChannel> {
+    private func playSession(_ session: Session) -> (GCKDeviceManager) -> Observable<GCKMediaControlChannel> {
         return { deviceManager in
             return Observable.create({ observer in
                 let mediaInfo = GCKMediaInformation(session: session)

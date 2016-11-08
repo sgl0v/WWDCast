@@ -12,8 +12,8 @@ import SwiftyJSON
 
 class WWDCastAPIImpl : WWDCastAPI {
     
-    fileprivate let serviceProvider: ServiceProvider
-    fileprivate let sessionsCache: SessionsCache
+    private let serviceProvider: ServiceProvider
+    private let sessionsCache: SessionsCache
     
     init(serviceProvider: ServiceProvider, sessionsCache: SessionsCache) {
         self.serviceProvider = serviceProvider
@@ -72,15 +72,15 @@ class WWDCastAPIImpl : WWDCastAPI {
 
     // MARK: Private
     
-    fileprivate func loadConfig() -> Observable<AppConfig> {
+    private func loadConfig() -> Observable<AppConfig> {
         return self.serviceProvider.network.request(WWDCEnvironment.indexURL, parameters: [:]).flatMap(build(AppConfigBuilder.self))
     }
     
-    fileprivate func loadSessions(_ config: AppConfig) -> Observable<[Session]> {
+    private func loadSessions(_ config: AppConfig) -> Observable<[Session]> {
         return self.serviceProvider.network.request(config.videosURL, parameters: [:]).flatMap(build(SessionsBuilder.self))
     }
     
-    fileprivate func build<Builder: EntityBuilder>(_ builder: Builder.Type) -> (Data) -> Observable<Builder.EntityType> {
+    private func build<Builder: EntityBuilder>(_ builder: Builder.Type) -> (Data) -> Observable<Builder.EntityType> {
         return { data in
             do {
                 let entity = try builder.build(JSON(data: data))
@@ -91,7 +91,7 @@ class WWDCastAPIImpl : WWDCastAPI {
         }
     }
     
-    fileprivate func sortSessions(_ sessions: [Session]) -> [Session] {
+    private func sortSessions(_ sessions: [Session]) -> [Session] {
         return sessions.sorted(by: { lhs, rhs in
             return lhs.id < rhs.id && lhs.year.rawValue >= rhs.year.rawValue
         })

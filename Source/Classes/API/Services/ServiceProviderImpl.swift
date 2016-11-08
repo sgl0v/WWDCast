@@ -10,11 +10,11 @@ import Foundation
 
 final class ServiceProviderImpl: ServiceProvider {
 
-    fileprivate(set) var reachability: ReachabilityService
-    fileprivate(set) var scheduler: SchedulerService
-    fileprivate(set) var network: NetworkService
-    fileprivate(set) var googleCast: GoogleCastService
-    fileprivate(set) var database: Database
+    private(set) var reachability: ReachabilityService
+    private(set) var scheduler: SchedulerService
+    private(set) var network: NetworkService
+    private(set) var googleCast: GoogleCastService
+    private(set) var database: Database
 
     init(reachability: ReachabilityService, scheduler: SchedulerService, network: NetworkService, googleCast: GoogleCastService, database: Database) {
         self.reachability = reachability

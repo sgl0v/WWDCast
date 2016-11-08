@@ -15,8 +15,8 @@ final class ReachabilityServiceImpl: ReachabilityService {
         return _reachabilitySubject.asObservable()
     }
 
-    fileprivate let _reachabilitySubject: BehaviorSubject<ReachabilityStatus>
-    fileprivate let _reachability: Reachability
+    private let _reachabilitySubject: BehaviorSubject<ReachabilityStatus>
+    private let _reachability: Reachability
 
     init() throws {
         let reachabilityRef = try Reachability.reachabilityForInternetConnection()

@@ -59,7 +59,7 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
     
     // MARK: Private
     
-    fileprivate func didFailToPlaySession(_ error: Error) {
+    private func didFailToPlaySession(_ error: Error) {
         self.router.showAlert(NSLocalizedString("Ooops...", comment: ""), message: NSLocalizedString("Failed to play WWDC session.", comment: ""))
     }
     

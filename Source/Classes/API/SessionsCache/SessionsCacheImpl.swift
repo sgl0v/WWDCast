@@ -11,8 +11,8 @@ import RxSwift
 
 class SessionsCacheImpl: SessionsCache {
     
-    fileprivate let _sessions = Variable([Session]())
-    fileprivate let database: Database
+    private let _sessions = Variable([Session]())
+    private let database: Database
     lazy var sessions: Observable<[Session]> = {
         return self._sessions.asObservable()
     }()
@@ -64,7 +64,7 @@ class SessionsCacheImpl: SessionsCache {
         return sessions
     }
     
-    fileprivate func createSessionsTable() {
+    private func createSessionsTable() {
         do {
             try SessionTable.create(self.database)
         } catch {
@@ -72,7 +72,7 @@ class SessionsCacheImpl: SessionsCache {
         }
     }
     
-    fileprivate func reload() {
+    private func reload() {
         self._sessions.value = load()
     }
 

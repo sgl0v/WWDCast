@@ -12,7 +12,7 @@ import RxCocoa
 import RxDataSources
 
 class FavoriteSessionsViewController: TableViewController<SessionSectionViewModel, SessionTableViewCell> {
-    fileprivate let viewModel: FavoriteSessionsViewModel
+    private let viewModel: FavoriteSessionsViewModel
     
     init(viewModel: FavoriteSessionsViewModel) {
         self.viewModel = viewModel
@@ -31,7 +31,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
     
     // MARK - Private
     
-    fileprivate func bindViewModel() {
+    private func bindViewModel() {
         // ViewModel's input
         self.tableView.rx.modelSelected(SessionItemViewModel.self)
             .bindNext(self.viewModel.itemSelectionObserver)
@@ -43,7 +43,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         self.viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
     }
     
-    fileprivate func configureUI() {
+    private func configureUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
         
 //        self.clearsSelectionOnViewWillAppear = true

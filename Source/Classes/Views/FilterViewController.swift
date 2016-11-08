@@ -31,7 +31,7 @@ class FilterViewController: TableViewController<FilterSectionViewModel, FilterTa
     
     // MARK - Private
     
-    fileprivate func setupBindings() {
+    private func setupBindings() {
         // ViewModel's input
         self.navigationItem.leftBarButtonItem!.rx.tap.map({ true }).subscribe(onNext: self.viewModel.dismissObserver).addDisposableTo(self.disposeBag)
         self.navigationItem.rightBarButtonItem!.rx.tap.map({ false }).subscribe(onNext: self.viewModel.dismissObserver).addDisposableTo(self.disposeBag)
@@ -44,7 +44,7 @@ class FilterViewController: TableViewController<FilterSectionViewModel, FilterTa
         self.viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
     }
 
-    fileprivate func configureUI() {
+    private func configureUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
