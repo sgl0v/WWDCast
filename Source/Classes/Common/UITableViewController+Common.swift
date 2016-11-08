@@ -10,8 +10,9 @@ import UIKit
 import RxSwift
 import RxDataSources
 
-class TableViewController<SectionViewModel: SectionModelType & CustomStringConvertible, Cell: UITableViewCell>: UITableViewController where Cell: BindableView & NibProvidable & ReusableView, Cell.ViewModel == SectionViewModel.Item {
+class TableViewController<SectionViewModel: SectionModelType & CustomStringConvertible, Cell: UITableViewCell>: UIViewController where Cell: BindableView & NibProvidable & ReusableView, Cell.ViewModel == SectionViewModel.Item {
 
+    var tableView: UITableView!
     let disposeBag = DisposeBag()
 
     lazy var source: RxTableViewSectionedReloadDataSource<SectionViewModel> = {
@@ -37,6 +38,14 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView = UITableView(frame: self.view.bounds, style: .plain)
+        self.view.addSubview(self.tableView)
+        self.tableView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        self.tableView.delegate = nil
+        self.tableView.dataSource = nil
+        self.tableView.layoutMargins = UIEdgeInsets.zero
+        self.tableView.tableFooterView = UIView()
         self.tableView.registerNib(cellClass: Cell.self)
     }
 

@@ -11,31 +11,15 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class SessionsSearchViewController: UIViewController
+class SessionsSearchViewController: TableViewController<SessionSectionViewModel, SessionTableViewCell>
 {
     
     private var loadingIndicator: UIActivityIndicatorView!
-    private var tableView: UITableView!
     private let viewModel: SessionsSearchViewModel
-    private let disposeBag = DisposeBag()
-    
-    lazy var source: RxTableViewSectionedReloadDataSource<SessionSectionViewModel> = {
-        let dataSource = RxTableViewSectionedReloadDataSource<SessionSectionViewModel>()
-        dataSource.configureCell = { (dataSource, tableView, indexPath, element) in
-            let cell = tableView.dequeueReusableCell(withClass: SessionTableViewCell.self, forIndexPath: indexPath)!
-            cell.bindViewModel(element)
-            return cell
-        }
-        dataSource.titleForHeaderInSection = { (dataSource: TableViewSectionedDataSource<SessionSectionViewModel>, sectionIndex: Int) -> String? in
-            return dataSource[sectionIndex].description
-        }
-        return dataSource
-    }()
 
-    
     init(viewModel: SessionsSearchViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -85,18 +69,10 @@ class SessionsSearchViewController: UIViewController
 //        self.clearsSelectionOnViewWillAppear = true
         
         self.view.backgroundColor = UIColor.white
-        
-        self.tableView = UITableView(frame:self.view.frame)
-        self.view.addSubview(self.tableView)
-        self.tableView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
-        self.tableView.delegate = nil
-        self.tableView.dataSource = nil
-        self.tableView.tableHeaderView = self.searchController.searchBar
-        self.tableView.layoutMargins = UIEdgeInsets.zero
-        self.tableView.tableFooterView = UIView()
-        self.tableView.registerNib(cellClass: SessionTableViewCell.self)
+        self.tableView.tableHeaderView = self.searchBar
         // dismiss keyboard on scroll
         self.tableView.rx.contentOffset.asDriver().filter({[unowned self] _ -> Bool in
             return !self.searchController.isBeingPresented && self.searchBar.isFirstResponder
@@ -113,7 +89,7 @@ class SessionsSearchViewController: UIViewController
     }
 
     private var searchQuery: Driver<String> {
-        let cancel: Observable<String> = searchController.searchBar.rx.delegate.methodInvoked(#selector(UISearchBarDelegate.searchBarCancelButtonClicked(_:))).map( { _ in return "" })
+        let cancel: Observable<String> = self.searchBar.rx.delegate.methodInvoked(#selector(UISearchBarDelegate.searchBarCancelButtonClicked(_:))).map( { _ in return "" })
         
         let searchBarTextObservable = self.searchBar.rx.text.filter({ $0 != nil }).map({ $0! })
         return Observable.of(searchBarTextObservable, cancel)

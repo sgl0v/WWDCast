@@ -46,14 +46,9 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
     fileprivate func configureUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
         
-        self.clearsSelectionOnViewWillAppear = true
+//        self.clearsSelectionOnViewWillAppear = true
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
-        self.tableView.delegate = nil
-        self.tableView.dataSource = nil
-        self.tableView.layoutMargins = UIEdgeInsets.zero
-        self.tableView.tableFooterView = UIView()
-        self.tableView.registerNib(cellClass: SessionTableViewCell.self)
     }
     
 }

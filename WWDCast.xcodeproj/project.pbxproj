@@ -71,8 +71,6 @@
 		E777AE131DBA63D80023192A /* FavoriteSessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */; };
 		E777AE151DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */; };
 		E777AE171DBA64610023192A /* FavoriteSessionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE161DBA64610023192A /* FavoriteSessionsViewModel.swift */; };
-		E777AE191DBA696B0023192A /* FavoriteSessionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E777AE181DBA696B0023192A /* FavoriteSessionsViewController.xib */; };
-		E79718071D5FB9E900C4DD7C /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718061D5FB9E900C4DD7C /* FilterViewController.xib */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
 		E7B287871D9C11A200BF4707 /* GoogleCastDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B287861D9C11A200BF4707 /* GoogleCastDevice.swift */; };
 		E7C27F771DD0F0110082EC45 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C27F761DD0F0110082EC45 /* TabBarController.swift */; };
@@ -162,8 +160,6 @@
 		E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewController.swift; sourceTree = "<group>"; };
 		E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModelImpl.swift; sourceTree = "<group>"; };
 		E777AE161DBA64610023192A /* FavoriteSessionsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModel.swift; sourceTree = "<group>"; };
-		E777AE181DBA696B0023192A /* FavoriteSessionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FavoriteSessionsViewController.xib; path = Resources/FavoriteSessionsViewController.xib; sourceTree = SOURCE_ROOT; };
-		E79718061D5FB9E900C4DD7C /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterViewController.xib; path = Resources/FilterViewController.xib; sourceTree = SOURCE_ROOT; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		E7B287861D9C11A200BF4707 /* GoogleCastDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDevice.swift; sourceTree = "<group>"; };
 		E7C27F761DD0F0110082EC45 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -227,14 +223,12 @@
 		B6F929BD1D2A5DD5009E4B83 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E79718061D5FB9E900C4DD7C /* FilterViewController.xib */,
 				5E2680951D2C43440054E90B /* Assets.xcassets */,
 				B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */,
 				B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */,
 				5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */,
 				B6F929CA1D2A5DD5009E4B83 /* Info.plist */,
 				E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */,
-				E777AE181DBA696B0023192A /* FavoriteSessionsViewController.xib */,
 			);
 			name = Resources;
 			path = WWDCast;
@@ -541,8 +535,6 @@
 				B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */,
 				B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */,
 				5E2680961D2C43440054E90B /* Assets.xcassets in Resources */,
-				E777AE191DBA696B0023192A /* FavoriteSessionsViewController.xib in Resources */,
-				E79718071D5FB9E900C4DD7C /* FilterViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,12 +49,9 @@ class FilterViewController: TableViewController<FilterSectionViewModel, FilterTa
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
         
-        self.clearsSelectionOnViewWillAppear = true
+//        self.clearsSelectionOnViewWillAppear = true
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.rowHeight = 44
-        self.tableView.delegate = nil
-        self.tableView.dataSource = nil
-        self.tableView.layoutMargins = UIEdgeInsets.zero
-        self.tableView.tableFooterView = UIView()
     }
     
 }
