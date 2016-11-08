@@ -74,6 +74,8 @@
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
 		E7B287871D9C11A200BF4707 /* GoogleCastDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B287861D9C11A200BF4707 /* GoogleCastDevice.swift */; };
 		E7C27F771DD0F0110082EC45 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C27F761DD0F0110082EC45 /* TabBarController.swift */; };
+		E7C27FA11DD22FBE0082EC45 /* EmptyDataSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C27FA01DD22FBE0082EC45 /* EmptyDataSetView.swift */; };
+		E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */; };
 		E7DAAFEE1DCBA37E009F18D2 /* EntityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DAAFED1DCBA37E009F18D2 /* EntityBuilder.swift */; };
 /* End PBXBuildFile section */
 
@@ -163,6 +165,8 @@
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		E7B287861D9C11A200BF4707 /* GoogleCastDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDevice.swift; sourceTree = "<group>"; };
 		E7C27F761DD0F0110082EC45 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		E7C27FA01DD22FBE0082EC45 /* EmptyDataSetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyDataSetView.swift; sourceTree = "<group>"; };
+		E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataSetView.xib; path = Resources/EmptyDataSetView.xib; sourceTree = SOURCE_ROOT; };
 		E7DAAFED1DCBA37E009F18D2 /* EntityBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityBuilder.swift; sourceTree = "<group>"; };
 		EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,6 +233,7 @@
 				5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */,
 				B6F929CA1D2A5DD5009E4B83 /* Info.plist */,
 				E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */,
+				E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */,
 			);
 			name = Resources;
 			path = WWDCast;
@@ -373,6 +378,7 @@
 				E7121CBE1D9AFFE4003F5DCC /* SessionTableViewCell.swift */,
 				E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */,
 				E7C27F761DD0F0110082EC45 /* TabBarController.swift */,
+				E7C27FA01DD22FBE0082EC45 /* EmptyDataSetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -531,6 +537,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E89B1D61D480B6300E611AC /* SessionDetailsViewController.xib in Resources */,
+				E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */,
 				E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */,
 				B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */,
 				B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */,
@@ -662,6 +669,7 @@
 				E7121CFC1D9B0935003F5DCC /* SessionsSearchViewModel.swift in Sources */,
 				E7121CDD1D9AFFE4003F5DCC /* SessionsSearchViewController.swift in Sources */,
 				E7121CD31D9AFFE4003F5DCC /* ActivityIndicator.swift in Sources */,
+				E7C27FA11DD22FBE0082EC45 /* EmptyDataSetView.swift in Sources */,
 				E74FE5DB1DC6183100BFD2F5 /* Database.swift in Sources */,
 				E74FE5D91DC617F200BFD2F5 /* DatabaseImpl.swift in Sources */,
 				E7B287871D9C11A200BF4707 /* GoogleCastDevice.swift in Sources */,
