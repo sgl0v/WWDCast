@@ -48,5 +48,11 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         self.tableView.tableFooterView = UIView()
         self.tableView.registerNib(cellClass: Cell.self)
     }
+    
+    func setClearsSelectionOnViewWillAppear() {
+        self.tableView.rx.itemSelected.asDriver().drive(onNext: {[unowned self] indexPath in
+            self.tableView.deselectRow(at: indexPath, animated: true)
+        }).addDisposableTo(self.disposeBag)
+    }
 
 }

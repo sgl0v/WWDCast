@@ -66,7 +66,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Filter", comment: "Filter"), style: .plain, target: nil, action: nil)
 
-//        self.clearsSelectionOnViewWillAppear = true
+        self.setClearsSelectionOnViewWillAppear()
         
         self.view.backgroundColor = UIColor.white
 
