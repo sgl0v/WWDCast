@@ -54,7 +54,12 @@ class WWDCastAPIImpl : WWDCastAPI {
     }
     
     func play(_ session: Session, onDevice device: GoogleCastDevice) -> Observable<Void> {
-        return self.serviceProvider.googleCast.play(session, onDevice: device)
+        guard let video = session.video?.absoluteString else {
+            return Observable.error(GoogleCastServiceError.playbackError)
+        }
+        
+        let media = GoogleCastMedia(id: session.id, title: session.title, subtitle: session.subtitle, thumbnail: session.thumbnail, video: video, captions: session.captions?.absoluteString)
+        return self.serviceProvider.googleCast.play(media, onDevice: device)
     }
     
     var favoriteSessions: Observable<[Session]> {

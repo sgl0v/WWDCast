@@ -20,3 +20,14 @@ extension GoogleCastDevice: CustomStringConvertible {
     }
 
 }
+
+extension GoogleCastDevice: Hashable {
+    
+    var hashValue: Int {
+        return self.id.hashValue
+    }
+}
+
+func ==(lhs: GoogleCastDevice, rhs: GoogleCastDevice) -> Bool {
+    return lhs.id == rhs.id
+}
