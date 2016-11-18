@@ -24,7 +24,7 @@ class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
     
     var favoriteSessions: Driver<[SessionSectionViewModel]> {
         return self.api.favoriteSessions
-            .map(SessionItemViewModelBuilder.build)
+            .map(SessionSectionViewModelBuilder.build)
             .asDriver(onErrorJustReturn: [])
     }
     
