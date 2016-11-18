@@ -51,9 +51,10 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
     private func configureUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
         
+        self.setClearsSelectionOnViewWillAppear()
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
-        self.setClearsSelectionOnViewWillAppear()
+        self.tableView.tableFooterView = UIView()
         
         self.view.addSubview(self.emptyDataSetView)
         self.emptyDataSetView.frame = self.view.bounds

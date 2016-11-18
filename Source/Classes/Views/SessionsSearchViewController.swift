@@ -73,6 +73,8 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
         self.tableView.tableHeaderView = self.searchBar
+        self.tableView.tableFooterView = UIView()
+        
         // dismiss keyboard on scroll
         self.tableView.rx.contentOffset.asDriver().filter({[unowned self] _ -> Bool in
             return !self.searchController.isBeingPresented && self.searchBar.isFirstResponder

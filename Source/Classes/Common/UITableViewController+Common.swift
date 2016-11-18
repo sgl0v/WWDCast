@@ -42,10 +42,6 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         self.tableView = UITableView(frame: self.view.bounds, style: .plain)
         self.view.addSubview(self.tableView)
         self.tableView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        self.tableView.delegate = nil
-        self.tableView.dataSource = nil
-        self.tableView.layoutMargins = UIEdgeInsets.zero
-        self.tableView.tableFooterView = UIView()
         self.tableView.registerNib(cellClass: Cell.self)
     }
     
