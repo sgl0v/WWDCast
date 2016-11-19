@@ -70,7 +70,6 @@
 		E777AE151DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */; };
 		E777AE171DBA64610023192A /* FavoriteSessionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE161DBA64610023192A /* FavoriteSessionsViewModel.swift */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
-		E7A1505C1DDF933700746769 /* WeakSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A1505B1DDF933700746769 /* WeakSet.swift */; };
 		E7A150691DDFB7DC00746769 /* RxGCKRequestDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A150651DDFB7DC00746769 /* RxGCKRequestDelegateProxy.swift */; };
 		E7A1506A1DDFB7DC00746769 /* RxGCKSessionManagerListenerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A150661DDFB7DC00746769 /* RxGCKSessionManagerListenerProxy.swift */; };
 		E7A1506C1DDFB87100746769 /* GoogleCastMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A1506B1DDFB87100746769 /* GoogleCastMedia.swift */; };
@@ -165,7 +164,6 @@
 		E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModelImpl.swift; sourceTree = "<group>"; };
 		E777AE161DBA64610023192A /* FavoriteSessionsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModel.swift; sourceTree = "<group>"; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
-		E7A1505B1DDF933700746769 /* WeakSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakSet.swift; sourceTree = "<group>"; };
 		E7A150631DDFB7DC00746769 /* GoogleCastServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastServiceImpl.swift; sourceTree = "<group>"; };
 		E7A150651DDFB7DC00746769 /* RxGCKRequestDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGCKRequestDelegateProxy.swift; sourceTree = "<group>"; };
 		E7A150661DDFB7DC00746769 /* RxGCKSessionManagerListenerProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGCKSessionManagerListenerProxy.swift; sourceTree = "<group>"; };
@@ -324,7 +322,6 @@
 				E7121CA51D9AFFE4003F5DCC /* UIBarButtonItem+Common.swift */,
 				E7121CA61D9AFFE4003F5DCC /* UITableView+Common.swift */,
 				E7121CA71D9AFFE4003F5DCC /* TableViewController.swift */,
-				E7A1505B1DDF933700746769 /* WeakSet.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -715,7 +712,6 @@
 				E7121CD51D9AFFE4003F5DCC /* FilterViewModelImpl.swift in Sources */,
 				E7121D071D9B0935003F5DCC /* WWDCastAssembly.swift in Sources */,
 				B6F929E61D2AB0FD009E4B83 /* WWDCEnvironment.swift in Sources */,
-				E7A1505C1DDF933700746769 /* WeakSet.swift in Sources */,
 				E7A150691DDFB7DC00746769 /* RxGCKRequestDelegateProxy.swift in Sources */,
 				E7121CC61D9AFFE4003F5DCC /* ServiceProviderImpl.swift in Sources */,
 				E7121CDF1D9AFFE4003F5DCC /* WWDCastAssemblyImpl.swift in Sources */,

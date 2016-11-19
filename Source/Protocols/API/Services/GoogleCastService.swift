@@ -18,6 +18,7 @@ protocol GoogleCastService: class {
     /// The array of available devices
     var devices: [GoogleCastDevice] { get }
     
+    /// Starts the media playback on the specified device
     func play(_ media: GoogleCastMedia, onDevice device: GoogleCastDevice) -> Observable<Void>
     
     /**
