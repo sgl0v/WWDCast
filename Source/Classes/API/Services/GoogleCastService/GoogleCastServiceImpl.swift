@@ -139,6 +139,20 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
 extension GoogleCastServiceImpl: GCKLoggerDelegate {
 
     func enableLogging() {
+        let logFilter = GCKLoggerFilter()
+        logFilter.addClassNames([
+//            "GCKEventLogger",
+            "\(GCKCastContext.self)",
+            "\(GCKDeviceProvider.self)",
+            "\(GCKDiscoveryManager.self)",
+            "\(GCKSessionManager.self)",
+            "\(GCKUICastButton.self)",
+            "\(GCKUIMediaController.self)",
+            "\(GCKUIMiniMediaControlsViewController.self)",
+            "\(GCKCastChannel.self)",
+            "\(GCKMediaControlChannel.self)",
+            ])
+        GCKLogger.sharedInstance().filter = logFilter;
         GCKLogger.sharedInstance().delegate = self
     }
 
