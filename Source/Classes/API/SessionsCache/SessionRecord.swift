@@ -63,11 +63,6 @@ class SessionRecord: Record {
     
 }
 
-protocol SQLTable: TableMapping {
-
-    static func defineColumns(table: GRDB.TableDefinition) -> Void
-}
-
 class SessionTable: SQLTable {
     
     /// The name of the database table

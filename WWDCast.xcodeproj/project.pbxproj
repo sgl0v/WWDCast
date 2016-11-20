@@ -63,9 +63,8 @@
 		E74FE5D91DC617F200BFD2F5 /* DatabaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5D81DC617F200BFD2F5 /* DatabaseImpl.swift */; };
 		E74FE5DB1DC6183100BFD2F5 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5DA1DC6183100BFD2F5 /* Database.swift */; };
 		E74FE5E31DC645F600BFD2F5 /* SessionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5E11DC645F600BFD2F5 /* SessionRecord.swift */; };
-		E74FE5E41DC645F600BFD2F5 /* SessionsCacheImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5E21DC645F600BFD2F5 /* SessionsCacheImpl.swift */; };
+		E74FE5E41DC645F600BFD2F5 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5E21DC645F600BFD2F5 /* Cache.swift */; };
 		E76BFDCA1DC3FE0900B269B8 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */; };
-		E777AE0F1DBA3D8B0023192A /* SessionsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE0E1DBA3D8B0023192A /* SessionsCache.swift */; };
 		E777AE131DBA63D80023192A /* FavoriteSessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */; };
 		E777AE151DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */; };
 		E777AE171DBA64610023192A /* FavoriteSessionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE161DBA64610023192A /* FavoriteSessionsViewModel.swift */; };
@@ -75,6 +74,7 @@
 		E7A1506C1DDFB87100746769 /* GoogleCastMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A1506B1DDFB87100746769 /* GoogleCastMedia.swift */; };
 		E7A1506E1DDFBA6E00746769 /* GoogleCastMedia+GCK.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A1506D1DDFBA6E00746769 /* GoogleCastMedia+GCK.swift */; };
 		E7A1506F1DDFBC6500746769 /* GoogleCastServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A150631DDFB7DC00746769 /* GoogleCastServiceImpl.swift */; };
+		E7A150711DE21A6200746769 /* Session+RecordConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A150701DE21A6200746769 /* Session+RecordConvertable.swift */; };
 		E7B287871D9C11A200BF4707 /* GoogleCastDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B287861D9C11A200BF4707 /* GoogleCastDevice.swift */; };
 		E7C27F771DD0F0110082EC45 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C27F761DD0F0110082EC45 /* TabBarController.swift */; };
 		E7C27FA11DD22FBE0082EC45 /* EmptyDataSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C27FA01DD22FBE0082EC45 /* EmptyDataSetView.swift */; };
@@ -156,10 +156,9 @@
 		E74FE5D81DC617F200BFD2F5 /* DatabaseImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseImpl.swift; sourceTree = "<group>"; };
 		E74FE5DA1DC6183100BFD2F5 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		E74FE5E11DC645F600BFD2F5 /* SessionRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionRecord.swift; sourceTree = "<group>"; };
-		E74FE5E21DC645F600BFD2F5 /* SessionsCacheImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsCacheImpl.swift; sourceTree = "<group>"; };
+		E74FE5E21DC645F600BFD2F5 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		E76BFDC71DC3FD7400B269B8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		E777AE0E1DBA3D8B0023192A /* SessionsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsCache.swift; sourceTree = "<group>"; };
 		E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewController.swift; sourceTree = "<group>"; };
 		E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModelImpl.swift; sourceTree = "<group>"; };
 		E777AE161DBA64610023192A /* FavoriteSessionsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModel.swift; sourceTree = "<group>"; };
@@ -169,6 +168,7 @@
 		E7A150661DDFB7DC00746769 /* RxGCKSessionManagerListenerProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGCKSessionManagerListenerProxy.swift; sourceTree = "<group>"; };
 		E7A1506B1DDFB87100746769 /* GoogleCastMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastMedia.swift; sourceTree = "<group>"; };
 		E7A1506D1DDFBA6E00746769 /* GoogleCastMedia+GCK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GoogleCastMedia+GCK.swift"; sourceTree = "<group>"; };
+		E7A150701DE21A6200746769 /* Session+RecordConvertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+RecordConvertable.swift"; sourceTree = "<group>"; };
 		E7B287861D9C11A200BF4707 /* GoogleCastDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDevice.swift; sourceTree = "<group>"; };
 		E7C27F761DD0F0110082EC45 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E7C27FA01DD22FBE0082EC45 /* EmptyDataSetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyDataSetView.swift; sourceTree = "<group>"; };
@@ -417,7 +417,6 @@
 				E7121CEF1D9B0935003F5DCC /* ReachabilityService.swift */,
 				E7121CF01D9B0935003F5DCC /* SchedulerService.swift */,
 				E7121CF11D9B0935003F5DCC /* ServiceProvider.swift */,
-				E777AE0E1DBA3D8B0023192A /* SessionsCache.swift */,
 				E74FE5DA1DC6183100BFD2F5 /* Database.swift */,
 			);
 			path = Services;
@@ -427,7 +426,8 @@
 			isa = PBXGroup;
 			children = (
 				E74FE5E11DC645F600BFD2F5 /* SessionRecord.swift */,
-				E74FE5E21DC645F600BFD2F5 /* SessionsCacheImpl.swift */,
+				E74FE5E21DC645F600BFD2F5 /* Cache.swift */,
+				E7A150701DE21A6200746769 /* Session+RecordConvertable.swift */,
 			);
 			path = SessionsCache;
 			sourceTree = "<group>";
@@ -718,12 +718,13 @@
 				E7121CD91D9AFFE4003F5DCC /* SessionViewModelBuilder.swift in Sources */,
 				E7121CCA1D9AFFE4003F5DCC /* UIBarButtonItem+Common.swift in Sources */,
 				E7121CDA1D9AFFE4003F5DCC /* SessionViewModels.swift in Sources */,
+				E7A150711DE21A6200746769 /* Session+RecordConvertable.swift in Sources */,
 				E7121CDE1D9AFFE4003F5DCC /* SessionTableViewCell.swift in Sources */,
 				E7121CC71D9AFFE4003F5DCC /* WWDCastAPIImpl.swift in Sources */,
 				E7121CFE1D9B0935003F5DCC /* NetworkService.swift in Sources */,
 				E7DAAFEE1DCBA37E009F18D2 /* EntityBuilder.swift in Sources */,
 				E7121CCC1D9AFFE4003F5DCC /* TableViewController.swift in Sources */,
-				E74FE5E41DC645F600BFD2F5 /* SessionsCacheImpl.swift in Sources */,
+				E74FE5E41DC645F600BFD2F5 /* Cache.swift in Sources */,
 				E7A1506C1DDFB87100746769 /* GoogleCastMedia.swift in Sources */,
 				E7121CD71D9AFFE4003F5DCC /* SessionsSearchViewModelImpl.swift in Sources */,
 				E7121CE61D9B0859003F5DCC /* FilterSectionViewModel.swift in Sources */,
@@ -731,7 +732,6 @@
 				E7121CD61D9AFFE4003F5DCC /* SessionDetailsViewModelImpl.swift in Sources */,
 				E7121CDC1D9AFFE4003F5DCC /* SessionDetailsViewController.swift in Sources */,
 				E7121CCE1D9AFFE4003F5DCC /* AppConfigBuilder.swift in Sources */,
-				E777AE0F1DBA3D8B0023192A /* SessionsCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

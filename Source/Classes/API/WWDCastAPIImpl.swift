@@ -13,11 +13,11 @@ import SwiftyJSON
 class WWDCastAPIImpl : WWDCastAPI {
     
     private let serviceProvider: ServiceProvider
-    private let sessionsCache: SessionsCache
+    private let cache: Cache<Session>
     
     init(serviceProvider: ServiceProvider) {
         self.serviceProvider = serviceProvider
-        self.sessionsCache = SessionsCacheImpl(db: self.serviceProvider.database)
+        self.cache = Cache(db: self.serviceProvider.database)
     }
     
     // MARK: WWDCastAPI
@@ -27,12 +27,11 @@ class WWDCastAPIImpl : WWDCastAPI {
     }
 
     lazy var sessions: Observable<[Session]> = {
-        let cachedSessions = self.sessionsCache.sessions
+        let cachedSessions = self.cache.values
         let loadedSessions = self.loadConfig()
             .flatMapLatest(self.loadSessions)
             .retryOnBecomesReachable([], reachabilityService: self.serviceProvider.reachability)
-            .do(onNext: self.sessionsCache.save)
-            .flatMap({ _ in return cachedSessions })
+            .flatMap(self.updateCache)
         
         return Observable.of(cachedSessions, loadedSessions)
             .merge()
@@ -59,7 +58,7 @@ class WWDCastAPIImpl : WWDCastAPI {
         })
     }
     
-    func play(_ session: Session, onDevice device: GoogleCastDevice) -> Observable<Void> {
+    func play(session: Session, onDevice device: GoogleCastDevice) -> Observable<Void> {
         guard let video = session.video?.absoluteString else {
             return Observable.error(GoogleCastServiceError.playbackError)
         }
@@ -68,10 +67,10 @@ class WWDCastAPIImpl : WWDCastAPI {
         return self.serviceProvider.googleCast.play(media, onDevice: device)
     }
     
-    func toggleFavorite(_ session: Session) -> Observable<Session> {
+    func toggle(favoriteSession session: Session) -> Observable<Session> {
         let newSession = Session(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: !session.favorite)
         
-        self.sessionsCache.update([newSession])
+        self.cache.update(values: [newSession])
         return Observable.just(newSession)
     }
 
@@ -99,6 +98,21 @@ class WWDCastAPIImpl : WWDCastAPI {
     private func sortSessions(_ sessions: [Session]) -> [Session] {
         return sessions.sorted(by: { lhs, rhs in
             return lhs.id < rhs.id && lhs.year.rawValue >= rhs.year.rawValue
+        })
+    }
+    
+    private func updateCache(sessions: [Session]) -> Observable<[Session]> {
+        return Observable.just(sessions).withLatestFrom(self.cache.values, resultSelector: { newSessions, cachedSessions in
+            let favoriteSessions = Set(cachedSessions.filter({ $0.favorite }).map({ $0.uniqueId }))
+            let sessionsToAdd = newSessions.map({ session in
+                return Session(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: favoriteSessions.contains(session.uniqueId))
+            })
+            if (cachedSessions.isEmpty) {
+                self.cache.add(values: sessionsToAdd)
+            } else {
+                self.cache.update(values: sessionsToAdd)
+            }
+            return sessionsToAdd
         })
     }
     

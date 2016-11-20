@@ -125,15 +125,15 @@ final class DatabaseImpl: Database {
         return result
     }
     
-    func update(_ records: [Record]) -> Bool {
+    func update(records: [Record]) -> Bool {
         return perform { db in
             for record in records {
-                try record.update(db)
+                try record.save(db)
             }
         }
     }
     
-    func insert(_ records: [Record]) -> Bool {
+    func insert(records: [Record]) -> Bool {
         return perform { db in
             for record in records {
                 try record.insert(db)
@@ -141,7 +141,7 @@ final class DatabaseImpl: Database {
         }
     }
     
-    func delete(_ records: [Record]) -> Bool {
+    func delete(records: [Record]) -> Bool {
         return perform { db in
             for record in records {
                 try record.delete(db)

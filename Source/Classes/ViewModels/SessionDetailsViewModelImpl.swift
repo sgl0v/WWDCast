@@ -21,7 +21,7 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
         self.api = api
         self.router = router
         let sessionObservable = self.api.session(withId: sessionId)
-        let favoriteObservable = self.favoriteTrigger.withLatestFrom(sessionObservable).flatMap(self.api.toggleFavorite)
+        let favoriteObservable = self.favoriteTrigger.withLatestFrom(sessionObservable).flatMap(self.api.toggle)
         self.sessionObservable = Observable.of(sessionObservable, favoriteObservable).merge()
     }
     
