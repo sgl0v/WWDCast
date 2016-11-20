@@ -15,11 +15,11 @@ protocol WWDCastAPI: class {
     
     var sessions: Observable<[Session]> { get }
     
+    var favoriteSessions: Observable<[Session]> { get }
+    
     func session(withId id: String) -> Observable<Session>
     
     func play(_ session: Session, onDevice device: GoogleCastDevice) -> Observable<Void>
-    
-    var favoriteSessions: Observable<[Session]> { get }
     
     func toggleFavorite(_ session: Session) -> Observable<Session>
     

@@ -10,14 +10,17 @@ import Foundation
 import GRDB
 
 protocol Database {
-    func create(_ table: String, block: (GRDB.TableDefinition) -> Void) throws
+    
+    @discardableResult func create(table: SQLTable.Type) -> Bool
     
     func fetch<R: RowConvertible & TableMapping>() -> [R]
     
-    func update(_ records: [Record]) throws
+    @discardableResult func update(_ records: [Record]) -> Bool
     
-    func insert(_ records: [Record]) throws
+    @discardableResult func insert(_ records: [Record]) -> Bool
     
-    func delete(_ records: [Record]) throws
+    @discardableResult func delete(_ records: [Record]) -> Bool
+    
+    @discardableResult func deleteAll(ofType type: Record.Type) -> Bool
     
 }

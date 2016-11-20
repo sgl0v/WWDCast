@@ -34,22 +34,18 @@ class SessionsCacheImpl: SessionsCache {
             return
         }
         
-        do {
-            NSLog("Sessions.Insert: %lu;", records.count)
-            try self.database.insert(records)
-        } catch {
-            NSLog("Failed to save sessions with error: \(error).")
+        NSLog("Sessions.Insert: %lu;", records.count)
+        if !self.database.insert(records) {
+            NSLog("Failed to insert new sessions sessions!")
         }
         reload()
     }
     
     func update(_ sessions: [Session]) {
-        do {
-            NSLog("Sessions.Update: %lu;", sessions.count)
-            let records = sessions.map() { SessionRecord(session: $0) }
-            try self.database.update(records)
-        } catch {
-            NSLog("Failed to update cached session with error: \(error).")
+        NSLog("Sessions.Update: %lu;", sessions.count)
+        let records = sessions.map() { SessionRecord(session: $0) }
+        if !self.database.update(records) {
+            NSLog("Failed to update cached sessions")
         }
         reload()
     }
@@ -65,10 +61,8 @@ class SessionsCacheImpl: SessionsCache {
     }
     
     private func createSessionsTable() {
-        do {
-            try SessionTable.create(self.database)
-        } catch {
-            NSLog("Failed to create the sessions table with error: \(error).")
+        if !self.database.create(table: SessionTable.self) {
+            NSLog("Failed to create the sessions table!")
         }
     }
     

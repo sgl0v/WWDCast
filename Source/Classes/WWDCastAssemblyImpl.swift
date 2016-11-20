@@ -20,8 +20,7 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
 
     lazy var api: WWDCastAPI = {
         let serviceProvider = ServiceProviderImpl.defaultServiceProvider
-        let cache = SessionsCacheImpl(db: serviceProvider.database)
-        return WWDCastAPIImpl(serviceProvider: serviceProvider, sessionsCache: cache)
+        return WWDCastAPIImpl(serviceProvider: serviceProvider)
     }()
     
     func sessionsTabbarController() -> UIViewController {

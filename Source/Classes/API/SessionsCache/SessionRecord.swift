@@ -64,7 +64,8 @@ class SessionRecord: Record {
 }
 
 protocol SQLTable: TableMapping {
-    static func create(_ db: Database) throws -> Void
+
+    static func defineColumns(table: GRDB.TableDefinition) -> Void
 }
 
 class SessionTable: SQLTable {
@@ -72,20 +73,18 @@ class SessionTable: SQLTable {
     /// The name of the database table
     public static let databaseTableName = "sessions"
     
-    static func create(_ db: Database) throws {
-        try db.create(self.databaseTableName) { table in
-            table.column("id", .integer)
-            table.column("year", .integer)
-            table.column("track", .text).notNull()
-            table.column("platforms", .text).notNull()
-            table.column("title", .text).notNull()
-            table.column("summary", .text).notNull()
-            table.column("video", .text)
-            table.column("captions", .text)
-            table.column("thumbnail", .text).notNull()
-            table.column("favorite", .boolean).notNull().defaults(to: false)
-            table.primaryKey(["id", "year"])
-        }
+    static func defineColumns(table: GRDB.TableDefinition) {
+        table.column("id", .integer)
+        table.column("year", .integer)
+        table.column("track", .text).notNull()
+        table.column("platforms", .text).notNull()
+        table.column("title", .text).notNull()
+        table.column("summary", .text).notNull()
+        table.column("video", .text)
+        table.column("captions", .text)
+        table.column("thumbnail", .text).notNull()
+        table.column("favorite", .boolean).notNull().defaults(to: false)
+        table.primaryKey(["id", "year"])
     }
     
 }

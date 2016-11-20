@@ -15,9 +15,9 @@ class WWDCastAPIImpl : WWDCastAPI {
     private let serviceProvider: ServiceProvider
     private let sessionsCache: SessionsCache
     
-    init(serviceProvider: ServiceProvider, sessionsCache: SessionsCache) {
+    init(serviceProvider: ServiceProvider) {
         self.serviceProvider = serviceProvider
-        self.sessionsCache = sessionsCache
+        self.sessionsCache = SessionsCacheImpl(db: self.serviceProvider.database)
     }
     
     // MARK: WWDCastAPI
@@ -27,20 +27,26 @@ class WWDCastAPIImpl : WWDCastAPI {
     }
 
     lazy var sessions: Observable<[Session]> = {
-        let cache = self.sessionsCache.sessions
-        let network = self.loadConfig()
+        let cachedSessions = self.sessionsCache.sessions
+        let loadedSessions = self.loadConfig()
             .flatMapLatest(self.loadSessions)
             .retryOnBecomesReachable([], reachabilityService: self.serviceProvider.reachability)
             .do(onNext: self.sessionsCache.save)
-            .flatMap({ _ in return cache })
+            .flatMap({ _ in return cachedSessions })
         
-        return Observable.of(cache, network)
+        return Observable.of(cachedSessions, loadedSessions)
             .merge()
             .map(self.sortSessions)
             .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
             .observeOn(self.serviceProvider.scheduler.mainScheduler)
             .shareReplayLatestWhileConnected()
     }()
+    
+    var favoriteSessions: Observable<[Session]> {
+        return self.sessions.map({ sessions in
+            return sessions.filter({ $0.favorite })
+        })
+    }
     
     func session(withId id: String) -> Observable<Session> {
         return self.sessions.flatMap({ sessions -> Observable<Session> in
@@ -60,12 +66,6 @@ class WWDCastAPIImpl : WWDCastAPI {
         
         let media = GoogleCastMedia(id: session.id, title: session.title, subtitle: session.subtitle, thumbnail: session.thumbnail, video: video, captions: session.captions?.absoluteString)
         return self.serviceProvider.googleCast.play(media, onDevice: device)
-    }
-    
-    var favoriteSessions: Observable<[Session]> {
-        return self.sessions.map({ sessions in
-            return sessions.filter({ $0.favorite })
-        })
     }
     
     func toggleFavorite(_ session: Session) -> Observable<Session> {
