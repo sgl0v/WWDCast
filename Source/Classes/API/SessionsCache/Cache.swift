@@ -14,12 +14,12 @@ class Cache<Element: RecordConvertable & Equatable> where Element.Record : GRDB.
     private let _values = Variable([Element]())
     private let database: Database
     lazy var values: Observable<[Element]> = {
+        self.reload()
         return self._values.asObservable()
     }()
     
     init(db: Database) {
         self.database = db
-        reload()
     }
     
     func load() -> [Element] {
