@@ -18,6 +18,7 @@ class WWDCastAPIImpl : WWDCastAPI {
     init(serviceProvider: ServiceProvider) {
         self.serviceProvider = serviceProvider
         self.cache = Cache(db: self.serviceProvider.database)
+        createSessionsTableIfNeeded()
     }
     
     // MARK: WWDCastAPI
@@ -99,6 +100,12 @@ class WWDCastAPIImpl : WWDCastAPI {
         return sessions.sorted(by: { lhs, rhs in
             return lhs.id < rhs.id && lhs.year.rawValue >= rhs.year.rawValue
         })
+    }
+    
+    private func createSessionsTableIfNeeded() {
+        if !self.serviceProvider.database.create(table: SessionTable.self) {
+            NSLog("Failed to create the sessions table!")
+        }
     }
     
     private func updateCache(sessions: [Session]) -> Observable<[Session]> {
