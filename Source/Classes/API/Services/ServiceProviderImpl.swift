@@ -28,7 +28,7 @@ final class ServiceProviderImpl: ServiceProvider {
 extension ServiceProviderImpl {
     
     static let defaultServiceProvider: ServiceProvider = {
-        guard let reachability = try? ReachabilityServiceImpl() else {
+        guard let reachability = ReachabilityServiceImpl() else {
             fatalError("Failed to create reachability service!")
         }
         

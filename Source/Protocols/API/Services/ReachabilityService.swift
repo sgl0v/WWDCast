@@ -18,12 +18,16 @@ import RxSwift
 enum ReachabilityStatus {
     case reachable(viaWiFi: Bool)
     case unreachable
-    
-    var boolValue: Bool {
-        if case .reachable = self {
+}
+
+extension ReachabilityStatus {
+    var reachable: Bool {
+        switch self {
+        case .reachable:
             return true
+        case .unreachable:
+            return false
         }
-        return false
     }
 }
 

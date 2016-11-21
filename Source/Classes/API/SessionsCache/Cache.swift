@@ -63,6 +63,10 @@ class Cache<Element: RecordConvertable & Equatable> where Element.Record : GRDB.
     }
     
     func update(values: [Element]) {
+        if (values.isEmpty) {
+            return
+        }
+
         NSLog("Cache.Update: %lu;", values.count)
         let records = values.map { value in
             return value.toRecord()
