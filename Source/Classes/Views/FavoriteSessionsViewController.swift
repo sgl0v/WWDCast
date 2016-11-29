@@ -35,7 +35,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
     private func bindViewModel() {
         // ViewModel's input
         self.tableView.rx.modelSelected(SessionItemViewModel.self)
-            .bindNext(self.viewModel.itemSelectionObserver)
+            .bindNext(self.viewModel.didSelect)
             .addDisposableTo(self.disposeBag)
         
         // ViewModel's output

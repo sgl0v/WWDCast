@@ -33,8 +33,8 @@ class FilterViewController: TableViewController<FilterSectionViewModel, FilterTa
     
     private func setupBindings() {
         // ViewModel's input
-        self.navigationItem.leftBarButtonItem!.rx.tap.map({ true }).subscribe(onNext: self.viewModel.dismissObserver).addDisposableTo(self.disposeBag)
-        self.navigationItem.rightBarButtonItem!.rx.tap.map({ false }).subscribe(onNext: self.viewModel.dismissObserver).addDisposableTo(self.disposeBag)
+        self.navigationItem.leftBarButtonItem!.rx.tap.subscribe(onNext: self.viewModel.didCancel).addDisposableTo(self.disposeBag)
+        self.navigationItem.rightBarButtonItem!.rx.tap.subscribe(onNext: self.viewModel.didApplyFilter).addDisposableTo(self.disposeBag)
         self.tableView.rx.itemSelected.subscribe(onNext: {[unowned self] indexPath in
             self.tableView.deselectRow(at: indexPath, animated: true)
         }).addDisposableTo(self.disposeBag)

@@ -12,8 +12,8 @@ import RxCocoa
 
 protocol SessionDetailsViewModel: class {
     // INPUT
-    func playSession() // start the current session payback
-    func toggleFavorite() // add or remove the session from favorites
+    func didTapPlaySession() // start the current session payback
+    func didToggleFavorite() // add or remove the session from favorites
 
     // OUTPUT
     var title: Driver<String> { get } // The view's title

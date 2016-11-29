@@ -33,10 +33,10 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
         return self.sessionObservable.map(SessionItemViewModelBuilder.build).asDriver(onErrorJustReturn: nil)
     }()
     
-    func playSession() {
+    func didTapPlaySession() {
         let devices = self.api.devices
         if (devices.isEmpty) {
-            self.router.showAlert(nil, message: NSLocalizedString("Google Cast device is not found!", comment: ""))
+            self.router.showAlert(withTitle: nil, message: NSLocalizedString("Google Cast device is not found!", comment: ""))
             return
         }
         
@@ -53,14 +53,14 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
             .addDisposableTo(self.disposeBag)
     }
     
-    func toggleFavorite() {
+    func didToggleFavorite() {
         self.favoriteTrigger.onNext()
     }
     
     // MARK: Private
     
     private func didFailToPlaySession(_ error: Error) {
-        self.router.showAlert(NSLocalizedString("Ooops...", comment: ""), message: NSLocalizedString("Failed to play WWDC session.", comment: ""))
+        self.router.showAlert(withTitle: NSLocalizedString("Ooops...", comment: ""), message: NSLocalizedString("Failed to play WWDC session.", comment: ""))
     }
     
 }

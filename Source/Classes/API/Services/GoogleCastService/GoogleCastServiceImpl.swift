@@ -44,7 +44,7 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
         })
     }
     
-    func play(_ media: GoogleCastMedia, onDevice device: GoogleCastDevice) -> Observable<Void> {
+    func play(media: GoogleCastMedia, onDevice device: GoogleCastDevice) -> Observable<Void> {
         return Observable.just(device)
             .flatMap(self.startSession)
             .flatMap(self.loadMedia(media.gckMedia))

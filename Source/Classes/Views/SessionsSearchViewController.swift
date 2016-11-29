@@ -47,10 +47,10 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
     
     private func bindViewModel() {
         // ViewModel's input
-        self.navigationItem.leftBarButtonItem!.rx.tap.bindNext(self.viewModel.filterObserver).addDisposableTo(self.disposeBag)
-        self.searchQuery.drive(onNext: self.viewModel.searchStringObserver).addDisposableTo(self.disposeBag)
+        self.navigationItem.leftBarButtonItem!.rx.tap.bindNext(self.viewModel.didTapFilter).addDisposableTo(self.disposeBag)
+        self.searchQuery.drive(onNext: self.viewModel.didStartSearch).addDisposableTo(self.disposeBag)
         self.tableView.rx.modelSelected(SessionItemViewModel.self)
-            .bindNext(self.viewModel.itemSelectionObserver)
+            .bindNext(self.viewModel.didSelect)
             .addDisposableTo(self.disposeBag)
         
         // ViewModel's output

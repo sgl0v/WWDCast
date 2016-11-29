@@ -29,11 +29,11 @@ class FilterViewModelImpl : FilterViewModel {
         return Driver.just(self.filterViewModels())
     }()
     
-    func dismissObserver(_ cancelled: Bool) {
-        if (cancelled) {
-            self.completion(.cancelled)
-            return
-        }
+    func didCancel() {
+        self.completion(.cancelled)
+    }
+    
+    func didApplyFilter() {
         self.completion(.finished(self.filter))
     }
     

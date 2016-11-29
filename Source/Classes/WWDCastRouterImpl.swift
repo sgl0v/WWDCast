@@ -24,7 +24,7 @@ class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter, FavoriteSes
         self.navigationController.pushViewController(controller, animated: true)
     }
     
-    func showFilterController(withFilter filter: Filter, completion: @escaping (Filter) -> Void) {
+    func showFilterController(_ filter: Filter, completion: @escaping (Filter) -> Void) {
         let controller = self.moduleFactory.filterController(filter) {[unowned self] result in
             self.navigationController.dismiss(animated: true, completion: { 
                 guard case .finished(let filter) = result else {
@@ -38,7 +38,7 @@ class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter, FavoriteSes
     
     // MARK: SessionDetailsRouter
     
-    func showAlert(_ title: String?, message: String) {
+    func showAlert(withTitle title: String?, message: String) {
         let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK button title"), style: .cancel) { _ in
             })

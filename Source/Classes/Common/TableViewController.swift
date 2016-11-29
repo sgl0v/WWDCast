@@ -19,7 +19,7 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         let dataSource = RxTableViewSectionedReloadDataSource<SectionViewModel>()
         dataSource.configureCell = { (dataSource, tableView, indexPath, element) in
             let cell = tableView.dequeueReusableCell(withClass: Cell.self, forIndexPath: indexPath)!
-            cell.bindViewModel(element)
+            cell.bind(viewModel: element)
             return cell
         }
         dataSource.titleForHeaderInSection = { (dataSource: TableViewSectionedDataSource<SectionViewModel>, sectionIndex: Int) -> String? in

@@ -19,7 +19,7 @@ class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProv
 //extension SessionTableViewCell: BindableView {
     typealias ViewModel = SessionItemViewModel
 
-    func bindViewModel(_ viewModel: ViewModel) {
+    func bind(viewModel: ViewModel) {
         self.title.text = viewModel.title
         self.summary.text = viewModel.summary
         _ = Observable.just(viewModel.thumbnailURL)

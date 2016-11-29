@@ -65,7 +65,7 @@ class WWDCastAPIImpl : WWDCastAPI {
         }
         
         let media = GoogleCastMedia(id: session.id, title: session.title, subtitle: session.subtitle, thumbnail: session.thumbnail, video: video, captions: session.captions?.absoluteString)
-        return self.serviceProvider.googleCast.play(media, onDevice: device)
+        return self.serviceProvider.googleCast.play(media: media, onDevice: device)
     }
     
     func toggle(favoriteSession session: Session) -> Observable<Session> {

@@ -23,7 +23,7 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         return WWDCastAPIImpl(serviceProvider: serviceProvider)
     }()
     
-    func sessionsTabbarController() -> UIViewController {
+    func tabBarController() -> UIViewController {
         let sessionsSearchController = self.sessionsSearchController()
         sessionsSearchController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         let favoriteSessionsController = self.favoriteSessionsController()
@@ -37,11 +37,11 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
     func sessionsSearchController() -> UIViewController {
         let viewModel = SessionsSearchViewModelImpl(api: self.api, router: self.sessionsRouter)
         let view = SessionsSearchViewController(viewModel: viewModel)
-        let searchNavigationController = UINavigationController(rootViewController: view)
-        searchNavigationController.navigationBar.tintColor = UIColor.black
+        let navigationController = UINavigationController(rootViewController: view)
+        navigationController.navigationBar.tintColor = UIColor.black
         
-        self.sessionsRouter.navigationController = searchNavigationController
-        return searchNavigationController
+        self.sessionsRouter.navigationController = navigationController
+        return navigationController
     }
 
     func filterController(_ filter: Filter, completion: @escaping FilterModuleCompletion) -> UIViewController {
@@ -60,11 +60,11 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
     func favoriteSessionsController() -> UIViewController {
         let viewModel = FavoriteSessionsViewModelImpl(api: self.api, router: self.favoriteSessionsRouter)
         let view = FavoriteSessionsViewController(viewModel: viewModel)
-        let searchNavigationController = UINavigationController(rootViewController: view)
-        searchNavigationController.navigationBar.tintColor = UIColor.black
+        let navigationController = UINavigationController(rootViewController: view)
+        navigationController.navigationBar.tintColor = UIColor.black
         
-        self.favoriteSessionsRouter.navigationController = searchNavigationController
-        return searchNavigationController
+        self.favoriteSessionsRouter.navigationController = navigationController
+        return navigationController
     }
     
     func favoriteSessionDetailsController(_ sessionId: String) -> UIViewController {

@@ -45,8 +45,8 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
 
     private func bindViewModel() {
         // ViewModel's input
-        self.playButton.rx.tap.subscribe(onNext: self.viewModel.playSession).addDisposableTo(self.disposeBag)
-        self.favoriteButton.rx.tap.subscribe(onNext: self.viewModel.toggleFavorite).addDisposableTo(self.disposeBag)
+        self.playButton.rx.tap.subscribe(onNext: self.viewModel.didTapPlaySession).addDisposableTo(self.disposeBag)
+        self.favoriteButton.rx.tap.subscribe(onNext: self.viewModel.didToggleFavorite).addDisposableTo(self.disposeBag)
         
         // ViewModel's output
         self.viewModel.session.drive(onNext: self.viewModelObserver).addDisposableTo(self.disposeBag)

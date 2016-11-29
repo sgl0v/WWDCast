@@ -17,7 +17,10 @@ typealias FilterModuleCompletion = (FilterModuleResult) -> ()
 
 protocol FilterViewModel {
     // INPUT
-    func dismissObserver(_ cancelled: Bool) // called when the view is about to dismiss
+    // called when the user would like to close the filter screen
+    func didCancel()
+    // called when the user would like to apply filter and close the filter screen
+    func didApplyFilter()
 
     // OUTPUT
     // The view's title

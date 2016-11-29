@@ -11,11 +11,11 @@ import RxSwift
 
 protocol SessionsSearchRouter: class {
     func showSessionDetails(_ sessionId: String)
-    func showFilterController(withFilter filter: Filter, completion: @escaping (Filter) -> Void)
+    func showFilterController(_ filter: Filter, completion: @escaping (Filter) -> Void)
 }
 
 protocol SessionDetailsRouter: class {
-    func showAlert(_ title: String?, message: String)
+    func showAlert(withTitle title: String?, message: String)
     func promptFor<Action : CustomStringConvertible>(_ title: String?, message: String?, cancelAction: Action, actions: [Action]) -> Observable<Action>
 }
 

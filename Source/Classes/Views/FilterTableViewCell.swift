@@ -22,7 +22,7 @@ class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvi
     // MARK: SessionTableViewCell
     typealias ViewModel = FilterItemViewModel
     
-    func bindViewModel(_ viewModel: ViewModel) {
+    func bind(viewModel: ViewModel) {
         let disposeBag = DisposeBag()
         self.onPrepareForReuse.subscribe(onNext: {[unowned self] in
             self.disposeBag = nil

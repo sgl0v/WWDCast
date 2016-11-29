@@ -32,8 +32,8 @@ class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
     let emptyFavoritesTitle = Driver.just(NSLocalizedString("No Favorites", comment: "The are no sessions added to favorites"))
     let emptyFavoritesDescription = Driver.just(NSLocalizedString("Add your favorite sessions to the bookmarks", comment: "Add your favorite sessions to the bookmarks"))
     
-    func itemSelectionObserver(_ viewModel: SessionItemViewModel) {
-        self.router.showFavoriteSessionDetails(viewModel.uniqueID)
+    func didSelect(item: SessionItemViewModel) {
+        self.router.showFavoriteSessionDetails(item.uniqueID)
     }
     
 }

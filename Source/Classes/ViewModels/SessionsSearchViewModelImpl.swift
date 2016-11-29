@@ -22,10 +22,6 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
         self.router = router
     }
     
-    private func applyFilter(_ sessions: [Session], filter: Filter) -> [Session] {
-        return sessions.apply(filter)
-    }
-    
     // MARK: SessionsSearchViewModel
     
     lazy var sessionSections: Driver<[SessionSectionViewModel]> = {
@@ -41,20 +37,26 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
     
     let title = Driver.just(NSLocalizedString("WWDCast", comment: "Session search view title"))
 
-    func itemSelectionObserver(_ viewModel: SessionItemViewModel) {
-        self.router.showSessionDetails(viewModel.uniqueID)
+    func didSelect(item: SessionItemViewModel) {
+        self.router.showSessionDetails(item.uniqueID)
     }
     
-    func filterObserver() {
-        self.router.showFilterController(withFilter: self.filter.value) {[unowned self] filter in
+    func didTapFilter() {
+        self.router.showFilterController(self.filter.value) {[unowned self] filter in
             self.filter.value = filter
         }
     }
     
-    func searchStringObserver(_ query: String) {
+    func didStartSearch(withQuery query: String) {
         var filter = self.filter.value
         filter.query = query
         self.filter.value = filter
+    }
+    
+    // MARK: Private
+    
+    private func applyFilter(sessions: [Session], filter: Filter) -> [Session] {
+        return sessions.apply(filter)
     }
     
 }
