@@ -93,7 +93,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
     private var searchQuery: Driver<String> {
         let cancel: Observable<String> = self.searchBar.rx.delegate.methodInvoked(#selector(UISearchBarDelegate.searchBarCancelButtonClicked(_:))).map( { _ in return "" })
         
-        let searchBarTextObservable = self.searchBar.rx.text.filter({ $0 != nil }).map({ $0! })
+        let searchBarTextObservable = self.searchBar.rx.text.rejectNil().unwrap()
         return Observable.of(searchBarTextObservable, cancel)
             .merge()
             .asDriver(onErrorJustReturn: "")

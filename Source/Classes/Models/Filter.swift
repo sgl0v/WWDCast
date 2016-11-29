@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 struct Filter {
-    var query: String = ""
+    var query = ""
     var years = Session.Year.allYears
     var platforms = Session.Platform.allPlatforms
     var tracks = Session.Track.allTracks

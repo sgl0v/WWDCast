@@ -10,6 +10,19 @@ import Foundation
 import RxSwift
 import SwiftyJSON
 
+extension Observable where Element : Sequence, Element.Iterator.Element : Comparable {
+    
+    /**
+     Projects each element of an observable sequence into a new form.
+     
+     - returns: An observable sequence whose elements are the result of invoking the transform function on each element of source.
+     
+     */
+    public func sort() -> RxSwift.Observable<Element> {
+        return self.asObservable().map({ seq in return seq})
+    }
+}
+
 class WWDCastAPIImpl : WWDCastAPI {
     
     private let serviceProvider: ServiceProvider
@@ -78,22 +91,17 @@ class WWDCastAPIImpl : WWDCastAPI {
     // MARK: Private
     
     private func loadConfig() -> Observable<AppConfig> {
-        return self.serviceProvider.network.request(WWDCEnvironment.indexURL, parameters: [:]).flatMap(build(AppConfigBuilder.self))
+        guard let configResource = Resource(url: WWDCEnvironment.indexURL, parser: AppConfigBuilder.build) else {
+            return Observable.error(WWDCastAPIError.dataLoadingError)
+        }
+        return self.serviceProvider.network.load(configResource)
     }
     
     private func loadSessions(_ config: AppConfig) -> Observable<[Session]> {
-        return self.serviceProvider.network.request(config.videosURL, parameters: [:]).flatMap(build(SessionsBuilder.self))
-    }
-    
-    private func build<Builder: EntityBuilder>(_ builder: Builder.Type) -> (Data) -> Observable<Builder.EntityType> {
-        return { data in
-            do {
-                let entity = try builder.build(JSON(data: data))
-                return Observable.just(entity)
-            } catch let error {
-                return Observable.error(error)
-            }
+        guard let sessionsResource = Resource(url: config.videosURL, parser: SessionsBuilder.build) else {
+            return Observable.error(WWDCastAPIError.dataLoadingError)
         }
+        return self.serviceProvider.network.load(sessionsResource)
     }
     
     private func sortSessions(_ sessions: [Session]) -> [Session] {

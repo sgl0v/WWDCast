@@ -9,7 +9,6 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import SDWebImage
 
 // One way binding operator
 
@@ -35,55 +34,29 @@ func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disposable 
     return Disposables.create(bindToUIDisposable, bindToVariable)
 }
 
-extension Reactive where Base: UIImageView {
+protocol Optionable {
+    associatedtype WrappedType
+    func toOptional() -> WrappedType?
+}
 
-    var imageURL: AnyObserver<URL> {
-        return AnyObserver { [weak base] event in
-            switch event {
-            case .next(let value):
-                base?.image = nil
-                base?.sd_setImage(with: value, completed: { [weak base] _ in
-                    let transition = CATransition()
-                    transition.duration = 0.3
-                    transition.timingFunction =
-                        CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-                    base?.layer.add(transition, forKey: kCATransition)
-                    })
-            default:
-                break
-            }
-            
-        }
+extension Optional: Optionable {
+    typealias WrappedType = Wrapped
+    
+    // just to cast `Optional<Wrapped>` to `Wrapped?`
+    func toOptional() -> WrappedType? {
+        return self
     }
 }
 
-extension UIAlertController {
-    enum Selection {
-        case action(UInt), cancel
+extension ObservableType where E: Optionable {
+    
+    func unwrap() -> Observable<E.WrappedType> {
+        return self.map({ $0.toOptional()! })
     }
     
-    static func promptFor<Action : CustomStringConvertible>(_ title: String?, message: String?, cancelAction: Action, actions: [Action]) -> (UIViewController) -> Observable<Action> {
-        return { viewController in
-            return Observable.create { observer in
-                let alertView = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-                alertView.addAction(UIAlertAction(title: cancelAction.description, style: .cancel) { _ in
-                    observer.onNext(cancelAction)
-                    observer.onCompleted()
-                })
-                
-                for action in actions {
-                    alertView.addAction(UIAlertAction(title: action.description, style: .`default`) { _ in
-                        observer.onNext(action)
-                        observer.onCompleted()
-                    })
-                }
-                
-                viewController.present(alertView, animated: true, completion: nil)
-                
-                return Disposables.create {
-                    alertView.dismiss(animated: false, completion: nil)
-                }
-            }
-        }
+    func rejectNil() -> Observable<E> {
+        return self.filter({ value in
+            return value.toOptional() != nil
+        })
     }
 }

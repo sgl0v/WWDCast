@@ -9,6 +9,10 @@
 import Foundation
 import RxSwift
 
+enum WWDCastAPIError : Error {
+    case dataLoadingError
+}
+
 protocol WWDCastAPI: class {
 
     var devices: [GoogleCastDevice] { get }
