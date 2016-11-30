@@ -29,7 +29,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         self.configureUI()
         self.bindViewModel()
     }
-    
+
     // MARK - Private
     
     private func bindViewModel() {
@@ -52,6 +52,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
         
         self.setClearsSelectionOnViewWillAppear()
+        self.registerForPreviewing()
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
         self.tableView.tableFooterView = UIView()

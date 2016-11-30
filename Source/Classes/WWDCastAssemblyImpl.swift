@@ -40,6 +40,12 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         let navigationController = UINavigationController(rootViewController: view)
         navigationController.navigationBar.tintColor = UIColor.black
         
+        view.previewingContext = TableViewControllerPreviewingContext(previewControllerForItem: {[unowned self] item in
+            self.sessionDetailsController(item.uniqueID)
+        }) {viewController in
+            navigationController.pushViewController(viewController, animated: true)
+        }
+        
         self.sessionsRouter.navigationController = navigationController
         return navigationController
     }
@@ -63,6 +69,12 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         let navigationController = UINavigationController(rootViewController: view)
         navigationController.navigationBar.tintColor = UIColor.black
         
+        view.previewingContext = TableViewControllerPreviewingContext(previewControllerForItem: {[unowned self] item in
+            self.favoriteSessionDetailsController(item.uniqueID)
+        }) {viewController in
+            navigationController.pushViewController(viewController, animated: true)
+        }
+
         self.favoriteSessionsRouter.navigationController = navigationController
         return navigationController
     }

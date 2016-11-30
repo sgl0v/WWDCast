@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxDataSources
 
-class TableViewController<SectionViewModel: SectionModelType & CustomStringConvertible, Cell: UITableViewCell>: UIViewController where Cell: BindableView & NibProvidable & ReusableView, Cell.ViewModel == SectionViewModel.Item {
+class TableViewController<SectionViewModel: SectionModelType & CustomStringConvertible, Cell: UITableViewCell>: UIViewController, UIViewControllerPreviewingDelegate where Cell: BindableView & NibProvidable & ReusableView, Cell.ViewModel == SectionViewModel.Item {
 
     var tableView: UITableView!
     let disposeBag = DisposeBag()
@@ -43,6 +43,7 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         self.view.addSubview(self.tableView)
         self.tableView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.tableView.registerNib(cellClass: Cell.self)
+        
     }
     
     func setClearsSelectionOnViewWillAppear() {
@@ -50,5 +51,38 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
             self.tableView.deselectRow(at: indexPath, animated: true)
         }).addDisposableTo(self.disposeBag)
     }
-
+    
+    func registerForPreviewing() {
+        // Check for force touch feature, and add force touch/previewing capability.
+        if self.traitCollection.forceTouchCapability != .available {
+            return
+        }
+        // Register for `UIViewControllerPreviewingDelegate` to enable "Peek" and "Pop".
+        self.registerForPreviewing(with: self, sourceView: self.tableView)
+    }
+    
+    // MARK: UIViewControllerPreviewingDelegate
+    
+    /// Create a previewing view controller to be shown at "Peek".
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        // Obtain the index path and the cell that was pressed.
+        guard let indexPath = self.tableView.indexPathForRow(at: location),
+            let cell = self.tableView.cellForRow(at: indexPath),
+            let viewModel = try? self.source.model(at: indexPath) else {
+                return nil
+        }
+        // Set the source rect to the cell frame, so surrounding elements are blurred.
+        previewingContext.sourceRect = cell.frame
+        
+        let item = viewModel as! SectionViewModel.Item
+        // Create a detail view controller and set its properties.
+        return self.previewingContext?.previewControllerForItem(item)
+    }
+    
+    /// Present the view controller for the "Pop" action.
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        self.previewingContext?.commitPreview(viewControllerToCommit)
+    }
+    
+    var previewingContext: TableViewControllerPreviewingContext<SectionViewModel.Item>?
 }

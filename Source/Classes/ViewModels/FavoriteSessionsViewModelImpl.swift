@@ -19,7 +19,7 @@ class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
         self.api = api
         self.router = router
     }
-    
+        
     // MARK: FavoriteSessionsViewModel
     
     var favoriteSessions: Driver<[SessionSectionViewModel]> {

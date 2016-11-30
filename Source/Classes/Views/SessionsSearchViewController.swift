@@ -31,7 +31,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.configureUI()
         self.bindViewModel()
     }
-    
+        
     // MARK - Private
     
     private lazy var searchController: UISearchController = {
@@ -67,6 +67,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Filter", comment: "Filter"), style: .plain, target: nil, action: nil)
 
         self.setClearsSelectionOnViewWillAppear()
+        self.registerForPreviewing()
         
         self.view.backgroundColor = UIColor.white
 
