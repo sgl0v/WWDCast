@@ -44,6 +44,8 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         self.tableView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.tableView.registerNib(cellClass: Cell.self)
         
+        // Get rid of back button's title
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     func setClearsSelectionOnViewWillAppear() {
