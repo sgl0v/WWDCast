@@ -31,7 +31,11 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.configureUI()
         self.bindViewModel()
     }
-        
+    
+    override func commitPreview(forItem item: SessionItemViewModel) {
+        self.viewModel.didSelect(item: item)
+    }
+    
     // MARK - Private
     
     private lazy var searchController: UISearchController = {

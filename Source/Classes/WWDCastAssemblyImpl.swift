@@ -37,15 +37,9 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
     func sessionsSearchController() -> UIViewController {
         let viewModel = SessionsSearchViewModelImpl(api: self.api, router: self.sessionsRouter)
         let view = SessionsSearchViewController(viewModel: viewModel)
+        view.previewProvider = self
         let navigationController = UINavigationController(rootViewController: view)
         navigationController.navigationBar.tintColor = UIColor.black
-        
-        view.previewingContext = TableViewControllerPreviewingContext(previewControllerForItem: {[unowned self] item in
-            self.sessionDetailsController(item.uniqueID)
-        }) {viewController in
-            navigationController.pushViewController(viewController, animated: true)
-        }
-        
         self.sessionsRouter.navigationController = navigationController
         return navigationController
     }
@@ -66,15 +60,9 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
     func favoriteSessionsController() -> UIViewController {
         let viewModel = FavoriteSessionsViewModelImpl(api: self.api, router: self.favoriteSessionsRouter)
         let view = FavoriteSessionsViewController(viewModel: viewModel)
+        view.previewProvider = self
         let navigationController = UINavigationController(rootViewController: view)
         navigationController.navigationBar.tintColor = UIColor.black
-        
-        view.previewingContext = TableViewControllerPreviewingContext(previewControllerForItem: {[unowned self] item in
-            self.favoriteSessionDetailsController(item.uniqueID)
-        }) {viewController in
-            navigationController.pushViewController(viewController, animated: true)
-        }
-
         self.favoriteSessionsRouter.navigationController = navigationController
         return navigationController
     }
@@ -84,4 +72,13 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         return SessionDetailsViewController(viewModel: viewModel)
     }
 
+}
+
+extension WWDCastAssemblyImpl: TableViewControllerPreviewProvider {
+    func previewController<Item>(forItem item: Item) -> UIViewController? {
+        guard let item = item as? SessionItemViewModel else {
+            return nil
+        }
+        return sessionDetailsController(item.uniqueID)
+    }
 }

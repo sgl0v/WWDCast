@@ -73,7 +73,6 @@
 		E7951E301DEE0E8C00E52146 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7951E2F1DEE0E8B00E52146 /* Resource.swift */; };
 		E7951E331DEE0ED700E52146 /* GoogleCastMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7951E311DEE0ED700E52146 /* GoogleCastMedia.swift */; };
 		E7951E341DEE0ED700E52146 /* GoogleCastDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7951E321DEE0ED700E52146 /* GoogleCastDevice.swift */; };
-		E7951E361DEE418400E52146 /* TableViewControllerPreviewingContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7951E351DEE418400E52146 /* TableViewControllerPreviewingContext.swift */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
 		E7A150691DDFB7DC00746769 /* RxGCKRequestDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A150651DDFB7DC00746769 /* RxGCKRequestDelegateProxy.swift */; };
 		E7A1506A1DDFB7DC00746769 /* RxGCKSessionManagerListenerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A150661DDFB7DC00746769 /* RxGCKSessionManagerListenerProxy.swift */; };
@@ -171,7 +170,6 @@
 		E7951E2F1DEE0E8B00E52146 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		E7951E311DEE0ED700E52146 /* GoogleCastMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastMedia.swift; sourceTree = "<group>"; };
 		E7951E321DEE0ED700E52146 /* GoogleCastDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDevice.swift; sourceTree = "<group>"; };
-		E7951E351DEE418400E52146 /* TableViewControllerPreviewingContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerPreviewingContext.swift; sourceTree = "<group>"; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		E7A150631DDFB7DC00746769 /* GoogleCastServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastServiceImpl.swift; sourceTree = "<group>"; };
 		E7A150651DDFB7DC00746769 /* RxGCKRequestDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGCKRequestDelegateProxy.swift; sourceTree = "<group>"; };
@@ -330,7 +328,6 @@
 				E7121CA51D9AFFE4003F5DCC /* UIBarButtonItem+Common.swift */,
 				E7121CA61D9AFFE4003F5DCC /* UITableView+Common.swift */,
 				E7121CA71D9AFFE4003F5DCC /* TableViewController.swift */,
-				E7951E351DEE418400E52146 /* TableViewControllerPreviewingContext.swift */,
 				E7951E281DEE088800E52146 /* UIAlertController+Rx.swift */,
 				E7951E2A1DEE0D0300E52146 /* UIImageView+Rx.swift */,
 			);
@@ -744,7 +741,6 @@
 				E7121CDA1D9AFFE4003F5DCC /* SessionViewModels.swift in Sources */,
 				E7A150711DE21A6200746769 /* Session+RecordConvertable.swift in Sources */,
 				E7121CDE1D9AFFE4003F5DCC /* SessionTableViewCell.swift in Sources */,
-				E7951E361DEE418400E52146 /* TableViewControllerPreviewingContext.swift in Sources */,
 				E7121CC71D9AFFE4003F5DCC /* WWDCastAPIImpl.swift in Sources */,
 				E7121CFE1D9B0935003F5DCC /* NetworkService.swift in Sources */,
 				E7DAAFEE1DCBA37E009F18D2 /* EntityBuilder.swift in Sources */,

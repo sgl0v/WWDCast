@@ -10,6 +10,17 @@ import UIKit
 import RxSwift
 import RxDataSources
 
+/// Implement the methods of this protocol to respond, with a preview view controller
+/// to the user pressing a view object on the screen of a device that supports 3D Touch.
+protocol TableViewControllerPreviewProvider: class {
+    
+    /// Creates and returns preview controller for specified item
+    ///
+    /// - parameter item: the pressed item
+    /// - returns: newly created preview controller
+    func previewController<Item>(forItem item: Item) -> UIViewController?
+}
+
 class TableViewController<SectionViewModel: SectionModelType & CustomStringConvertible, Cell: UITableViewCell>: UIViewController, UIViewControllerPreviewingDelegate where Cell: BindableView & NibProvidable & ReusableView, Cell.ViewModel == SectionViewModel.Item {
 
     var tableView: UITableView!
@@ -45,7 +56,7 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         self.tableView.registerNib(cellClass: Cell.self)
         
         // Get rid of back button's title
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)        
     }
     
     func setClearsSelectionOnViewWillAppear() {
@@ -63,28 +74,38 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         self.registerForPreviewing(with: self, sourceView: self.tableView)
     }
     
+    func commitPreview(forItem item: SectionViewModel.Item) {
+        // nop
+    }
+    
     // MARK: UIViewControllerPreviewingDelegate
+    
+    weak var previewProvider: TableViewControllerPreviewProvider?
+    private var previewItem: SectionViewModel.Item?
     
     /// Create a previewing view controller to be shown at "Peek".
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         // Obtain the index path and the cell that was pressed.
         guard let indexPath = self.tableView.indexPathForRow(at: location),
             let cell = self.tableView.cellForRow(at: indexPath),
-            let viewModel = try? self.source.model(at: indexPath) else {
+            let viewModel = try? self.source.model(at: indexPath),
+            let previewItem = viewModel as? SectionViewModel.Item else {
                 return nil
         }
         // Set the source rect to the cell frame, so surrounding elements are blurred.
         previewingContext.sourceRect = cell.frame
         
-        let item = viewModel as! SectionViewModel.Item
+        self.previewItem = previewItem
         // Create a detail view controller and set its properties.
-        return self.previewingContext?.previewControllerForItem(item)
+        return self.previewProvider?.previewController(forItem: previewItem)
     }
     
     /// Present the view controller for the "Pop" action.
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        self.previewingContext?.commitPreview(viewControllerToCommit)
+        guard let previewItem = self.previewItem else {
+            return
+        }
+        self.commitPreview(forItem: previewItem)
     }
     
-    var previewingContext: TableViewControllerPreviewingContext<SectionViewModel.Item>?
 }

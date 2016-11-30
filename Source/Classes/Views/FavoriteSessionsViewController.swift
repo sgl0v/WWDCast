@@ -29,6 +29,10 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         self.configureUI()
         self.bindViewModel()
     }
+    
+    override func commitPreview(forItem item: SessionItemViewModel) {
+        self.viewModel.didSelect(item: item)
+    }
 
     // MARK - Private
     
