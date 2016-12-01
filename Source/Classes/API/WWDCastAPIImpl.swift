@@ -10,19 +10,6 @@ import Foundation
 import RxSwift
 import SwiftyJSON
 
-extension Observable where Element : Sequence, Element.Iterator.Element : Comparable {
-    
-    /**
-     Projects each element of an observable sequence into a new form.
-     
-     - returns: An observable sequence whose elements are the result of invoking the transform function on each element of source.
-     
-     */
-    public func sort() -> RxSwift.Observable<Element> {
-        return self.asObservable().map({ seq in return seq})
-    }
-}
-
 class WWDCastAPIImpl : WWDCastAPI {
     
     private let serviceProvider: ServiceProvider
@@ -49,7 +36,7 @@ class WWDCastAPIImpl : WWDCastAPI {
         
         return Observable.of(cachedSessions, loadedSessions)
             .merge()
-            .map(self.sortSessions)
+            .sort()
             .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
             .observeOn(self.serviceProvider.scheduler.mainScheduler)
             .shareReplayLatestWhileConnected()
@@ -102,12 +89,6 @@ class WWDCastAPIImpl : WWDCastAPI {
             return Observable.error(WWDCastAPIError.dataLoadingError)
         }
         return self.serviceProvider.network.load(sessionsResource)
-    }
-    
-    private func sortSessions(_ sessions: [Session]) -> [Session] {
-        return sessions.sorted(by: { lhs, rhs in
-            return lhs.id < rhs.id && lhs.year.rawValue >= rhs.year.rawValue
-        })
     }
     
     private func createSessionsTableIfNeeded() {

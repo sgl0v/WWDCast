@@ -57,6 +57,12 @@ func ==(lhs: Session, rhs: Session) -> Bool {
     return lhs.uniqueId == rhs.uniqueId
 }
 
+extension Session: Comparable { }
+
+func <(lhs: Session, rhs: Session) -> Bool {
+    return lhs.id < rhs.id && lhs.year.rawValue >= rhs.year.rawValue
+}
+
 extension Session.Year: CustomStringConvertible {
     
     var description: String {

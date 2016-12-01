@@ -60,3 +60,12 @@ extension ObservableType where E: Optionable {
         })
     }
 }
+
+extension Observable where Element : Sequence, Element.Iterator.Element : Comparable {
+    
+    public func sort() -> Observable<[Element.Iterator.Element]> {
+        return self.map({ sequence in
+            return sequence.sorted()
+        })
+    }
+}
