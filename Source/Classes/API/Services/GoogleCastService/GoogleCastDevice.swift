@@ -8,8 +8,12 @@
 
 import Foundation
 
+/// The Google Cast device.
 struct GoogleCastDevice {
+    /// The device name
     var name: String
+    
+    /// Unique identifier
     var id: String
 }
 

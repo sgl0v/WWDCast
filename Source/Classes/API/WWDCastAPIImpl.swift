@@ -84,7 +84,7 @@ class WWDCastAPIImpl : WWDCastAPI {
         return self.serviceProvider.network.load(configResource)
     }
     
-    private func loadSessions(_ config: AppConfig) -> Observable<[Session]> {
+    private func loadSessions(forConfig config: AppConfig) -> Observable<[Session]> {
         guard let sessionsResource = Resource(url: config.videosURL, parser: SessionsBuilder.build) else {
             return Observable.error(WWDCastAPIError.dataLoadingError)
         }
