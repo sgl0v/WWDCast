@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvidable {
-    @IBOutlet weak var thumbnailImage: UIImageView!
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var summary: UILabel!
+    @IBOutlet private weak var thumbnailImage: UIImageView!
+    @IBOutlet private weak var title: UILabel!
+    @IBOutlet private weak var summary: UILabel!
 //}
 //
 //extension SessionTableViewCell: BindableView {

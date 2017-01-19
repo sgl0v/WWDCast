@@ -41,7 +41,7 @@ final class ReachabilityServiceImpl: ReachabilityService {
         _reachability = reachabilityRef
         _reachabilitySubject = reachabilitySubject
     }
-    
+
     deinit {
         _reachability.stopNotifier()
     }
@@ -55,7 +55,7 @@ extension NSError {
 }
 
 extension ObservableConvertibleType {
-    func retryOnBecomesReachable(_ valueOnFailure:E, reachabilityService: ReachabilityService) -> Observable<E> {
+    func retryOnBecomesReachable(_ valueOnFailure: E, reachabilityService: ReachabilityService) -> Observable<E> {
         return self.asObservable()
             .retryWhen { error -> Observable<E> in
                 return error.flatMap({ (generatedError) -> Observable<E> in

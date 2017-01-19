@@ -21,7 +21,7 @@ struct SessionItemViewModel {
 extension SessionItemViewModel: IdentifiableType {
     typealias Identity = Int
 
-    var identity : Identity {
+    var identity: Identity {
         return self.hashValue
     }
 }

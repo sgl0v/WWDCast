@@ -28,7 +28,7 @@ struct SessionSectionViewModel: SectionModelType, CustomStringConvertible {
     }
 
     // MARK: CustomStringConvertible
-    var description : String {
+    var description: String {
         return self.title
     }
 

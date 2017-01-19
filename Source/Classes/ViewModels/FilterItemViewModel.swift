@@ -10,23 +10,23 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct FilterItemViewModel : CustomStringConvertible {
+struct FilterItemViewModel: CustomStringConvertible {
     enum Style {
         case checkmark, `switch`
     }
-    
+
     let title: String
     let selected: Variable<Bool>
     let style: Style
-    
+
     init(title: String, style: Style = .checkmark, selected: Bool = false) {
         self.title = title
         self.style = style
         self.selected = Variable(selected)
     }
-    
+
     // MARK: CustomStringConvertible
-    var description : String {
+    var description: String {
         return self.title
     }
 }

@@ -12,7 +12,7 @@ import RxCocoa
 import SDWebImage
 
 extension Reactive where Base: UIImageView {
-    
+
     var imageURL: AnyObserver<URL> {
         return AnyObserver { [weak base] event in
             switch event {
@@ -28,7 +28,7 @@ extension Reactive where Base: UIImageView {
             default:
                 break
             }
-            
+
         }
     }
 }

@@ -10,18 +10,18 @@ import UIKit
 import RxSwift
 
 class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvidable {
-    
+
     var disposeBag: DisposeBag?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layoutMargins = UIEdgeInsets.zero
         self.separatorInset = UIEdgeInsets.zero
     }
-    
+
     // MARK: SessionTableViewCell
     typealias ViewModel = FilterItemViewModel
-    
+
     func bind(viewModel: ViewModel) {
         let disposeBag = DisposeBag()
         self.onPrepareForReuse.subscribe(onNext: {[unowned self] in
@@ -29,9 +29,9 @@ class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvi
             self.accessoryView = nil
             self.accessoryType = .none
             }).addDisposableTo(disposeBag)
-        
+
         self.textLabel?.text = viewModel.title
-        
+
         if case .switch = viewModel.style {
             let switchButton = UISwitch()
             (switchButton.rx.value <-> viewModel.selected).addDisposableTo(disposeBag)
@@ -39,8 +39,8 @@ class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvi
         } else {
             (self.rx.accessoryCheckmark <-> viewModel.selected).addDisposableTo(disposeBag)
         }
-        
+
         self.disposeBag = disposeBag
     }
-    
+
 }

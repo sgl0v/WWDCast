@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 /// Defines the API errors.
-enum WWDCastAPIError : Error {
+enum WWDCastAPIError: Error {
     /// Failed to load data from the network.
     case dataLoadingError
 }
@@ -20,20 +20,20 @@ protocol WWDCastAPI: class {
 
     /// The list of currently available google cast devices
     var devices: [GoogleCastDevice] { get }
-    
+
     /// The sequence of WWDC Sessions
     var sessions: Observable<[Session]> { get }
-    
+
     /// The sequence of favorite WWDC Sessions
     var favoriteSessions: Observable<[Session]> { get }
-    
+
     /// Provides session for specified identifier.
     func session(withId id: String) -> Observable<Session>
-    
+
     /// Starts the session playback on specified device
     func play(session: Session, onDevice device: GoogleCastDevice) -> Observable<Void>
-    
+
     /// Toggles favorite session.
     func toggle(favoriteSession session: Session) -> Observable<Session>
-    
+
 }

@@ -11,9 +11,9 @@ import UIKit
 import GRDB
 
 final class DatabaseImpl: Database {
-    
+
     let dbQueue: DatabaseQueue
-    
+
     init?(path: String) {
         guard let dbQueue = try? DatabaseQueue(path: path) else {
             return nil
@@ -21,7 +21,7 @@ final class DatabaseImpl: Database {
         dbQueue.setupMemoryManagement(in: UIApplication.shared)
         self.dbQueue = dbQueue
     }
-    
+
     func create(table: SQLTable.Type) -> Bool {
         return perform { db in
             try db.create(table: table.databaseTableName, temporary: false, ifNotExists: true) { t in
@@ -29,7 +29,7 @@ final class DatabaseImpl: Database {
             }
         }
     }
-    
+
     func fetch<R: RowConvertible & TableMapping>() -> [R] {
         var result = [R]()
         perform { db in
@@ -37,7 +37,7 @@ final class DatabaseImpl: Database {
         }
         return result
     }
-    
+
     func update(records: [Record]) -> Bool {
         return perform { db in
             for record in records {
@@ -45,7 +45,7 @@ final class DatabaseImpl: Database {
             }
         }
     }
-    
+
     func insert(records: [Record]) -> Bool {
         return perform { db in
             for record in records {
@@ -53,7 +53,7 @@ final class DatabaseImpl: Database {
             }
         }
     }
-    
+
     func delete(records: [Record]) -> Bool {
         return perform { db in
             for record in records {
@@ -61,14 +61,14 @@ final class DatabaseImpl: Database {
             }
         }
     }
-    
+
     func deleteAll(ofType type: Record.Type) -> Bool {
         return perform { db in
             try type.deleteAll(db)
         }
     }
-    
-    @discardableResult private func perform(transaction: (GRDB.Database) throws -> ()) -> Bool {
+
+    @discardableResult private func perform(transaction: (GRDB.Database) throws -> Void) -> Bool {
         var didFailTransaction = false
         do {
             try self.dbQueue.inTransaction { db in

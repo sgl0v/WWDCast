@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-enum GoogleCastServiceError : Error {
+enum GoogleCastServiceError: Error {
     case connectionError, playbackError
 }
 
@@ -17,15 +17,15 @@ protocol GoogleCastService: class {
 
     /// The array of available devices
     var devices: [GoogleCastDevice] { get }
-    
+
     /// Starts the media playback on the specified device
     func play(media: GoogleCastMedia, onDevice device: GoogleCastDevice) -> Observable<Void>
-    
+
     /**
      Pauses playback of the current session.
      */
     func pausePlayback()
-    
+
     /**
      Resumes playback of the current session.
      */

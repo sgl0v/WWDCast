@@ -12,7 +12,7 @@ import Foundation
 struct GoogleCastDevice {
     /// The device name
     var name: String
-    
+
     /// Unique identifier
     var id: String
 }
@@ -26,12 +26,12 @@ extension GoogleCastDevice: CustomStringConvertible {
 }
 
 extension GoogleCastDevice: Hashable {
-    
+
     var hashValue: Int {
         return self.id.hashValue
     }
 }
 
-func ==(lhs: GoogleCastDevice, rhs: GoogleCastDevice) -> Bool {
+func == (lhs: GoogleCastDevice, rhs: GoogleCastDevice) -> Bool {
     return lhs.id == rhs.id
 }

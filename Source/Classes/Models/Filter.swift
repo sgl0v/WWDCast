@@ -17,7 +17,7 @@ struct Filter {
 }
 
 extension Filter: CustomStringConvertible {
-    var description : String {
+    var description: String {
         return "query='\(query)' years='\(years)' platforms='\(platforms)' tracks='\(tracks)'"
     }
 }
@@ -41,12 +41,12 @@ extension Filter: Hashable {
     }
 }
 
-func ==(lhs: Filter, rhs: Filter) -> Bool {
+func == (lhs: Filter, rhs: Filter) -> Bool {
     return lhs.query == rhs.query && lhs.years == rhs.years && lhs.platforms == rhs.platforms && lhs.tracks == rhs.tracks
 }
 
 extension Sequence where Iterator.Element == Session {
-    
+
     func apply(_ filter: Filter) -> [Iterator.Element] {
         return self.filter { session in
             (filter.query.isEmpty || session.title.lowercased().contains(filter.query.lowercased())) &&

@@ -12,14 +12,14 @@ import RxCocoa
 
 protocol SessionsSearchViewModel: class {
     // INPUT
-    
+
     // Item selection observer
     func didSelect(item: SessionItemViewModel)
     // Filter button tap observer
     func didTapFilter()
     // Search string observer
     func didStartSearch(withQuery query: String)
-    
+
     // OUTPUT
 
     // Defines whether or not there are any ongoing network operation

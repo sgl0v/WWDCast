@@ -39,7 +39,7 @@ protocol BindableView {
 
 // Cell
 extension UITableView {
-    func registerClass<T : UITableViewCell>(cellClass `class`: T.Type) where T: ReusableView {
+    func registerClass<T: UITableViewCell>(cellClass `class`: T.Type) where T: ReusableView {
         register(`class`, forCellReuseIdentifier: `class`.reuseIdentifier)
     }
 
@@ -74,5 +74,3 @@ extension UITableView {
         return dequeueReusableHeaderFooterView(withIdentifier: `class`.reuseIdentifier) as? T
     }
 }
-
-

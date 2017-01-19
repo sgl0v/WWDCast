@@ -12,12 +12,12 @@ import RxCocoa
 
 protocol FavoriteSessionsViewModel: class {
     // INPUT
-    
+
     // Item selection observer
     func didSelect(item: SessionItemViewModel)
-    
+
     // OUTPUT
-    
+
     // The view's title
     var title: Driver<String> { get }
     // The title to show when there are no favorite sessions

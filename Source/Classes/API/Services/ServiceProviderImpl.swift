@@ -26,19 +26,19 @@ final class ServiceProviderImpl: ServiceProvider {
 }
 
 extension ServiceProviderImpl {
-    
+
     static let defaultServiceProvider: ServiceProvider = {
         guard let reachability = ReachabilityServiceImpl() else {
             fatalError("Failed to create reachability service!")
         }
-        
+
         let dbName = "db.sqlite"
         let fileManager = FileManager.default
         guard let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first,
             let database = DatabaseImpl(path: documentsURL.appendingPathComponent(dbName).path) else {
             fatalError("Failed to create database with name \(dbName)!")
         }
-        
+
         let scheduler = SchedulerServiceImpl()
         let network = NetworkServiceImpl()
         let googleCast = GoogleCastServiceImpl(applicationID: WWDCEnvironment.googleCastAppID)

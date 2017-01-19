@@ -488,6 +488,7 @@
 			buildConfigurationList = B6F929D81D2A5DD6009E4B83 /* Build configuration list for PBXNativeTarget "WWDCast" */;
 			buildPhases = (
 				D214ACFBD5C00700D8C35E13 /* [CP] Check Pods Manifest.lock */,
+				E7E3F9951E283ACA00A67149 /* ShellScript */,
 				B6F929B71D2A5DD5009E4B83 /* Sources */,
 				B6F929B81D2A5DD5009E4B83 /* Frameworks */,
 				B6F929B91D2A5DD5009E4B83 /* Resources */,
@@ -678,6 +679,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E7E3F9951E283ACA00A67149 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\nexit 1\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

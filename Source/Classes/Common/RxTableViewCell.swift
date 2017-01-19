@@ -24,10 +24,10 @@ class RxTableViewCell: UITableViewCell {
         super.prepareForReuse()
         _onPrepareForReuse.onNext()
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        if (selected) {
+        if selected {
             _onSelected.onNext()
         }
     }
@@ -46,7 +46,7 @@ extension Reactive where Base: RxTableViewCell {
             guard let existingBase = base else {
                 return Observable.empty()
             }
-            
+
             return existingBase.onSelected.map({ _ in true }).startWith(getter(existingBase))
         }
         let valueSink = UIBindingObserver(UIElement: base) { control, value in

@@ -13,7 +13,7 @@ import RxCocoa
 enum FilterModuleResult {
     case cancelled, finished(Filter)
 }
-typealias FilterModuleCompletion = (FilterModuleResult) -> ()
+typealias FilterModuleCompletion = (FilterModuleResult) -> Void
 
 protocol FilterViewModel {
     // INPUT

@@ -10,13 +10,13 @@ import Foundation
 
 extension Session: RecordConvertable {
     typealias Record = SessionRecord
-    
+
     func toRecord() -> Record {
         return SessionRecord(session: self)
     }
-    
+
     init(record: Record) {
         self = record.session
     }
-    
+
 }

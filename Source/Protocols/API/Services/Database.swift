@@ -16,22 +16,22 @@ protocol RecordConvertable {
 }
 
 protocol SQLTable: TableMapping {
-    
+
     static func defineColumns(table: GRDB.TableDefinition) -> Void
 }
 
 protocol Database {
-    
+
     @discardableResult func create(table: SQLTable.Type) -> Bool
-    
+
     func fetch<R: RowConvertible & TableMapping>() -> [R]
-    
+
     @discardableResult func update(records: [Record]) -> Bool
-    
+
     @discardableResult func insert(records: [Record]) -> Bool
-    
+
     @discardableResult func delete(records: [Record]) -> Bool
-    
+
     @discardableResult func deleteAll(ofType type: Record.Type) -> Bool
-    
+
 }

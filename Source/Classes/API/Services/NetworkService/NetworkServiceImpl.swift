@@ -18,11 +18,11 @@ final class NetworkServiceImpl: NetworkService {
         configuration.allowsCellularAccess = false
         return configuration
     }
-    
+
     init(session: URLSession = URLSession(configuration: NetworkServiceImpl.defaultConfiguration())) {
         self.session = session
     }
-    
+
     func load<T>(_ resource: Resource<T>) -> Observable<T> {
         return self.session.rx.data(request: resource.request).map({ JSON(data: $0) }).map(resource.parser).debug("http")
     }

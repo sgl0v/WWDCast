@@ -14,8 +14,8 @@ extension UIAlertController {
     enum Selection {
         case action(UInt), cancel
     }
-    
-    static func promptFor<Action : CustomStringConvertible>(_ title: String?, message: String?, cancelAction: Action, actions: [Action]) -> (UIViewController) -> Observable<Action> {
+
+    static func promptFor<Action: CustomStringConvertible>(_ title: String?, message: String?, cancelAction: Action, actions: [Action]) -> (UIViewController) -> Observable<Action> {
         return { viewController in
             return Observable.create { observer in
                 let alertView = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
@@ -23,16 +23,16 @@ extension UIAlertController {
                     observer.onNext(cancelAction)
                     observer.onCompleted()
                 })
-                
+
                 for action in actions {
                     alertView.addAction(UIAlertAction(title: action.description, style: .`default`) { _ in
                         observer.onNext(action)
                         observer.onCompleted()
                     })
                 }
-                
+
                 viewController.present(alertView, animated: true, completion: nil)
-                
+
                 return Disposables.create {
                     alertView.dismiss(animated: false, completion: nil)
                 }

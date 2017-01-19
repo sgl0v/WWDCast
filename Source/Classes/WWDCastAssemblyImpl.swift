@@ -7,9 +7,46 @@
 //
 
 import UIKit
+import RxSwift
+import RxDataSources
+
+struct SectionOfCustomData {
+    var items: [Item]
+}
+extension SectionOfCustomData: SectionModelType {
+    typealias Item = String
+
+    init(original: SectionOfCustomData, items: [Item]) {
+        self = original
+        self.items = items
+    }
+}
+
+class RxTableViewController: UIViewController {
+
+    var tableView: UITableView!
+    let disposeBag = DisposeBag()
+
+    let dataSource = RxTableViewSectionedReloadDataSource<SectionOfCustomData>()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.tableView = UITableView(frame: self.view.bounds, style: .plain)
+        self.view.addSubview(self.tableView)
+
+        self.tableView.tableFooterView = UIView()
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 100
+
+        Observable.just([SectionOfCustomData]()).asDriver(onErrorJustReturn: []).drive(tableView.rx.items(dataSource: self.dataSource))
+            .addDisposableTo(disposeBag)
+    }
+}
 
 class WWDCastAssemblyImpl: WWDCastAssembly {
-    
+
     lazy var sessionsRouter: WWDCastRouterImpl = {
         return WWDCastRouterImpl(moduleFactory: self)
     }()
@@ -22,7 +59,7 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         let serviceProvider = ServiceProviderImpl.defaultServiceProvider
         return WWDCastAPIImpl(serviceProvider: serviceProvider)
     }()
-    
+
     func tabBarController() -> UIViewController {
         let sessionsSearchController = self.sessionsSearchController()
         sessionsSearchController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
@@ -30,10 +67,10 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         favoriteSessionsController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         let tabbarController = TabBarController()
         tabbarController.tabBar.tintColor = UIColor.black
-        tabbarController.viewControllers = [sessionsSearchController, favoriteSessionsController]
+        tabbarController.viewControllers = [RxTableViewController(), favoriteSessionsController]
         return tabbarController
     }
-    
+
     func sessionsSearchController() -> UIViewController {
         let viewModel = SessionsSearchViewModelImpl(api: self.api, router: self.sessionsRouter)
         let view = SessionsSearchViewController(viewModel: viewModel)
@@ -56,7 +93,7 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         let viewModel = SessionDetailsViewModelImpl(sessionId: sessionId, api: self.api, router: self.sessionsRouter)
         return SessionDetailsViewController(viewModel: viewModel)
     }
-    
+
     func favoriteSessionsController() -> UIViewController {
         let viewModel = FavoriteSessionsViewModelImpl(api: self.api, router: self.favoriteSessionsRouter)
         let view = FavoriteSessionsViewController(viewModel: viewModel)
@@ -66,7 +103,7 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         self.favoriteSessionsRouter.navigationController = navigationController
         return navigationController
     }
-    
+
     func favoriteSessionDetailsController(_ sessionId: String) -> UIViewController {
         let viewModel = SessionDetailsViewModelImpl(sessionId: sessionId, api: self.api, router: self.favoriteSessionsRouter)
         return SessionDetailsViewController(viewModel: viewModel)

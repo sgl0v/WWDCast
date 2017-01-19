@@ -21,42 +21,42 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
         self.api = api
         self.router = router
     }
-    
+
     // MARK: SessionsSearchViewModel
-    
+
     lazy var sessionSections: Driver<[SessionSectionViewModel]> = {
         let sessionsObservable = self.api.sessions //.trackActivity(self.activityIndicator)
         return Observable.combineLatest(sessionsObservable, self.filter.asObservable(), resultSelector: self.applyFilter)
             .map(SessionSectionViewModelBuilder.build)
             .asDriver(onErrorJustReturn: [])
     }()
-    
+
     var isLoading: Driver<Bool> {
         return self.activityIndicator.asDriver()
     }
-    
+
     let title = Driver.just(NSLocalizedString("WWDCast", comment: "Session search view title"))
 
     func didSelect(item: SessionItemViewModel) {
         self.router.showSessionDetails(item.uniqueID)
     }
-    
+
     func didTapFilter() {
         self.router.showFilterController(self.filter.value) {[unowned self] filter in
             self.filter.value = filter
         }
     }
-    
+
     func didStartSearch(withQuery query: String) {
         var filter = self.filter.value
         filter.query = query
         self.filter.value = filter
     }
-    
+
     // MARK: Private
-    
+
     private func applyFilter(sessions: [Session], filter: Filter) -> [Session] {
         return sessions.apply(filter)
     }
-    
+
 }

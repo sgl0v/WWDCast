@@ -25,6 +25,6 @@ extension AppConfig: Hashable {
     }
 }
 
-func ==(lhs: AppConfig, rhs: AppConfig) -> Bool {
+func == (lhs: AppConfig, rhs: AppConfig) -> Bool {
     return lhs.sessionsURL == rhs.sessionsURL
 }

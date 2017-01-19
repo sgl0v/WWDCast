@@ -24,22 +24,22 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
         let favoriteObservable = self.favoriteTrigger.withLatestFrom(sessionObservable).flatMap(self.api.toggle)
         self.sessionObservable = Observable.of(sessionObservable, favoriteObservable).merge()
     }
-    
+
     // MARK: SessionDetailsViewModel
 
     let title = Driver.just(NSLocalizedString("Session Details", comment: "Session details view title"))
-    
+
     lazy var session: Driver<SessionItemViewModel?> = {
         return self.sessionObservable.map(SessionItemViewModelBuilder.build).asDriver(onErrorJustReturn: nil)
     }()
-    
+
     func didTapPlaySession() {
         let devices = self.api.devices
-        if (devices.isEmpty) {
+        if devices.isEmpty {
             self.router.showAlert(withTitle: nil, message: NSLocalizedString("Google Cast device is not found!", comment: ""))
             return
         }
-        
+
         let actions = devices.map({ device in return device.description })
         let cancelAction = NSLocalizedString("Cancel", comment: "Cancel ActionSheet button title")
         let alert = self.router.promptFor(nil, message: nil, cancelAction: cancelAction, actions: actions)
@@ -52,15 +52,16 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
             .subscribe(onError: self.didFailToPlaySession)
             .addDisposableTo(self.disposeBag)
     }
-    
+
     func didToggleFavorite() {
         self.favoriteTrigger.onNext()
     }
-    
+
     // MARK: Private
-    
+
     private func didFailToPlaySession(_ error: Error) {
-        self.router.showAlert(withTitle: NSLocalizedString("Ooops...", comment: ""), message: NSLocalizedString("Failed to play WWDC session.", comment: ""))
+        self.router.showAlert(withTitle: NSLocalizedString("Ooops...", comment: ""),
+                              message: NSLocalizedString("Failed to play WWDC session.", comment: ""))
     }
-    
+
 }

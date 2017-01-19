@@ -11,9 +11,8 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class SessionsSearchViewController: TableViewController<SessionSectionViewModel, SessionTableViewCell>
-{
-    
+class SessionsSearchViewController: TableViewController<SessionSectionViewModel, SessionTableViewCell> {
+
     private var loadingIndicator: UIActivityIndicatorView!
     private let viewModel: SessionsSearchViewModel
 
@@ -21,34 +20,34 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.viewModel = viewModel
         super.init()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
         self.bindViewModel()
     }
-    
+
     override func commitPreview(forItem item: SessionItemViewModel) {
         self.viewModel.didSelect(item: item)
     }
-    
+
     // MARK - Private
-    
+
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.tintColor = UIColor.black
         return searchController
     }()
-    
+
     private var searchBar: UISearchBar {
         return self.searchController.searchBar
     }
-    
+
     private func bindViewModel() {
         // ViewModel's input
         self.navigationItem.leftBarButtonItem!.rx.tap.bindNext(self.viewModel.didTapFilter).addDisposableTo(self.disposeBag)
@@ -56,9 +55,9 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.tableView.rx.modelSelected(SessionItemViewModel.self)
             .bindNext(self.viewModel.didSelect)
             .addDisposableTo(self.disposeBag)
-        
+
         // ViewModel's output
-        
+
         self.viewModel.sessionSections.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
         self.viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
         self.viewModel.isLoading.drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
@@ -72,21 +71,21 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
 
         self.setClearsSelectionOnViewWillAppear()
         self.registerForPreviewing()
-        
+
         self.view.backgroundColor = UIColor.white
 
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
         self.tableView.tableHeaderView = self.searchBar
         self.tableView.tableFooterView = UIView()
-        
+
         // dismiss keyboard on scroll
         self.tableView.rx.contentOffset.asDriver().filter({[unowned self] _ -> Bool in
             return !self.searchController.isBeingPresented && self.searchBar.isFirstResponder
         }).drive(onNext: {[unowned self] _ in
             self.searchBar.resignFirstResponder()
         }).addDisposableTo(self.disposeBag)
-        
+
         self.loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         self.view.addSubview(self.loadingIndicator)
         self.loadingIndicator.hidesWhenStopped = true
@@ -96,8 +95,8 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
     }
 
     private var searchQuery: Driver<String> {
-        let cancel: Observable<String> = self.searchBar.rx.delegate.methodInvoked(#selector(UISearchBarDelegate.searchBarCancelButtonClicked(_:))).map( { _ in return "" })
-        
+        let cancel: Observable<String> = self.searchBar.rx.delegate.methodInvoked(#selector(UISearchBarDelegate.searchBarCancelButtonClicked(_:))).map({ _ in return "" })
+
         let searchBarTextObservable = self.searchBar.rx.text.rejectNil().unwrap()
         return Observable.of(searchBarTextObservable, cancel)
             .merge()

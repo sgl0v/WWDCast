@@ -18,12 +18,12 @@ struct GoogleCastMedia {
 }
 
 extension GoogleCastMedia: Hashable {
-    
+
     var hashValue: Int {
         return self.id.hashValue
     }
 }
 
-func ==(lhs: GoogleCastMedia, rhs: GoogleCastMedia) -> Bool {
+func == (lhs: GoogleCastMedia, rhs: GoogleCastMedia) -> Bool {
     return lhs.id == rhs.id
 }

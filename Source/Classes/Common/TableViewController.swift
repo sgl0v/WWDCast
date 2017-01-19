@@ -13,7 +13,7 @@ import RxDataSources
 /// Implement the methods of this protocol to respond, with a preview view controller
 /// to the user pressing a view object on the screen of a device that supports 3D Touch.
 protocol TableViewControllerPreviewProvider: class {
-    
+
     /// Creates and returns preview controller for specified item
     ///
     /// - parameter item: the pressed item
@@ -21,7 +21,9 @@ protocol TableViewControllerPreviewProvider: class {
     func previewController<Item>(forItem item: Item) -> UIViewController?
 }
 
-class TableViewController<SectionViewModel: SectionModelType & CustomStringConvertible, Cell: UITableViewCell>: UIViewController, UIViewControllerPreviewingDelegate where Cell: BindableView & NibProvidable & ReusableView, Cell.ViewModel == SectionViewModel.Item {
+class TableViewController<SectionViewModel: SectionModelType & CustomStringConvertible, Cell: UITableViewCell>:
+    UIViewController, UIViewControllerPreviewingDelegate where
+    Cell: BindableView & NibProvidable & ReusableView, Cell.ViewModel == SectionViewModel.Item {
 
     var tableView: UITableView!
     let disposeBag = DisposeBag()
@@ -29,7 +31,9 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
     lazy var source: RxTableViewSectionedReloadDataSource<SectionViewModel> = {
         let dataSource = RxTableViewSectionedReloadDataSource<SectionViewModel>()
         dataSource.configureCell = { (dataSource, tableView, indexPath, element) in
-            let cell = tableView.dequeueReusableCell(withClass: Cell.self, forIndexPath: indexPath)!
+            guard let cell = tableView.dequeueReusableCell(withClass: Cell.self, forIndexPath: indexPath) else {
+                fatalError("Failed to dequeue reusable cell: \(Cell.self)")
+            }
             cell.bind(viewModel: element)
             return cell
         }
@@ -42,29 +46,29 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
     init() {
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.tableView = UITableView(frame: self.view.bounds, style: .plain)
         self.view.addSubview(self.tableView)
         self.tableView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.tableView.registerNib(cellClass: Cell.self)
-        
+
         // Get rid of back button's title
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
-    
+
     func setClearsSelectionOnViewWillAppear() {
         self.tableView.rx.itemSelected.asDriver().drive(onNext: {[unowned self] indexPath in
             self.tableView.deselectRow(at: indexPath, animated: true)
         }).addDisposableTo(self.disposeBag)
     }
-    
+
     func registerForPreviewing() {
         // Check for force touch feature, and add force touch/previewing capability.
         if self.traitCollection.forceTouchCapability != .available {
@@ -73,16 +77,16 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         // Register for `UIViewControllerPreviewingDelegate` to enable "Peek" and "Pop".
         self.registerForPreviewing(with: self, sourceView: self.tableView)
     }
-    
+
     func commitPreview(forItem item: SectionViewModel.Item) {
         // nop
     }
-    
+
     // MARK: UIViewControllerPreviewingDelegate
-    
+
     weak var previewProvider: TableViewControllerPreviewProvider?
     private var previewItem: SectionViewModel.Item?
-    
+
     /// Create a previewing view controller to be shown at "Peek".
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         // Obtain the index path and the cell that was pressed.
@@ -94,12 +98,12 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         }
         // Set the source rect to the cell frame, so surrounding elements are blurred.
         previewingContext.sourceRect = cell.frame
-        
+
         self.previewItem = previewItem
         // Create a detail view controller and set its properties.
         return self.previewProvider?.previewController(forItem: previewItem)
     }
-    
+
     /// Present the view controller for the "Pop" action.
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         guard let previewItem = self.previewItem else {
@@ -107,5 +111,5 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         }
         self.commitPreview(forItem: previewItem)
     }
-    
+
 }

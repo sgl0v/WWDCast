@@ -29,7 +29,7 @@ class SessionBuilder: EntityBuilder {
         let summary = json["description"].stringValue
 
         var platforms = Array<Session.Platform>()
-        platforms = try focusJSON.map() { focus in
+        platforms = try focusJSON.map { focus in
             guard let platform = Session.Platform(rawValue: focus) else {
                 throw EntityBuilderError.parsingError
             }
@@ -40,5 +40,5 @@ class SessionBuilder: EntityBuilder {
                            summary: summary, video: video, captions: captions,
                            thumbnail: thumbnailURL, favorite: false)
     }
-    
+
 }

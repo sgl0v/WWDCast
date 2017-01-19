@@ -29,9 +29,9 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
         GCKCastContext.setSharedInstanceWith(options)
         self.enableLogging()
     }
-    
+
     // MARK: GoogleCastService
-    
+
     var devices: [GoogleCastDevice] {
         let discoveryManager = self.context.discoveryManager
         guard discoveryManager.hasDiscoveredDevices else {
@@ -43,36 +43,36 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
             return GoogleCastDevice(name: device.friendlyName ?? "Unknown", id: device.deviceID)
         })
     }
-    
+
     func play(media: GoogleCastMedia, onDevice device: GoogleCastDevice) -> Observable<Void> {
         return Observable.just(device)
             .flatMap(self.startSession)
             .flatMap(self.loadMedia(media.gckMedia))
     }
-    
+
     func pausePlayback() {
         guard let currentSession = self.currentSession else {
             return
         }
         currentSession.remoteMediaClient.pause()
     }
-    
+
     func resumePlayback() {
         guard let currentSession = self.currentSession else {
             return
         }
         currentSession.remoteMediaClient.play()
     }
-    
+
     func stopPlayback() {
         guard let currentSession = self.currentSession else {
             return
         }
         currentSession.remoteMediaClient.stop()
     }
-    
+
     // MARK: Private
-    
+
     private func device(withId id: String) -> GCKDevice? {
         return (0..<self.context.discoveryManager.deviceCount).map({ idx in
             return self.context.discoveryManager.device(at: idx)
@@ -80,7 +80,7 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
             return gckDevice.deviceID == id
         }).first
     }
-    
+
     private func startSession(_ device: GoogleCastDevice) -> Observable<GCKCastSession> {
         return Observable.create({[unowned self] observer in
             guard let gckDevice = self.device(withId: device.id) else {
@@ -88,12 +88,12 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
                 observer.onCompleted()
                 return Disposables.create()
             }
-            
+
             let didStartSubscription = self.sessionManager.rx.didStart.subscribe(onNext: { sessionManager in
                 observer.onNext(sessionManager.currentCastSession!)
                 observer.onCompleted()
             })
-            let didFailToStartSubscription = self.sessionManager.rx.didFailToStart.subscribe(onNext: { error in
+            let didFailToStartSubscription = self.sessionManager.rx.didFailToStart.subscribe(onNext: { _ in
                 observer.onError(GoogleCastServiceError.connectionError)
                 observer.onCompleted()
             })
@@ -111,21 +111,21 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
             }
         })
     }
-    
+
     private func loadMedia(_ mediaInfo: GCKMediaInformation) -> (GCKCastSession) -> Observable<Void> {
         return { castSession in
             return Observable.create({ observer in
                 let request = castSession.remoteMediaClient.loadMedia(mediaInfo, autoplay: true)
-                
-                let didCompleteSubscription = request.rx.didComplete.subscribe(onNext: { sessionManager in
+
+                let didCompleteSubscription = request.rx.didComplete.subscribe(onNext: { _ in
                     observer.onNext()
                     observer.onCompleted()
                 })
-                let didFailWithErrorSubscription = request.rx.didFailWithError.subscribe(onNext: { error in
+                let didFailWithErrorSubscription = request.rx.didFailWithError.subscribe(onNext: { _ in
                     observer.onError(GoogleCastServiceError.connectionError)
                     observer.onCompleted()
                 })
-                
+
                 return Disposables.create {
                     didCompleteSubscription.dispose()
                     didFailWithErrorSubscription.dispose()
@@ -133,7 +133,7 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
             })
         }
     }
-    
+
 }
 
 extension GoogleCastServiceImpl: GCKLoggerDelegate {
@@ -150,9 +150,9 @@ extension GoogleCastServiceImpl: GCKLoggerDelegate {
             "\(GCKUIMediaController.self)",
             "\(GCKUIMiniMediaControlsViewController.self)",
             "\(GCKCastChannel.self)",
-            "\(GCKMediaControlChannel.self)",
+            "\(GCKMediaControlChannel.self)"
             ])
-        GCKLogger.sharedInstance().filter = logFilter;
+        GCKLogger.sharedInstance().filter = logFilter
         GCKLogger.sharedInstance().delegate = self
     }
 

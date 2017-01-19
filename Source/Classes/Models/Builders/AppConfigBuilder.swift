@@ -21,5 +21,5 @@ class AppConfigBuilder: EntityBuilder {
         }
         return AppConfig(sessionsURL: sessionsURL, videosURL: videosURL, isWWDCWeek: isWWDCWeek)
     }
-    
+
 }

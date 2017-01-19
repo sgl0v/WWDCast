@@ -15,16 +15,16 @@ import Foundation
 private struct ActivityToken<E> : ObservableConvertibleType, Disposable {
     private let _source: Observable<E>
     private let _dispose: Disposable
-    
-    init(source: Observable<E>, disposeAction: @escaping () -> ()) {
+
+    init(source: Observable<E>, disposeAction: @escaping () -> Void) {
         _source = source
         _dispose = Disposables.create(with: disposeAction)
     }
-    
+
     func dispose() {
         _dispose.dispose()
     }
-    
+
     func asObservable() -> Observable<E> {
         return _source
     }
@@ -38,23 +38,22 @@ private struct ActivityToken<E> : ObservableConvertibleType, Disposable {
  */
 class ActivityIndicator {
     public typealias E = Bool
-    
+
     private let _lock = NSRecursiveLock()
     private let _variable = Variable(0)
     fileprivate let _loading: Driver<Bool>
-    
+
     public init() {
         _loading = _variable.asObservable()
             .map { $0 > 0 }
             .distinctUntilChanged()
             .asDriver(onErrorRecover: ActivityIndicator.ifItStillErrors)
     }
-    
+
     private static func ifItStillErrors(_ error: Error) -> Driver<Bool> {
         _ = fatalError("Loader can't fail")
     }
-    
-    
+
     fileprivate func trackActivityOfObservable<O: ObservableConvertibleType>(_ source: O) -> Observable<O.E> {
         return Observable.using({ () -> ActivityToken<O.E> in
             self.increment()
@@ -63,19 +62,19 @@ class ActivityIndicator {
             return t.asObservable()
         }
     }
-    
+
     private func increment() {
         _lock.lock()
         _variable.value = _variable.value + 1
         _lock.unlock()
     }
-    
+
     private func decrement() {
         _lock.lock()
         _variable.value = _variable.value - 1
         _lock.unlock()
     }
-    
+
 }
 
 extension ActivityIndicator {
@@ -86,7 +85,6 @@ extension ActivityIndicator {
         return _loading
     }
 }
-
 
 extension ObservableConvertibleType {
     func trackActivity(_ activityIndicator: ActivityIndicator) -> Observable<E> {

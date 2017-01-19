@@ -18,15 +18,15 @@ class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter, FavoriteSes
     }
 
     // MARK: SessionsSearchRouter
-    
+
     func showSessionDetails(_ sessionId: String) {
         let controller = self.moduleFactory.sessionDetailsController(sessionId)
         self.navigationController.pushViewController(controller, animated: true)
     }
-    
+
     func showFilterController(_ filter: Filter, completion: @escaping (Filter) -> Void) {
         let controller = self.moduleFactory.filterController(filter) {[unowned self] result in
-            self.navigationController.dismiss(animated: true, completion: { 
+            self.navigationController.dismiss(animated: true, completion: {
                 guard case .finished(let filter) = result else {
                     return
                 }
@@ -35,26 +35,26 @@ class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter, FavoriteSes
         }
         self.navigationController.present(controller, animated: true, completion: nil)
     }
-    
+
     // MARK: SessionDetailsRouter
-    
+
     func showAlert(withTitle title: String?, message: String) {
         let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK button title"), style: .cancel) { _ in
             })
         self.navigationController.present(alertView, animated: true, completion: nil)
     }
-    
-    func promptFor<Action : CustomStringConvertible>(_ title: String?, message: String?, cancelAction: Action, actions: [Action]) -> Observable<Action> {
+
+    func promptFor<Action: CustomStringConvertible>(_ title: String?, message: String?, cancelAction: Action, actions: [Action]) -> Observable<Action> {
         let alertView = UIAlertController.promptFor(title, message: message, cancelAction: cancelAction, actions: actions)
         return alertView(self.navigationController)
     }
-    
+
     // MARK: FavoriteSessionsRouter
-    
+
     func showFavoriteSessionDetails(_ sessionId: String) {
         let controller = self.moduleFactory.favoriteSessionDetailsController(sessionId)
         self.navigationController.pushViewController(controller, animated: true)
     }
-    
+
 }

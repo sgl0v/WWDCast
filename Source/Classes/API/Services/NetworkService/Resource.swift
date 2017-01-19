@@ -18,11 +18,11 @@ extension String {
 struct Resource<T> {
     let request: URLRequest
     let parser: (_ json: JSON) throws -> T
-    
+
     init?(url: URL, parser: @escaping (_ json: JSON) throws -> T) {
         self.init(url: url, parameters: [:], parser: parser)
     }
-    
+
     init?(url: URL, parameters: [String: AnyObject], parser: @escaping (_ json: JSON) throws -> T) {
         guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             return nil

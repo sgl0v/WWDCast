@@ -30,7 +30,7 @@ func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disposable 
                    onCompleted: {
                     bindToUIDisposable.dispose()
         })
-    
+
     return Disposables.create(bindToUIDisposable, bindToVariable)
 }
 
@@ -41,7 +41,7 @@ protocol Optionable {
 
 extension Optional: Optionable {
     typealias WrappedType = Wrapped
-    
+
     // just to cast `Optional<Wrapped>` to `Wrapped?`
     func toOptional() -> WrappedType? {
         return self
@@ -49,11 +49,11 @@ extension Optional: Optionable {
 }
 
 extension ObservableType where E: Optionable {
-    
+
     func unwrap() -> Observable<E.WrappedType> {
         return self.map({ $0.toOptional()! })
     }
-    
+
     func rejectNil() -> Observable<E> {
         return self.filter({ value in
             return value.toOptional() != nil
@@ -62,8 +62,11 @@ extension ObservableType where E: Optionable {
 }
 
 extension Observable where Element : Sequence, Element.Iterator.Element : Comparable {
-    
-    public func sort() -> Observable<[Element.Iterator.Element]> {
+
+    /// Sorts each element of an observable sequence. 
+    ///
+    /// - Returns: An observable sequence of sorted elements
+    func sort() -> Observable<[Element.Iterator.Element]> {
         return self.map({ sequence in
             return sequence.sorted()
         })

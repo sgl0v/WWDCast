@@ -17,53 +17,53 @@ class Cache<Element: RecordConvertable & Equatable> where Element.Record : GRDB.
         self.reload()
         return self._values.asObservable()
     }()
-    
-    init(db: Database) {
-        self.database = db
+
+    init(database: Database) {
+        self.database = database
     }
-    
+
     func load() -> [Element] {
         let records: [Element.Record] = self.database.fetch()
-        let values = records.map() { record in
+        let values = records.map { record in
             return Element(record: record)
         }
         NSLog("Cache.Loaded: \(records.count);")
         //        NSLog("%@", values.description);
         return values
     }
-    
+
     func add(values: [Element]) {
-        if (values.isEmpty) {
+        if values.isEmpty {
             return
         }
         let records = values.map { value in
             return value.toRecord()
         }
-        
+
         NSLog("Cache.Add: \(records.count);")
         if !self.database.insert(records: records) {
             NSLog("Failed to insert new values to the cache!")
         }
         reload()
     }
-    
+
     func remove(values: [Element]) {
-        if (values.isEmpty) {
+        if values.isEmpty {
             return
         }
         let records = values.map { value in
             return value.toRecord()
         }
-        
+
         NSLog("Cache.Remove: \(records.count);")
         if !self.database.delete(records: records) {
             NSLog("Failed to delete values from the cache!")
         }
         reload()
     }
-    
+
     func update(values: [Element]) {
-        if (values.isEmpty) {
+        if values.isEmpty {
             return
         }
 
@@ -76,12 +76,12 @@ class Cache<Element: RecordConvertable & Equatable> where Element.Record : GRDB.
         }
         reload()
     }
-    
+
     func clean() {
         self.database.deleteAll(ofType: Element.Record.self)
         reload()
     }
-    
+
     private func reload() {
         self._values.value = load()
     }
