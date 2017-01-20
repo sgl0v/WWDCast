@@ -50,8 +50,16 @@ extension Optional: Optionable {
 
 extension ObservableType where E: Optionable {
 
+    /// Unwraps optional elements of an observable sequence.
+    ///
+    /// - Returns: An observable sequence of unwrapped elements
     func unwrap() -> Observable<E.WrappedType> {
-        return self.map({ $0.toOptional()! })
+        return self.map({ element in
+            guard let element = element.toOptional() else {
+                fatalError("Failed to unwrap the optional value!")
+            }
+            return element
+        })
     }
 
     func rejectNil() -> Observable<E> {

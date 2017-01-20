@@ -6,6 +6,8 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
+// swiftlint:disable missing_docs
+
 import Foundation
 #if !RX_NO_MODULE
     import RxSwift
@@ -91,3 +93,5 @@ extension ObservableConvertibleType {
         return activityIndicator.trackActivityOfObservable(self)
     }
 }
+
+// swiftlint:enable missing_docs

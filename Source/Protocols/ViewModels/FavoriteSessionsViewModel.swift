@@ -21,9 +21,7 @@ protocol FavoriteSessionsViewModel: class {
     // The view's title
     var title: Driver<String> { get }
     // The title to show when there are no favorite sessions
-    var emptyFavoritesTitle: Driver<String> { get }
-    // The description to show when there are no favorite sessions
-    var emptyFavoritesDescription: Driver<String> { get }
+    var emptyFavorites: Driver<EmptyDataSetViewModel> { get }
     // The array of available WWDC sessions divided into sections
     var favoriteSessions: Driver<[SessionSectionViewModel]> { get }
 }
