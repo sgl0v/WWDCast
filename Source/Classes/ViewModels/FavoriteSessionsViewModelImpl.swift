@@ -29,8 +29,7 @@ class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
     }
 
     let title = Driver.just(NSLocalizedString("Favorites", comment: "Favorte sessions view title"))
-    let emptyFavoritesTitle = Driver.just(NSLocalizedString("No Favorites", comment: "The are no sessions added to favorites"))
-    let emptyFavoritesDescription = Driver.just(NSLocalizedString("Add your favorite sessions to the bookmarks", comment: "Add your favorite sessions to the bookmarks"))
+    let emptyFavorites = Driver.just(EmptyDataSetViewModel(title: NSLocalizedString("No Favorites", comment: "The are no sessions added to favorites"), description: NSLocalizedString("Add your favorite sessions to the bookmarks", comment: "Add your favorite sessions to the bookmarks")))
 
     func didSelect(item: SessionItemViewModel) {
         self.router.showFavoriteSessionDetails(item.uniqueID)

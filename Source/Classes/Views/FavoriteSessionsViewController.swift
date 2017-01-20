@@ -48,8 +48,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         self.viewModel.favoriteSessions.map({ $0.isEmpty }).drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
         self.viewModel.favoriteSessions.map({ !$0.isEmpty }).drive(self.emptyDataSetView.rx.isHidden).addDisposableTo(self.disposeBag)
         self.viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
-        self.viewModel.emptyFavoritesTitle.drive(self.emptyDataSetView.titleLabel.rx.text).addDisposableTo(self.disposeBag)
-        self.viewModel.emptyFavoritesDescription.drive(self.emptyDataSetView.descriptionLabel.rx.text).addDisposableTo(self.disposeBag)
+        self.viewModel.emptyFavorites.drive(onNext: self.emptyDataSetView.bind).addDisposableTo(self.disposeBag)
     }
 
     private func configureUI() {

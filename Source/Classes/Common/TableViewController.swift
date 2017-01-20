@@ -31,9 +31,7 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
     lazy var source: RxTableViewSectionedReloadDataSource<SectionViewModel> = {
         let dataSource = RxTableViewSectionedReloadDataSource<SectionViewModel>()
         dataSource.configureCell = { (dataSource, tableView, indexPath, element) in
-            guard let cell = tableView.dequeueReusableCell(withClass: Cell.self, forIndexPath: indexPath) else {
-                fatalError("Failed to dequeue reusable cell: \(Cell.self)")
-            }
+            let cell = tableView.dequeueReusableCell(withClass: Cell.self, forIndexPath: indexPath)
             cell.bind(viewModel: element)
             return cell
         }
