@@ -78,7 +78,7 @@ class WWDCastAPIImpl: WWDCastAPI {
     // MARK: Private
 
     private func loadConfig() -> Observable<AppConfig> {
-        guard let configResource = Resource(url: WWDCEnvironment.indexURL, parser: AppConfigBuilder.build) else {
+        guard let configResource = Resource(url: WWDCEnvironment.configURL, parser: AppConfigBuilder.build) else {
             return Observable.error(WWDCastAPIError.dataLoadingError)
         }
         return self.serviceProvider.network.load(configResource)

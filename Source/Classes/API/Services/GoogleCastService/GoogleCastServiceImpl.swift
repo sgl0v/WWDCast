@@ -90,7 +90,11 @@ final class GoogleCastServiceImpl: NSObject, GoogleCastService {
             }
 
             let didStartSubscription = self.sessionManager.rx.didStart.subscribe(onNext: { sessionManager in
-                observer.onNext(sessionManager.currentCastSession!)
+                if let currentCastSession = sessionManager.currentCastSession {
+                    observer.onNext(currentCastSession)
+                } else {
+                    observer.onError(GoogleCastServiceError.connectionError)
+                }
                 observer.onCompleted()
             })
             let didFailToStartSubscription = self.sessionManager.rx.didFailToStart.subscribe(onNext: { _ in

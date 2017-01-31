@@ -45,7 +45,7 @@ class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter, FavoriteSes
         self.navigationController.present(alertView, animated: true, completion: nil)
     }
 
-    func promptFor<Action: CustomStringConvertible>(_ title: String?, message: String?, cancelAction: Action, actions: [Action]) -> Observable<Action> {
+    func showAlert<Action: CustomStringConvertible>(withTitle title: String?, message: String?, cancelAction: Action, actions: [Action]) -> Observable<Action> {
         let alertView = UIAlertController.promptFor(title, message: message, cancelAction: cancelAction, actions: actions)
         return alertView(self.navigationController)
     }

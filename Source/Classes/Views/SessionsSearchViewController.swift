@@ -14,6 +14,7 @@ import RxDataSources
 class SessionsSearchViewController: TableViewController<SessionSectionViewModel, SessionTableViewCell> {
 
     private var loadingIndicator: UIActivityIndicatorView!
+    private var filterButton: UIBarButtonItem!
     private let viewModel: SessionsSearchViewModel
 
     init(viewModel: SessionsSearchViewModel) {
@@ -50,7 +51,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
 
     private func bindViewModel() {
         // ViewModel's input
-        self.navigationItem.leftBarButtonItem!.rx.tap.bindNext(self.viewModel.didTapFilter).addDisposableTo(self.disposeBag)
+        self.filterButton.rx.tap.bindNext(self.viewModel.didTapFilter).addDisposableTo(self.disposeBag)
         self.searchQuery.drive(onNext: self.viewModel.didStartSearch).addDisposableTo(self.disposeBag)
         self.tableView.rx.modelSelected(SessionItemViewModel.self)
             .bindNext(self.viewModel.didSelect)
@@ -67,7 +68,8 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
     private func configureUI() {
         self.definesPresentationContext = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Filter", comment: "Filter"), style: .plain, target: nil, action: nil)
+        self.filterButton = UIBarButtonItem(title: NSLocalizedString("Filter", comment: "Filter"), style: .plain, target: nil, action: nil)
+        self.navigationItem.leftBarButtonItem = self.filterButton
 
         self.setClearsSelectionOnViewWillAppear()
         self.registerForPreviewing()

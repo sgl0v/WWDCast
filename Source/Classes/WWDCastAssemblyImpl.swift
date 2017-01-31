@@ -7,43 +7,6 @@
 //
 
 import UIKit
-import RxSwift
-import RxDataSources
-
-struct SectionOfCustomData {
-    var items: [Item]
-}
-extension SectionOfCustomData: SectionModelType {
-    typealias Item = String
-
-    init(original: SectionOfCustomData, items: [Item]) {
-        self = original
-        self.items = items
-    }
-}
-
-class RxTableViewController: UIViewController {
-
-    var tableView: UITableView!
-    let disposeBag = DisposeBag()
-
-    let dataSource = RxTableViewSectionedReloadDataSource<SectionOfCustomData>()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.tableView = UITableView(frame: self.view.bounds, style: .plain)
-        self.view.addSubview(self.tableView)
-
-        self.tableView.tableFooterView = UIView()
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 100
-
-        Observable.just([SectionOfCustomData]()).asDriver(onErrorJustReturn: []).drive(tableView.rx.items(dataSource: self.dataSource))
-            .addDisposableTo(disposeBag)
-    }
-}
 
 class WWDCastAssemblyImpl: WWDCastAssembly {
 
@@ -67,7 +30,7 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         favoriteSessionsController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         let tabbarController = TabBarController()
         tabbarController.tabBar.tintColor = UIColor.black
-        tabbarController.viewControllers = [RxTableViewController(), favoriteSessionsController]
+        tabbarController.viewControllers = [sessionsSearchController, favoriteSessionsController]
         return tabbarController
     }
 

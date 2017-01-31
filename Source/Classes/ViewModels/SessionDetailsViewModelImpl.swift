@@ -42,7 +42,7 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
 
         let actions = devices.map({ device in return device.description })
         let cancelAction = NSLocalizedString("Cancel", comment: "Cancel ActionSheet button title")
-        let alert = self.router.promptFor(nil, message: nil, cancelAction: cancelAction, actions: actions)
+        let alert = self.router.showAlert(withTitle: nil, message: nil, cancelAction: cancelAction, actions: actions)
         let deviceObservable = alert.filter({ $0 != cancelAction })
             .map({ action in actions.index(of: action as String)! })
             .map({ idx in devices[idx] })

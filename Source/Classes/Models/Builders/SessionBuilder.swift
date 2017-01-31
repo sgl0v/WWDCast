@@ -16,8 +16,7 @@ class SessionBuilder: EntityBuilder {
     static func build(_ json: JSON) throws -> EntityType {
         let captions = URL(string: json["subtitles"].stringValue)
         let video = URL(string: json["download_hd"].stringValue)
-        guard let year = Session.Year(rawValue: json["year"].uIntValue),
-            let track = Session.Track(rawValue: json["track"].stringValue),
+        guard let year = Session.Year(rawValue: json["year"].intValue),
             let focusJSON = json["focus"].arrayObject as? [String],
             let images = json["images"].dictionaryObject as? [String: String],
             let thumbnailURLString = images["shelf"],
@@ -27,6 +26,7 @@ class SessionBuilder: EntityBuilder {
         let id = json["id"].intValue
         let title = json["title"].stringValue
         let summary = json["description"].stringValue
+        let track = Session.Track(rawValue: json["track"].intValue)
 
         var platforms = Array<Session.Platform>()
         platforms = try focusJSON.map { focus in

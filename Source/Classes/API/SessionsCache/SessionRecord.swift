@@ -27,7 +27,7 @@ class SessionRecord: Record {
     required init(row: Row) {
         let id: Int = row.value(named: "id")
         let year: Int = row.value(named: "year")
-        let track: String = row.value(named: "track")
+        let track: Int = row.value(named: "track")
         let allPlatforms: String = row.value(named: "platforms")
         let title: String = row.value(named: "title")
         let summary: String = row.value(named: "summary")
@@ -41,10 +41,10 @@ class SessionRecord: Record {
         }).map({ platform in
             return Session.Platform(rawValue: platform)!
         })
-        let videoUrl = video == nil ? nil : URL(string: video!)
-        let captionsUrl = captions == nil ? nil : URL(string: captions!)
-        session = Session(id: id, year: Session.Year(rawValue: UInt(year))!,
-                          track: Session.Track(rawValue: track)!, platforms: platforms, title: title, summary: summary,
+        let videoUrl = video.flatMap({ URL(string: $0) })
+        let captionsUrl = captions.flatMap({ URL(string: $0) })
+        session = Session(id: id, year: Session.Year(rawValue: year)!,
+                          track: Session.Track(rawValue: track), platforms: platforms, title: title, summary: summary,
                           video: videoUrl, captions: captionsUrl, thumbnail: URL(string: thumbnail)!, favorite: favorite)
 
         super.init(row: row)
@@ -52,7 +52,7 @@ class SessionRecord: Record {
 
     override var persistentDictionary: [String : DatabaseValueConvertible?] {
         return ["id": session.id,
-                "year": Int(session.year.rawValue),
+                "year": session.year.rawValue,
                 "track": session.track.rawValue,
                 "platforms": session.platforms.isEmpty ? "" : session.platforms.map({ $0.rawValue }).joined(separator: "#"),
                 "title": session.title,
@@ -68,12 +68,12 @@ class SessionRecord: Record {
 class SessionTable: SQLTable {
 
     /// The name of the database table
-    public static let databaseTableName = "sessions"
+    static let databaseTableName = "sessions"
 
     static func defineColumns(table: GRDB.TableDefinition) {
         table.column("id", .integer)
         table.column("year", .integer)
-        table.column("track", .text).notNull()
+        table.column("track", .integer).notNull()
         table.column("platforms", .text).notNull()
         table.column("title", .text).notNull()
         table.column("summary", .text).notNull()
