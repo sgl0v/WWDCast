@@ -12,7 +12,9 @@ import RxCocoa
 import RxDataSources
 
 class FilterViewController: TableViewController<FilterSectionViewModel, FilterTableViewCell> {
-    let viewModel: FilterViewModel
+    private var cancelButton: UIBarButtonItem!
+    private var doneButton: UIBarButtonItem!
+    private let viewModel: FilterViewModel
 
     init(viewModel: FilterViewModel) {
         self.viewModel = viewModel
@@ -33,8 +35,8 @@ class FilterViewController: TableViewController<FilterSectionViewModel, FilterTa
 
     private func setupBindings() {
         // ViewModel's input
-        self.navigationItem.leftBarButtonItem!.rx.tap.subscribe(onNext: self.viewModel.didCancel).addDisposableTo(self.disposeBag)
-        self.navigationItem.rightBarButtonItem!.rx.tap.subscribe(onNext: self.viewModel.didApplyFilter).addDisposableTo(self.disposeBag)
+        self.cancelButton.rx.tap.subscribe(onNext: self.viewModel.didCancel).addDisposableTo(self.disposeBag)
+        self.doneButton.rx.tap.subscribe(onNext: self.viewModel.didApplyFilter).addDisposableTo(self.disposeBag)
         self.tableView.rx.itemSelected.subscribe(onNext: {[unowned self] indexPath in
             self.tableView.deselectRow(at: indexPath, animated: true)
         }).addDisposableTo(self.disposeBag)
@@ -45,9 +47,10 @@ class FilterViewController: TableViewController<FilterSectionViewModel, FilterTa
     }
 
     private func configureUI() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+        self.cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
+        self.doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+        self.navigationItem.leftBarButtonItem = self.cancelButton
+        self.navigationItem.rightBarButtonItem = self.doneButton
 
         self.setClearsSelectionOnViewWillAppear()
         self.tableView.rowHeight = UITableViewAutomaticDimension

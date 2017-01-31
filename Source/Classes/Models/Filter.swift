@@ -11,9 +11,9 @@ import RxSwift
 
 struct Filter {
     var query = ""
-    var years = Session.Year.allYears
-    var platforms = Session.Platform.allPlatforms
-    var tracks = Session.Track.allTracks
+    var years = Session.Year.all
+    var platforms = Session.Platform.all
+    var tracks = Session.Track.all
 }
 
 extension Filter: CustomStringConvertible {
@@ -34,9 +34,7 @@ extension Filter: Hashable {
         result = prime * result + self.platforms.reduce(hash, { acc, platform in
             return acc ^ platform.hashValue
         })
-        result = prime * result + self.tracks.reduce(hash, { acc, track in
-            return acc ^ track.hashValue
-        })
+        result = prime * result + self.tracks.rawValue
         return result
     }
 }
