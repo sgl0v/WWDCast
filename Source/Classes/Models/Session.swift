@@ -84,15 +84,26 @@ extension Session.Track: Hashable {
     }
 }
 
-extension Session.Track: CustomStringConvertible {
+extension Session.Track: LosslessStringConvertible {
+
+    init?(_ description: String) {
+        let mapping: [String: Session.Track] = [
+            "App Frameworks": .AppFrameworks, "System Frameworks": .SystemFrameworks, "Developer Tools": .DeveloperTools,
+            "Featured": .Featured, "Graphics and Games": .GraphicsAndGames, "Design": .Design, "Media": .Media,
+            "Distribution": .Distribution]
+        guard let value = mapping[description] else {
+            print("Failed to find a value for track with description '\(description)'!")
+            return nil
+        }
+        self = value
+    }
 
     var description: String {
         let mapping: [Session.Track: String] = [.AppFrameworks: "App Frameworks", .SystemFrameworks: "System Frameworks", .DeveloperTools: "Developer Tools",
                                         .Featured: "Featured", .GraphicsAndGames: "Graphics and Games", .Design: "Design", .Media: "Media", .Distribution: "Distribution"]
-        guard let description = mapping[self] else {
-            fatalError("Failed to find description for '\(self)' track!")
-        }
-        return NSLocalizedString(description, comment: "Track description")
+        return self.map ({ value in
+            return NSLocalizedString(mapping[value] ?? "", comment: "Track description")
+        }).joined(separator: ", ")
     }
 }
 
