@@ -23,7 +23,7 @@ protocol SessionDetailsRouter: class {
     /// Presents an alert with specified title and message
     func showAlert(withTitle title: String?, message: String)
     /// Presents an alert dialog with specified title, message and actions
-    func showAlert<Action: CustomStringConvertible>(withTitle title: String?, message: String?, cancelAction: Action, actions: [Action]) -> Observable<Action>
+    func showAlert<Action: CustomStringConvertible>(withTitle title: String?, message: String?, cancelAction: Action, actions: [Action]) -> Observable<UIAlertController.Selection>
 }
 
 /// The favorite sessions router

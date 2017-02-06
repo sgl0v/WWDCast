@@ -12,21 +12,21 @@ import RxCocoa
 
 extension UIAlertController {
     enum Selection {
-        case action(UInt), cancel
+        case action(Int), cancel
     }
 
-    static func promptFor<Action: CustomStringConvertible>(_ title: String?, message: String?, cancelAction: Action, actions: [Action]) -> (UIViewController) -> Observable<Action> {
+    static func promptFor<Action: CustomStringConvertible>(_ title: String?, message: String?, cancelAction: Action, actions: [Action]) -> (UIViewController) -> Observable<Selection> {
         return { viewController in
             return Observable.create { observer in
                 let alertView = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
                 alertView.addAction(UIAlertAction(title: cancelAction.description, style: .cancel) { _ in
-                    observer.onNext(cancelAction)
+                    observer.onNext(.cancel)
                     observer.onCompleted()
                 })
 
-                for action in actions {
+                for (idx, action) in actions.enumerated() {
                     alertView.addAction(UIAlertAction(title: action.description, style: .`default`) { _ in
-                        observer.onNext(action)
+                        observer.onNext(.action(idx))
                         observer.onCompleted()
                     })
                 }

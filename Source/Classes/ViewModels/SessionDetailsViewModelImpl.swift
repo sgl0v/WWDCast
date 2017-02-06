@@ -43,9 +43,14 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
         let actions = devices.map({ device in return device.description })
         let cancelAction = NSLocalizedString("Cancel", comment: "Cancel ActionSheet button title")
         let alert = self.router.showAlert(withTitle: nil, message: nil, cancelAction: cancelAction, actions: actions)
-        let deviceObservable = alert.filter({ $0 != cancelAction })
-            .map({ action in actions.index(of: action as String)! })
-            .map({ idx in devices[idx] })
+        let deviceObservable = alert.flatMap({ selection -> Observable<GoogleCastDevice> in
+            switch selection {
+            case .action(let idx):
+                return Observable.just(devices[idx])
+            case .cancel:
+                return Observable.empty()
+            }
+        })
         Observable.combineLatest(self.sessionObservable, deviceObservable, resultSelector: { ($0, $1) })
             .take(1)
             .flatMap(self.api.play)
