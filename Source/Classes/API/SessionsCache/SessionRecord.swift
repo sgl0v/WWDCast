@@ -25,27 +25,33 @@ class SessionRecord: Record {
     }
 
     required init(row: Row) {
+        guard let year = Session.Year(rawValue: row.value(named: "year")),
+            let thumbnail = URL(string: row.value(named: "thumbnail")) else {
+                fatalError("Failed to create \(SessionRecord.self) from \(row)!")
+        }
+
         let id: Int = row.value(named: "id")
-        let year: Int = row.value(named: "year")
         let track: Int = row.value(named: "track")
         let allPlatforms: String = row.value(named: "platforms")
         let title: String = row.value(named: "title")
         let summary: String = row.value(named: "summary")
         let video: String? = row.value(named: "video")
         let captions: String? = row.value(named: "captions")
-        let thumbnail: String = row.value(named: "thumbnail")
         let favorite: Bool = row.value(named: "favorite")
 
-        let platforms = allPlatforms.components(separatedBy: "#").filter({ platform in
+        let platforms: [Session.Platform] = allPlatforms.components(separatedBy: "#").filter({ platform in
             return !platform.isEmpty
-        }).map({ platform in
-            return Session.Platform(rawValue: platform)!
+        }).map({ value in
+            guard let platform = Session.Platform(rawValue: value) else {
+                fatalError("Failed to create \(Session.Platform.self) from \(value)")
+            }
+            return platform
         })
         let videoUrl = video.flatMap({ URL(string: $0) })
         let captionsUrl = captions.flatMap({ URL(string: $0) })
-        session = Session(id: id, year: Session.Year(rawValue: year)!,
-                          track: Session.Track(rawValue: track), platforms: platforms, title: title, summary: summary,
-                          video: videoUrl, captions: captionsUrl, thumbnail: URL(string: thumbnail)!, favorite: favorite)
+        session = Session(id: id, year: year, track: Session.Track(rawValue: track), platforms: platforms,
+                          title: title, summary: summary, video: videoUrl, captions: captionsUrl, thumbnail: thumbnail,
+                          favorite: favorite)
 
         super.init(row: row)
     }
