@@ -12,13 +12,17 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    lazy var assembly = WWDCastAssemblyImpl()
+    var appCoordinator: WWDCastApplicationFlowCoordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        let rootViewController = UIViewController()
         self.window =  UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = self.assembly.tabBarController()
+        self.window?.rootViewController = rootViewController
         self.window?.makeKeyAndVisible()
+
+        self.appCoordinator = WWDCastApplicationFlowCoordinator(rootController: rootViewController, assembly: WWDCastAssemblyImpl())
+        self.appCoordinator.start()
 
         return true
     }

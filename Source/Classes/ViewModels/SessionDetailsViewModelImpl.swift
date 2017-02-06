@@ -11,15 +11,13 @@ import RxSwift
 import RxCocoa
 
 class SessionDetailsViewModelImpl: SessionDetailsViewModel {
-    private let router: SessionDetailsRouter
     private let disposeBag = DisposeBag()
     private let api: WWDCastAPI
     private let sessionObservable: Observable<Session>
     private let favoriteTrigger = PublishSubject<Void>()
 
-    init(sessionId: String, api: WWDCastAPI, router: SessionDetailsRouter) {
+    init(sessionId: String, api: WWDCastAPI) {
         self.api = api
-        self.router = router
         let sessionObservable = self.api.session(withId: sessionId)
         let favoriteObservable = self.favoriteTrigger.withLatestFrom(sessionObservable).flatMap(self.api.toggle)
         self.sessionObservable = Observable.of(sessionObservable, favoriteObservable).merge()
@@ -36,26 +34,26 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
     func didTapPlaySession() {
         let devices = self.api.devices
         if devices.isEmpty {
-            self.router.showAlert(withTitle: nil, message: NSLocalizedString("Google Cast device is not found!", comment: ""))
+//            self.router.showAlert(withTitle: nil, message: NSLocalizedString("Google Cast device is not found!", comment: ""))
             return
         }
 
-        let actions = devices.map({ device in return device.description })
-        let cancelAction = NSLocalizedString("Cancel", comment: "Cancel ActionSheet button title")
-        let alert = self.router.showAlert(withTitle: nil, message: nil, cancelAction: cancelAction, actions: actions)
-        let deviceObservable = alert.flatMap({ selection -> Observable<GoogleCastDevice> in
-            switch selection {
-            case .action(let idx):
-                return Observable.just(devices[idx])
-            case .cancel:
-                return Observable.empty()
-            }
-        })
-        Observable.combineLatest(self.sessionObservable, deviceObservable, resultSelector: { ($0, $1) })
-            .take(1)
-            .flatMap(self.api.play)
-            .subscribe(onError: self.didFailToPlaySession)
-            .addDisposableTo(self.disposeBag)
+//        let actions = devices.map({ device in return device.description })
+//        let cancelAction = NSLocalizedString("Cancel", comment: "Cancel ActionSheet button title")
+//        let alert = self.router.showAlert(withTitle: nil, message: nil, cancelAction: cancelAction, actions: actions)
+//        let deviceObservable = alert.flatMap({ selection -> Observable<GoogleCastDevice> in
+//            switch selection {
+//            case .action(let idx):
+//                return Observable.just(devices[idx])
+//            case .cancel:
+//                return Observable.empty()
+//            }
+//        })
+//        Observable.combineLatest(self.sessionObservable, deviceObservable, resultSelector: { ($0, $1) })
+//            .take(1)
+//            .flatMap(self.api.play)
+//            .subscribe(onError: self.didFailToPlaySession)
+//            .addDisposableTo(self.disposeBag)
     }
 
     func didToggleFavorite() {
@@ -65,8 +63,8 @@ class SessionDetailsViewModelImpl: SessionDetailsViewModel {
     // MARK: Private
 
     private func didFailToPlaySession(_ error: Error) {
-        self.router.showAlert(withTitle: NSLocalizedString("Ooops...", comment: ""),
-                              message: NSLocalizedString("Failed to play WWDC session.", comment: ""))
+//        self.router.showAlert(withTitle: NSLocalizedString("Ooops...", comment: ""),
+//                              message: NSLocalizedString("Failed to play WWDC session.", comment: ""))
     }
 
 }

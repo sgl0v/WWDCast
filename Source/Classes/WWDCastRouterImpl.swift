@@ -9,6 +9,56 @@
 import UIKit
 import RxSwift
 
+protocol SessionsSearchDelegate: class {
+    func sessionsSearchWantsToShowFilter(_ filter: Filter, completion: @escaping (Filter) -> Void)
+    func sessionsSearchWantsToShowSessionDetails(withId sessionId: String)
+}
+
+protocol FavoriteSessionsDelegate: class {
+    func sessionsSearchWantsToShowSessionDetails(withId sessionId: String)
+}
+
+class WWDCastApplicationFlowCoordinator {
+    fileprivate let rootController: UIViewController
+    fileprivate let assembly: WWDCastAssembly
+
+    init(rootController: UIViewController, assembly: WWDCastAssembly) {
+        self.rootController = rootController
+        self.assembly = assembly
+    }
+
+    func start() {
+        let tabBarController = self.assembly.tabBarController(delegate: self)
+        self.rootController.addChildViewController(tabBarController)
+        self.rootController.view.addSubview(tabBarController.view)
+        tabBarController.didMove(toParentViewController: self.rootController)
+    }
+}
+
+extension WWDCastApplicationFlowCoordinator: SessionsSearchDelegate {
+
+    func sessionsSearchWantsToShowFilter(_ filter: Filter, completion: @escaping (Filter) -> Void) {
+        let controller = self.assembly.filterController(filter) {[unowned self] result in
+            self.rootController.dismiss(animated: true, completion: {
+                guard case .finished(let filter) = result else {
+                    return
+                }
+                completion(filter)
+            })
+        }
+        self.rootController.present(controller, animated: true, completion: nil)
+    }
+
+    func sessionsSearchWantsToShowSessionDetails(withId sessionId: String) {
+//        let controller = self.assembly.favoriteSessionDetailsController(sessionId)
+//        self.navigationController.pushViewController(controller, animated: true)
+    }
+}
+
+extension WWDCastApplicationFlowCoordinator: FavoriteSessionsDelegate {
+
+}
+
 class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter, FavoriteSessionsRouter {
     weak var moduleFactory: WWDCastAssembly!
     weak var navigationController: UINavigationController!
@@ -53,8 +103,8 @@ class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter, FavoriteSes
     // MARK: FavoriteSessionsRouter
 
     func showFavoriteSessionDetails(_ sessionId: String) {
-        let controller = self.moduleFactory.favoriteSessionDetailsController(sessionId)
-        self.navigationController.pushViewController(controller, animated: true)
+//        let controller = self.moduleFactory.favoriteSessionDetailsController(sessionId)
+//        self.navigationController.pushViewController(controller, animated: true)
     }
 
 }
