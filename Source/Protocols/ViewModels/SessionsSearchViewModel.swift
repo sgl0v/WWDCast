@@ -29,3 +29,8 @@ protocol SessionsSearchViewModel: class {
     // The array of available WWDC sessions divided into sections
     var sessionSections: Driver<[SessionSectionViewModel]> { get }
 }
+
+protocol SessionsSearchViewModelDelegate: class {
+    func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModel, wantsToShow filter: Filter, completion: @escaping (Filter) -> Void)
+    func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModel, wantsToShowSessionDetailsWith sessionId: String)
+}

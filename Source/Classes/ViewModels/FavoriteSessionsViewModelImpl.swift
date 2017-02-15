@@ -12,10 +12,10 @@ import RxCocoa
 
 class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
     private let api: WWDCastAPI
-    private weak var delegate: FavoriteSessionsDelegate?
+    private weak var delegate: FavoriteSessionsViewModelDelegate?
     private let disposeBag = DisposeBag()
 
-    init(api: WWDCastAPI, delegate: FavoriteSessionsDelegate) {
+    init(api: WWDCastAPI, delegate: FavoriteSessionsViewModelDelegate) {
         self.api = api
         self.delegate = delegate
     }
@@ -32,7 +32,7 @@ class FavoriteSessionsViewModelImpl: FavoriteSessionsViewModel {
     let emptyFavorites = Driver.just(EmptyDataSetViewModel(title: NSLocalizedString("No Favorites", comment: "The are no sessions added to favorites"), description: NSLocalizedString("Add your favorite sessions to the bookmarks", comment: "Add your favorite sessions to the bookmarks")))
 
     func didSelect(item: SessionItemViewModel) {
-        self.delegate?.sessionsSearchWantsToShowSessionDetails(withId: item.uniqueID)
+        self.delegate?.favoriteSessionsViewModel(self, wantsToShowSessionDetailsWith: item.uniqueID)
     }
 
 }

@@ -9,8 +9,12 @@
 import UIKit
 
 protocol WWDCastAssembly: class {
-    // Creates UITabBarController with 2 controllers: SessionsSearchViewController & FavoriteSessionsViewController
-    func tabBarController(delegate: SessionsSearchDelegate & FavoriteSessionsDelegate) -> UIViewController
+    // Creates UITabBarController
+    func tabBarController() -> UITabBarController
+
+    func sessionsSearchController(delegate: SessionsSearchViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController
+
+    func favoriteSessionsController(delegate: FavoriteSessionsViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController
 
     // Creates SessionDetailsViewController to show the details of the session with specified identifier
     func sessionDetailsController(_ sessionId: String) -> UIViewController

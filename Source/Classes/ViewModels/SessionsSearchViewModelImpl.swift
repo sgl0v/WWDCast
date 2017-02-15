@@ -12,12 +12,12 @@ import RxCocoa
 
 class SessionsSearchViewModelImpl: SessionsSearchViewModel {
     private let api: WWDCastAPI
-    private weak var delegate: SessionsSearchDelegate?
+    private weak var delegate: SessionsSearchViewModelDelegate?
     private let filter = Variable(Filter())
     private let disposeBag = DisposeBag()
     private let activityIndicator = ActivityIndicator()
 
-    init(api: WWDCastAPI, delegate: SessionsSearchDelegate) {
+    init(api: WWDCastAPI, delegate: SessionsSearchViewModelDelegate) {
         self.api = api
         self.delegate = delegate
     }
@@ -38,13 +38,13 @@ class SessionsSearchViewModelImpl: SessionsSearchViewModel {
     let title = Driver.just(NSLocalizedString("WWDCast", comment: "Session search view title"))
 
     func didSelect(item: SessionItemViewModel) {
-        self.delegate?.sessionsSearchWantsToShowSessionDetails(withId: item.uniqueID)
+        self.delegate?.sessionsSearchViewModel(self, wantsToShowSessionDetailsWith: item.uniqueID)
     }
 
     func didTapFilter() {
-        self.delegate?.sessionsSearchWantsToShowFilter(self.filter.value) {[unowned self] filter in
+        self.delegate?.sessionsSearchViewModel(self, wantsToShow: self.filter.value, completion: {[unowned self] filter in
             self.filter.value = filter
-        }
+        })
     }
 
     func didStartSearch(withQuery query: String) {

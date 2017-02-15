@@ -15,24 +15,17 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         return WWDCastAPIImpl(serviceProvider: serviceProvider)
     }()
 
-    func tabBarController(delegate: SessionsSearchDelegate & FavoriteSessionsDelegate) -> UIViewController {
-        let sessionsSearchController = self.sessionsSearchController(delegate: delegate)
-        sessionsSearchController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        let favoriteSessionsController = self.favoriteSessionsController(delegate: delegate)
-        favoriteSessionsController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+    func tabBarController() -> UITabBarController {
         let tabbarController = TabBarController()
         tabbarController.tabBar.tintColor = UIColor.black
-        tabbarController.viewControllers = [sessionsSearchController, favoriteSessionsController]
         return tabbarController
     }
 
-    func sessionsSearchController(delegate: SessionsSearchDelegate) -> UIViewController {
+    func sessionsSearchController(delegate: SessionsSearchViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
         let viewModel = SessionsSearchViewModelImpl(api: self.api, delegate: delegate)
         let view = SessionsSearchViewController(viewModel: viewModel)
-        view.previewProvider = self
-        let navigationController = UINavigationController(rootViewController: view)
-        navigationController.navigationBar.tintColor = UIColor.black
-        return navigationController
+        view.previewProvider = previewProvider
+        return view
     }
 
     func filterController(_ filter: Filter, completion: @escaping FilterModuleCompletion) -> UIViewController {
@@ -48,22 +41,11 @@ class WWDCastAssemblyImpl: WWDCastAssembly {
         return SessionDetailsViewController(viewModel: viewModel)
     }
 
-    func favoriteSessionsController(delegate: FavoriteSessionsDelegate) -> UIViewController {
+    func favoriteSessionsController(delegate: FavoriteSessionsViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
         let viewModel = FavoriteSessionsViewModelImpl(api: self.api, delegate: delegate)
-        let view = FavoriteSessionsViewController(viewModel: viewModel)
-        view.previewProvider = self
-        let navigationController = UINavigationController(rootViewController: view)
-        navigationController.navigationBar.tintColor = UIColor.black
-        return navigationController
+        let view =  FavoriteSessionsViewController(viewModel: viewModel)
+        view.previewProvider = previewProvider
+        return view
     }
 
-}
-
-extension WWDCastAssemblyImpl: TableViewControllerPreviewProvider {
-    func previewController<Item>(forItem item: Item) -> UIViewController? {
-        guard let item = item as? SessionItemViewModel else {
-            return nil
-        }
-        return sessionDetailsController(item.uniqueID)
-    }
 }

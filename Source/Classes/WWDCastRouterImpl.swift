@@ -9,17 +9,10 @@
 import UIKit
 import RxSwift
 
-protocol SessionsSearchDelegate: class {
-    func sessionsSearchWantsToShowFilter(_ filter: Filter, completion: @escaping (Filter) -> Void)
-    func sessionsSearchWantsToShowSessionDetails(withId sessionId: String)
-}
-
-protocol FavoriteSessionsDelegate: class {
-    func sessionsSearchWantsToShowSessionDetails(withId sessionId: String)
-}
-
 class WWDCastApplicationFlowCoordinator {
     fileprivate let rootController: UIViewController
+    fileprivate var searchNavigationController: UINavigationController!
+    fileprivate var favoritesNavigationController: UINavigationController!
     fileprivate let assembly: WWDCastAssembly
 
     init(rootController: UIViewController, assembly: WWDCastAssembly) {
@@ -28,16 +21,41 @@ class WWDCastApplicationFlowCoordinator {
     }
 
     func start() {
-        let tabBarController = self.assembly.tabBarController(delegate: self)
+
+        let searchController = self.assembly.sessionsSearchController(delegate: self, previewProvider: self)
+        searchController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        self.searchNavigationController = UINavigationController(rootViewController: searchController)
+        self.searchNavigationController.navigationBar.tintColor = UIColor.black
+
+        let favoritesController = self.assembly.favoriteSessionsController(delegate: self, previewProvider: self)
+        favoritesController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+        self.favoritesNavigationController = UINavigationController(rootViewController: favoritesController)
+        self.favoritesNavigationController.navigationBar.tintColor = UIColor.black
+
+        let tabBarController = self.assembly.tabBarController()
+        tabBarController.viewControllers = [searchNavigationController, favoritesNavigationController]
+
         self.rootController.addChildViewController(tabBarController)
         self.rootController.view.addSubview(tabBarController.view)
         tabBarController.didMove(toParentViewController: self.rootController)
     }
+
 }
 
-extension WWDCastApplicationFlowCoordinator: SessionsSearchDelegate {
+extension WWDCastApplicationFlowCoordinator: TableViewControllerPreviewProvider {
 
-    func sessionsSearchWantsToShowFilter(_ filter: Filter, completion: @escaping (Filter) -> Void) {
+    func previewController<Item>(forItem item: Item) -> UIViewController? {
+        guard let item = item as? SessionItemViewModel else {
+            return nil
+        }
+        return self.assembly.sessionDetailsController(item.uniqueID)
+    }
+
+}
+
+extension WWDCastApplicationFlowCoordinator: SessionsSearchViewModelDelegate {
+
+    func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModel, wantsToShow filter: Filter, completion: @escaping (Filter) -> Void) {
         let controller = self.assembly.filterController(filter) {[unowned self] result in
             self.rootController.dismiss(animated: true, completion: {
                 guard case .finished(let filter) = result else {
@@ -49,62 +67,18 @@ extension WWDCastApplicationFlowCoordinator: SessionsSearchDelegate {
         self.rootController.present(controller, animated: true, completion: nil)
     }
 
-    func sessionsSearchWantsToShowSessionDetails(withId sessionId: String) {
-//        let controller = self.assembly.favoriteSessionDetailsController(sessionId)
-//        self.navigationController.pushViewController(controller, animated: true)
+    func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModel, wantsToShowSessionDetailsWith sessionId: String) {
+        let controller = self.assembly.sessionDetailsController(sessionId)
+        self.searchNavigationController.pushViewController(controller, animated: true)
     }
-}
-
-extension WWDCastApplicationFlowCoordinator: FavoriteSessionsDelegate {
 
 }
 
-class WWDCastRouterImpl: SessionsSearchRouter, SessionDetailsRouter, FavoriteSessionsRouter {
-    weak var moduleFactory: WWDCastAssembly!
-    weak var navigationController: UINavigationController!
+extension WWDCastApplicationFlowCoordinator: FavoriteSessionsViewModelDelegate {
 
-    init(moduleFactory: WWDCastAssembly) {
-        self.moduleFactory = moduleFactory
-    }
-
-    // MARK: SessionsSearchRouter
-
-    func showSessionDetails(_ sessionId: String) {
-        let controller = self.moduleFactory.sessionDetailsController(sessionId)
-        self.navigationController.pushViewController(controller, animated: true)
-    }
-
-    func showFilterController(_ filter: Filter, completion: @escaping (Filter) -> Void) {
-        let controller = self.moduleFactory.filterController(filter) {[unowned self] result in
-            self.navigationController.dismiss(animated: true, completion: {
-                guard case .finished(let filter) = result else {
-                    return
-                }
-                completion(filter)
-            })
-        }
-        self.navigationController.present(controller, animated: true, completion: nil)
-    }
-
-    // MARK: SessionDetailsRouter
-
-    func showAlert(withTitle title: String?, message: String) {
-        let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK button title"), style: .cancel) { _ in
-            })
-        self.navigationController.present(alertView, animated: true, completion: nil)
-    }
-
-    func showAlert<Action: CustomStringConvertible>(withTitle title: String?, message: String?, cancelAction: Action, actions: [Action]) -> Observable<UIAlertController.Selection> {
-        let alertView = UIAlertController.promptFor(title, message: message, cancelAction: cancelAction, actions: actions)
-        return alertView(self.navigationController)
-    }
-
-    // MARK: FavoriteSessionsRouter
-
-    func showFavoriteSessionDetails(_ sessionId: String) {
-//        let controller = self.moduleFactory.favoriteSessionDetailsController(sessionId)
-//        self.navigationController.pushViewController(controller, animated: true)
+    func favoriteSessionsViewModel(_ viewModel: FavoriteSessionsViewModel, wantsToShowSessionDetailsWith sessionId: String) {
+        let controller = self.assembly.sessionDetailsController(sessionId)
+        self.favoritesNavigationController.pushViewController(controller, animated: true)
     }
 
 }

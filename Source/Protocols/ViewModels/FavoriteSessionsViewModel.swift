@@ -25,3 +25,9 @@ protocol FavoriteSessionsViewModel: class {
     // The array of available WWDC sessions divided into sections
     var favoriteSessions: Driver<[SessionSectionViewModel]> { get }
 }
+
+protocol FavoriteSessionsViewModelDelegate: class {
+
+    /// Tells the delegate that viewModel would like to show the favorite session details
+    func favoriteSessionsViewModel(_ viewModel: FavoriteSessionsViewModel, wantsToShowSessionDetailsWith sessionId: String)
+}
