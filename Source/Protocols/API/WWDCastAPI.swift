@@ -19,7 +19,7 @@ enum WWDCastAPIError: Error {
 protocol WWDCastAPI: class {
 
     /// The list of currently available google cast devices
-    var devices: [GoogleCastDevice] { get }
+    var devices: Observable<[GoogleCastDevice]> { get }
 
     /// The sequence of WWDC Sessions
     var sessions: Observable<[Session]> { get }

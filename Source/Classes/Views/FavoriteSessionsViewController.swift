@@ -27,28 +27,28 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
-        self.bindViewModel()
+        self.bind(with: self.viewModel)
     }
 
-    override func commitPreview(forItem item: SessionItemViewModel) {
+    override func commitPreview(for item: SessionItemViewModel) {
         self.viewModel.didSelect(item: item)
     }
 
     // MARK - Private
 
-    private func bindViewModel() {
+    private func bind(with viewModel: FavoriteSessionsViewModel) {
         // ViewModel's input
         self.tableView.rx.modelSelected(SessionItemViewModel.self)
-            .bindNext(self.viewModel.didSelect)
+            .bindNext(viewModel.didSelect)
             .addDisposableTo(self.disposeBag)
 
         // ViewModel's output
 
-        self.viewModel.favoriteSessions.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
-        self.viewModel.favoriteSessions.map({ $0.isEmpty }).drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
-        self.viewModel.favoriteSessions.map({ !$0.isEmpty }).drive(self.emptyDataSetView.rx.isHidden).addDisposableTo(self.disposeBag)
-        self.viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
-        self.viewModel.emptyFavorites.drive(onNext: self.emptyDataSetView.bind).addDisposableTo(self.disposeBag)
+        viewModel.favoriteSessions.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
+        viewModel.favoriteSessions.map({ $0.isEmpty }).drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
+        viewModel.favoriteSessions.map({ !$0.isEmpty }).drive(self.emptyDataSetView.rx.isHidden).addDisposableTo(self.disposeBag)
+        viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
+        viewModel.emptyFavorites.drive(onNext: self.emptyDataSetView.bind).addDisposableTo(self.disposeBag)
     }
 
     private func configureUI() {

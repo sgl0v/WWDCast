@@ -57,6 +57,7 @@
 		E7121D021D9B0935003F5DCC /* WWDCastAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF21D9B0935003F5DCC /* WWDCastAPI.swift */; };
 		E7121D031D9B0935003F5DCC /* WWDCastRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF41D9B0935003F5DCC /* WWDCastRouter.swift */; };
 		E7121D071D9B0935003F5DCC /* WWDCastAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */; };
+		E7189FA91E55187F003463B0 /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7189FA81E55187F003463B0 /* UIViewController+Common.swift */; };
 		E74FE5D91DC617F200BFD2F5 /* DatabaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5D81DC617F200BFD2F5 /* DatabaseImpl.swift */; };
 		E74FE5DB1DC6183100BFD2F5 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5DA1DC6183100BFD2F5 /* Database.swift */; };
 		E74FE5E31DC645F600BFD2F5 /* SessionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5E11DC645F600BFD2F5 /* SessionRecord.swift */; };
@@ -154,6 +155,7 @@
 		E7121CF21D9B0935003F5DCC /* WWDCastAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAPI.swift; sourceTree = "<group>"; };
 		E7121CF41D9B0935003F5DCC /* WWDCastRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastRouter.swift; sourceTree = "<group>"; };
 		E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAssembly.swift; sourceTree = "<group>"; };
+		E7189FA81E55187F003463B0 /* UIViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		E74FE5D81DC617F200BFD2F5 /* DatabaseImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseImpl.swift; sourceTree = "<group>"; };
 		E74FE5DA1DC6183100BFD2F5 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		E74FE5E11DC645F600BFD2F5 /* SessionRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionRecord.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				E7121CA71D9AFFE4003F5DCC /* TableViewController.swift */,
 				E7951E281DEE088800E52146 /* UIAlertController+Rx.swift */,
 				E7951E2A1DEE0D0300E52146 /* UIImageView+Rx.swift */,
+				E7189FA81E55187F003463B0 /* UIViewController+Common.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -728,6 +731,7 @@
 				E74FE5DB1DC6183100BFD2F5 /* Database.swift in Sources */,
 				E74FE5D91DC617F200BFD2F5 /* DatabaseImpl.swift in Sources */,
 				E7121CFB1D9B0935003F5DCC /* SessionDetailsViewModel.swift in Sources */,
+				E7189FA91E55187F003463B0 /* UIViewController+Common.swift in Sources */,
 				E777AE171DBA64610023192A /* FavoriteSessionsViewModel.swift in Sources */,
 				E7951E261DEDEFC700E52146 /* ActivityIndicator.swift in Sources */,
 				E7121D021D9B0935003F5DCC /* WWDCastAPI.swift in Sources */,

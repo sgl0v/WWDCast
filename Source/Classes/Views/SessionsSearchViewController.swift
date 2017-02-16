@@ -29,10 +29,10 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
-        self.bindViewModel()
+        self.bind(with: self.viewModel)
     }
 
-    override func commitPreview(forItem item: SessionItemViewModel) {
+    override func commitPreview(for item: SessionItemViewModel) {
         self.viewModel.didSelect(item: item)
     }
 
@@ -49,20 +49,20 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         return self.searchController.searchBar
     }
 
-    private func bindViewModel() {
+    private func bind(with viewModel: SessionsSearchViewModel) {
         // ViewModel's input
-        self.filterButton.rx.tap.bindNext(self.viewModel.didTapFilter).addDisposableTo(self.disposeBag)
-        self.searchQuery.drive(onNext: self.viewModel.didStartSearch).addDisposableTo(self.disposeBag)
+        self.filterButton.rx.tap.bindNext(viewModel.didTapFilter).addDisposableTo(self.disposeBag)
+        self.searchQuery.drive(onNext: viewModel.didStartSearch).addDisposableTo(self.disposeBag)
         self.tableView.rx.modelSelected(SessionItemViewModel.self)
-            .bindNext(self.viewModel.didSelect)
+            .bindNext(viewModel.didSelect)
             .addDisposableTo(self.disposeBag)
 
         // ViewModel's output
 
-        self.viewModel.sessionSections.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
-        self.viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
-        self.viewModel.isLoading.drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
-        self.viewModel.isLoading.drive(self.loadingIndicator.rx.isAnimating).addDisposableTo(self.disposeBag)
+        viewModel.sessionSections.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
+        viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
+        viewModel.isLoading.drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
+        viewModel.isLoading.drive(self.loadingIndicator.rx.isAnimating).addDisposableTo(self.disposeBag)
     }
 
     private func configureUI() {

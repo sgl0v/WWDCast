@@ -34,7 +34,7 @@ extension ReusableView {
 
 protocol BindableView {
     associatedtype ViewModel
-    func bind(viewModel: ViewModel)
+    func bind(with viewModel: ViewModel)
 }
 
 // Cell

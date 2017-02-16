@@ -32,7 +32,7 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         let dataSource = RxTableViewSectionedReloadDataSource<SectionViewModel>()
         dataSource.configureCell = { (dataSource, tableView, indexPath, element) in
             let cell = tableView.dequeueReusableCell(withClass: Cell.self, forIndexPath: indexPath)
-            cell.bind(viewModel: element)
+            cell.bind(with: element)
             return cell
         }
         dataSource.titleForHeaderInSection = { (dataSource: TableViewSectionedDataSource<SectionViewModel>, sectionIndex: Int) -> String? in
@@ -76,7 +76,7 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         self.registerForPreviewing(with: self, sourceView: self.tableView)
     }
 
-    func commitPreview(forItem item: SectionViewModel.Item) {
+    func commitPreview(for item: SectionViewModel.Item) {
         // nop
     }
 
@@ -107,7 +107,7 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         guard let previewItem = self.previewItem else {
             return
         }
-        self.commitPreview(forItem: previewItem)
+        self.commitPreview(for: previewItem)
     }
 
 }

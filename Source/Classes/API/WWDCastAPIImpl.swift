@@ -23,8 +23,8 @@ class WWDCastAPIImpl: WWDCastAPI {
 
     // MARK: WWDCastAPI
 
-    var devices: [GoogleCastDevice] {
-        return self.serviceProvider.googleCast.devices
+    var devices: Observable<[GoogleCastDevice]> {
+        return Observable.just(self.serviceProvider.googleCast.devices)
     }
 
     lazy var sessions: Observable<[Session]> = {

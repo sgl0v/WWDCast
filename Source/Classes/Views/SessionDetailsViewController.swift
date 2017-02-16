@@ -33,7 +33,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
-        self.bindViewModel()
+        self.bind(with: self.viewModel)
     }
 
     // MARK: Private
@@ -43,17 +43,19 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         self.edgesForExtendedLayout = UIRectEdge()
     }
 
-    private func bindViewModel() {
+    private func bind(with viewModel: SessionDetailsViewModel) {
         // ViewModel's input
-        self.playButton.rx.tap.subscribe(onNext: self.viewModel.didTapPlaySession).addDisposableTo(self.disposeBag)
-        self.favoriteButton.rx.tap.subscribe(onNext: self.viewModel.didToggleFavorite).addDisposableTo(self.disposeBag)
+        self.playButton.rx.tap.withLatestFrom(viewModel.devices).flatMap(self.selectDeviceForPlayback)
+            .subscribe(onNext: viewModel.startPlaybackOnDevice).addDisposableTo(self.disposeBag)
+        self.favoriteButton.rx.tap.subscribe(onNext: viewModel.toggleFavorite).addDisposableTo(self.disposeBag)
 
         // ViewModel's output
-        self.viewModel.session.drive(onNext: self.viewModelObserver).addDisposableTo(self.disposeBag)
-        self.viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
+        viewModel.session.drive(onNext: self.sessionObserver).addDisposableTo(self.disposeBag)
+        viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
+        viewModel.error.drive(onNext: self.showAlert).addDisposableTo(self.disposeBag)
     }
 
-    private func viewModelObserver(_ viewModel: SessionItemViewModel?) {
+    private func sessionObserver(_ viewModel: SessionItemViewModel?) {
         guard let viewModel = viewModel else {
             return
         }
@@ -65,6 +67,26 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         self.summary.text = viewModel.summary
         self.subtitle.text = viewModel.subtitle
         self.favoriteButton.isSelected = viewModel.favorite
+    }
+
+    private func selectDeviceForPlayback(_ devices: [String]) -> Observable<Int> {
+        if devices.isEmpty {
+            self.showAlert(with: nil, message: NSLocalizedString("Google Cast device is not found!", comment: ""))
+            return Observable.empty()
+        }
+
+        let actions = devices.map({ device in return device.description })
+        let cancelAction = NSLocalizedString("Cancel", comment: "Cancel ActionSheet button title")
+        let alert = self.showAlert(with: nil, message: nil, cancelAction: cancelAction, actions: actions)
+        let deviceObservable = alert.flatMap({ selection -> Observable<Int> in
+            switch selection {
+            case .action(let idx):
+                return Observable.just(idx)
+            case .cancel:
+                return Observable.empty()
+            }
+        })
+        return deviceObservable
     }
 
 }

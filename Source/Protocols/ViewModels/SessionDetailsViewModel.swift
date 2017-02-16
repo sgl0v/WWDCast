@@ -12,10 +12,24 @@ import RxCocoa
 
 protocol SessionDetailsViewModel: class {
     // INPUT
-    func didTapPlaySession() // start the current session payback
-    func didToggleFavorite() // add or remove the session from favorites
+
+    /// add or remove the session from favorites
+    func toggleFavorite()
+
+    /// called when the user picked debice for playback
+    func startPlaybackOnDevice(at index: Int)
 
     // OUTPUT
-    var title: Driver<String> { get } // The view's title
-    var session: Driver<SessionItemViewModel?> { get } // the session to present details for
+
+    /// The view's title
+    var title: Driver<String> { get }
+
+    /// the session to present details for
+    var session: Driver<SessionItemViewModel?> { get }
+
+    /// Provides and array of available devices
+    var devices: Driver<[String]> { get }
+
+    /// Emits when a signup error has occurred and a message should be displayed.
+    var error: Driver<(String?, String)> { get }
 }
