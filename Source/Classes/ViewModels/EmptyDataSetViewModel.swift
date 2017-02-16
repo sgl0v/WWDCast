@@ -9,9 +9,9 @@
 import Foundation
 
 struct EmptyDataSetViewModel {
-    // The title to show when there is no data available
+    /// The title to show when there is no data available
     let title: String
 
-    // The description to show when there is no data available
+    /// The description to show when there is no data available
     let description: String
 }

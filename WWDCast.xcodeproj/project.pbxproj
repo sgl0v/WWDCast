@@ -42,7 +42,7 @@
 		E7121CDD1D9AFFE4003F5DCC /* SessionsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CBD1D9AFFE4003F5DCC /* SessionsSearchViewController.swift */; };
 		E7121CDE1D9AFFE4003F5DCC /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CBE1D9AFFE4003F5DCC /* SessionTableViewCell.swift */; };
 		E7121CDF1D9AFFE4003F5DCC /* WWDCastAssemblyImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CBF1D9AFFE4003F5DCC /* WWDCastAssemblyImpl.swift */; };
-		E7121CE01D9AFFE4003F5DCC /* WWDCastRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CC01D9AFFE4003F5DCC /* WWDCastRouterImpl.swift */; };
+		E7121CE01D9AFFE4003F5DCC /* WWDCastApplicationFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CC01D9AFFE4003F5DCC /* WWDCastApplicationFlowCoordinator.swift */; };
 		E7121CE21D9B0808003F5DCC /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CE11D9B0808003F5DCC /* FilterTableViewCell.swift */; };
 		E7121CE41D9B0847003F5DCC /* FilterItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CE31D9B0847003F5DCC /* FilterItemViewModel.swift */; };
 		E7121CE61D9B0859003F5DCC /* FilterSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CE51D9B0859003F5DCC /* FilterSectionViewModel.swift */; };
@@ -55,7 +55,6 @@
 		E7121D001D9B0935003F5DCC /* SchedulerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF01D9B0935003F5DCC /* SchedulerService.swift */; };
 		E7121D011D9B0935003F5DCC /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF11D9B0935003F5DCC /* ServiceProvider.swift */; };
 		E7121D021D9B0935003F5DCC /* WWDCastAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF21D9B0935003F5DCC /* WWDCastAPI.swift */; };
-		E7121D031D9B0935003F5DCC /* WWDCastRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF41D9B0935003F5DCC /* WWDCastRouter.swift */; };
 		E7121D071D9B0935003F5DCC /* WWDCastAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */; };
 		E7189FA91E55187F003463B0 /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7189FA81E55187F003463B0 /* UIViewController+Common.swift */; };
 		E74FE5D91DC617F200BFD2F5 /* DatabaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5D81DC617F200BFD2F5 /* DatabaseImpl.swift */; };
@@ -140,7 +139,7 @@
 		E7121CBD1D9AFFE4003F5DCC /* SessionsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewController.swift; sourceTree = "<group>"; };
 		E7121CBE1D9AFFE4003F5DCC /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		E7121CBF1D9AFFE4003F5DCC /* WWDCastAssemblyImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAssemblyImpl.swift; sourceTree = "<group>"; };
-		E7121CC01D9AFFE4003F5DCC /* WWDCastRouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastRouterImpl.swift; sourceTree = "<group>"; };
+		E7121CC01D9AFFE4003F5DCC /* WWDCastApplicationFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastApplicationFlowCoordinator.swift; sourceTree = "<group>"; };
 		E7121CE11D9B0808003F5DCC /* FilterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		E7121CE31D9B0847003F5DCC /* FilterItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterItemViewModel.swift; sourceTree = "<group>"; };
 		E7121CE51D9B0859003F5DCC /* FilterSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSectionViewModel.swift; sourceTree = "<group>"; };
@@ -153,7 +152,6 @@
 		E7121CF01D9B0935003F5DCC /* SchedulerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerService.swift; sourceTree = "<group>"; };
 		E7121CF11D9B0935003F5DCC /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		E7121CF21D9B0935003F5DCC /* WWDCastAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAPI.swift; sourceTree = "<group>"; };
-		E7121CF41D9B0935003F5DCC /* WWDCastRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastRouter.swift; sourceTree = "<group>"; };
 		E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAssembly.swift; sourceTree = "<group>"; };
 		E7189FA81E55187F003463B0 /* UIViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		E74FE5D81DC617F200BFD2F5 /* DatabaseImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseImpl.swift; sourceTree = "<group>"; };
@@ -296,7 +294,7 @@
 				E7121CA21D9AFFE4003F5DCC /* Common */,
 				E7951E231DEDEFC700E52146 /* ThirdParty */,
 				E7121CBF1D9AFFE4003F5DCC /* WWDCastAssemblyImpl.swift */,
-				E7121CC01D9AFFE4003F5DCC /* WWDCastRouterImpl.swift */,
+				E7121CC01D9AFFE4003F5DCC /* WWDCastApplicationFlowCoordinator.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -333,8 +331,8 @@
 				E7121CA61D9AFFE4003F5DCC /* UITableView+Common.swift */,
 				E7121CA71D9AFFE4003F5DCC /* TableViewController.swift */,
 				E7951E281DEE088800E52146 /* UIAlertController+Rx.swift */,
-				E7951E2A1DEE0D0300E52146 /* UIImageView+Rx.swift */,
 				E7189FA81E55187F003463B0 /* UIViewController+Common.swift */,
+				E7951E2A1DEE0D0300E52146 /* UIImageView+Rx.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -472,7 +470,6 @@
 				E7DAAFEC1DCBA37E009F18D2 /* Models */,
 				E7121CE71D9B0935003F5DCC /* ViewModels */,
 				E7121CEB1D9B0935003F5DCC /* API */,
-				E7121CF41D9B0935003F5DCC /* WWDCastRouter.swift */,
 				E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */,
 			);
 			path = Protocols;
@@ -714,7 +711,6 @@
 				B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */,
 				E7951E331DEE0ED700E52146 /* GoogleCastMedia.swift in Sources */,
 				E7121CC31D9AFFE4003F5DCC /* ReachabilityServiceImpl.swift in Sources */,
-				E7121D031D9B0935003F5DCC /* WWDCastRouter.swift in Sources */,
 				E777AE131DBA63D80023192A /* FavoriteSessionsViewController.swift in Sources */,
 				E7121CCF1D9AFFE4003F5DCC /* SessionBuilder.swift in Sources */,
 				E7121CDB1D9AFFE4003F5DCC /* FilterViewController.swift in Sources */,
@@ -736,7 +732,7 @@
 				E7951E261DEDEFC700E52146 /* ActivityIndicator.swift in Sources */,
 				E7121D021D9B0935003F5DCC /* WWDCastAPI.swift in Sources */,
 				E7121CCB1D9AFFE4003F5DCC /* UITableView+Common.swift in Sources */,
-				E7121CE01D9AFFE4003F5DCC /* WWDCastRouterImpl.swift in Sources */,
+				E7121CE01D9AFFE4003F5DCC /* WWDCastApplicationFlowCoordinator.swift in Sources */,
 				E7121D001D9B0935003F5DCC /* SchedulerService.swift in Sources */,
 				E74FE5E31DC645F600BFD2F5 /* SessionRecord.swift in Sources */,
 				E7A1506A1DDFB7DC00746769 /* RxGCKSessionManagerListenerProxy.swift in Sources */,

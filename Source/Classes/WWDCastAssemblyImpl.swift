@@ -10,7 +10,7 @@ import UIKit
 
 class WWDCastAssemblyImpl: WWDCastAssembly {
 
-    lazy var api: WWDCastAPI = {
+    private lazy var api: WWDCastAPI = {
         let serviceProvider = ServiceProviderImpl.defaultServiceProvider
         return WWDCastAPIImpl(serviceProvider: serviceProvider)
     }()

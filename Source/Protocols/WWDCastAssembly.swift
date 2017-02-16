@@ -8,12 +8,16 @@
 
 import UIKit
 
+/// The WWDCastAssembly protocol defines factory methods to create MVVM modules
 protocol WWDCastAssembly: class {
-    // Creates UITabBarController
+
+    /// Creates UITabBarController
     func tabBarController() -> UITabBarController
 
+    /// Creates SessionsSearchViewController to browse and search WWDC sessions
     func sessionsSearchController(delegate: SessionsSearchViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController
 
+    /// Creates FavoriteSessionsViewController to browse favorite sessions
     func favoriteSessionsController(delegate: FavoriteSessionsViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController
 
     // Creates SessionDetailsViewController to show the details of the session with specified identifier

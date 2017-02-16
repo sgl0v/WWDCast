@@ -9,7 +9,9 @@
 import UIKit
 import RxSwift
 
+/// The application flow coordinator. Takes responsibility about coordinating view controllers and driving the flow
 class WWDCastApplicationFlowCoordinator {
+
     fileprivate let rootController: UIViewController
     fileprivate var searchNavigationController: UINavigationController!
     fileprivate var favoritesNavigationController: UINavigationController!
@@ -20,6 +22,7 @@ class WWDCastApplicationFlowCoordinator {
         self.assembly = assembly
     }
 
+    /// Creates all necessary dependencies and starts the flow
     func start() {
 
         let searchController = self.assembly.sessionsSearchController(delegate: self, previewProvider: self)
@@ -35,9 +38,7 @@ class WWDCastApplicationFlowCoordinator {
         let tabBarController = self.assembly.tabBarController()
         tabBarController.viewControllers = [searchNavigationController, favoritesNavigationController]
 
-        self.rootController.addChildViewController(tabBarController)
-        self.rootController.view.addSubview(tabBarController.view)
-        tabBarController.didMove(toParentViewController: self.rootController)
+        self.rootController.present(tabBarController, animated: false, completion: nil)
     }
 
 }
