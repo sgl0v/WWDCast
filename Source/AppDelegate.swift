@@ -12,17 +12,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var appCoordinator: WWDCastApplicationFlowCoordinator!
+    var appCoordinator: ApplicationFlowCoordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        let rootViewController = UIViewController()
-        self.window =  UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = rootViewController
-        self.window?.makeKeyAndVisible()
-
-        self.appCoordinator = WWDCastApplicationFlowCoordinator(rootController: rootViewController, assembly: WWDCastAssemblyImpl())
+        let window =  UIWindow(frame: UIScreen.main.bounds)
+        self.appCoordinator = ApplicationFlowCoordinator(window: window, factory: ViewControllerFactory())
         self.appCoordinator.start()
+
+        self.window = window
+        self.window?.makeKeyAndVisible()
 
         return true
     }

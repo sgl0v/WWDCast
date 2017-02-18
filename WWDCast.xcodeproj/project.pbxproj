@@ -12,78 +12,81 @@
 		793BE38BE046FD3EF8742CF9 /* Pods_WWDCastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */; };
 		9E8282ED357ECD3D75624DDB /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */; };
 		B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */; };
-		B6F929E61D2AB0FD009E4B83 /* WWDCEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E31D2AB0FC009E4B83 /* WWDCEnvironment.swift */; };
+		B6F929E61D2AB0FD009E4B83 /* WWDCastEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E31D2AB0FC009E4B83 /* WWDCastEnvironment.swift */; };
 		B6F929EA1D2AB197009E4B83 /* WWDCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E81D2AB111009E4B83 /* WWDCastTests.swift */; };
 		B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */; };
 		B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */; };
-		E7121CC31D9AFFE4003F5DCC /* ReachabilityServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121C9D1D9AFFE4003F5DCC /* ReachabilityServiceImpl.swift */; };
-		E7121CC51D9AFFE4003F5DCC /* SchedulerServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121C9F1D9AFFE4003F5DCC /* SchedulerServiceImpl.swift */; };
-		E7121CC61D9AFFE4003F5DCC /* ServiceProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CA01D9AFFE4003F5DCC /* ServiceProviderImpl.swift */; };
-		E7121CC71D9AFFE4003F5DCC /* WWDCastAPIImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CA11D9AFFE4003F5DCC /* WWDCastAPIImpl.swift */; };
-		E7121CC81D9AFFE4003F5DCC /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CA31D9AFFE4003F5DCC /* RxExtensions.swift */; };
-		E7121CC91D9AFFE4003F5DCC /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CA41D9AFFE4003F5DCC /* RxTableViewCell.swift */; };
-		E7121CCA1D9AFFE4003F5DCC /* UIBarButtonItem+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CA51D9AFFE4003F5DCC /* UIBarButtonItem+Common.swift */; };
-		E7121CCB1D9AFFE4003F5DCC /* UITableView+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CA61D9AFFE4003F5DCC /* UITableView+Common.swift */; };
-		E7121CCC1D9AFFE4003F5DCC /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CA71D9AFFE4003F5DCC /* TableViewController.swift */; };
-		E7121CCD1D9AFFE4003F5DCC /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CA91D9AFFE4003F5DCC /* AppConfig.swift */; };
-		E7121CCE1D9AFFE4003F5DCC /* AppConfigBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CAB1D9AFFE4003F5DCC /* AppConfigBuilder.swift */; };
-		E7121CCF1D9AFFE4003F5DCC /* SessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CAC1D9AFFE4003F5DCC /* SessionBuilder.swift */; };
-		E7121CD01D9AFFE4003F5DCC /* SessionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CAD1D9AFFE4003F5DCC /* SessionsBuilder.swift */; };
-		E7121CD11D9AFFE4003F5DCC /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CAE1D9AFFE4003F5DCC /* Filter.swift */; };
-		E7121CD21D9AFFE4003F5DCC /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CAF1D9AFFE4003F5DCC /* Session.swift */; };
-		E7121CD51D9AFFE4003F5DCC /* FilterViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CB41D9AFFE4003F5DCC /* FilterViewModelImpl.swift */; };
-		E7121CD61D9AFFE4003F5DCC /* SessionDetailsViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CB51D9AFFE4003F5DCC /* SessionDetailsViewModelImpl.swift */; };
-		E7121CD71D9AFFE4003F5DCC /* SessionsSearchViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CB61D9AFFE4003F5DCC /* SessionsSearchViewModelImpl.swift */; };
-		E7121CD81D9AFFE4003F5DCC /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CB71D9AFFE4003F5DCC /* SessionViewModel.swift */; };
-		E7121CD91D9AFFE4003F5DCC /* SessionViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CB81D9AFFE4003F5DCC /* SessionViewModelBuilder.swift */; };
-		E7121CDA1D9AFFE4003F5DCC /* SessionViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CB91D9AFFE4003F5DCC /* SessionViewModels.swift */; };
-		E7121CDB1D9AFFE4003F5DCC /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CBB1D9AFFE4003F5DCC /* FilterViewController.swift */; };
-		E7121CDC1D9AFFE4003F5DCC /* SessionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CBC1D9AFFE4003F5DCC /* SessionDetailsViewController.swift */; };
-		E7121CDD1D9AFFE4003F5DCC /* SessionsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CBD1D9AFFE4003F5DCC /* SessionsSearchViewController.swift */; };
-		E7121CDE1D9AFFE4003F5DCC /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CBE1D9AFFE4003F5DCC /* SessionTableViewCell.swift */; };
-		E7121CDF1D9AFFE4003F5DCC /* WWDCastAssemblyImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CBF1D9AFFE4003F5DCC /* WWDCastAssemblyImpl.swift */; };
-		E7121CE01D9AFFE4003F5DCC /* WWDCastApplicationFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CC01D9AFFE4003F5DCC /* WWDCastApplicationFlowCoordinator.swift */; };
-		E7121CE21D9B0808003F5DCC /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CE11D9B0808003F5DCC /* FilterTableViewCell.swift */; };
-		E7121CE41D9B0847003F5DCC /* FilterItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CE31D9B0847003F5DCC /* FilterItemViewModel.swift */; };
-		E7121CE61D9B0859003F5DCC /* FilterSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CE51D9B0859003F5DCC /* FilterSectionViewModel.swift */; };
-		E7121CFA1D9B0935003F5DCC /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CE81D9B0935003F5DCC /* FilterViewModel.swift */; };
-		E7121CFB1D9B0935003F5DCC /* SessionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CE91D9B0935003F5DCC /* SessionDetailsViewModel.swift */; };
-		E7121CFC1D9B0935003F5DCC /* SessionsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CEA1D9B0935003F5DCC /* SessionsSearchViewModel.swift */; };
-		E7121CFD1D9B0935003F5DCC /* GoogleCastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CED1D9B0935003F5DCC /* GoogleCastService.swift */; };
-		E7121CFE1D9B0935003F5DCC /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CEE1D9B0935003F5DCC /* NetworkService.swift */; };
-		E7121CFF1D9B0935003F5DCC /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CEF1D9B0935003F5DCC /* ReachabilityService.swift */; };
-		E7121D001D9B0935003F5DCC /* SchedulerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF01D9B0935003F5DCC /* SchedulerService.swift */; };
-		E7121D011D9B0935003F5DCC /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF11D9B0935003F5DCC /* ServiceProvider.swift */; };
-		E7121D021D9B0935003F5DCC /* WWDCastAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF21D9B0935003F5DCC /* WWDCastAPI.swift */; };
-		E7121D071D9B0935003F5DCC /* WWDCastAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */; };
-		E7189FA91E55187F003463B0 /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7189FA81E55187F003463B0 /* UIViewController+Common.swift */; };
-		E74FE5D91DC617F200BFD2F5 /* DatabaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5D81DC617F200BFD2F5 /* DatabaseImpl.swift */; };
-		E74FE5DB1DC6183100BFD2F5 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5DA1DC6183100BFD2F5 /* Database.swift */; };
-		E74FE5E31DC645F600BFD2F5 /* SessionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5E11DC645F600BFD2F5 /* SessionRecord.swift */; };
-		E74FE5E41DC645F600BFD2F5 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74FE5E21DC645F600BFD2F5 /* Cache.swift */; };
+		E718A0C01E58E906003463B0 /* SessionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A06C1E58E906003463B0 /* SessionDetailsViewController.swift */; };
+		E718A0C11E58E906003463B0 /* SessionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A06D1E58E906003463B0 /* SessionDetailsViewModel.swift */; };
+		E718A0C21E58E906003463B0 /* SessionDetailsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A06E1E58E906003463B0 /* SessionDetailsViewModelProtocol.swift */; };
+		E718A0C31E58E906003463B0 /* EmptyDataSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0701E58E906003463B0 /* EmptyDataSetView.swift */; };
+		E718A0C41E58E906003463B0 /* EmptyDataSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0711E58E906003463B0 /* EmptyDataSetViewModel.swift */; };
+		E718A0C51E58E906003463B0 /* FavoriteSessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0731E58E906003463B0 /* FavoriteSessionsViewController.swift */; };
+		E718A0C61E58E906003463B0 /* FavoriteSessionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0741E58E906003463B0 /* FavoriteSessionsViewModel.swift */; };
+		E718A0C71E58E906003463B0 /* FavoriteSessionsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0751E58E906003463B0 /* FavoriteSessionsViewModelProtocol.swift */; };
+		E718A0C81E58E906003463B0 /* FilterItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0771E58E906003463B0 /* FilterItemViewModel.swift */; };
+		E718A0C91E58E906003463B0 /* FilterSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0781E58E906003463B0 /* FilterSectionViewModel.swift */; };
+		E718A0CA1E58E906003463B0 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0791E58E906003463B0 /* FilterTableViewCell.swift */; };
+		E718A0CB1E58E906003463B0 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A07A1E58E906003463B0 /* FilterViewController.swift */; };
+		E718A0CC1E58E906003463B0 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A07B1E58E906003463B0 /* FilterViewModel.swift */; };
+		E718A0CD1E58E906003463B0 /* FilterViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A07C1E58E906003463B0 /* FilterViewModelProtocol.swift */; };
+		E718A0CE1E58E906003463B0 /* SessionItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A07E1E58E906003463B0 /* SessionItemViewModel.swift */; };
+		E718A0CF1E58E906003463B0 /* SessionSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A07F1E58E906003463B0 /* SessionSectionViewModel.swift */; };
+		E718A0D01E58E906003463B0 /* SessionSectionViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0801E58E906003463B0 /* SessionSectionViewModelBuilder.swift */; };
+		E718A0D11E58E906003463B0 /* SessionsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0811E58E906003463B0 /* SessionsSearchViewController.swift */; };
+		E718A0D21E58E906003463B0 /* SessionsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0821E58E906003463B0 /* SessionsSearchViewModel.swift */; };
+		E718A0D31E58E906003463B0 /* SessionsSearchViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0831E58E906003463B0 /* SessionsSearchViewModelProtocol.swift */; };
+		E718A0D41E58E906003463B0 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0841E58E906003463B0 /* SessionTableViewCell.swift */; };
+		E718A0D51E58E906003463B0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0851E58E906003463B0 /* TabBarController.swift */; };
+		E718A0D61E58E906003463B0 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0861E58E906003463B0 /* ViewControllerFactory.swift */; };
+		E718A0D71E58E906003463B0 /* ViewControllerFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0871E58E906003463B0 /* ViewControllerFactoryProtocol.swift */; };
+		E718A0D81E58E906003463B0 /* ApplicationFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0891E58E906003463B0 /* ApplicationFlowCoordinator.swift */; };
+		E718A0D91E58E906003463B0 /* FavoritesFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A08A1E58E906003463B0 /* FavoritesFlowCoordinator.swift */; };
+		E718A0DA1E58E906003463B0 /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A08B1E58E906003463B0 /* FlowCoordinator.swift */; };
+		E718A0DB1E58E906003463B0 /* SearchFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A08C1E58E906003463B0 /* SearchFlowCoordinator.swift */; };
+		E718A0DC1E58E906003463B0 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A08F1E58E906003463B0 /* AppConfig.swift */; };
+		E718A0DD1E58E906003463B0 /* AppConfigBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0911E58E906003463B0 /* AppConfigBuilder.swift */; };
+		E718A0DE1E58E906003463B0 /* EntityBuilderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0921E58E906003463B0 /* EntityBuilderType.swift */; };
+		E718A0DF1E58E906003463B0 /* SessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0931E58E906003463B0 /* SessionBuilder.swift */; };
+		E718A0E01E58E906003463B0 /* SessionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0941E58E906003463B0 /* SessionsBuilder.swift */; };
+		E718A0E11E58E906003463B0 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0951E58E906003463B0 /* Filter.swift */; };
+		E718A0E21E58E906003463B0 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0961E58E906003463B0 /* Session.swift */; };
+		E718A0E31E58E906003463B0 /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0991E58E906003463B0 /* DatabaseProtocol.swift */; };
+		E718A0E41E58E906003463B0 /* GoogleCastServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A09A1E58E906003463B0 /* GoogleCastServiceProtocol.swift */; };
+		E718A0E51E58E906003463B0 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A09B1E58E906003463B0 /* NetworkServiceProtocol.swift */; };
+		E718A0E61E58E906003463B0 /* ReachabilityServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A09C1E58E906003463B0 /* ReachabilityServiceProtocol.swift */; };
+		E718A0E71E58E906003463B0 /* SchedulerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A09D1E58E906003463B0 /* SchedulerServiceProtocol.swift */; };
+		E718A0E81E58E906003463B0 /* ServiceProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A09E1E58E906003463B0 /* ServiceProviderProtocol.swift */; };
+		E718A0E91E58E906003463B0 /* WWDCastAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A09F1E58E906003463B0 /* WWDCastAPIProtocol.swift */; };
+		E718A0EA1E58E906003463B0 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0A11E58E906003463B0 /* Database.swift */; };
+		E718A0EB1E58E906003463B0 /* GoogleCastDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0A31E58E906003463B0 /* GoogleCastDevice.swift */; };
+		E718A0EC1E58E906003463B0 /* GoogleCastMedia+GCK.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0A41E58E906003463B0 /* GoogleCastMedia+GCK.swift */; };
+		E718A0ED1E58E906003463B0 /* GoogleCastMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0A51E58E906003463B0 /* GoogleCastMedia.swift */; };
+		E718A0EE1E58E906003463B0 /* GoogleCastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0A61E58E906003463B0 /* GoogleCastService.swift */; };
+		E718A0EF1E58E906003463B0 /* RxGCKRequestDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0A71E58E906003463B0 /* RxGCKRequestDelegateProxy.swift */; };
+		E718A0F01E58E906003463B0 /* RxGCKSessionManagerListenerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0A81E58E906003463B0 /* RxGCKSessionManagerListenerProxy.swift */; };
+		E718A0F11E58E906003463B0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0AA1E58E906003463B0 /* NetworkService.swift */; };
+		E718A0F21E58E906003463B0 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0AB1E58E906003463B0 /* Resource.swift */; };
+		E718A0F31E58E906003463B0 /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0AC1E58E906003463B0 /* ReachabilityService.swift */; };
+		E718A0F41E58E906003463B0 /* SchedulerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0AD1E58E906003463B0 /* SchedulerService.swift */; };
+		E718A0F51E58E906003463B0 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0AE1E58E906003463B0 /* ServiceProvider.swift */; };
+		E718A0F61E58E906003463B0 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B01E58E906003463B0 /* Cache.swift */; };
+		E718A0F71E58E906003463B0 /* Session+RecordConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B11E58E906003463B0 /* Session+RecordConvertable.swift */; };
+		E718A0F81E58E906003463B0 /* SessionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B21E58E906003463B0 /* SessionRecord.swift */; };
+		E718A0F91E58E906003463B0 /* WWDCastAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B31E58E906003463B0 /* WWDCastAPI.swift */; };
+		E718A0FA1E58E906003463B0 /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B51E58E906003463B0 /* RxExtensions.swift */; };
+		E718A0FB1E58E906003463B0 /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B61E58E906003463B0 /* RxTableViewCell.swift */; };
+		E718A0FC1E58E906003463B0 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B71E58E906003463B0 /* TableViewController.swift */; };
+		E718A0FD1E58E906003463B0 /* UIAlertController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B81E58E906003463B0 /* UIAlertController+Rx.swift */; };
+		E718A0FE1E58E906003463B0 /* UIBarButtonItem+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B91E58E906003463B0 /* UIBarButtonItem+Common.swift */; };
+		E718A0FF1E58E906003463B0 /* UIImageView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0BA1E58E906003463B0 /* UIImageView+Rx.swift */; };
+		E718A1001E58E906003463B0 /* UITableView+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0BB1E58E906003463B0 /* UITableView+Common.swift */; };
+		E718A1011E58E906003463B0 /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0BC1E58E906003463B0 /* UIViewController+Common.swift */; };
+		E718A1021E58E906003463B0 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0BE1E58E906003463B0 /* ActivityIndicator.swift */; };
+		E718A1031E58E906003463B0 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0BF1E58E906003463B0 /* Reachability.swift */; };
 		E76BFDCA1DC3FE0900B269B8 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */; };
-		E777AE131DBA63D80023192A /* FavoriteSessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */; };
-		E777AE151DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */; };
-		E777AE171DBA64610023192A /* FavoriteSessionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777AE161DBA64610023192A /* FavoriteSessionsViewModel.swift */; };
-		E7951E261DEDEFC700E52146 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7951E241DEDEFC700E52146 /* ActivityIndicator.swift */; };
-		E7951E271DEDEFC700E52146 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7951E251DEDEFC700E52146 /* Reachability.swift */; };
-		E7951E291DEE088800E52146 /* UIAlertController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7951E281DEE088800E52146 /* UIAlertController+Rx.swift */; };
-		E7951E2B1DEE0D0300E52146 /* UIImageView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7951E2A1DEE0D0300E52146 /* UIImageView+Rx.swift */; };
-		E7951E2E1DEE0E7D00E52146 /* NetworkServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7951E2D1DEE0E7D00E52146 /* NetworkServiceImpl.swift */; };
-		E7951E301DEE0E8C00E52146 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7951E2F1DEE0E8B00E52146 /* Resource.swift */; };
-		E7951E331DEE0ED700E52146 /* GoogleCastMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7951E311DEE0ED700E52146 /* GoogleCastMedia.swift */; };
-		E7951E341DEE0ED700E52146 /* GoogleCastDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7951E321DEE0ED700E52146 /* GoogleCastDevice.swift */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
-		E7A150691DDFB7DC00746769 /* RxGCKRequestDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A150651DDFB7DC00746769 /* RxGCKRequestDelegateProxy.swift */; };
-		E7A1506A1DDFB7DC00746769 /* RxGCKSessionManagerListenerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A150661DDFB7DC00746769 /* RxGCKSessionManagerListenerProxy.swift */; };
-		E7A1506E1DDFBA6E00746769 /* GoogleCastMedia+GCK.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A1506D1DDFBA6E00746769 /* GoogleCastMedia+GCK.swift */; };
-		E7A1506F1DDFBC6500746769 /* GoogleCastServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A150631DDFB7DC00746769 /* GoogleCastServiceImpl.swift */; };
-		E7A150711DE21A6200746769 /* Session+RecordConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A150701DE21A6200746769 /* Session+RecordConvertable.swift */; };
-		E7C27F771DD0F0110082EC45 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C27F761DD0F0110082EC45 /* TabBarController.swift */; };
-		E7C27FA11DD22FBE0082EC45 /* EmptyDataSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C27FA01DD22FBE0082EC45 /* EmptyDataSetView.swift */; };
 		E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */; };
-		E7CEBC0F1E3273900096BB05 /* EmptyDataSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CEBC0E1E3273900096BB05 /* EmptyDataSetViewModel.swift */; };
-		E7DAAFEE1DCBA37E009F18D2 /* EntityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DAAFED1DCBA37E009F18D2 /* EntityBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,80 +111,83 @@
 		B6F929CF1D2A5DD6009E4B83 /* WWDCastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WWDCastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F929D51D2A5DD6009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B6F929E31D2AB0FC009E4B83 /* WWDCEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCEnvironment.swift; sourceTree = "<group>"; };
+		B6F929E31D2AB0FC009E4B83 /* WWDCastEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastEnvironment.swift; sourceTree = "<group>"; };
 		B6F929E81D2AB111009E4B83 /* WWDCastTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastTests.swift; sourceTree = "<group>"; };
 		B6F929EC1D2AB283009E4B83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionTableViewCell.xib; path = Resources/SessionTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7121C9D1D9AFFE4003F5DCC /* ReachabilityServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityServiceImpl.swift; sourceTree = "<group>"; };
-		E7121C9F1D9AFFE4003F5DCC /* SchedulerServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerServiceImpl.swift; sourceTree = "<group>"; };
-		E7121CA01D9AFFE4003F5DCC /* ServiceProviderImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderImpl.swift; sourceTree = "<group>"; };
-		E7121CA11D9AFFE4003F5DCC /* WWDCastAPIImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAPIImpl.swift; sourceTree = "<group>"; };
-		E7121CA31D9AFFE4003F5DCC /* RxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
-		E7121CA41D9AFFE4003F5DCC /* RxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTableViewCell.swift; sourceTree = "<group>"; };
-		E7121CA51D9AFFE4003F5DCC /* UIBarButtonItem+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Common.swift"; sourceTree = "<group>"; };
-		E7121CA61D9AFFE4003F5DCC /* UITableView+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Common.swift"; sourceTree = "<group>"; };
-		E7121CA71D9AFFE4003F5DCC /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		E7121CA91D9AFFE4003F5DCC /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
-		E7121CAB1D9AFFE4003F5DCC /* AppConfigBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigBuilder.swift; sourceTree = "<group>"; };
-		E7121CAC1D9AFFE4003F5DCC /* SessionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionBuilder.swift; sourceTree = "<group>"; };
-		E7121CAD1D9AFFE4003F5DCC /* SessionsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsBuilder.swift; sourceTree = "<group>"; };
-		E7121CAE1D9AFFE4003F5DCC /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
-		E7121CAF1D9AFFE4003F5DCC /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		E7121CB41D9AFFE4003F5DCC /* FilterViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewModelImpl.swift; sourceTree = "<group>"; };
-		E7121CB51D9AFFE4003F5DCC /* SessionDetailsViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewModelImpl.swift; sourceTree = "<group>"; };
-		E7121CB61D9AFFE4003F5DCC /* SessionsSearchViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewModelImpl.swift; sourceTree = "<group>"; };
-		E7121CB71D9AFFE4003F5DCC /* SessionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
-		E7121CB81D9AFFE4003F5DCC /* SessionViewModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionViewModelBuilder.swift; sourceTree = "<group>"; };
-		E7121CB91D9AFFE4003F5DCC /* SessionViewModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionViewModels.swift; sourceTree = "<group>"; };
-		E7121CBB1D9AFFE4003F5DCC /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
-		E7121CBC1D9AFFE4003F5DCC /* SessionDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewController.swift; sourceTree = "<group>"; };
-		E7121CBD1D9AFFE4003F5DCC /* SessionsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewController.swift; sourceTree = "<group>"; };
-		E7121CBE1D9AFFE4003F5DCC /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
-		E7121CBF1D9AFFE4003F5DCC /* WWDCastAssemblyImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAssemblyImpl.swift; sourceTree = "<group>"; };
-		E7121CC01D9AFFE4003F5DCC /* WWDCastApplicationFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastApplicationFlowCoordinator.swift; sourceTree = "<group>"; };
-		E7121CE11D9B0808003F5DCC /* FilterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
-		E7121CE31D9B0847003F5DCC /* FilterItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterItemViewModel.swift; sourceTree = "<group>"; };
-		E7121CE51D9B0859003F5DCC /* FilterSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSectionViewModel.swift; sourceTree = "<group>"; };
-		E7121CE81D9B0935003F5DCC /* FilterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
-		E7121CE91D9B0935003F5DCC /* SessionDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewModel.swift; sourceTree = "<group>"; };
-		E7121CEA1D9B0935003F5DCC /* SessionsSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewModel.swift; sourceTree = "<group>"; };
-		E7121CED1D9B0935003F5DCC /* GoogleCastService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastService.swift; sourceTree = "<group>"; };
-		E7121CEE1D9B0935003F5DCC /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		E7121CEF1D9B0935003F5DCC /* ReachabilityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
-		E7121CF01D9B0935003F5DCC /* SchedulerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerService.swift; sourceTree = "<group>"; };
-		E7121CF11D9B0935003F5DCC /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
-		E7121CF21D9B0935003F5DCC /* WWDCastAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAPI.swift; sourceTree = "<group>"; };
-		E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAssembly.swift; sourceTree = "<group>"; };
-		E7189FA81E55187F003463B0 /* UIViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
-		E74FE5D81DC617F200BFD2F5 /* DatabaseImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseImpl.swift; sourceTree = "<group>"; };
-		E74FE5DA1DC6183100BFD2F5 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
-		E74FE5E11DC645F600BFD2F5 /* SessionRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionRecord.swift; sourceTree = "<group>"; };
-		E74FE5E21DC645F600BFD2F5 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		E718A06C1E58E906003463B0 /* SessionDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewController.swift; sourceTree = "<group>"; };
+		E718A06D1E58E906003463B0 /* SessionDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewModel.swift; sourceTree = "<group>"; };
+		E718A06E1E58E906003463B0 /* SessionDetailsViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewModelProtocol.swift; sourceTree = "<group>"; };
+		E718A0701E58E906003463B0 /* EmptyDataSetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyDataSetView.swift; sourceTree = "<group>"; };
+		E718A0711E58E906003463B0 /* EmptyDataSetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyDataSetViewModel.swift; sourceTree = "<group>"; };
+		E718A0731E58E906003463B0 /* FavoriteSessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewController.swift; sourceTree = "<group>"; };
+		E718A0741E58E906003463B0 /* FavoriteSessionsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModel.swift; sourceTree = "<group>"; };
+		E718A0751E58E906003463B0 /* FavoriteSessionsViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModelProtocol.swift; sourceTree = "<group>"; };
+		E718A0771E58E906003463B0 /* FilterItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterItemViewModel.swift; sourceTree = "<group>"; };
+		E718A0781E58E906003463B0 /* FilterSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSectionViewModel.swift; sourceTree = "<group>"; };
+		E718A0791E58E906003463B0 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
+		E718A07A1E58E906003463B0 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		E718A07B1E58E906003463B0 /* FilterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
+		E718A07C1E58E906003463B0 /* FilterViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewModelProtocol.swift; sourceTree = "<group>"; };
+		E718A07E1E58E906003463B0 /* SessionItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionItemViewModel.swift; sourceTree = "<group>"; };
+		E718A07F1E58E906003463B0 /* SessionSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionSectionViewModel.swift; sourceTree = "<group>"; };
+		E718A0801E58E906003463B0 /* SessionSectionViewModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionSectionViewModelBuilder.swift; sourceTree = "<group>"; };
+		E718A0811E58E906003463B0 /* SessionsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewController.swift; sourceTree = "<group>"; };
+		E718A0821E58E906003463B0 /* SessionsSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewModel.swift; sourceTree = "<group>"; };
+		E718A0831E58E906003463B0 /* SessionsSearchViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewModelProtocol.swift; sourceTree = "<group>"; };
+		E718A0841E58E906003463B0 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
+		E718A0851E58E906003463B0 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		E718A0861E58E906003463B0 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
+		E718A0871E58E906003463B0 /* ViewControllerFactoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerFactoryProtocol.swift; sourceTree = "<group>"; };
+		E718A0891E58E906003463B0 /* ApplicationFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationFlowCoordinator.swift; sourceTree = "<group>"; };
+		E718A08A1E58E906003463B0 /* FavoritesFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesFlowCoordinator.swift; sourceTree = "<group>"; };
+		E718A08B1E58E906003463B0 /* FlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
+		E718A08C1E58E906003463B0 /* SearchFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFlowCoordinator.swift; sourceTree = "<group>"; };
+		E718A08F1E58E906003463B0 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		E718A0911E58E906003463B0 /* AppConfigBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigBuilder.swift; sourceTree = "<group>"; };
+		E718A0921E58E906003463B0 /* EntityBuilderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityBuilderType.swift; sourceTree = "<group>"; };
+		E718A0931E58E906003463B0 /* SessionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionBuilder.swift; sourceTree = "<group>"; };
+		E718A0941E58E906003463B0 /* SessionsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsBuilder.swift; sourceTree = "<group>"; };
+		E718A0951E58E906003463B0 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		E718A0961E58E906003463B0 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		E718A0991E58E906003463B0 /* DatabaseProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
+		E718A09A1E58E906003463B0 /* GoogleCastServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastServiceProtocol.swift; sourceTree = "<group>"; };
+		E718A09B1E58E906003463B0 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		E718A09C1E58E906003463B0 /* ReachabilityServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityServiceProtocol.swift; sourceTree = "<group>"; };
+		E718A09D1E58E906003463B0 /* SchedulerServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerServiceProtocol.swift; sourceTree = "<group>"; };
+		E718A09E1E58E906003463B0 /* ServiceProviderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderProtocol.swift; sourceTree = "<group>"; };
+		E718A09F1E58E906003463B0 /* WWDCastAPIProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAPIProtocol.swift; sourceTree = "<group>"; };
+		E718A0A11E58E906003463B0 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		E718A0A31E58E906003463B0 /* GoogleCastDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDevice.swift; sourceTree = "<group>"; };
+		E718A0A41E58E906003463B0 /* GoogleCastMedia+GCK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GoogleCastMedia+GCK.swift"; sourceTree = "<group>"; };
+		E718A0A51E58E906003463B0 /* GoogleCastMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastMedia.swift; sourceTree = "<group>"; };
+		E718A0A61E58E906003463B0 /* GoogleCastService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastService.swift; sourceTree = "<group>"; };
+		E718A0A71E58E906003463B0 /* RxGCKRequestDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGCKRequestDelegateProxy.swift; sourceTree = "<group>"; };
+		E718A0A81E58E906003463B0 /* RxGCKSessionManagerListenerProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGCKSessionManagerListenerProxy.swift; sourceTree = "<group>"; };
+		E718A0AA1E58E906003463B0 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		E718A0AB1E58E906003463B0 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		E718A0AC1E58E906003463B0 /* ReachabilityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
+		E718A0AD1E58E906003463B0 /* SchedulerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerService.swift; sourceTree = "<group>"; };
+		E718A0AE1E58E906003463B0 /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		E718A0B01E58E906003463B0 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		E718A0B11E58E906003463B0 /* Session+RecordConvertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+RecordConvertable.swift"; sourceTree = "<group>"; };
+		E718A0B21E58E906003463B0 /* SessionRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionRecord.swift; sourceTree = "<group>"; };
+		E718A0B31E58E906003463B0 /* WWDCastAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAPI.swift; sourceTree = "<group>"; };
+		E718A0B51E58E906003463B0 /* RxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
+		E718A0B61E58E906003463B0 /* RxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTableViewCell.swift; sourceTree = "<group>"; };
+		E718A0B71E58E906003463B0 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		E718A0B81E58E906003463B0 /* UIAlertController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Rx.swift"; sourceTree = "<group>"; };
+		E718A0B91E58E906003463B0 /* UIBarButtonItem+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Common.swift"; sourceTree = "<group>"; };
+		E718A0BA1E58E906003463B0 /* UIImageView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Rx.swift"; sourceTree = "<group>"; };
+		E718A0BB1E58E906003463B0 /* UITableView+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Common.swift"; sourceTree = "<group>"; };
+		E718A0BC1E58E906003463B0 /* UIViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
+		E718A0BE1E58E906003463B0 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		E718A0BF1E58E906003463B0 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		E76BFDC71DC3FD7400B269B8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewController.swift; sourceTree = "<group>"; };
-		E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModelImpl.swift; sourceTree = "<group>"; };
-		E777AE161DBA64610023192A /* FavoriteSessionsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModel.swift; sourceTree = "<group>"; };
-		E7951E241DEDEFC700E52146 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
-		E7951E251DEDEFC700E52146 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		E7951E281DEE088800E52146 /* UIAlertController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Rx.swift"; sourceTree = "<group>"; };
-		E7951E2A1DEE0D0300E52146 /* UIImageView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Rx.swift"; sourceTree = "<group>"; };
-		E7951E2D1DEE0E7D00E52146 /* NetworkServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceImpl.swift; sourceTree = "<group>"; };
-		E7951E2F1DEE0E8B00E52146 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
-		E7951E311DEE0ED700E52146 /* GoogleCastMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastMedia.swift; sourceTree = "<group>"; };
-		E7951E321DEE0ED700E52146 /* GoogleCastDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDevice.swift; sourceTree = "<group>"; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
-		E7A150631DDFB7DC00746769 /* GoogleCastServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastServiceImpl.swift; sourceTree = "<group>"; };
-		E7A150651DDFB7DC00746769 /* RxGCKRequestDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGCKRequestDelegateProxy.swift; sourceTree = "<group>"; };
-		E7A150661DDFB7DC00746769 /* RxGCKSessionManagerListenerProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGCKSessionManagerListenerProxy.swift; sourceTree = "<group>"; };
-		E7A1506D1DDFBA6E00746769 /* GoogleCastMedia+GCK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GoogleCastMedia+GCK.swift"; sourceTree = "<group>"; };
-		E7A150701DE21A6200746769 /* Session+RecordConvertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+RecordConvertable.swift"; sourceTree = "<group>"; };
-		E7C27F761DD0F0110082EC45 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		E7C27FA01DD22FBE0082EC45 /* EmptyDataSetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyDataSetView.swift; sourceTree = "<group>"; };
 		E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataSetView.xib; path = Resources/EmptyDataSetView.xib; sourceTree = SOURCE_ROOT; };
-		E7CEBC0E1E3273900096BB05 /* EmptyDataSetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyDataSetViewModel.swift; sourceTree = "<group>"; };
-		E7DAAFED1DCBA37E009F18D2 /* EntityBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityBuilder.swift; sourceTree = "<group>"; };
 		EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -256,10 +262,13 @@
 		B6F929E01D2AB0FC009E4B83 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				E7121C981D9AFFE4003F5DCC /* Classes */,
-				E7AC02931D7E26660090F8A3 /* Protocols */,
+				E718A06A1E58E906003463B0 /* Screens */,
+				E718A0881E58E906003463B0 /* Coordinators */,
+				E718A08D1E58E906003463B0 /* API */,
+				E718A0B41E58E906003463B0 /* Common */,
+				E718A0BD1E58E906003463B0 /* ThirdParty */,
 				B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */,
-				B6F929E31D2AB0FC009E4B83 /* WWDCEnvironment.swift */,
+				B6F929E31D2AB0FC009E4B83 /* WWDCastEnvironment.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -284,203 +293,211 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		E7121C981D9AFFE4003F5DCC /* Classes */ = {
+		E718A06A1E58E906003463B0 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				E7121CA81D9AFFE4003F5DCC /* Models */,
-				E7121CBA1D9AFFE4003F5DCC /* Views */,
-				E7121CB31D9AFFE4003F5DCC /* ViewModels */,
-				E7121C991D9AFFE4003F5DCC /* API */,
-				E7121CA21D9AFFE4003F5DCC /* Common */,
-				E7951E231DEDEFC700E52146 /* ThirdParty */,
-				E7121CBF1D9AFFE4003F5DCC /* WWDCastAssemblyImpl.swift */,
-				E7121CC01D9AFFE4003F5DCC /* WWDCastApplicationFlowCoordinator.swift */,
+				E718A07D1E58E906003463B0 /* Search */,
+				E718A06B1E58E906003463B0 /* Details */,
+				E718A0761E58E906003463B0 /* Filter */,
+				E718A0721E58E906003463B0 /* Favorites */,
+				E718A06F1E58E906003463B0 /* EmptyDataSet */,
+				E718A0851E58E906003463B0 /* TabBarController.swift */,
+				E718A0861E58E906003463B0 /* ViewControllerFactory.swift */,
+				E718A0871E58E906003463B0 /* ViewControllerFactoryProtocol.swift */,
 			);
-			path = Classes;
+			path = Screens;
 			sourceTree = "<group>";
 		};
-		E7121C991D9AFFE4003F5DCC /* API */ = {
+		E718A06B1E58E906003463B0 /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				E7121C9A1D9AFFE4003F5DCC /* Services */,
-				E74FE5E01DC645F600BFD2F5 /* SessionsCache */,
-				E7121CA11D9AFFE4003F5DCC /* WWDCastAPIImpl.swift */,
+				E718A06C1E58E906003463B0 /* SessionDetailsViewController.swift */,
+				E718A06D1E58E906003463B0 /* SessionDetailsViewModel.swift */,
+				E718A06E1E58E906003463B0 /* SessionDetailsViewModelProtocol.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		E718A06F1E58E906003463B0 /* EmptyDataSet */ = {
+			isa = PBXGroup;
+			children = (
+				E718A0701E58E906003463B0 /* EmptyDataSetView.swift */,
+				E718A0711E58E906003463B0 /* EmptyDataSetViewModel.swift */,
+			);
+			path = EmptyDataSet;
+			sourceTree = "<group>";
+		};
+		E718A0721E58E906003463B0 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				E718A0731E58E906003463B0 /* FavoriteSessionsViewController.swift */,
+				E718A0741E58E906003463B0 /* FavoriteSessionsViewModel.swift */,
+				E718A0751E58E906003463B0 /* FavoriteSessionsViewModelProtocol.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		E718A0761E58E906003463B0 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				E718A0771E58E906003463B0 /* FilterItemViewModel.swift */,
+				E718A0781E58E906003463B0 /* FilterSectionViewModel.swift */,
+				E718A0791E58E906003463B0 /* FilterTableViewCell.swift */,
+				E718A07A1E58E906003463B0 /* FilterViewController.swift */,
+				E718A07B1E58E906003463B0 /* FilterViewModel.swift */,
+				E718A07C1E58E906003463B0 /* FilterViewModelProtocol.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		E718A07D1E58E906003463B0 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				E718A0811E58E906003463B0 /* SessionsSearchViewController.swift */,
+				E718A0821E58E906003463B0 /* SessionsSearchViewModel.swift */,
+				E718A0831E58E906003463B0 /* SessionsSearchViewModelProtocol.swift */,
+				E718A0841E58E906003463B0 /* SessionTableViewCell.swift */,
+				E718A07E1E58E906003463B0 /* SessionItemViewModel.swift */,
+				E718A07F1E58E906003463B0 /* SessionSectionViewModel.swift */,
+				E718A0801E58E906003463B0 /* SessionSectionViewModelBuilder.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		E718A0881E58E906003463B0 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				E718A08B1E58E906003463B0 /* FlowCoordinator.swift */,
+				E718A0891E58E906003463B0 /* ApplicationFlowCoordinator.swift */,
+				E718A08A1E58E906003463B0 /* FavoritesFlowCoordinator.swift */,
+				E718A08C1E58E906003463B0 /* SearchFlowCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		E718A08D1E58E906003463B0 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E718A08E1E58E906003463B0 /* Entities */,
+				E718A0971E58E906003463B0 /* Protocols */,
+				E718A0A01E58E906003463B0 /* Services */,
+				E718A0AF1E58E906003463B0 /* SessionsCache */,
+				E718A0B31E58E906003463B0 /* WWDCastAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
 		};
-		E7121C9A1D9AFFE4003F5DCC /* Services */ = {
+		E718A08E1E58E906003463B0 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				E7A150621DDFB7DC00746769 /* GoogleCastService */,
-				E7951E2C1DEE0E7D00E52146 /* NetworkService */,
-				E7121C9D1D9AFFE4003F5DCC /* ReachabilityServiceImpl.swift */,
-				E7121C9F1D9AFFE4003F5DCC /* SchedulerServiceImpl.swift */,
-				E7121CA01D9AFFE4003F5DCC /* ServiceProviderImpl.swift */,
-				E74FE5D81DC617F200BFD2F5 /* DatabaseImpl.swift */,
+				E718A08F1E58E906003463B0 /* AppConfig.swift */,
+				E718A0901E58E906003463B0 /* Builders */,
+				E718A0951E58E906003463B0 /* Filter.swift */,
+				E718A0961E58E906003463B0 /* Session.swift */,
 			);
-			path = Services;
+			path = Entities;
 			sourceTree = "<group>";
 		};
-		E7121CA21D9AFFE4003F5DCC /* Common */ = {
+		E718A0901E58E906003463B0 /* Builders */ = {
 			isa = PBXGroup;
 			children = (
-				E7121CA31D9AFFE4003F5DCC /* RxExtensions.swift */,
-				E7121CA41D9AFFE4003F5DCC /* RxTableViewCell.swift */,
-				E7121CA51D9AFFE4003F5DCC /* UIBarButtonItem+Common.swift */,
-				E7121CA61D9AFFE4003F5DCC /* UITableView+Common.swift */,
-				E7121CA71D9AFFE4003F5DCC /* TableViewController.swift */,
-				E7951E281DEE088800E52146 /* UIAlertController+Rx.swift */,
-				E7189FA81E55187F003463B0 /* UIViewController+Common.swift */,
-				E7951E2A1DEE0D0300E52146 /* UIImageView+Rx.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		E7121CA81D9AFFE4003F5DCC /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E7121CAA1D9AFFE4003F5DCC /* Builders */,
-				E7121CA91D9AFFE4003F5DCC /* AppConfig.swift */,
-				E7121CAE1D9AFFE4003F5DCC /* Filter.swift */,
-				E7121CAF1D9AFFE4003F5DCC /* Session.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		E7121CAA1D9AFFE4003F5DCC /* Builders */ = {
-			isa = PBXGroup;
-			children = (
-				E7121CAB1D9AFFE4003F5DCC /* AppConfigBuilder.swift */,
-				E7121CAC1D9AFFE4003F5DCC /* SessionBuilder.swift */,
-				E7121CAD1D9AFFE4003F5DCC /* SessionsBuilder.swift */,
+				E718A0911E58E906003463B0 /* AppConfigBuilder.swift */,
+				E718A0921E58E906003463B0 /* EntityBuilderType.swift */,
+				E718A0931E58E906003463B0 /* SessionBuilder.swift */,
+				E718A0941E58E906003463B0 /* SessionsBuilder.swift */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
 		};
-		E7121CB31D9AFFE4003F5DCC /* ViewModels */ = {
+		E718A0971E58E906003463B0 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				E7121CB41D9AFFE4003F5DCC /* FilterViewModelImpl.swift */,
-				E7121CE31D9B0847003F5DCC /* FilterItemViewModel.swift */,
-				E7121CE51D9B0859003F5DCC /* FilterSectionViewModel.swift */,
-				E7121CB51D9AFFE4003F5DCC /* SessionDetailsViewModelImpl.swift */,
-				E7121CB61D9AFFE4003F5DCC /* SessionsSearchViewModelImpl.swift */,
-				E777AE141DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift */,
-				E7121CB71D9AFFE4003F5DCC /* SessionViewModel.swift */,
-				E7121CB81D9AFFE4003F5DCC /* SessionViewModelBuilder.swift */,
-				E7121CB91D9AFFE4003F5DCC /* SessionViewModels.swift */,
-				E7CEBC0E1E3273900096BB05 /* EmptyDataSetViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		E7121CBA1D9AFFE4003F5DCC /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				E7121CBB1D9AFFE4003F5DCC /* FilterViewController.swift */,
-				E7121CE11D9B0808003F5DCC /* FilterTableViewCell.swift */,
-				E7121CBC1D9AFFE4003F5DCC /* SessionDetailsViewController.swift */,
-				E7121CBD1D9AFFE4003F5DCC /* SessionsSearchViewController.swift */,
-				E7121CBE1D9AFFE4003F5DCC /* SessionTableViewCell.swift */,
-				E777AE121DBA63D80023192A /* FavoriteSessionsViewController.swift */,
-				E7C27F761DD0F0110082EC45 /* TabBarController.swift */,
-				E7C27FA01DD22FBE0082EC45 /* EmptyDataSetView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		E7121CE71D9B0935003F5DCC /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				E7121CE81D9B0935003F5DCC /* FilterViewModel.swift */,
-				E7121CE91D9B0935003F5DCC /* SessionDetailsViewModel.swift */,
-				E7121CEA1D9B0935003F5DCC /* SessionsSearchViewModel.swift */,
-				E777AE161DBA64610023192A /* FavoriteSessionsViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		E7121CEB1D9B0935003F5DCC /* API */ = {
-			isa = PBXGroup;
-			children = (
-				E7121CEC1D9B0935003F5DCC /* Services */,
-				E7121CF21D9B0935003F5DCC /* WWDCastAPI.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		E7121CEC1D9B0935003F5DCC /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				E7121CED1D9B0935003F5DCC /* GoogleCastService.swift */,
-				E7121CEE1D9B0935003F5DCC /* NetworkService.swift */,
-				E7121CEF1D9B0935003F5DCC /* ReachabilityService.swift */,
-				E7121CF01D9B0935003F5DCC /* SchedulerService.swift */,
-				E7121CF11D9B0935003F5DCC /* ServiceProvider.swift */,
-				E74FE5DA1DC6183100BFD2F5 /* Database.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		E74FE5E01DC645F600BFD2F5 /* SessionsCache */ = {
-			isa = PBXGroup;
-			children = (
-				E74FE5E11DC645F600BFD2F5 /* SessionRecord.swift */,
-				E74FE5E21DC645F600BFD2F5 /* Cache.swift */,
-				E7A150701DE21A6200746769 /* Session+RecordConvertable.swift */,
-			);
-			path = SessionsCache;
-			sourceTree = "<group>";
-		};
-		E7951E231DEDEFC700E52146 /* ThirdParty */ = {
-			isa = PBXGroup;
-			children = (
-				E7951E241DEDEFC700E52146 /* ActivityIndicator.swift */,
-				E7951E251DEDEFC700E52146 /* Reachability.swift */,
-			);
-			path = ThirdParty;
-			sourceTree = "<group>";
-		};
-		E7951E2C1DEE0E7D00E52146 /* NetworkService */ = {
-			isa = PBXGroup;
-			children = (
-				E7951E2F1DEE0E8B00E52146 /* Resource.swift */,
-				E7951E2D1DEE0E7D00E52146 /* NetworkServiceImpl.swift */,
-			);
-			path = NetworkService;
-			sourceTree = "<group>";
-		};
-		E7A150621DDFB7DC00746769 /* GoogleCastService */ = {
-			isa = PBXGroup;
-			children = (
-				E7951E311DEE0ED700E52146 /* GoogleCastMedia.swift */,
-				E7951E321DEE0ED700E52146 /* GoogleCastDevice.swift */,
-				E7A150631DDFB7DC00746769 /* GoogleCastServiceImpl.swift */,
-				E7A150651DDFB7DC00746769 /* RxGCKRequestDelegateProxy.swift */,
-				E7A150661DDFB7DC00746769 /* RxGCKSessionManagerListenerProxy.swift */,
-				E7A1506D1DDFBA6E00746769 /* GoogleCastMedia+GCK.swift */,
-			);
-			path = GoogleCastService;
-			sourceTree = "<group>";
-		};
-		E7AC02931D7E26660090F8A3 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				E7DAAFEC1DCBA37E009F18D2 /* Models */,
-				E7121CE71D9B0935003F5DCC /* ViewModels */,
-				E7121CEB1D9B0935003F5DCC /* API */,
-				E7121CF91D9B0935003F5DCC /* WWDCastAssembly.swift */,
+				E718A0981E58E906003463B0 /* Services */,
+				E718A09F1E58E906003463B0 /* WWDCastAPIProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		E7DAAFEC1DCBA37E009F18D2 /* Models */ = {
+		E718A0981E58E906003463B0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				E7DAAFED1DCBA37E009F18D2 /* EntityBuilder.swift */,
+				E718A0991E58E906003463B0 /* DatabaseProtocol.swift */,
+				E718A09A1E58E906003463B0 /* GoogleCastServiceProtocol.swift */,
+				E718A09B1E58E906003463B0 /* NetworkServiceProtocol.swift */,
+				E718A09C1E58E906003463B0 /* ReachabilityServiceProtocol.swift */,
+				E718A09D1E58E906003463B0 /* SchedulerServiceProtocol.swift */,
+				E718A09E1E58E906003463B0 /* ServiceProviderProtocol.swift */,
 			);
-			path = Models;
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E718A0A01E58E906003463B0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E718A0A11E58E906003463B0 /* Database.swift */,
+				E718A0A21E58E906003463B0 /* GoogleCastService */,
+				E718A0A91E58E906003463B0 /* NetworkService */,
+				E718A0AC1E58E906003463B0 /* ReachabilityService.swift */,
+				E718A0AD1E58E906003463B0 /* SchedulerService.swift */,
+				E718A0AE1E58E906003463B0 /* ServiceProvider.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E718A0A21E58E906003463B0 /* GoogleCastService */ = {
+			isa = PBXGroup;
+			children = (
+				E718A0A31E58E906003463B0 /* GoogleCastDevice.swift */,
+				E718A0A41E58E906003463B0 /* GoogleCastMedia+GCK.swift */,
+				E718A0A51E58E906003463B0 /* GoogleCastMedia.swift */,
+				E718A0A61E58E906003463B0 /* GoogleCastService.swift */,
+				E718A0A71E58E906003463B0 /* RxGCKRequestDelegateProxy.swift */,
+				E718A0A81E58E906003463B0 /* RxGCKSessionManagerListenerProxy.swift */,
+			);
+			path = GoogleCastService;
+			sourceTree = "<group>";
+		};
+		E718A0A91E58E906003463B0 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				E718A0AA1E58E906003463B0 /* NetworkService.swift */,
+				E718A0AB1E58E906003463B0 /* Resource.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		E718A0AF1E58E906003463B0 /* SessionsCache */ = {
+			isa = PBXGroup;
+			children = (
+				E718A0B01E58E906003463B0 /* Cache.swift */,
+				E718A0B11E58E906003463B0 /* Session+RecordConvertable.swift */,
+				E718A0B21E58E906003463B0 /* SessionRecord.swift */,
+			);
+			path = SessionsCache;
+			sourceTree = "<group>";
+		};
+		E718A0B41E58E906003463B0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E718A0B51E58E906003463B0 /* RxExtensions.swift */,
+				E718A0B61E58E906003463B0 /* RxTableViewCell.swift */,
+				E718A0B71E58E906003463B0 /* TableViewController.swift */,
+				E718A0B81E58E906003463B0 /* UIAlertController+Rx.swift */,
+				E718A0B91E58E906003463B0 /* UIBarButtonItem+Common.swift */,
+				E718A0BA1E58E906003463B0 /* UIImageView+Rx.swift */,
+				E718A0BB1E58E906003463B0 /* UITableView+Common.swift */,
+				E718A0BC1E58E906003463B0 /* UIViewController+Common.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E718A0BD1E58E906003463B0 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				E718A0BE1E58E906003463B0 /* ActivityIndicator.swift */,
+				E718A0BF1E58E906003463B0 /* Reachability.swift */,
+			);
+			path = ThirdParty;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -703,73 +720,76 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7121CD81D9AFFE4003F5DCC /* SessionViewModel.swift in Sources */,
-				E7A1506F1DDFBC6500746769 /* GoogleCastServiceImpl.swift in Sources */,
-				E7121CFD1D9B0935003F5DCC /* GoogleCastService.swift in Sources */,
-				E7951E301DEE0E8C00E52146 /* Resource.swift in Sources */,
-				E7C27F771DD0F0110082EC45 /* TabBarController.swift in Sources */,
+				E718A0D01E58E906003463B0 /* SessionSectionViewModelBuilder.swift in Sources */,
+				E718A0EC1E58E906003463B0 /* GoogleCastMedia+GCK.swift in Sources */,
+				E718A0CB1E58E906003463B0 /* FilterViewController.swift in Sources */,
+				E718A0C61E58E906003463B0 /* FavoriteSessionsViewModel.swift in Sources */,
+				E718A0D71E58E906003463B0 /* ViewControllerFactoryProtocol.swift in Sources */,
+				E718A0E51E58E906003463B0 /* NetworkServiceProtocol.swift in Sources */,
+				E718A0F91E58E906003463B0 /* WWDCastAPI.swift in Sources */,
+				E718A0C71E58E906003463B0 /* FavoriteSessionsViewModelProtocol.swift in Sources */,
+				E718A0CA1E58E906003463B0 /* FilterTableViewCell.swift in Sources */,
+				E718A0C91E58E906003463B0 /* FilterSectionViewModel.swift in Sources */,
+				E718A0EF1E58E906003463B0 /* RxGCKRequestDelegateProxy.swift in Sources */,
+				E718A0FB1E58E906003463B0 /* RxTableViewCell.swift in Sources */,
+				E718A0C41E58E906003463B0 /* EmptyDataSetViewModel.swift in Sources */,
 				B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */,
-				E7951E331DEE0ED700E52146 /* GoogleCastMedia.swift in Sources */,
-				E7121CC31D9AFFE4003F5DCC /* ReachabilityServiceImpl.swift in Sources */,
-				E777AE131DBA63D80023192A /* FavoriteSessionsViewController.swift in Sources */,
-				E7121CCF1D9AFFE4003F5DCC /* SessionBuilder.swift in Sources */,
-				E7121CDB1D9AFFE4003F5DCC /* FilterViewController.swift in Sources */,
-				E7121CFA1D9B0935003F5DCC /* FilterViewModel.swift in Sources */,
-				E777AE151DBA640F0023192A /* FavoriteSessionsViewModelImpl.swift in Sources */,
-				E7951E2B1DEE0D0300E52146 /* UIImageView+Rx.swift in Sources */,
-				E7121CCD1D9AFFE4003F5DCC /* AppConfig.swift in Sources */,
-				E7951E271DEDEFC700E52146 /* Reachability.swift in Sources */,
-				E7121CC81D9AFFE4003F5DCC /* RxExtensions.swift in Sources */,
-				E7121CFC1D9B0935003F5DCC /* SessionsSearchViewModel.swift in Sources */,
-				E7121CDD1D9AFFE4003F5DCC /* SessionsSearchViewController.swift in Sources */,
-				E7A1506E1DDFBA6E00746769 /* GoogleCastMedia+GCK.swift in Sources */,
-				E7C27FA11DD22FBE0082EC45 /* EmptyDataSetView.swift in Sources */,
-				E74FE5DB1DC6183100BFD2F5 /* Database.swift in Sources */,
-				E74FE5D91DC617F200BFD2F5 /* DatabaseImpl.swift in Sources */,
-				E7121CFB1D9B0935003F5DCC /* SessionDetailsViewModel.swift in Sources */,
-				E7189FA91E55187F003463B0 /* UIViewController+Common.swift in Sources */,
-				E777AE171DBA64610023192A /* FavoriteSessionsViewModel.swift in Sources */,
-				E7951E261DEDEFC700E52146 /* ActivityIndicator.swift in Sources */,
-				E7121D021D9B0935003F5DCC /* WWDCastAPI.swift in Sources */,
-				E7121CCB1D9AFFE4003F5DCC /* UITableView+Common.swift in Sources */,
-				E7121CE01D9AFFE4003F5DCC /* WWDCastApplicationFlowCoordinator.swift in Sources */,
-				E7121D001D9B0935003F5DCC /* SchedulerService.swift in Sources */,
-				E74FE5E31DC645F600BFD2F5 /* SessionRecord.swift in Sources */,
-				E7A1506A1DDFB7DC00746769 /* RxGCKSessionManagerListenerProxy.swift in Sources */,
-				E7121CD11D9AFFE4003F5DCC /* Filter.swift in Sources */,
-				E7951E2E1DEE0E7D00E52146 /* NetworkServiceImpl.swift in Sources */,
-				E7121CD21D9AFFE4003F5DCC /* Session.swift in Sources */,
-				E7121CD01D9AFFE4003F5DCC /* SessionsBuilder.swift in Sources */,
-				E7121D011D9B0935003F5DCC /* ServiceProvider.swift in Sources */,
-				E7951E291DEE088800E52146 /* UIAlertController+Rx.swift in Sources */,
-				E7CEBC0F1E3273900096BB05 /* EmptyDataSetViewModel.swift in Sources */,
-				E7121CFF1D9B0935003F5DCC /* ReachabilityService.swift in Sources */,
-				E7121CE41D9B0847003F5DCC /* FilterItemViewModel.swift in Sources */,
-				E7121CC91D9AFFE4003F5DCC /* RxTableViewCell.swift in Sources */,
-				E7121CE21D9B0808003F5DCC /* FilterTableViewCell.swift in Sources */,
-				E7121CD51D9AFFE4003F5DCC /* FilterViewModelImpl.swift in Sources */,
-				E7121D071D9B0935003F5DCC /* WWDCastAssembly.swift in Sources */,
-				B6F929E61D2AB0FD009E4B83 /* WWDCEnvironment.swift in Sources */,
-				E7A150691DDFB7DC00746769 /* RxGCKRequestDelegateProxy.swift in Sources */,
-				E7121CC61D9AFFE4003F5DCC /* ServiceProviderImpl.swift in Sources */,
-				E7121CDF1D9AFFE4003F5DCC /* WWDCastAssemblyImpl.swift in Sources */,
-				E7951E341DEE0ED700E52146 /* GoogleCastDevice.swift in Sources */,
-				E7121CD91D9AFFE4003F5DCC /* SessionViewModelBuilder.swift in Sources */,
-				E7121CCA1D9AFFE4003F5DCC /* UIBarButtonItem+Common.swift in Sources */,
-				E7121CDA1D9AFFE4003F5DCC /* SessionViewModels.swift in Sources */,
-				E7A150711DE21A6200746769 /* Session+RecordConvertable.swift in Sources */,
-				E7121CDE1D9AFFE4003F5DCC /* SessionTableViewCell.swift in Sources */,
-				E7121CC71D9AFFE4003F5DCC /* WWDCastAPIImpl.swift in Sources */,
-				E7121CFE1D9B0935003F5DCC /* NetworkService.swift in Sources */,
-				E7DAAFEE1DCBA37E009F18D2 /* EntityBuilder.swift in Sources */,
-				E7121CCC1D9AFFE4003F5DCC /* TableViewController.swift in Sources */,
-				E74FE5E41DC645F600BFD2F5 /* Cache.swift in Sources */,
-				E7121CD71D9AFFE4003F5DCC /* SessionsSearchViewModelImpl.swift in Sources */,
-				E7121CE61D9B0859003F5DCC /* FilterSectionViewModel.swift in Sources */,
-				E7121CC51D9AFFE4003F5DCC /* SchedulerServiceImpl.swift in Sources */,
-				E7121CD61D9AFFE4003F5DCC /* SessionDetailsViewModelImpl.swift in Sources */,
-				E7121CDC1D9AFFE4003F5DCC /* SessionDetailsViewController.swift in Sources */,
-				E7121CCE1D9AFFE4003F5DCC /* AppConfigBuilder.swift in Sources */,
+				E718A0D21E58E906003463B0 /* SessionsSearchViewModel.swift in Sources */,
+				E718A1001E58E906003463B0 /* UITableView+Common.swift in Sources */,
+				E718A0D51E58E906003463B0 /* TabBarController.swift in Sources */,
+				E718A0CC1E58E906003463B0 /* FilterViewModel.swift in Sources */,
+				E718A0EB1E58E906003463B0 /* GoogleCastDevice.swift in Sources */,
+				E718A0C01E58E906003463B0 /* SessionDetailsViewController.swift in Sources */,
+				E718A0D41E58E906003463B0 /* SessionTableViewCell.swift in Sources */,
+				E718A0D31E58E906003463B0 /* SessionsSearchViewModelProtocol.swift in Sources */,
+				E718A0DD1E58E906003463B0 /* AppConfigBuilder.swift in Sources */,
+				E718A0FA1E58E906003463B0 /* RxExtensions.swift in Sources */,
+				E718A0F11E58E906003463B0 /* NetworkService.swift in Sources */,
+				E718A1011E58E906003463B0 /* UIViewController+Common.swift in Sources */,
+				E718A0F01E58E906003463B0 /* RxGCKSessionManagerListenerProxy.swift in Sources */,
+				E718A0D81E58E906003463B0 /* ApplicationFlowCoordinator.swift in Sources */,
+				E718A1031E58E906003463B0 /* Reachability.swift in Sources */,
+				E718A0D91E58E906003463B0 /* FavoritesFlowCoordinator.swift in Sources */,
+				E718A0E41E58E906003463B0 /* GoogleCastServiceProtocol.swift in Sources */,
+				E718A0C81E58E906003463B0 /* FilterItemViewModel.swift in Sources */,
+				E718A0E61E58E906003463B0 /* ReachabilityServiceProtocol.swift in Sources */,
+				E718A0DE1E58E906003463B0 /* EntityBuilderType.swift in Sources */,
+				E718A0DC1E58E906003463B0 /* AppConfig.swift in Sources */,
+				E718A0FE1E58E906003463B0 /* UIBarButtonItem+Common.swift in Sources */,
+				E718A0C21E58E906003463B0 /* SessionDetailsViewModelProtocol.swift in Sources */,
+				E718A0F21E58E906003463B0 /* Resource.swift in Sources */,
+				E718A0D61E58E906003463B0 /* ViewControllerFactory.swift in Sources */,
+				E718A0EA1E58E906003463B0 /* Database.swift in Sources */,
+				E718A0FD1E58E906003463B0 /* UIAlertController+Rx.swift in Sources */,
+				E718A0CF1E58E906003463B0 /* SessionSectionViewModel.swift in Sources */,
+				E718A0D11E58E906003463B0 /* SessionsSearchViewController.swift in Sources */,
+				E718A0E11E58E906003463B0 /* Filter.swift in Sources */,
+				E718A0CE1E58E906003463B0 /* SessionItemViewModel.swift in Sources */,
+				E718A0E81E58E906003463B0 /* ServiceProviderProtocol.swift in Sources */,
+				E718A0C11E58E906003463B0 /* SessionDetailsViewModel.swift in Sources */,
+				E718A0E91E58E906003463B0 /* WWDCastAPIProtocol.swift in Sources */,
+				E718A0FC1E58E906003463B0 /* TableViewController.swift in Sources */,
+				E718A0E71E58E906003463B0 /* SchedulerServiceProtocol.swift in Sources */,
+				E718A0E21E58E906003463B0 /* Session.swift in Sources */,
+				E718A0F81E58E906003463B0 /* SessionRecord.swift in Sources */,
+				E718A0CD1E58E906003463B0 /* FilterViewModelProtocol.swift in Sources */,
+				E718A0C51E58E906003463B0 /* FavoriteSessionsViewController.swift in Sources */,
+				E718A0ED1E58E906003463B0 /* GoogleCastMedia.swift in Sources */,
+				E718A0E01E58E906003463B0 /* SessionsBuilder.swift in Sources */,
+				E718A0DB1E58E906003463B0 /* SearchFlowCoordinator.swift in Sources */,
+				E718A0EE1E58E906003463B0 /* GoogleCastService.swift in Sources */,
+				E718A0DA1E58E906003463B0 /* FlowCoordinator.swift in Sources */,
+				E718A1021E58E906003463B0 /* ActivityIndicator.swift in Sources */,
+				E718A0FF1E58E906003463B0 /* UIImageView+Rx.swift in Sources */,
+				E718A0F61E58E906003463B0 /* Cache.swift in Sources */,
+				B6F929E61D2AB0FD009E4B83 /* WWDCastEnvironment.swift in Sources */,
+				E718A0F71E58E906003463B0 /* Session+RecordConvertable.swift in Sources */,
+				E718A0F51E58E906003463B0 /* ServiceProvider.swift in Sources */,
+				E718A0DF1E58E906003463B0 /* SessionBuilder.swift in Sources */,
+				E718A0E31E58E906003463B0 /* DatabaseProtocol.swift in Sources */,
+				E718A0F31E58E906003463B0 /* ReachabilityService.swift in Sources */,
+				E718A0F41E58E906003463B0 /* SchedulerService.swift in Sources */,
+				E718A0C31E58E906003463B0 /* EmptyDataSetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
