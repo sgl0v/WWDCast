@@ -34,7 +34,7 @@ final class Database: DatabaseProtocol {
     func fetch<R: RowConvertible & TableMapping>() -> [R] {
         var result = [R]()
         perform { db in
-            result = R.fetchAll(db)
+            result = try R.fetchAll(db)
         }
         return result
     }

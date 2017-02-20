@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0368EE34C657ED46DDCE25D3 /* Pods_WWDCastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */; };
 		5E2680961D2C43440054E90B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E2680951D2C43440054E90B /* Assets.xcassets */; };
 		5E89B1D61D480B6300E611AC /* SessionDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */; };
-		793BE38BE046FD3EF8742CF9 /* Pods_WWDCastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */; };
-		9E8282ED357ECD3D75624DDB /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */; };
 		B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */; };
 		B6F929E61D2AB0FD009E4B83 /* WWDCastEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E31D2AB0FC009E4B83 /* WWDCastEnvironment.swift */; };
-		B6F929EA1D2AB197009E4B83 /* WWDCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E81D2AB111009E4B83 /* WWDCastTests.swift */; };
+		B6F929EA1D2AB197009E4B83 /* SearchFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E81D2AB111009E4B83 /* SearchFlowCoordinatorTests.swift */; };
 		B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */; };
 		B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */; };
 		E718A0C01E58E906003463B0 /* SessionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A06C1E58E906003463B0 /* SessionDetailsViewController.swift */; };
@@ -84,9 +83,13 @@
 		E718A1011E58E906003463B0 /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0BC1E58E906003463B0 /* UIViewController+Common.swift */; };
 		E718A1021E58E906003463B0 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0BE1E58E906003463B0 /* ActivityIndicator.swift */; };
 		E718A1031E58E906003463B0 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0BF1E58E906003463B0 /* Reachability.swift */; };
+		E718A10A1E5900BE003463B0 /* MockSessionsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A1081E58FC27003463B0 /* MockSessionsSearchViewModel.swift */; };
+		E718A10B1E5900C1003463B0 /* MockViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A1061E58F7F3003463B0 /* MockViewControllerFactory.swift */; };
+		E73CA1441E5B717600CFE933 /* WWDCastEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73CA1431E5B717600CFE933 /* WWDCastEndpoint.swift */; };
 		E76BFDCA1DC3FE0900B269B8 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
 		E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */; };
+		EFE1B5FC98F16067BBB5DFAE /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,17 +105,19 @@
 /* Begin PBXFileReference section */
 		057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		081F76A23C03510729799A91 /* Pods-WWDCast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.release.xcconfig"; sourceTree = "<group>"; };
+		0F296124C6052AB9AF4576B0 /* Pods-Tests-WWDCastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-WWDCastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-WWDCastTests/Pods-Tests-WWDCastTests.release.xcconfig"; sourceTree = "<group>"; };
 		218FDCB7EB2025EE42E172F6 /* Pods-WWDCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4A6EBFABAC79034FF2973338 /* Pods-WWDCastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.release.xcconfig"; sourceTree = "<group>"; };
 		5E2680951D2C43440054E90B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionDetailsViewController.xib; path = Resources/SessionDetailsViewController.xib; sourceTree = SOURCE_ROOT; };
+		7D60F791C276BA391873661A /* Pods_Tests_WWDCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_WWDCastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F929BB1D2A5DD5009E4B83 /* WWDCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWDCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F929CA1D2A5DD5009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		B6F929CF1D2A5DD6009E4B83 /* WWDCastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WWDCastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F929D51D2A5DD6009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6F929E31D2AB0FC009E4B83 /* WWDCastEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastEnvironment.swift; sourceTree = "<group>"; };
-		B6F929E81D2AB111009E4B83 /* WWDCastTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastTests.swift; sourceTree = "<group>"; };
+		B6F929E81D2AB111009E4B83 /* SearchFlowCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFlowCoordinatorTests.swift; sourceTree = "<group>"; };
 		B6F929EC1D2AB283009E4B83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionTableViewCell.xib; path = Resources/SessionTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,10 +189,14 @@
 		E718A0BC1E58E906003463B0 /* UIViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		E718A0BE1E58E906003463B0 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		E718A0BF1E58E906003463B0 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		E718A1061E58F7F3003463B0 /* MockViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockViewControllerFactory.swift; sourceTree = "<group>"; };
+		E718A1081E58FC27003463B0 /* MockSessionsSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSessionsSearchViewModel.swift; sourceTree = "<group>"; };
+		E73CA1431E5B717600CFE933 /* WWDCastEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastEndpoint.swift; sourceTree = "<group>"; };
 		E76BFDC71DC3FD7400B269B8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataSetView.xib; path = Resources/EmptyDataSetView.xib; sourceTree = SOURCE_ROOT; };
+		EBF25D25558B02375133B1A5 /* Pods-Tests-WWDCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-WWDCastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-WWDCastTests/Pods-Tests-WWDCastTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,7 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E76BFDCA1DC3FE0900B269B8 /* libsqlite3.0.tbd in Frameworks */,
-				9E8282ED357ECD3D75624DDB /* Pods_WWDCast.framework in Frameworks */,
+				EFE1B5FC98F16067BBB5DFAE /* Pods_WWDCast.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +214,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				793BE38BE046FD3EF8742CF9 /* Pods_WWDCastTests.framework in Frameworks */,
+				0368EE34C657ED46DDCE25D3 /* Pods_WWDCastTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +228,7 @@
 				E76BFDC71DC3FD7400B269B8 /* libsqlite3.tbd */,
 				057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */,
 				BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */,
+				7D60F791C276BA391873661A /* Pods_Tests_WWDCastTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -276,7 +286,8 @@
 		B6F929E71D2AB111009E4B83 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				B6F929E81D2AB111009E4B83 /* WWDCastTests.swift */,
+				E718A1051E58F7E2003463B0 /* Mocks */,
+				B6F929E81D2AB111009E4B83 /* SearchFlowCoordinatorTests.swift */,
 				B6F929D51D2A5DD6009E4B83 /* Info.plist */,
 			);
 			path = Tests;
@@ -289,6 +300,8 @@
 				081F76A23C03510729799A91 /* Pods-WWDCast.release.xcconfig */,
 				218FDCB7EB2025EE42E172F6 /* Pods-WWDCastTests.debug.xcconfig */,
 				4A6EBFABAC79034FF2973338 /* Pods-WWDCastTests.release.xcconfig */,
+				EBF25D25558B02375133B1A5 /* Pods-Tests-WWDCastTests.debug.xcconfig */,
+				0F296124C6052AB9AF4576B0 /* Pods-Tests-WWDCastTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -462,6 +475,7 @@
 			children = (
 				E718A0AA1E58E906003463B0 /* NetworkService.swift */,
 				E718A0AB1E58E906003463B0 /* Resource.swift */,
+				E73CA1431E5B717600CFE933 /* WWDCastEndpoint.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -498,6 +512,15 @@
 				E718A0BF1E58E906003463B0 /* Reachability.swift */,
 			);
 			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		E718A1051E58F7E2003463B0 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				E718A1061E58F7F3003463B0 /* MockViewControllerFactory.swift */,
+				E718A1081E58FC27003463B0 /* MockSessionsSearchViewModel.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -744,6 +767,7 @@
 				E718A0D31E58E906003463B0 /* SessionsSearchViewModelProtocol.swift in Sources */,
 				E718A0DD1E58E906003463B0 /* AppConfigBuilder.swift in Sources */,
 				E718A0FA1E58E906003463B0 /* RxExtensions.swift in Sources */,
+				E73CA1441E5B717600CFE933 /* WWDCastEndpoint.swift in Sources */,
 				E718A0F11E58E906003463B0 /* NetworkService.swift in Sources */,
 				E718A1011E58E906003463B0 /* UIViewController+Common.swift in Sources */,
 				E718A0F01E58E906003463B0 /* RxGCKSessionManagerListenerProxy.swift in Sources */,
@@ -797,7 +821,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6F929EA1D2AB197009E4B83 /* WWDCastTests.swift in Sources */,
+				E718A10B1E5900C1003463B0 /* MockViewControllerFactory.swift in Sources */,
+				B6F929EA1D2AB197009E4B83 /* SearchFlowCoordinatorTests.swift in Sources */,
+				E718A10A1E5900BE003463B0 /* MockSessionsSearchViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

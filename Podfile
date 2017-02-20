@@ -12,9 +12,10 @@ target 'WWDCast' do
   pod 'SwiftyJSON', '~> 3.1'
   pod 'SDWebImage', '~> 3.8'
   pod 'GRDB.swift', '~> 0.89'
-end
 
-target 'WWDCastTests' do
+    target 'WWDCastTests' do
+        inherit! :search_paths
+    end
 
 end
 
