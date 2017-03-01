@@ -13,28 +13,60 @@ import RxCocoa
 
 class MockSessionsSearchViewModel: SessionsSearchViewModelProtocol {
 
-    func didSelect(item: SessionItemViewModel) {
+    typealias SelectObserver = (SessionItemViewModel) -> Void
+    typealias FilterTapObserver = () -> Void
+    typealias SearchStartObserver = (String) -> Void
+    typealias LoadingObservable = Observable<Bool>
+    typealias TitleObservable = Observable<String>
+    typealias SessionsObservable = Observable<[SessionSectionViewModel]>
 
+    var selectObserver: SelectObserver?
+    var filterTapObserver: FilterTapObserver?
+    var searchStartObserver: SearchStartObserver?
+    var loadingObservable: LoadingObservable?
+    var titleObservable: TitleObservable?
+    var sessionsObservable: SessionsObservable?
+
+    func didSelect(item: SessionItemViewModel) {
+        guard let observer = self.selectObserver else {
+            fatalError("Not implemented")
+        }
+        observer(item)
     }
 
     func didTapFilter() {
-
+        guard let observer = self.filterTapObserver else {
+            fatalError("Not implemented")
+        }
+        observer()
     }
 
     func didStartSearch(withQuery query: String) {
-
+        guard let observer = self.searchStartObserver else {
+            fatalError("Not implemented")
+        }
+        observer(query)
     }
 
     var isLoading: Driver<Bool> {
-        return Observable.empty().asDriver(onErrorJustReturn: false)
+        guard let observable = self.loadingObservable else {
+            fatalError("Not implemented")
+        }
+        return observable.asDriver(onErrorJustReturn: false)
     }
 
     var title: Driver<String> {
-        return Observable.empty().asDriver(onErrorJustReturn: "")
+        guard let observable = self.titleObservable else {
+            fatalError("Not implemented")
+        }
+        return observable.asDriver(onErrorJustReturn: "")
     }
 
     var sessionSections: Driver<[SessionSectionViewModel]> {
-        return Observable.empty().asDriver(onErrorJustReturn: [])
+        guard let observable = self.sessionsObservable else {
+            fatalError("Not implemented")
+        }
+        return observable.asDriver(onErrorJustReturn: [])
     }
 
 }

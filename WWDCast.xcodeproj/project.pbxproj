@@ -85,7 +85,9 @@
 		E718A1031E58E906003463B0 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0BF1E58E906003463B0 /* Reachability.swift */; };
 		E718A10A1E5900BE003463B0 /* MockSessionsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A1081E58FC27003463B0 /* MockSessionsSearchViewModel.swift */; };
 		E718A10B1E5900C1003463B0 /* MockViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A1061E58F7F3003463B0 /* MockViewControllerFactory.swift */; };
-		E73CA1441E5B717600CFE933 /* WWDCastEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73CA1431E5B717600CFE933 /* WWDCastEndpoint.swift */; };
+		E72A1CEB1E677F6A005A3EAE /* SessionsSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1CE91E677F67005A3EAE /* SessionsSearchViewModelTests.swift */; };
+		E72A1CED1E677FEF005A3EAE /* MockWWDCastAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1CEC1E677FEF005A3EAE /* MockWWDCastAPI.swift */; };
+		E72A1CEF1E678395005A3EAE /* MockSessionsSearchViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1CEE1E678395005A3EAE /* MockSessionsSearchViewModelDelegate.swift */; };
 		E76BFDCA1DC3FE0900B269B8 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
 		E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */; };
@@ -191,7 +193,9 @@
 		E718A0BF1E58E906003463B0 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		E718A1061E58F7F3003463B0 /* MockViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockViewControllerFactory.swift; sourceTree = "<group>"; };
 		E718A1081E58FC27003463B0 /* MockSessionsSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSessionsSearchViewModel.swift; sourceTree = "<group>"; };
-		E73CA1431E5B717600CFE933 /* WWDCastEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastEndpoint.swift; sourceTree = "<group>"; };
+		E72A1CE91E677F67005A3EAE /* SessionsSearchViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewModelTests.swift; sourceTree = "<group>"; };
+		E72A1CEC1E677FEF005A3EAE /* MockWWDCastAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockWWDCastAPI.swift; sourceTree = "<group>"; };
+		E72A1CEE1E678395005A3EAE /* MockSessionsSearchViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSessionsSearchViewModelDelegate.swift; sourceTree = "<group>"; };
 		E76BFDC71DC3FD7400B269B8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
@@ -288,6 +292,7 @@
 			children = (
 				E718A1051E58F7E2003463B0 /* Mocks */,
 				B6F929E81D2AB111009E4B83 /* SearchFlowCoordinatorTests.swift */,
+				E72A1CE91E677F67005A3EAE /* SessionsSearchViewModelTests.swift */,
 				B6F929D51D2A5DD6009E4B83 /* Info.plist */,
 			);
 			path = Tests;
@@ -475,7 +480,6 @@
 			children = (
 				E718A0AA1E58E906003463B0 /* NetworkService.swift */,
 				E718A0AB1E58E906003463B0 /* Resource.swift */,
-				E73CA1431E5B717600CFE933 /* WWDCastEndpoint.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -519,6 +523,8 @@
 			children = (
 				E718A1061E58F7F3003463B0 /* MockViewControllerFactory.swift */,
 				E718A1081E58FC27003463B0 /* MockSessionsSearchViewModel.swift */,
+				E72A1CEC1E677FEF005A3EAE /* MockWWDCastAPI.swift */,
+				E72A1CEE1E678395005A3EAE /* MockSessionsSearchViewModelDelegate.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -767,7 +773,6 @@
 				E718A0D31E58E906003463B0 /* SessionsSearchViewModelProtocol.swift in Sources */,
 				E718A0DD1E58E906003463B0 /* AppConfigBuilder.swift in Sources */,
 				E718A0FA1E58E906003463B0 /* RxExtensions.swift in Sources */,
-				E73CA1441E5B717600CFE933 /* WWDCastEndpoint.swift in Sources */,
 				E718A0F11E58E906003463B0 /* NetworkService.swift in Sources */,
 				E718A1011E58E906003463B0 /* UIViewController+Common.swift in Sources */,
 				E718A0F01E58E906003463B0 /* RxGCKSessionManagerListenerProxy.swift in Sources */,
@@ -776,6 +781,7 @@
 				E718A0D91E58E906003463B0 /* FavoritesFlowCoordinator.swift in Sources */,
 				E718A0E41E58E906003463B0 /* GoogleCastServiceProtocol.swift in Sources */,
 				E718A0C81E58E906003463B0 /* FilterItemViewModel.swift in Sources */,
+				E72A1CEF1E678395005A3EAE /* MockSessionsSearchViewModelDelegate.swift in Sources */,
 				E718A0E61E58E906003463B0 /* ReachabilityServiceProtocol.swift in Sources */,
 				E718A0DE1E58E906003463B0 /* EntityBuilderType.swift in Sources */,
 				E718A0DC1E58E906003463B0 /* AppConfig.swift in Sources */,
@@ -807,6 +813,7 @@
 				E718A0FF1E58E906003463B0 /* UIImageView+Rx.swift in Sources */,
 				E718A0F61E58E906003463B0 /* Cache.swift in Sources */,
 				B6F929E61D2AB0FD009E4B83 /* WWDCastEnvironment.swift in Sources */,
+				E72A1CED1E677FEF005A3EAE /* MockWWDCastAPI.swift in Sources */,
 				E718A0F71E58E906003463B0 /* Session+RecordConvertable.swift in Sources */,
 				E718A0F51E58E906003463B0 /* ServiceProvider.swift in Sources */,
 				E718A0DF1E58E906003463B0 /* SessionBuilder.swift in Sources */,
@@ -822,6 +829,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E718A10B1E5900C1003463B0 /* MockViewControllerFactory.swift in Sources */,
+				E72A1CEB1E677F6A005A3EAE /* SessionsSearchViewModelTests.swift in Sources */,
 				B6F929EA1D2AB197009E4B83 /* SearchFlowCoordinatorTests.swift in Sources */,
 				E718A10A1E5900BE003463B0 /* MockSessionsSearchViewModel.swift in Sources */,
 			);
