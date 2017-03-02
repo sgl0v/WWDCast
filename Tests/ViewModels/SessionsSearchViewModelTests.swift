@@ -27,10 +27,10 @@ class SessionsSearchViewModelTests: XCTestCase {
     /// Tests that viewModel loads data via WWDCastAPI and `sessionSections` emits a new value
     func testSessionsLoading() {
         // GIVEN
-        let sessions = [Session]()
+        let sessions = SessionsLoader.sessionsFromFile(withName: "sessions.json")
         var sessionViewModels: [SessionSectionViewModel]?
         self.api.sessionsObservable = Observable.just(sessions)
-        let expectation = self.expectation(description: "")
+        let expectation = self.expectation(description: "didFinishDataLoading")
         var isError = false
 
         // WHEN
@@ -50,10 +50,10 @@ class SessionsSearchViewModelTests: XCTestCase {
     /// Tests that `sessionSections` emits a new value when the search string is changed
     func testSessionsUpdatedOnSearch() {
         // GIVEN
-        let sessions = [Session]()
+        let sessions = SessionsLoader.sessionsFromFile(withName: "sessions.json")
         var sessionViewModels: [SessionSectionViewModel]?
         self.api.sessionsObservable = Observable.just(sessions)
-        let expectation = self.expectation(description: "")
+        let expectation = self.expectation(description: "didFinishDataLoading")
         var isError = false
 
         // WHEN
@@ -69,6 +69,42 @@ class SessionsSearchViewModelTests: XCTestCase {
         waitForExpectations(timeout: 1.0, handler: nil)
         XCTAssertFalse(isError)
         XCTAssertNotNil(sessionViewModels)
+    }
+
+    /// The viewModel's delegate should be notified when the user selects a session item
+    func testNotifyDelegateOnItemSelection() {
+        //GIVEN
+        let sessionItem = SessionItemViewModel.dummyItem
+        let expectation = self.expectation(description: "didSelectItem")
+        var selectedSessionId: String?
+        self.delegate.detailsHandler = { viewModel, sessionId in
+            XCTAssertTrue(self.viewModel === viewModel)
+            selectedSessionId = sessionId
+            expectation.fulfill()
+        }
+
+        // WHEN
+        self.viewModel.didSelect(item: sessionItem)
+
+        // THEN
+        waitForExpectations(timeout: 1.0, handler: nil)
+        XCTAssertNotNil(selectedSessionId)
+        XCTAssertEqual(sessionItem.uniqueID, selectedSessionId!)
+    }
+
+    /// The viewModel's delegate should be notified when the user taps the filter button
+    func testNotifyDelegateOnFilterButtonTap() {
+        //GIVEN
+        let expectation = self.expectation(description: "didTapFilter")
+        self.delegate.filterHandler = { _ in
+            expectation.fulfill()
+        }
+
+        // WHEN
+        self.viewModel.didTapFilter()
+
+        // THEN
+        waitForExpectations(timeout: 1.0, handler: nil)
     }
 
 }

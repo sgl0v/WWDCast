@@ -6,7 +6,8 @@
 //  Copyright © 2017 Maksym Shcheglov. All rights reserved.
 //
 
-import Foundation
+import UIKit
+@testable import WWDCast
 
 class MockSessionsSearchViewModelDelegate: SessionsSearchViewModelDelegate {
 

@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+@testable import WWDCast
 
 class MockWWDCastAPI: WWDCastAPIProtocol {
 
