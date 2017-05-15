@@ -28,7 +28,7 @@ struct Resource<T> {
             return nil
         }
         components.queryItems = parameters.keys.map { key in
-            URLQueryItem(name: key.URLEscaped, value: "\(parameters[key])".URLEscaped)
+            URLQueryItem(name: key.URLEscaped, value: "\(String(describing: parameters[key]))".URLEscaped)
         }
         guard let url = components.url else {
             return nil

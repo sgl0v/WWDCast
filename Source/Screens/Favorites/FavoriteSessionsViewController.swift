@@ -39,7 +39,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
     private func bind(with viewModel: FavoriteSessionsViewModelProtocol) {
         // ViewModel's input
         self.tableView.rx.modelSelected(SessionItemViewModel.self)
-            .bindNext(viewModel.didSelect)
+            .bind(onNext: viewModel.didSelect)
             .addDisposableTo(self.disposeBag)
 
         // ViewModel's output

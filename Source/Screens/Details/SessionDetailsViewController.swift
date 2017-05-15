@@ -61,7 +61,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         }
         Observable.just(viewModel.thumbnailURL)
             .asObservable()
-            .bindTo(self.image.rx.imageURL)
+            .bind(to: self.image.rx.imageURL)
             .addDisposableTo(self.disposeBag)
         self.header.text = viewModel.title
         self.summary.text = viewModel.summary

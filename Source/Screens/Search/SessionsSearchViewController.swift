@@ -51,10 +51,10 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
 
     private func bind(with viewModel: SessionsSearchViewModelProtocol) {
         // ViewModel's input
-        self.filterButton.rx.tap.bindNext(viewModel.didTapFilter).addDisposableTo(self.disposeBag)
+        self.filterButton.rx.tap.bind(onNext: viewModel.didTapFilter).addDisposableTo(self.disposeBag)
         self.searchQuery.drive(onNext: viewModel.didStartSearch).addDisposableTo(self.disposeBag)
         self.tableView.rx.modelSelected(SessionItemViewModel.self)
-            .bindNext(viewModel.didSelect)
+            .bind(onNext: viewModel.didSelect)
             .addDisposableTo(self.disposeBag)
 
         // ViewModel's output
