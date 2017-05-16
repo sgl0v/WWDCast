@@ -33,7 +33,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
-        self.bind(with: self.viewModel)
+        self.bind(to: self.viewModel)
     }
 
     // MARK: Private
@@ -43,7 +43,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         self.edgesForExtendedLayout = UIRectEdge()
     }
 
-    private func bind(with viewModel: SessionDetailsViewModelProtocol) {
+    private func bind(to viewModel: SessionDetailsViewModelProtocol) {
         // ViewModel's input
         self.playButton.rx.tap.withLatestFrom(viewModel.devices).flatMap(self.selectDeviceForPlayback)
             .subscribe(onNext: viewModel.startPlaybackOnDevice).addDisposableTo(self.disposeBag)

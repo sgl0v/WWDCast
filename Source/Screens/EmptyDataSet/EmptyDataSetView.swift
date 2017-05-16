@@ -22,7 +22,7 @@ class EmptyDataSetView: UIView, NibProvidable, BindableView {
 
     typealias ViewModel = EmptyDataSetViewModel
 
-    func bind(with viewModel: ViewModel) {
+    func bind(to viewModel: ViewModel) {
         self.titleLabel.text = viewModel.title
         self.descriptionLabel.text = viewModel.description
     }

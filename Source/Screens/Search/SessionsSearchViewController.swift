@@ -29,7 +29,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
-        self.bind(with: self.viewModel)
+        self.bind(to: self.viewModel)
     }
 
     override func commitPreview(for item: SessionItemViewModel) {
@@ -49,7 +49,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         return self.searchController.searchBar
     }
 
-    private func bind(with viewModel: SessionsSearchViewModelProtocol) {
+    private func bind(to viewModel: SessionsSearchViewModelProtocol) {
         // ViewModel's input
         self.filterButton.rx.tap.bind(onNext: viewModel.didTapFilter).addDisposableTo(self.disposeBag)
         self.searchQuery.drive(onNext: viewModel.didStartSearch).addDisposableTo(self.disposeBag)

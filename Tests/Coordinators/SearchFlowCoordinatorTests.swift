@@ -14,23 +14,23 @@ class SearchFlowCoordinatorTests: XCTestCase {
     private let sessionId = "mock_session_id"
     private var flowCoordinator: SearchFlowCoordinator!
     private var rootViewController: UINavigationController!
-    private var viewControllerFactory: MockViewControllerFactory!
+    private var dependencyProvider: MockViewControllerFactory!
 
     override func setUp() {
         super.setUp()
         self.rootViewController = UINavigationController()
-        self.viewControllerFactory = MockViewControllerFactory()
-        self.flowCoordinator = SearchFlowCoordinator(rootController: self.rootViewController, factory: self.viewControllerFactory)
+        self.dependencyProvider = MockViewControllerFactory()
+        self.flowCoordinator = SearchFlowCoordinator(rootController: self.rootViewController, dependencyProvider: self.dependencyProvider)
         UIApplication.shared.delegate!.window??.rootViewController = self.rootViewController
     }
 
     /// Tests the flow from search to session details screen
     func testSearchDetailsFlow() {
         // GIVEN
-        self.viewControllerFactory.searchHandler = { _ in
+        self.dependencyProvider.searchHandler = { _ in
             return UIViewController()
         }
-        self.viewControllerFactory.detailsHandler = { sessionId in
+        self.dependencyProvider.detailsHandler = { sessionId in
             XCTAssertEqual(self.sessionId, sessionId)
             return UIViewController()
         }
@@ -48,10 +48,10 @@ class SearchFlowCoordinatorTests: XCTestCase {
     /// Tests the flow from search to session filter screen
     func testFilterFlow() {
         // GIVEN
-        self.viewControllerFactory.searchHandler = { _ in
+        self.dependencyProvider.searchHandler = { _ in
             return UIViewController()
         }
-        self.viewControllerFactory.filterHandler = { _ in
+        self.dependencyProvider.filterHandler = { _ in
             return UIViewController()
         }
 
@@ -69,10 +69,10 @@ class SearchFlowCoordinatorTests: XCTestCase {
     func testFilterFlowFinished() {
         // GIVEN
         var filterCompletion: FilterViewModelCompletion!
-        self.viewControllerFactory.searchHandler = { _ in
+        self.dependencyProvider.searchHandler = { _ in
             return UIViewController()
         }
-        self.viewControllerFactory.filterHandler = { _, completion in
+        self.dependencyProvider.filterHandler = { _, completion in
             filterCompletion = completion
             return UIViewController()
         }
@@ -95,10 +95,10 @@ class SearchFlowCoordinatorTests: XCTestCase {
     func testFilterFlowCancelled() {
         // GIVEN
         var filterCompletion: FilterViewModelCompletion!
-        self.viewControllerFactory.searchHandler = { _ in
+        self.dependencyProvider.searchHandler = { _ in
             return UIViewController()
         }
-        self.viewControllerFactory.filterHandler = { _, completion in
+        self.dependencyProvider.filterHandler = { _, completion in
             filterCompletion = completion
             return UIViewController()
         }

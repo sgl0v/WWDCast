@@ -27,7 +27,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
-        self.bind(with: self.viewModel)
+        self.bind(to: self.viewModel)
     }
 
     override func commitPreview(for item: SessionItemViewModel) {
@@ -36,7 +36,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
 
     // MARK - Private
 
-    private func bind(with viewModel: FavoriteSessionsViewModelProtocol) {
+    private func bind(to viewModel: FavoriteSessionsViewModelProtocol) {
         // ViewModel's input
         self.tableView.rx.modelSelected(SessionItemViewModel.self)
             .bind(onNext: viewModel.didSelect)

@@ -9,7 +9,7 @@
 import UIKit
 @testable import WWDCast
 
-class MockViewControllerFactory: ViewControllerFactoryProtocol {
+class MockViewControllerFactory: ApplicationFlowCoordinatorDependencyProvider, SearchFlowCoordinatorDependencyProvider, FavoritesFlowCoordinatorDependencyProvider {
 
     typealias TabBarHandler = () -> UITabBarController
     typealias SearchHandler = (SessionsSearchViewModelDelegate,  TableViewControllerPreviewProvider) -> UIViewController
