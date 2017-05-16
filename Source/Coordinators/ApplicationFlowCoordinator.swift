@@ -11,13 +11,15 @@ import UIKit
 /// The application flow coordinator. Takes responsibility about coordinating view controllers and driving the flow
 class ApplicationFlowCoordinator: FlowCoordinator {
 
+    typealias DependencyProvider = ApplicationFlowCoordinatorDependencyProvider & SearchFlowCoordinatorDependencyProvider & FavoritesFlowCoordinatorDependencyProvider
+
     private let window: UIWindow
-    private let factory: ViewControllerFactoryProtocol
+    private let dependencyProvider: DependencyProvider
     private var childCoordinators = [FlowCoordinator]()
 
-    init(window: UIWindow, factory: ViewControllerFactoryProtocol) {
+    init(window: UIWindow, dependencyProvider: DependencyProvider) {
         self.window = window
-        self.factory = factory
+        self.dependencyProvider = dependencyProvider
     }
 
     /// Creates all necessary dependencies and starts the flow
@@ -31,14 +33,14 @@ class ApplicationFlowCoordinator: FlowCoordinator {
         favoritesNavigationController.navigationBar.tintColor = UIColor.black
         favoritesNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
 
-        let tabBarController = self.factory.tabBarController()
+        let tabBarController = self.dependencyProvider.tabBarController()
         tabBarController.viewControllers = [searchNavigationController, favoritesNavigationController]
         self.window.rootViewController = tabBarController
 
-        let searchFlowCoordinator = SearchFlowCoordinator(rootController: searchNavigationController, factory: self.factory)
+        let searchFlowCoordinator = SearchFlowCoordinator(rootController: searchNavigationController, dependencyProvider: self.dependencyProvider)
         searchFlowCoordinator.start()
 
-        let favoritesFlowCoordinator = FavoritesFlowCoordinator(rootController: favoritesNavigationController, factory: self.factory)
+        let favoritesFlowCoordinator = FavoritesFlowCoordinator(rootController: favoritesNavigationController, dependencyProvider: self.dependencyProvider)
         favoritesFlowCoordinator.start()
 
         self.childCoordinators = [searchFlowCoordinator, favoritesFlowCoordinator]

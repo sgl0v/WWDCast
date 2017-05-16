@@ -37,7 +37,6 @@
 		E718A0D41E58E906003463B0 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0841E58E906003463B0 /* SessionTableViewCell.swift */; };
 		E718A0D51E58E906003463B0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0851E58E906003463B0 /* TabBarController.swift */; };
 		E718A0D61E58E906003463B0 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0861E58E906003463B0 /* ViewControllerFactory.swift */; };
-		E718A0D71E58E906003463B0 /* ViewControllerFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0871E58E906003463B0 /* ViewControllerFactoryProtocol.swift */; };
 		E718A0D81E58E906003463B0 /* ApplicationFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0891E58E906003463B0 /* ApplicationFlowCoordinator.swift */; };
 		E718A0D91E58E906003463B0 /* FavoritesFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A08A1E58E906003463B0 /* FavoritesFlowCoordinator.swift */; };
 		E718A0DA1E58E906003463B0 /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A08B1E58E906003463B0 /* FlowCoordinator.swift */; };
@@ -98,6 +97,7 @@
 		E76BFDCA1DC3FE0900B269B8 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
 		E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */; };
+		E7E889DC1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E889DB1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift */; };
 		EFE1B5FC98F16067BBB5DFAE /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */; };
 /* End PBXBuildFile section */
 
@@ -152,7 +152,6 @@
 		E718A0841E58E906003463B0 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		E718A0851E58E906003463B0 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E718A0861E58E906003463B0 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
-		E718A0871E58E906003463B0 /* ViewControllerFactoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerFactoryProtocol.swift; sourceTree = "<group>"; };
 		E718A0891E58E906003463B0 /* ApplicationFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationFlowCoordinator.swift; sourceTree = "<group>"; };
 		E718A08A1E58E906003463B0 /* FavoritesFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesFlowCoordinator.swift; sourceTree = "<group>"; };
 		E718A08B1E58E906003463B0 /* FlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
@@ -214,6 +213,7 @@
 		E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataSetView.xib; path = Resources/EmptyDataSetView.xib; sourceTree = SOURCE_ROOT; };
+		E7E889DB1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCoordinatorDependencyProviders.swift; sourceTree = "<group>"; };
 		EBF25D25558B02375133B1A5 /* Pods-Tests-WWDCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-WWDCastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-WWDCastTests/Pods-Tests-WWDCastTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -337,7 +337,6 @@
 				E718A06F1E58E906003463B0 /* EmptyDataSet */,
 				E718A0851E58E906003463B0 /* TabBarController.swift */,
 				E718A0861E58E906003463B0 /* ViewControllerFactory.swift */,
-				E718A0871E58E906003463B0 /* ViewControllerFactoryProtocol.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -405,6 +404,7 @@
 				E718A0891E58E906003463B0 /* ApplicationFlowCoordinator.swift */,
 				E718A08A1E58E906003463B0 /* FavoritesFlowCoordinator.swift */,
 				E718A08C1E58E906003463B0 /* SearchFlowCoordinator.swift */,
+				E7E889DB1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -799,7 +799,6 @@
 				E718A0EC1E58E906003463B0 /* GoogleCastMedia+GCK.swift in Sources */,
 				E718A0CB1E58E906003463B0 /* FilterViewController.swift in Sources */,
 				E718A0C61E58E906003463B0 /* FavoriteSessionsViewModel.swift in Sources */,
-				E718A0D71E58E906003463B0 /* ViewControllerFactoryProtocol.swift in Sources */,
 				E718A0E51E58E906003463B0 /* NetworkServiceProtocol.swift in Sources */,
 				E718A0F91E58E906003463B0 /* WWDCastAPI.swift in Sources */,
 				E718A0C71E58E906003463B0 /* FavoriteSessionsViewModelProtocol.swift in Sources */,
@@ -813,6 +812,7 @@
 				E718A1001E58E906003463B0 /* UITableView+Common.swift in Sources */,
 				E718A0D51E58E906003463B0 /* TabBarController.swift in Sources */,
 				E718A0CC1E58E906003463B0 /* FilterViewModel.swift in Sources */,
+				E7E889DC1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift in Sources */,
 				E718A0EB1E58E906003463B0 /* GoogleCastDevice.swift in Sources */,
 				E718A0C01E58E906003463B0 /* SessionDetailsViewController.swift in Sources */,
 				E718A0D41E58E906003463B0 /* SessionTableViewCell.swift in Sources */,

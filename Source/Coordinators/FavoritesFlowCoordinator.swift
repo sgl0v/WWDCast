@@ -11,15 +11,15 @@ import UIKit
 /// The `FavoritesFlowCoordinator` takes control over the flows on the favorites screen
 class FavoritesFlowCoordinator: FlowCoordinator {
     fileprivate let rootController: UINavigationController
-    fileprivate let factory: ViewControllerFactoryProtocol
+    fileprivate let dependencyProvider: FavoritesFlowCoordinatorDependencyProvider
 
-    init(rootController: UINavigationController, factory: ViewControllerFactoryProtocol) {
+    init(rootController: UINavigationController, dependencyProvider: FavoritesFlowCoordinatorDependencyProvider) {
         self.rootController = rootController
-        self.factory = factory
+        self.dependencyProvider = dependencyProvider
     }
 
     func start() {
-        let searchController = self.factory.favoriteSessionsController(delegate: self, previewProvider: self)
+        let searchController = self.dependencyProvider.favoriteSessionsController(delegate: self, previewProvider: self)
         self.rootController.setViewControllers([searchController], animated: false)
     }
 
@@ -31,7 +31,7 @@ extension FavoritesFlowCoordinator: TableViewControllerPreviewProvider {
         guard let item = item as? SessionItemViewModel else {
             return nil
         }
-        return self.factory.sessionDetailsController(item.uniqueID)
+        return self.dependencyProvider.sessionDetailsController(item.uniqueID)
     }
 
 }
@@ -39,7 +39,7 @@ extension FavoritesFlowCoordinator: TableViewControllerPreviewProvider {
 extension FavoritesFlowCoordinator: FavoriteSessionsViewModelDelegate {
 
     func favoriteSessionsViewModel(_ viewModel: FavoriteSessionsViewModelProtocol, wantsToShowSessionDetailsWith sessionId: String) {
-        let controller = self.factory.sessionDetailsController(sessionId)
+        let controller = self.dependencyProvider.sessionDetailsController(sessionId)
         self.rootController.pushViewController(controller, animated: true)
     }
 

@@ -11,15 +11,15 @@ import UIKit
 /// The `SearchFlowCoordinator` takes control over the flows on the search screen
 class SearchFlowCoordinator: FlowCoordinator {
     fileprivate let rootController: UINavigationController
-    fileprivate let factory: ViewControllerFactoryProtocol
+    fileprivate let dependencyProvider: SearchFlowCoordinatorDependencyProvider
 
-    init(rootController: UINavigationController, factory: ViewControllerFactoryProtocol) {
+    init(rootController: UINavigationController, dependencyProvider: SearchFlowCoordinatorDependencyProvider) {
         self.rootController = rootController
-        self.factory = factory
+        self.dependencyProvider = dependencyProvider
     }
 
     func start() {
-        let searchController = self.factory.sessionsSearchController(delegate: self, previewProvider: self)
+        let searchController = self.dependencyProvider.sessionsSearchController(delegate: self, previewProvider: self)
         self.rootController.setViewControllers([searchController], animated: false)
     }
 
@@ -31,7 +31,7 @@ extension SearchFlowCoordinator: TableViewControllerPreviewProvider {
         guard let item = item as? SessionItemViewModel else {
             return nil
         }
-        return self.factory.sessionDetailsController(item.uniqueID)
+        return self.dependencyProvider.sessionDetailsController(item.uniqueID)
     }
 
 }
@@ -39,7 +39,7 @@ extension SearchFlowCoordinator: TableViewControllerPreviewProvider {
 extension SearchFlowCoordinator: SessionsSearchViewModelDelegate {
 
     func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModelProtocol, wantsToShow filter: Filter, completion: @escaping (Filter) -> Void) {
-        let controller = self.factory.filterController(filter) {[unowned self] result in
+        let controller = self.dependencyProvider.filterController(filter) {[unowned self] result in
             self.rootController.dismiss(animated: true, completion: {
                 guard case .finished(let filter) = result else {
                     return
@@ -51,7 +51,7 @@ extension SearchFlowCoordinator: SessionsSearchViewModelDelegate {
     }
 
     func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModelProtocol, wantsToShowSessionDetailsWith sessionId: String) {
-        let controller = self.factory.sessionDetailsController(sessionId)
+        let controller = self.dependencyProvider.sessionDetailsController(sessionId)
         self.rootController.pushViewController(controller, animated: true)
     }
 

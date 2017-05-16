@@ -8,9 +8,13 @@
 
 import UIKit
 
-class ViewControllerFactory: ViewControllerFactoryProtocol {
+class ViewControllerFactory {
 
-    private let api: WWDCastAPIProtocol = WWDCastAPI(serviceProvider: ServiceProvider.defaultServiceProviderProtocol)
+    fileprivate let api: WWDCastAPIProtocol = WWDCastAPI(serviceProvider: ServiceProvider.defaultServiceProviderProtocol)
+
+}
+
+extension ViewControllerFactory: ApplicationFlowCoordinatorDependencyProvider {
 
     func tabBarController() -> UITabBarController {
         let tabbarController = TabBarController()
@@ -18,11 +22,20 @@ class ViewControllerFactory: ViewControllerFactoryProtocol {
         return tabbarController
     }
 
+}
+
+extension ViewControllerFactory: SearchFlowCoordinatorDependencyProvider {
+
     func sessionsSearchController(delegate: SessionsSearchViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
         let viewModel = SessionsSearchViewModel(api: self.api, delegate: delegate)
         let view = SessionsSearchViewController(viewModel: viewModel)
         view.previewProvider = previewProvider
         return view
+    }
+
+    func sessionDetailsController(_ sessionId: String) -> UIViewController {
+        let viewModel = SessionDetailsViewModel(sessionId: sessionId, api: self.api)
+        return SessionDetailsViewController(viewModel: viewModel)
     }
 
     func filterController(_ filter: Filter, completion: @escaping FilterViewModelCompletion) -> UIViewController {
@@ -33,10 +46,9 @@ class ViewControllerFactory: ViewControllerFactoryProtocol {
         return navigationController
     }
 
-    func sessionDetailsController(_ sessionId: String) -> UIViewController {
-        let viewModel = SessionDetailsViewModel(sessionId: sessionId, api: self.api)
-        return SessionDetailsViewController(viewModel: viewModel)
-    }
+}
+
+extension ViewControllerFactory: FavoritesFlowCoordinatorDependencyProvider {
 
     func favoriteSessionsController(delegate: FavoriteSessionsViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
         let viewModel = FavoriteSessionsViewModel(api: self.api, delegate: delegate)
