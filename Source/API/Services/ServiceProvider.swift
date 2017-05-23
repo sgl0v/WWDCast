@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 final class ServiceProvider: ServiceProviderProtocol {
 
@@ -42,6 +43,18 @@ extension ServiceProvider {
         let scheduler = SchedulerService()
         let network = NetworkService()
         let googleCast = GoogleCastServiceProtocolImpl(applicationID: WWDCastEnvironment.googleCastAppID)
+
+        if let coreDataController = CoreDataController(name: "WWDCast") {
+            coreDataController.loadStore { err in
+                print("Error=\(String(describing: err))")
+                let sessions = SessionsCoreDataSource(coreDataController: coreDataController)
+                _ = sessions.allObjects().subscribe(onNext: {sessions in
+                    print(sessions)
+                })
+
+            }
+        }
+
         return ServiceProvider(reachability: reachability, scheduler: scheduler, network: network, googleCast: googleCast, database: database)
     }()
 
