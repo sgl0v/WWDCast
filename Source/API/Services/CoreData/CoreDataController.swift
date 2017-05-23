@@ -11,7 +11,7 @@ import CoreData
 import RxSwift
 
 protocol EntityRepresentable {
-    associatedtype EntityType
+    associatedtype EntityType: UniquelyIdentifiable
 
     func asEntity() -> EntityType
     func update(_ entity: EntityType)
@@ -21,6 +21,17 @@ protocol CoreDataPersistable: NSFetchRequestResult {
     static var entityName: String {get}
     static func fetchRequest() -> NSFetchRequest<Self>
 }
+
+protocol UniquelyIdentifiable {
+    var uid: String {get}
+}
+
+extension Session: UniquelyIdentifiable {
+    var uid: String {
+        return self.uniqueId
+    }
+}
+
 
 final class CoreDataController {
 

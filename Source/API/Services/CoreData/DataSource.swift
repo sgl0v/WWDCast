@@ -11,13 +11,13 @@ import RxSwift
 import CoreData
 
 protocol DataSource: class {
-    associatedtype T
+    associatedtype Item
 
-    func allObjects() -> Observable<[T]>
-    func get(byId id: String) -> Observable<T?>
-    func insert(_ item: T) -> Observable<Void>
+    func allObjects() -> Observable<[Item]>
+    func get(byId id: String) -> Observable<Item?>
+    func insert(_ item: Item) -> Observable<Void>
 //    func update(_ items: [T])
-    func clean()
+    func clean() -> Observable<Void>
     func delete(byId id: String) -> Observable<Void>
 }
 
@@ -30,19 +30,48 @@ extension Sequence where Iterator.Element : EntityRepresentable {
     }
 }
 
-final class SessionsCoreDataSource: NSObject, DataSource {
+final class NetworkDataSource<T>: DataSource {
+    typealias Item = T
 
-    typealias T = Session
+
+    func allObjects() -> Observable<[Item]> {
+
+    }
+
+    func get(byId id: String) -> Observable<Item?> {
+
+    }
+
+    func insert(_ item: Item) -> Observable<Void> {
+        assertionFailure("The function `\(#function)` is not implemented for \(NetworkDataSource.self)!")
+        return Observable.empty()
+    }
+
+    func clean() -> Observable<Void> {
+        assertionFailure("The function `\(#function)` is not implemented for \(NetworkDataSource.self)!")
+        return Observable.empty()
+    }
+
+    func delete(byId id: String) -> Observable<Void> {
+        assertionFailure("The function `\(#function)` is not implemented for \(NetworkDataSource.self)!")
+        return Observable.empty()
+    }
+
+}
+
+final class CoreDataSource<T: NSManagedObject>: NSObject, DataSource, NSFetchedResultsControllerDelegate where T: CoreDataPersistable & EntityRepresentable {
+
+    typealias Item = T.EntityType
 
     fileprivate let coreDataController: CoreDataController
-    fileprivate let allObjectsSubject: BehaviorSubject<[T]>
-    fileprivate let frc: NSFetchedResultsController<SessionManagedObject>
+    fileprivate let allObjectsSubject: BehaviorSubject<[Item]>
+    fileprivate let frc: NSFetchedResultsController<T>
 
     init(coreDataController: CoreDataController) {
         self.coreDataController = coreDataController
         self.allObjectsSubject = BehaviorSubject(value: [])
 
-        self.frc = NSFetchedResultsController(fetchRequest: SessionManagedObject.fetchRequest(),
+        self.frc = NSFetchedResultsController(fetchRequest: T.fetchRequest(),
                                               managedObjectContext: self.coreDataController.viewContext,
                                               sectionNameKeyPath: nil,
                                               cacheName: nil)
@@ -55,20 +84,20 @@ final class SessionsCoreDataSource: NSObject, DataSource {
         }
     }
 
-    func allObjects() -> Observable<[Session]> {
+    func allObjects() -> Observable<[Item]> {
         return self.allObjectsSubject.asObservable()
     }
 
-    func get(byId id: String) -> Observable<Session?> {
-        let session: Observable<SessionManagedObject?> = self.coreDataController.viewContext.rx.first(with: NSPredicate(format: "(id = %@)", id))
+    func get(byId id: String) -> Observable<Item?> {
+        let session: Observable<T?> = self.coreDataController.viewContext.rx.first(with: NSPredicate(format: "(id = %@)", id))
         return session.map { $0?.asEntity() }
     }
 
-    func insert(_ item: Session) -> Observable<Void> {
+    func insert(_ item: Item) -> Observable<Void> {
         let bgContext = self.coreDataController.newBackgroundContext()
-        let predicate = NSPredicate(format: "(id = %@)", item.id)
-        return bgContext.rx.first(with: predicate).map({ (obj: SessionManagedObject?) -> Void  in
-            let record = obj ?? SessionManagedObject(context: bgContext)
+        let predicate = NSPredicate(format: "(id = %@)", item.uid)
+        return bgContext.rx.first(with: predicate).map({ (obj: T?) -> Void  in
+            let record = obj ?? T(context: bgContext)
             record.update(item)
         }).flatMap(bgContext.rx.save)
     }
@@ -77,7 +106,7 @@ final class SessionsCoreDataSource: NSObject, DataSource {
 //
 //    }
 
-    func clean() {
+    func clean() -> Observable<Void> {
 //        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
 //        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
 //        do
@@ -89,6 +118,7 @@ final class SessionsCoreDataSource: NSObject, DataSource {
 //        {
 //            print ("There was an error")
 //        }
+        return Observable.empty()
     }
 
     func delete(byId id: String) -> Observable<Void> {
@@ -115,20 +145,12 @@ final class SessionsCoreDataSource: NSObject, DataSource {
     }
 
 
-}
-
-extension SessionsCoreDataSource: NSFetchedResultsControllerDelegate {
+//}
+//
+//extension CoreDataSource: NSFetchedResultsControllerDelegate {
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         sendNextElement()
-    }
-
-}
-
-extension SessionsCoreDataSource: Disposable {
-
-    func dispose() {
-        frc.delegate = nil
     }
 
 }
