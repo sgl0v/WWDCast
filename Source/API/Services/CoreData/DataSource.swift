@@ -101,7 +101,7 @@ final class CompositeDataSource<T: Comparable>: DataSource {
     func allObjects() -> Observable<[Item]> {
         let cachedObjects = self.coreDataSource.allObjects()
         let loadedObjects = self.networkDataSource.allObjects().flatMap(self.coreDataSource.save).flatMap(self.coreDataSource.allObjects)
-        return Observable.of(cachedObjects, loadedObjects).merge().sort().shareReplayLatestWhileConnected()
+        return Observable.of(cachedObjects, loadedObjects).merge().distinctUntilChanged(==).sort().shareReplayLatestWhileConnected()
     }
 
     func get(byId id: String) -> Observable<T?> {
@@ -211,6 +211,7 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSource, NSFetchedR
         } catch let e {
             self.allObjectsSubject.on(.error(e))
         }
+        sendNextElement()
     }
 
     func allObjects() -> Observable<[Item]> {
@@ -226,7 +227,8 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSource, NSFetchedR
     func save(_ items: [Item]) -> Observable<Void> {
         let context = self.coreDataController.newBackgroundContext()
 
-        return items.sync(in: context).mapToVoid().flatMap(context.rx.save)
+        let obs = context.rx.save()
+        return items.sync(in: context).mapToVoid().concat(obs)
 //        return bgContext.rx.first(with: predicate).map({ (obj: T?) -> Void  in
 //            let record = obj ?? T(context: bgContext)
 //            record.update(item)
@@ -270,6 +272,7 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSource, NSFetchedR
     fileprivate func sendNextElement() {
         self.frc.managedObjectContext.perform {
             let records = self.frc.fetchedObjects ?? []
+            NSLog("Fetched \(records.count) records!")
             self.allObjectsSubject.on(.next(records.asDomainTypes()))
         }
     }

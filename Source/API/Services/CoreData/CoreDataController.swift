@@ -49,6 +49,7 @@ extension Session: CoreDataRepresentable {
     }
 
     func update(object: CoreDataType) {
+        object.uniqueId = self.uniqueId
         object.id = Int16(self.id)
         object.year = Int16(self.year.rawValue)
         object.track = Int16(self.track.rawValue)
@@ -75,6 +76,7 @@ final class CoreDataController {
     init?(name: String) {
         self.persistentContainer = NSPersistentContainer(name: name)
         self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+        try? self.persistentContainer.viewContext.setQueryGenerationFrom(.current)
     }
 
     func loadStore(completion: @escaping (Error?) -> Void) {

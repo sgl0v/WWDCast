@@ -99,15 +99,12 @@
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
 		E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */; };
 		E7C428BC1ED3977700BAB0B2 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C428B61ED3977700BAB0B2 /* CoreDataController.swift */; };
-		E7C428BD1ED3977700BAB0B2 /* SessionManagedObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C428B71ED3977700BAB0B2 /* SessionManagedObject+CoreDataClass.swift */; };
-		E7C428BE1ED3977700BAB0B2 /* SessionManagedObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C428B81ED3977700BAB0B2 /* SessionManagedObject+CoreDataProperties.swift */; };
-		E7C428BF1ED3977700BAB0B2 /* SessionManagedObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C428B91ED3977700BAB0B2 /* SessionManagedObject+Ext.swift */; };
 		E7C428C21ED3987000BAB0B2 /* NSManagedObjectContext+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C428C11ED3987000BAB0B2 /* NSManagedObjectContext+Rx.swift */; };
 		E7E889DC1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E889DB1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift */; };
 		E7FC18171EE0A5E6000D2FAB /* WWDCast.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */; };
-		E7FC18181EE0A5E6000D2FAB /* SessionsSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7FC18141EE0A5E6000D2FAB /* SessionsSearchViewController.xib */; };
-		E7FC18191EE0A5E6000D2FAB /* FavoriteSessionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7FC18151EE0A5E6000D2FAB /* FavoriteSessionsViewController.xib */; };
-		E7FC181A1EE0A5E6000D2FAB /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7FC18161EE0A5E6000D2FAB /* FilterViewController.xib */; };
+		E7FC181D1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FC181B1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift */; };
+		E7FC181E1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FC181C1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataProperties.swift */; };
+		E7FC18201EE0AC57000D2FAB /* SessionManagedObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FC181F1EE0AC57000D2FAB /* SessionManagedObject+Ext.swift */; };
 		EFE1B5FC98F16067BBB5DFAE /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */; };
 /* End PBXBuildFile section */
 
@@ -225,15 +222,12 @@
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataSetView.xib; path = Resources/EmptyDataSetView.xib; sourceTree = SOURCE_ROOT; };
 		E7C428B61ED3977700BAB0B2 /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
-		E7C428B71ED3977700BAB0B2 /* SessionManagedObject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E7C428B81ED3977700BAB0B2 /* SessionManagedObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		E7C428B91ED3977700BAB0B2 /* SessionManagedObject+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+Ext.swift"; sourceTree = "<group>"; };
 		E7C428C11ED3987000BAB0B2 /* NSManagedObjectContext+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Rx.swift"; sourceTree = "<group>"; };
 		E7E889DB1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCoordinatorDependencyProviders.swift; sourceTree = "<group>"; };
 		E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = WWDCast.xcdatamodel; path = Resources/WWDCast.xcdatamodel; sourceTree = SOURCE_ROOT; };
-		E7FC18141EE0A5E6000D2FAB /* SessionsSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionsSearchViewController.xib; path = Resources/SessionsSearchViewController.xib; sourceTree = SOURCE_ROOT; };
-		E7FC18151EE0A5E6000D2FAB /* FavoriteSessionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FavoriteSessionsViewController.xib; path = Resources/FavoriteSessionsViewController.xib; sourceTree = SOURCE_ROOT; };
-		E7FC18161EE0A5E6000D2FAB /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterViewController.xib; path = Resources/FilterViewController.xib; sourceTree = SOURCE_ROOT; };
+		E7FC181B1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E7FC181C1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E7FC181F1EE0AC57000D2FAB /* SessionManagedObject+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+Ext.swift"; sourceTree = "<group>"; };
 		EBF25D25558B02375133B1A5 /* Pods-Tests-WWDCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-WWDCastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-WWDCastTests/Pods-Tests-WWDCastTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -296,9 +290,6 @@
 			isa = PBXGroup;
 			children = (
 				E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */,
-				E7FC18141EE0A5E6000D2FAB /* SessionsSearchViewController.xib */,
-				E7FC18151EE0A5E6000D2FAB /* FavoriteSessionsViewController.xib */,
-				E7FC18161EE0A5E6000D2FAB /* FilterViewController.xib */,
 				5E2680951D2C43440054E90B /* Assets.xcassets */,
 				B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */,
 				B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */,
@@ -602,10 +593,10 @@
 		E7C428B51ED3977700BAB0B2 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				E7FC181F1EE0AC57000D2FAB /* SessionManagedObject+Ext.swift */,
+				E7FC181B1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift */,
+				E7FC181C1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataProperties.swift */,
 				E7C428B61ED3977700BAB0B2 /* CoreDataController.swift */,
-				E7C428B71ED3977700BAB0B2 /* SessionManagedObject+CoreDataClass.swift */,
-				E7C428B81ED3977700BAB0B2 /* SessionManagedObject+CoreDataProperties.swift */,
-				E7C428B91ED3977700BAB0B2 /* SessionManagedObject+Ext.swift */,
 				E7C428C11ED3987000BAB0B2 /* NSManagedObjectContext+Rx.swift */,
 				E77360F21ED4814C002899A3 /* DataSource.swift */,
 			);
@@ -708,10 +699,7 @@
 				E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */,
 				B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */,
 				B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */,
-				E7FC18191EE0A5E6000D2FAB /* FavoriteSessionsViewController.xib in Resources */,
 				5E2680961D2C43440054E90B /* Assets.xcassets in Resources */,
-				E7FC181A1EE0A5E6000D2FAB /* FilterViewController.xib in Resources */,
-				E7FC18181EE0A5E6000D2FAB /* SessionsSearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,6 +825,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E718A0D01E58E906003463B0 /* SessionSectionViewModelBuilder.swift in Sources */,
+				E7FC18201EE0AC57000D2FAB /* SessionManagedObject+Ext.swift in Sources */,
 				E718A0EC1E58E906003463B0 /* GoogleCastMedia+GCK.swift in Sources */,
 				E718A0CB1E58E906003463B0 /* FilterViewController.swift in Sources */,
 				E718A0C61E58E906003463B0 /* FavoriteSessionsViewModel.swift in Sources */,
@@ -853,7 +842,6 @@
 				B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */,
 				E718A0D21E58E906003463B0 /* SessionsSearchViewModel.swift in Sources */,
 				E718A1001E58E906003463B0 /* UITableView+Common.swift in Sources */,
-				E7C428BD1ED3977700BAB0B2 /* SessionManagedObject+CoreDataClass.swift in Sources */,
 				E718A0D51E58E906003463B0 /* TabBarController.swift in Sources */,
 				E718A0CC1E58E906003463B0 /* FilterViewModel.swift in Sources */,
 				E7E889DC1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift in Sources */,
@@ -863,8 +851,8 @@
 				E7C428BC1ED3977700BAB0B2 /* CoreDataController.swift in Sources */,
 				E718A0D31E58E906003463B0 /* SessionsSearchViewModelProtocol.swift in Sources */,
 				E718A0DD1E58E906003463B0 /* AppConfigBuilder.swift in Sources */,
-				E7C428BF1ED3977700BAB0B2 /* SessionManagedObject+Ext.swift in Sources */,
 				E718A0FA1E58E906003463B0 /* RxExtensions.swift in Sources */,
+				E7FC181E1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataProperties.swift in Sources */,
 				E718A0F11E58E906003463B0 /* NetworkService.swift in Sources */,
 				E718A1011E58E906003463B0 /* UIViewController+Common.swift in Sources */,
 				E718A0F01E58E906003463B0 /* RxGCKSessionManagerListenerProxy.swift in Sources */,
@@ -891,8 +879,8 @@
 				E718A0E91E58E906003463B0 /* WWDCastAPIProtocol.swift in Sources */,
 				E718A0FC1E58E906003463B0 /* TableViewController.swift in Sources */,
 				E718A0E71E58E906003463B0 /* SchedulerServiceProtocol.swift in Sources */,
-				E7C428BE1ED3977700BAB0B2 /* SessionManagedObject+CoreDataProperties.swift in Sources */,
 				E718A0E21E58E906003463B0 /* Session.swift in Sources */,
+				E7FC181D1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift in Sources */,
 				E718A0F81E58E906003463B0 /* SessionRecord.swift in Sources */,
 				E718A0CD1E58E906003463B0 /* FilterViewModelProtocol.swift in Sources */,
 				E718A0C51E58E906003463B0 /* FavoriteSessionsViewController.swift in Sources */,

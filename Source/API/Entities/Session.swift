@@ -36,7 +36,7 @@ struct Session {
 
     }
 
-    var uniqueId: String { return "#\(year)-\(id)" }
+    var uniqueId: String { return "\(year.rawValue)-\(id)" }
     let id: Int
     let year: Year
     let track: Track
@@ -44,7 +44,7 @@ struct Session {
     let title: String
     var subtitle: String {
         let focus = self.platforms.map({ $0.description }).joined(separator: ", ")
-        return ["\(self.year)", "Session \(self.id)", focus].filter({ $0.lengthOfBytes(using: String.Encoding.utf8) > 0}) .joined(separator: " · ")
+        return ["WWDC \(self.year)", "Session \(self.id)", focus].filter({ $0.lengthOfBytes(using: String.Encoding.utf8) > 0}) .joined(separator: " · ")
     }
     let summary: String
     let video: URL?
@@ -73,7 +73,7 @@ func < (lhs: Session, rhs: Session) -> Bool {
 extension Session.Year: CustomStringConvertible {
 
     var description: String {
-        return "WWDC \(self.rawValue)"
+        return "\(self.rawValue)"
     }
 }
 
@@ -92,7 +92,7 @@ extension Session.Track: LosslessStringConvertible {
             "Featured": .Featured, "Graphics and Games": .GraphicsAndGames, "Design": .Design, "Media": .Media,
             "Distribution": .Distribution]
         guard let value = mapping[description] else {
-            NSLog("Failed to find a value for track with description '\(description)'!")
+            assertionFailure("Failed to find a value for track with description '\(description)'!")
             return nil
         }
         self = value
