@@ -11,27 +11,57 @@ import CoreData
 import RxSwift
 
 protocol EntityRepresentable {
-    associatedtype EntityType: UniquelyIdentifiable
+    associatedtype EntityType: CoreDataRepresentable
 
     func asEntity() -> EntityType
-    func update(_ entity: EntityType)
 }
 
 protocol CoreDataPersistable: NSFetchRequestResult {
+    static var primaryAttribute: String {get}
     static var entityName: String {get}
     static func fetchRequest() -> NSFetchRequest<Self>
 }
 
-protocol UniquelyIdentifiable {
+protocol CoreDataRepresentable {
+    associatedtype CoreDataType: CoreDataPersistable
+
     var uid: String {get}
+
+    func update(object: CoreDataType)
 }
 
-extension Session: UniquelyIdentifiable {
-    var uid: String {
-        return self.uniqueId
+extension CoreDataRepresentable where Self.CoreDataType: NSManagedObject {
+
+    func sync(in context: NSManagedObjectContext) -> Observable<CoreDataType> {
+        return context.rx.sync(entity: self, update: update)
+    }
+
+    func update(in context: NSManagedObjectContext) -> Observable<CoreDataType?> {
+        return context.rx.update(entity: self, update: update)
     }
 }
 
+extension Session: CoreDataRepresentable {
+    typealias CoreDataType = SessionManagedObject
+
+    var uid: String {
+        return self.uniqueId
+    }
+
+    func update(object: CoreDataType) {
+        object.id = Int16(self.id)
+        object.year = Int16(self.year.rawValue)
+        object.track = Int16(self.track.rawValue)
+        object.title = self.title
+        object.summary = self.summary
+        object.video = self.video?.absoluteString
+        object.captions = self.captions?.absoluteString
+        object.thumbnail = self.thumbnail.absoluteString
+        object.favorite = self.favorite
+        object.platforms = self.platforms.isEmpty ? "" : self.platforms.map({ $0.rawValue }).joined(separator: "#")
+    }
+
+}
 
 final class CoreDataController {
 

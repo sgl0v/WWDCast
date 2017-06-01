@@ -11,15 +11,16 @@ import CoreData
 
 extension SessionManagedObject: CoreDataPersistable {
 
-    static var entityName: String {
-        return "\(SessionManagedObject.self)"
-    }
+    static let entityName = "\(SessionManagedObject.self)"
+    static let primaryAttribute = NSStringFromSelector(#selector(getter: uniqueId))
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<SessionManagedObject> {
         let fetchRequest = NSFetchRequest<SessionManagedObject>(entityName: self.entityName)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         return fetchRequest
     }
+
+    var uniqueId: String { return "#\(year)-\(id)" }
 
     @NSManaged public var id: Int16
     @NSManaged public var year: Int16

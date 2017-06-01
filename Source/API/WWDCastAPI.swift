@@ -27,18 +27,19 @@ class WWDCastAPI: WWDCastAPIProtocol {
     }
 
     lazy var sessions: Observable<[Session]> = {
-        let cachedSessions = self.cache.values
-        let loadedSessions = self.loadConfig()
-            .flatMapLatest(self.loadSessions)
-            .retryOnBecomesReachable([], reachabilityService: self.serviceProvider.reachability)
-            .flatMap(self.updateCache)
-
-        return Observable.of(cachedSessions, loadedSessions)
-            .merge()
-            .sort()
-            .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
-            .observeOn(self.serviceProvider.scheduler.mainScheduler)
-            .shareReplayLatestWhileConnected()
+        return Observable.empty()
+//        let cachedSessions = self.cache.values
+//        let loadedSessions = self.loadConfig()
+//            .flatMapLatest(self.loadSessions)
+//            .retryOnBecomesReachable([], reachabilityService: self.serviceProvider.reachability)
+//            .flatMap(self.updateCache)
+//
+//        return Observable.of(cachedSessions, loadedSessions)
+//            .merge()
+//            .sort()
+//            .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
+//            .observeOn(self.serviceProvider.scheduler.mainScheduler)
+//            .shareReplayLatestWhileConnected()
     }()
 
     var favoriteSessions: Observable<[Session]> {

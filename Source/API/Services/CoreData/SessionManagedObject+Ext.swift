@@ -58,17 +58,5 @@ extension SessionManagedObject: EntityRepresentable {
                           favorite: favorite)
     }
 
-    func update(_ session: Session) {
-        self.id = Int16(session.id)
-        self.year = Int16(session.year.rawValue)
-        self.track = Int16(session.track.rawValue)
-        self.title = session.title
-        self.summary = session.summary
-        self.video = session.video?.absoluteString
-        self.captions = session.captions?.absoluteString
-        self.thumbnail = session.thumbnail.absoluteString
-        self.favorite = session.favorite
-        self.platforms = session.platforms.isEmpty ? "" : session.platforms.map({ $0.rawValue }).joined(separator: "#")
-    }
-
 }
+

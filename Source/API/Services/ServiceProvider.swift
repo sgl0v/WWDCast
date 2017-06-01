@@ -47,8 +47,13 @@ extension ServiceProvider {
         if let coreDataController = CoreDataController(name: "WWDCast") {
             coreDataController.loadStore { err in
                 print("Error=\(String(describing: err))")
-                let sessions = CoreDataSource<SessionManagedObject>(coreDataController: coreDataController)
-                _ = sessions.allObjects().subscribe(onNext: {sessions in
+                let cacheDataSource = CoreDataSource<SessionManagedObject>(coreDataController: coreDataController)
+                let networkDataSource = NetworkDataSource(network: network, reachability: reachability)
+                let dataSource = CompositeDataSource(networkDataSource: AnyDataSource(dataSource: networkDataSource), coreDataSource: AnyDataSource(dataSource: cacheDataSource))
+                dataSource.allObjects()
+                            .subscribeOn(scheduler.backgroundWorkScheduler)
+                            .observeOn(scheduler.mainScheduler)
+                    .subscribe(onNext: {sessions in
                     print(sessions)
                 })
 

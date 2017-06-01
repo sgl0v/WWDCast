@@ -12,12 +12,10 @@ import RxSwift
 
 extension Reactive where Base: NSManagedObjectContext {
 
-    func fetch<T: NSFetchRequestResult>(_ fetchRequest: NSFetchRequest<NSFetchRequestResult>) -> Observable<[T]> {
+    func fetch<T: CoreDataPersistable>(_ fetchRequest: NSFetchRequest<T>) -> Observable<[T]> where T: NSManagedObject {
         do {
-            if let sessions = try self.base.fetch(fetchRequest) as? [T] {
-                return Observable.just(sessions)
-            }
-            return Observable.just([])
+            let sessions = try self.base.fetch(fetchRequest)
+            return Observable.just(sessions)
         } catch {
             assertionFailure("Failed to fetch objects from core data: \(error)")
             return Observable.error(error)
@@ -25,30 +23,50 @@ extension Reactive where Base: NSManagedObjectContext {
     }
 
     func save() -> Observable<Void> {
-        if !self.base.hasChanges {
-            return Observable.empty()
-        }
+        return Observable.deferred {
+            if !self.base.hasChanges {
+                return Observable.just()
+            }
 
-        do {
-            try self.base.save()
-        } catch {
-            assertionFailure("Failed to save the context with error: \(error)")
-            return Observable.error(error)
+            do {
+                try self.base.save()
+            } catch {
+                assertionFailure("Failed to save the context with error: \(error)")
+                return Observable.error(error)
+            }
+            return Observable.just()
         }
-        return Observable.just()
     }
 
-    func first<T: NSFetchRequestResult>(with predicate: NSPredicate) -> Observable<T?> {
+    func first<T: CoreDataPersistable>(with id: String) -> Observable<T?> where T: NSManagedObject {
         return Observable.deferred {
             let entityName = String(describing: T.self)
             let request = NSFetchRequest<T>(entityName: entityName)
-            request.predicate = predicate
-            do {
-                let result = try self.base.fetch(request).first
-                return Observable.just(result)
-            } catch {
-                return Observable.error(error)
-            }
+            request.predicate = NSPredicate(format: "(\(T.primaryAttribute) = %@)", id)
+            return self.fetch(request).map({ managedObjects -> T? in
+                return managedObjects.first
+            })
         }
+    }
+
+    func sync<T: CoreDataRepresentable, U: NSManagedObject>(entity: T,
+              update: @escaping (U) -> Void) -> Observable<U> where U: CoreDataPersistable, T.CoreDataType == U {
+        return self.first(with: entity.uid).flatMap({ (obj: U?) -> Observable<U>  in
+            let record = obj ?? U(context: self.base)
+            update(record)
+            return Observable.just(record)
+        })
+    }
+
+    func update<T: CoreDataRepresentable, U: NSManagedObject>(entity: T,
+              update: @escaping (U) -> Void) -> Observable<U?> where U: CoreDataPersistable, T.CoreDataType == U {
+        return self.first(with: entity.uid).flatMap({ (obj: U?) -> Observable<U?>  in
+            if let record = obj {
+                update(record)
+                return Observable.just(record)
+            } else {
+                return Observable.just(nil)
+            }
+        })
     }
 }
