@@ -16,7 +16,7 @@ protocol DataSource: class {
     func allObjects() -> Observable<[Item]>
     func get(byId id: String) -> Observable<Item?>
     func save(_ items: [Item]) -> Observable<Void>
-//    func update(_ items: [T])
+    func update(_ items: [Item]) -> Observable<Void>
     func clean() -> Observable<Void>
     func delete(byId id: String) -> Observable<Void>
 }
@@ -27,6 +27,7 @@ final class AnyDataSource<T>: DataSource {
     private let _allObjects: () -> Observable<[Item]>
     private let _get: (String) -> Observable<Item?>
     private let _save: ([Item]) -> Observable<Void>
+    private let _update: ([Item]) -> Observable<Void>
     private let _clean: () -> Observable<Void>
     private let _delete: (String) -> Observable<Void>
 
@@ -34,6 +35,7 @@ final class AnyDataSource<T>: DataSource {
         _allObjects = dataSource.allObjects
         _get = dataSource.get
         _save = dataSource.save
+        _update = dataSource.update
         _clean = dataSource.clean
         _delete = dataSource.delete
     }
@@ -48,6 +50,10 @@ final class AnyDataSource<T>: DataSource {
 
     func save(_ items: [Item]) -> Observable<Void> {
         return _save(items)
+    }
+
+    func update(_ items: [Item]) -> Observable<Void> {
+        return _update(items)
     }
 
     func clean() -> Observable<Void> {
@@ -78,6 +84,13 @@ extension Sequence where Iterator.Element : CoreDataRepresentable, Iterator.Elem
             element.sync(in: context)
         })
     }
+
+    func update(in context: NSManagedObjectContext) -> Observable<CoreDataType?> {
+        return Observable.merge(self.map { element in
+            element.update(in: context)
+        })
+    }
+
 }
 
 extension ObservableType {
@@ -114,6 +127,10 @@ final class CompositeDataSource<T: Comparable>: DataSource {
         return self.networkDataSource.save(items).concat(self.coreDataSource.save(items))
     }
 
+    func update(_ items: [Item]) -> Observable<Void> {
+        return self.networkDataSource.update(items).concat(self.coreDataSource.update(items))
+    }
+
     func clean() -> Observable<Void> {
         return self.networkDataSource.clean().concat(self.coreDataSource.clean())
     }
@@ -144,18 +161,14 @@ final class NetworkDataSource: DataSource {
     func get(byId id: String) -> Observable<Item?> {
         // Currently not supported
         return Observable.empty()
-
-//        return self.allObjects().flatMap({ sessions -> Observable<Item> in
-//            if let session = sessions.filter({ session in
-//                return session.uniqueId == id
-//            }).first {
-//                return Observable.just(session)
-//            }
-//            return Observable.empty()
-//        })
     }
 
     func save(_ items: [Item]) -> Observable<Void> {
+        // Currently not supported
+        return Observable.empty()
+    }
+
+    func update(_ items: [Item]) -> Observable<Void> {
         // Currently not supported
         return Observable.empty()
     }
@@ -208,10 +221,10 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSource, NSFetchedR
         self.frc.delegate = self
         do {
             try self.frc.performFetch()
-        } catch let e {
-            self.allObjectsSubject.on(.error(e))
+            sendNextElement()
+        } catch {
+            self.allObjectsSubject.on(.error(error))
         }
-        sendNextElement()
     }
 
     func allObjects() -> Observable<[Item]> {
@@ -226,45 +239,39 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSource, NSFetchedR
 
     func save(_ items: [Item]) -> Observable<Void> {
         let context = self.coreDataController.newBackgroundContext()
-
-        let obs = context.rx.save()
-        return items.sync(in: context).mapToVoid().concat(obs)
-//        return bgContext.rx.first(with: predicate).map({ (obj: T?) -> Void  in
-//            let record = obj ?? T(context: bgContext)
-//            record.update(item)
-//        }).flatMap(bgContext.rx.save)
+        let save = context.rx.save()
+        return items.sync(in: context).mapToVoid().concat(save)
     }
 
-//    func update(_ item: Session) {
-//
-//    }
+    func update(_ items: [Item]) -> Observable<Void> {
+        let context = self.coreDataController.newBackgroundContext()
+        let save = context.rx.save()
+        return items.update(in: context).mapToVoid().concat(save)
+    }
 
     func clean() -> Observable<Void> {
-//        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-//        do
-//        {
-//            try context.execute(deleteRequest)
-//            try context.save()
-//        }
-//        catch
-//        {
-//            print ("There was an error")
-//        }
-        return Observable.empty()
+        return Observable.create({[unowned self] observer in
+            let context = self.coreDataController.newBackgroundContext()
+            let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: T.entityName)
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+            do {
+                try context.execute(deleteRequest)
+                try context.save()
+                observer.onNext()
+            } catch {
+
+                assertionFailure(error.localizedDescription)
+                observer.onError(error)
+            }
+            observer.onCompleted()
+            return Disposables.create()
+        })
     }
 
     func delete(byId id: String) -> Observable<Void> {
         let bgContext = self.coreDataController.newBackgroundContext()
         let item: Observable<T?> = bgContext.rx.first(with: id)
         return item.rejectNil().unwrap().map(bgContext.delete).flatMap(bgContext.rx.save)
-
-//        let predicate = NSPredicate(format: "(id = %@)", id)
-//        self.coreDataController.performInBackground { context in
-//            context.rx.first(with: predicate).subscribe(onNext: { session in
-//                context.delete(session!)
-//            })
-//        }
     }
 
     // MARK: Private
@@ -277,9 +284,7 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSource, NSFetchedR
         }
     }
 
-//}
-//
-//extension CoreDataSource: NSFetchedResultsControllerDelegate {
+    // MARK: NSFetchedResultsControllerDelegate
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         sendNextElement()

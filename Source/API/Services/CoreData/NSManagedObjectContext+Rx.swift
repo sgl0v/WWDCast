@@ -39,14 +39,12 @@ extension Reactive where Base: NSManagedObjectContext {
     }
 
     func first<T: CoreDataPersistable>(with id: String) -> Observable<T?> where T: NSManagedObject {
-        return Observable.deferred {
-            let entityName = String(describing: T.self)
-            let request = NSFetchRequest<T>(entityName: entityName)
-            request.predicate = NSPredicate(format: "(\(T.primaryAttribute) = %@)", id)
-            return self.fetch(request).map({ managedObjects -> T? in
-                return managedObjects.first
-            })
-        }
+        let entityName = String(describing: T.self)
+        let request = NSFetchRequest<T>(entityName: entityName)
+        request.predicate = NSPredicate(format: "(\(T.primaryAttribute) = %@)", id)
+        return self.fetch(request).map({ managedObjects -> T? in
+            return managedObjects.first
+        })
     }
 
     func sync<T: CoreDataRepresentable, U: NSManagedObject>(entity: T,
