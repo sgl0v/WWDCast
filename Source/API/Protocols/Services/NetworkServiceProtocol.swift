@@ -9,6 +9,12 @@
 import Foundation
 import RxSwift
 
+/// Defines the Network service errors.
+enum NetworkError: Error {
+    /// Failed to load data from the network.
+    case failedDataLoading
+}
+
 protocol NetworkServiceProtocol: class {
 
     func load<T>(_ resource: Resource<T>) -> Observable<T>
