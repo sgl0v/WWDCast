@@ -50,21 +50,23 @@ extension Reactive where Base: NSManagedObjectContext {
     func sync<T: CoreDataRepresentable, U: NSManagedObject>(entity: T,
               update: @escaping (U) -> Void) -> Observable<U> where U: CoreDataPersistable, T.CoreDataType == U {
         return self.first(with: entity.uid).flatMap({ (obj: U?) -> Observable<U>  in
-            let record = obj ?? U(context: self.base)
+            if let record = obj {
+                return Observable.just(record)
+            }
+            let record = U(context: self.base)
             update(record)
             return Observable.just(record)
         })
     }
 
     func update<T: CoreDataRepresentable, U: NSManagedObject>(entity: T,
-              update: @escaping (U) -> Void) -> Observable<U?> where U: CoreDataPersistable, T.CoreDataType == U {
-        return self.first(with: entity.uid).flatMap({ (obj: U?) -> Observable<U?>  in
+              update: @escaping (U) -> Void) -> Observable<U> where U: CoreDataPersistable, T.CoreDataType == U {
+        return self.first(with: entity.uid).flatMap({ (obj: U?) -> Observable<U>  in
             if let record = obj {
                 update(record)
                 return Observable.just(record)
-            } else {
-                return Observable.just(nil)
             }
+            return Observable.empty()
         })
     }
 }

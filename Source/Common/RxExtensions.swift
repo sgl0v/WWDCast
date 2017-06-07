@@ -69,6 +69,19 @@ extension ObservableType where E: Optionable {
     }
 }
 
+extension ObservableType {
+
+    func mapToVoid() -> Observable<Void> {
+        return map { _ in }
+    }
+
+    func flatMap<T>(_ observable: Observable<T>) -> Observable<T> {
+        return self.flatMap { _ in
+            return observable
+        }
+    }
+}
+
 extension Observable where Element : Sequence, Element.Iterator.Element : Comparable {
 
     /// Sorts each element of an observable sequence. 

@@ -15,14 +15,14 @@ final class ServiceProvider: ServiceProviderProtocol {
     private(set) var scheduler: SchedulerServiceProtocol
     private(set) var network: NetworkServiceProtocol
     private(set) var googleCast: GoogleCastServiceProtocol
-    private(set) var database: DatabaseProtocol
+//    private(set) var database: DatabaseProtocol
 
-    init(reachability: ReachabilityServiceProtocol, scheduler: SchedulerServiceProtocol, network: NetworkServiceProtocol, googleCast: GoogleCastServiceProtocol, database: DatabaseProtocol) {
+    init(reachability: ReachabilityServiceProtocol, scheduler: SchedulerServiceProtocol, network: NetworkServiceProtocol, googleCast: GoogleCastServiceProtocol) {
         self.reachability = reachability
         self.scheduler = scheduler
         self.network = network
         self.googleCast = googleCast
-        self.database = database
+//        self.database = database
     }
 }
 
@@ -33,34 +33,18 @@ extension ServiceProvider {
             fatalError("Failed to create reachability service!")
         }
 
-        let dbName = "db.sqlite"
-        let fileManager = FileManager.default
-        guard let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first,
-            let database = Database(path: documentsURL.appendingPathComponent(dbName).path) else {
-            fatalError("Failed to create database with name \(dbName)!")
-        }
+//        let dbName = "db.sqlite"
+//        let fileManager = FileManager.default
+//        guard let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first,
+//            let database = Database(path: documentsURL.appendingPathComponent(dbName).path) else {
+//            fatalError("Failed to create database with name \(dbName)!")
+//        }
 
         let scheduler = SchedulerService()
         let network = NetworkService()
         let googleCast = GoogleCastServiceProtocolImpl(applicationID: WWDCastEnvironment.googleCastAppID)
 
-        if let coreDataController = CoreDataController(name: "WWDCast") {
-            coreDataController.loadStore { err in
-                print("Error=\(String(describing: err))")
-                let cacheDataSource = CoreDataSource<SessionManagedObject>(coreDataController: coreDataController)
-                let networkDataSource = NetworkDataSource(network: network, reachability: reachability)
-                let dataSource = CompositeDataSource(networkDataSource: AnyDataSource(dataSource: networkDataSource), coreDataSource: AnyDataSource(dataSource: cacheDataSource))
-                dataSource.allObjects()
-                            .subscribeOn(scheduler.backgroundWorkScheduler)
-                            .observeOn(scheduler.mainScheduler)
-                    .subscribe(onNext: {sessions in
-                    print(sessions)
-                })
-
-            }
-        }
-
-        return ServiceProvider(reachability: reachability, scheduler: scheduler, network: network, googleCast: googleCast, database: database)
+        return ServiceProvider(reachability: reachability, scheduler: scheduler, network: network, googleCast: googleCast)
     }()
 
 }

@@ -10,13 +10,17 @@ import Foundation
 import RxSwift
 import CoreData
 
+enum DataSourceError: Swift.Error {
+    case itemNotFound
+}
+
 protocol DataSource: class {
     associatedtype Item
 
     func allObjects() -> Observable<[Item]>
-    func get(byId id: String) -> Observable<Item?>
-    func save(_ items: [Item]) -> Observable<Void>
-    func update(_ items: [Item]) -> Observable<Void>
+    func get(byId id: String) -> Observable<Item>
+    func add(_ items: [Item]) -> Observable<[Item]>
+    func update(_ items: [Item]) -> Observable<[Item]>
     func clean() -> Observable<Void>
     func delete(byId id: String) -> Observable<Void>
 }
@@ -25,16 +29,16 @@ final class AnyDataSource<T>: DataSource {
     typealias Item = T
 
     private let _allObjects: () -> Observable<[Item]>
-    private let _get: (String) -> Observable<Item?>
-    private let _save: ([Item]) -> Observable<Void>
-    private let _update: ([Item]) -> Observable<Void>
+    private let _get: (String) -> Observable<Item>
+    private let _add: ([Item]) -> Observable<[Item]>
+    private let _update: ([Item]) -> Observable<[Item]>
     private let _clean: () -> Observable<Void>
     private let _delete: (String) -> Observable<Void>
 
     init<Concrete: DataSource>(dataSource: Concrete) where Concrete.Item == T {
         _allObjects = dataSource.allObjects
         _get = dataSource.get
-        _save = dataSource.save
+        _add = dataSource.add
         _update = dataSource.update
         _clean = dataSource.clean
         _delete = dataSource.delete
@@ -44,15 +48,15 @@ final class AnyDataSource<T>: DataSource {
         return _allObjects()
     }
 
-    func get(byId id: String) -> Observable<Item?> {
+    func get(byId id: String) -> Observable<Item> {
         return _get(id)
     }
 
-    func save(_ items: [Item]) -> Observable<Void> {
-        return _save(items)
+    func add(_ items: [Item]) -> Observable<[Item]> {
+        return _add(items)
     }
 
-    func update(_ items: [Item]) -> Observable<Void> {
+    func update(_ items: [Item]) -> Observable<[Item]> {
         return _update(items)
     }
 
@@ -79,24 +83,18 @@ extension Sequence where Iterator.Element : CoreDataRepresentable, Iterator.Elem
 
     typealias CoreDataType = Iterator.Element.CoreDataType
 
-    func sync(in context: NSManagedObjectContext) -> Observable<CoreDataType> {
+    func sync(in context: NSManagedObjectContext) -> Observable<[CoreDataType]> {
         return Observable.merge(self.map { element in
             element.sync(in: context)
-        })
+        }).toArray()
     }
 
-    func update(in context: NSManagedObjectContext) -> Observable<CoreDataType?> {
+    func update(in context: NSManagedObjectContext) -> Observable<[CoreDataType]> {
         return Observable.merge(self.map { element in
             element.update(in: context)
-        })
+        }).toArray()
     }
 
-}
-
-extension ObservableType {
-    func mapToVoid() -> Observable<Void> {
-        return map { _ in }
-    }
 }
 
 final class CompositeDataSource<T: Comparable>: DataSource {
@@ -113,21 +111,21 @@ final class CompositeDataSource<T: Comparable>: DataSource {
 
     func allObjects() -> Observable<[Item]> {
         let cachedObjects = self.coreDataSource.allObjects()
-        let loadedObjects = self.networkDataSource.allObjects().flatMap(self.coreDataSource.save).flatMap(self.coreDataSource.allObjects)
-        return Observable.of(cachedObjects, loadedObjects).merge().distinctUntilChanged(==).sort().shareReplayLatestWhileConnected()
+        let loadedObjects = self.networkDataSource.allObjects().flatMap(self.coreDataSource.add)
+        return Observable.of(cachedObjects, loadedObjects).merge().sort()
     }
 
-    func get(byId id: String) -> Observable<T?> {
+    func get(byId id: String) -> Observable<T> {
         let cachedObject = self.coreDataSource.get(byId: id)
         let loadedObject = self.networkDataSource.get(byId: id)
         return Observable.of(cachedObject, loadedObject).merge()
     }
 
-    func save(_ items: [Item]) -> Observable<Void> {
-        return self.networkDataSource.save(items).concat(self.coreDataSource.save(items))
+    func add(_ items: [Item]) -> Observable<[Item]> {
+        return self.networkDataSource.add(items).concat(self.coreDataSource.add(items))
     }
 
-    func update(_ items: [Item]) -> Observable<Void> {
+    func update(_ items: [Item]) -> Observable<[Item]> {
         return self.networkDataSource.update(items).concat(self.coreDataSource.update(items))
     }
 
@@ -156,19 +154,20 @@ final class NetworkDataSource: DataSource {
         return self.loadConfig()
             .flatMapLatest(self.loadSessions)
             .retryOnBecomesReachable([], reachabilityService: self.reachability)
+            .shareReplayLatestWhileConnected()
     }
 
-    func get(byId id: String) -> Observable<Item?> {
+    func get(byId id: String) -> Observable<Item> {
         // Currently not supported
         return Observable.empty()
     }
 
-    func save(_ items: [Item]) -> Observable<Void> {
+    func add(_ items: [Item]) -> Observable<[Item]> {
         // Currently not supported
         return Observable.empty()
     }
 
-    func update(_ items: [Item]) -> Observable<Void> {
+    func update(_ items: [Item]) -> Observable<[Item]> {
         // Currently not supported
         return Observable.empty()
     }
@@ -186,16 +185,12 @@ final class NetworkDataSource: DataSource {
     // MARK: Private
 
     private func loadConfig() -> Observable<AppConfig> {
-        guard let configResource = Resource(url: WWDCastEnvironment.configURL, parser: AppConfigBuilder.build) else {
-            return Observable.error(WWDCastAPIError.dataLoadingError)
-        }
+        let configResource = Resource(url: WWDCastEnvironment.configURL, parser: AppConfigBuilder.build)
         return self.network.load(configResource)
     }
 
     private func loadSessions(forConfig config: AppConfig) -> Observable<[Session]> {
-        guard let sessionsResource = Resource(url: config.videosURL, parser: SessionsBuilder.build) else {
-            return Observable.error(WWDCastAPIError.dataLoadingError)
-        }
+        let sessionsResource = Resource(url: config.videosURL, parser: SessionsBuilder.build)
         return self.network.load(sessionsResource)
     }
 
@@ -231,22 +226,37 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSource, NSFetchedR
         return self.allObjectsSubject.asObservable()
     }
 
-    func get(byId id: String) -> Observable<Item?> {
-        return self.coreDataController.viewContext.rx.first(with: id).map { (obj: T?) -> Item? in
-            return obj?.asEntity()
-        }
+    func get(byId id: String) -> Observable<Item> {
+        return self.allObjects().flatMap({ items -> Observable<Item> in
+            let item = items.filter({ item in
+                return item.uid == id
+            }).first
+            if let item = item {
+                return Observable.just(item)
+            }
+            return Observable.error(DataSourceError.itemNotFound)
+        })
+
+//        return self.coreDataController.viewContext.rx.first(with: id).flatMap { (obj: T?) -> Observable<Item> in
+//            if let item = obj {
+//                return Observable.just(item.asEntity())
+//            }
+//            return Observable.error(DataSourceError.itemNotFound)
+//        }
     }
 
-    func save(_ items: [Item]) -> Observable<Void> {
+    func add(_ items: [Item]) -> Observable<[Item]> {
         let context = self.coreDataController.newBackgroundContext()
-        let save = context.rx.save()
-        return items.sync(in: context).mapToVoid().concat(save)
+        return items.sync(in: context).flatMap({ items in
+            return context.rx.save().flatMap(Observable.just(items.asDomainTypes()))
+        })
     }
 
-    func update(_ items: [Item]) -> Observable<Void> {
+    func update(_ items: [Item]) -> Observable<[Item]> {
         let context = self.coreDataController.newBackgroundContext()
-        let save = context.rx.save()
-        return items.update(in: context).mapToVoid().concat(save)
+        return items.update(in: context).flatMap({ items in
+            return context.rx.save().flatMap(Observable.just(items.asDomainTypes()))
+        })
     }
 
     func clean() -> Observable<Void> {

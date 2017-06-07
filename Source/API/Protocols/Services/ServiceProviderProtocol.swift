@@ -13,5 +13,5 @@ protocol ServiceProviderProtocol: class {
     var scheduler: SchedulerServiceProtocol { get }
     var network: NetworkServiceProtocol { get }
     var googleCast: GoogleCastServiceProtocol { get }
-    var database: DatabaseProtocol { get }
+//    var database: DatabaseProtocol { get }
 }

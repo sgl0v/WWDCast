@@ -36,7 +36,7 @@ extension CoreDataRepresentable where Self.CoreDataType: NSManagedObject {
         return context.rx.sync(entity: self, update: update)
     }
 
-    func update(in context: NSManagedObjectContext) -> Observable<CoreDataType?> {
+    func update(in context: NSManagedObjectContext) -> Observable<CoreDataType> {
         return context.rx.update(entity: self, update: update)
     }
 }
