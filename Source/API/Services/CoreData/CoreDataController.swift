@@ -64,6 +64,33 @@ extension Session: CoreDataRepresentable {
 
 }
 
+extension Sequence where Iterator.Element : EntityRepresentable {
+
+    func asDomainTypes() -> [Iterator.Element.EntityType] {
+        return self.map({ record in
+            return record.asEntity()
+        })
+    }
+}
+
+extension Sequence where Iterator.Element : CoreDataRepresentable, Iterator.Element.CoreDataType: NSManagedObject {
+
+    typealias CoreDataType = Iterator.Element.CoreDataType
+
+    func sync(in context: NSManagedObjectContext) -> Observable<[CoreDataType]> {
+        return Observable.merge(self.map { element in
+            element.sync(in: context)
+        }).toArray()
+    }
+
+    func update(in context: NSManagedObjectContext) -> Observable<[CoreDataType]> {
+        return Observable.merge(self.map { element in
+            element.update(in: context)
+        }).toArray()
+    }
+    
+}
+
 final class CoreDataController {
 
     private let persistentContainer: NSPersistentContainer

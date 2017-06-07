@@ -16,7 +16,6 @@ class WWDCastAPI: WWDCastAPIProtocol {
 
     init(serviceProvider: ServiceProviderProtocol) {
         self.serviceProvider = serviceProvider
-//        self.cache = Cache(database: self.serviceProvider.database)
 
         if let coreDataController = CoreDataController(name: "WWDCast") {
             coreDataController.loadStore {[unowned self] err in
@@ -26,8 +25,6 @@ class WWDCastAPI: WWDCastAPIProtocol {
                 self.dataSource = AnyDataSource(dataSource: CompositeDataSource(networkDataSource: networkDataSource, coreDataSource: cacheDataSource))
             }
         }
-
-//        createSessionsTableIfNeeded()
     }
 
     // MARK: WWDCastAPIProtocol
@@ -41,19 +38,6 @@ class WWDCastAPI: WWDCastAPIProtocol {
             .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
             .observeOn(self.serviceProvider.scheduler.mainScheduler)
             .shareReplayLatestWhileConnected()
-
-//        let cachedSessions = self.cache.values
-//        let loadedSessions = self.loadConfig()
-//            .flatMapLatest(self.loadSessions)
-//            .retryOnBecomesReachable([], reachabilityService: self.serviceProvider.reachability)
-//            .flatMap(self.updateCache)
-//
-//        return Observable.of(cachedSessions, loadedSessions)
-//            .merge()
-//            .sort()
-//            .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
-//            .observeOn(self.serviceProvider.scheduler.mainScheduler)
-//            .shareReplayLatestWhileConnected()
     }()
 
     var favoriteSessions: Observable<[Session]> {
@@ -64,14 +48,6 @@ class WWDCastAPI: WWDCastAPIProtocol {
 
     func session(withId id: String) -> Observable<Session> {
         return self.dataSource.get(byId: id)
-//        return self.sessions.flatMap({ sessions -> Observable<Session> in
-//            if let session = sessions.filter({ session in
-//                return session.uniqueId == id
-//            }).first {
-//                return Observable.just(session)
-//            }
-//            return Observable.empty()
-//        })
     }
 
     func play(session: Session, onDevice device: GoogleCastDevice) -> Observable<Void> {
@@ -88,42 +64,5 @@ class WWDCastAPI: WWDCastAPIProtocol {
 
         return self.dataSource.update([newSession]).flatMap(Observable.just(newSession))
     }
-
-    // MARK: Private
-
-//    private func loadConfig() -> Observable<AppConfig> {
-//        guard let configResource = Resource(url: WWDCastEnvironment.configURL, parser: AppConfigBuilder.build) else {
-//            return Observable.error(WWDCastAPIError.dataLoadingError)
-//        }
-//        return self.serviceProvider.network.load(configResource)
-//    }
-//
-//    private func loadSessions(forConfig config: AppConfig) -> Observable<[Session]> {
-//        guard let sessionsResource = Resource(url: config.videosURL, parser: SessionsBuilder.build) else {
-//            return Observable.error(WWDCastAPIError.dataLoadingError)
-//        }
-//        return self.serviceProvider.network.load(sessionsResource)
-//    }
-
-//    private func createSessionsTableIfNeeded() {
-//        if !self.serviceProvider.database.create(table: SessionTable.self) {
-//            NSLog("Failed to create the sessions table!")
-//        }
-//    }
-
-//    private func updateCache(sessions: [Session]) -> Observable<[Session]> {
-//        return Observable.just(sessions).withLatestFrom(self.cache.values, resultSelector: { newSessions, cachedSessions in
-//            let favoriteSessions = Set(cachedSessions.filter({ $0.favorite }).map({ $0.uniqueId }))
-//            let sessionsToAdd = newSessions.map({ session in
-//                return Session(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: favoriteSessions.contains(session.uniqueId))
-//            })
-//            if cachedSessions.isEmpty {
-//                self.cache.add(values: sessionsToAdd)
-//            } else {
-//                self.cache.update(values: sessionsToAdd)
-//            }
-//            return sessionsToAdd
-//        })
-//    }
 
 }

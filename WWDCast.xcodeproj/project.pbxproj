@@ -48,14 +48,12 @@
 		E718A0E01E58E906003463B0 /* SessionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0941E58E906003463B0 /* SessionsBuilder.swift */; };
 		E718A0E11E58E906003463B0 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0951E58E906003463B0 /* Filter.swift */; };
 		E718A0E21E58E906003463B0 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0961E58E906003463B0 /* Session.swift */; };
-		E718A0E31E58E906003463B0 /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0991E58E906003463B0 /* DatabaseProtocol.swift */; };
 		E718A0E41E58E906003463B0 /* GoogleCastServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A09A1E58E906003463B0 /* GoogleCastServiceProtocol.swift */; };
 		E718A0E51E58E906003463B0 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A09B1E58E906003463B0 /* NetworkServiceProtocol.swift */; };
 		E718A0E61E58E906003463B0 /* ReachabilityServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A09C1E58E906003463B0 /* ReachabilityServiceProtocol.swift */; };
 		E718A0E71E58E906003463B0 /* SchedulerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A09D1E58E906003463B0 /* SchedulerServiceProtocol.swift */; };
 		E718A0E81E58E906003463B0 /* ServiceProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A09E1E58E906003463B0 /* ServiceProviderProtocol.swift */; };
 		E718A0E91E58E906003463B0 /* WWDCastAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A09F1E58E906003463B0 /* WWDCastAPIProtocol.swift */; };
-		E718A0EA1E58E906003463B0 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0A11E58E906003463B0 /* Database.swift */; };
 		E718A0EB1E58E906003463B0 /* GoogleCastDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0A31E58E906003463B0 /* GoogleCastDevice.swift */; };
 		E718A0EC1E58E906003463B0 /* GoogleCastMedia+GCK.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0A41E58E906003463B0 /* GoogleCastMedia+GCK.swift */; };
 		E718A0ED1E58E906003463B0 /* GoogleCastMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0A51E58E906003463B0 /* GoogleCastMedia.swift */; };
@@ -67,9 +65,7 @@
 		E718A0F31E58E906003463B0 /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0AC1E58E906003463B0 /* ReachabilityService.swift */; };
 		E718A0F41E58E906003463B0 /* SchedulerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0AD1E58E906003463B0 /* SchedulerService.swift */; };
 		E718A0F51E58E906003463B0 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0AE1E58E906003463B0 /* ServiceProvider.swift */; };
-		E718A0F61E58E906003463B0 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B01E58E906003463B0 /* Cache.swift */; };
 		E718A0F71E58E906003463B0 /* Session+RecordConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B11E58E906003463B0 /* Session+RecordConvertable.swift */; };
-		E718A0F81E58E906003463B0 /* SessionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B21E58E906003463B0 /* SessionRecord.swift */; };
 		E718A0F91E58E906003463B0 /* WWDCastAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B31E58E906003463B0 /* WWDCastAPI.swift */; };
 		E718A0FA1E58E906003463B0 /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B51E58E906003463B0 /* RxExtensions.swift */; };
 		E718A0FB1E58E906003463B0 /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B61E58E906003463B0 /* RxTableViewCell.swift */; };
@@ -94,8 +90,12 @@
 		E72A1D371E68C761005A3EAE /* SessionItemViewModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1D231E68AF91005A3EAE /* SessionItemViewModel+Tests.swift */; };
 		E72A1D381E68C765005A3EAE /* SearchFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1D281E68B054005A3EAE /* SearchFlowCoordinatorTests.swift */; };
 		E72A1D3B1E68C76B005A3EAE /* SessionsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1D241E68AF91005A3EAE /* SessionsLoader.swift */; };
+		E7330BD11EE89D4500D7017F /* CompositeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7330BD01EE89D4500D7017F /* CompositeDataSource.swift */; };
+		E7330BD31EE89E7600D7017F /* NetworkDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7330BD21EE89E7600D7017F /* NetworkDataSource.swift */; };
+		E7330BD51EE89E9800D7017F /* CoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7330BD41EE89E9800D7017F /* CoreDataSource.swift */; };
+		E7330BD71EE8A29A00D7017F /* AnyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7330BD61EE8A29A00D7017F /* AnyDataSource.swift */; };
 		E76BFDCA1DC3FE0900B269B8 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */; };
-		E77360F31ED4814C002899A3 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77360F21ED4814C002899A3 /* DataSource.swift */; };
+		E77360F31ED4814C002899A3 /* DataSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77360F21ED4814C002899A3 /* DataSourceType.swift */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
 		E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */; };
 		E7C428BC1ED3977700BAB0B2 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C428B61ED3977700BAB0B2 /* CoreDataController.swift */; };
@@ -170,14 +170,12 @@
 		E718A0941E58E906003463B0 /* SessionsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsBuilder.swift; sourceTree = "<group>"; };
 		E718A0951E58E906003463B0 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		E718A0961E58E906003463B0 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		E718A0991E58E906003463B0 /* DatabaseProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		E718A09A1E58E906003463B0 /* GoogleCastServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastServiceProtocol.swift; sourceTree = "<group>"; };
 		E718A09B1E58E906003463B0 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		E718A09C1E58E906003463B0 /* ReachabilityServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityServiceProtocol.swift; sourceTree = "<group>"; };
 		E718A09D1E58E906003463B0 /* SchedulerServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerServiceProtocol.swift; sourceTree = "<group>"; };
 		E718A09E1E58E906003463B0 /* ServiceProviderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderProtocol.swift; sourceTree = "<group>"; };
 		E718A09F1E58E906003463B0 /* WWDCastAPIProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAPIProtocol.swift; sourceTree = "<group>"; };
-		E718A0A11E58E906003463B0 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		E718A0A31E58E906003463B0 /* GoogleCastDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDevice.swift; sourceTree = "<group>"; };
 		E718A0A41E58E906003463B0 /* GoogleCastMedia+GCK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GoogleCastMedia+GCK.swift"; sourceTree = "<group>"; };
 		E718A0A51E58E906003463B0 /* GoogleCastMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastMedia.swift; sourceTree = "<group>"; };
@@ -189,9 +187,7 @@
 		E718A0AC1E58E906003463B0 /* ReachabilityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		E718A0AD1E58E906003463B0 /* SchedulerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerService.swift; sourceTree = "<group>"; };
 		E718A0AE1E58E906003463B0 /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
-		E718A0B01E58E906003463B0 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		E718A0B11E58E906003463B0 /* Session+RecordConvertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+RecordConvertable.swift"; sourceTree = "<group>"; };
-		E718A0B21E58E906003463B0 /* SessionRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionRecord.swift; sourceTree = "<group>"; };
 		E718A0B31E58E906003463B0 /* WWDCastAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAPI.swift; sourceTree = "<group>"; };
 		E718A0B51E58E906003463B0 /* RxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
 		E718A0B61E58E906003463B0 /* RxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTableViewCell.swift; sourceTree = "<group>"; };
@@ -216,9 +212,13 @@
 		E72A1D2B1E68B054005A3EAE /* SessionsSearchViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewModelTests.swift; sourceTree = "<group>"; };
 		E72A1D2F1E68C13A005A3EAE /* SessionDetailsViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		E72A1D321E68C45E005A3EAE /* Session+Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Tests.swift"; sourceTree = "<group>"; };
+		E7330BD01EE89D4500D7017F /* CompositeDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositeDataSource.swift; sourceTree = "<group>"; };
+		E7330BD21EE89E7600D7017F /* NetworkDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDataSource.swift; sourceTree = "<group>"; };
+		E7330BD41EE89E9800D7017F /* CoreDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataSource.swift; sourceTree = "<group>"; };
+		E7330BD61EE8A29A00D7017F /* AnyDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyDataSource.swift; sourceTree = "<group>"; };
 		E76BFDC71DC3FD7400B269B8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		E77360F21ED4814C002899A3 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		E77360F21ED4814C002899A3 /* DataSourceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceType.swift; sourceTree = "<group>"; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataSetView.xib; path = Resources/EmptyDataSetView.xib; sourceTree = SOURCE_ROOT; };
 		E7C428B61ED3977700BAB0B2 /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
@@ -470,7 +470,6 @@
 		E718A0981E58E906003463B0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				E718A0991E58E906003463B0 /* DatabaseProtocol.swift */,
 				E718A09A1E58E906003463B0 /* GoogleCastServiceProtocol.swift */,
 				E718A09B1E58E906003463B0 /* NetworkServiceProtocol.swift */,
 				E718A09C1E58E906003463B0 /* ReachabilityServiceProtocol.swift */,
@@ -484,7 +483,6 @@
 			isa = PBXGroup;
 			children = (
 				E7C428B51ED3977700BAB0B2 /* CoreData */,
-				E718A0A11E58E906003463B0 /* Database.swift */,
 				E718A0A21E58E906003463B0 /* GoogleCastService */,
 				E718A0A91E58E906003463B0 /* NetworkService */,
 				E718A0AC1E58E906003463B0 /* ReachabilityService.swift */,
@@ -519,9 +517,7 @@
 		E718A0AF1E58E906003463B0 /* SessionsCache */ = {
 			isa = PBXGroup;
 			children = (
-				E718A0B01E58E906003463B0 /* Cache.swift */,
 				E718A0B11E58E906003463B0 /* Session+RecordConvertable.swift */,
-				E718A0B21E58E906003463B0 /* SessionRecord.swift */,
 			);
 			path = SessionsCache;
 			sourceTree = "<group>";
@@ -598,7 +594,11 @@
 				E7FC181C1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataProperties.swift */,
 				E7C428B61ED3977700BAB0B2 /* CoreDataController.swift */,
 				E7C428C11ED3987000BAB0B2 /* NSManagedObjectContext+Rx.swift */,
-				E77360F21ED4814C002899A3 /* DataSource.swift */,
+				E77360F21ED4814C002899A3 /* DataSourceType.swift */,
+				E7330BD61EE8A29A00D7017F /* AnyDataSource.swift */,
+				E7330BD01EE89D4500D7017F /* CompositeDataSource.swift */,
+				E7330BD21EE89E7600D7017F /* NetworkDataSource.swift */,
+				E7330BD41EE89E9800D7017F /* CoreDataSource.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -660,6 +660,7 @@
 				TargetAttributes = {
 					B6F929BA1D2A5DD5009E4B83 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 3V62DN7HAG;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -831,7 +832,7 @@
 				E718A0C61E58E906003463B0 /* FavoriteSessionsViewModel.swift in Sources */,
 				E718A0E51E58E906003463B0 /* NetworkServiceProtocol.swift in Sources */,
 				E718A0F91E58E906003463B0 /* WWDCastAPI.swift in Sources */,
-				E77360F31ED4814C002899A3 /* DataSource.swift in Sources */,
+				E77360F31ED4814C002899A3 /* DataSourceType.swift in Sources */,
 				E7FC18171EE0A5E6000D2FAB /* WWDCast.xcdatamodel in Sources */,
 				E718A0C71E58E906003463B0 /* FavoriteSessionsViewModelProtocol.swift in Sources */,
 				E718A0CA1E58E906003463B0 /* FilterTableViewCell.swift in Sources */,
@@ -846,6 +847,7 @@
 				E718A0CC1E58E906003463B0 /* FilterViewModel.swift in Sources */,
 				E7E889DC1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift in Sources */,
 				E718A0EB1E58E906003463B0 /* GoogleCastDevice.swift in Sources */,
+				E7330BD11EE89D4500D7017F /* CompositeDataSource.swift in Sources */,
 				E718A0C01E58E906003463B0 /* SessionDetailsViewController.swift in Sources */,
 				E718A0D41E58E906003463B0 /* SessionTableViewCell.swift in Sources */,
 				E7C428BC1ED3977700BAB0B2 /* CoreDataController.swift in Sources */,
@@ -855,6 +857,7 @@
 				E7FC181E1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataProperties.swift in Sources */,
 				E718A0F11E58E906003463B0 /* NetworkService.swift in Sources */,
 				E718A1011E58E906003463B0 /* UIViewController+Common.swift in Sources */,
+				E7330BD71EE8A29A00D7017F /* AnyDataSource.swift in Sources */,
 				E718A0F01E58E906003463B0 /* RxGCKSessionManagerListenerProxy.swift in Sources */,
 				E718A0D81E58E906003463B0 /* ApplicationFlowCoordinator.swift in Sources */,
 				E718A1031E58E906003463B0 /* Reachability.swift in Sources */,
@@ -868,7 +871,6 @@
 				E718A0C21E58E906003463B0 /* SessionDetailsViewModelProtocol.swift in Sources */,
 				E718A0F21E58E906003463B0 /* Resource.swift in Sources */,
 				E718A0D61E58E906003463B0 /* ViewControllerFactory.swift in Sources */,
-				E718A0EA1E58E906003463B0 /* Database.swift in Sources */,
 				E718A0FD1E58E906003463B0 /* UIAlertController+Rx.swift in Sources */,
 				E718A0CF1E58E906003463B0 /* SessionSectionViewModel.swift in Sources */,
 				E718A0D11E58E906003463B0 /* SessionsSearchViewController.swift in Sources */,
@@ -880,8 +882,9 @@
 				E718A0FC1E58E906003463B0 /* TableViewController.swift in Sources */,
 				E718A0E71E58E906003463B0 /* SchedulerServiceProtocol.swift in Sources */,
 				E718A0E21E58E906003463B0 /* Session.swift in Sources */,
+				E7330BD31EE89E7600D7017F /* NetworkDataSource.swift in Sources */,
 				E7FC181D1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift in Sources */,
-				E718A0F81E58E906003463B0 /* SessionRecord.swift in Sources */,
+				E7330BD51EE89E9800D7017F /* CoreDataSource.swift in Sources */,
 				E718A0CD1E58E906003463B0 /* FilterViewModelProtocol.swift in Sources */,
 				E718A0C51E58E906003463B0 /* FavoriteSessionsViewController.swift in Sources */,
 				E718A0ED1E58E906003463B0 /* GoogleCastMedia.swift in Sources */,
@@ -892,12 +895,10 @@
 				E718A0DA1E58E906003463B0 /* FlowCoordinator.swift in Sources */,
 				E718A1021E58E906003463B0 /* ActivityIndicator.swift in Sources */,
 				E718A0FF1E58E906003463B0 /* UIImageView+Rx.swift in Sources */,
-				E718A0F61E58E906003463B0 /* Cache.swift in Sources */,
 				B6F929E61D2AB0FD009E4B83 /* WWDCastEnvironment.swift in Sources */,
 				E718A0F71E58E906003463B0 /* Session+RecordConvertable.swift in Sources */,
 				E718A0F51E58E906003463B0 /* ServiceProvider.swift in Sources */,
 				E718A0DF1E58E906003463B0 /* SessionBuilder.swift in Sources */,
-				E718A0E31E58E906003463B0 /* DatabaseProtocol.swift in Sources */,
 				E718A0F31E58E906003463B0 /* ReachabilityService.swift in Sources */,
 				E718A0F41E58E906003463B0 /* SchedulerService.swift in Sources */,
 				E718A0C31E58E906003463B0 /* EmptyDataSetView.swift in Sources */,
@@ -1045,7 +1046,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3V62DN7HAG;
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCast;
@@ -1070,7 +1071,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3V62DN7HAG;
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCast;
