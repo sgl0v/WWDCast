@@ -35,7 +35,6 @@ protocol DataSourceType: class {
     /// - Returns: true if the operation succeeded, false otherwise.
     func update(_ items: [Item]) -> Observable<[Item]>
 
-
     /// Removes all items of type Item from the data source
     ///
     /// - Returns: an observable sequence

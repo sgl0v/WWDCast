@@ -48,5 +48,5 @@ final class CompositeDataSource<T: Comparable>: DataSourceType {
     func delete(byId id: String) -> Observable<Void> {
         return self.networkDataSource.delete(byId: id).concat(self.coreDataSource.delete(byId: id))
     }
-    
+
 }

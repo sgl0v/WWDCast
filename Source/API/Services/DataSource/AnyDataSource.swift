@@ -54,5 +54,5 @@ final class AnyDataSource<T>: DataSourceType {
     func delete(byId id: String) -> Observable<Void> {
         return _delete(id)
     }
-    
+
 }

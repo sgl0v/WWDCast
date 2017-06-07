@@ -63,5 +63,5 @@ final class NetworkDataSource: DataSourceType {
         let sessionsResource = Resource(url: config.videosURL, parser: SessionsBuilder.build)
         return self.network.load(sessionsResource)
     }
-    
+
 }

@@ -110,5 +110,5 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSourceType, NSFetc
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         sendNextElement()
     }
-    
+
 }
