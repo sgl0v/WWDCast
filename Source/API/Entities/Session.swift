@@ -18,13 +18,13 @@ struct Session {
 
     struct Track: OptionSet {
         let rawValue: Int
-        static let AppFrameworks = Track(rawValue: 1 << 0)
-        static let SystemFrameworks = Track(rawValue: 1 << 1)
+        static let Featured = Track(rawValue: 1 << 0)
+        static let Media = Track(rawValue: 1 << 1)
         static let DeveloperTools = Track(rawValue: 1 << 2)
-        static let Featured = Track(rawValue: 1 << 3)
-        static let GraphicsAndGames = Track(rawValue: 1 << 4)
-        static let Design = Track(rawValue: 1 << 5)
-        static let Media = Track(rawValue: 1 << 6)
+        static let GraphicsAndGames = Track(rawValue: 1 << 3)
+        static let SystemFrameworks = Track(rawValue: 1 << 4)
+        static let AppFrameworks = Track(rawValue: 1 << 5)
+        static let Design = Track(rawValue: 1 << 6)
         static let Distribution = Track(rawValue: 1 << 7)
         static let all: Track = [.Featured, .Media, .DeveloperTools, .GraphicsAndGames, .SystemFrameworks, .AppFrameworks, .Design, .Distribution]
     }
@@ -67,7 +67,10 @@ func == (lhs: Session, rhs: Session) -> Bool {
 extension Session: Comparable { }
 
 func < (lhs: Session, rhs: Session) -> Bool {
-    return lhs.id < rhs.id && lhs.year.rawValue >= rhs.year.rawValue
+    if lhs.year.rawValue == rhs.year.rawValue {
+        return lhs.id < rhs.id
+    }
+    return lhs.year.rawValue > rhs.year.rawValue
 }
 
 extension Session.Year: CustomStringConvertible {
