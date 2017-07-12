@@ -64,7 +64,7 @@ class FilterViewModel: FilterViewModelProtocol {
 
     private func platformsFilterViewModel() -> FilterSectionViewModel {
         var platformFilterItems = Session.Platform.all.map { platform in
-            return FilterItemViewModel(title: platform.rawValue, style: .checkmark, selected: self.filter.platforms == [platform])
+            return FilterItemViewModel(title: platform.description, style: .checkmark, selected: self.filter.platforms == [platform])
         }
         platformFilterItems.insert(FilterItemViewModel(title: NSLocalizedString("All platforms", comment: ""), style: .checkmark, selected: self.filter.platforms == Session.Platform.all), at: 0)
 
@@ -73,7 +73,7 @@ class FilterViewModel: FilterViewModelProtocol {
             return selected
         }).do(onNext: { index, _ in
             platforms.selectItem(atIndex: index)
-        }).flatMap(self.platformsSelection(platforms)).distinctUntilChanged(==).subscribe(onNext: { platforms in
+        }).map(self.platformsSelection(platforms)).distinctUntilChanged(==).subscribe(onNext: {[unowned self] platforms in
             self.filter.platforms = platforms
             NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
@@ -114,13 +114,12 @@ class FilterViewModel: FilterViewModelProtocol {
         }
     }
 
-    private func platformsSelection(_ platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Session.Platform]> {
+    private func platformsSelection(_ platforms: FilterSectionViewModel) -> (Int, Bool) -> Session.Platform {
         return { (idx, _) in
             if idx == 0 {
-                return Observable.just(Session.Platform.all)
+                return Session.Platform.all
             }
-            let selectedPlatform = Session.Platform.all[idx - 1]
-            return Observable.just([selectedPlatform])
+            return Session.Platform(rawValue: 1 << (idx - 1))
         }
     }
 

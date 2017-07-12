@@ -9,12 +9,6 @@
 import Foundation
 import RxSwift
 
-/// Defines the API errors.
-enum WWDCastAPIError: Error {
-    /// Failed to load data from the network.
-    case dataLoadingError
-}
-
 /// The `WWDCastAPIProtocol` protocol defines api to be used all over the app.
 protocol WWDCastAPIProtocol: class {
 

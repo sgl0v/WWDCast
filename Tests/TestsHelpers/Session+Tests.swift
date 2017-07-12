@@ -11,7 +11,6 @@ import Foundation
 
 extension Session {
 
-
     static var dummySession = session(favorite: false)
 
     static var favoriteSession = session(favorite: true)

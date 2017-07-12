@@ -2,7 +2,6 @@ PODS:
   - google-cast-sdk (3.1.1):
     - google-cast-sdk/Core (= 3.1.1)
   - google-cast-sdk/Core (3.1.1)
-  - GRDB.swift (0.107.0)
   - RxCocoa (3.4.1):
     - RxSwift (~> 3.4)
   - RxDataSources (1.0.3):
@@ -19,7 +18,6 @@ PODS:
 
 DEPENDENCIES:
   - google-cast-sdk (~> 3.1.1)
-  - GRDB.swift (~> 0.89)
   - RxCocoa (~> 3.0)
   - RxDataSources (~> 1.0)
   - RxOptional (~> 3.1)
@@ -28,7 +26,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   google-cast-sdk: 3aec099807bf818897e896a8abdb25c29981cec8
-  GRDB.swift: 0b779a1c4ae0428dd6c51ee0a0b79c3e1c46e341
   RxCocoa: a8a5f1d061d0043e28f56976829f31ce63e8eb09
   RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
   RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
@@ -36,6 +33,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: a301d6eb01d9bcd2f66dc16c55d122eea637c6f4
+PODFILE CHECKSUM: 49ebbda7e2b3d212662975e59d5798e1323e1a87
 
 COCOAPODS: 1.0.1

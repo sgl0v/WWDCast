@@ -11,7 +11,6 @@ target 'WWDCast' do
   pod 'RxDataSources', '~> 1.0'
   pod 'SwiftyJSON', '~> 3.1'
   pod 'SDWebImage', '~> 3.8'
-  pod 'GRDB.swift', '~> 0.89'
 
     target 'WWDCastTests' do
         inherit! :search_paths

@@ -24,7 +24,10 @@ final class NetworkService: NetworkServiceProtocol {
     }
 
     func load<T>(_ resource: Resource<T>) -> Observable<T> {
-        return self.session.rx.data(request: resource.request).map({ JSON(data: $0) }).map(resource.parser).debug("http")
+        guard let request = resource.request else {
+            return Observable.error(NetworkError.failedDataLoading)
+        }
+        return self.session.rx.data(request: request).map({ JSON(data: $0) }).map(resource.parser).debug("http")
     }
 
 }

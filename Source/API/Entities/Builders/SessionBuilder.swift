@@ -17,7 +17,7 @@ class SessionBuilder: EntityBuilderType {
         let captions = URL(string: json["subtitles"].stringValue)
         let video = URL(string: json["download_hd"].stringValue)
         guard let year = Session.Year(rawValue: json["year"].intValue),
-            let focusJSON = json["focus"].arrayObject as? [String],
+            let focus = json["focus"].arrayObject as? [String],
             let track = Session.Track(json["track"].stringValue),
             let images = json["images"].dictionaryObject as? [String: String],
             let thumbnailURLString = images["shelf"],
@@ -28,12 +28,11 @@ class SessionBuilder: EntityBuilderType {
         let title = json["title"].stringValue
         let summary = json["description"].stringValue
 
-        var platforms = Array<Session.Platform>()
-        platforms = try focusJSON.map { focus in
-            guard let platform = Session.Platform(rawValue: focus) else {
-                throw EntityBuilderError.parsingError
+        let platforms: Session.Platform = focus.reduce([]) { (platforms, focusItem) -> Session.Platform in
+            guard let platform = Session.Platform(focusItem) else {
+                return platforms
             }
-            return platform
+            return platforms.union(platform)
         }
 
         return Session(id: id, year: year, track: track, platforms: platforms, title: title,
