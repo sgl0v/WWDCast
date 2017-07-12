@@ -91,9 +91,9 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         self.view.addSubview(self.loadingIndicator)
         self.loadingIndicator.hidesWhenStopped = true
-        self.loadingIndicator.frame.origin.x = self.view.bounds.midX
-        self.loadingIndicator.frame.origin.y = self.view.bounds.midY
-        self.loadingIndicator.autoresizingMask = [.flexibleLeftMargin, .flexibleTopMargin, .flexibleRightMargin, .flexibleBottomMargin]
+        self.loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        self.loadingIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        self.loadingIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
     }
 
     private var searchQuery: Driver<String> {
