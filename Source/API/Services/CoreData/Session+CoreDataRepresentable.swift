@@ -26,7 +26,7 @@ extension Session: CoreDataRepresentable {
         object.captions = self.captions?.absoluteString
         object.thumbnail = self.thumbnail.absoluteString
         object.favorite = self.favorite
-        object.platforms = self.platforms.isEmpty ? "" : self.platforms.map({ $0.rawValue }).joined(separator: "#")
+        object.platforms = Int16(self.platforms.rawValue)
     }
-    
+
 }

@@ -10,6 +10,6 @@ import Foundation
 import CoreData
 
 @objc(SessionManagedObject)
-public final class SessionManagedObject: NSManagedObject {
+final class SessionManagedObject: NSManagedObject {
 
 }

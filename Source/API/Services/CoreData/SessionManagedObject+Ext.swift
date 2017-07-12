@@ -13,7 +13,7 @@ extension SessionManagedObject: EntityRepresentable {
 
     func asEntity() -> Session {
         guard let title = self.title, let summary = self.summary,
-            let thumbnail = self.thumbnail, let allPlatforms = self.platforms else {
+            let thumbnail = self.thumbnail else {
             fatalError("Failed to create \(Session.self) from \(self)!")
         }
 
@@ -22,19 +22,13 @@ extension SessionManagedObject: EntityRepresentable {
                 fatalError("Failed to create \(Session.self) from \(self)!")
         }
 
-        let platforms: [Session.Platform] = allPlatforms.components(separatedBy: "#").filter({ platform in
-            return !platform.isEmpty
-        }).map({ value in
-            guard let platform = Session.Platform(rawValue: value) else {
-                fatalError("Failed to create \(Session.Platform.self) from \(value)")
-            }
-            return platform
-        })
+        let track = Session.Track(rawValue: Int(self.track))
+        let platforms = Session.Platform(rawValue: Int(self.platforms))
         let videoUrl = video.flatMap({ URL(string: $0) })
         let captionsUrl = captions.flatMap({ URL(string: $0) })
-        return Session(id: Int(id), year: year, track: Session.Track(rawValue: Int(track)), platforms: platforms,
-                          title: title, summary: summary, video: videoUrl, captions: captionsUrl, thumbnail: thumbnailUrl,
-                          favorite: favorite)
+        return Session(id: Int(id), year: year, track: track, platforms: platforms,
+                       title: title, summary: summary, video: videoUrl, captions: captionsUrl,
+                       thumbnail: thumbnailUrl, favorite: favorite)
     }
 
 }

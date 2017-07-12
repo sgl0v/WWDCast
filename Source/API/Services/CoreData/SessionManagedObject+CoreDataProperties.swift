@@ -20,17 +20,16 @@ extension SessionManagedObject: CoreDataPersistable {
         return fetchRequest
     }
 
-    @NSManaged public var uniqueId: String?
-    @NSManaged public var id: Int16
-    @NSManaged public var year: Int16
-    @NSManaged public var track: Int16
-    @NSManaged public var title: String?
-    @NSManaged public var summary: String?
-    @NSManaged public var video: String?
-    @NSManaged public var captions: String?
-    @NSManaged public var thumbnail: String?
-    @NSManaged public var favorite: Bool
-    @NSManaged public var platforms: String?
+    @NSManaged var uniqueId: String?
+    @NSManaged var id: Int16
+    @NSManaged var year: Int16
+    @NSManaged var track: Int16
+    @NSManaged var title: String?
+    @NSManaged var summary: String?
+    @NSManaged var video: String?
+    @NSManaged var captions: String?
+    @NSManaged var thumbnail: String?
+    @NSManaged var favorite: Bool
+    @NSManaged var platforms: Int16
 
 }
-

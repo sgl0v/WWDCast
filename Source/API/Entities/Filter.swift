@@ -31,9 +31,7 @@ extension Filter: Hashable {
         result = prime * result + self.years.reduce(hash, { acc, year in
             return acc ^ year.hashValue
         })
-        result = prime * result + self.platforms.reduce(hash, { acc, platform in
-            return acc ^ platform.hashValue
-        })
+        result = prime * result + self.platforms.rawValue
         result = prime * result + self.tracks.rawValue
         return result
     }
