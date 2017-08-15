@@ -19,6 +19,7 @@ extension SessionManagedObject: EntityRepresentable {
         }
 
         guard let year = Session.Year(rawValue: Int(self.year)),
+            let type = Session.EventType(rawValue: Int(self.type)),
             let thumbnailUrl = URL(string: thumbnail) else {
                 fatalError("Failed to create \(Session.self) from \(self)!")
         }
@@ -27,8 +28,9 @@ extension SessionManagedObject: EntityRepresentable {
         let platforms = Session.Platform(rawValue: Int(self.platforms))
         let videoUrl = video.flatMap({ URL(string: $0) })
         let captionsUrl = captions.flatMap({ URL(string: $0) })
-        return Session(id: id, contentId: contentId, year: year, track: track, platforms: platforms,
-                       title: title, summary: summary, video: videoUrl, captions: captionsUrl,
+        let duration = TimeInterval(self.duration)
+        return Session(id: id, contentId: contentId, type: type, year: year, track: track, platforms: platforms,
+                       title: title, summary: summary, video: videoUrl, captions: captionsUrl, duration: duration,
                        thumbnail: thumbnailUrl, favorite: favorite)
     }
 

@@ -60,7 +60,7 @@ class WWDCastAPI: WWDCastAPIProtocol {
     }
 
     func toggle(favoriteSession session: Session) -> Observable<Session> {
-        let newSession = Session(id: session.id, contentId: session.contentId, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: !session.favorite)
+        let newSession = Session(id: session.id, contentId: session.contentId, type: session.type, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, duration: session.duration, thumbnail: session.thumbnail, favorite: !session.favorite)
 
         return self.dataSource.update([newSession]).flatMap(Observable.just(newSession))
     }

@@ -14,7 +14,7 @@ import RxDataSources
 struct FilterSectionViewModel: SectionModelType, CustomStringConvertible {
 
     enum `Type`: String {
-        case Years, Platforms, Tracks
+        case Years, Platforms, EventTypes, Tracks
     }
 
     let type: Type

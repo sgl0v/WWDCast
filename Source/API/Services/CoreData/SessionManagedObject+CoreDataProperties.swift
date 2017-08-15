@@ -22,6 +22,7 @@ extension SessionManagedObject: CoreDataPersistable {
 
     @NSManaged var id: String?
     @NSManaged var contentId: Int16
+    @NSManaged var type: Int16
     @NSManaged var year: Int16
     @NSManaged var track: Int16
     @NSManaged var title: String?
@@ -29,6 +30,7 @@ extension SessionManagedObject: CoreDataPersistable {
     @NSManaged var video: String?
     @NSManaged var captions: String?
     @NSManaged var thumbnail: String?
+    @NSManaged var duration: Double
     @NSManaged var favorite: Bool
     @NSManaged var platforms: Int16
 

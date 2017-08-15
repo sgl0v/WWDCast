@@ -40,7 +40,7 @@ class FilterViewModel: FilterViewModelProtocol {
     // MARK: Private
 
     private func filterViewModels() -> [FilterSectionViewModel] {
-        return [yearsFilterViewModel(), platformsFilterViewModel(), tracksFilterViewModel()]
+        return [yearsFilterViewModel(), platformsFilterViewModel(), eventTypeViewModel(), tracksFilterViewModel()]
     }
 
     private func yearsFilterViewModel() -> FilterSectionViewModel {
@@ -60,6 +60,25 @@ class FilterViewModel: FilterViewModelProtocol {
         }).addDisposableTo(self.disposeBag)
 
         return years
+    }
+
+    private func eventTypeViewModel() -> FilterSectionViewModel {
+        var eventTypeItems = Session.EventType.all.map { eventType in
+            return FilterItemViewModel(title: eventType.description, style: .checkmark, selected: self.filter.eventTypes == [eventType])
+        }
+        eventTypeItems.insert(FilterItemViewModel(title: NSLocalizedString("All Events", comment: ""), style: .checkmark, selected: self.filter.eventTypes == Session.EventType.all), at: 0)
+
+        let eventTypes = FilterSectionViewModel(type: .EventTypes, items: eventTypeItems)
+        eventTypes.selection.filter({ _, selected in
+            return selected
+        }).do(onNext: { index, _ in
+            eventTypes.selectItem(atIndex: index)
+        }).flatMap(self.eventTypesSelection(eventTypes)).distinctUntilChanged(==).subscribe(onNext: { eventTypes in
+            self.filter.eventTypes = eventTypes
+            NSLog("%@", self.filter.description)
+        }).addDisposableTo(self.disposeBag)
+
+        return eventTypes
     }
 
     private func platformsFilterViewModel() -> FilterSectionViewModel {
@@ -108,13 +127,23 @@ class FilterViewModel: FilterViewModelProtocol {
         return tracks
     }
 
-    private func yearsSelection(_ platforms: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Session.Year]> {
+    private func yearsSelection(_ years: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Session.Year]> {
         return { (idx, _) in
             if idx == 0 {
                 return Observable.just(Session.Year.all)
             }
             let selectedYear = Session.Year.all[idx - 1]
             return Observable.just([selectedYear])
+        }
+    }
+
+    private func eventTypesSelection(_ eventTypes: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Session.EventType]> {
+        return { (idx, _) in
+            if idx == 0 {
+                return Observable.just(Session.EventType.all)
+            }
+            let selectedEventType = Session.EventType.all[idx - 1]
+            return Observable.just([selectedEventType])
         }
     }
 

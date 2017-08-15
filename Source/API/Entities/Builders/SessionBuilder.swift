@@ -22,13 +22,16 @@ class SessionBuilder: EntityBuilderType {
         let staticContentId = json["staticContentId"].intValue
         guard let eventYear = Int(json["eventId"].stringValue.replacingOccurrences(of: "wwdc", with: "")),
             let year = Session.Year(rawValue: eventYear),
+            let type = Session.EventType(json["type"].stringValue),
             let thumbnailURL = self.imageURL(for: year, contentId: staticContentId) else {
             throw EntityBuilderError.parsingError
         }
+        print("\(json["type"]) -> \(type)")
         let id = json["id"].stringValue
         let contentId = json["eventContentId"].intValue
         let title = json["title"].stringValue
         let summary = json["description"].stringValue
+        let duration = json["duration"].doubleValue
 
         let platforms: Session.Platform = focus.reduce([]) { (platforms, focusItem) -> Session.Platform in
             guard let platformName = focusItem as? String,
@@ -38,8 +41,8 @@ class SessionBuilder: EntityBuilderType {
             return platforms.union(platform)
         }
 
-        return Session(id: id, contentId: contentId, year: year, track: track, platforms: platforms, title: title,
-                           summary: summary, video: video, captions: captions,
+        return Session(id: id, contentId: contentId, type: type, year: year, track: track, platforms: platforms,
+                       title: title, summary: summary, video: video, captions: captions, duration: duration,
                            thumbnail: thumbnailURL, favorite: false)
     }
 

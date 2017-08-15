@@ -131,7 +131,7 @@
 		5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionDetailsViewController.xib; path = Resources/SessionDetailsViewController.xib; sourceTree = SOURCE_ROOT; };
 		7D60F791C276BA391873661A /* Pods_Tests_WWDCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_WWDCastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F929BB1D2A5DD5009E4B83 /* WWDCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWDCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6F929CA1D2A5DD5009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
+		B6F929CA1D2A5DD5009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6F929CF1D2A5DD6009E4B83 /* WWDCastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WWDCastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F929D51D2A5DD6009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -305,8 +305,7 @@
 				E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */,
 				E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */,
 			);
-			name = Resources;
-			path = WWDCast;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		B6F929E01D2AB0FC009E4B83 /* Source */ = {

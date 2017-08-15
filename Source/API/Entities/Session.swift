@@ -9,7 +9,26 @@
 import Foundation
 
 struct Session {
+    let id: String
+    let contentId: Int
+    let type: EventType
+    let year: Year
+    let track: Track
+    let platforms: Platform
+    let title: String
+    var subtitle: String {
+        let focus = self.platforms.map({ $0.description }).joined(separator: ", ")
+        return ["WWDC \(self.year)", "Session \(self.contentId)", focus].joined(separator: " · ")
+    }
+    let summary: String
+    let video: URL?
+    let captions: URL?
+    let duration: TimeInterval
+    let thumbnail: URL
+    let favorite: Bool
+}
 
+extension Session {
     enum Year: Int {
         case _2012 = 2012, _2013 = 2013, _2014 = 2014, _2015 = 2015, _2016 = 2016, _2017 = 2017
 
@@ -40,21 +59,11 @@ struct Session {
         static let all: Platform = [.iOS, .macOS, .tvOS, .watchOS]
     }
 
-    let id: String
-    let contentId: Int
-    let year: Year
-    let track: Track
-    let platforms: Platform
-    let title: String
-    var subtitle: String {
-        let focus = self.platforms.map({ $0.description }).joined(separator: ", ")
-        return ["WWDC \(self.year)", "Session \(self.contentId)", focus].joined(separator: " · ")
+    enum EventType: Int {
+        case session, video, lab, specialEvent, getTogether
+
+        static let all: [EventType] = [.session, .video, .lab, .specialEvent, .getTogether]
     }
-    let summary: String
-    let video: URL?
-    let captions: URL?
-    let thumbnail: URL
-    let favorite: Bool
 }
 
 extension Session: Hashable {
@@ -117,6 +126,45 @@ extension Sequence where Iterator.Element == Session.Track {
         return trackDescriptions.joined(separator: ", ")
     }
 }
+
+extension Session.EventType: LosslessStringConvertible {
+
+    init?(_ description: String) {
+        let mapping: [String: Session.EventType] = [
+            "Session": .session, "Video": .video, "Lab": .lab,
+            "Special Event": .specialEvent, "Get-Together": .getTogether]
+        guard let value = mapping[description] else {
+            assertionFailure("Failed to find a value for track with description '\(description)'!")
+            return nil
+        }
+        self = value
+    }
+
+    var description: String {
+        let mapping: [Session.EventType: String] = [.session: "Session", .video: "Video", .lab: "Lab",
+                                                    .specialEvent: "Special Event", .getTogether: "Get-Together"]
+        return NSLocalizedString(mapping[self] ?? "", comment: "Session type")
+    }
+
+}
+
+extension Sequence where Iterator.Element == Session.EventType {
+
+    var hashValue: Int {
+        let hash = 5381
+        return self.reduce(hash, { acc, eventType in
+            return acc ^ eventType.hashValue
+        })
+    }
+
+    var description: String {
+        let eventTypeDescriptions: [String] = self.map({ eventType in
+            return eventType.description
+        })
+        return eventTypeDescriptions.joined(separator: ", ")
+    }
+}
+
 
 extension Session.Platform: Hashable {
 

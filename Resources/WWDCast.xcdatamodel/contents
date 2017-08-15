@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13154.30" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="SessionManagedObject" representedClassName="SessionManagedObject" syncable="YES">
         <attribute name="captions" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="contentId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="contentId" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="duration" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="favorite" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="platforms" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="platforms" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="summary" attributeType="String" syncable="YES"/>
         <attribute name="thumbnail" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
-        <attribute name="track" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="track" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="video" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="year" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="year" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SessionManagedObject" positionX="-4230" positionY="-312" width="128" height="210"/>
+        <element name="SessionManagedObject" positionX="-4230" positionY="-312" width="128" height="240"/>
     </elements>
 </model>
