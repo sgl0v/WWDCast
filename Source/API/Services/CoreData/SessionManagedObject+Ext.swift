@@ -12,8 +12,9 @@ extension SessionManagedObject: EntityRepresentable {
     typealias EntityType = Session
 
     func asEntity() -> Session {
-        guard let title = self.title, let summary = self.summary,
-            let thumbnail = self.thumbnail else {
+        guard let id = self.id, let title = self.title, let summary = self.summary,
+            let thumbnail = self.thumbnail,
+            let track = Session.Track(rawValue: Int(self.track)) else {
             fatalError("Failed to create \(Session.self) from \(self)!")
         }
 
@@ -22,11 +23,11 @@ extension SessionManagedObject: EntityRepresentable {
                 fatalError("Failed to create \(Session.self) from \(self)!")
         }
 
-        let track = Session.Track(rawValue: Int(self.track))
+        let contentId = Int(self.contentId)
         let platforms = Session.Platform(rawValue: Int(self.platforms))
         let videoUrl = video.flatMap({ URL(string: $0) })
         let captionsUrl = captions.flatMap({ URL(string: $0) })
-        return Session(id: Int(id), year: year, track: track, platforms: platforms,
+        return Session(id: id, contentId: contentId, year: year, track: track, platforms: platforms,
                        title: title, summary: summary, video: videoUrl, captions: captionsUrl,
                        thumbnail: thumbnailUrl, favorite: favorite)
     }

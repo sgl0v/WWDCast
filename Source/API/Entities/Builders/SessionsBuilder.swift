@@ -14,7 +14,9 @@ class SessionsBuilder: EntityBuilderType {
     typealias EntityType = [Session]
 
     static func build(_ json: JSON) throws -> EntityType {
-        return try json["sessions"].arrayValue.map { sessionJSON in
+        return try json["contents"].arrayValue.filter({ json -> Bool in
+            return json["type"] == "Session" || json["type"] == "Video"
+        }).map { sessionJSON in
             return try SessionBuilder.build(sessionJSON)
         }
     }

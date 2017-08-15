@@ -87,13 +87,17 @@ class FilterViewModel: FilterViewModelProtocol {
         }
 
         let tracks = FilterSectionViewModel(type: .Tracks, items: trackFilterItems)
-        tracks.selection.map({ index, selected -> Session.Track in
+        tracks.selection.map({ index, selected -> [Session.Track] in
             var tracks = self.filter.tracks
-            let track = Session.Track(rawValue: 1 << index)
+            guard let track = Session.Track(rawValue: index) else {
+                return tracks
+            }
             if selected {
-                tracks.insert(track)
-            } else {
-                tracks.remove(track)
+                if tracks.index(of: track) == nil {
+                    tracks.append(track)
+                }
+            } else if let index = tracks.index(of: track) {
+                tracks.remove(at: index)
             }
             return tracks
         }).distinctUntilChanged(==).subscribe(onNext: {[unowned self] tracks in

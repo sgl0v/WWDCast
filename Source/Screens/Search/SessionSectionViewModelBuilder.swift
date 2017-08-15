@@ -11,7 +11,7 @@ import Foundation
 struct SessionItemViewModelBuilder {
 
     static func build(_ session: Session) -> SessionItemViewModel {
-        return SessionItemViewModel(uniqueID: session.uniqueId, title: session.title,
+        return SessionItemViewModel(id: session.id, title: session.title,
                                     subtitle: session.subtitle, summary: session.summary, thumbnailURL: session.thumbnail,
                                     favorite: session.favorite)
     }

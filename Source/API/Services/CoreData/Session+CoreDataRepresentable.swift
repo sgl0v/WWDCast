@@ -12,12 +12,12 @@ extension Session: CoreDataRepresentable {
     typealias CoreDataType = SessionManagedObject
 
     var uid: String {
-        return self.uniqueId
+        return self.id
     }
 
     func update(object: CoreDataType) {
-        object.uniqueId = self.uniqueId
-        object.id = Int16(self.id)
+        object.id = self.id
+        object.contentId = Int16(self.contentId)
         object.year = Int16(self.year.rawValue)
         object.track = Int16(self.track.rawValue)
         object.title = self.title

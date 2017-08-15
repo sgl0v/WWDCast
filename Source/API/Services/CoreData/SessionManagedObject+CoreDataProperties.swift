@@ -12,16 +12,16 @@ import CoreData
 extension SessionManagedObject: CoreDataPersistable {
 
     static let entityName = "\(SessionManagedObject.self)"
-    static let primaryAttribute = NSStringFromSelector(#selector(getter: uniqueId))
+    static let primaryAttribute = NSStringFromSelector(#selector(getter: id))
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<SessionManagedObject> {
         let fetchRequest = NSFetchRequest<SessionManagedObject>(entityName: self.entityName)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "uniqueId", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         return fetchRequest
     }
 
-    @NSManaged var uniqueId: String?
-    @NSManaged var id: Int16
+    @NSManaged var id: String?
+    @NSManaged var contentId: Int16
     @NSManaged var year: Int16
     @NSManaged var track: Int16
     @NSManaged var title: String?

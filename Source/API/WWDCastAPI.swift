@@ -19,7 +19,7 @@ class WWDCastAPI: WWDCastAPIProtocol {
 
         if let coreDataController = CoreDataController(name: "WWDCast") {
             coreDataController.loadStore {[unowned self] err in
-                print("Error=\(String(describing: err))")
+                print("Core data initialized with error=\(String(describing: err))")
                 let cacheDataSource: AnyDataSource<Session> = AnyDataSource(dataSource: CoreDataSource<SessionManagedObject>(coreDataController: coreDataController))
                 let networkDataSource: AnyDataSource<Session> = AnyDataSource(dataSource: NetworkDataSource(network: self.serviceProvider.network, reachability: self.serviceProvider.reachability))
                 self.dataSource = AnyDataSource(dataSource: CompositeDataSource(networkDataSource: networkDataSource, coreDataSource: cacheDataSource))
@@ -60,7 +60,7 @@ class WWDCastAPI: WWDCastAPIProtocol {
     }
 
     func toggle(favoriteSession session: Session) -> Observable<Session> {
-        let newSession = Session(id: session.id, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: !session.favorite)
+        let newSession = Session(id: session.id, contentId: session.contentId, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, thumbnail: session.thumbnail, favorite: !session.favorite)
 
         return self.dataSource.update([newSession]).flatMap(Observable.just(newSession))
     }

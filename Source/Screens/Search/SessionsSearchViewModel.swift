@@ -38,7 +38,7 @@ class SessionsSearchViewModel: SessionsSearchViewModelProtocol {
     let title = Driver.just(NSLocalizedString("WWDCast", comment: "Session search view title"))
 
     func didSelect(item: SessionItemViewModel) {
-        self.delegate?.sessionsSearchViewModel(self, wantsToShowSessionDetailsWith: item.uniqueID)
+        self.delegate?.sessionsSearchViewModel(self, wantsToShowSessionDetailsWith: item.id)
     }
 
     func didTapFilter() {

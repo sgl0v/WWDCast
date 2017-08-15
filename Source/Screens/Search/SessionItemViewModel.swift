@@ -10,7 +10,7 @@ import Foundation
 import RxDataSources
 
 struct SessionItemViewModel {
-    var uniqueID: String
+    var id: String
     var title: String
     var subtitle: String
     var summary: String
@@ -28,10 +28,10 @@ extension SessionItemViewModel: IdentifiableType {
 
 extension SessionItemViewModel: Hashable {
     var hashValue: Int {
-        return self.uniqueID.hash
+        return self.id.hash
     }
 }
 
 func == (lhs: SessionItemViewModel, rhs: SessionItemViewModel) -> Bool {
-    return lhs.uniqueID == rhs.uniqueID
+    return lhs.id == rhs.id
 }

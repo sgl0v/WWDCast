@@ -32,7 +32,7 @@ extension Filter: Hashable {
             return acc ^ year.hashValue
         })
         result = prime * result + self.platforms.rawValue
-        result = prime * result + self.tracks.rawValue
+        result = prime * result + self.tracks.hashValue
         return result
     }
 }

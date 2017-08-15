@@ -32,7 +32,7 @@ class FavoriteSessionsViewModel: FavoriteSessionsViewModelProtocol {
     let emptyFavorites = Driver.just(EmptyDataSetViewModel(title: NSLocalizedString("No Favorites", comment: "The are no sessions added to favorites"), description: NSLocalizedString("Add your favorite sessions to the bookmarks", comment: "Add your favorite sessions to the bookmarks")))
 
     func didSelect(item: SessionItemViewModel) {
-        self.delegate?.favoriteSessionsViewModel(self, wantsToShowSessionDetailsWith: item.uniqueID)
+        self.delegate?.favoriteSessionsViewModel(self, wantsToShowSessionDetailsWith: item.id)
     }
 
 }

@@ -31,7 +31,7 @@ extension FavoritesFlowCoordinator: TableViewControllerPreviewProvider {
         guard let item = item as? SessionItemViewModel else {
             return nil
         }
-        return self.dependencyProvider.sessionDetailsController(item.uniqueID)
+        return self.dependencyProvider.sessionDetailsController(item.id)
     }
 
 }

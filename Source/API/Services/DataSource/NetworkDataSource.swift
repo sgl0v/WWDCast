@@ -21,8 +21,7 @@ final class NetworkDataSource: DataSourceType {
     }
 
     func allObjects() -> Observable<[Item]> {
-        return self.loadConfig()
-            .flatMapLatest(self.loadSessions)
+        return self.loadSessions()
             .retryOnBecomesReachable([], reachabilityService: self.reachability)
             .shareReplayLatestWhileConnected()
     }
@@ -54,13 +53,8 @@ final class NetworkDataSource: DataSourceType {
 
     // MARK: Private
 
-    private func loadConfig() -> Observable<AppConfig> {
-        let configResource = Resource(url: WWDCastEnvironment.configURL, parser: AppConfigBuilder.build)
-        return self.network.load(configResource)
-    }
-
-    private func loadSessions(forConfig config: AppConfig) -> Observable<[Session]> {
-        let sessionsResource = Resource(url: config.videosURL, parser: SessionsBuilder.build)
+    private func loadSessions() -> Observable<[Session]> {
+        let sessionsResource = Resource(url: WWDCastEnvironment.sessionsURL, parser: SessionsBuilder.build)
         return self.network.load(sessionsResource)
     }
 

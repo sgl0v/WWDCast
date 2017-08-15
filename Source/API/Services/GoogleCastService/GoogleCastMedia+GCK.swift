@@ -16,7 +16,7 @@ extension GoogleCastMedia {
         metadata.setString(self.title, forKey: kGCKMetadataKeyTitle)
         metadata.setString(self.subtitle, forKey: kGCKMetadataKeySubtitle)
         metadata.addImage(GCKImage(url: self.thumbnail, width: 734, height: 413))
-        let mediaTrack = GCKMediaTrack(identifier: self.id, contentIdentifier: self.captions,
+        let mediaTrack = GCKMediaTrack(identifier: self.id.hashValue, contentIdentifier: self.captions,
                                        contentType: "text/vtt", type: .text, textSubtype: .captions,
                                        name: "English Captions", languageCode: "en", customData: nil)
 
