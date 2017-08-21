@@ -49,7 +49,6 @@ extension Sequence where Iterator.Element == Session {
     func apply(_ filter: Filter) -> [Iterator.Element] {
         print("filter = \(filter.eventTypes)")
         return self.filter { session in
-            print("type = \(session.type)")
             return (filter.query.isEmpty || session.title.lowercased().contains(filter.query.lowercased())) &&
                 filter.years.contains(session.year) &&
                 filter.tracks.contains(session.track) &&

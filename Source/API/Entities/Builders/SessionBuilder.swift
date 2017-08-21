@@ -26,7 +26,6 @@ class SessionBuilder: EntityBuilderType {
             let thumbnailURL = self.imageURL(for: year, contentId: staticContentId) else {
             throw EntityBuilderError.parsingError
         }
-        print("\(json["type"]) -> \(type)")
         let id = json["id"].stringValue
         let contentId = json["eventContentId"].intValue
         let title = json["title"].stringValue
