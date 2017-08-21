@@ -71,8 +71,12 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSourceType, NSFetc
     }
 
     func clean() -> Observable<Void> {
-        return Observable.create({[unowned self] observer in
-            let context = self.coreDataController.newBackgroundContext()
+        return Observable.create({[weak self] observer in
+            guard let strongSelf = self else {
+                assertionFailure("The \(CoreDataSource.self) object is deallocated!")
+                return Disposables.create()
+            }
+            let context = strongSelf.coreDataController.newBackgroundContext()
             let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: T.entityName)
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
             do {
@@ -80,7 +84,6 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSourceType, NSFetc
                 try context.save()
                 observer.onNext()
             } catch {
-
                 assertionFailure(error.localizedDescription)
                 observer.onError(error)
             }

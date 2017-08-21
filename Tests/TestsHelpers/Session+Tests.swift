@@ -23,7 +23,7 @@ extension Session {
                 fatalError("Failed to create url from string: \(thumbnail).")
         }
 
-        return Session(id: 210, year: ._2016, track: .all, platforms: [.tvOS], title: "Mastering UIKit on tvOS", summary: "Learn how to make your tvOS interface more dynamic, intuitive, and high-performing with tips and tricks learned in this session.", video: videoUrl, captions: nil, thumbnail: thumbnailUrl, favorite: favorite)
+        return Session(id: "wwdc2017-409", contentId: 1677, type: .session, year: ._2016, track: .developerTools, platforms: [.tvOS], title: "Mastering UIKit on tvOS", summary: "Learn how to make your tvOS interface more dynamic, intuitive, and high-performing with tips and tricks learned in this session.", video: videoUrl, captions: nil, duration: 2400, thumbnail: thumbnailUrl, favorite: favorite)
 
     }
 }

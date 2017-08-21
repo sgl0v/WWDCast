@@ -66,7 +66,7 @@ class FavoriteSessionsViewModelTests: XCTestCase {
         // THEN
         waitForExpectations(timeout: 1.0, handler: nil)
         XCTAssertNotNil(selectedSessionId)
-        XCTAssertEqual(sessionItem.uniqueID, selectedSessionId!)
+        XCTAssertEqual(sessionItem.id, selectedSessionId!)
     }
 
 }

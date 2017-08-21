@@ -34,7 +34,7 @@ class SessionDetailsViewModelTests: XCTestCase {
         let selectedDevice = 1
         self.api.devicesObservable = Observable.just(devices)
         self.api.playObservable = { session, device in
-            XCTAssertEqual(session.uniqueId, Session.dummySession.uniqueId)
+            XCTAssertEqual(session.id, Session.dummySession.id)
             XCTAssertEqual(device.id, devices[selectedDevice].id)
             expectation.fulfill()
             return Observable.empty()

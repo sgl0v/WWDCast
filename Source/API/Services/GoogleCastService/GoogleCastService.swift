@@ -82,14 +82,18 @@ final class GoogleCastServiceProtocolImpl: NSObject, GoogleCastServiceProtocol {
     }
 
     private func startSession(_ device: GoogleCastDevice) -> Observable<GCKCastSession> {
-        return Observable.create({[unowned self] observer in
-            guard let gckDevice = self.device(withId: device.id) else {
+        return Observable.create({[weak self] observer in
+            guard let strongSelf = self else {
+                assertionFailure("The \(GoogleCastServiceProtocolImpl.self) object is deallocated!")
+                return Disposables.create()
+            }
+            guard let gckDevice = strongSelf.device(withId: device.id) else {
                 observer.onError(GoogleCastServiceError.connectionError)
                 observer.onCompleted()
                 return Disposables.create()
             }
 
-            let didStartSubscription = self.sessionManager.rx.didStart.subscribe(onNext: { sessionManager in
+            let didStartSubscription = strongSelf.sessionManager.rx.didStart.subscribe(onNext: { sessionManager in
                 if let currentCastSession = sessionManager.currentCastSession {
                     observer.onNext(currentCastSession)
                 } else {
@@ -97,15 +101,15 @@ final class GoogleCastServiceProtocolImpl: NSObject, GoogleCastServiceProtocol {
                 }
                 observer.onCompleted()
             })
-            let didFailToStartSubscription = self.sessionManager.rx.didFailToStart.subscribe(onNext: { _ in
+            let didFailToStartSubscription = strongSelf.sessionManager.rx.didFailToStart.subscribe(onNext: { _ in
                 observer.onError(GoogleCastServiceError.connectionError)
                 observer.onCompleted()
             })
 
-            if let castSession = self.sessionManager.currentCastSession {
+            if let castSession = strongSelf.sessionManager.currentCastSession {
                 observer.onNext(castSession)
                 observer.onCompleted()
-            } else if !self.sessionManager.startSession(with: gckDevice) {
+            } else if !strongSelf.sessionManager.startSession(with: gckDevice) {
                 observer.onError(GoogleCastServiceError.connectionError)
                 observer.onCompleted()
             }

@@ -165,7 +165,6 @@ extension Sequence where Iterator.Element == Session.EventType {
     }
 }
 
-
 extension Session.Platform: Hashable {
 
     var hashValue: Int {

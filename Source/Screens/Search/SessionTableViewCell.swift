@@ -14,6 +14,13 @@ class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProv
     @IBOutlet private weak var thumbnailImage: UIImageView!
     @IBOutlet private weak var title: UILabel!
     @IBOutlet private weak var summary: UILabel!
+    private let disposeBag = DisposeBag()
+
+    override func awakeFromNib() {
+        self.onPrepareForReuse.subscribe(onNext: {[unowned self] _ in
+            self.imageView?.image = nil
+        }).addDisposableTo(self.disposeBag)
+    }
 //}
 //
 //extension SessionTableViewCell: BindableView {
@@ -23,7 +30,6 @@ class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProv
         self.title.text = viewModel.title
         self.summary.text = viewModel.summary
         _ = Observable.just(viewModel.thumbnailURL)
-            .asObservable()
             .takeUntil(self.onPrepareForReuse)
             .bind(to: self.thumbnailImage.rx.imageURL)
         self.layoutMargins = UIEdgeInsets.zero
