@@ -102,6 +102,7 @@
 		E7C428BC1ED3977700BAB0B2 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C428B61ED3977700BAB0B2 /* CoreDataController.swift */; };
 		E7C428C21ED3987000BAB0B2 /* NSManagedObjectContext+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C428C11ED3987000BAB0B2 /* NSManagedObjectContext+Rx.swift */; };
 		E7D76F141F588245005C95DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7D76F131F588245005C95DB /* Assets.xcassets */; };
+		E7D76F171F58936C005C95DB /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D76F161F58936C005C95DB /* UIViewController+Rx.swift */; };
 		E7E889DC1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E889DB1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift */; };
 		E7FC18171EE0A5E6000D2FAB /* WWDCast.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */; };
 		E7FC181D1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FC181B1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift */; };
@@ -228,6 +229,7 @@
 		E7C428B61ED3977700BAB0B2 /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		E7C428C11ED3987000BAB0B2 /* NSManagedObjectContext+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Rx.swift"; sourceTree = "<group>"; };
 		E7D76F131F588245005C95DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E7D76F161F58936C005C95DB /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		E7E889DB1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCoordinatorDependencyProviders.swift; sourceTree = "<group>"; };
 		E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = WWDCast.xcdatamodel; path = Resources/WWDCast.xcdatamodel; sourceTree = SOURCE_ROOT; };
 		E7FC181B1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 				E718A0BA1E58E906003463B0 /* UIImageView+Rx.swift */,
 				E718A0BB1E58E906003463B0 /* UITableView+Common.swift */,
 				E718A0BC1E58E906003463B0 /* UIViewController+Common.swift */,
+				E7D76F161F58936C005C95DB /* UIViewController+Rx.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -870,6 +873,7 @@
 				E718A0D81E58E906003463B0 /* ApplicationFlowCoordinator.swift in Sources */,
 				E718A1031E58E906003463B0 /* Reachability.swift in Sources */,
 				E718A0D91E58E906003463B0 /* FavoritesFlowCoordinator.swift in Sources */,
+				E7D76F171F58936C005C95DB /* UIViewController+Rx.swift in Sources */,
 				E718A0E41E58E906003463B0 /* GoogleCastServiceProtocol.swift in Sources */,
 				E718A0C81E58E906003463B0 /* FilterItemViewModel.swift in Sources */,
 				E718A0E61E58E906003463B0 /* ReachabilityServiceProtocol.swift in Sources */,

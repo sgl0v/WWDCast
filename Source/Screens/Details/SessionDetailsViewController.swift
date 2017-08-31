@@ -18,22 +18,16 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     @IBOutlet private weak var playButton: UIButton!
     @IBOutlet private weak var favoriteButton: UIButton!
 
-    private let viewModel: SessionDetailsViewModelProtocol
     private let disposeBag = DisposeBag()
 
     init(viewModel: SessionDetailsViewModelProtocol) {
-        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        self.rx.viewDidLoad.bind(onNext: self.configureUI).addDisposableTo(self.disposeBag)
+        self.rx.viewDidLoad.flatMap(Observable.just(viewModel)).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.configureUI()
-        self.bind(to: self.viewModel)
     }
 
     // MARK: Private

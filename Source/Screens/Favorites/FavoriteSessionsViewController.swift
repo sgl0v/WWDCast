@@ -18,16 +18,12 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
     init(viewModel: FavoriteSessionsViewModelProtocol) {
         self.viewModel = viewModel
         super.init()
+        self.rx.viewDidLoad.bind(onNext: self.configureUI).addDisposableTo(self.disposeBag)
+        self.rx.viewDidLoad.flatMap(Observable.just(viewModel)).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.configureUI()
-        self.bind(to: self.viewModel)
     }
 
     override func commitPreview(for item: SessionItemViewModel) {

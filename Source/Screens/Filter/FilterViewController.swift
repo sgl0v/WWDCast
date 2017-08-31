@@ -14,36 +14,30 @@ import RxDataSources
 class FilterViewController: TableViewController<FilterSectionViewModel, FilterTableViewCell> {
     private var cancelButton: UIBarButtonItem!
     private var doneButton: UIBarButtonItem!
-    private let viewModel: FilterViewModel
 
     init(viewModel: FilterViewModel) {
-        self.viewModel = viewModel
         super.init()
+        self.rx.viewDidLoad.bind(onNext: self.configureUI).addDisposableTo(self.disposeBag)
+        self.rx.viewDidLoad.flatMap(Observable.just(viewModel)).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.configureUI()
-        self.setupBindings()
-    }
-
     // MARK - Private
 
-    private func setupBindings() {
+    private func bind(to viewModel: FilterViewModel) {
         // ViewModel's input
-        self.cancelButton.rx.tap.subscribe(onNext: self.viewModel.didCancel).addDisposableTo(self.disposeBag)
-        self.doneButton.rx.tap.subscribe(onNext: self.viewModel.didApplyFilter).addDisposableTo(self.disposeBag)
+        self.cancelButton.rx.tap.subscribe(onNext: viewModel.didCancel).addDisposableTo(self.disposeBag)
+        self.doneButton.rx.tap.subscribe(onNext: viewModel.didApplyFilter).addDisposableTo(self.disposeBag)
         self.tableView.rx.itemSelected.subscribe(onNext: {[unowned self] indexPath in
             self.tableView.deselectRow(at: indexPath, animated: true)
         }).addDisposableTo(self.disposeBag)
 
         // ViewModel's output
-        self.viewModel.filterSections.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
-        self.viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
+        viewModel.filterSections.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
+        viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
     }
 
     private func configureUI() {
