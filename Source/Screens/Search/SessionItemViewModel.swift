@@ -15,6 +15,7 @@ struct SessionItemViewModel {
     var subtitle: String
     var summary: String
     var thumbnailURL: URL
+    var thumbnailPlaceholder: UIImage
     var favorite: Bool
 }
 

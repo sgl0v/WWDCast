@@ -13,18 +13,20 @@ import SDWebImage
 
 extension Reactive where Base: UIImageView {
 
-    var imageURL: AnyObserver<URL> {
+    var imageURL: AnyObserver<(URL, UIImage?)> {
+        let completion: SDWebImage.SDWebImageCompletionBlock = { [weak base] _ in
+            let transition = CATransition()
+            transition.duration = 0.3
+            transition.timingFunction =
+                CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            base?.layer.add(transition, forKey: kCATransition)
+        }
         return AnyObserver { [weak base] event in
             switch event {
-            case .next(let value):
-                base?.image = nil
-                base?.sd_setImage(with: value, completed: { [weak base] _ in
-                    let transition = CATransition()
-                    transition.duration = 0.3
-                    transition.timingFunction =
-                        CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-                    base?.layer.add(transition, forKey: kCATransition)
-                })
+            case .next(let url, nil):
+                base?.sd_setImage(with: url, completed: completion)
+            case .next(let url, let placeholderImage):
+                base?.sd_setImage(with: url, placeholderImage: placeholderImage, options: [], completed: completion)
             default:
                 break
             }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0368EE34C657ED46DDCE25D3 /* Pods_WWDCastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */; };
-		5E2680961D2C43440054E90B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E2680951D2C43440054E90B /* Assets.xcassets */; };
 		5E89B1D61D480B6300E611AC /* SessionDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */; };
 		B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E11D2AB0FC009E4B83 /* AppDelegate.swift */; };
 		B6F929E61D2AB0FD009E4B83 /* WWDCastEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F929E31D2AB0FC009E4B83 /* WWDCastEnvironment.swift */; };
@@ -102,6 +101,7 @@
 		E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */; };
 		E7C428BC1ED3977700BAB0B2 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C428B61ED3977700BAB0B2 /* CoreDataController.swift */; };
 		E7C428C21ED3987000BAB0B2 /* NSManagedObjectContext+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C428C11ED3987000BAB0B2 /* NSManagedObjectContext+Rx.swift */; };
+		E7D76F141F588245005C95DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7D76F131F588245005C95DB /* Assets.xcassets */; };
 		E7E889DC1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E889DB1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift */; };
 		E7FC18171EE0A5E6000D2FAB /* WWDCast.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */; };
 		E7FC181D1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FC181B1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift */; };
@@ -126,7 +126,6 @@
 		0F296124C6052AB9AF4576B0 /* Pods-Tests-WWDCastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-WWDCastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-WWDCastTests/Pods-Tests-WWDCastTests.release.xcconfig"; sourceTree = "<group>"; };
 		218FDCB7EB2025EE42E172F6 /* Pods-WWDCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4A6EBFABAC79034FF2973338 /* Pods-WWDCastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.release.xcconfig"; sourceTree = "<group>"; };
-		5E2680951D2C43440054E90B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionDetailsViewController.xib; path = Resources/SessionDetailsViewController.xib; sourceTree = SOURCE_ROOT; };
 		7D60F791C276BA391873661A /* Pods_Tests_WWDCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_WWDCastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F929BB1D2A5DD5009E4B83 /* WWDCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWDCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +227,7 @@
 		E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataSetView.xib; path = Resources/EmptyDataSetView.xib; sourceTree = SOURCE_ROOT; };
 		E7C428B61ED3977700BAB0B2 /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		E7C428C11ED3987000BAB0B2 /* NSManagedObjectContext+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Rx.swift"; sourceTree = "<group>"; };
+		E7D76F131F588245005C95DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7E889DB1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCoordinatorDependencyProviders.swift; sourceTree = "<group>"; };
 		E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = WWDCast.xcdatamodel; path = Resources/WWDCast.xcdatamodel; sourceTree = SOURCE_ROOT; };
 		E7FC181B1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -293,8 +293,8 @@
 		B6F929BD1D2A5DD5009E4B83 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E7D76F131F588245005C95DB /* Assets.xcassets */,
 				E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */,
-				5E2680951D2C43440054E90B /* Assets.xcassets */,
 				B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */,
 				B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */,
 				5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */,
@@ -704,8 +704,8 @@
 				E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */,
 				E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */,
 				B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */,
+				E7D76F141F588245005C95DB /* Assets.xcassets in Resources */,
 				B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */,
-				5E2680961D2C43440054E90B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
