@@ -12,31 +12,20 @@ import RxSwift
 
 final class CoreDataController {
 
-    private let persistentContainer: NSPersistentContainer
-    private var isStoreLoaded: Bool = false
+    private var persistentContainer: NSPersistentContainer!
 
     var viewContext: NSManagedObjectContext {
         return self.persistentContainer.viewContext
     }
 
-    init?(name: String) {
+    init(name: String) {
         self.persistentContainer = NSPersistentContainer(name: name)
         self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         try? self.persistentContainer.viewContext.setQueryGenerationFrom(.current)
-    }
-
-    func loadStore(completion: @escaping (Error?) -> Void) {
-        if self.isStoreLoaded {
-            completion(nil)
-            return
-        }
-
         self.persistentContainer.loadPersistentStores { _, error in
-            if error == nil {
-                self.isStoreLoaded = true
+            if let coreDataError = error {
+                assertionFailure(coreDataError.localizedDescription)
             }
-
-            completion(error)
         }
     }
 
