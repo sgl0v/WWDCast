@@ -52,7 +52,7 @@ class FilterViewController: UIViewController {
             return cell
         }
         dataSource.titleForHeaderInSection = { (dataSource: TableViewSectionedDataSource<SectionViewModel>, sectionIndex: Int) -> String? in
-            return dataSource[sectionIndex].description
+            return dataSource[sectionIndex].title
         }
         return dataSource
     }()

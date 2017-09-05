@@ -26,7 +26,7 @@ class FilterViewModel: FilterViewModelProtocol {
     let title = Driver.just(NSLocalizedString("Filter", comment: "Filter view title"))
 
     lazy var filterSections: Driver<[FilterSectionViewModel]> = {
-        return Driver.just(self.filterViewModels())
+        return Driver.just(self.filterViewModels)
     }()
 
     func didCancel() {
@@ -39,121 +39,94 @@ class FilterViewModel: FilterViewModelProtocol {
 
     // MARK: Private
 
-    private func filterViewModels() -> [FilterSectionViewModel] {
-        return [yearsFilterViewModel(), platformsFilterViewModel(), eventTypeViewModel(), tracksFilterViewModel()]
-    }
+    private lazy var filterViewModels: [FilterSectionViewModel] = {
+        return [self.yearsFilterViewModel, self.platformsFilterViewModel, self.eventTypeViewModel, self.tracksFilterViewModel]
+    }()
 
-    private func yearsFilterViewModel() -> FilterSectionViewModel {
+    private lazy var yearsFilterViewModel: FilterSectionViewModel = {
         var yearFilterItems = Session.Year.all.map { year in
             return FilterItemViewModel(title: year.description, style: .checkmark, selected: self.filter.years == [year])
         }
         yearFilterItems.insert(FilterItemViewModel(title: NSLocalizedString("All years", comment: ""), style: .checkmark, selected: self.filter.years == Session.Year.all), at: 0)
-
-        let years = FilterSectionViewModel(type: .Years, items: yearFilterItems)
-        years.selection.filter({ _, selected in
-            return selected
-        }).do(onNext: { index, _ in
-            years.selectItem(atIndex: index)
-        }).flatMap(self.yearsSelection(years)).distinctUntilChanged(==).subscribe(onNext: { years in
-            self.filter.years = years
+        let years = FilterSectionViewModel.singleSelectionSection(title: NSLocalizedString("Years", comment: ""), items: yearFilterItems)
+        years.singleSelection.subscribe(onNext: { item in
+            self.filter.years = self.selectedYears(at: item)
             NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
-
         return years
-    }
+    }()
 
-    private func eventTypeViewModel() -> FilterSectionViewModel {
+    private lazy var eventTypeViewModel: FilterSectionViewModel = {
         var eventTypeItems = Session.EventType.all.map { eventType in
             return FilterItemViewModel(title: eventType.description, style: .checkmark, selected: self.filter.eventTypes == [eventType])
         }
         eventTypeItems.insert(FilterItemViewModel(title: NSLocalizedString("All Events", comment: ""), style: .checkmark, selected: self.filter.eventTypes == Session.EventType.all), at: 0)
 
-        let eventTypes = FilterSectionViewModel(type: .EventTypes, items: eventTypeItems)
-        eventTypes.selection.filter({ _, selected in
-            return selected
-        }).do(onNext: { index, _ in
-            eventTypes.selectItem(atIndex: index)
-        }).flatMap(self.eventTypesSelection(eventTypes)).distinctUntilChanged(==).subscribe(onNext: { eventTypes in
-            self.filter.eventTypes = eventTypes
+        let eventTypes = FilterSectionViewModel.singleSelectionSection(title: NSLocalizedString("Event Types", comment: ""), items: eventTypeItems)
+        eventTypes.singleSelection.subscribe(onNext: { item in
+            self.filter.eventTypes = self.selectedEventTypes(at: item)
             NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
 
         return eventTypes
-    }
+    }()
 
-    private func platformsFilterViewModel() -> FilterSectionViewModel {
+    private lazy var platformsFilterViewModel: FilterSectionViewModel = {
         var platformFilterItems = Session.Platform.all.map { platform in
             return FilterItemViewModel(title: platform.description, style: .checkmark, selected: self.filter.platforms == [platform])
         }
         platformFilterItems.insert(FilterItemViewModel(title: NSLocalizedString("All platforms", comment: ""), style: .checkmark, selected: self.filter.platforms == Session.Platform.all), at: 0)
 
-        let platforms = FilterSectionViewModel(type: .Platforms, items: platformFilterItems)
-        platforms.selection.filter({ _, selected in
-            return selected
-        }).do(onNext: { index, _ in
-            platforms.selectItem(atIndex: index)
-        }).map(self.platformsSelection(platforms)).distinctUntilChanged(==).subscribe(onNext: {[unowned self] platforms in
-            self.filter.platforms = platforms
+        let platforms = FilterSectionViewModel.singleSelectionSection(title: NSLocalizedString("Platforms", comment: ""), items: platformFilterItems)
+        platforms.singleSelection.subscribe(onNext: { item in
+            self.filter.platforms = self.selectedPlatforms(at: item)
             NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
 
         return platforms
-    }
+    }()
 
-    private func tracksFilterViewModel() -> FilterSectionViewModel {
+    private lazy var tracksFilterViewModel: FilterSectionViewModel = {
         let trackFilterItems = Session.Track.all.map { track in
             return FilterItemViewModel(title: track.description, style: .switch, selected: self.filter.tracks.contains(track))
         }
 
-        let tracks = FilterSectionViewModel(type: .Tracks, items: trackFilterItems)
-        tracks.selection.map({ index, selected -> [Session.Track] in
-            var tracks = self.filter.tracks
-            guard let track = Session.Track(rawValue: index) else {
-                return tracks
-            }
-            if selected {
-                if tracks.index(of: track) == nil {
-                    tracks.append(track)
-                }
-            } else if let index = tracks.index(of: track) {
-                tracks.remove(at: index)
-            }
-            return tracks
-        }).distinctUntilChanged(==).subscribe(onNext: {[unowned self] tracks in
-            self.filter.tracks = tracks
+        let tracks = FilterSectionViewModel.multiSelectionSection(title: NSLocalizedString("Tracks", comment: ""), items: trackFilterItems)
+        tracks.multiSelection.subscribe(onNext: { items in
+            self.filter.tracks = self.selectedTracks(at: items)
             NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
 
         return tracks
+    }()
+
+    private func selectedYears(at index: Int) -> [Session.Year] {
+        if index == 0 {
+            return Session.Year.all
+        }
+        return [Session.Year.all[index - 1]]
     }
 
-    private func yearsSelection(_ years: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Session.Year]> {
-        return { (idx, _) in
-            if idx == 0 {
-                return Observable.just(Session.Year.all)
+    private func selectedEventTypes(at index: Int) -> [Session.EventType] {
+        if index == 0 {
+            return Session.EventType.all
+        }
+        return [Session.EventType.all[index - 1]]
+    }
+
+    private func selectedPlatforms(at index: Int) -> Session.Platform {
+        if index == 0 {
+            return Session.Platform.all
+        }
+        return Session.Platform(rawValue: 1 << (index - 1))
+    }
+
+    private func selectedTracks(at indexes: [Int]) -> [Session.Track] {
+        return indexes.map { idx in
+            guard let track = Session.Track(rawValue: idx) else {
+                fatalError("Failed to create a session track from \(idx) raw value!")
             }
-            let selectedYear = Session.Year.all[idx - 1]
-            return Observable.just([selectedYear])
+            return track
         }
     }
-
-    private func eventTypesSelection(_ eventTypes: FilterSectionViewModel) -> (Int, Bool) -> Observable<[Session.EventType]> {
-        return { (idx, _) in
-            if idx == 0 {
-                return Observable.just(Session.EventType.all)
-            }
-            let selectedEventType = Session.EventType.all[idx - 1]
-            return Observable.just([selectedEventType])
-        }
-    }
-
-    private func platformsSelection(_ platforms: FilterSectionViewModel) -> (Int, Bool) -> Session.Platform {
-        return { (idx, _) in
-            if idx == 0 {
-                return Session.Platform.all
-            }
-            return Session.Platform(rawValue: 1 << (idx - 1))
-        }
-    }
-
 }
