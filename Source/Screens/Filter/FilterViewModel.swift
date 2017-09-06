@@ -48,8 +48,8 @@ class FilterViewModel: FilterViewModelProtocol {
             return FilterItemViewModel(title: year.description, style: .checkmark, selected: self.filter.years == [year])
         }
         yearFilterItems.insert(FilterItemViewModel(title: NSLocalizedString("All years", comment: ""), style: .checkmark, selected: self.filter.years == Session.Year.all), at: 0)
-        let years = FilterSectionViewModel.singleSelectionSection(title: NSLocalizedString("Years", comment: ""), items: yearFilterItems)
-        years.singleSelection.subscribe(onNext: { item in
+        let years = SingleChoiceFilterSectionViewModel(title: NSLocalizedString("Years", comment: ""), items: yearFilterItems)
+        years.selection.subscribe(onNext: { item in
             self.filter.years = self.selectedYears(at: item)
             NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
@@ -62,8 +62,8 @@ class FilterViewModel: FilterViewModelProtocol {
         }
         eventTypeItems.insert(FilterItemViewModel(title: NSLocalizedString("All Events", comment: ""), style: .checkmark, selected: self.filter.eventTypes == Session.EventType.all), at: 0)
 
-        let eventTypes = FilterSectionViewModel.singleSelectionSection(title: NSLocalizedString("Event Types", comment: ""), items: eventTypeItems)
-        eventTypes.singleSelection.subscribe(onNext: { item in
+        let eventTypes = SingleChoiceFilterSectionViewModel(title: NSLocalizedString("Event Types", comment: ""), items: eventTypeItems)
+        eventTypes.selection.subscribe(onNext: { item in
             self.filter.eventTypes = self.selectedEventTypes(at: item)
             NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
@@ -77,8 +77,8 @@ class FilterViewModel: FilterViewModelProtocol {
         }
         platformFilterItems.insert(FilterItemViewModel(title: NSLocalizedString("All platforms", comment: ""), style: .checkmark, selected: self.filter.platforms == Session.Platform.all), at: 0)
 
-        let platforms = FilterSectionViewModel.singleSelectionSection(title: NSLocalizedString("Platforms", comment: ""), items: platformFilterItems)
-        platforms.singleSelection.subscribe(onNext: { item in
+        let platforms = SingleChoiceFilterSectionViewModel(title: NSLocalizedString("Platforms", comment: ""), items: platformFilterItems)
+        platforms.selection.subscribe(onNext: { item in
             self.filter.platforms = self.selectedPlatforms(at: item)
             NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
@@ -91,8 +91,8 @@ class FilterViewModel: FilterViewModelProtocol {
             return FilterItemViewModel(title: track.description, style: .switch, selected: self.filter.tracks.contains(track))
         }
 
-        let tracks = FilterSectionViewModel.multiSelectionSection(title: NSLocalizedString("Tracks", comment: ""), items: trackFilterItems)
-        tracks.multiSelection.subscribe(onNext: { items in
+        let tracks = MultiChoiceFilterSectionViewModel(title: NSLocalizedString("Tracks", comment: ""), items: trackFilterItems)
+        tracks.selection.subscribe(onNext: { items in
             self.filter.tracks = self.selectedTracks(at: items)
             NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
