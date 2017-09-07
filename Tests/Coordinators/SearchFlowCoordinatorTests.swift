@@ -42,7 +42,7 @@ class SearchFlowCoordinatorTests: XCTestCase {
         // THEN
         let predicate = NSPredicate(format: "viewControllers.@count == 2")
         expectation(for: predicate, evaluatedWith: self.rootViewController, handler: nil)
-        waitForExpectations(timeout: 1.0, handler: nil)
+        waitForExpectations(timeout: 2.0, handler: nil)
     }
 
     /// Tests the flow from search to session filter screen
@@ -62,7 +62,7 @@ class SearchFlowCoordinatorTests: XCTestCase {
         // THEN
         let predicate = NSPredicate(format: "viewControllers.@count == 1 && presentedViewController != nil")
         expectation(for: predicate, evaluatedWith: self.rootViewController, handler: nil)
-        waitForExpectations(timeout: 1.0, handler: nil)
+        waitForExpectations(timeout: 2.0, handler: nil)
     }
 
     /// Tests the flow from search to session filter screen and back (new filter object)
