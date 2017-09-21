@@ -37,7 +37,7 @@ final class RxGCKSessionManagerListenerProxy: DelegateProxy, GCKSessionManagerLi
     }
 }
 
-// swiftlint:disable weak_delegate force_cast
+// swiftlint:disable force_cast
 
 extension Reactive where Base: GCKSessionManager {
 
@@ -57,4 +57,4 @@ extension Reactive where Base: GCKSessionManager {
 
 }
 
-// swiftlint:enable weak_delegate force_cast
+// swiftlint:enable force_cast

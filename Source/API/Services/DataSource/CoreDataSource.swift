@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import CoreData
 
-final class CoreDataSource<T: NSManagedObject>: NSObject, DataSourceType, NSFetchedResultsControllerDelegate where T: CoreDataPersistable & EntityRepresentable, T.EntityType.CoreDataType == T {
+final class CoreDataSource<T: NSManagedObject>: NSObject, DataSourceType, NSFetchedResultsControllerDelegate where T:  EntityRepresentable, T.EntityType.CoreDataType == T {
 
     typealias Item = T.EntityType
 

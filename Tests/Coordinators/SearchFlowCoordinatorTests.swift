@@ -12,6 +12,7 @@ import XCTest
 class SearchFlowCoordinatorTests: XCTestCase {
 
     private let sessionId = "mock_session_id"
+    private let timeout = 5.0
     private var flowCoordinator: SearchFlowCoordinator!
     private var rootViewController: UINavigationController!
     private var dependencyProvider: MockViewControllerFactory!
@@ -42,7 +43,7 @@ class SearchFlowCoordinatorTests: XCTestCase {
         // THEN
         let predicate = NSPredicate(format: "viewControllers.@count == 2")
         expectation(for: predicate, evaluatedWith: self.rootViewController, handler: nil)
-        waitForExpectations(timeout: 2.0, handler: nil)
+        waitForExpectations(timeout: self.timeout, handler: nil)
     }
 
     /// Tests the flow from search to session filter screen
@@ -62,7 +63,7 @@ class SearchFlowCoordinatorTests: XCTestCase {
         // THEN
         let predicate = NSPredicate(format: "viewControllers.@count == 1 && presentedViewController != nil")
         expectation(for: predicate, evaluatedWith: self.rootViewController, handler: nil)
-        waitForExpectations(timeout: 2.0, handler: nil)
+        waitForExpectations(timeout: self.timeout, handler: nil)
     }
 
     /// Tests the flow from search to session filter screen and back (new filter object)
@@ -88,7 +89,7 @@ class SearchFlowCoordinatorTests: XCTestCase {
         expectation(for: showPredicate, evaluatedWith: self.rootViewController, handler: nil)
         let hidePredicate = NSPredicate(format: "viewControllers.@count == 1 && presentedViewController == nil")
         expectation(for: hidePredicate, evaluatedWith: self.rootViewController, handler: nil)
-        waitForExpectations(timeout: 2.0, handler: nil)
+        waitForExpectations(timeout: self.timeout, handler: nil)
     }
 
     /// Tests the flow from search to session filter screen and back (cancel)
@@ -113,7 +114,7 @@ class SearchFlowCoordinatorTests: XCTestCase {
         expectation(for: showPredicate, evaluatedWith: self.rootViewController, handler: nil)
         let hidePredicate = NSPredicate(format: "viewControllers.@count == 1 && presentedViewController == nil")
         expectation(for: hidePredicate, evaluatedWith: self.rootViewController, handler: nil)
-        waitForExpectations(timeout: 2.0, handler: nil)
+        waitForExpectations(timeout: self.timeout, handler: nil)
     }
 
     private func wait(for timeInterval: TimeInterval) {

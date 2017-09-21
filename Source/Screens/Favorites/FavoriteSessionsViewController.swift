@@ -30,7 +30,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         self.viewModel.didSelect(item: item)
     }
 
-    // MARK - Private
+    // MARK: Private
 
     private func bind(to viewModel: FavoriteSessionsViewModelProtocol) {
         // ViewModel's input

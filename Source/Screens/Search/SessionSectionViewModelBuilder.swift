@@ -41,8 +41,8 @@ struct SessionSectionViewModelBuilder {
         let sessions: [SessionSectionViewModel] = Session.Track.all.map({ track in
             let sessions = sessions.sorted().filter({ session in session.track == track }).map(SessionItemViewModelBuilder.build)
             return SessionSectionViewModel(title: track.description, items: sessions)
-        }).filter({ SessionSectionViewModel in
-            return !SessionSectionViewModel.items.isEmpty
+        }).filter({ sessionSectionViewModel in
+            return !sessionSectionViewModel.items.isEmpty
         })
         return sessions
     }

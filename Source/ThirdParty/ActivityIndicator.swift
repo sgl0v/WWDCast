@@ -60,20 +60,20 @@ class ActivityIndicator {
         return Observable.using({ () -> ActivityToken<O.E> in
             self.increment()
             return ActivityToken(source: source.asObservable(), disposeAction: self.decrement)
-        }) { t in
-            return t.asObservable()
-        }
+        }, observableFactory: { activityToken in
+            return activityToken.asObservable()
+        })
     }
 
     private func increment() {
         _lock.lock()
-        _variable.value = _variable.value + 1
+        _variable.value += 1
         _lock.unlock()
     }
 
     private func decrement() {
         _lock.lock()
-        _variable.value = _variable.value - 1
+        _variable.value -= 1
         _lock.unlock()
     }
 

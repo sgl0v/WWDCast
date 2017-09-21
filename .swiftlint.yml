@@ -1,19 +1,20 @@
-disabled_rules:
+disabled_rules: # rule identifiers to exclude from running
 #   - function_parameter_count
 #   - nesting
   - line_length
-  # - variable_name
+  - variable_name
   - type_name
   - syntactic_sugar
 #   - weak_delegate
 #   - trailing_comma
-opt_in_rules:
+opt_in_rules: # some rules are only opt-in
   - empty_count
   - force_unwrapping
   - private_outlet
   - missing_docs
-# line_length:
-#   warning: 300
+  - type_name
+line_length:
+  warning: 160
 type_body_length:
   warning: 300
   error: 400

@@ -32,7 +32,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.viewModel.didSelect(item: item)
     }
 
-    // MARK - Private
+    // MARK: Private
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)

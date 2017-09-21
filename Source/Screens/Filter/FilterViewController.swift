@@ -29,7 +29,7 @@ class FilterViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK - Private
+    // MARK: Private
 
     private func bind(to viewModel: FilterViewModel) {
         // ViewModel's input

@@ -53,7 +53,7 @@ extension Sequence where Iterator.Element == Session {
                 filter.years.contains(session.year) &&
                 filter.tracks.contains(session.track) &&
                 filter.eventTypes.contains(session.type) &&
-                (session.platforms.isEmpty || !Set(filter.platforms).intersection(session.platforms).isEmpty)
+                (session.platforms.isEmpty || !Set(filter.platforms).isDisjoint(with: session.platforms))
         }
     }
 }

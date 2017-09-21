@@ -31,7 +31,7 @@ final class RxGCKRequestDelegateProxy: DelegateProxy, GCKRequestDelegate, Delega
     }
 }
 
-// swiftlint:disable weak_delegate force_cast
+// swiftlint:disable force_cast
 
 extension Reactive where Base: GCKRequest {
 
@@ -55,4 +55,4 @@ extension Reactive where Base: GCKRequest {
     }
 }
 
-// swiftlint:enable weak_delegate force_cast
+// swiftlint:enable force_cast
