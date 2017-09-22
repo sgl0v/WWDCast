@@ -224,6 +224,9 @@
 		E7330BE91EE8A60E00D7017F /* CoreDataPersistable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataPersistable.swift; sourceTree = "<group>"; };
 		E76BFDC71DC3FD7400B269B8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		E7840B4F1F741F9E0039AFE1 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		E7840B501F741F9E0039AFE1 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataSetView.xib; path = Resources/EmptyDataSetView.xib; sourceTree = SOURCE_ROOT; };
 		E7C428B61ED3977700BAB0B2 /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
@@ -276,6 +279,7 @@
 			children = (
 				B6F929E01D2AB0FC009E4B83 /* Source */,
 				B6F929E71D2AB111009E4B83 /* Tests */,
+				E7840B4A1F741E030039AFE1 /* Configs */,
 				B6F929BD1D2A5DD5009E4B83 /* Resources */,
 				B6F929BC1D2A5DD5009E4B83 /* Products */,
 				E48D05A0B2806D9C6BFBB79F /* Pods */,
@@ -596,6 +600,16 @@
 			path = DataSource;
 			sourceTree = "<group>";
 		};
+		E7840B4A1F741E030039AFE1 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				E7840B4F1F741F9E0039AFE1 /* Common.xcconfig */,
+				E7840B501F741F9E0039AFE1 /* Debug.xcconfig */,
+				E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
 		E7C428B51ED3977700BAB0B2 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -674,6 +688,7 @@
 					};
 					B6F929CE1D2A5DD6009E4B83 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = KT9AV6E7N7;
 						LastSwiftMigration = 0800;
 						TestTargetID = B6F929BA1D2A5DD5009E4B83;
 					};
@@ -960,6 +975,7 @@
 /* Begin XCBuildConfiguration section */
 		B6F929D61D2A5DD6009E4B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7840B501F741F9E0039AFE1 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1015,6 +1031,7 @@
 		};
 		B6F929D71D2A5DD6009E4B83 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1064,7 +1081,6 @@
 		};
 		B6F929D91D2A5DD6009E4B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1079,17 +1095,11 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
-				WARNING_CFLAGS = (
-					"-Wno-unused-parameter",
-					"-Wextra",
-					"-Wall",
-				);
 			};
 			name = Debug;
 		};
 		B6F929DA1D2A5DD6009E4B83 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 081F76A23C03510729799A91 /* Pods-WWDCast.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1104,17 +1114,11 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
-				WARNING_CFLAGS = (
-					"-Wno-unused-parameter",
-					"-Wextra",
-					"-Wall",
-				);
 			};
 			name = Release;
 		};
 		B6F929DC1D2A5DD6009E4B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 218FDCB7EB2025EE42E172F6 /* Pods-WWDCastTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = Tests/Info.plist;
@@ -1128,7 +1132,6 @@
 		};
 		B6F929DD1D2A5DD6009E4B83 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A6EBFABAC79034FF2973338 /* Pods-WWDCastTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = Tests/Info.plist;
