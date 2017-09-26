@@ -34,7 +34,6 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
 
     private func configureUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
-        self.edgesForExtendedLayout = UIRectEdge()
     }
 
     private func bind(to viewModel: SessionDetailsViewModelProtocol) {
