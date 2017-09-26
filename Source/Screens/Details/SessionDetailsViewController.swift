@@ -53,7 +53,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         guard let viewModel = viewModel else {
             return
         }
-        Observable.just((viewModel.thumbnailURL, viewModel.thumbnailPlaceholder))
+        Observable.just(viewModel.thumbnailURL)
             .asObservable()
             .bind(to: self.image.rx.imageURL)
             .addDisposableTo(self.disposeBag)

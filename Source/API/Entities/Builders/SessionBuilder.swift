@@ -16,7 +16,7 @@ class SessionBuilder: EntityBuilderType {
     static func build(_ json: JSON) throws -> EntityType {
         let media = json["media"]
         let captions = URL(string: media["subtitles"].stringValue)
-        let video = URL(string: media["downloadHD"].stringValue)
+        let video = URL(string: media["tvOShls"].string ?? media["downloadHD"].stringValue)
         let track = Session.Track(id: json["trackId"].intValue)
         let focus = json["platforms"].arrayObject ?? []
         let staticContentId = json["staticContentId"].intValue

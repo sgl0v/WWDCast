@@ -29,7 +29,7 @@ class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProv
     func bind(to viewModel: ViewModel) {
         self.title.text = viewModel.title
         self.summary.text = viewModel.summary
-        Observable.just((viewModel.thumbnailURL, viewModel.thumbnailPlaceholder))
+        Observable.just(viewModel.thumbnailURL)
             .takeUntil(self.onPrepareForReuse)
             .bind(to: self.thumbnailImage.rx.imageURL)
             .addDisposableTo(self.disposeBag)

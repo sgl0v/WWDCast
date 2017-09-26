@@ -1081,6 +1081,7 @@
 		};
 		B6F929D91D2A5DD6009E4B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1100,6 +1101,7 @@
 		};
 		B6F929DA1D2A5DD6009E4B83 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 081F76A23C03510729799A91 /* Pods-WWDCast.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1119,6 +1121,7 @@
 		};
 		B6F929DC1D2A5DD6009E4B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 218FDCB7EB2025EE42E172F6 /* Pods-WWDCastTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = Tests/Info.plist;
@@ -1132,6 +1135,7 @@
 		};
 		B6F929DD1D2A5DD6009E4B83 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A6EBFABAC79034FF2973338 /* Pods-WWDCastTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = Tests/Info.plist;

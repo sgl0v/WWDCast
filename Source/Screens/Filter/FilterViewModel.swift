@@ -40,7 +40,7 @@ class FilterViewModel: FilterViewModelProtocol {
     // MARK: Private
 
     private lazy var filterViewModels: [FilterSectionViewModel] = {
-        return [self.yearsFilterViewModel, self.platformsFilterViewModel, self.eventTypeViewModel, self.tracksFilterViewModel]
+        return [self.yearsFilterViewModel, self.platformsFilterViewModel, self.tracksFilterViewModel]
     }()
 
     private lazy var yearsFilterViewModel: FilterSectionViewModel = {
@@ -54,21 +54,6 @@ class FilterViewModel: FilterViewModelProtocol {
             NSLog("%@", self.filter.description)
         }).addDisposableTo(self.disposeBag)
         return years
-    }()
-
-    private lazy var eventTypeViewModel: FilterSectionViewModel = {
-        var eventTypeItems = Session.EventType.all.map { eventType in
-            return FilterItemViewModel(title: eventType.description, style: .checkmark, selected: self.filter.eventTypes == [eventType])
-        }
-        eventTypeItems.insert(FilterItemViewModel(title: NSLocalizedString("All Events", comment: ""), style: .checkmark, selected: self.filter.eventTypes == Session.EventType.all), at: 0)
-
-        let eventTypes = SingleChoiceFilterSectionViewModel(title: NSLocalizedString("Event Types", comment: ""), items: eventTypeItems)
-        eventTypes.selection.subscribe(onNext: { item in
-            self.filter.eventTypes = self.selectedEventTypes(at: item)
-            NSLog("%@", self.filter.description)
-        }).addDisposableTo(self.disposeBag)
-
-        return eventTypes
     }()
 
     private lazy var platformsFilterViewModel: FilterSectionViewModel = {
@@ -106,14 +91,7 @@ class FilterViewModel: FilterViewModelProtocol {
         }
         return [Session.Year.all[index - 1]]
     }
-
-    private func selectedEventTypes(at index: Int) -> [Session.EventType] {
-        if index == 0 {
-            return Session.EventType.all
-        }
-        return [Session.EventType.all[index - 1]]
-    }
-
+    
     private func selectedPlatforms(at index: Int) -> Session.Platform {
         if index == 0 {
             return Session.Platform.all

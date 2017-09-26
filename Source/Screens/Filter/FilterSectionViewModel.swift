@@ -39,18 +39,16 @@ class SingleChoiceFilterSectionViewModel: FilterSectionViewModel {
             }).map({ _ in
                 return idx
             })
-        })).distinctUntilChanged().do(onNext: {[unowned self] idx in
-            self.selectItem(atIndex: idx)
-        })
+        })).distinctUntilChanged().do(onNext: self.selectItem)
     }
 
     private func selectItem(atIndex index: Int) {
         assert(index < self.items.count)
-        for (idx, item) in self.items.enumerated() {
-            item.selected.value = idx == index
-        }
+        let oldSelection = self.items.enumerated().filter({ (idx, item) in
+            return idx != index && item.selected.value
+        }).first
+        oldSelection?.element.selected.value = false
     }
-
 }
 
 class MultiChoiceFilterSectionViewModel: FilterSectionViewModel {

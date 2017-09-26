@@ -6,8 +6,8 @@ inhibit_all_warnings!
 
 target 'WWDCast' do
   pod 'google-cast-sdk', '~> 3.1.1'
-  pod 'RxCocoa', '~> 3.0'
-  pod 'RxOptional', '~> 3.1'
+  pod 'RxCocoa', '~> 3.0', :inhibit_warnings => true
+  pod 'RxOptional', '~> 3.1', :inhibit_warnings => true
   pod 'RxDataSources', '~> 1.0'
   pod 'SwiftyJSON', '~> 3.1'
   pod 'SDWebImage', '~> 3.8'
