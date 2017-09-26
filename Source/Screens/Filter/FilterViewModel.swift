@@ -91,7 +91,7 @@ class FilterViewModel: FilterViewModelProtocol {
         }
         return [Session.Year.all[index - 1]]
     }
-    
+
     private func selectedPlatforms(at index: Int) -> Session.Platform {
         if index == 0 {
             return Session.Platform.all

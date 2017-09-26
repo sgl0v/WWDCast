@@ -14,23 +14,7 @@ struct SessionItemViewModelBuilder {
     static func build(_ session: Session) -> SessionItemViewModel {
 
         return SessionItemViewModel(id: session.id, title: session.title,
-                                    subtitle: session.subtitle, summary: session.summary, thumbnailURL: session.thumbnail,
-                                    thumbnailPlaceholder: thumbnail(for: session.type), favorite: session.favorite)
-    }
-
-    private static func thumbnail(`for` sessionType: Session.EventType) -> UIImage {
-        switch sessionType {
-        case .video:
-            return #imageLiteral(resourceName: "video-event")
-        case .session:
-            return #imageLiteral(resourceName: "session-event")
-        case .lab:
-            return #imageLiteral(resourceName: "lab-event")
-        case .specialEvent:
-            return #imageLiteral(resourceName: "special-event")
-        case .getTogether:
-            return #imageLiteral(resourceName: "get-together-event")
-        }
+                                    subtitle: session.subtitle, summary: session.summary, thumbnailURL: session.thumbnail, favorite: session.favorite)
     }
 
 }
