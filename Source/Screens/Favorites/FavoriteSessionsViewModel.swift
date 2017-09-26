@@ -13,7 +13,6 @@ import RxCocoa
 class FavoriteSessionsViewModel: FavoriteSessionsViewModelProtocol {
     private let api: WWDCastAPIProtocol
     private weak var delegate: FavoriteSessionsViewModelDelegate?
-    private let disposeBag = DisposeBag()
 
     init(api: WWDCastAPIProtocol, delegate: FavoriteSessionsViewModelDelegate) {
         self.api = api

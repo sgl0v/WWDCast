@@ -2,13 +2,11 @@
 platform :ios, '9.0'
 # Uncomment this line if you're using Swift
 use_frameworks!
-inhibit_all_warnings!
 
 target 'WWDCast' do
   pod 'google-cast-sdk', '~> 3.1.1'
-  pod 'RxCocoa', '~> 3.0', :inhibit_warnings => true
-  pod 'RxOptional', '~> 3.1', :inhibit_warnings => true
-  pod 'RxDataSources', '~> 1.0'
+  pod 'RxCocoa', '~> 3.6.1'
+  pod 'RxDataSources', '~> 2.0.2'
   pod 'SwiftyJSON', '~> 3.1'
   pod 'SDWebImage', '~> 3.8'
 
@@ -22,6 +20,7 @@ post_install do |installer|
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
             config.build_settings['SWIFT_VERSION'] = '3.0'
+            config.build_settings['SWIFT_SUPPRESS_WARNINGS'] = 'YES'
         end
     end
 end

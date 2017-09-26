@@ -14,7 +14,6 @@ class SessionsSearchViewModel: SessionsSearchViewModelProtocol {
     private let api: WWDCastAPIProtocol
     private weak var delegate: SessionsSearchViewModelDelegate?
     private let filter = Variable(Filter())
-    private let disposeBag = DisposeBag()
     private let activityIndicator = ActivityIndicator()
 
     init(api: WWDCastAPIProtocol, delegate: SessionsSearchViewModelDelegate) {
