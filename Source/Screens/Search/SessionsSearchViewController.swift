@@ -74,15 +74,20 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
 
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
-        self.tableView.tableHeaderView = self.searchBar
-        self.tableView.tableFooterView = UIView()
+        if #available(iOS 11.0, *) {
+            self.navigationItem.searchController = self.searchController
+            self.searchController.isActive = true
+        } else {
+            self.tableView.tableHeaderView = self.searchBar
+            // dismiss keyboard on scroll
+            self.tableView.rx.contentOffset.asDriver().filter({[unowned self] _ -> Bool in
+                return !self.searchController.isBeingPresented && self.searchBar.isFirstResponder
+            }).drive(onNext: {[unowned self] _ in
+                self.searchBar.resignFirstResponder()
+            }).addDisposableTo(self.disposeBag)
+        }
 
-        // dismiss keyboard on scroll
-        self.tableView.rx.contentOffset.asDriver().filter({[unowned self] _ -> Bool in
-            return !self.searchController.isBeingPresented && self.searchBar.isFirstResponder
-        }).drive(onNext: {[unowned self] _ in
-            self.searchBar.resignFirstResponder()
-        }).addDisposableTo(self.disposeBag)
+        self.tableView.tableFooterView = UIView()
 
         self.loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         self.view.addSubview(self.loadingIndicator)
