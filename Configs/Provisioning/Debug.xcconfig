@@ -1,0 +1,9 @@
+//
+//  Debug.xcconfig
+//  WWDCast
+//
+
+#include "Team.xcconfig"
+
+CODE_SIGN_IDENTITY = iPhone Developer
+PROVISIONING_PROFILE_SPECIFIER = Wildcard development profile

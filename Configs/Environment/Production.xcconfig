@@ -1,0 +1,6 @@
+//
+//  Production.xcconfig
+//  WWDCast
+//
+
+PRODUCT_BUNDLE_IDENTIFIER = com.sgl0v.wwdcast

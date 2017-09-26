@@ -1,0 +1,14 @@
+//
+//  Debug.xcconfig
+//  WWDCast
+//
+
+ONLY_ACTIVE_ARCH = YES
+VALIDATE_PRODUCT = NO
+// The optimization level (0, 1, 2, 3, s) for the produced binary
+GCC_OPTIMIZATION_LEVEL = 0
+// The optimization level (-Onone, -O, -Ofast) for the produced Swift binary
+SWIFT_OPTIMIZATION_LEVEL = -Onone
+BUILD_GCC_PREPROCESSOR_DEFINITIONS = DEBUG=1
+BUILD_OTHER_SWIFT_FLAGS = -DDEBUG
+ENABLE_TESTABILITY = YES

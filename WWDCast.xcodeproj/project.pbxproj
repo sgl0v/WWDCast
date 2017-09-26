@@ -225,7 +225,6 @@
 		E76BFDC71DC3FD7400B269B8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
-		E7840B4F1F741F9E0039AFE1 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		E7840B501F741F9E0039AFE1 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataSetView.xib; path = Resources/EmptyDataSetView.xib; sourceTree = SOURCE_ROOT; };
@@ -234,6 +233,16 @@
 		E7D76F131F588245005C95DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7D76F161F58936C005C95DB /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		E7E889DB1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCoordinatorDependencyProviders.swift; sourceTree = "<group>"; };
+		E7F044F61F7B0126007DE5C3 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		E7F044F71F7B0126007DE5C3 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		E7F044F91F7B0126007DE5C3 /* Combine.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Combine.xcconfig; sourceTree = "<group>"; };
+		E7F044FA1F7B0126007DE5C3 /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		E7F044FB1F7B0126007DE5C3 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
+		E7F044FD1F7B0126007DE5C3 /* Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		E7F044FE1F7B0126007DE5C3 /* Develop.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Develop.xcconfig; sourceTree = "<group>"; };
+		E7F045011F7B0126007DE5C3 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		E7F045031F7B0126007DE5C3 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		E7F045041F7B0126007DE5C3 /* Team.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Team.xcconfig; sourceTree = "<group>"; };
 		E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = WWDCast.xcdatamodel; path = Resources/WWDCast.xcdatamodel; sourceTree = SOURCE_ROOT; };
 		E7FC181B1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E7FC181C1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -603,7 +612,10 @@
 		E7840B4A1F741E030039AFE1 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				E7840B4F1F741F9E0039AFE1 /* Common.xcconfig */,
+				E7F044F51F7B0126007DE5C3 /* BuildType */,
+				E7F044F81F7B0126007DE5C3 /* Common */,
+				E7F044FC1F7B0126007DE5C3 /* Environment */,
+				E7F045001F7B0126007DE5C3 /* Provisioning */,
 				E7840B501F741F9E0039AFE1 /* Debug.xcconfig */,
 				E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */,
 			);
@@ -624,6 +636,44 @@
 				E7330BE91EE8A60E00D7017F /* CoreDataPersistable.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		E7F044F51F7B0126007DE5C3 /* BuildType */ = {
+			isa = PBXGroup;
+			children = (
+				E7F044F61F7B0126007DE5C3 /* Debug.xcconfig */,
+				E7F044F71F7B0126007DE5C3 /* Release.xcconfig */,
+			);
+			path = BuildType;
+			sourceTree = "<group>";
+		};
+		E7F044F81F7B0126007DE5C3 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E7F044F91F7B0126007DE5C3 /* Combine.xcconfig */,
+				E7F044FA1F7B0126007DE5C3 /* Common.xcconfig */,
+				E7F044FB1F7B0126007DE5C3 /* Version.xcconfig */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E7F044FC1F7B0126007DE5C3 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				E7F044FD1F7B0126007DE5C3 /* Production.xcconfig */,
+				E7F044FE1F7B0126007DE5C3 /* Develop.xcconfig */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
+		E7F045001F7B0126007DE5C3 /* Provisioning */ = {
+			isa = PBXGroup;
+			children = (
+				E7F045011F7B0126007DE5C3 /* Debug.xcconfig */,
+				E7F045031F7B0126007DE5C3 /* Release.xcconfig */,
+				E7F045041F7B0126007DE5C3 /* Team.xcconfig */,
+			);
+			path = Provisioning;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -683,12 +733,13 @@
 				TargetAttributes = {
 					B6F929BA1D2A5DD5009E4B83 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = DLQCQF2UW6;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					B6F929CE1D2A5DD6009E4B83 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = KT9AV6E7N7;
+						DevelopmentTeam = DLQCQF2UW6;
 						LastSwiftMigration = 0800;
 						TestTargetID = B6F929BA1D2A5DD5009E4B83;
 					};
@@ -975,147 +1026,27 @@
 /* Begin XCBuildConfiguration section */
 		B6F929D61D2A5DD6009E4B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7840B501F741F9E0039AFE1 /* Debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		B6F929D71D2A5DD6009E4B83 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		B6F929D91D2A5DD6009E4B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */;
+			baseConfigurationReference = E7840B501F741F9E0039AFE1 /* Debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCast;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		B6F929DA1D2A5DD6009E4B83 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 081F76A23C03510729799A91 /* Pods-WWDCast.release.xcconfig */;
+			baseConfigurationReference = E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCast;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1126,7 +1057,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCastTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sgl0v.WWDCastTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WWDCast.app/WWDCast";
@@ -1140,7 +1071,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.WWDCastTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sgl0v.WWDCastTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WWDCast.app/WWDCast";

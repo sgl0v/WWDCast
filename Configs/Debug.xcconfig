@@ -1,30 +1,13 @@
+//
 // Debug.xcconfig
 //
 // This file defines the base configuration for a Debug build of any project.
 // This should be set at the project level for the Debug configuration.
 //
 
-#include "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"
-#include "Configs/Common.xcconfig"
-
-// Whether warnings are treated as errors
-GCC_TREAT_WARNINGS_AS_ERRORS = NO
-
-// The format of debugging symbols
-DEBUG_INFORMATION_FORMAT = dwarf
-
-// The optimization level (0, 1, 2, 3, s) for the produced binary
-GCC_OPTIMIZATION_LEVEL = 0
-
-// Preproccessor definitions to apply to each file compiled
-GCC_PREPROCESSOR_DEFINITIONS = DEBUG=1
-
-// Whether to only build the active architecture
-ONLY_ACTIVE_ARCH = YES
-
-// Other flags to pass to the Swift compiler
-//
-// The optimization level (-Onone, -O, -Ofast) for the produced Swift binary
-SWIFT_OPTIMIZATION_LEVEL = -Onone
-
-SWIFT_TREAT_WARNINGS_AS_ERRORS = NO
+#include "../Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"
+#include "Common/Common.xcconfig"
+#include "Environment/Develop.xcconfig"
+#include "BuildType/Debug.xcconfig"
+#include "Provisioning/Debug.xcconfig"
+#include "Common/Combine.xcconfig"
