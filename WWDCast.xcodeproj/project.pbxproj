@@ -690,6 +690,7 @@
 				B6F929B91D2A5DD5009E4B83 /* Resources */,
 				AA720D3C39D46761CAD54C0B /* [CP] Embed Pods Frameworks */,
 				DE9F671286CAF4D10C6EC682 /* [CP] Copy Pods Resources */,
+				E7FA71731F89386400244EC9 /* Strip unused architectures */,
 			);
 			buildRules = (
 			);
@@ -891,6 +892,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\nexit 1\nfi";
+		};
+		E7FA71731F89386400244EC9 /* Strip unused architectures */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Strip unused architectures";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/Tools/strip_unused_archs.sh\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
