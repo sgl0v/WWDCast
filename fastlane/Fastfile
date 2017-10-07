@@ -1,27 +1,87 @@
-# Fastlane Constants
-fastlane_version "2.55.0"
+# Customise this file, documentation can be found here:
+# https://docs.fastlane.tools/actions/
+# All available actions: https://docs.fastlane.tools/actions
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "2.60.1"
+
 default_platform :ios
 
 platform :ios do
-
-  desc "Install pod dependencies"
-  lane :install_pods do
+  before_all do
+    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
     cocoapods
+    # carthage
   end
-
-  # before_all do
-  #   ensure_git_status_clean
-  # end
 
   desc "Runs all the tests"
   lane :test do
     scan(scheme: "WWDCast")
   end
 
-  # Private
+  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "This will also make sure the profile is up to date"
+  lane :beta do
+    # Ensure that your git status is not dirty
+    ensure_git_status_clean
+  
+    build_number = increment_build_number(xcodeproj: "WWDCast.xcodeproj") # Increment the build number (not the version number)
+    commit_version_bump(xcodeproj: "WWDCast.xcodeproj", message:"Version Bump to #{build_number}") # Commit the version bump
+    add_git_tag # Add a git tag for this build. This will automatically use an appropriate git tag name
+    push_to_git_remote # Push the new commit and tag back to your git remote
 
-  def project_base_path
-    File.expand_path("..", Dir.pwd)
+    match(
+      type: "appstore",
+      git_url: "git@github.com:sgl0v/WWDCastCerts.git"
+    ) # more information: https://codesigning.guide
+    gym(scheme: "WWDCast") # Build your app - more options available
+    pilot
+
+    # sh "your_script.sh"
+    # You can also use other beta testing services here (run `fastlane actions`)
   end
 
+  desc "Deploy a new version to the App Store"
+  lane :release do
+    match(
+      type: "appstore",
+      git_url: "git@github.com:sgl0v/WWDCastCerts.git"
+    )
+    # snapshot
+    gym(scheme: "WWDCast") # Build your app - more options available
+    deliver(force: true)
+    # frameit
+  end
+
+  # You can define as many lanes as you want
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+
+    # slack(
+    #   message: "Successfully deployed new App Update."
+    # )
+  end
+
+  error do |lane, exception|
+    # slack(
+    #   message: exception.message,
+    #   success: false
+    # )
+  end
 end
+
+
+# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
+# All available actions: https://docs.fastlane.tools/actions
+
+# fastlane reports which actions are used. No personal data is recorded. 
+# Learn more at https://github.com/fastlane/fastlane#metrics

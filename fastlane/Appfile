@@ -1,0 +1,9 @@
+app_identifier "com.sgl0v.wwdcast.app-store" # The bundle identifier of your app
+apple_id "maxscheglov@gmail.com" # Your Apple email address
+team_id "76874MD7C6" # Developer Portal Team ID
+
+for_platform :ios do
+  for_lane :test do
+    app_identifier 'com.sgl0v.wwdcast'
+  end
+end

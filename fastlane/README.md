@@ -30,16 +30,23 @@ xcode-select --install
 
 # Available Actions
 ## iOS
-### ios install_pods
-```
-fastlane ios install_pods
-```
-Install pod dependencies
 ### ios test
 ```
 fastlane ios test
 ```
-Build the app
+Runs all the tests
+### ios beta
+```
+fastlane ios beta
+```
+Submit a new Beta Build to Apple TestFlight
+
+This will also make sure the profile is up to date
+### ios release
+```
+fastlane ios release
+```
+Deploy a new version to the App Store
 
 ----
 
