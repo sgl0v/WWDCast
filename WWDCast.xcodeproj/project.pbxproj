@@ -1027,14 +1027,14 @@
 		B6F929D61D2A5DD6009E4B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 			};
 			name = Debug;
 		};
 		B6F929D71D2A5DD6009E4B83 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 			};
 			name = Release;
 		};
