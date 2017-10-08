@@ -25,6 +25,21 @@ platform :ios do
 
   after_all do
     push_git_tags
+    clean_build_artifacts
+  end
+
+  def change_log_since_last_tag
+    # http://git-scm.com/docs/pretty-formats
+    # <short hash> <commit title>
+    return changelog_from_git_commits(pretty: '%h %s')
+  end
+
+  def version_string(version_number, build_number)
+    "#{version_number} (#{build_number})"
+  end
+
+  def tag_name(build_type, version_number, build_number)
+    "#{build_type}/#{version_number}/#{build_number}"
   end
 
   desc "Download and refresh profiles"
@@ -40,46 +55,45 @@ platform :ios do
 
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
-  lane :testflight do
+  lane :beta do
     ensure_git_status_clean # Ensure that your git status is not dirty
 
-    increment_build_number(build_number: number_of_commits) # Increment the build number (not the version number)
-    add_git_tag # Add a git tag for this build. This will automatically use an appropriate git tag name
-
+    bump_version(build_type: "testflight", increment_version_number: false)
     certificates # fetch profiles & certificates
     gym(scheme: "WWDCast") # Build your app - more options available
-    pilot
+    pilot(skip_submission: true)
 
   end
 
   desc "Deploy a new version to the App Store"
   lane :release do
     ensure_git_status_clean # Ensure that your git status is not dirty
+
+    bump_version(build_type: "app-store", increment_version_number: true)
     certificates # fetch profiles & certificates
-    # snapshot
     gym(scheme: "WWDCast") # Build your app - more options available
     deliver(force: true)
-    # frameit
   end
 
   private_lane :verify_xcode_version do
     ensure_xcode_version(version: REQUIRED_XCODE_VERSION)
   end
 
-  # You can define as many lanes as you want
+  private_lane :bump_version do |options|
+    should_increment_version_number = options[:increment_version_number]
+    build_type = options[:build_type]
+    raise "Missing `increment_version_number` parameter!" unless should_increment_version_number != nil
+    raise "Missing `build_type` parameter!" unless build_type != nil
 
-  after_all do |lane|
-    # This block is called, only if the executed lane was successful
-
-    # slack(
-    #   message: "Successfully deployed new App Update."
-    # )
+    if should_increment_version_number
+      increment_version_number
+    end
+    version_number = get_version_number(xcodeproj: "WWDCast.xcodeproj")
+    build_number = increment_build_number(build_number: number_of_commits) # Increment the build number (not the version number)
+    complete_version_number = version_string(version_number, build_number)
+    add_git_tag(tag: tag_name(build_type, version_number, build_number)) # Add a git tag for this build. This will automatically use an appropriate git tag name
+    commit_version_bump(xcodeproj: "WWDCast.xcodeproj", message:"Version Bump to #{complete_version_number}") # Commit the version bump
+    push_to_git_remote # Push the new commit and tag back to your git remote
   end
 
-  error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
-  end
 end
