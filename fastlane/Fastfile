@@ -61,7 +61,7 @@ platform :ios do
     bump_version(build_type: "testflight", increment_version_number: false)
     certificates # fetch profiles & certificates
     gym(scheme: "WWDCast") # Build your app - more options available
-    pilot(skip_submission: true)
+    pilot(skip_waiting_for_build_processing: true)
 
   end
 
