@@ -12,53 +12,58 @@
 # This is the minimum version number required.
 # Update this, if you use features of a newer version
 fastlane_version "2.60.1"
-
+REQUIRED_XCODE_VERSION = "9.0"
 default_platform :ios
 
 platform :ios do
   before_all do
+    verify_xcode_version
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+    git_pull(only_tags: true)
     cocoapods
-    # carthage
+  end
+
+  after_all do
+    push_git_tags
+  end
+
+  desc "Download and refresh profiles"
+  lane :certificates do
+    match(type: "development", app_identifier: "com.sgl0v.wwdcast.development", force_for_new_devices: true)
+    match(type: "appstore", app_identifier: "com.sgl0v.wwdcast.app-store")
   end
 
   desc "Runs all the tests"
   lane :test do
-    scan(scheme: "WWDCast")
+    scan
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
-  lane :beta do
-    # Ensure that your git status is not dirty
-    ensure_git_status_clean
-  
-    build_number = increment_build_number(xcodeproj: "WWDCast.xcodeproj") # Increment the build number (not the version number)
-    commit_version_bump(xcodeproj: "WWDCast.xcodeproj", message:"Version Bump to #{build_number}") # Commit the version bump
-    add_git_tag # Add a git tag for this build. This will automatically use an appropriate git tag name
-    push_to_git_remote # Push the new commit and tag back to your git remote
+  lane :testflight do
+    ensure_git_status_clean # Ensure that your git status is not dirty
 
-    match(
-      type: "appstore",
-      git_url: "git@github.com:sgl0v/WWDCastCerts.git"
-    ) # more information: https://codesigning.guide
+    increment_build_number(build_number: number_of_commits) # Increment the build number (not the version number)
+    add_git_tag # Add a git tag for this build. This will automatically use an appropriate git tag name
+
+    certificates # fetch profiles & certificates
     gym(scheme: "WWDCast") # Build your app - more options available
     pilot
 
-    # sh "your_script.sh"
-    # You can also use other beta testing services here (run `fastlane actions`)
   end
 
   desc "Deploy a new version to the App Store"
   lane :release do
-    match(
-      type: "appstore",
-      git_url: "git@github.com:sgl0v/WWDCastCerts.git"
-    )
+    ensure_git_status_clean # Ensure that your git status is not dirty
+    certificates # fetch profiles & certificates
     # snapshot
     gym(scheme: "WWDCast") # Build your app - more options available
     deliver(force: true)
     # frameit
+  end
+
+  private_lane :verify_xcode_version do
+    ensure_xcode_version(version: REQUIRED_XCODE_VERSION)
   end
 
   # You can define as many lanes as you want
@@ -78,10 +83,3 @@ platform :ios do
     # )
   end
 end
-
-
-# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
-# All available actions: https://docs.fastlane.tools/actions
-
-# fastlane reports which actions are used. No personal data is recorded. 
-# Learn more at https://github.com/fastlane/fastlane#metrics

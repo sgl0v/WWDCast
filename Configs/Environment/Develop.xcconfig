@@ -3,5 +3,5 @@
 //  WWDCast
 //
 
-PRODUCT_BUNDLE_IDENTIFIER = com.sgl0v.wwdcast.dev
+PRODUCT_BUNDLE_IDENTIFIER = com.sgl0v.wwdcast.development
 ENVIRONMENT_OTHER_SWIFT_FLAGS = -Xfrontend -warn-long-function-bodies=200 -Xfrontend -warn-long-expression-type-checking=200

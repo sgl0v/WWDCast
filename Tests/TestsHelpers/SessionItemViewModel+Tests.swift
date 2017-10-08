@@ -16,7 +16,7 @@ extension SessionItemViewModel {
         guard let thumbnailUrl = URL(string: thumbnail) else {
             fatalError("Failed to create url from string: \(thumbnail).")
         }
-        return SessionItemViewModel(id: "uniqueID", title: "title", subtitle: "subtitle", summary: "summary", thumbnailURL: thumbnailUrl, thumbnailPlaceholder: #imageLiteral(resourceName: "wwdc"), favorite: false)
+        return SessionItemViewModel(id: "uniqueID", title: "title", subtitle: "subtitle", summary: "summary", thumbnailURL: thumbnailUrl, favorite: false)
     }
 
 }

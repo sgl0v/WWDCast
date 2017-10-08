@@ -6,4 +6,4 @@
 #include "Team.xcconfig"
 
 CODE_SIGN_IDENTITY = iPhone Developer
-PROVISIONING_PROFILE_SPECIFIER = WWDCast development profile
+PROVISIONING_PROFILE_SPECIFIER = match Development com.sgl0v.wwdcast.development

@@ -30,14 +30,19 @@ xcode-select --install
 
 # Available Actions
 ## iOS
+### ios certificates
+```
+fastlane ios certificates
+```
+Download and refresh profiles
 ### ios test
 ```
 fastlane ios test
 ```
 Runs all the tests
-### ios beta
+### ios testflight
 ```
-fastlane ios beta
+fastlane ios testflight
 ```
 Submit a new Beta Build to Apple TestFlight
 

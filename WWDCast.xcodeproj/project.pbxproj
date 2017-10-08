@@ -740,8 +740,9 @@
 					};
 					B6F929CE1D2A5DD6009E4B83 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = DLQCQF2UW6;
+						DevelopmentTeam = 76874MD7C6;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 						TestTargetID = B6F929BA1D2A5DD5009E4B83;
 					};
 				};
@@ -905,7 +906,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/Tools/strip_unused_archs.sh\"";
+			shellScript = "#\"${PROJECT_DIR}/Tools/strip_unused_archs.sh\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1069,12 +1070,13 @@
 		};
 		B6F929DC1D2A5DD6009E4B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 218FDCB7EB2025EE42E172F6 /* Pods-WWDCastTests.debug.xcconfig */;
+			baseConfigurationReference = E7840B501F741F9E0039AFE1 /* Debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sgl0v.WWDCastTests;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WWDCast.app/WWDCast";
@@ -1083,12 +1085,13 @@
 		};
 		B6F929DD1D2A5DD6009E4B83 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A6EBFABAC79034FF2973338 /* Pods-WWDCastTests.release.xcconfig */;
+			baseConfigurationReference = E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sgl0v.WWDCastTests;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WWDCast.app/WWDCast";

@@ -1,0 +1,3 @@
+scheme "WWDCast"
+device "iPhone 6"
+skip_slack true

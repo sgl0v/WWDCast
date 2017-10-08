@@ -1,0 +1,6 @@
+git_url "git@github.com:sgl0v/WWDCastCerts.git"
+
+type "appstore" # The default type, can be: appstore, adhoc, enterprise or development
+team_id "76874MD7C6"
+username "maxscheglov@gmail.com"
+app_identifier ["com.sgl0v.wwdcast.app-store"]
