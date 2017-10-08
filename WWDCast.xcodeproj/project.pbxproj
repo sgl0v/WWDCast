@@ -1044,6 +1044,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 207;
+				INFOPLIST_FILE = Resources/Info.plist;
 			};
 			name = Debug;
 		};
@@ -1051,6 +1052,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 207;
+				INFOPLIST_FILE = Resources/Info.plist;
 			};
 			name = Release;
 		};

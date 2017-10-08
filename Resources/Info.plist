@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -34,9 +34,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSBluetoothPeripheralUsageDescription</key>
-    <string>${APP_NAME} needs bluetooth access to scan for nearby Cast devices.</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>${APP_NAME} needs microphone access to listen for ultrasonic tokens when pairing with nearby Cast devices.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>${APP_NAME} needs bluetooth access to scan for nearby Cast devices.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>${APP_NAME} needs microphone access to listen for ultrasonic tokens when pairing with nearby Cast devices.</string>
 </dict>
 </plist>
