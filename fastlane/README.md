@@ -40,9 +40,9 @@ Download and refresh profiles
 fastlane ios test
 ```
 Runs all the tests
-### ios testflight
+### ios beta
 ```
-fastlane ios testflight
+fastlane ios beta
 ```
 Submit a new Beta Build to Apple TestFlight
 
