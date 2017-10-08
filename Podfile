@@ -38,5 +38,13 @@ post_install do |installer|
         File.open(full_path_name, 'w') { |file| file << new_xc_config }
     end
 
-end
+# Bugfix: App Icons not included in build from Xcode 9
+# https://github.com/CocoaPods/CocoaPods/issues/7003
+    copy_pods_resources_path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-resources.sh"
+    string_to_replace = '--compile "${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"'
+    assets_compile_with_app_icon_arguments = '--compile "${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}" --app-icon "${ASSETCATALOG_COMPILER_APPICON_NAME}" --output-partial-info-plist "${BUILD_DIR}/assetcatalog_generated_info.plist"'
+    text = File.read(copy_pods_resources_path)
+    new_contents = text.gsub(string_to_replace, assets_compile_with_app_icon_arguments)
+    File.open(copy_pods_resources_path, "w") {|file| file.puts new_contents }
 
+end
