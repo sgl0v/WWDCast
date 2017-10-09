@@ -18,7 +18,6 @@ default_platform :ios
 platform :ios do
   before_all do
     verify_xcode_version
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
     git_pull(only_tags: true)
     cocoapods
   end
@@ -40,6 +39,14 @@ platform :ios do
 
   def tag_name(build_type, version_number, build_number)
     "#{build_type}/#{version_number}/#{build_number}"
+  end
+
+  def slack_new_version(service)
+    complete_version_number = version_string(get_version_number, get_build_number)
+    slack(
+      message: "Submitted a beta build to #{service}: v#{complete_version_number}",
+      channel: "#ci"
+    )
   end
 
   desc "Download and refresh profiles"
@@ -64,6 +71,7 @@ platform :ios do
     gym(scheme: "WWDCast") # Build your app - more options available
     pilot(skip_waiting_for_build_processing: true)
 
+    slack_new_version("Testflight")
   end
 
   desc "Deploy a new version to the App Store"
@@ -75,6 +83,8 @@ platform :ios do
     certificates # fetch profiles & certificates
     gym(scheme: "WWDCast") # Build your app - more options available
     deliver(force: true)
+
+    slack_new_version("App Store")
   end
 
   private_lane :verify_xcode_version do
@@ -90,11 +100,11 @@ platform :ios do
     if should_increment_version_number
       increment_version_number
     end
-    version_number = get_version_number(xcodeproj: "WWDCast.xcodeproj")
+    version_number = get_version_number
     build_number = increment_build_number(build_number: number_of_commits) # Increment the build number (not the version number)
     complete_version_number = version_string(version_number, build_number)
     add_git_tag(tag: tag_name(build_type, version_number, build_number)) # Add a git tag for this build. This will automatically use an appropriate git tag name
-    commit_version_bump(xcodeproj: "WWDCast.xcodeproj", message:"Version Bump to #{complete_version_number}") # Commit the version bump
+    commit_version_bump(message:"Version Bump to #{complete_version_number}") # Commit the version bump
     push_to_git_remote # Push the new commit and tag back to your git remote
   end
 
