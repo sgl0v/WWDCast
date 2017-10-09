@@ -57,6 +57,7 @@ platform :ios do
   desc "This will also make sure the profile is up to date"
   lane :beta do
     ensure_git_status_clean # Ensure that your git status is not dirty
+    ensure_git_branch(branch: "master") # Ensure that we are using the master branch
 
     bump_version(build_type: "testflight", increment_version_number: false)
     certificates # fetch profiles & certificates
@@ -68,6 +69,7 @@ platform :ios do
   desc "Deploy a new version to the App Store"
   lane :release do
     ensure_git_status_clean # Ensure that your git status is not dirty
+    ensure_git_branch(branch: "master") # Ensure that we are using the master branch
 
     bump_version(build_type: "app-store", increment_version_number: true)
     certificates # fetch profiles & certificates
