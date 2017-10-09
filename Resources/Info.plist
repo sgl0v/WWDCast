@@ -38,5 +38,7 @@
 	<string>${APP_NAME} needs bluetooth access to scan for nearby Cast devices.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>${APP_NAME} needs microphone access to listen for ultrasonic tokens when pairing with nearby Cast devices.</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>
