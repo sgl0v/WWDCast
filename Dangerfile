@@ -22,3 +22,13 @@ end
 
 # Run SwiftLint
 swiftlint.lint_files
+
+# Run xcprofiler
+# Defines inline_mode
+xcprofiler.inline_mode = false
+# Defines thresholds (ms)
+xcprofiler.thresholds = {
+  warn: 100,
+  fail: 500
+}
+xcprofiler.report 'WWDCast'
