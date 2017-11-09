@@ -10,47 +10,74 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class SessionsSearchViewModel: SessionsSearchViewModelProtocol {
-    private let api: WWDCastAPIProtocol
+class SessionsSearchViewModel: SessionsSearchViewModelType {
+
+    private let useCase: SessionsSearchUseCaseType
     private weak var delegate: SessionsSearchViewModelDelegate?
     private let filter = Variable(Filter())
     private let activityIndicator = ActivityIndicator()
 
-    init(api: WWDCastAPIProtocol, delegate: SessionsSearchViewModelDelegate) {
-        self.api = api
+    init(useCase: SessionsSearchUseCaseType, delegate: SessionsSearchViewModelDelegate) {
+        self.useCase = useCase
         self.delegate = delegate
     }
 
-    // MARK: SessionsSearchViewModel
+    // MARK: SessionsSearchViewModelType
 
-    lazy var sessionSections: Driver<[SessionSectionViewModel]> = {
-        let sessionsObservable = self.api.sessions //.trackActivity(self.activityIndicator)
-        return Observable.combineLatest(sessionsObservable, self.filter.asObservable(), resultSelector: self.applyFilter)
-            .map(SessionSectionViewModelBuilder.build)
-            .asDriver(onErrorJustReturn: [])
-    }()
-
-    var isLoading: Driver<Bool> {
-        return self.activityIndicator.asDriver()
-    }
-
-    let title = Driver.just(NSLocalizedString("WWDCast", comment: "Session search view title"))
-
-    func didSelect(item: SessionItemViewModel) {
-        self.delegate?.sessionsSearchViewModel(self, wantsToShowSessionDetailsWith: item.id)
-    }
-
-    func didTapFilter() {
-        self.delegate?.sessionsSearchViewModel(self, wantsToShow: self.filter.value, completion: {[unowned self] filter in
+    func transform(_ action: SessionsSearchAction) -> Driver<SessionsSearchState> {
+        switch action {
+        case .select(let item):
+            self.delegate?.sessionsSearchViewModel(self, wantsToShowSessionDetailsWith: item.id)
+        case .search(let query):
+            var filter = self.filter.value
+            filter.query = query
             self.filter.value = filter
-        })
+        case .filter:
+            self.delegate?.sessionsSearchViewModel(self, wantsToShow: self.filter.value, completion: {[unowned self] filter in
+                self.filter.value = filter
+            })
+        }
+        let sessions = self.useCase.sessions
+            .subscribeOn(Scheduler.backgroundWorkScheduler)
+            .observeOn(Scheduler.mainScheduler)
+
+        return Observable.combineLatest(sessions, self.filter.asObservable(), resultSelector: self.applyFilter)
+            .map(SessionSectionViewModelBuilder.build)
+            .map({ .loaded($0) })
+            .asDriver(onErrorJustReturn: .error)
+            .startWith(.loading)
     }
 
-    func didStartSearch(withQuery query: String) {
-        var filter = self.filter.value
-        filter.query = query
-        self.filter.value = filter
+    private func selectReducer(prevState: SessionsSearchState, item: SessionItemViewModel) -> SessionsSearchState {
+        self.delegate?.sessionsSearchViewModel(self, wantsToShowSessionDetailsWith: item.id)
+        return prevState
     }
+
+//    lazy var sessionSections: Driver<[SessionSectionViewModel]> = {
+//        return Observable.combineLatest(self.useCase.sessions, self.filter.asObservable(), resultSelector: self.applyFilter)
+//            .map(SessionSectionViewModelBuilder.build)
+//            .asDriver(onErrorJustReturn: [])
+//    }()
+//
+//    var isLoading: Driver<Bool> {
+//        return self.activityIndicator.asDriver()
+//    }
+//
+//    func didSelect(item: SessionItemViewModel) {
+//        self.delegate?.sessionsSearchViewModel(self, wantsToShowSessionDetailsWith: item.id)
+//    }
+//
+//    func didTapFilter() {
+//        self.delegate?.sessionsSearchViewModel(self, wantsToShow: self.filter.value, completion: {[unowned self] filter in
+//            self.filter.value = filter
+//        })
+//    }
+//
+//    func didStartSearch(withQuery query: String) {
+//        var filter = self.filter.value
+//        filter.query = query
+//        self.filter.value = filter
+//    }
 
     // MARK: Private
 

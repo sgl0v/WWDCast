@@ -19,12 +19,12 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSourceType, NSFetc
     }
 
     fileprivate let coreDataController: CoreDataController
-    fileprivate let allObjectsSubject: BehaviorSubject<[Item]>
+    fileprivate let allObjectsSubject: PublishSubject<[Item]>
     fileprivate let frc: NSFetchedResultsController<T>
 
     init(coreDataController: CoreDataController) {
         self.coreDataController = coreDataController
-        self.allObjectsSubject = BehaviorSubject(value: [])
+        self.allObjectsSubject = PublishSubject<[Item]>()
 
         self.frc = NSFetchedResultsController(fetchRequest: T.fetchRequest(),
                                               managedObjectContext: self.coreDataController.viewContext,
@@ -102,8 +102,10 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSourceType, NSFetc
 
     fileprivate func sendNextElement() {
         self.frc.managedObjectContext.perform {
-            let records = self.frc.fetchedObjects ?? []
-            NSLog("Fetched \(records.count) records!")
+            NSLog("Fetched \(self.frc.fetchedObjects?.count) records!")
+            guard let records = self.frc.fetchedObjects else {
+                return
+            }
             self.allObjectsSubject.on(.next(records.asDomainTypes()))
         }
     }

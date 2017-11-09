@@ -31,8 +31,8 @@ class WWDCastAPI: WWDCastAPIProtocol {
 
     lazy var sessions: Observable<[Session]> = {
         return self.dataSource.allObjects()
-            .subscribeOn(self.serviceProvider.scheduler.backgroundWorkScheduler)
-            .observeOn(self.serviceProvider.scheduler.mainScheduler)
+            .subscribeOn(Scheduler.backgroundWorkScheduler)
+            .observeOn(Scheduler.mainScheduler)
             .shareReplayLatestWhileConnected()
     }()
 

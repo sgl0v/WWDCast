@@ -15,9 +15,10 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
 
     private var loadingIndicator: UIActivityIndicatorView!
     private var filterButton: UIBarButtonItem!
-    private let viewModel: SessionsSearchViewModelProtocol
+    private let viewModel: SessionsSearchViewModelType
+    private let sessions = Variable([SessionSectionViewModel]())
 
-    init(viewModel: SessionsSearchViewModelProtocol) {
+    init(viewModel: SessionsSearchViewModelType) {
         self.viewModel = viewModel
         super.init()
         self.rx.viewDidLoad.bind(onNext: self.configureUI).addDisposableTo(self.disposeBag)
@@ -29,7 +30,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
     }
 
     override func commitPreview(for item: SessionItemViewModel) {
-        self.viewModel.didSelect(item: item)
+//        self.viewModel.didSelect(item: item)
     }
 
     // MARK: Private
@@ -45,20 +46,43 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         return self.searchController.searchBar
     }
 
-    private func bind(to viewModel: SessionsSearchViewModelProtocol) {
-        // ViewModel's input
-        self.filterButton.rx.tap.bind(onNext: viewModel.didTapFilter).addDisposableTo(self.disposeBag)
-        self.searchQuery.drive(onNext: viewModel.didStartSearch).addDisposableTo(self.disposeBag)
-        self.tableView.rx.modelSelected(SessionItemViewModel.self)
-            .bind(onNext: viewModel.didSelect)
+    private func bind(to viewModel: SessionsSearchViewModelType) {
+        // View intents
+        let filterIntent = self.filterButton.rx.tap.asObservable().map({ SessionsSearchAction.filter })
+        let searchIntent = self.searchQueryIntent.map({ SessionsSearchAction.search($0) })
+        let itemSelectedIntent = self.tableView.rx.modelSelected(SessionItemViewModel.self).map({ SessionsSearchAction.select($0) })
+
+        self.sessions.asDriver().drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
+        Observable.of(filterIntent, searchIntent, itemSelectedIntent).merge().asDriver(onErrorJustReturn: SessionsSearchAction.filter)
+            .flatMap(self.viewModel.transform) // update the state
+            .drive(onNext: self.render) // visually represent state
             .addDisposableTo(self.disposeBag)
+
+//        self.filterButton.rx.tap.bind(onNext: viewModel.didTapFilter).addDisposableTo(self.disposeBag)
+//        self.searchQuery.drive(onNext: viewModel.didStartSearch).addDisposableTo(self.disposeBag)
+//        self.tableView.rx.modelSelected(SessionItemViewModel.self)
+//            .bind(onNext: viewModel.didSelect)
+//            .addDisposableTo(self.disposeBag)
 
         // ViewModel's output
 
-        viewModel.sessionSections.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
-        viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
-        viewModel.isLoading.drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
-        viewModel.isLoading.drive(self.loadingIndicator.rx.isAnimating).addDisposableTo(self.disposeBag)
+//        viewModel.sessionSections.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
+//        viewModel.isLoading.drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
+//        viewModel.isLoading.drive(self.loadingIndicator.rx.isAnimating).addDisposableTo(self.disposeBag)
+    }
+
+    private func render(_ state: SessionsSearchState) {
+        switch state {
+        case .loading:
+            self.tableView.isHidden = true
+            self.loadingIndicator.startAnimating()
+        case .loaded(let sessions):
+            self.tableView.isHidden = false
+            self.loadingIndicator.stopAnimating()
+            self.sessions.value = sessions
+        case .error: break
+            // nop
+        }
     }
 
     private func configureUI() {
@@ -66,6 +90,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
         self.filterButton = UIBarButtonItem(title: NSLocalizedString("Filter", comment: "Filter"), style: .plain, target: nil, action: nil)
         self.navigationItem.leftBarButtonItem = self.filterButton
+        self.title = NSLocalizedString("WWDCast", comment: "Session search view title")
 
         self.setClearsSelectionOnViewWillAppear()
         self.registerForPreviewing()
@@ -97,14 +122,13 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.loadingIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
     }
 
-    private var searchQuery: Driver<String> {
+    private var searchQueryIntent: Observable<String> {
         let cancel: Observable<String> = self.searchBar.rx.delegate.methodInvoked(#selector(UISearchBarDelegate.searchBarCancelButtonClicked(_:))).map({ _ in return "" })
 
         let searchBarTextObservable = self.searchBar.rx.text.rejectNil().unwrap()
         return Observable.of(searchBarTextObservable, cancel)
             .merge()
-            .asDriver(onErrorJustReturn: "")
-            .throttle(0.1)
+            .throttle(0.1, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
     }
 

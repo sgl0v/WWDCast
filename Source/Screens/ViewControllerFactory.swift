@@ -10,7 +10,16 @@ import UIKit
 
 class ViewControllerFactory {
 
-    fileprivate let api: WWDCastAPIProtocol = WWDCastAPI(serviceProvider: ServiceProvider.defaultServiceProviderProtocol)
+    fileprivate lazy var serviceProvider: ServiceProviderProtocol = {
+        return ServiceProvider.defaultServiceProviderProtocol
+    }()
+
+    fileprivate lazy var sessionsDataSource: AnyDataSource<Session> = {
+        let coreDataController = CoreDataController(name: "WWDCast")
+        let cacheDataSource: AnyDataSource<Session> = AnyDataSource(dataSource: CoreDataSource<SessionManagedObject>(coreDataController: coreDataController))
+        let networkDataSource: AnyDataSource<Session> = AnyDataSource(dataSource: NetworkDataSource(network: self.serviceProvider.network, reachability: self.serviceProvider.reachability))
+        return AnyDataSource(dataSource: CompositeDataSource(networkDataSource: networkDataSource, coreDataSource: cacheDataSource))
+    }()
 
 }
 
@@ -27,14 +36,16 @@ extension ViewControllerFactory: ApplicationFlowCoordinatorDependencyProvider {
 extension ViewControllerFactory: SearchFlowCoordinatorDependencyProvider {
 
     func sessionsSearchController(delegate: SessionsSearchViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
-        let viewModel = SessionsSearchViewModel(api: self.api, delegate: delegate)
+        let useCase = SessionsSearchUseCase(dataSource: self.sessionsDataSource)
+        let viewModel = SessionsSearchViewModel(useCase: useCase, delegate: delegate)
         let view = SessionsSearchViewController(viewModel: viewModel)
         view.previewProvider = previewProvider
         return view
     }
 
     func sessionDetailsController(_ sessionId: String) -> UIViewController {
-        let viewModel = SessionDetailsViewModel(sessionId: sessionId, api: self.api)
+        let useCase = SessionsDetailsUseCase(googleCast: self.serviceProvider.googleCast, dataSource: self.sessionsDataSource)
+        let viewModel = SessionDetailsViewModel(sessionId: sessionId, useCase: useCase)
         return SessionDetailsViewController(viewModel: viewModel)
     }
 
@@ -51,7 +62,8 @@ extension ViewControllerFactory: SearchFlowCoordinatorDependencyProvider {
 extension ViewControllerFactory: FavoritesFlowCoordinatorDependencyProvider {
 
     func favoriteSessionsController(delegate: FavoriteSessionsViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
-        let viewModel = FavoriteSessionsViewModel(api: self.api, delegate: delegate)
+        let useCase = FavoriteSessionsUseCase(dataSource: self.sessionsDataSource)
+        let viewModel = FavoriteSessionsViewModel(useCase: useCase, delegate: delegate)
         let view =  FavoriteSessionsViewController(viewModel: viewModel)
         view.previewProvider = previewProvider
         return view

@@ -11,20 +11,20 @@ import UIKit
 
 class MockSessionsSearchViewModelDelegate: SessionsSearchViewModelDelegate {
 
-    typealias FilterHandler = (SessionsSearchViewModelProtocol, Filter, @escaping (Filter) -> Void) -> Void
-    typealias DetailsHandler = (SessionsSearchViewModelProtocol, String) -> Void
+    typealias FilterHandler = (SessionsSearchViewModelType, Filter, @escaping (Filter) -> Void) -> Void
+    typealias DetailsHandler = (SessionsSearchViewModelType, String) -> Void
 
     var filterHandler: FilterHandler?
     var detailsHandler: DetailsHandler?
 
-    func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModelProtocol, wantsToShow filter: Filter, completion: @escaping (Filter) -> Void) {
+    func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModelType, wantsToShow filter: Filter, completion: @escaping (Filter) -> Void) {
         guard let handler = self.filterHandler else {
             fatalError("Not implemented")
         }
         return handler(viewModel, filter, completion)
     }
 
-    func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModelProtocol, wantsToShowSessionDetailsWith sessionId: String) {
+    func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModelType, wantsToShowSessionDetailsWith sessionId: String) {
         guard let handler = self.detailsHandler else {
             fatalError("Not implemented")
         }

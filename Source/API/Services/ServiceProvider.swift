@@ -12,13 +12,11 @@ import RxSwift
 final class ServiceProvider: ServiceProviderProtocol {
 
     private(set) var reachability: ReachabilityServiceProtocol
-    private(set) var scheduler: SchedulerServiceProtocol
     private(set) var network: NetworkServiceProtocol
     private(set) var googleCast: GoogleCastServiceProtocol
 
-    init(reachability: ReachabilityServiceProtocol, scheduler: SchedulerServiceProtocol, network: NetworkServiceProtocol, googleCast: GoogleCastServiceProtocol) {
+    init(reachability: ReachabilityServiceProtocol, network: NetworkServiceProtocol, googleCast: GoogleCastServiceProtocol) {
         self.reachability = reachability
-        self.scheduler = scheduler
         self.network = network
         self.googleCast = googleCast
     }
@@ -31,11 +29,10 @@ extension ServiceProvider {
             fatalError("Failed to create reachability service!")
         }
 
-        let scheduler = SchedulerService()
         let network = NetworkService()
         let googleCast = GoogleCastServiceProtocolImpl(applicationID: WWDCastEnvironment.googleCastAppID)
 
-        return ServiceProvider(reachability: reachability, scheduler: scheduler, network: network, googleCast: googleCast)
+        return ServiceProvider(reachability: reachability, network: network, googleCast: googleCast)
     }()
 
 }

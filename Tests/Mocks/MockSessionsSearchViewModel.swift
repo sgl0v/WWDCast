@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 @testable import WWDCast
 
-class MockSessionsSearchViewModel: SessionsSearchViewModelProtocol {
+class MockSessionsSearchViewModel: SessionsSearchViewModelType {
 
     typealias SelectObserver = (SessionItemViewModel) -> Void
     typealias FilterTapObserver = () -> Void

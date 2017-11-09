@@ -43,12 +43,12 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         viewModel.favoriteSessions.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
         viewModel.favoriteSessions.map({ $0.isEmpty }).drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
         viewModel.favoriteSessions.map({ !$0.isEmpty }).drive(self.emptyDataSetView.rx.isHidden).addDisposableTo(self.disposeBag)
-        viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
         viewModel.emptyFavorites.drive(onNext: self.emptyDataSetView.bind).addDisposableTo(self.disposeBag)
     }
 
     private func configureUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
+        self.title = NSLocalizedString("Favorites", comment: "Favorte sessions view title")
 
         self.setClearsSelectionOnViewWillAppear()
         self.registerForPreviewing()

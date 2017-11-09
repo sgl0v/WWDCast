@@ -38,7 +38,7 @@ extension SearchFlowCoordinator: TableViewControllerPreviewProvider {
 
 extension SearchFlowCoordinator: SessionsSearchViewModelDelegate {
 
-    func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModelProtocol, wantsToShow filter: Filter, completion: @escaping (Filter) -> Void) {
+    func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModelType, wantsToShow filter: Filter, completion: @escaping (Filter) -> Void) {
         let controller = self.dependencyProvider.filterController(filter) {[unowned self] result in
             self.rootController.dismiss(animated: true, completion: {
                 guard case .finished(let filter) = result else {
@@ -50,7 +50,7 @@ extension SearchFlowCoordinator: SessionsSearchViewModelDelegate {
         self.rootController.present(controller, animated: true, completion: nil)
     }
 
-    func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModelProtocol, wantsToShowSessionDetailsWith sessionId: String) {
+    func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModelType, wantsToShowSessionDetailsWith sessionId: String) {
         let controller = self.dependencyProvider.sessionDetailsController(sessionId)
         self.rootController.pushViewController(controller, animated: true)
     }

@@ -12,28 +12,26 @@ import RxCocoa
 
 class SessionDetailsViewModel: SessionDetailsViewModelProtocol {
     private let disposeBag = DisposeBag()
-    private let api: WWDCastAPIProtocol
+    private let useCase: SessionsDetailsUseCaseType
     private let sessionObservable: Observable<Session>
     private let favoriteTrigger = PublishSubject<Void>()
     private let errorTrigger = PublishSubject<(String?, String)>()
 
-    init(sessionId: String, api: WWDCastAPIProtocol) {
-        self.api = api
-        let sessionObservable = self.api.session(withId: sessionId)
-        let favoriteObservable = self.favoriteTrigger.withLatestFrom(sessionObservable).flatMap(self.api.toggle)
+    init(sessionId: String, useCase: SessionsDetailsUseCase) {
+        self.useCase = useCase
+        let sessionObservable = self.useCase.session(withId: sessionId)
+        let favoriteObservable = self.favoriteTrigger.withLatestFrom(sessionObservable).flatMap(self.useCase.toggle)
         self.sessionObservable = Observable.of(sessionObservable, favoriteObservable).merge()
     }
 
     // MARK: SessionDetailsViewModel
-
-    let title = Driver.just(NSLocalizedString("Session Details", comment: "Session details view title"))
 
     lazy var session: Driver<SessionItemViewModel?> = {
         return self.sessionObservable.map(SessionItemViewModelBuilder.build).asDriver(onErrorJustReturn: nil)
     }()
 
     var devices: Driver<[String]> {
-        return self.api.devices.map({ device -> [String] in
+        return self.useCase.devices.map({ device -> [String] in
             return device.map({ $0.description })
         }).asDriver(onErrorJustReturn: [String]())
     }
@@ -43,12 +41,12 @@ class SessionDetailsViewModel: SessionDetailsViewModelProtocol {
     }
 
     func startPlaybackOnDevice(at index: Int) {
-        let deviceObservable = self.api.devices.map({ devices in
+        let deviceObservable = self.useCase.devices.map({ devices in
             return devices[index]
         })
         Observable.combineLatest(self.sessionObservable, deviceObservable, resultSelector: { ($0, $1) })
             .take(1)
-            .flatMap(self.api.play)
+            .flatMap(self.useCase.play)
             .subscribe(onError: self.didFailToPlaySession)
             .addDisposableTo(self.disposeBag)
     }
@@ -60,7 +58,7 @@ class SessionDetailsViewModel: SessionDetailsViewModelProtocol {
     // MARK: Private
 
     private func didFailToPlaySession(with error: Error) {
-        errorTrigger.onNext((NSLocalizedString("Ooops...", comment: ""), NSLocalizedString("Failed to play WWDC session.", comment: "")))
+        self.errorTrigger.onNext((NSLocalizedString("Ooops...", comment: ""), NSLocalizedString("Failed to play WWDC session.", comment: "")))
     }
 
 }

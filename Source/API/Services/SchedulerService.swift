@@ -9,15 +9,15 @@
 import Foundation
 import RxSwift
 
-final class SchedulerService: SchedulerServiceProtocol {
+final class Scheduler {
 
-    lazy var backgroundWorkScheduler: ImmediateSchedulerType = {
+    static var backgroundWorkScheduler: ImmediateSchedulerType = {
         let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 2
         operationQueue.qualityOfService = QualityOfService.userInitiated
         return OperationQueueScheduler(operationQueue: operationQueue)
     }()
 
-    let mainScheduler = MainScheduler.instance
+    static let mainScheduler = MainScheduler.instance
 
 }

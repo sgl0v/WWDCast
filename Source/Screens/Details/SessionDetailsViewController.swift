@@ -34,6 +34,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
 
     private func configureUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
+        self.header.text = NSLocalizedString("Session Details", comment: "Session details view title")
     }
 
     private func bind(to viewModel: SessionDetailsViewModelProtocol) {
@@ -44,7 +45,6 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
 
         // ViewModel's output
         viewModel.session.drive(onNext: self.sessionObserver).addDisposableTo(self.disposeBag)
-        viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
         viewModel.error.drive(onNext: self.showAlert).addDisposableTo(self.disposeBag)
     }
 
@@ -56,7 +56,6 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
             .asObservable()
             .bind(to: self.image.rx.imageURL)
             .addDisposableTo(self.disposeBag)
-        self.header.text = viewModel.title
         self.summary.text = viewModel.summary
         self.subtitle.text = viewModel.subtitle
         self.favoriteButton.isSelected = viewModel.favorite
