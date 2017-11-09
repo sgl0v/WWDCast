@@ -165,7 +165,7 @@ extension GoogleCastServiceProtocolImpl: GCKLoggerDelegate {
     }
 
     func log(fromFunction function: UnsafePointer<Int8>, message: String) {
-        NSLog("%s %@", function, message)
+        Log.debug("\(function) \(message)")
     }
 
 }

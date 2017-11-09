@@ -10,7 +10,7 @@ import UIKit
 
 class ViewControllerFactory {
 
-    fileprivate let api: WWDCastAPIProtocol = WWDCastAPI(serviceProvider: ServiceProvider.defaultServiceProviderProtocol)
+    fileprivate let api: WWDCastAPIProtocol = WWDCastAPI(serviceProvider: ServiceProvider.defaultServiceProvider)
 
 }
 

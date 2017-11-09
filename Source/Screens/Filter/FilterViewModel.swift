@@ -51,7 +51,7 @@ class FilterViewModel: FilterViewModelProtocol {
         let years = SingleChoiceFilterSectionViewModel(title: NSLocalizedString("Years", comment: ""), items: yearFilterItems)
         years.selection.subscribe(onNext: { item in
             self.filter.years = self.selectedYears(at: item)
-            NSLog("%@", self.filter.description)
+            Log.verbose(self.filter)
         }).addDisposableTo(self.disposeBag)
         return years
     }()
@@ -65,7 +65,7 @@ class FilterViewModel: FilterViewModelProtocol {
         let platforms = SingleChoiceFilterSectionViewModel(title: NSLocalizedString("Platforms", comment: ""), items: platformFilterItems)
         platforms.selection.subscribe(onNext: { item in
             self.filter.platforms = self.selectedPlatforms(at: item)
-            NSLog("%@", self.filter.description)
+            Log.verbose(self.filter)
         }).addDisposableTo(self.disposeBag)
 
         return platforms
@@ -79,7 +79,7 @@ class FilterViewModel: FilterViewModelProtocol {
         let tracks = MultiChoiceFilterSectionViewModel(title: NSLocalizedString("Tracks", comment: ""), items: trackFilterItems)
         tracks.selection.subscribe(onNext: { items in
             self.filter.tracks = self.selectedTracks(at: items)
-            NSLog("%@", self.filter.description)
+            Log.verbose(self.filter)
         }).addDisposableTo(self.disposeBag)
 
         return tracks

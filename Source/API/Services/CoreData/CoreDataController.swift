@@ -20,12 +20,14 @@ final class CoreDataController {
 
     init(name: String) {
         self.persistentContainer = NSPersistentContainer(name: name)
-        self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
-        try? self.persistentContainer.viewContext.setQueryGenerationFrom(.current)
         self.persistentContainer.loadPersistentStores { _, error in
             if let coreDataError = error {
                 assertionFailure(coreDataError.localizedDescription)
+                Log.error(coreDataError)
+                return
             }
+            self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+            try? self.persistentContainer.viewContext.setQueryGenerationFrom(.current)
         }
     }
 

@@ -103,7 +103,7 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSourceType, NSFetc
     fileprivate func sendNextElement() {
         self.frc.managedObjectContext.perform {
             let records = self.frc.fetchedObjects ?? []
-            NSLog("Fetched \(records.count) records!")
+            Log.debug("Fetched \(records.count) records!")
             self.allObjectsSubject.on(.next(records.asDomainTypes()))
         }
     }

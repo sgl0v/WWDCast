@@ -65,14 +65,6 @@
 		E718A0F41E58E906003463B0 /* SchedulerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0AD1E58E906003463B0 /* SchedulerService.swift */; };
 		E718A0F51E58E906003463B0 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0AE1E58E906003463B0 /* ServiceProvider.swift */; };
 		E718A0F91E58E906003463B0 /* WWDCastAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B31E58E906003463B0 /* WWDCastAPI.swift */; };
-		E718A0FA1E58E906003463B0 /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B51E58E906003463B0 /* RxExtensions.swift */; };
-		E718A0FB1E58E906003463B0 /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B61E58E906003463B0 /* RxTableViewCell.swift */; };
-		E718A0FC1E58E906003463B0 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B71E58E906003463B0 /* TableViewController.swift */; };
-		E718A0FD1E58E906003463B0 /* UIAlertController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B81E58E906003463B0 /* UIAlertController+Rx.swift */; };
-		E718A0FE1E58E906003463B0 /* UIBarButtonItem+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0B91E58E906003463B0 /* UIBarButtonItem+Common.swift */; };
-		E718A0FF1E58E906003463B0 /* UIImageView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0BA1E58E906003463B0 /* UIImageView+Rx.swift */; };
-		E718A1001E58E906003463B0 /* UITableView+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0BB1E58E906003463B0 /* UITableView+Common.swift */; };
-		E718A1011E58E906003463B0 /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0BC1E58E906003463B0 /* UIViewController+Common.swift */; };
 		E718A1021E58E906003463B0 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0BE1E58E906003463B0 /* ActivityIndicator.swift */; };
 		E718A1031E58E906003463B0 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A0BF1E58E906003463B0 /* Reachability.swift */; };
 		E718A10A1E5900BE003463B0 /* MockSessionsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A1081E58FC27003463B0 /* MockSessionsSearchViewModel.swift */; };
@@ -97,17 +89,28 @@
 		E7330BE61EE8A54F00D7017F /* CoreDataRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7330BE51EE8A54F00D7017F /* CoreDataRepresentable.swift */; };
 		E7330BE81EE8A5C400D7017F /* EntityRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7330BE71EE8A5C400D7017F /* EntityRepresentable.swift */; };
 		E7330BEA1EE8A60E00D7017F /* CoreDataPersistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7330BE91EE8A60E00D7017F /* CoreDataPersistable.swift */; };
+		E74DC5161FB45AEF005BF569 /* ConsoleDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DC5151FB45AEF005BF569 /* ConsoleDestination.swift */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
 		E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */; };
 		E7C428BC1ED3977700BAB0B2 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C428B61ED3977700BAB0B2 /* CoreDataController.swift */; };
 		E7C428C21ED3987000BAB0B2 /* NSManagedObjectContext+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C428C11ED3987000BAB0B2 /* NSManagedObjectContext+Rx.swift */; };
 		E7D76F141F588245005C95DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7D76F131F588245005C95DB /* Assets.xcassets */; };
-		E7D76F171F58936C005C95DB /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D76F161F58936C005C95DB /* UIViewController+Rx.swift */; };
 		E7E889DC1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E889DB1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift */; };
 		E7FC18171EE0A5E6000D2FAB /* WWDCast.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */; };
 		E7FC181D1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FC181B1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift */; };
 		E7FC181E1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FC181C1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataProperties.swift */; };
 		E7FC18201EE0AC57000D2FAB /* SessionManagedObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FC181F1EE0AC57000D2FAB /* SessionManagedObject+Ext.swift */; };
+		E7FF043E1FB3C40A0062F386 /* LogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FF04321FB3C40A0062F386 /* LogDestination.swift */; };
+		E7FF043F1FB3C40A0062F386 /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FF04341FB3C40A0062F386 /* RxExtensions.swift */; };
+		E7FF04401FB3C40A0062F386 /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FF04351FB3C40A0062F386 /* RxTableViewCell.swift */; };
+		E7FF04411FB3C40A0062F386 /* UIAlertController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FF04361FB3C40A0062F386 /* UIAlertController+Rx.swift */; };
+		E7FF04421FB3C40A0062F386 /* UIImageView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FF04371FB3C40A0062F386 /* UIImageView+Rx.swift */; };
+		E7FF04431FB3C40A0062F386 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FF04381FB3C40A0062F386 /* UIViewController+Rx.swift */; };
+		E7FF04441FB3C40A0062F386 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FF043A1FB3C40A0062F386 /* TableViewController.swift */; };
+		E7FF04451FB3C40A0062F386 /* UIBarButtonItem+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FF043B1FB3C40A0062F386 /* UIBarButtonItem+Common.swift */; };
+		E7FF04461FB3C40A0062F386 /* UITableView+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FF043C1FB3C40A0062F386 /* UITableView+Common.swift */; };
+		E7FF04471FB3C40A0062F386 /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FF043D1FB3C40A0062F386 /* UIViewController+Common.swift */; };
+		E7FF04491FB3C4120062F386 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FF04481FB3C4120062F386 /* Log.swift */; };
 		EFE1B5FC98F16067BBB5DFAE /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */; };
 /* End PBXBuildFile section */
 
@@ -190,14 +193,6 @@
 		E718A0AD1E58E906003463B0 /* SchedulerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerService.swift; sourceTree = "<group>"; };
 		E718A0AE1E58E906003463B0 /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		E718A0B31E58E906003463B0 /* WWDCastAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDCastAPI.swift; sourceTree = "<group>"; };
-		E718A0B51E58E906003463B0 /* RxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
-		E718A0B61E58E906003463B0 /* RxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTableViewCell.swift; sourceTree = "<group>"; };
-		E718A0B71E58E906003463B0 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		E718A0B81E58E906003463B0 /* UIAlertController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Rx.swift"; sourceTree = "<group>"; };
-		E718A0B91E58E906003463B0 /* UIBarButtonItem+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Common.swift"; sourceTree = "<group>"; };
-		E718A0BA1E58E906003463B0 /* UIImageView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Rx.swift"; sourceTree = "<group>"; };
-		E718A0BB1E58E906003463B0 /* UITableView+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Common.swift"; sourceTree = "<group>"; };
-		E718A0BC1E58E906003463B0 /* UIViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		E718A0BE1E58E906003463B0 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		E718A0BF1E58E906003463B0 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		E718A1061E58F7F3003463B0 /* MockViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockViewControllerFactory.swift; sourceTree = "<group>"; };
@@ -222,6 +217,7 @@
 		E7330BE51EE8A54F00D7017F /* CoreDataRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataRepresentable.swift; sourceTree = "<group>"; };
 		E7330BE71EE8A5C400D7017F /* EntityRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityRepresentable.swift; sourceTree = "<group>"; };
 		E7330BE91EE8A60E00D7017F /* CoreDataPersistable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataPersistable.swift; sourceTree = "<group>"; };
+		E74DC5151FB45AEF005BF569 /* ConsoleDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleDestination.swift; sourceTree = "<group>"; };
 		E76BFDC71DC3FD7400B269B8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
@@ -231,7 +227,6 @@
 		E7C428B61ED3977700BAB0B2 /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		E7C428C11ED3987000BAB0B2 /* NSManagedObjectContext+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Rx.swift"; sourceTree = "<group>"; };
 		E7D76F131F588245005C95DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E7D76F161F58936C005C95DB /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		E7E889DB1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCoordinatorDependencyProviders.swift; sourceTree = "<group>"; };
 		E7F044F61F7B0126007DE5C3 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		E7F044F71F7B0126007DE5C3 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
@@ -247,6 +242,17 @@
 		E7FC181B1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E7FC181C1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E7FC181F1EE0AC57000D2FAB /* SessionManagedObject+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+Ext.swift"; sourceTree = "<group>"; };
+		E7FF04321FB3C40A0062F386 /* LogDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogDestination.swift; sourceTree = "<group>"; };
+		E7FF04341FB3C40A0062F386 /* RxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
+		E7FF04351FB3C40A0062F386 /* RxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTableViewCell.swift; sourceTree = "<group>"; };
+		E7FF04361FB3C40A0062F386 /* UIAlertController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Rx.swift"; sourceTree = "<group>"; };
+		E7FF04371FB3C40A0062F386 /* UIImageView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Rx.swift"; sourceTree = "<group>"; };
+		E7FF04381FB3C40A0062F386 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
+		E7FF043A1FB3C40A0062F386 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		E7FF043B1FB3C40A0062F386 /* UIBarButtonItem+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Common.swift"; sourceTree = "<group>"; };
+		E7FF043C1FB3C40A0062F386 /* UITableView+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Common.swift"; sourceTree = "<group>"; };
+		E7FF043D1FB3C40A0062F386 /* UIViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
+		E7FF04481FB3C4120062F386 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		EBF25D25558B02375133B1A5 /* Pods-Tests-WWDCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-WWDCastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-WWDCastTests/Pods-Tests-WWDCastTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -535,15 +541,9 @@
 		E718A0B41E58E906003463B0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				E718A0B51E58E906003463B0 /* RxExtensions.swift */,
-				E718A0B61E58E906003463B0 /* RxTableViewCell.swift */,
-				E718A0B71E58E906003463B0 /* TableViewController.swift */,
-				E718A0B81E58E906003463B0 /* UIAlertController+Rx.swift */,
-				E718A0B91E58E906003463B0 /* UIBarButtonItem+Common.swift */,
-				E718A0BA1E58E906003463B0 /* UIImageView+Rx.swift */,
-				E718A0BB1E58E906003463B0 /* UITableView+Common.swift */,
-				E718A0BC1E58E906003463B0 /* UIViewController+Common.swift */,
-				E7D76F161F58936C005C95DB /* UIViewController+Rx.swift */,
+				E7FF04311FB3C40A0062F386 /* Logger */,
+				E7FF04331FB3C40A0062F386 /* Rx */,
+				E7FF04391FB3C40A0062F386 /* UI */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -674,6 +674,39 @@
 				E7F045041F7B0126007DE5C3 /* Team.xcconfig */,
 			);
 			path = Provisioning;
+			sourceTree = "<group>";
+		};
+		E7FF04311FB3C40A0062F386 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				E7FF04321FB3C40A0062F386 /* LogDestination.swift */,
+				E74DC5151FB45AEF005BF569 /* ConsoleDestination.swift */,
+				E7FF04481FB3C4120062F386 /* Log.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		E7FF04331FB3C40A0062F386 /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				E7FF04341FB3C40A0062F386 /* RxExtensions.swift */,
+				E7FF04351FB3C40A0062F386 /* RxTableViewCell.swift */,
+				E7FF04361FB3C40A0062F386 /* UIAlertController+Rx.swift */,
+				E7FF04371FB3C40A0062F386 /* UIImageView+Rx.swift */,
+				E7FF04381FB3C40A0062F386 /* UIViewController+Rx.swift */,
+			);
+			path = Rx;
+			sourceTree = "<group>";
+		};
+		E7FF04391FB3C40A0062F386 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E7FF043A1FB3C40A0062F386 /* TableViewController.swift */,
+				E7FF043B1FB3C40A0062F386 /* UIBarButtonItem+Common.swift */,
+				E7FF043C1FB3C40A0062F386 /* UITableView+Common.swift */,
+				E7FF043D1FB3C40A0062F386 /* UIViewController+Common.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -946,48 +979,47 @@
 				E7330BEA1EE8A60E00D7017F /* CoreDataPersistable.swift in Sources */,
 				E718A0F91E58E906003463B0 /* WWDCastAPI.swift in Sources */,
 				E7FC18171EE0A5E6000D2FAB /* WWDCast.xcdatamodel in Sources */,
+				E7FF043F1FB3C40A0062F386 /* RxExtensions.swift in Sources */,
 				E718A0C71E58E906003463B0 /* FavoriteSessionsViewModelProtocol.swift in Sources */,
 				E718A0CA1E58E906003463B0 /* FilterTableViewCell.swift in Sources */,
 				E718A0C91E58E906003463B0 /* FilterSectionViewModel.swift in Sources */,
 				E718A0EF1E58E906003463B0 /* RxGCKRequestDelegateProxy.swift in Sources */,
-				E718A0FB1E58E906003463B0 /* RxTableViewCell.swift in Sources */,
 				E718A0C41E58E906003463B0 /* EmptyDataSetViewModel.swift in Sources */,
+				E7FF04441FB3C40A0062F386 /* TableViewController.swift in Sources */,
 				B6F929E41D2AB0FC009E4B83 /* AppDelegate.swift in Sources */,
 				E718A0D21E58E906003463B0 /* SessionsSearchViewModel.swift in Sources */,
-				E718A1001E58E906003463B0 /* UITableView+Common.swift in Sources */,
 				E718A0D51E58E906003463B0 /* TabBarController.swift in Sources */,
 				E7330BDF1EE8A39500D7017F /* CompositeDataSource.swift in Sources */,
 				E718A0CC1E58E906003463B0 /* FilterViewModel.swift in Sources */,
 				E7E889DC1ECA0CB500AE06F6 /* FlowCoordinatorDependencyProviders.swift in Sources */,
 				E718A0EB1E58E906003463B0 /* GoogleCastDevice.swift in Sources */,
 				E718A0C01E58E906003463B0 /* SessionDetailsViewController.swift in Sources */,
+				E7FF043E1FB3C40A0062F386 /* LogDestination.swift in Sources */,
 				E718A0D41E58E906003463B0 /* SessionTableViewCell.swift in Sources */,
 				E7330BE61EE8A54F00D7017F /* CoreDataRepresentable.swift in Sources */,
 				E7330BE11EE8A39500D7017F /* DataSourceType.swift in Sources */,
 				E7C428BC1ED3977700BAB0B2 /* CoreDataController.swift in Sources */,
 				E718A0D31E58E906003463B0 /* SessionsSearchViewModelProtocol.swift in Sources */,
 				E718A0DD1E58E906003463B0 /* AppConfigBuilder.swift in Sources */,
-				E718A0FA1E58E906003463B0 /* RxExtensions.swift in Sources */,
 				E7FC181E1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataProperties.swift in Sources */,
 				E7330BDE1EE8A39500D7017F /* AnyDataSource.swift in Sources */,
 				E718A0F11E58E906003463B0 /* NetworkService.swift in Sources */,
 				E7330BE41EE8A51000D7017F /* Session+CoreDataRepresentable.swift in Sources */,
-				E718A1011E58E906003463B0 /* UIViewController+Common.swift in Sources */,
+				E7FF04491FB3C4120062F386 /* Log.swift in Sources */,
 				E718A0F01E58E906003463B0 /* RxGCKSessionManagerListenerProxy.swift in Sources */,
 				E718A0D81E58E906003463B0 /* ApplicationFlowCoordinator.swift in Sources */,
+				E7FF04461FB3C40A0062F386 /* UITableView+Common.swift in Sources */,
 				E718A1031E58E906003463B0 /* Reachability.swift in Sources */,
 				E718A0D91E58E906003463B0 /* FavoritesFlowCoordinator.swift in Sources */,
-				E7D76F171F58936C005C95DB /* UIViewController+Rx.swift in Sources */,
 				E718A0E41E58E906003463B0 /* GoogleCastServiceProtocol.swift in Sources */,
 				E718A0C81E58E906003463B0 /* FilterItemViewModel.swift in Sources */,
 				E718A0E61E58E906003463B0 /* ReachabilityServiceProtocol.swift in Sources */,
 				E718A0DE1E58E906003463B0 /* EntityBuilderType.swift in Sources */,
 				E718A0DC1E58E906003463B0 /* AppConfig.swift in Sources */,
-				E718A0FE1E58E906003463B0 /* UIBarButtonItem+Common.swift in Sources */,
 				E718A0C21E58E906003463B0 /* SessionDetailsViewModelProtocol.swift in Sources */,
 				E718A0F21E58E906003463B0 /* Resource.swift in Sources */,
+				E7FF04421FB3C40A0062F386 /* UIImageView+Rx.swift in Sources */,
 				E718A0D61E58E906003463B0 /* ViewControllerFactory.swift in Sources */,
-				E718A0FD1E58E906003463B0 /* UIAlertController+Rx.swift in Sources */,
 				E718A0CF1E58E906003463B0 /* SessionSectionViewModel.swift in Sources */,
 				E718A0D11E58E906003463B0 /* SessionsSearchViewController.swift in Sources */,
 				E718A0E11E58E906003463B0 /* Filter.swift in Sources */,
@@ -995,27 +1027,31 @@
 				E718A0E81E58E906003463B0 /* ServiceProviderProtocol.swift in Sources */,
 				E718A0C11E58E906003463B0 /* SessionDetailsViewModel.swift in Sources */,
 				E718A0E91E58E906003463B0 /* WWDCastAPIProtocol.swift in Sources */,
-				E718A0FC1E58E906003463B0 /* TableViewController.swift in Sources */,
 				E718A0E71E58E906003463B0 /* SchedulerServiceProtocol.swift in Sources */,
 				E718A0E21E58E906003463B0 /* Session.swift in Sources */,
+				E7FF04451FB3C40A0062F386 /* UIBarButtonItem+Common.swift in Sources */,
 				E7330BE21EE8A39500D7017F /* NetworkDataSource.swift in Sources */,
+				E7FF04411FB3C40A0062F386 /* UIAlertController+Rx.swift in Sources */,
+				E7FF04431FB3C40A0062F386 /* UIViewController+Rx.swift in Sources */,
 				E7330BE01EE8A39500D7017F /* CoreDataSource.swift in Sources */,
 				E7330BE81EE8A5C400D7017F /* EntityRepresentable.swift in Sources */,
 				E7FC181D1EE0ABC8000D2FAB /* SessionManagedObject+CoreDataClass.swift in Sources */,
 				E718A0CD1E58E906003463B0 /* FilterViewModelProtocol.swift in Sources */,
 				E718A0C51E58E906003463B0 /* FavoriteSessionsViewController.swift in Sources */,
+				E7FF04401FB3C40A0062F386 /* RxTableViewCell.swift in Sources */,
 				E718A0ED1E58E906003463B0 /* GoogleCastMedia.swift in Sources */,
 				E7C428C21ED3987000BAB0B2 /* NSManagedObjectContext+Rx.swift in Sources */,
 				E718A0E01E58E906003463B0 /* SessionsBuilder.swift in Sources */,
+				E74DC5161FB45AEF005BF569 /* ConsoleDestination.swift in Sources */,
 				E718A0DB1E58E906003463B0 /* SearchFlowCoordinator.swift in Sources */,
 				E718A0EE1E58E906003463B0 /* GoogleCastService.swift in Sources */,
 				E718A0DA1E58E906003463B0 /* FlowCoordinator.swift in Sources */,
 				E718A1021E58E906003463B0 /* ActivityIndicator.swift in Sources */,
-				E718A0FF1E58E906003463B0 /* UIImageView+Rx.swift in Sources */,
 				B6F929E61D2AB0FD009E4B83 /* WWDCastEnvironment.swift in Sources */,
 				E718A0F51E58E906003463B0 /* ServiceProvider.swift in Sources */,
 				E718A0DF1E58E906003463B0 /* SessionBuilder.swift in Sources */,
 				E718A0F31E58E906003463B0 /* ReachabilityService.swift in Sources */,
+				E7FF04471FB3C40A0062F386 /* UIViewController+Common.swift in Sources */,
 				E718A0F41E58E906003463B0 /* SchedulerService.swift in Sources */,
 				E718A0C31E58E906003463B0 /* EmptyDataSetView.swift in Sources */,
 			);

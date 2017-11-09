@@ -26,10 +26,14 @@ final class ServiceProvider: ServiceProviderProtocol {
 
 extension ServiceProvider {
 
-    static let defaultServiceProviderProtocol: ServiceProviderProtocol = {
+    static let defaultServiceProvider: ServiceProviderProtocol = {
         guard let reachability = ReachabilityService() else {
             fatalError("Failed to create reachability service!")
         }
+
+        // configure the logging service, that is available all over the project
+        let consoleDestination = ConsoleDestination()
+        Log.addDestination(consoleDestination)
 
         let scheduler = SchedulerService()
         let network = NetworkService()
