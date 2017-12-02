@@ -15,7 +15,7 @@ enum NetworkError: Error {
     case failedDataLoading
 }
 
-protocol NetworkServiceProtocol: class {
+protocol NetworkServiceType: class {
 
     func load<T>(_ resource: Resource<T>) -> Observable<T>
 }

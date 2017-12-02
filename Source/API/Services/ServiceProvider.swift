@@ -11,11 +11,11 @@ import RxSwift
 
 final class ServiceProvider: ServiceProviderProtocol {
 
-    private(set) var reachability: ReachabilityServiceProtocol
-    private(set) var network: NetworkServiceProtocol
-    private(set) var googleCast: GoogleCastServiceProtocol
+    private(set) var reachability: ReachabilityServiceType
+    private(set) var network: NetworkServiceType
+    private(set) var googleCast: GoogleCastServiceType
 
-    init(reachability: ReachabilityServiceProtocol, network: NetworkServiceProtocol, googleCast: GoogleCastServiceProtocol) {
+    init(reachability: ReachabilityServiceType, network: NetworkServiceType, googleCast: GoogleCastServiceType) {
         self.reachability = reachability
         self.network = network
         self.googleCast = googleCast
@@ -30,7 +30,7 @@ extension ServiceProvider {
         }
 
         let network = NetworkService()
-        let googleCast = GoogleCastServiceProtocolImpl(applicationID: WWDCastEnvironment.googleCastAppID)
+        let googleCast = GoogleCastService(applicationID: WWDCastEnvironment.googleCastAppID)
 
         return ServiceProvider(reachability: reachability, network: network, googleCast: googleCast)
     }()

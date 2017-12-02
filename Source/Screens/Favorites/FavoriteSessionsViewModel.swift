@@ -14,7 +14,7 @@ class FavoriteSessionsViewModel: FavoriteSessionsViewModelProtocol {
     private let useCase: FavoriteSessionsUseCaseType
     private weak var delegate: FavoriteSessionsViewModelDelegate?
 
-    init(useCase: FavoriteSessionsUseCase, delegate: FavoriteSessionsViewModelDelegate) {
+    init(useCase: FavoriteSessionsUseCaseType, delegate: FavoriteSessionsViewModelDelegate) {
         self.useCase = useCase
         self.delegate = delegate
     }

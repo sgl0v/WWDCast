@@ -31,6 +31,6 @@ extension ReachabilityStatus {
     }
 }
 
-protocol ReachabilityServiceProtocol: class {
+protocol ReachabilityServiceType: class {
     var reachability: Observable<ReachabilityStatus> { get }
 }

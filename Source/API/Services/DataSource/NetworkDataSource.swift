@@ -12,10 +12,10 @@ import RxSwift
 final class NetworkDataSource: DataSourceType {
     typealias Item = Session
 
-    private let reachability: ReachabilityServiceProtocol
-    private let network: NetworkServiceProtocol
+    private let reachability: ReachabilityServiceType
+    private let network: NetworkServiceType
 
-    init(network: NetworkServiceProtocol, reachability: ReachabilityServiceProtocol) {
+    init(network: NetworkServiceType, reachability: ReachabilityServiceType) {
         self.network = network
         self.reachability = reachability
     }

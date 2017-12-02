@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-final class ReachabilityService: ReachabilityServiceProtocol {
+final class ReachabilityService: ReachabilityServiceType {
 
     var reachability: Observable<ReachabilityStatus> {
         return _reachabilitySubject.asObservable()
@@ -55,7 +55,7 @@ extension NSError {
 }
 
 extension ObservableConvertibleType {
-    func retryOnBecomesReachable(_ valueOnFailure: E, reachabilityService: ReachabilityServiceProtocol) -> Observable<E> {
+    func retryOnBecomesReachable(_ valueOnFailure: E, reachabilityService: ReachabilityServiceType) -> Observable<E> {
         return self.asObservable()
             .retryWhen { error -> Observable<E> in
                 return error.flatMap({ (generatedError) -> Observable<E> in

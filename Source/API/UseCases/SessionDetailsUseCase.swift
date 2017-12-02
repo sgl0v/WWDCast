@@ -26,10 +26,10 @@ protocol SessionsDetailsUseCaseType {
 
 class SessionsDetailsUseCase: SessionsDetailsUseCaseType {
 
-    private let googleCast: GoogleCastServiceProtocol
+    private let googleCast: GoogleCastServiceType
     private let dataSource: AnyDataSource<Session>
 
-    init(googleCast: GoogleCastServiceProtocol, dataSource: AnyDataSource<Session>) {
+    init(googleCast: GoogleCastServiceType, dataSource: AnyDataSource<Session>) {
         self.googleCast = googleCast
         self.dataSource = dataSource
     }

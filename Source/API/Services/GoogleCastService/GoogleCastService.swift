@@ -1,5 +1,5 @@
 //
-//  GoogleCastServiceProtocolImpl.swift
+//  GoogleCastService.swift
 //  WWDCast
 //
 //  Created by Maksym Shcheglov on 09/07/16.
@@ -11,7 +11,7 @@ import GoogleCast
 import RxSwift
 import RxCocoa
 
-final class GoogleCastServiceProtocolImpl: NSObject, GoogleCastServiceProtocol {
+final class GoogleCastService: NSObject, GoogleCastServiceType {
     private let disposeBag = DisposeBag()
     private var context: GCKCastContext {
         return GCKCastContext.sharedInstance()
@@ -84,7 +84,7 @@ final class GoogleCastServiceProtocolImpl: NSObject, GoogleCastServiceProtocol {
     private func startSession(_ device: GoogleCastDevice) -> Observable<GCKCastSession> {
         return Observable.create({[weak self] observer in
             guard let strongSelf = self else {
-                assertionFailure("The \(GoogleCastServiceProtocolImpl.self) object is deallocated!")
+                assertionFailure("The \(GoogleCastService.self) object is deallocated!")
                 return Disposables.create()
             }
             guard let gckDevice = strongSelf.device(withId: device.id) else {
@@ -144,7 +144,7 @@ final class GoogleCastServiceProtocolImpl: NSObject, GoogleCastServiceProtocol {
 
 }
 
-extension GoogleCastServiceProtocolImpl: GCKLoggerDelegate {
+extension GoogleCastService: GCKLoggerDelegate {
 
     func enableLogging() {
         let logFilter = GCKLoggerFilter()

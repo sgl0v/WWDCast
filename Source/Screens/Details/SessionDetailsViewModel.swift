@@ -17,7 +17,7 @@ class SessionDetailsViewModel: SessionDetailsViewModelProtocol {
     private let favoriteTrigger = PublishSubject<Void>()
     private let errorTrigger = PublishSubject<(String?, String)>()
 
-    init(sessionId: String, useCase: SessionsDetailsUseCase) {
+    init(sessionId: String, useCase: SessionsDetailsUseCaseType) {
         self.useCase = useCase
         let sessionObservable = self.useCase.session(withId: sessionId)
         let favoriteObservable = self.favoriteTrigger.withLatestFrom(sessionObservable).flatMap(self.useCase.toggle)

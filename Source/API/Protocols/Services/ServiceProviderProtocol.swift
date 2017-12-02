@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ServiceProviderProtocol: class {
-    var reachability: ReachabilityServiceProtocol { get }
-    var network: NetworkServiceProtocol { get }
-    var googleCast: GoogleCastServiceProtocol { get }
+    var reachability: ReachabilityServiceType { get }
+    var network: NetworkServiceType { get }
+    var googleCast: GoogleCastServiceType { get }
 }

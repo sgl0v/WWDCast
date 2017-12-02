@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import SwiftyJSON
 
-final class NetworkService: NetworkServiceProtocol {
+final class NetworkService: NetworkServiceType {
 
     private let session: URLSession
     private static func defaultConfiguration() -> URLSessionConfiguration {

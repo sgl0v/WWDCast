@@ -13,7 +13,7 @@ enum GoogleCastServiceError: Error {
     case connectionError, playbackError
 }
 
-protocol GoogleCastServiceProtocol: class {
+protocol GoogleCastServiceType: class {
 
     /// The array of available devices
     var devices: [GoogleCastDevice] { get }
