@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol SessionDetailsViewModelProtocol: class {
+protocol SessionDetailsViewModelType: class {
     // INPUT
 
     /// add or remove the session from favorites

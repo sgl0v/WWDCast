@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol FavoriteSessionsViewModelProtocol: class {
+protocol FavoriteSessionsViewModelType: class {
     // INPUT
 
     // Item selection observer
@@ -27,5 +27,5 @@ protocol FavoriteSessionsViewModelProtocol: class {
 protocol FavoriteSessionsViewModelDelegate: class {
 
     /// Tells the delegate that viewModel would like to show the favorite session details
-    func favoriteSessionsViewModel(_ viewModel: FavoriteSessionsViewModelProtocol, wantsToShowSessionDetailsWith sessionId: String)
+    func favoriteSessionsViewModel(_ viewModel: FavoriteSessionsViewModelType, wantsToShowSessionDetailsWith sessionId: String)
 }

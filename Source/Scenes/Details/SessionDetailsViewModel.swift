@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SessionDetailsViewModel: SessionDetailsViewModelProtocol {
+class SessionDetailsViewModel: SessionDetailsViewModelType {
     private let disposeBag = DisposeBag()
     private let useCase: SessionsDetailsUseCaseType
     private let sessionObservable: Observable<Session>

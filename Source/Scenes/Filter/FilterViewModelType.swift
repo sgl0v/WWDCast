@@ -16,7 +16,7 @@ enum FilterViewModelCompletionResult {
 typealias FilterViewModelCompletion = (FilterViewModelCompletionResult) -> Void
 
 /// A `FilterViewModelType` defines viewModel for the filter screen.
-protocol FilterViewModelProtocol: class {
+protocol FilterViewModelType: class {
 
     /// INPUT
 
@@ -27,8 +27,6 @@ protocol FilterViewModelProtocol: class {
 
     /// OUTPUT
 
-    /// The view's title
-    var title: Driver<String> { get }
     /// The filter sections
     var filterSections: Driver<[FilterSectionViewModel]> { get }
 }

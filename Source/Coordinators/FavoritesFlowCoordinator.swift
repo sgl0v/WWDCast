@@ -38,7 +38,7 @@ extension FavoritesFlowCoordinator: TableViewControllerPreviewProvider {
 
 extension FavoritesFlowCoordinator: FavoriteSessionsViewModelDelegate {
 
-    func favoriteSessionsViewModel(_ viewModel: FavoriteSessionsViewModelProtocol, wantsToShowSessionDetailsWith sessionId: String) {
+    func favoriteSessionsViewModel(_ viewModel: FavoriteSessionsViewModelType, wantsToShowSessionDetailsWith sessionId: String) {
         let controller = self.dependencyProvider.sessionDetailsController(sessionId)
         self.rootController.pushViewController(controller, animated: true)
     }

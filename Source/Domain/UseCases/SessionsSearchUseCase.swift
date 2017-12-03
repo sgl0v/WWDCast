@@ -24,7 +24,7 @@ class SessionsSearchUseCase: SessionsSearchUseCaseType {
     }
 
     lazy var sessions: Observable<[Session]> = {
-        return self.dataSource.allObjects().shareReplayLatestWhileConnected()
+        return self.dataSource.allObjects()
     }()
 
 }

@@ -13,9 +13,9 @@ import RxDataSources
 
 class FavoriteSessionsViewController: TableViewController<SessionSectionViewModel, SessionTableViewCell> {
     private let emptyDataSetView = EmptyDataSetView.view()
-    private let viewModel: FavoriteSessionsViewModelProtocol
+    private let viewModel: FavoriteSessionsViewModelType
 
-    init(viewModel: FavoriteSessionsViewModelProtocol) {
+    init(viewModel: FavoriteSessionsViewModelType) {
         self.viewModel = viewModel
         super.init()
         self.rx.viewDidLoad.bind(onNext: self.configureUI).addDisposableTo(self.disposeBag)
@@ -32,7 +32,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
 
     // MARK: Private
 
-    private func bind(to viewModel: FavoriteSessionsViewModelProtocol) {
+    private func bind(to viewModel: FavoriteSessionsViewModelType) {
         // ViewModel's input
         self.tableView.rx.modelSelected(SessionItemViewModel.self)
             .bind(onNext: viewModel.didSelect)

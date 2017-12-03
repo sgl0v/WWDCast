@@ -20,7 +20,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
 
     private let disposeBag = DisposeBag()
 
-    init(viewModel: SessionDetailsViewModelProtocol) {
+    init(viewModel: SessionDetailsViewModelType) {
         super.init(nibName: nil, bundle: nil)
         self.rx.viewDidLoad.bind(onNext: self.configureUI).addDisposableTo(self.disposeBag)
         self.rx.viewDidLoad.flatMap(Observable.just(viewModel)).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
@@ -37,7 +37,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         self.header.text = NSLocalizedString("Session Details", comment: "Session details view title")
     }
 
-    private func bind(to viewModel: SessionDetailsViewModelProtocol) {
+    private func bind(to viewModel: SessionDetailsViewModelType) {
         // ViewModel's input
         self.playButton.rx.tap.withLatestFrom(viewModel.devices).flatMap(self.selectDeviceForPlayback)
             .subscribe(onNext: viewModel.startPlaybackOnDevice).addDisposableTo(self.disposeBag)

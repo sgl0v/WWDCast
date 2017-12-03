@@ -41,7 +41,6 @@ class FilterViewController: UIViewController {
 
         // ViewModel's output
         viewModel.filterSections.drive(self.tableView.rx.items(dataSource: self.dataSource)).addDisposableTo(self.disposeBag)
-        viewModel.title.drive(self.rx.title).addDisposableTo(self.disposeBag)
     }
 
     lazy var dataSource: RxTableViewSectionedReloadDataSource<SectionViewModel> = {
@@ -58,6 +57,8 @@ class FilterViewController: UIViewController {
     }()
 
     private func configureUI() {
+        self.title = NSLocalizedString("Filter", comment: "Filter view title")
+
         self.tableView = UITableView(frame: self.view.bounds, style: .plain)
         self.view.addSubview(self.tableView)
         self.tableView.autoresizingMask = [.flexibleHeight, .flexibleWidth]

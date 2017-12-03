@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class FilterViewModel: FilterViewModelProtocol {
+class FilterViewModel: FilterViewModelType {
 
     private var filter: Filter
     private let completion: FilterViewModelCompletion
@@ -22,8 +22,6 @@ class FilterViewModel: FilterViewModelProtocol {
     }
 
     // MARK: SessionFilterViewModel
-
-    let title = Driver.just(NSLocalizedString("Filter", comment: "Filter view title"))
 
     lazy var filterSections: Driver<[FilterSectionViewModel]> = {
         return Driver.just(self.filterViewModels)

@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class FavoriteSessionsViewModel: FavoriteSessionsViewModelProtocol {
+class FavoriteSessionsViewModel: FavoriteSessionsViewModelType {
     private let useCase: FavoriteSessionsUseCaseType
     private weak var delegate: FavoriteSessionsViewModelDelegate?
 

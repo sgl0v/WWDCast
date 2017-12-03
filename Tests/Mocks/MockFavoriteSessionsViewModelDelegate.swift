@@ -11,11 +11,11 @@ import UIKit
 
 class MockFavoriteSessionsViewModelDelegate: FavoriteSessionsViewModelDelegate {
 
-    typealias DetailsHandler = (FavoriteSessionsViewModelProtocol, String) -> Void
+    typealias DetailsHandler = (FavoriteSessionsViewModelType, String) -> Void
 
     var detailsHandler: DetailsHandler?
 
-    func favoriteSessionsViewModel(_ viewModel: FavoriteSessionsViewModelProtocol, wantsToShowSessionDetailsWith sessionId: String) {
+    func favoriteSessionsViewModel(_ viewModel: FavoriteSessionsViewModelType, wantsToShowSessionDetailsWith sessionId: String) {
         guard let handler = self.detailsHandler else {
             fatalError("Not implemented")
         }
