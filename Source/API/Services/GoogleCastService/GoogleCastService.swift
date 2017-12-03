@@ -25,8 +25,8 @@ final class GoogleCastService: NSObject, GoogleCastServiceType {
 
     init(applicationID: String) {
         super.init()
-        let options = GCKCastOptions(receiverApplicationID: applicationID)
-        GCKCastContext.setSharedInstanceWith(options)
+//        let options = GCKCastOptions(receiverApplicationID: applicationID)
+//        GCKCastContext.setSharedInstanceWith(options)
         self.enableLogging()
     }
 

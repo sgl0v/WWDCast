@@ -18,6 +18,8 @@ class TabBarController: UITabBarController, GCKUIMiniMediaControlsViewController
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let options = GCKCastOptions(receiverApplicationID: WWDCastEnvironment.googleCastAppID)
+        GCKCastContext.setSharedInstanceWith(options)
         let castContext = GCKCastContext.sharedInstance()
         castContext.useDefaultExpandedMediaControls = true
 

@@ -60,8 +60,12 @@ class FilterViewController: UIViewController {
         self.title = NSLocalizedString("Filter", comment: "Filter view title")
 
         self.tableView = UITableView(frame: self.view.bounds, style: .plain)
-        self.view.addSubview(self.tableView)
-        self.tableView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        self.view.addSubview(self.tableView, constraints: [
+            equal(\.leadingAnchor),
+            equal(\.trailingAnchor),
+            equal(\.topAnchor),
+            equal(\.bottomAnchor)
+        ])
         self.tableView.registerNib(cellClass: Cell.self)
         self.tableView.rx.itemSelected.asDriver().drive(onNext: {[unowned self] indexPath in
             self.tableView.deselectRow(at: indexPath, animated: true)

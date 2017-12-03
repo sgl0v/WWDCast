@@ -56,9 +56,12 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         self.tableView.estimatedRowHeight = 100
         self.tableView.tableFooterView = UIView()
 
-        self.view.addSubview(self.emptyDataSetView)
-        self.emptyDataSetView.frame = self.view.bounds
-        self.emptyDataSetView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.view.addSubview(self.emptyDataSetView, constraints: [
+            equal(\.leadingAnchor),
+            equal(\.trailingAnchor),
+            equal(\.topAnchor),
+            equal(\.bottomAnchor)
+        ])
     }
 
 }

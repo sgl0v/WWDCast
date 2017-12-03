@@ -115,10 +115,10 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.tableView.tableFooterView = UIView()
 
         self.loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        self.view.addSubview(self.loadingIndicator)
-        self.loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
-        self.loadingIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
-        self.loadingIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        self.view.addSubview(self.loadingIndicator, constraints: [
+            equal(\.centerXAnchor),
+            equal(\.centerYAnchor)
+        ])
     }
 
     private var searchQueryIntent: Observable<String> {

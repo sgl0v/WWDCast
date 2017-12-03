@@ -8,7 +8,11 @@
 
 import Foundation
 
-class UseCaseProvider {
+final class UseCaseProvider {
+
+    fileprivate lazy var googleCastService: GoogleCastService = {
+        return GoogleCastService(applicationID: WWDCastEnvironment.googleCastAppID)
+    }()
 
     fileprivate lazy var sessionsDataSource: AnyDataSource<Session> = {
 
@@ -28,8 +32,7 @@ class UseCaseProvider {
     }()
 
     lazy var sessionDetailsUseCase: SessionsDetailsUseCaseType = {
-        let googleCast = GoogleCastService(applicationID: WWDCastEnvironment.googleCastAppID)
-        return SessionsDetailsUseCase(googleCast: googleCast, dataSource: self.sessionsDataSource)
+        return SessionsDetailsUseCase(googleCast: self.googleCastService, dataSource: self.sessionsDataSource)
     }()
 
     lazy var favoriteSessionsUseCase: FavoriteSessionsUseCaseType = {

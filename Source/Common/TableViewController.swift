@@ -53,8 +53,12 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         super.viewDidLoad()
 
         self.tableView = UITableView(frame: self.view.bounds, style: .plain)
-        self.view.addSubview(self.tableView)
-        self.tableView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        self.view.addSubview(self.tableView, constraints: [
+            equal(\.leadingAnchor),
+            equal(\.trailingAnchor),
+            equal(\.topAnchor),
+            equal(\.bottomAnchor)
+        ])
         self.tableView.registerNib(cellClass: Cell.self)
 
         // Get rid of back button's title
