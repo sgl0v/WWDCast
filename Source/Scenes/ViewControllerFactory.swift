@@ -8,9 +8,27 @@
 
 import UIKit
 
-class ViewControllerFactory {
+final class ViewControllerFactory {
 
-    fileprivate let useCaseProvider = UseCaseProvider()
+    fileprivate let googleCastService = GoogleCastService(applicationID: WWDCastEnvironment.googleCastAppID)
+
+    fileprivate lazy var sessionsDataSource: AnyDataSource<Session> = {
+
+        guard let reachability = ReachabilityService() else {
+            fatalError("Failed to create reachability service!")
+        }
+        let network = NetworkService()
+
+        let coreDataController = CoreDataController(name: "WWDCast")
+        let cacheDataSource: AnyDataSource<Session> = AnyDataSource(dataSource: CoreDataSource<SessionManagedObject>(coreDataController: coreDataController))
+        let networkDataSource: AnyDataSource<Session> = AnyDataSource(dataSource: NetworkDataSource(network: network, reachability: reachability))
+        return AnyDataSource(dataSource: CompositeDataSource(networkDataSource: networkDataSource, coreDataSource: cacheDataSource))
+    }()
+
+    fileprivate lazy var useCaseProvider: UseCaseProvider = {
+        return UseCaseProvider(googleCastService: self.googleCastService, sessionsDataSource: self.sessionsDataSource)
+    }()
+
 }
 
 extension ViewControllerFactory: ApplicationFlowCoordinatorDependencyProvider {

@@ -10,22 +10,13 @@ import Foundation
 
 final class UseCaseProvider {
 
-    fileprivate lazy var googleCastService: GoogleCastService = {
-        return GoogleCastService(applicationID: WWDCastEnvironment.googleCastAppID)
-    }()
+    private let googleCastService: GoogleCastServiceType
+    private let sessionsDataSource: AnyDataSource<Session>
 
-    fileprivate lazy var sessionsDataSource: AnyDataSource<Session> = {
-
-        guard let reachability = ReachabilityService() else {
-            fatalError("Failed to create reachability service!")
-        }
-        let network = NetworkService()
-
-        let coreDataController = CoreDataController(name: "WWDCast")
-        let cacheDataSource: AnyDataSource<Session> = AnyDataSource(dataSource: CoreDataSource<SessionManagedObject>(coreDataController: coreDataController))
-        let networkDataSource: AnyDataSource<Session> = AnyDataSource(dataSource: NetworkDataSource(network: network, reachability: reachability))
-        return AnyDataSource(dataSource: CompositeDataSource(networkDataSource: networkDataSource, coreDataSource: cacheDataSource))
-    }()
+    init(googleCastService: GoogleCastServiceType, sessionsDataSource: AnyDataSource<Session>) {
+        self.googleCastService = googleCastService
+        self.sessionsDataSource = sessionsDataSource
+    }
 
     lazy var sessionsSearchUseCase: SessionsSearchUseCaseType = {
         return SessionsSearchUseCase(dataSource: self.sessionsDataSource)
