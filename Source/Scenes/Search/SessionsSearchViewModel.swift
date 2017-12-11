@@ -48,11 +48,11 @@ class SessionsSearchViewModel: SessionsSearchViewModelType {
             .startWith(.loading)
     }
 
-    private func selectReducer(prevState: SessionsSearchState, item: SessionItemViewModel) -> SessionsSearchState {
-        self.delegate?.sessionsSearchViewModel(self, wantsToShowSessionDetailsWith: item.id)
-        return prevState
-    }
-
+//    private func selectReducer(prevState: SessionsSearchState, item: SessionItemViewModel) -> SessionsSearchState {
+//        self.delegate?.sessionsSearchViewModel(self, wantsToShowSessionDetailsWith: item.id)
+//        return prevState
+//    }
+//
 //    lazy var sessionSections: Driver<[SessionSectionViewModel]> = {
 //        return Observable.combineLatest(self.useCase.sessions, self.filter.asObservable(), resultSelector: self.applyFilter)
 //            .map(SessionSectionViewModelBuilder.build)

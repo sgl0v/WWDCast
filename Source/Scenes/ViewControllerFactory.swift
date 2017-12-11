@@ -34,9 +34,7 @@ final class ViewControllerFactory {
 extension ViewControllerFactory: ApplicationFlowCoordinatorDependencyProvider {
 
     func tabBarController() -> UITabBarController {
-        let tabbarController = TabBarController()
-        tabbarController.tabBar.tintColor = UIColor.black
-        return tabbarController
+        return TabBarController()
     }
 
 }

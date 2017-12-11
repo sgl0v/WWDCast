@@ -18,6 +18,8 @@ class TabBarController: UITabBarController, GCKUIMiniMediaControlsViewController
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tabBar.tintColor = UIColor.black
+
         let castContext = GCKCastContext.sharedInstance()
         miniMediaControlsViewController = castContext.createMiniMediaControlsViewController()
         miniMediaControlsViewController.delegate = self
