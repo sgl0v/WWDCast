@@ -8,9 +8,9 @@
 
 import UIKit
 
-final class ViewControllerFactory {
+final class ApplicationComponentsFactory {
 
-    fileprivate let googleCastService = GoogleCastService(applicationID: WWDCastEnvironment.googleCastAppID)
+    fileprivate let googleCastService = GoogleCastService(applicationID: Environment.googleCastAppID)
 
     fileprivate lazy var sessionsDataSource: AnyDataSource<Session> = {
 
@@ -31,7 +31,7 @@ final class ViewControllerFactory {
 
 }
 
-extension ViewControllerFactory: ApplicationFlowCoordinatorDependencyProvider {
+extension ApplicationComponentsFactory: ApplicationFlowCoordinatorDependencyProvider {
 
     func tabBarController() -> UITabBarController {
         return TabBarController()
@@ -39,7 +39,7 @@ extension ViewControllerFactory: ApplicationFlowCoordinatorDependencyProvider {
 
 }
 
-extension ViewControllerFactory: SearchFlowCoordinatorDependencyProvider {
+extension ApplicationComponentsFactory: SearchFlowCoordinatorDependencyProvider {
 
     func sessionsSearchController(delegate: SessionsSearchViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
         let useCase = self.useCaseProvider.sessionsSearchUseCase
@@ -65,7 +65,7 @@ extension ViewControllerFactory: SearchFlowCoordinatorDependencyProvider {
 
 }
 
-extension ViewControllerFactory: FavoritesFlowCoordinatorDependencyProvider {
+extension ApplicationComponentsFactory: FavoritesFlowCoordinatorDependencyProvider {
 
     func favoriteSessionsController(delegate: FavoriteSessionsViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
         let useCase = self.useCaseProvider.favoriteSessionsUseCase

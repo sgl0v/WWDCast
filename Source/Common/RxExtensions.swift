@@ -80,6 +80,13 @@ extension ObservableType {
             return observable
         }
     }
+
+    func map<T>(_ value: T) -> Observable<T> {
+        return self.map { _ in
+            return value
+        }
+    }
+
 }
 
 extension Observable where Element : Sequence, Element.Iterator.Element : Comparable {

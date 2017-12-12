@@ -22,7 +22,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.viewModel = viewModel
         super.init()
         self.rx.viewDidLoad.bind(onNext: self.configureUI).addDisposableTo(self.disposeBag)
-        self.rx.viewDidLoad.flatMap(Observable.just(self.viewModel)).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
+        self.rx.viewDidLoad.map(self.viewModel).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -47,42 +47,18 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
     }
 
     private func bind(to viewModel: SessionsSearchViewModelType) {
-        // View intents
-        let filterIntent = self.filterButton.rx.tap.asObservable().map({ SessionsSearchAction.filter })
-        let searchIntent = self.searchQueryIntent.map({ SessionsSearchAction.search($0) })
-        let itemSelectedIntent = self.tableView.rx.modelSelected(SessionItemViewModel.self).map({ SessionsSearchAction.select($0) })
 
-        self.sessions.asDriver().drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
-        Observable.of(filterIntent, searchIntent, itemSelectedIntent).merge().asDriver(onErrorJustReturn: SessionsSearchAction.filter)
-            .flatMap(self.viewModel.transform) // update the state
-            .drive(onNext: self.render) // visually represent state
+        // ViewModel's input
+        self.filterButton.rx.tap.bind(onNext: viewModel.didTapFilter).addDisposableTo(self.disposeBag)
+        self.searchQuery.drive(onNext: viewModel.didStartSearch).addDisposableTo(self.disposeBag)
+        self.tableView.rx.modelSelected(SessionItemViewModel.self)
+            .bind(onNext: viewModel.didSelect)
             .addDisposableTo(self.disposeBag)
 
-//        self.filterButton.rx.tap.bind(onNext: viewModel.didTapFilter).addDisposableTo(self.disposeBag)
-//        self.searchQuery.drive(onNext: viewModel.didStartSearch).addDisposableTo(self.disposeBag)
-//        self.tableView.rx.modelSelected(SessionItemViewModel.self)
-//            .bind(onNext: viewModel.didSelect)
-//            .addDisposableTo(self.disposeBag)
-
         // ViewModel's output
-
-//        viewModel.sessionSections.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
-//        viewModel.isLoading.drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
-//        viewModel.isLoading.drive(self.loadingIndicator.rx.isAnimating).addDisposableTo(self.disposeBag)
-    }
-
-    private func render(_ state: SessionsSearchState) {
-        switch state {
-        case .loading:
-            self.tableView.isHidden = true
-            self.loadingIndicator.startAnimating()
-        case .loaded(let sessions):
-            self.tableView.isHidden = false
-            self.loadingIndicator.stopAnimating()
-            self.sessions.value = sessions
-        case .error: break
-            // nop
-        }
+        viewModel.sessionSections.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
+        viewModel.isLoading.drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
+        viewModel.isLoading.drive(self.loadingIndicator.rx.isAnimating).addDisposableTo(self.disposeBag)
     }
 
     private func configureUI() {
@@ -121,7 +97,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         ])
     }
 
-    private var searchQueryIntent: Observable<String> {
+    private var searchQuery: Driver<String> {
         let cancel: Observable<String> = self.searchBar.rx.delegate.methodInvoked(#selector(UISearchBarDelegate.searchBarCancelButtonClicked(_:))).map({ _ in return "" })
 
         let searchBarTextObservable = self.searchBar.rx.text.rejectNil().unwrap()
@@ -129,6 +105,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
             .merge()
             .throttle(0.1, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: "")
     }
 
 }

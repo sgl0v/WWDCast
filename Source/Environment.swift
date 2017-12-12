@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct WWDCastEnvironment {
+struct Environment {
     static var sessionsURL: URL {
         var sessionsURL = self.appleCdnURL
         sessionsURL.appendPathComponent("h8a19f8f/049CCC2F-0D8A-4F7D-BAB9-2D8F5BAA7030/contents.json")

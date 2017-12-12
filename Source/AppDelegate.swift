@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         let window =  UIWindow(frame: UIScreen.main.bounds)
-        self.appCoordinator = ApplicationFlowCoordinator(window: window, dependencyProvider: ViewControllerFactory())
+        self.appCoordinator = ApplicationFlowCoordinator(window: window, dependencyProvider: ApplicationComponentsFactory())
         self.appCoordinator.start()
 
         self.window = window

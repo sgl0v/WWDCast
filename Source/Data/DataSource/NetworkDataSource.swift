@@ -54,7 +54,7 @@ final class NetworkDataSource: DataSourceType {
     // MARK: Private
 
     private func loadSessions() -> Observable<[Session]> {
-        let sessionsResource = Resource(url: WWDCastEnvironment.sessionsURL, parser: SessionsBuilder.build)
+        let sessionsResource = Resource(url: Environment.sessionsURL, parser: SessionsBuilder.build)
         return self.network.load(sessionsResource)
     }
 

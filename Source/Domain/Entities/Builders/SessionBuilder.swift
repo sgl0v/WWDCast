@@ -50,7 +50,7 @@ class SessionBuilder: EntityBuilderType {
         guard let bucket = bucketMapping[year] else {
             return nil
         }
-        var imageURL = WWDCastEnvironment.appleCdnURL
+        var imageURL = Environment.appleCdnURL
         imageURL.appendPathComponent("images/\(bucket)/\(contentId)/\(contentId)_wide_900x506_1x.jpg")
         return imageURL
 
