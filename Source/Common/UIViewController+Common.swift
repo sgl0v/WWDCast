@@ -20,9 +20,16 @@ extension UIViewController {
     }
 
     /// Presents an alert dialog with specified title, message and actions
-    func showAlert<Action: CustomStringConvertible>(with title: String?, message: String?, cancelAction: Action, actions: [Action]) -> Observable<UIAlertController.Selection> {
+    func showAlert<Action: CustomStringConvertible>(with title: String?, message: String?, cancelAction: Action, actions: [Action]) -> Observable<Int> {
         let alertView = UIAlertController.promptFor(title, message: message, cancelAction: cancelAction, actions: actions)
-        return alertView(self)
+        return alertView(self).flatMap({ selection -> Observable<Int> in
+            switch selection {
+            case .action(let idx):
+                return Observable.just(idx)
+            case .cancel:
+                return Observable.empty()
+            }
+        })
     }
 
 }

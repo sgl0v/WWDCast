@@ -63,22 +63,13 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
 
     private func selectDeviceForPlayback(_ devices: [String]) -> Observable<Int> {
         if devices.isEmpty {
-            self.showAlert(with: nil, message: NSLocalizedString("Google Cast device is not found!", comment: ""))
-            return Observable.empty()
+            let cancelAction = UIAlertAction(title: NSLocalizedString("OK", comment: "OK button title"), style: .cancel)
+            let message = NSLocalizedString("Google Cast device is not found!", comment: "")
+            return self.showAlert(with: nil, message: message, cancelAction: cancelAction, actions: [])
         }
 
-        let actions = devices.map({ device in return device.description })
         let cancelAction = NSLocalizedString("Cancel", comment: "Cancel ActionSheet button title")
-        let alert = self.showAlert(with: nil, message: nil, cancelAction: cancelAction, actions: actions)
-        let deviceObservable = alert.flatMap({ selection -> Observable<Int> in
-            switch selection {
-            case .action(let idx):
-                return Observable.just(idx)
-            case .cancel:
-                return Observable.empty()
-            }
-        })
-        return deviceObservable
+        return self.showAlert(with: nil, message: nil, cancelAction: cancelAction, actions: devices)
     }
 
 }
