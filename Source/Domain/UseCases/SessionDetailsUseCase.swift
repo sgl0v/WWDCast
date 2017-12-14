@@ -41,22 +41,18 @@ class SessionsDetailsUseCase: SessionsDetailsUseCaseType {
     }
 
     var devices: Observable<[GoogleCastDevice]> {
-        return Observable.just(self.googleCast.devices)
+        return self.googleCast.devices
     }
 
     func play(on device: GoogleCastDevice) -> Observable<Void> {
-        return self.session.take(1).flatMap({ session -> Observable<Void> in
-            guard let video = session.video?.absoluteString else {
-                return Observable.error(GoogleCastServiceError.playbackError)
-            }
-
-            let media = GoogleCastMedia(id: session.id, title: session.title, subtitle: session.subtitle, thumbnail: session.thumbnail, video: video, captions: session.captions?.absoluteString)
+        return Observable.just(device).withLatestFrom(self.session).flatMap({ session -> Observable<Void> in
+            let media = GoogleCastMedia(id: session.id, title: session.title, subtitle: session.subtitle, thumbnail: session.thumbnail, video: session.video.absoluteString, captions: session.captions?.absoluteString)
             return self.googleCast.play(media: media, onDevice: device)
         })
     }
 
     var toggle: Observable<Void> {
-        return self.session.take(1).map({ session in
+        return self.session.takeLast(1).map({ session in
             let newSession = Session(id: session.id, contentId: session.contentId, type: session.type, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, duration: session.duration, thumbnail: session.thumbnail, favorite: !session.favorite)
             return [newSession]
         })

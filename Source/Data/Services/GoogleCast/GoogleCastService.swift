@@ -33,16 +33,17 @@ final class GoogleCastService: NSObject, GoogleCastServiceType {
 
     // MARK: GoogleCastServiceProtocol
 
-    var devices: [GoogleCastDevice] {
+    var devices: Observable<[GoogleCastDevice]> {
         let discoveryManager = self.context.discoveryManager
         guard discoveryManager.hasDiscoveredDevices else {
-            return []
+            return Observable.error(GoogleCastServiceError.noDevicesFound)
         }
-        return (0..<discoveryManager.deviceCount).map({ idx in
+        let devices = (0..<discoveryManager.deviceCount).map({ idx in
             return discoveryManager.device(at: idx)
         }).map({ device in
             return GoogleCastDevice(name: device.friendlyName ?? "Unknown", id: device.deviceID)
         })
+        return Observable.just(devices)
     }
 
     func play(media: GoogleCastMedia, onDevice device: GoogleCastDevice) -> Observable<Void> {

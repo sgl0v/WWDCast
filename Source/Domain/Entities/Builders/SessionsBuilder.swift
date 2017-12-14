@@ -15,10 +15,12 @@ class SessionsBuilder: EntityBuilderType {
 
     static func build(_ json: JSON) throws -> EntityType {
 //        print(json)
-        return try json["contents"].arrayValue.map({ sessionJSON in
+        return try json["contents"].arrayValue.filter({ sessionJSON in
+            let media = sessionJSON["media"]
+            let videoUrl = media["tvOShls"].string ?? media["downloadHD"].string
+            return videoUrl != nil
+        }).map({ sessionJSON in
             return try SessionBuilder.build(sessionJSON)
-        }).filter({ session -> Bool in
-            return session.video != nil
         })
     }
 

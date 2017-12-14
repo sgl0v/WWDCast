@@ -23,7 +23,7 @@ extension Session: CoreDataRepresentable {
         object.track = Int16(self.track.rawValue)
         object.title = self.title
         object.summary = self.summary
-        object.video = self.video?.absoluteString
+        object.video = self.video.absoluteString
         object.captions = self.captions?.absoluteString
         object.duration = self.duration
         object.thumbnail = self.thumbnail.absoluteString

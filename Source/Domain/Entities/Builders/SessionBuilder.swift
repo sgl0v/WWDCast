@@ -16,14 +16,14 @@ class SessionBuilder: EntityBuilderType {
     static func build(_ json: JSON) throws -> EntityType {
         let media = json["media"]
         let captions = URL(string: media["subtitles"].stringValue)
-        let video = URL(string: media["tvOShls"].string ?? media["downloadHD"].stringValue)
         let track = Session.Track(id: json["trackId"].intValue)
         let focus = json["platforms"].arrayObject ?? []
         let staticContentId = json["staticContentId"].intValue
         guard let eventYear = Int(json["eventId"].stringValue.replacingOccurrences(of: "wwdc", with: "")),
             let year = Session.Year(rawValue: eventYear),
             let type = Session.EventType(json["type"].stringValue),
-            let thumbnailURL = self.imageURL(for: year, contentId: staticContentId) else {
+            let thumbnailURL = self.imageURL(for: year, contentId: staticContentId),
+            let video = URL(string: media["tvOShls"].string ?? media["downloadHD"].stringValue) else {
             throw EntityBuilderError.parsingError
         }
         let id = json["id"].stringValue
@@ -53,8 +53,6 @@ class SessionBuilder: EntityBuilderType {
         var imageURL = Environment.appleCdnURL
         imageURL.appendPathComponent("images/\(bucket)/\(contentId)/\(contentId)_wide_900x506_1x.jpg")
         return imageURL
-
-        // https://devimages-cdn.apple.com/wwdc-services/images/7/1729/1729_wide_250x141_2x.jpg ??
     }
 
 }

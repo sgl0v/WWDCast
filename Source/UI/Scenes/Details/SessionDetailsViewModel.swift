@@ -35,21 +35,15 @@ class SessionDetailsViewModel: SessionDetailsViewModelType {
         }).withLatestFrom(sessionObservable)
 
         let session = Driver.merge(sessionObservable, favoriteObservable)
-            .trackError(errorTracker)
-            .asDriverOnErrorJustComplete()
             .map(SessionItemViewModelBuilder.build)
 
-        let dev = self.useCase.devices.flatMap({ devices -> Observable<[String]> in
-            if devices.isEmpty {
-                return Observable.error(Error.noDevicesFound)
-            }
-            let devices = devices.map({ $0.description })
-            return Observable.just(devices)
+        let devices = input.showDevices.flatMap({ _ in
+            return self.useCase.devices.map({ devices in
+                return devices.map({ $0.description })
+            })
+                .trackError(errorTracker)
+                .asDriverOnErrorJustComplete()
         })
-            .trackError(errorTracker)
-            .asDriverOnErrorJustComplete()
-
-        let devices = input.showDevices.flatMap({ return dev })
 
         let playback = input.startPlayback.asObservable()
             .withLatestFrom(self.useCase.devices) { (index, devices) -> GoogleCastDevice in
@@ -62,14 +56,6 @@ class SessionDetailsViewModel: SessionDetailsViewModelType {
         let error = errorTracker.asDriver()
 
         return SessionDetailsViewModelOutput(session: session, devices: devices, playback: playback, error: error)
-    }
-
-    enum Error: Swift.Error, CustomStringConvertible {
-        case noDevicesFound
-
-        var description: String {
-            return NSLocalizedString("Google Cast device is not found!", comment: "Google Cast devices error message")
-        }
     }
 
 }

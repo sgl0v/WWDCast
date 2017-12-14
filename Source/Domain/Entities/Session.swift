@@ -21,7 +21,7 @@ struct Session {
         return ["WWDC \(self.year)", "Session \(self.contentId)", focus].joined(separator: " · ")
     }
     let summary: String
-    let video: URL?
+    let video: URL
     let captions: URL?
     let duration: TimeInterval
     let thumbnail: URL
