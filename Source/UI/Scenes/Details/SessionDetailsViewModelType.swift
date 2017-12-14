@@ -10,23 +10,30 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol SessionDetailsViewModelType: class {
-    // INPUT
-
+// INPUT
+struct SessionDetailsViewModelInput {
+    /// triggers a screen's content loading
+    let load: Driver<Void>
     /// add or remove the session from favorites
-    func toggleFavorite()
+    let toggleFavorite: Driver<Void>
+    /// called when the user would like to choose ChromeCast device for playback
+    let showDevices: Driver<Void>
+    /// called when the user picked device for playback
+    let startPlayback: Driver<Int>
+}
 
-    /// called when the user picked debice for playback
-    func startPlaybackOnDevice(at index: Int)
-
-    // OUTPUT
-
+// OUTPUT
+struct SessionDetailsViewModelOutput {
     /// the session to present details for
-    var session: Driver<SessionItemViewModel?> { get }
-
+    let session: Driver<SessionItemViewModel>
     /// Provides and array of available devices
-    var devices: Driver<[String]> { get }
-
+    let devices: Driver<[String]>
+    /// Starts the sessions playback
+    let playback: Driver<Void>
     /// Emits when a signup error has occurred and a message should be displayed.
-    var error: Driver<(String?, String)> { get }
+    let error: Driver<Error>
+}
+
+protocol SessionDetailsViewModelType: class {
+    func transform(input: SessionDetailsViewModelInput) -> SessionDetailsViewModelOutput
 }

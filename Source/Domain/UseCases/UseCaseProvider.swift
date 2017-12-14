@@ -22,12 +22,12 @@ final class UseCaseProvider {
         return SessionsSearchUseCase(dataSource: self.sessionsDataSource)
     }()
 
-    lazy var sessionDetailsUseCase: SessionsDetailsUseCaseType = {
-        return SessionsDetailsUseCase(googleCast: self.googleCastService, dataSource: self.sessionsDataSource)
-    }()
-
     lazy var favoriteSessionsUseCase: FavoriteSessionsUseCaseType = {
         return FavoriteSessionsUseCase(dataSource: self.sessionsDataSource)
     }()
+
+    func sessionDetailsUseCase(sessionId: String) -> SessionsDetailsUseCaseType {
+        return SessionsDetailsUseCase(sessionId: sessionId, googleCast: self.googleCastService, dataSource: self.sessionsDataSource)
+    }
 
 }

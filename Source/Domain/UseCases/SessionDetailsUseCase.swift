@@ -15,46 +15,53 @@ protocol SessionsDetailsUseCaseType {
     var devices: Observable<[GoogleCastDevice]> { get }
 
     /// Provides session for specified identifier.
-    func session(withId id: String) -> Observable<Session>
+    var session: Observable<Session> { get }
 
     /// Starts the session playback on specified device
-    func play(session: Session, on device: GoogleCastDevice) -> Observable<Void>
+    func play(on device: GoogleCastDevice) -> Observable<Void>
 
     /// Toggles favorite session.
-    func toggle(favoriteSession session: Session) -> Observable<Session>
+    var toggle: Observable<Void> { get }
 }
 
 class SessionsDetailsUseCase: SessionsDetailsUseCaseType {
 
+    private let sessionId: String
     private let googleCast: GoogleCastServiceType
     private let dataSource: AnyDataSource<Session>
 
-    init(googleCast: GoogleCastServiceType, dataSource: AnyDataSource<Session>) {
+    init(sessionId: String, googleCast: GoogleCastServiceType, dataSource: AnyDataSource<Session>) {
+        self.sessionId = sessionId
         self.googleCast = googleCast
         self.dataSource = dataSource
     }
 
-    func session(withId id: String) -> Observable<Session> {
-        return self.dataSource.get(byId: id)
+    var session: Observable<Session> {
+        return self.dataSource.get(byId: self.sessionId)
     }
 
     var devices: Observable<[GoogleCastDevice]> {
         return Observable.just(self.googleCast.devices)
     }
 
-    func play(session: Session, on device: GoogleCastDevice) -> Observable<Void> {
-        guard let video = session.video?.absoluteString else {
-            return Observable.error(GoogleCastServiceError.playbackError)
-        }
+    func play(on device: GoogleCastDevice) -> Observable<Void> {
+        return self.session.take(1).flatMap({ session -> Observable<Void> in
+            guard let video = session.video?.absoluteString else {
+                return Observable.error(GoogleCastServiceError.playbackError)
+            }
 
-        let media = GoogleCastMedia(id: session.id, title: session.title, subtitle: session.subtitle, thumbnail: session.thumbnail, video: video, captions: session.captions?.absoluteString)
-        return self.googleCast.play(media: media, onDevice: device)
+            let media = GoogleCastMedia(id: session.id, title: session.title, subtitle: session.subtitle, thumbnail: session.thumbnail, video: video, captions: session.captions?.absoluteString)
+            return self.googleCast.play(media: media, onDevice: device)
+        })
     }
 
-    func toggle(favoriteSession session: Session) -> Observable<Session> {
-        let newSession = Session(id: session.id, contentId: session.contentId, type: session.type, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, duration: session.duration, thumbnail: session.thumbnail, favorite: !session.favorite)
-
-        return self.dataSource.update([newSession]).flatMap(Observable.just(newSession))
+    var toggle: Observable<Void> {
+        return self.session.take(1).map({ session in
+            let newSession = Session(id: session.id, contentId: session.contentId, type: session.type, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, duration: session.duration, thumbnail: session.thumbnail, favorite: !session.favorite)
+            return [newSession]
+        })
+            .flatMap(self.dataSource.update)
+            .mapToVoid()
     }
 
 }

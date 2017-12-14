@@ -11,6 +11,7 @@
 		5E89B1D61D480B6300E611AC /* SessionDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */; };
 		B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */; };
 		B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */; };
+		E7043A6A1FE2FA2C00AD8DA2 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7043A691FE2FA2C00AD8DA2 /* ErrorTracker.swift */; };
 		E718A10A1E5900BE003463B0 /* MockSessionsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A1081E58FC27003463B0 /* MockSessionsSearchViewModel.swift */; };
 		E718A10B1E5900C1003463B0 /* MockViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A1061E58F7F3003463B0 /* MockViewControllerFactory.swift */; };
 		E72A1CF71E68A11B005A3EAE /* sessions.json in Resources */ = {isa = PBXBuildFile; fileRef = E72A1CF51E689B27005A3EAE /* sessions.json */; };
@@ -136,6 +137,7 @@
 		B6F929EC1D2AB283009E4B83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionTableViewCell.xib; path = Resources/SessionTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7043A691FE2FA2C00AD8DA2 /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
 		E718A1061E58F7F3003463B0 /* MockViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockViewControllerFactory.swift; sourceTree = "<group>"; };
 		E718A1081E58FC27003463B0 /* MockSessionsSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSessionsSearchViewModel.swift; sourceTree = "<group>"; };
 		E72A1CEC1E677FEF005A3EAE /* MockWWDCastAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockWWDCastAPI.swift; sourceTree = "<group>"; };
@@ -389,11 +391,11 @@
 		E74C01C81FE0973200D98A76 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				E74C02001FE0973200D98A76 /* UI */,
 				E74C01CA1FE0973200D98A76 /* Common */,
 				E74C01CC1FE0973200D98A76 /* Data */,
 				E74C01EE1FE0973200D98A76 /* Domain */,
 				E74C01FD1FE0973200D98A76 /* ThirdParty */,
-				E74C02001FE0973200D98A76 /* UI */,
 				E74C022D1FE0973200D98A76 /* ApplicationComponentsFactory.swift */,
 				E74C022E1FE0973200D98A76 /* Environment.swift */,
 				E74C01C91FE0973200D98A76 /* AppDelegate.swift */,
@@ -538,6 +540,7 @@
 			children = (
 				E74C01FE1FE0973200D98A76 /* ActivityIndicator.swift */,
 				E74C01FF1FE0973200D98A76 /* Reachability.swift */,
+				E7043A691FE2FA2C00AD8DA2 /* ErrorTracker.swift */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
@@ -980,6 +983,7 @@
 				E74C02661FE0973300D98A76 /* FilterItemViewModel.swift in Sources */,
 				E74C02761FE0973300D98A76 /* UIAlertController+Rx.swift in Sources */,
 				E74C02321FE0973200D98A76 /* CoreDataPersistable.swift in Sources */,
+				E7043A6A1FE2FA2C00AD8DA2 /* ErrorTracker.swift in Sources */,
 				E74C025F1FE0973300D98A76 /* SessionDetailsViewModel.swift in Sources */,
 				E74C02591FE0973300D98A76 /* ApplicationFlowCoordinator.swift in Sources */,
 				E74C02541FE0973200D98A76 /* SessionDetailsUseCase.swift in Sources */,

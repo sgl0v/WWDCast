@@ -11,6 +11,10 @@ import RxSwift
 
 enum GoogleCastServiceError: Error {
     case connectionError, playbackError
+
+    var localizedDescription: String {
+        return NSLocalizedString("Failed to play WWDC session.", comment: "Failed to play WWDC session error.")
+    }
 }
 
 protocol GoogleCastServiceType: class {

@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class SessionDetailsViewController: UIViewController, NibProvidable {
 
@@ -19,11 +20,12 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     @IBOutlet private weak var favoriteButton: UIButton!
 
     private let disposeBag = DisposeBag()
+    private let playbackTrigger = PublishSubject<Int>()
 
     init(viewModel: SessionDetailsViewModelType) {
         super.init(nibName: nil, bundle: nil)
         self.rx.viewDidLoad.bind(onNext: self.configureUI).addDisposableTo(self.disposeBag)
-        self.rx.viewDidLoad.flatMap(Observable.just(viewModel)).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
+        self.rx.viewDidLoad.map(viewModel).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -39,37 +41,55 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
 
     private func bind(to viewModel: SessionDetailsViewModelType) {
         // ViewModel's input
-        self.playButton.rx.tap.withLatestFrom(viewModel.devices).flatMap(self.selectDeviceForPlayback)
-            .subscribe(onNext: viewModel.startPlaybackOnDevice).addDisposableTo(self.disposeBag)
-        self.favoriteButton.rx.tap.subscribe(onNext: viewModel.toggleFavorite).addDisposableTo(self.disposeBag)
+        let viewWillAppear = self.rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+        let toggleFavorite = self.favoriteButton.rx.tap.mapToVoid().asDriverOnErrorJustComplete()
+        let showDevices = self.playButton.rx.tap.mapToVoid().asDriverOnErrorJustComplete()
+        let startPlayback = self.playbackTrigger.asDriverOnErrorJustComplete()
+
+        let input = SessionDetailsViewModelInput(load: viewWillAppear, toggleFavorite: toggleFavorite, showDevices: showDevices, startPlayback: startPlayback)
+        let output = viewModel.transform(input: input)
 
         // ViewModel's output
-        viewModel.session.drive(onNext: self.sessionObserver).addDisposableTo(self.disposeBag)
-        viewModel.error.drive(onNext: self.showAlert).addDisposableTo(self.disposeBag)
+        output.session.drive(self.sessionBinding).addDisposableTo(self.disposeBag)
+        output.devices.drive(self.devicesBinding).addDisposableTo(self.disposeBag)
+        output.playback.drive().addDisposableTo(disposeBag)
+        output.error.drive(self.errorBinding).addDisposableTo(self.disposeBag)
     }
 
-    private func sessionObserver(_ viewModel: SessionItemViewModel?) {
-        guard let viewModel = viewModel else {
-            return
-        }
-        Observable.just(viewModel.thumbnailURL)
-            .asObservable()
-            .bind(to: self.image.rx.imageURL)
-            .addDisposableTo(self.disposeBag)
-        self.summary.text = viewModel.summary
-        self.subtitle.text = viewModel.subtitle
-        self.favoriteButton.isSelected = viewModel.favorite
+    private var sessionBinding: UIBindingObserver<SessionDetailsViewController, SessionItemViewModel> {
+        return UIBindingObserver(UIElement: self, binding: { (vc, viewModel) in
+            Observable.just(viewModel.thumbnailURL)
+                .asObservable()
+                .bind(to: vc.image.rx.imageURL)
+                .addDisposableTo(vc.disposeBag)
+            vc.summary.text = viewModel.summary
+            vc.subtitle.text = viewModel.subtitle
+            vc.favoriteButton.isSelected = viewModel.favorite
+        })
     }
 
-    private func selectDeviceForPlayback(_ devices: [String]) -> Observable<Int> {
-        if devices.isEmpty {
-            let cancelAction = UIAlertAction(title: NSLocalizedString("OK", comment: "OK button title"), style: .cancel)
-            let message = NSLocalizedString("Google Cast device is not found!", comment: "")
-            return self.showAlert(with: nil, message: message, cancelAction: cancelAction, actions: [])
-        }
+    private var devicesBinding: UIBindingObserver<SessionDetailsViewController, [String]> {
+        return UIBindingObserver(UIElement: self, binding: { (vc, devices) in
+            let cancelAction = NSLocalizedString("Cancel", comment: "Cancel ActionSheet button title")
+            vc.showAlert(with: nil, message: nil, cancelAction: cancelAction, actions: devices).subscribe(onNext: { idx in
+                vc.playbackTrigger.onNext(idx)
+            }).addDisposableTo(vc.disposeBag)
+        })
+    }
 
-        let cancelAction = NSLocalizedString("Cancel", comment: "Cancel ActionSheet button title")
-        return self.showAlert(with: nil, message: nil, cancelAction: cancelAction, actions: devices)
+    private var errorBinding: UIBindingObserver<SessionDetailsViewController, Error> {
+        return UIBindingObserver(UIElement: self, binding: { (vc, error) in
+            let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error Alert Title"),
+                                          message: "\(error)",
+                                          preferredStyle: .alert)
+            let action = UIAlertAction(title: NSLocalizedString("Dismiss", comment: "Dimiss button title"),
+                                       style: UIAlertActionStyle.cancel,
+                                       handler: nil)
+            alert.addAction(action)
+            vc.present(alert, animated: true, completion: nil)
+        })
     }
 
 }

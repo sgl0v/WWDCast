@@ -50,8 +50,8 @@ extension ApplicationComponentsFactory: SearchFlowCoordinatorDependencyProvider 
     }
 
     func sessionDetailsController(_ sessionId: String) -> UIViewController {
-        let useCase = self.useCaseProvider.sessionDetailsUseCase
-        let viewModel = SessionDetailsViewModel(sessionId: sessionId, useCase: useCase)
+        let useCase = self.useCaseProvider.sessionDetailsUseCase(sessionId: sessionId)
+        let viewModel = SessionDetailsViewModel(useCase: useCase)
         return SessionDetailsViewController(viewModel: viewModel)
     }
 

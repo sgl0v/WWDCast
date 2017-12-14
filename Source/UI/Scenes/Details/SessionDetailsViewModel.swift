@@ -13,52 +13,63 @@ import RxCocoa
 class SessionDetailsViewModel: SessionDetailsViewModelType {
     private let disposeBag = DisposeBag()
     private let useCase: SessionsDetailsUseCaseType
-    private let sessionObservable: Observable<Session>
-    private let favoriteTrigger = PublishSubject<Void>()
-    private let errorTrigger = PublishSubject<(String?, String)>()
 
-    init(sessionId: String, useCase: SessionsDetailsUseCaseType) {
+    init(useCase: SessionsDetailsUseCaseType) {
         self.useCase = useCase
-        let sessionObservable = self.useCase.session(withId: sessionId)
-        let favoriteObservable = self.favoriteTrigger.withLatestFrom(sessionObservable).flatMap(self.useCase.toggle)
-        self.sessionObservable = Observable.of(sessionObservable, favoriteObservable).merge()
     }
 
     // MARK: SessionDetailsViewModel
 
-    lazy var session: Driver<SessionItemViewModel?> = {
-        return self.sessionObservable.map(SessionItemViewModelBuilder.build).asDriver(onErrorJustReturn: nil)
-    }()
+    func transform(input: SessionDetailsViewModelInput) -> SessionDetailsViewModelOutput {
+        let errorTracker = ErrorTracker()
 
-    var devices: Driver<[String]> {
-        return self.useCase.devices.map({ device -> [String] in
-            return device.map({ $0.description })
-        }).asDriver(onErrorJustReturn: [String]())
-    }
+        let sessionObservable = input.load.flatMapLatest {
+            self.useCase.session
+                .trackError(errorTracker)
+                .asDriverOnErrorJustComplete()
+        }
+        let favoriteObservable = input.toggleFavorite.flatMap({_ in
+            self.useCase.toggle
+                .trackError(errorTracker)
+                .asDriverOnErrorJustComplete()
+        }).withLatestFrom(sessionObservable)
 
-    var error: Driver<(String?, String)> {
-        return self.errorTrigger.asDriver(onErrorJustReturn: (title: nil, message: ""))
-    }
+        let session = Driver.merge(sessionObservable, favoriteObservable)
+            .trackError(errorTracker)
+            .asDriverOnErrorJustComplete()
+            .map(SessionItemViewModelBuilder.build)
 
-    func startPlaybackOnDevice(at index: Int) {
-        let deviceObservable = self.useCase.devices.map({ devices in
-            return devices[index]
+        let dev = self.useCase.devices.flatMap({ devices -> Observable<[String]> in
+            if devices.isEmpty {
+                return Observable.error(Error.noDevicesFound)
+            }
+            let devices = devices.map({ $0.description })
+            return Observable.just(devices)
         })
-        Observable.combineLatest(self.sessionObservable, deviceObservable, resultSelector: { ($0, $1) })
-            .take(1)
+            .trackError(errorTracker)
+            .asDriverOnErrorJustComplete()
+
+        let devices = input.showDevices.flatMap({ return dev })
+
+        let playback = input.startPlayback.asObservable()
+            .withLatestFrom(self.useCase.devices) { (index, devices) -> GoogleCastDevice in
+                return devices[index]
+            }
             .flatMap(self.useCase.play)
-            .subscribe(onError: self.didFailToPlaySession)
-            .addDisposableTo(self.disposeBag)
+            .trackError(errorTracker)
+            .asDriverOnErrorJustComplete()
+
+        let error = errorTracker.asDriver()
+
+        return SessionDetailsViewModelOutput(session: session, devices: devices, playback: playback, error: error)
     }
 
-    func toggleFavorite() {
-        self.favoriteTrigger.onNext()
-    }
+    enum Error: Swift.Error, CustomStringConvertible {
+        case noDevicesFound
 
-    // MARK: Private
-
-    private func didFailToPlaySession(with error: Error) {
-        self.errorTrigger.onNext((NSLocalizedString("Ooops...", comment: ""), NSLocalizedString("Failed to play WWDC session.", comment: "")))
+        var description: String {
+            return NSLocalizedString("Google Cast device is not found!", comment: "Google Cast devices error message")
+        }
     }
 
 }

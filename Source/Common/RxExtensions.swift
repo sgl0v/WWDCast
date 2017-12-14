@@ -87,6 +87,18 @@ extension ObservableType {
         }
     }
 
+    func catchErrorJustComplete() -> Observable<E> {
+        return catchError { _ in
+            return Observable.empty()
+        }
+    }
+
+    func asDriverOnErrorJustComplete() -> Driver<E> {
+        return asDriver { _ in
+            return Driver.empty()
+        }
+    }
+
 }
 
 extension Observable where Element : Sequence, Element.Iterator.Element : Comparable {
