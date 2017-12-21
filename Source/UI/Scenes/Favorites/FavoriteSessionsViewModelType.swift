@@ -10,22 +10,29 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol FavoriteSessionsViewModelType: class {
-    // INPUT
-
-    // Item selection observer
-    func didSelect(item: SessionItemViewModel)
-
-    // OUTPUT
-
-    // The title to show when there are no favorite sessions
-    var emptyFavorites: Driver<EmptyDataSetViewModel> { get }
-    // The array of available WWDC sessions divided into sections
-    var favoriteSessions: Driver<[SessionSectionViewModel]> { get }
+struct FavoriteSessionsViewModelInput {
+    /// triggers a screen's content loading
+    let loading: Driver<Void>
+    /// called when the user selected an item from the list
+    let selection: Driver<SessionItemViewModel>
 }
 
-protocol FavoriteSessionsViewModelDelegate: class {
+struct FavoriteSessionsViewModelOutput {
+    // Favorite WWDC sessions
+    let favorites: Driver<[SessionSectionViewModel]>
+    // Favorite WWDC sessions
+    let selectedItem: Driver<SessionItemViewModel>
+    // Emits when there are no no favorite sessions
+    let empty: Driver<EmptyDataSetViewModel>
+    /// Emits when a signup error has occurred and a message should be displayed.
+    let error: Driver<Error>
+}
 
-    /// Tells the delegate that viewModel would like to show the favorite session details
-    func favoriteSessionsViewModel(_ viewModel: FavoriteSessionsViewModelType, wantsToShowSessionDetailsWith sessionId: String)
+protocol FavoriteSessionsViewModelType: class {
+    func transform(input: FavoriteSessionsViewModelInput) -> FavoriteSessionsViewModelOutput
+}
+
+protocol FavoriteSessionsNavigator: class {
+    /// Presents the session details screen
+    func showDetails(forSession sessionId: String)
 }

@@ -19,7 +19,7 @@ class FavoritesFlowCoordinator: FlowCoordinator {
     }
 
     func start() {
-        let searchController = self.dependencyProvider.favoriteSessionsController(delegate: self, previewProvider: self)
+        let searchController = self.dependencyProvider.favoriteSessionsController(navigator: self, previewProvider: self)
         self.rootController.setViewControllers([searchController], animated: false)
     }
 
@@ -36,9 +36,9 @@ extension FavoritesFlowCoordinator: TableViewControllerPreviewProvider {
 
 }
 
-extension FavoritesFlowCoordinator: FavoriteSessionsViewModelDelegate {
+extension FavoritesFlowCoordinator: FavoriteSessionsNavigator {
 
-    func favoriteSessionsViewModel(_ viewModel: FavoriteSessionsViewModelType, wantsToShowSessionDetailsWith sessionId: String) {
+    func showDetails(forSession sessionId: String) {
         let controller = self.dependencyProvider.sessionDetailsController(sessionId)
         self.rootController.pushViewController(controller, animated: true)
     }

@@ -22,10 +22,14 @@ final class CompositeDataSource<T: Comparable>: DataSourceType {
     }
 
     func allObjects() -> Observable<[Item]> {
+        return self._allObjects
+    }
+
+    lazy var _allObjects: Observable<[Item]> = {
         let cachedObjects = self.coreDataSource.allObjects()
         let loadedObjects = self.networkDataSource.allObjects().flatMap(self.coreDataSource.add)
-        return Observable.of(cachedObjects, loadedObjects).merge().sort()
-    }
+        return Observable.of(cachedObjects, loadedObjects).merge().sort().shareReplayLatestWhileConnected()
+    }()
 
     func get(byId id: String) -> Observable<T> {
         let cachedObject = self.coreDataSource.get(byId: id)

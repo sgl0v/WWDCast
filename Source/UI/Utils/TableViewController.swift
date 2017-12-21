@@ -78,16 +78,28 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         }
         // Register for `UIViewControllerPreviewingDelegate` to enable "Peek" and "Pop".
         self.registerForPreviewing(with: self, sourceView: self.tableView)
-    }
 
-    func commitPreview(for item: SectionViewModel.Item) {
-        // nop
+//        var previewItem: SectionViewModel.Item?
+//        let viewControllerForLocation = self.rx.sentMessage(#selector(UIViewControllerPreviewingDelegate.previewingContext(_:viewControllerForLocation:))).asDriverOnErrorJustComplete()
+//        let viewControllerToCommit = self.rx.sentMessage(#selector(UIViewControllerPreviewingDelegate.previewingContext(_:commit:))).asDriverOnErrorJustComplete()
+//
+//        viewControllerForLocation.drive(previewingControllerBinding).addDisposableTo(self.disposeBag)
+//    }
+//
+//    var previewingControllerBinding: UIBindingObserver<UIViewController, SessionItemViewModel> {
+//        return UIBindingObserver(UIElement: self, binding: { (vc, viewModel) in
+//
+//        })
     }
 
     // MARK: UIViewControllerPreviewingDelegate
 
     weak var previewProvider: TableViewControllerPreviewProvider?
+    var commitPreview: Observable<SectionViewModel.Item> {
+        return _commitPreview.asObservable()
+    }
     private var previewItem: SectionViewModel.Item?
+    private let _commitPreview = PublishSubject<SectionViewModel.Item>()
 
     /// Create a previewing view controller to be shown at "Peek".
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
@@ -111,7 +123,7 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         guard let previewItem = self.previewItem else {
             return
         }
-        self.commitPreview(for: previewItem)
+        self._commitPreview.onNext(previewItem)
     }
 
 }

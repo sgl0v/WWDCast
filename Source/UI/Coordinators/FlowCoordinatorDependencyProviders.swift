@@ -27,7 +27,7 @@ protocol SearchFlowCoordinatorDependencyProvider: class {
 
 protocol FavoritesFlowCoordinatorDependencyProvider: class {
     /// Creates FavoriteSessionsViewController to browse favorite sessions
-    func favoriteSessionsController(delegate: FavoriteSessionsViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController
+    func favoriteSessionsController(navigator: FavoriteSessionsNavigator, previewProvider: TableViewControllerPreviewProvider) -> UIViewController
 
     // Creates SessionDetailsViewController to show the details of the session with specified identifier
     func sessionDetailsController(_ sessionId: String) -> UIViewController

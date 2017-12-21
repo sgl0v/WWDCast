@@ -29,9 +29,9 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func commitPreview(for item: SessionItemViewModel) {
-//        self.viewModel.didSelect(item: item)
-    }
+//    override func commitPreview(for item: SessionItemViewModel) {
+////        self.viewModel.didSelect(item: item)
+//    }
 
     // MARK: Private
 

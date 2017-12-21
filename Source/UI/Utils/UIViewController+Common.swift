@@ -12,10 +12,20 @@ import RxSwift
 extension UIViewController {
 
     /// Presents an alert with specified title and message
+    func showAlert(for error: Error) {
+        let title = NSLocalizedString("Error", comment: "Error Alert Title")
+        let alert = UIAlertController(title: title, message: "\(error)", preferredStyle: .alert)
+        let action = UIAlertAction(title: NSLocalizedString("Dismiss", comment: "Dimiss button title"),
+                                   style: UIAlertActionStyle.cancel,
+                                   handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    /// Presents an alert with specified title and message
     func showAlert(with title: String?, message: String) {
         let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK button title"), style: .cancel) { _ in
-        })
+        alertView.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK button title"), style: .cancel, handler: nil))
         self.present(alertView, animated: true, completion: nil)
     }
 

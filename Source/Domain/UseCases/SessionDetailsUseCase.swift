@@ -36,9 +36,9 @@ class SessionsDetailsUseCase: SessionsDetailsUseCaseType {
         self.dataSource = dataSource
     }
 
-    var session: Observable<Session> {
+    lazy var session: Observable<Session> = {
         return self.dataSource.get(byId: self.sessionId)
-    }
+    }()
 
     var devices: Observable<[GoogleCastDevice]> {
         return self.googleCast.devices
@@ -52,7 +52,7 @@ class SessionsDetailsUseCase: SessionsDetailsUseCaseType {
     }
 
     var toggle: Observable<Void> {
-        return self.session.takeLast(1).map({ session in
+        return self.session.take(1).map({ session in
             let newSession = Session(id: session.id, contentId: session.contentId, type: session.type, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, duration: session.duration, thumbnail: session.thumbnail, favorite: !session.favorite)
             return [newSession]
         })

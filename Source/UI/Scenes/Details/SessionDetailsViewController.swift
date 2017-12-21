@@ -41,9 +41,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
 
     private func bind(to viewModel: SessionDetailsViewModelType) {
         // ViewModel's input
-        let viewWillAppear = self.rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
-            .mapToVoid()
-            .asDriverOnErrorJustComplete()
+        let viewWillAppear = self.rx.viewWillAppear.mapToVoid().asDriverOnErrorJustComplete()
         let toggleFavorite = self.favoriteButton.rx.tap.mapToVoid().asDriverOnErrorJustComplete()
         let showDevices = self.playButton.rx.tap.mapToVoid().asDriverOnErrorJustComplete()
         let startPlayback = self.playbackTrigger.asDriverOnErrorJustComplete()
@@ -81,14 +79,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
 
     private var errorBinding: UIBindingObserver<SessionDetailsViewController, Error> {
         return UIBindingObserver(UIElement: self, binding: { (vc, error) in
-            let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error Alert Title"),
-                                          message: "\(error)",
-                                          preferredStyle: .alert)
-            let action = UIAlertAction(title: NSLocalizedString("Dismiss", comment: "Dimiss button title"),
-                                       style: UIAlertActionStyle.cancel,
-                                       handler: nil)
-            alert.addAction(action)
-            vc.present(alert, animated: true, completion: nil)
+            vc.showAlert(for: error)
         })
     }
 

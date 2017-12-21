@@ -19,31 +19,32 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         self.viewModel = viewModel
         super.init()
         self.rx.viewDidLoad.bind(onNext: self.configureUI).addDisposableTo(self.disposeBag)
-        self.rx.viewDidLoad.flatMap(Observable.just(viewModel)).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
+        self.rx.viewDidLoad.map(viewModel).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func commitPreview(for item: SessionItemViewModel) {
-        self.viewModel.didSelect(item: item)
-    }
-
     // MARK: Private
 
     private func bind(to viewModel: FavoriteSessionsViewModelType) {
         // ViewModel's input
-        self.tableView.rx.modelSelected(SessionItemViewModel.self)
-            .bind(onNext: viewModel.didSelect)
-            .addDisposableTo(self.disposeBag)
+        let viewWillAppear = self.rx.viewWillAppear.mapToVoid().asDriverOnErrorJustComplete()
+        let modelSelected = self.tableView.rx.modelSelected(SessionItemViewModel.self).asDriverOnErrorJustComplete()
+        let commitPreview = self.commitPreview.asDriverOnErrorJustComplete()
+        let selection = Driver.merge(modelSelected, commitPreview)
+
+        let input = FavoriteSessionsViewModelInput(loading: viewWillAppear, selection: selection)
+        let output = viewModel.transform(input: input)
 
         // ViewModel's output
-
-        viewModel.favoriteSessions.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
-        viewModel.favoriteSessions.map({ $0.isEmpty }).drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
-        viewModel.favoriteSessions.map({ !$0.isEmpty }).drive(self.emptyDataSetView.rx.isHidden).addDisposableTo(self.disposeBag)
-        viewModel.emptyFavorites.drive(onNext: self.emptyDataSetView.bind).addDisposableTo(self.disposeBag)
+        output.favorites.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
+        output.favorites.map({ $0.isEmpty }).drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
+        output.favorites.map({ !$0.isEmpty }).drive(self.emptyDataSetView.rx.isHidden).addDisposableTo(self.disposeBag)
+        output.selectedItem.drive().addDisposableTo(disposeBag)
+        output.empty.drive(onNext: self.emptyDataSetView.bind).addDisposableTo(self.disposeBag)
+        output.error.drive(self.errorBinding).addDisposableTo(self.disposeBag)
     }
 
     private func configureUI() {
@@ -62,6 +63,12 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
             equal(\.topAnchor),
             equal(\.bottomAnchor)
         ])
+    }
+
+    private var errorBinding: UIBindingObserver<FavoriteSessionsViewController, Error> {
+        return UIBindingObserver(UIElement: self, binding: { (vc, error) in
+            vc.showAlert(for: error)
+        })
     }
 
 }

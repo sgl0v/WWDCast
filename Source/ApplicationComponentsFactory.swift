@@ -67,9 +67,9 @@ extension ApplicationComponentsFactory: SearchFlowCoordinatorDependencyProvider 
 
 extension ApplicationComponentsFactory: FavoritesFlowCoordinatorDependencyProvider {
 
-    func favoriteSessionsController(delegate: FavoriteSessionsViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
+    func favoriteSessionsController(navigator: FavoriteSessionsNavigator, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
         let useCase = self.useCaseProvider.favoriteSessionsUseCase
-        let viewModel = FavoriteSessionsViewModel(useCase: useCase, delegate: delegate)
+        let viewModel = FavoriteSessionsViewModel(useCase: useCase, navigator: navigator)
         let view =  FavoriteSessionsViewController(viewModel: viewModel)
         view.previewProvider = previewProvider
         return view

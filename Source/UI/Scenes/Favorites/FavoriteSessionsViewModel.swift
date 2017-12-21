@@ -12,25 +12,34 @@ import RxCocoa
 
 class FavoriteSessionsViewModel: FavoriteSessionsViewModelType {
     private let useCase: FavoriteSessionsUseCaseType
-    private weak var delegate: FavoriteSessionsViewModelDelegate?
+    private weak var navigator: FavoriteSessionsNavigator?
 
-    init(useCase: FavoriteSessionsUseCaseType, delegate: FavoriteSessionsViewModelDelegate) {
+    init(useCase: FavoriteSessionsUseCaseType, navigator: FavoriteSessionsNavigator) {
         self.useCase = useCase
-        self.delegate = delegate
+        self.navigator = navigator
     }
 
     // MARK: FavoriteSessionsViewModel
 
-    var favoriteSessions: Driver<[SessionSectionViewModel]> {
-        return self.useCase.favoriteSessions
-            .map(SessionSectionViewModelBuilder.build)
-            .asDriver(onErrorJustReturn: [])
-    }
+    func transform(input: FavoriteSessionsViewModelInput) -> FavoriteSessionsViewModelOutput {
+        let errorTracker = ErrorTracker()
 
-    let emptyFavorites = Driver.just(EmptyDataSetViewModel(title: NSLocalizedString("No Favorites", comment: "The are no sessions added to favorites"), description: NSLocalizedString("Add your favorite sessions to the bookmarks", comment: "Add your favorite sessions to the bookmarks")))
+        let favorites: Driver<[SessionSectionViewModel]> = input.loading.flatMapLatest {
+            self.useCase.favoriteSessions
+                .map(SessionSectionViewModelBuilder.build)
+                .trackError(errorTracker)
+                .asDriverOnErrorJustComplete()
+        }
 
-    func didSelect(item: SessionItemViewModel) {
-        self.delegate?.favoriteSessionsViewModel(self, wantsToShowSessionDetailsWith: item.id)
+        let selectedItem = input.selection.do(onNext: { session in
+            self.navigator?.showDetails(forSession: session.id)
+        })
+
+        let empty = Driver.just(EmptyDataSetViewModel(title: NSLocalizedString("No Favorites", comment: "The are no sessions added to favorites"), description: NSLocalizedString("Add your favorite sessions to the bookmarks", comment: "Add your favorite sessions to the bookmarks")))
+
+        let error = errorTracker.asDriver()
+
+        return FavoriteSessionsViewModelOutput(favorites: favorites, selectedItem: selectedItem, empty: empty, error: error)
     }
 
 }
