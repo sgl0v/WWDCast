@@ -8,22 +8,17 @@
 
 import UIKit
 
-class EmptyDataSetView: UIView, NibProvidable, BindableView {
+class EmptyDataSetView: UIView, NibProvidable {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
 
-    static func view() -> EmptyDataSetView {
-        if let view = Bundle.init(for: self).loadNibNamed(self.nibName, owner: nil, options: nil)?.first as? EmptyDataSetView {
-            return view
+    static func view(_ title: String, description: String) -> EmptyDataSetView {
+        guard let view = Bundle.init(for: self).loadNibNamed(self.nibName, owner: nil, options: nil)?.first as? EmptyDataSetView else {
+            fatalError("Failed to load the view from nib file with name: \(self.nibName)")
         }
-        fatalError("Failed to load the view from nib file with name: \(self.nibName)")
-    }
-
-    typealias ViewModel = EmptyDataSetViewModel
-
-    func bind(to viewModel: ViewModel) {
-        self.titleLabel.text = viewModel.title
-        self.descriptionLabel.text = viewModel.description
+        view.titleLabel.text = title
+        view.descriptionLabel.text = description
+        return view
     }
 }

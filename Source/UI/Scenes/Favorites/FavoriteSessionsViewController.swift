@@ -14,7 +14,7 @@ import RxDataSources
 class FavoriteSessionsViewController: TableViewController<SessionSectionViewModel, SessionTableViewCell> {
     weak var previewProvider: TableViewControllerPreviewProvider?
     private var previewController: SessionDetailsPreview?
-    private let emptyDataSetView = EmptyDataSetView.view()
+    private var emptyDataSetView: EmptyDataSetView!
     private let viewModel: FavoriteSessionsViewModelType
 
     init(viewModel: FavoriteSessionsViewModelType) {
@@ -44,10 +44,9 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
 
         // ViewModel's output
         output.favorites.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
-        output.favorites.map({ $0.isEmpty }).drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
-        output.favorites.map({ !$0.isEmpty }).drive(self.emptyDataSetView.rx.isHidden).addDisposableTo(self.disposeBag)
+        output.empty.drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
+        output.empty.not().drive(self.emptyDataSetView.rx.isHidden).addDisposableTo(self.disposeBag)
         output.selectedItem.drive().addDisposableTo(disposeBag)
-        output.empty.drive(onNext: self.emptyDataSetView.bind).addDisposableTo(self.disposeBag)
         output.error.drive(self.errorBinding).addDisposableTo(self.disposeBag)
     }
 
@@ -61,6 +60,10 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         self.tableView.estimatedRowHeight = 100
         self.tableView.tableFooterView = UIView()
 
+        let emptyTitle = NSLocalizedString("No Favorites", comment: "The are no sessions added to favorites")
+        let emptyDescription = NSLocalizedString("Add your favorite sessions to the bookmarks",
+                                                 comment: "Add your favorite sessions to the bookmarks")
+        self.emptyDataSetView = EmptyDataSetView.view(emptyTitle, description: emptyDescription)
         self.view.addSubview(self.emptyDataSetView, constraints: [
             equal(\.leadingAnchor),
             equal(\.trailingAnchor),

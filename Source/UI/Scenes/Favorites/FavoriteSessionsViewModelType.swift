@@ -23,7 +23,7 @@ struct FavoriteSessionsViewModelOutput {
     // Favorite WWDC sessions
     let selectedItem: Driver<SessionItemViewModel>
     // Emits when there are no no favorite sessions
-    let empty: Driver<EmptyDataSetViewModel>
+    let empty: Driver<Bool>
     /// Emits when a signup error has occurred and a message should be displayed.
     let error: Driver<Error>
 }

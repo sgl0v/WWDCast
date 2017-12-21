@@ -34,7 +34,7 @@ final class CompositeDataSource<T: Comparable>: DataSourceType {
     func get(byId id: String) -> Observable<T> {
         let cachedObject = self.coreDataSource.get(byId: id)
         let loadedObject = self.networkDataSource.get(byId: id)
-        return Observable.of(cachedObject, loadedObject).merge()
+        return Observable.of(cachedObject, loadedObject).merge().shareReplayLatestWhileConnected()
     }
 
     func add(_ items: [Item]) -> Observable<[Item]> {

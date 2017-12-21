@@ -35,7 +35,9 @@ class FavoriteSessionsViewModel: FavoriteSessionsViewModelType {
             self.navigator?.showDetails(forSession: session.id)
         })
 
-        let empty = Driver.just(EmptyDataSetViewModel(title: NSLocalizedString("No Favorites", comment: "The are no sessions added to favorites"), description: NSLocalizedString("Add your favorite sessions to the bookmarks", comment: "Add your favorite sessions to the bookmarks")))
+        let empty = favorites.map { sessions in
+            return sessions.isEmpty
+        }
 
         let error = errorTracker.asDriver()
 

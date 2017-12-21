@@ -101,6 +101,13 @@ extension ObservableType {
 
 }
 
+extension SharedSequenceConvertibleType where E == Bool {
+    /// Boolean not operator.
+    public func not() -> SharedSequence<SharingStrategy, Bool> {
+        return map(!)
+    }
+}
+
 extension Observable where Element : Sequence, Element.Iterator.Element : Comparable {
 
     /// Sorts each element of an observable sequence. 
