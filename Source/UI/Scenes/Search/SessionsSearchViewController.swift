@@ -69,7 +69,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.title = NSLocalizedString("WWDCast", comment: "Session search view title")
 
         self.setClearsSelectionOnViewWillAppear()
-        self.registerForPreviewing()
+//        self.registerForPreviewing()
 
         self.view.backgroundColor = UIColor.white
 

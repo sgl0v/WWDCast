@@ -45,7 +45,7 @@ extension ApplicationComponentsFactory: SearchFlowCoordinatorDependencyProvider 
         let useCase = self.useCaseProvider.sessionsSearchUseCase
         let viewModel = SessionsSearchViewModel(useCase: useCase, delegate: delegate)
         let view = SessionsSearchViewController(viewModel: viewModel)
-        view.previewProvider = previewProvider
+//        view.previewProvider = previewProvider
         return view
     }
 

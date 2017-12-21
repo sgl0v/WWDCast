@@ -12,6 +12,8 @@ import RxCocoa
 import RxDataSources
 
 class FavoriteSessionsViewController: TableViewController<SessionSectionViewModel, SessionTableViewCell> {
+    weak var previewProvider: TableViewControllerPreviewProvider?
+    private var previewController: SessionDetailsPreview?
     private let emptyDataSetView = EmptyDataSetView.view()
     private let viewModel: FavoriteSessionsViewModelType
 
@@ -32,7 +34,9 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         // ViewModel's input
         let viewWillAppear = self.rx.viewWillAppear.mapToVoid().asDriverOnErrorJustComplete()
         let modelSelected = self.tableView.rx.modelSelected(SessionItemViewModel.self).asDriverOnErrorJustComplete()
-        let commitPreview = self.commitPreview.asDriverOnErrorJustComplete()
+        let commitPreview = self.previewController?.commitPreview.map({[unowned self] indexPath in
+            return self.source[indexPath]
+        }).asDriverOnErrorJustComplete() ?? Driver.empty()
         let selection = Driver.merge(modelSelected, commitPreview)
 
         let input = FavoriteSessionsViewModelInput(loading: viewWillAppear, selection: selection)
@@ -63,6 +67,22 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
             equal(\.topAnchor),
             equal(\.bottomAnchor)
         ])
+    }
+
+    private func registerForPreviewing() {
+        // Check for force touch feature, and add force touch/previewing capability.
+        if self.traitCollection.forceTouchCapability != .available {
+            return
+        }
+
+        let previewController = SessionDetailsPreview(source: {[weak self] indexPath in
+            guard let viewModel = self?.source[indexPath] else {
+                return nil
+            }
+            return self?.previewProvider?.previewController(forItem: viewModel)
+        })
+        self.registerForPreviewing(with: previewController, sourceView: self.tableView)
+        self.previewController = previewController
     }
 
     private var errorBinding: UIBindingObserver<FavoriteSessionsViewController, Error> {
