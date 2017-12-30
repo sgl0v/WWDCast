@@ -41,11 +41,11 @@ extension ApplicationComponentsFactory: ApplicationFlowCoordinatorDependencyProv
 
 extension ApplicationComponentsFactory: SearchFlowCoordinatorDependencyProvider {
 
-    func sessionsSearchController(delegate: SessionsSearchViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
+    func sessionsSearchController(navigator: SessionsSearchNavigator, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
         let useCase = self.useCaseProvider.sessionsSearchUseCase
-        let viewModel = SessionsSearchViewModel(useCase: useCase, delegate: delegate)
+        let viewModel = SessionsSearchViewModel(useCase: useCase, navigator: navigator)
         let view = SessionsSearchViewController(viewModel: viewModel)
-//        view.previewProvider = previewProvider
+        view.previewProvider = previewProvider
         return view
     }
 
@@ -55,8 +55,8 @@ extension ApplicationComponentsFactory: SearchFlowCoordinatorDependencyProvider 
         return SessionDetailsViewController(viewModel: viewModel)
     }
 
-    func filterController(_ filter: Filter, completion: @escaping FilterViewModelCompletion) -> UIViewController {
-        let viewModel = FilterViewModel(filter: filter, completion: completion)
+    func filterController() -> UIViewController {
+        let viewModel = FilterViewModel(filter: Filter(), completion: { _ in })
         let view = FilterViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: view)
         navigationController.navigationBar.tintColor = UIColor.black

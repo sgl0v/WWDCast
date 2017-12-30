@@ -46,7 +46,6 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         output.favorites.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
         output.empty.drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
         output.empty.not().drive(self.emptyDataSetView.rx.isHidden).addDisposableTo(self.disposeBag)
-        output.selectedItem.drive().addDisposableTo(disposeBag)
         output.error.drive(self.errorBinding).addDisposableTo(self.disposeBag)
     }
 
@@ -88,7 +87,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         self.previewController = previewController
     }
 
-    private var errorBinding: UIBindingObserver<FavoriteSessionsViewController, Error> {
+    private var errorBinding: UIBindingObserver<UIViewController, Error> {
         return UIBindingObserver(UIElement: self, binding: { (vc, error) in
             vc.showAlert(for: error)
         })

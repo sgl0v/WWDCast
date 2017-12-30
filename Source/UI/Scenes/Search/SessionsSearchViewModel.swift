@@ -13,47 +13,40 @@ import RxCocoa
 class SessionsSearchViewModel: SessionsSearchViewModelType {
 
     private let useCase: SessionsSearchUseCaseType
-    private weak var delegate: SessionsSearchViewModelDelegate?
-    private let filter = Variable(Filter())
-    private let activityIndicator = ActivityIndicator()
+    private weak var navigator: SessionsSearchNavigator?
+    private let disposeBag = DisposeBag()
 
-    init(useCase: SessionsSearchUseCaseType, delegate: SessionsSearchViewModelDelegate) {
+    init(useCase: SessionsSearchUseCaseType, navigator: SessionsSearchNavigator) {
         self.useCase = useCase
-        self.delegate = delegate
+        self.navigator = navigator
     }
 
     // MARK: SessionsSearchViewModelType
 
-    lazy var sessionSections: Driver<[SessionSectionViewModel]> = {
-        return Observable.combineLatest(self.useCase.sessions, self.filter.asObservable(), resultSelector: self.applyFilter)
-            .map(SessionSectionViewModelBuilder.build)
-            .asDriver(onErrorJustReturn: [])
-    }()
+    func transform(input: SessionsSearchViewModelInput) -> SessionsSearchViewModelOuput {
+        let errorTracker = ErrorTracker()
+        let activityIndicator = ActivityIndicator()
 
-    var isLoading: Driver<Bool> {
-        return self.activityIndicator.asDriver()
+        let sessionsTrigger = Driver.merge(input.loading.map({ "" }), input.search)
+        let sessions: Driver<[SessionSectionViewModel]> = sessionsTrigger.flatMapLatest {query in
+                self.useCase.search(with: query)
+                .map(SessionSectionViewModelBuilder.build)
+                .trackError(errorTracker)
+                .asDriverOnErrorJustComplete()
+        }
+
+        input.selection.map({ session in
+            return session.id
+        }).drive(onNext: self.navigator?.showDetails).addDisposableTo(self.disposeBag)
+
+        input.filter.drive(onNext: self.navigator?.showFilter).addDisposableTo(self.disposeBag)
+
+        let error = errorTracker.asDriver()
+        let loading = activityIndicator.asDriver()
+
+        return SessionsSearchViewModelOuput(sessions: sessions,
+                                            loading: loading,
+                                            error: error)
+
     }
-
-    func didSelect(item: SessionItemViewModel) {
-        self.delegate?.sessionsSearchViewModel(self, wantsToShowSessionDetailsWith: item.id)
-    }
-
-    func didTapFilter() {
-        self.delegate?.sessionsSearchViewModel(self, wantsToShow: self.filter.value, completion: {[unowned self] filter in
-            self.filter.value = filter
-        })
-    }
-
-    func didStartSearch(withQuery query: String) {
-        var filter = self.filter.value
-        filter.query = query
-        self.filter.value = filter
-    }
-
-    // MARK: Private
-
-    private func applyFilter(sessions: [Session], filter: Filter) -> [Session] {
-        return sessions.apply(filter)
-    }
-
 }

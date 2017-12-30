@@ -76,7 +76,6 @@
 		E74C025F1FE0973300D98A76 /* SessionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C020A1FE0973200D98A76 /* SessionDetailsViewModel.swift */; };
 		E74C02601FE0973300D98A76 /* SessionDetailsViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C020B1FE0973200D98A76 /* SessionDetailsViewModelType.swift */; };
 		E74C02611FE0973300D98A76 /* EmptyDataSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C020D1FE0973200D98A76 /* EmptyDataSetView.swift */; };
-		E74C02621FE0973300D98A76 /* EmptyDataSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C020E1FE0973200D98A76 /* EmptyDataSetViewModel.swift */; };
 		E74C02631FE0973300D98A76 /* FavoriteSessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C02101FE0973200D98A76 /* FavoriteSessionsViewController.swift */; };
 		E74C02641FE0973300D98A76 /* FavoriteSessionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C02111FE0973200D98A76 /* FavoriteSessionsViewModel.swift */; };
 		E74C02651FE0973300D98A76 /* FavoriteSessionsViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C02121FE0973200D98A76 /* FavoriteSessionsViewModelType.swift */; };
@@ -202,7 +201,6 @@
 		E74C020A1FE0973200D98A76 /* SessionDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewModel.swift; sourceTree = "<group>"; };
 		E74C020B1FE0973200D98A76 /* SessionDetailsViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewModelType.swift; sourceTree = "<group>"; };
 		E74C020D1FE0973200D98A76 /* EmptyDataSetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyDataSetView.swift; sourceTree = "<group>"; };
-		E74C020E1FE0973200D98A76 /* EmptyDataSetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyDataSetViewModel.swift; sourceTree = "<group>"; };
 		E74C02101FE0973200D98A76 /* FavoriteSessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewController.swift; sourceTree = "<group>"; };
 		E74C02111FE0973200D98A76 /* FavoriteSessionsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModel.swift; sourceTree = "<group>"; };
 		E74C02121FE0973200D98A76 /* FavoriteSessionsViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsViewModelType.swift; sourceTree = "<group>"; };
@@ -594,7 +592,6 @@
 			isa = PBXGroup;
 			children = (
 				E74C020D1FE0973200D98A76 /* EmptyDataSetView.swift */,
-				E74C020E1FE0973200D98A76 /* EmptyDataSetViewModel.swift */,
 			);
 			path = EmptyDataSet;
 			sourceTree = "<group>";
@@ -1013,7 +1010,6 @@
 				E74C02751FE0973300D98A76 /* TableViewController.swift in Sources */,
 				E74C023C1FE0973200D98A76 /* CoreDataSource.swift in Sources */,
 				E74C025A1FE0973300D98A76 /* FavoritesFlowCoordinator.swift in Sources */,
-				E74C02621FE0973300D98A76 /* EmptyDataSetViewModel.swift in Sources */,
 				E74C026B1FE0973300D98A76 /* FilterViewModelType.swift in Sources */,
 				E74C02531FE0973200D98A76 /* FavoriteSessionsUseCase.swift in Sources */,
 				E74C02481FE0973200D98A76 /* Resource.swift in Sources */,

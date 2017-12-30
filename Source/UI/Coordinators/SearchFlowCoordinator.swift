@@ -19,7 +19,7 @@ class SearchFlowCoordinator: FlowCoordinator {
     }
 
     func start() {
-        let searchController = self.dependencyProvider.sessionsSearchController(delegate: self, previewProvider: self)
+        let searchController = self.dependencyProvider.sessionsSearchController(navigator: self, previewProvider: self)
         self.rootController.setViewControllers([searchController], animated: false)
     }
 
@@ -36,21 +36,14 @@ extension SearchFlowCoordinator: TableViewControllerPreviewProvider {
 
 }
 
-extension SearchFlowCoordinator: SessionsSearchViewModelDelegate {
+extension SearchFlowCoordinator: SessionsSearchNavigator {
 
-    func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModelType, wantsToShow filter: Filter, completion: @escaping (Filter) -> Void) {
-        let controller = self.dependencyProvider.filterController(filter) {[unowned self] result in
-            self.rootController.dismiss(animated: true, completion: {
-                guard case .finished(let filter) = result else {
-                    return
-                }
-                completion(filter)
-            })
-        }
+    func showFilter() {
+        let controller = self.dependencyProvider.filterController()
         self.rootController.present(controller, animated: true, completion: nil)
     }
 
-    func sessionsSearchViewModel(_ viewModel: SessionsSearchViewModelType, wantsToShowSessionDetailsWith sessionId: String) {
+    func showDetails(forSession sessionId: String) {
         let controller = self.dependencyProvider.sessionDetailsController(sessionId)
         self.rootController.pushViewController(controller, animated: true)
     }

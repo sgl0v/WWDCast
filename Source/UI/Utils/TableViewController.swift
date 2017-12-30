@@ -10,17 +10,6 @@ import UIKit
 import RxSwift
 import RxDataSources
 
-/// Implement the methods of this protocol to respond, with a preview view controller
-/// to the user pressing a view object on the screen of a device that supports 3D Touch.
-protocol TableViewControllerPreviewProvider: class {
-
-    /// Creates and returns preview controller for specified item
-    ///
-    /// - parameter item: the pressed item
-    /// - returns: newly created preview controller
-    func previewController<Item>(forItem item: Item) -> UIViewController?
-}
-
 class TableViewController<SectionViewModel: SectionModelType & CustomStringConvertible, Cell: UITableViewCell>:
     UIViewController where
     Cell: BindableView & NibProvidable & ReusableView, Cell.ViewModel == SectionViewModel.Item {
@@ -71,61 +60,6 @@ class TableViewController<SectionViewModel: SectionModelType & CustomStringConve
         }).addDisposableTo(self.disposeBag)
     }
 
-//    func registerForPreviewing() {
-//        // Check for force touch feature, and add force touch/previewing capability.
-//        if self.traitCollection.forceTouchCapability != .available {
-//            return
-//        }
-//        // Register for `UIViewControllerPreviewingDelegate` to enable "Peek" and "Pop".
-//        self.registerForPreviewing(with: self, sourceView: self.tableView)
-//
-////        var previewItem: SectionViewModel.Item?
-////        let viewControllerForLocation = self.rx.sentMessage(#selector(UIViewControllerPreviewingDelegate.previewingContext(_:viewControllerForLocation:))).asDriverOnErrorJustComplete()
-////        let viewControllerToCommit = self.rx.sentMessage(#selector(UIViewControllerPreviewingDelegate.previewingContext(_:commit:))).asDriverOnErrorJustComplete()
-////
-////        viewControllerForLocation.drive(previewingControllerBinding).addDisposableTo(self.disposeBag)
-////    }
-////
-////    var previewingControllerBinding: UIBindingObserver<UIViewController, SessionItemViewModel> {
-////        return UIBindingObserver(UIElement: self, binding: { (vc, viewModel) in
-////
-////        })
-//    }
-
-    // MARK: UIViewControllerPreviewingDelegate
-
-//    weak var previewProvider: TableViewControllerPreviewProvider?
-//    var commitPreview: Observable<SectionViewModel.Item> {
-//        return _commitPreview.asObservable()
-//    }
-//    private var previewItem: SectionViewModel.Item?
-//    private let _commitPreview = PublishSubject<SectionViewModel.Item>()
-//
-//    /// Create a previewing view controller to be shown at "Peek".
-//    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-//        // Obtain the index path and the cell that was pressed.
-//        guard let indexPath = self.tableView.indexPathForRow(at: location),
-//            let cell = self.tableView.cellForRow(at: indexPath),
-//            let viewModel = try? self.source.model(at: indexPath),
-//            let previewItem = viewModel as? SectionViewModel.Item else {
-//                return nil
-//        }
-//        // Set the source rect to the cell frame, so surrounding elements are blurred.
-//        previewingContext.sourceRect = cell.frame
-//
-//        self.previewItem = previewItem
-//        // Create a detail view controller and set its properties.
-//        return self.previewProvider?.previewController(forItem: previewItem)
-//    }
-//
-//    /// Present the view controller for the "Pop" action.
-//    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-//        guard let previewItem = self.previewItem else {
-//            return
-//        }
-//        self._commitPreview.onNext(previewItem)
-//    }
-
 }
 
 class SessionDetailsPreview: NSObject {
@@ -140,6 +74,17 @@ class SessionDetailsPreview: NSObject {
     init(source: @escaping DataSource) {
         self.source = source
     }
+}
+
+/// Implement the methods of this protocol to respond, with a preview view controller
+/// to the user pressing a view object on the screen of a device that supports 3D Touch.
+protocol TableViewControllerPreviewProvider: class {
+
+    /// Creates and returns preview controller for specified item
+    ///
+    /// - parameter item: the pressed item
+    /// - returns: newly created preview controller
+    func previewController<Item>(forItem item: Item) -> UIViewController?
 }
 
 extension SessionDetailsPreview: UIViewControllerPreviewingDelegate {

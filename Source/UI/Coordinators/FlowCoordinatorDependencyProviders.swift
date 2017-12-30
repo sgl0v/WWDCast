@@ -16,13 +16,13 @@ protocol ApplicationFlowCoordinatorDependencyProvider: class {
 
 protocol SearchFlowCoordinatorDependencyProvider: class {
     /// Creates SessionsSearchViewController to browse and search WWDC sessions
-    func sessionsSearchController(delegate: SessionsSearchViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController
+    func sessionsSearchController(navigator: SessionsSearchNavigator, previewProvider: TableViewControllerPreviewProvider) -> UIViewController
 
     // Creates SessionDetailsViewController to show the details of the session with specified identifier
     func sessionDetailsController(_ sessionId: String) -> UIViewController
 
     // Creates FilterViewController to filter the search results
-    func filterController(_ filter: Filter, completion: @escaping FilterViewModelCompletion) -> UIViewController
+    func filterController() -> UIViewController
 }
 
 protocol FavoritesFlowCoordinatorDependencyProvider: class {

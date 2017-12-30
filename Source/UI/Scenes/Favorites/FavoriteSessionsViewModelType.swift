@@ -20,8 +20,6 @@ struct FavoriteSessionsViewModelInput {
 struct FavoriteSessionsViewModelOutput {
     // Favorite WWDC sessions
     let favorites: Driver<[SessionSectionViewModel]>
-    // Favorite WWDC sessions
-    let selectedItem: Driver<SessionItemViewModel>
     // Emits when there are no no favorite sessions
     let empty: Driver<Bool>
     /// Emits when a signup error has occurred and a message should be displayed.
@@ -29,6 +27,10 @@ struct FavoriteSessionsViewModelOutput {
 }
 
 protocol FavoriteSessionsViewModelType: class {
+    /// Trandforms input state to the output state
+    ///
+    /// - Parameter input: input state
+    /// - Returns: output state
     func transform(input: FavoriteSessionsViewModelInput) -> FavoriteSessionsViewModelOutput
 }
 

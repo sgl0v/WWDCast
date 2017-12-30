@@ -13,6 +13,8 @@ import RxDataSources
 
 class SessionsSearchViewController: TableViewController<SessionSectionViewModel, SessionTableViewCell> {
 
+    weak var previewProvider: TableViewControllerPreviewProvider?
+    private var previewController: SessionDetailsPreview?
     private var loadingIndicator: UIActivityIndicatorView!
     private var filterButton: UIBarButtonItem!
     private let viewModel: SessionsSearchViewModelType
@@ -22,16 +24,12 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.viewModel = viewModel
         super.init()
         self.rx.viewDidLoad.bind(onNext: self.configureUI).addDisposableTo(self.disposeBag)
-        self.rx.viewDidLoad.map(self.viewModel).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
+        self.rx.viewDidLoad.map(viewModel).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-//    override func commitPreview(for item: SessionItemViewModel) {
-////        self.viewModel.didSelect(item: item)
-//    }
 
     // MARK: Private
 
@@ -47,18 +45,27 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
     }
 
     private func bind(to viewModel: SessionsSearchViewModelType) {
-
         // ViewModel's input
-        self.filterButton.rx.tap.bind(onNext: viewModel.didTapFilter).addDisposableTo(self.disposeBag)
-        self.searchQuery.drive(onNext: viewModel.didStartSearch).addDisposableTo(self.disposeBag)
-        self.tableView.rx.modelSelected(SessionItemViewModel.self)
-            .bind(onNext: viewModel.didSelect)
-            .addDisposableTo(self.disposeBag)
+        let viewWillAppear = self.rx.viewWillAppear.mapToVoid().asDriverOnErrorJustComplete()
+        let modelSelected = self.tableView.rx.modelSelected(SessionItemViewModel.self).asDriverOnErrorJustComplete()
+        let commitPreview = self.previewController?.commitPreview.map({[unowned self] indexPath in
+            return self.source[indexPath]
+        }).asDriverOnErrorJustComplete() ?? Driver.empty()
+        let selection = Driver.merge(modelSelected, commitPreview)
+        let filter = self.filterButton.rx.tap.asDriverOnErrorJustComplete()
+        let search = self.searchQuery
+
+        let input = SessionsSearchViewModelInput(loading: viewWillAppear,
+                                                 selection: selection,
+                                                 filter: filter,
+                                                 search: search)
+        let output = viewModel.transform(input: input)
 
         // ViewModel's output
-        viewModel.sessionSections.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
-        viewModel.isLoading.drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
-        viewModel.isLoading.drive(self.loadingIndicator.rx.isAnimating).addDisposableTo(self.disposeBag)
+        output.sessions.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
+        output.loading.drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
+        output.loading.drive(self.loadingIndicator.rx.isAnimating).addDisposableTo(self.disposeBag)
+        output.error.drive(self.errorBinding).addDisposableTo(self.disposeBag)
     }
 
     private func configureUI() {
@@ -69,7 +76,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.title = NSLocalizedString("WWDCast", comment: "Session search view title")
 
         self.setClearsSelectionOnViewWillAppear()
-//        self.registerForPreviewing()
+        self.registerForPreviewing()
 
         self.view.backgroundColor = UIColor.white
 
@@ -97,6 +104,12 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         ])
     }
 
+    private var errorBinding: UIBindingObserver<UIViewController, Error> {
+        return UIBindingObserver(UIElement: self, binding: { (vc, error) in
+            vc.showAlert(for: error)
+        })
+    }
+
     private var searchQuery: Driver<String> {
         let cancel: Observable<String> = self.searchBar.rx.delegate.methodInvoked(#selector(UISearchBarDelegate.searchBarCancelButtonClicked(_:))).map({ _ in return "" })
 
@@ -106,6 +119,22 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
             .throttle(0.1, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .asDriver(onErrorJustReturn: "")
+    }
+
+    private func registerForPreviewing() {
+        // Check for force touch feature, and add force touch/previewing capability.
+        if self.traitCollection.forceTouchCapability != .available {
+            return
+        }
+
+        let previewController = SessionDetailsPreview(source: {[weak self] indexPath in
+            guard let viewModel = self?.source[indexPath] else {
+                return nil
+            }
+            return self?.previewProvider?.previewController(forItem: viewModel)
+        })
+        self.registerForPreviewing(with: previewController, sourceView: self.tableView)
+        self.previewController = previewController
     }
 
 }
