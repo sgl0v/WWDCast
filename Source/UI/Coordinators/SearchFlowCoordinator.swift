@@ -39,7 +39,7 @@ extension SearchFlowCoordinator: TableViewControllerPreviewProvider {
 extension SearchFlowCoordinator: SessionsSearchNavigator {
 
     func showFilter() {
-        let controller = self.dependencyProvider.filterController()
+        let controller = self.dependencyProvider.filterController(navigator: self)
         self.rootController.present(controller, animated: true, completion: nil)
     }
 
@@ -48,4 +48,11 @@ extension SearchFlowCoordinator: SessionsSearchNavigator {
         self.rootController.pushViewController(controller, animated: true)
     }
 
+}
+
+extension SearchFlowCoordinator: FilterNavigator {
+
+    func dismiss() {
+        self.rootController.dismiss(animated: true, completion: nil)
+    }
 }

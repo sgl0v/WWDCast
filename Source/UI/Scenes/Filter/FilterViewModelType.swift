@@ -10,23 +10,30 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-enum FilterViewModelCompletionResult {
-    case cancelled, finished(Filter)
+struct FilterViewModelInput {
+    /// triggers a screen's content loading
+    let loading: Driver<Void>
+    /// called when the user would like to close the filter screen
+    let cancel: Driver<Void>
+    /// called when the user would like to apply filter and close the filter screen
+    let apply: Driver<Void>
 }
-typealias FilterViewModelCompletion = (FilterViewModelCompletionResult) -> Void
+
+struct FilterViewModelOutput {
+    /// The filter sections
+    let filterSections: Driver<[FilterSectionViewModel]>
+}
+
+protocol FilterNavigator: class {
+    /// Presents the filter screen
+    func dismiss()
+}
 
 /// A `FilterViewModelType` defines viewModel for the filter screen.
 protocol FilterViewModelType: class {
-
-    /// INPUT
-
-    /// called when the user would like to close the filter screen
-    func didCancel()
-    /// called when the user would like to apply filter and close the filter screen
-    func didApplyFilter()
-
-    /// OUTPUT
-
-    /// The filter sections
-    var filterSections: Driver<[FilterSectionViewModel]> { get }
+    /// Trandforms input state to the output state
+    ///
+    /// - Parameter input: input state
+    /// - Returns: output state
+    func transform(input: FilterViewModelInput) -> FilterViewModelOutput
 }

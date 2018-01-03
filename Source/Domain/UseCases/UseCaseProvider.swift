@@ -18,16 +18,23 @@ final class UseCaseProvider {
         self.sessionsDataSource = sessionsDataSource
     }
 
-    lazy var sessionsSearchUseCase: SessionsSearchUseCaseType = {
-        return SessionsSearchUseCase(dataSource: self.sessionsDataSource)
-    }()
+    var sessionsSearchUseCase: SessionsSearchUseCaseType {
+        return self.searchAndFilterUseCase
+    }
 
     lazy var favoriteSessionsUseCase: FavoriteSessionsUseCaseType = {
         return FavoriteSessionsUseCase(dataSource: self.sessionsDataSource)
     }()
 
+    var filterUseCase: FilterUseCaseType {
+        return self.searchAndFilterUseCase
+    }
+
     func sessionDetailsUseCase(sessionId: String) -> SessionsDetailsUseCaseType {
         return SessionsDetailsUseCase(sessionId: sessionId, googleCast: self.googleCastService, dataSource: self.sessionsDataSource)
     }
 
+    // MARK: Private
+
+    lazy var searchAndFilterUseCase = SessionsSearchUseCase(dataSource: self.sessionsDataSource)
 }

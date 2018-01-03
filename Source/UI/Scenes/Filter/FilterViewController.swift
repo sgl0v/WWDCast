@@ -22,7 +22,7 @@ class FilterViewController: UIViewController {
     init(viewModel: FilterViewModel) {
         super.init(nibName: nil, bundle: nil)
         self.rx.viewDidLoad.bind(onNext: self.configureUI).addDisposableTo(self.disposeBag)
-        self.rx.viewDidLoad.flatMap(Observable.just(viewModel)).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
+        self.rx.viewDidLoad.map(viewModel).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -33,14 +33,15 @@ class FilterViewController: UIViewController {
 
     private func bind(to viewModel: FilterViewModel) {
         // ViewModel's input
-        self.cancelButton.rx.tap.subscribe(onNext: viewModel.didCancel).addDisposableTo(self.disposeBag)
-        self.doneButton.rx.tap.subscribe(onNext: viewModel.didApplyFilter).addDisposableTo(self.disposeBag)
-        self.tableView.rx.itemSelected.subscribe(onNext: {[unowned self] indexPath in
-            self.tableView.deselectRow(at: indexPath, animated: true)
-        }).addDisposableTo(self.disposeBag)
+        let viewWillAppear = self.rx.viewWillAppear.mapToVoid().asDriverOnErrorJustComplete()
+        let cancel = self.cancelButton.rx.tap.mapToVoid().asDriverOnErrorJustComplete()
+        let apply = self.doneButton.rx.tap.mapToVoid().asDriverOnErrorJustComplete()
+
+        let input = FilterViewModelInput(loading: viewWillAppear, cancel: cancel, apply: apply)
+        let output = viewModel.transform(input: input)
 
         // ViewModel's output
-        viewModel.filterSections.drive(self.tableView.rx.items(dataSource: self.dataSource)).addDisposableTo(self.disposeBag)
+        output.filterSections.drive(self.tableView.rx.items(dataSource: self.dataSource)).addDisposableTo(self.disposeBag)
     }
 
     lazy var dataSource: RxTableViewSectionedReloadDataSource<SectionViewModel> = {
@@ -71,11 +72,18 @@ class FilterViewController: UIViewController {
             self.tableView.deselectRow(at: indexPath, animated: true)
         }).addDisposableTo(self.disposeBag)
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.setClearsSelectionOnViewWillAppear()
 
         self.cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
         self.doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
         self.navigationItem.leftBarButtonItem = self.cancelButton
         self.navigationItem.rightBarButtonItem = self.doneButton
+    }
+
+    func setClearsSelectionOnViewWillAppear() {
+        self.tableView.rx.itemSelected.asDriver().drive(onNext: {[unowned self] indexPath in
+            self.tableView.deselectRow(at: indexPath, animated: true)
+        }).addDisposableTo(self.disposeBag)
     }
 
 }

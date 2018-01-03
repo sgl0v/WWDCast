@@ -55,8 +55,8 @@ extension ApplicationComponentsFactory: SearchFlowCoordinatorDependencyProvider 
         return SessionDetailsViewController(viewModel: viewModel)
     }
 
-    func filterController() -> UIViewController {
-        let viewModel = FilterViewModel(filter: Filter(), completion: { _ in })
+    func filterController(navigator: FilterNavigator) -> UIViewController {
+        let viewModel = FilterViewModel(useCase: self.useCaseProvider.filterUseCase, navigator: navigator)
         let view = FilterViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: view)
         navigationController.navigationBar.tintColor = UIColor.black

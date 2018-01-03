@@ -14,9 +14,6 @@ protocol SessionsSearchUseCaseType {
     /// The sequence of WWDC Sessions
     var sessions: Observable<[Session]> { get }
 
-    /// The session search filter
-    var filter: Observable<Filter> { get }
-
     /// Runs session search with a query string
     func search(with query: String) -> Observable<[Session]>
 }
@@ -24,15 +21,15 @@ protocol SessionsSearchUseCaseType {
 class SessionsSearchUseCase: SessionsSearchUseCaseType {
 
     private let dataSource: AnyDataSource<Session>
-    private let _filter = Variable(Filter())
+    fileprivate let _filter = Variable(Filter())
 
     var filter: Observable<Filter> {
-        return _filter.asObservable()
+        return _filter.asObservable().distinctUntilChanged()
     }
 
     lazy var sessions: Observable<[Session]> = {
         let sessions = self.dataSource.allObjects()
-        return Observable.combineLatest(sessions, self.filter.asObservable(), resultSelector: self.applyFilter)
+        return Observable.combineLatest(sessions, self.filter, resultSelector: self.applyFilter)
     }()
 
     init(dataSource: AnyDataSource<Session>) {
@@ -40,14 +37,35 @@ class SessionsSearchUseCase: SessionsSearchUseCaseType {
     }
 
     func search(with query: String) -> Observable<[Session]> {
-        var filter = self._filter.value
-        filter.query = query
-        self._filter.value = filter
-        return sessions
+        let filter = self._filter.value
+        self._filter.value = Filter(query: query, years: filter.years, platforms: filter.platforms, tracks: filter.tracks)
+        NSLog("%@", self._filter.value.description)
+        return self.sessions
     }
 
     private func applyFilter(sessions: [Session], filter: Filter) -> [Session] {
         return sessions.apply(filter)
     }
 
+}
+
+extension SessionsSearchUseCase: FilterUseCaseType {
+
+    func filter(with years: [Session.Year]) {
+        let filter = self._filter.value
+        self._filter.value = Filter(query: filter.query, years: years, platforms: filter.platforms, tracks: filter.tracks)
+        NSLog("%@", self._filter.value.description)
+    }
+
+    func filter(with platforms: Session.Platform) {
+        let filter = self._filter.value
+        self._filter.value = Filter(query: filter.query, years: filter.years, platforms: platforms, tracks: filter.tracks)
+        NSLog("%@", self._filter.value.description)
+    }
+
+    func filter(with tracks: [Session.Track]) {
+        let filter = self._filter.value
+        self._filter.value = Filter(query: filter.query, years: filter.years, platforms: filter.platforms, tracks: tracks)
+        NSLog("%@", self._filter.value.description)
+    }
 }

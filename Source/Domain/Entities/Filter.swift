@@ -10,11 +10,20 @@ import Foundation
 import RxSwift
 
 struct Filter {
-    var query = ""
-    var years = Session.Year.all
-    var platforms = Session.Platform.all
-    var tracks = Session.Track.all
-    var eventTypes = Session.EventType.all
+    let query: String
+    let years: [Session.Year]
+    let platforms: Session.Platform
+    let tracks: [Session.Track]
+    let eventTypes: [Session.EventType]
+
+    init(query: String = "", years: [Session.Year] = Session.Year.all, platforms: Session.Platform = Session.Platform.all,
+         tracks: [Session.Track] = Session.Track.all, eventTypes: [Session.EventType] = Session.EventType.all) {
+        self.query = query
+        self.years = years
+        self.platforms = platforms
+        self.tracks = tracks
+        self.eventTypes = eventTypes
+    }
 }
 
 extension Filter: CustomStringConvertible {

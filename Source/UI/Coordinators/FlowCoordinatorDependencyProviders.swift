@@ -22,7 +22,7 @@ protocol SearchFlowCoordinatorDependencyProvider: class {
     func sessionDetailsController(_ sessionId: String) -> UIViewController
 
     // Creates FilterViewController to filter the search results
-    func filterController() -> UIViewController
+    func filterController(navigator: FilterNavigator) -> UIViewController
 }
 
 protocol FavoritesFlowCoordinatorDependencyProvider: class {

@@ -25,6 +25,7 @@
 		E72A1D371E68C761005A3EAE /* SessionItemViewModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1D231E68AF91005A3EAE /* SessionItemViewModel+Tests.swift */; };
 		E72A1D381E68C765005A3EAE /* SearchFlowCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1D281E68B054005A3EAE /* SearchFlowCoordinatorTests.swift */; };
 		E72A1D3B1E68C76B005A3EAE /* SessionsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1D241E68AF91005A3EAE /* SessionsLoader.swift */; };
+		E7416E1E1FFBC8190062B812 /* FilterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7416E1D1FFBC8190062B812 /* FilterUseCase.swift */; };
 		E74C022F1FE0973200D98A76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01C91FE0973200D98A76 /* AppDelegate.swift */; };
 		E74C02301FE0973200D98A76 /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01CB1FE0973200D98A76 /* RxExtensions.swift */; };
 		E74C02311FE0973200D98A76 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01CE1FE0973200D98A76 /* CoreDataController.swift */; };
@@ -150,6 +151,7 @@
 		E72A1D2B1E68B054005A3EAE /* SessionsSearchViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchViewModelTests.swift; sourceTree = "<group>"; };
 		E72A1D2F1E68C13A005A3EAE /* SessionDetailsViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		E72A1D321E68C45E005A3EAE /* Session+Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Tests.swift"; sourceTree = "<group>"; };
+		E7416E1D1FFBC8190062B812 /* FilterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUseCase.swift; sourceTree = "<group>"; };
 		E74C01C91FE0973200D98A76 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E74C01CB1FE0973200D98A76 /* RxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
 		E74C01CE1FE0973200D98A76 /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 				E74C01FA1FE0973200D98A76 /* SessionDetailsUseCase.swift */,
 				E74C01FB1FE0973200D98A76 /* SessionsSearchUseCase.swift */,
 				E74C01FC1FE0973200D98A76 /* UseCaseProvider.swift */,
+				E7416E1D1FFBC8190062B812 /* FilterUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1014,6 +1017,7 @@
 				E74C02531FE0973200D98A76 /* FavoriteSessionsUseCase.swift in Sources */,
 				E74C02481FE0973200D98A76 /* Resource.swift in Sources */,
 				E74C02511FE0973200D98A76 /* Filter.swift in Sources */,
+				E7416E1E1FFBC8190062B812 /* FilterUseCase.swift in Sources */,
 				E74C02791FE0973300D98A76 /* UITableView+Common.swift in Sources */,
 				E74C02681FE0973300D98A76 /* FilterTableViewCell.swift in Sources */,
 				E74C02781FE0973300D98A76 /* UIImageView+Rx.swift in Sources */,

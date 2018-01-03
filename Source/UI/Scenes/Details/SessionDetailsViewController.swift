@@ -36,7 +36,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
 
     private func configureUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.castBarButtonItem()
-        self.header.text = NSLocalizedString("Session Details", comment: "Session details view title")
+        self.title = NSLocalizedString("Session Details", comment: "Session details view title")
     }
 
     private func bind(to viewModel: SessionDetailsViewModelType) {
@@ -62,6 +62,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
                 .asObservable()
                 .bind(to: vc.image.rx.imageURL)
                 .addDisposableTo(vc.disposeBag)
+            vc.header.text = viewModel.title
             vc.summary.text = viewModel.summary
             vc.subtitle.text = viewModel.subtitle
             vc.favoriteButton.isSelected = viewModel.favorite
