@@ -39,7 +39,7 @@ class SessionsSearchUseCase: SessionsSearchUseCaseType {
     func search(with query: String) -> Observable<[Session]> {
         let filter = self._filter.value
         self._filter.value = Filter(query: query, years: filter.years, platforms: filter.platforms, tracks: filter.tracks)
-        NSLog("%@", self._filter.value.description)
+        Log.debug("\(self._filter.value)")
         return self.sessions
     }
 
@@ -54,18 +54,18 @@ extension SessionsSearchUseCase: FilterUseCaseType {
     func filter(with years: [Session.Year]) {
         let filter = self._filter.value
         self._filter.value = Filter(query: filter.query, years: years, platforms: filter.platforms, tracks: filter.tracks)
-        NSLog("%@", self._filter.value.description)
+        Log.debug("\(self._filter.value)")
     }
 
     func filter(with platforms: Session.Platform) {
         let filter = self._filter.value
         self._filter.value = Filter(query: filter.query, years: filter.years, platforms: platforms, tracks: filter.tracks)
-        NSLog("%@", self._filter.value.description)
+        Log.debug("\(self._filter.value)")
     }
 
     func filter(with tracks: [Session.Track]) {
         let filter = self._filter.value
         self._filter.value = Filter(query: filter.query, years: filter.years, platforms: filter.platforms, tracks: tracks)
-        NSLog("%@", self._filter.value.description)
+        Log.debug("\(self._filter.value)")
     }
 }

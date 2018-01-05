@@ -16,6 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        // configure the logging service, that is available all over the project
+        let consoleDestination = ConsoleDestination()
+        Log.addDestination(consoleDestination)
+
         let window =  UIWindow(frame: UIScreen.main.bounds)
         self.appCoordinator = ApplicationFlowCoordinator(window: window, dependencyProvider: ApplicationComponentsFactory())
         self.appCoordinator.start()

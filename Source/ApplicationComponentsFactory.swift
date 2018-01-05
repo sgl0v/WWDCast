@@ -11,17 +11,18 @@ import UIKit
 final class ApplicationComponentsFactory {
 
     fileprivate let googleCastService = GoogleCastService(applicationID: Environment.googleCastAppID)
-
-    fileprivate lazy var sessionsDataSource: AnyDataSource<Session> = {
-
+    fileprivate let networkService = NetworkService()
+    fileprivate var reachabilityService: ReachabilityService = {
         guard let reachability = ReachabilityService() else {
             fatalError("Failed to create reachability service!")
         }
-        let network = NetworkService()
+        return reachability
+    }()
 
+    fileprivate lazy var sessionsDataSource: AnyDataSource<Session> = {
         let coreDataController = CoreDataController(name: "WWDCast")
         let cacheDataSource: AnyDataSource<Session> = AnyDataSource(dataSource: CoreDataSource<SessionManagedObject>(coreDataController: coreDataController))
-        let networkDataSource: AnyDataSource<Session> = AnyDataSource(dataSource: NetworkDataSource(network: network, reachability: reachability))
+        let networkDataSource: AnyDataSource<Session> = AnyDataSource(dataSource: NetworkDataSource(network: self.networkService, reachability: self.reachabilityService))
         return AnyDataSource(dataSource: CompositeDataSource(networkDataSource: networkDataSource, coreDataSource: cacheDataSource))
     }()
 

@@ -14,7 +14,7 @@ class SessionsBuilder: EntityBuilderType {
     typealias EntityType = [Session]
 
     static func build(_ json: JSON) throws -> EntityType {
-//        print(json)
+        Log.verbose(json)
         return try json["contents"].arrayValue.filter({ sessionJSON in
             let media = sessionJSON["media"]
             let videoUrl = media["tvOShls"].string ?? media["downloadHD"].string
