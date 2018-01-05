@@ -28,7 +28,10 @@ final class CompositeDataSource<T: Comparable>: DataSourceType {
     lazy var _allObjects: Observable<[Item]> = {
         let cachedObjects = self.coreDataSource.allObjects()
         let loadedObjects = self.networkDataSource.allObjects().flatMap(self.coreDataSource.add)
-        return Observable.of(cachedObjects, loadedObjects).merge().sort().shareReplayLatestWhileConnected()
+        return Observable.of(cachedObjects, loadedObjects).merge().sort()
+            .subscribeOn(Scheduler.backgroundWorkScheduler)
+            .observeOn(Scheduler.mainScheduler)
+            .shareReplayLatestWhileConnected()
     }()
 
     func get(byId id: String) -> Observable<T> {

@@ -29,6 +29,7 @@
 		E7416E831FFFAAE90062B812 /* ConsoleDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7416E801FFFAAE90062B812 /* ConsoleDestination.swift */; };
 		E7416E841FFFAAE90062B812 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7416E811FFFAAE90062B812 /* Log.swift */; };
 		E7416E851FFFAAE90062B812 /* LogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7416E821FFFAAE90062B812 /* LogDestination.swift */; };
+		E7416E8E1FFFE6370062B812 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7416E8D1FFFE6370062B812 /* ServicesProvider.swift */; };
 		E74C022F1FE0973200D98A76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01C91FE0973200D98A76 /* AppDelegate.swift */; };
 		E74C02301FE0973200D98A76 /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01CB1FE0973200D98A76 /* RxExtensions.swift */; };
 		E74C02311FE0973200D98A76 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01CE1FE0973200D98A76 /* CoreDataController.swift */; };
@@ -158,6 +159,7 @@
 		E7416E801FFFAAE90062B812 /* ConsoleDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleDestination.swift; sourceTree = "<group>"; };
 		E7416E811FFFAAE90062B812 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		E7416E821FFFAAE90062B812 /* LogDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogDestination.swift; sourceTree = "<group>"; };
+		E7416E8D1FFFE6370062B812 /* ServicesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesProvider.swift; sourceTree = "<group>"; };
 		E74C01C91FE0973200D98A76 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E74C01CB1FE0973200D98A76 /* RxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
 		E74C01CE1FE0973200D98A76 /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 				E74C01EA1FE0973200D98A76 /* Reachability */,
 				E7416E7F1FFFAAE90062B812 /* Logger */,
 				E74C01ED1FE0973200D98A76 /* Scheduler.swift */,
+				E7416E8D1FFFE6370062B812 /* ServicesProvider.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -773,7 +776,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Maksym Shcheglov";
 				TargetAttributes = {
 					B6F929BA1D2A5DD5009E4B83 = {
@@ -1007,6 +1010,7 @@
 				E74C02541FE0973200D98A76 /* SessionDetailsUseCase.swift in Sources */,
 				E74C027E1FE0973300D98A76 /* Environment.swift in Sources */,
 				E74C02461FE0973200D98A76 /* NetworkService.swift in Sources */,
+				E7416E8E1FFFE6370062B812 /* ServicesProvider.swift in Sources */,
 				E74C026E1FE0973300D98A76 /* SessionSectionViewModelBuilder.swift in Sources */,
 				E74C02351FE0973200D98A76 /* NSManagedObjectContext+Rx.swift in Sources */,
 				E74C02671FE0973300D98A76 /* FilterSectionViewModel.swift in Sources */,
