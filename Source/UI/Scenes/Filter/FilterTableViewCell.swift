@@ -11,8 +11,6 @@ import RxSwift
 
 class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvidable {
 
-    var disposeBag: DisposeBag?
-
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layoutMargins = UIEdgeInsets.zero
@@ -23,25 +21,25 @@ class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvi
     typealias ViewModel = FilterItemViewModel
 
     func bind(to viewModel: ViewModel) {
-        let disposeBag = DisposeBag()
-        self.onPrepareForReuse.subscribe(onNext: {[unowned self] in
-            self.disposeBag = nil
-            self.accessoryView = nil
-            self.accessoryType = .none
-            }).addDisposableTo(disposeBag)
-
         self.textLabel?.text = viewModel.title
-
-        if case .switch = viewModel.style {
-            let switchButton = UISwitch()
-            switchButton.isUserInteractionEnabled = false
-            switchButton.isOn = viewModel.selected
-            self.accessoryView = switchButton
-        } else {
+        switch viewModel.style {
+        case .switch:
+            self.accessoryType = .none
+            self.switchAccessoryView.isOn = viewModel.selected
+        case .checkmark:
+            self.accessoryView = nil
             self.accessoryType = viewModel.selected ? .checkmark : .none
         }
+    }
 
-        self.disposeBag = disposeBag
+    private var switchAccessoryView: UISwitch {
+        if let switchButton = self.accessoryView as? UISwitch {
+            return switchButton
+        }
+        let switchButton = UISwitch()
+        switchButton.isUserInteractionEnabled = false
+        self.accessoryView = switchButton
+        return switchButton
     }
 
 }

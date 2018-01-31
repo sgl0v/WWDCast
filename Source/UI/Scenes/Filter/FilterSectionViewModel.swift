@@ -11,21 +11,18 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-struct FilterSectionsViewModel {
-    let yearsFilterViewModel: FilterSectionViewModel
-    let platformsFilterViewModel: FilterSectionViewModel
-    let tracksFilterViewModel: FilterSectionViewModel
-    var sections: [FilterSectionViewModel] {
-        return [self.yearsFilterViewModel, self.platformsFilterViewModel, self.tracksFilterViewModel]
-    }
+enum FilterSectionType: Int {
+    case year, platform, tracks
 }
 
-class FilterSectionViewModel: SectionModelType {
+struct FilterSectionViewModel: SectionModelType {
 
+    let type: FilterSectionType
     let title: String
     let items: [FilterItemViewModel]
 
-    init(title: String, items: [FilterItemViewModel]) {
+    init(type: FilterSectionType, title: String, items: [FilterItemViewModel]) {
+        self.type = type
         self.title = title
         self.items = items
     }
@@ -33,7 +30,8 @@ class FilterSectionViewModel: SectionModelType {
     // MARK: SectionModelType
     typealias Item = FilterItemViewModel
 
-    required init(original: FilterSectionViewModel, items: [FilterItemViewModel]) {
+    init(original: FilterSectionViewModel, items: [FilterItemViewModel]) {
+        self.type = original.type
         self.title = original.title
         self.items = items
     }

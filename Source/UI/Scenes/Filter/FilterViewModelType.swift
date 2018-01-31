@@ -23,7 +23,7 @@ struct FilterViewModelInput {
 
 struct FilterViewModelOutput {
     /// The filter sections
-    let filterSections: Driver<FilterSectionsViewModel>
+    let filterSections: Driver<[FilterSectionViewModel]>
 }
 
 protocol FilterNavigator: class {

@@ -11,10 +11,10 @@ import RxSwift
 
 protocol SessionsDetailsUseCaseType {
 
-    /// The list of currently available google cast devices
+    /// Currently available google cast devices
     var devices: Observable<[GoogleCastDevice]> { get }
 
-    /// Provides session for specified identifier.
+    /// The current session
     var session: Observable<Session> { get }
 
     /// Starts the session playback on specified device

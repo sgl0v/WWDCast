@@ -42,9 +42,7 @@ class FilterViewController: UIViewController {
         let output = viewModel.transform(input: input)
 
         // ViewModel's output
-        output.filterSections.map({ filterSections in
-            return filterSections.sections
-        }).drive(self.tableView.rx.items(dataSource: self.dataSource)).addDisposableTo(self.disposeBag)
+        output.filterSections.drive(self.tableView.rx.items(dataSource: self.dataSource)).addDisposableTo(self.disposeBag)
     }
 
     lazy var dataSource: RxTableViewSectionedReloadDataSource<SectionViewModel> = {

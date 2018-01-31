@@ -109,6 +109,8 @@
 		E74C027C1FE0973300D98A76 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C022C1FE0973200D98A76 /* UIViewController+Rx.swift */; };
 		E74C027D1FE0973300D98A76 /* ApplicationComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C022D1FE0973200D98A76 /* ApplicationComponentsFactory.swift */; };
 		E74C027E1FE0973300D98A76 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C022E1FE0973200D98A76 /* Environment.swift */; };
+		E7811EAD2022673F0044533A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7811EAC2022673F0044533A /* Repository.swift */; };
+		E7811EAF2022693C0044533A /* FilterSectionsViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7811EAE2022693C0044533A /* FilterSectionsViewModelBuilder.swift */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
 		E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */; };
 		E7D76F141F588245005C95DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7D76F131F588245005C95DB /* Assets.xcassets */; };
@@ -241,6 +243,8 @@
 		E74C022E1FE0973200D98A76 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		E76BFDC71DC3FD7400B269B8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		E7811EAC2022673F0044533A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		E7811EAE2022693C0044533A /* FilterSectionsViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSectionsViewModelBuilder.swift; sourceTree = "<group>"; };
 		E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		E7840B501F741F9E0039AFE1 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
@@ -463,6 +467,7 @@
 				E74C01DA1FE0973200D98A76 /* CoreDataSource.swift */,
 				E74C01DB1FE0973200D98A76 /* DataSourceType.swift */,
 				E74C01DC1FE0973200D98A76 /* NetworkDataSource.swift */,
+				E7811EAC2022673F0044533A /* Repository.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -638,6 +643,7 @@
 				E74C02171FE0973200D98A76 /* FilterViewController.swift */,
 				E74C02181FE0973200D98A76 /* FilterViewModel.swift */,
 				E74C02191FE0973200D98A76 /* FilterViewModelType.swift */,
+				E7811EAE2022693C0044533A /* FilterSectionsViewModelBuilder.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -1049,6 +1055,7 @@
 				E74C02391FE0973200D98A76 /* SessionManagedObject+Ext.swift in Sources */,
 				E74C027B1FE0973300D98A76 /* UIViewController+Common.swift in Sources */,
 				E74C02731FE0973300D98A76 /* TabBarController.swift in Sources */,
+				E7811EAD2022673F0044533A /* Repository.swift in Sources */,
 				E74C02741FE0973300D98A76 /* RxTableViewCell.swift in Sources */,
 				E74C02771FE0973300D98A76 /* UIBarButtonItem+Common.swift in Sources */,
 				E74C027D1FE0973300D98A76 /* ApplicationComponentsFactory.swift in Sources */,
@@ -1063,6 +1070,7 @@
 				E74C023E1FE0973200D98A76 /* NetworkDataSource.swift in Sources */,
 				E74C02691FE0973300D98A76 /* FilterViewController.swift in Sources */,
 				E74C02441FE0973200D98A76 /* RxGCKRequestDelegateProxy.swift in Sources */,
+				E7811EAF2022693C0044533A /* FilterSectionsViewModelBuilder.swift in Sources */,
 				E74C02641FE0973300D98A76 /* FavoriteSessionsViewModel.swift in Sources */,
 				E74C02611FE0973300D98A76 /* EmptyDataSetView.swift in Sources */,
 				E74C026D1FE0973300D98A76 /* SessionSectionViewModel.swift in Sources */,
