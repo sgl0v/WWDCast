@@ -34,10 +34,11 @@ class FilterTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvi
 
         if case .switch = viewModel.style {
             let switchButton = UISwitch()
-            (switchButton.rx.value <-> viewModel.selected).addDisposableTo(disposeBag)
+            switchButton.isUserInteractionEnabled = false
+            switchButton.isOn = viewModel.selected
             self.accessoryView = switchButton
         } else {
-            (self.rx.accessoryCheckmark <-> viewModel.selected).addDisposableTo(disposeBag)
+            self.accessoryType = viewModel.selected ? .checkmark : .none
         }
 
         self.disposeBag = disposeBag

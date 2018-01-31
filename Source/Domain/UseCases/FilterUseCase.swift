@@ -11,9 +11,9 @@ import RxSwift
 
 protocol FilterUseCaseType {
     /// The session search filter
-    var filter: Observable<Filter> { get }
+    var value: Filter {get set}
 
-    func filter(with years: [Session.Year])
-    func filter(with platforms: Session.Platform)
-    func filter(with tracks: [Session.Track])
+    var filterObservable: Observable<Filter> { get }
+
+    func save()
 }

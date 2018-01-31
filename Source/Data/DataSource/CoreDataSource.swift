@@ -59,6 +59,7 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSourceType, NSFetc
 
     func add(_ items: [Item]) -> Observable<[Item]> {
         let context = self.coreDataController.newBackgroundContext()
+        Log.debug("Added \(items.count) records!")
         return items.sync(in: context).flatMap({ items in
             return context.rx.save().flatMap(Observable.just(items.asDomainTypes()))
         })
@@ -66,6 +67,7 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSourceType, NSFetc
 
     func update(_ items: [Item]) -> Observable<[Item]> {
         let context = self.coreDataController.newBackgroundContext()
+        Log.debug("Updated \(items.count) records!")
         return items.update(in: context).flatMap({ items in
             return context.rx.save().flatMap(Observable.just(items.asDomainTypes()))
         })

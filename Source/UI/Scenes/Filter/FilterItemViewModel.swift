@@ -16,13 +16,13 @@ struct FilterItemViewModel: CustomStringConvertible {
     }
 
     let title: String
-    let selected: Variable<Bool>
+    let selected: Bool
     let style: Style
 
     init(title: String, style: Style = .checkmark, selected: Bool = false) {
         self.title = title
         self.style = style
-        self.selected = Variable(selected)
+        self.selected = selected
     }
 
     // MARK: CustomStringConvertible

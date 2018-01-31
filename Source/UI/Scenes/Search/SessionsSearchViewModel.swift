@@ -27,13 +27,19 @@ class SessionsSearchViewModel: SessionsSearchViewModelType {
         let errorTracker = ErrorTracker()
         let activityIndicator = ActivityIndicator()
 
-        let sessionsTrigger = Driver.merge(input.loading.map({ "" }), input.search)
-        let sessions: Driver<[SessionSectionViewModel]> = sessionsTrigger.flatMapLatest {query in
-                self.useCase.search(with: query)
+        let initialSessions: Driver<[SessionSectionViewModel]> = input.loading.flatMap {
+            return self.useCase.sessions
                 .map(SessionSectionViewModelBuilder.build)
                 .trackError(errorTracker)
                 .asDriverOnErrorJustComplete()
         }
+        let searchSessions: Driver<[SessionSectionViewModel]> = input.search.flatMapLatest {query in
+                return self.useCase.search(with: query)
+                .map(SessionSectionViewModelBuilder.build)
+                .trackError(errorTracker)
+                .asDriverOnErrorJustComplete()
+        }
+        let sessions = Driver.merge(initialSessions, searchSessions).distinctUntilChanged(==)
 
         input.selection.map({ session in
             return session.id

@@ -13,6 +13,8 @@ import RxCocoa
 struct FilterViewModelInput {
     /// triggers a screen's content loading
     let loading: Driver<Void>
+    /// called when the user taps on a filter item
+    let selection: Driver<IndexPath>
     /// called when the user would like to close the filter screen
     let cancel: Driver<Void>
     /// called when the user would like to apply filter and close the filter screen
@@ -21,7 +23,7 @@ struct FilterViewModelInput {
 
 struct FilterViewModelOutput {
     /// The filter sections
-    let filterSections: Driver<[FilterSectionViewModel]>
+    let filterSections: Driver<FilterSectionsViewModel>
 }
 
 protocol FilterNavigator: class {

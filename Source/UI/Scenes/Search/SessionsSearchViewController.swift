@@ -116,9 +116,9 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         let searchBarTextObservable = self.searchBar.rx.text.rejectNil().unwrap()
         return Observable.of(searchBarTextObservable, cancel)
             .merge()
-            .throttle(0.1, scheduler: MainScheduler.instance)
+            .throttle(0.3, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
-            .asDriver(onErrorJustReturn: "")
+            .asDriverOnErrorJustComplete()
     }
 
     private func registerForPreviewing() {

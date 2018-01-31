@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// The ApplicationComponentsFactory takes responsibity of creating application components and establishing dependencies between them.
 final class ApplicationComponentsFactory {
 
     private let servicesProvider: ServicesProvider
@@ -23,8 +24,12 @@ final class ApplicationComponentsFactory {
         return AnyDataSource(dataSource: CompositeDataSource(networkDataSource: networkDataSource, coreDataSource: cacheDataSource))
     }()
 
+    fileprivate lazy var filterRepository: Repository<Filter> = {
+        return Repository<Filter>(value: Filter())
+    }()
+
     fileprivate lazy var useCaseProvider: UseCaseProvider = {
-        return UseCaseProvider(googleCastService: self.servicesProvider.googleCast, sessionsDataSource: self.sessionsDataSource)
+        return UseCaseProvider(googleCastService: self.servicesProvider.googleCast, sessionsDataSource: self.sessionsDataSource, filterRepository: self.filterRepository)
     }()
 
 }

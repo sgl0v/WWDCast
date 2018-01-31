@@ -12,7 +12,7 @@ import RxCocoa
 
 class FilterViewModel: FilterViewModelType {
 
-    private let useCase: FilterUseCaseType
+    private var useCase: FilterUseCaseType
     private let navigator: FilterNavigator
     private let disposeBag = DisposeBag()
 
@@ -24,17 +24,51 @@ class FilterViewModel: FilterViewModelType {
     // MARK: SessionFilterViewModel
 
     func transform(input: FilterViewModelInput) -> FilterViewModelOutput {
-        let filterSections = input.loading.withLatestFrom(self.useCase.filter.asDriverOnErrorJustComplete()).map(self.filterViewModels)
+        let initialFilter = input.loading.withLatestFrom(self.useCase.filterObservable.asDriverOnErrorJustComplete())
+        let initialSections = initialFilter.map(self.filterSectionsViewModel)
+        let currentFilter = input.selection.map({ indexPath in
+            self.filter(from: self.useCase.value, with: indexPath)
+        }).do(onNext: { filter in
+            self.useCase.value = filter
+        })
+        let filterSections = currentFilter.map(self.filterSectionsViewModel)
+        let sections = Driver.merge(initialSections, filterSections)
         input.cancel.drive(onNext: self.navigator.dismiss).addDisposableTo(self.disposeBag)
-        input.apply.drive(onNext: self.navigator.dismiss).addDisposableTo(self.disposeBag)
+        input.apply.drive(onNext: {[unowned self] in
+            self.useCase.save()
+            self.navigator.dismiss()
+        }).addDisposableTo(self.disposeBag)
 
-        return FilterViewModelOutput(filterSections: filterSections)
+        return FilterViewModelOutput(filterSections: sections)
     }
 
     // MARK: Private
 
-    private func filterViewModels(_ filter: Filter) -> [FilterSectionViewModel] {
-        return [self.yearsFilterViewModel(filter), self.platformsFilterViewModel(filter), self.tracksFilterViewModel(filter)]
+    private func filterSectionsViewModel(from filter: Filter) -> FilterSectionsViewModel {
+        let yearsFilterViewModel = self.yearsFilterViewModel(filter)
+        let platformsFilterViewModel = self.platformsFilterViewModel(filter)
+        let tracksFilterViewModel = self.tracksFilterViewModel(filter)
+        return FilterSectionsViewModel(yearsFilterViewModel: yearsFilterViewModel, platformsFilterViewModel: platformsFilterViewModel,
+                                       tracksFilterViewModel: tracksFilterViewModel)
+    }
+
+    private func filter(from filter: Filter, with selection: IndexPath) -> Filter {
+        var selectedYears = filter.years
+        var selectedPlatforms = filter.platforms
+        var selectedTracks = filter.tracks
+
+        switch (selection.section, selection.row) {
+        case (0, let idx):
+            selectedYears = self.selectedYears(at: idx)
+        case (1, let idx):
+            selectedPlatforms = self.selectedPlatforms(at: idx)
+        case (2, let idx):
+            let selectedTrack = self.selectedTrack(at: idx)
+            selectedTracks = selectedTracks.contains(selectedTrack) ? selectedTracks.remove(at: selectedTracks.index(of: selectedTrack)!) : selectedTracks.append(selectedTrack)
+        default:
+            assertionFailure("The filter type is not supported!")
+        }
+        return Filter(query: "", years: selectedYears, platforms: selectedPlatforms, tracks: selectedTracks)
     }
 
     private func yearsFilterViewModel(_ filter: Filter) -> FilterSectionViewModel {
@@ -42,11 +76,7 @@ class FilterViewModel: FilterViewModelType {
             return FilterItemViewModel(title: year.description, style: .checkmark, selected: filter.years == [year])
         }
         yearFilterItems.insert(FilterItemViewModel(title: NSLocalizedString("All years", comment: ""), style: .checkmark, selected: filter.years == Session.Year.all), at: 0)
-        let years = SingleChoiceFilterSectionViewModel(title: NSLocalizedString("Years", comment: ""), items: yearFilterItems)
-        years.selection.subscribe(onNext: {[unowned self] item in
-            self.useCase.filter(with: self.selectedYears(at: item))
-        }).addDisposableTo(self.disposeBag)
-        return years
+        return FilterSectionViewModel(title: NSLocalizedString("Years", comment: ""), items: yearFilterItems)
     }
 
     private func platformsFilterViewModel(_ filter: Filter) -> FilterSectionViewModel {
@@ -55,12 +85,7 @@ class FilterViewModel: FilterViewModelType {
         }
         platformFilterItems.insert(FilterItemViewModel(title: NSLocalizedString("All platforms", comment: ""), style: .checkmark, selected: filter.platforms == Session.Platform.all), at: 0)
 
-        let platforms = SingleChoiceFilterSectionViewModel(title: NSLocalizedString("Platforms", comment: ""), items: platformFilterItems)
-        platforms.selection.subscribe(onNext: {[unowned self] item in
-            self.useCase.filter(with: self.selectedPlatforms(at: item))
-        }).addDisposableTo(self.disposeBag)
-
-        return platforms
+        return FilterSectionViewModel(title: NSLocalizedString("Platforms", comment: ""), items: platformFilterItems)
     }
 
     private func tracksFilterViewModel(_ filter: Filter) -> FilterSectionViewModel {
@@ -68,12 +93,7 @@ class FilterViewModel: FilterViewModelType {
             return FilterItemViewModel(title: track.description, style: .switch, selected: filter.tracks.contains(track))
         }
 
-        let tracks = MultiChoiceFilterSectionViewModel(title: NSLocalizedString("Tracks", comment: ""), items: trackFilterItems)
-        tracks.selection.subscribe(onNext: {[unowned self] items in
-            self.useCase.filter(with: self.selectedTracks(at: items))
-        }).addDisposableTo(self.disposeBag)
-
-        return tracks
+        return FilterSectionViewModel(title: NSLocalizedString("Tracks", comment: ""), items: trackFilterItems)
     }
 
     private func selectedYears(at index: Int) -> [Session.Year] {
@@ -90,12 +110,10 @@ class FilterViewModel: FilterViewModelType {
         return Session.Platform(rawValue: 1 << (index - 1))
     }
 
-    private func selectedTracks(at indexes: [Int]) -> [Session.Track] {
-        return indexes.map { idx in
-            guard let track = Session.Track(rawValue: idx) else {
-                fatalError("Failed to create a session track from \(idx) raw value!")
-            }
-            return track
+    private func selectedTrack(at index: Int) -> Session.Track {
+        guard let track = Session.Track(rawValue: idx) else {
+            fatalError("Failed to create a session track from \(idx) raw value!")
         }
+        return track
     }
 }

@@ -34,14 +34,17 @@ class FilterViewController: UIViewController {
     private func bind(to viewModel: FilterViewModel) {
         // ViewModel's input
         let viewWillAppear = self.rx.viewWillAppear.mapToVoid().asDriverOnErrorJustComplete()
+        let selection = self.tableView.rx.itemSelected.asDriverOnErrorJustComplete()
         let cancel = self.cancelButton.rx.tap.mapToVoid().asDriverOnErrorJustComplete()
         let apply = self.doneButton.rx.tap.mapToVoid().asDriverOnErrorJustComplete()
 
-        let input = FilterViewModelInput(loading: viewWillAppear, cancel: cancel, apply: apply)
+        let input = FilterViewModelInput(loading: viewWillAppear, selection: selection, cancel: cancel, apply: apply)
         let output = viewModel.transform(input: input)
 
         // ViewModel's output
-        output.filterSections.drive(self.tableView.rx.items(dataSource: self.dataSource)).addDisposableTo(self.disposeBag)
+        output.filterSections.map({ filterSections in
+            return filterSections.sections
+        }).drive(self.tableView.rx.items(dataSource: self.dataSource)).addDisposableTo(self.disposeBag)
     }
 
     lazy var dataSource: RxTableViewSectionedReloadDataSource<SectionViewModel> = {

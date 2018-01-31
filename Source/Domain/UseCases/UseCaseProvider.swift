@@ -12,29 +12,28 @@ final class UseCaseProvider {
 
     private let googleCastService: GoogleCastServiceType
     private let sessionsDataSource: AnyDataSource<Session>
+    private let filterRepository: Repository<Filter>
 
-    init(googleCastService: GoogleCastServiceType, sessionsDataSource: AnyDataSource<Session>) {
+    init(googleCastService: GoogleCastServiceType, sessionsDataSource: AnyDataSource<Session>, filterRepository: Repository<Filter>) {
         self.googleCastService = googleCastService
         self.sessionsDataSource = sessionsDataSource
+        self.filterRepository = filterRepository
     }
 
     var sessionsSearchUseCase: SessionsSearchUseCaseType {
-        return self.searchAndFilterUseCase
+        return SessionsSearchUseCase(dataSource: self.sessionsDataSource, filterRepository: self.filterRepository)
     }
 
     lazy var favoriteSessionsUseCase: FavoriteSessionsUseCaseType = {
         return FavoriteSessionsUseCase(dataSource: self.sessionsDataSource)
     }()
 
-    var filterUseCase: FilterUseCaseType {
-        return self.searchAndFilterUseCase
-    }
+    lazy var filterUseCase: FilterUseCaseType = {
+        return FilterUseCase(filterRepository: self.filterRepository)
+    }()
 
     func sessionDetailsUseCase(sessionId: String) -> SessionsDetailsUseCaseType {
         return SessionsDetailsUseCase(sessionId: sessionId, googleCast: self.googleCastService, dataSource: self.sessionsDataSource)
     }
 
-    // MARK: Private
-
-    lazy var searchAndFilterUseCase = SessionsSearchUseCase(dataSource: self.sessionsDataSource)
 }

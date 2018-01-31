@@ -56,7 +56,7 @@ func == (lhs: Filter, rhs: Filter) -> Bool {
 extension Sequence where Iterator.Element == Session {
 
     func apply(_ filter: Filter) -> [Iterator.Element] {
-        Log.verbose("Filter items with: \(self.filter)")
+        Log.verbose("Filter items with: \(filter)")
         return self.filter { session in
             return (filter.query.isEmpty || session.title.lowercased().contains(filter.query.lowercased())) &&
                 filter.years.contains(session.year) &&
