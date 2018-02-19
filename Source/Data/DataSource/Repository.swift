@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 /// In-memory repository.
-class Repository<Element> {
+class Repository<Element: Equatable> {
 
     private let _value: Variable<Element>
 
@@ -36,7 +36,7 @@ class Repository<Element> {
     }
 
     public func asObservable() -> Observable<Element> {
-        return self._value.asObservable()
+        return self._value.asObservable().distinctUntilChanged()
     }
 
 }

@@ -28,9 +28,9 @@ final class UseCaseProvider {
         return FavoriteSessionsUseCase(dataSource: self.sessionsDataSource)
     }()
 
-    lazy var filterUseCase: FilterUseCaseType = {
+    var filterUseCase: FilterUseCaseType {
         return FilterUseCase(filterRepository: self.filterRepository)
-    }()
+    }
 
     func sessionDetailsUseCase(sessionId: String) -> SessionsDetailsUseCaseType {
         return SessionsDetailsUseCase(sessionId: sessionId, googleCast: self.googleCastService, dataSource: self.sessionsDataSource)

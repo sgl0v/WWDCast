@@ -21,8 +21,10 @@ class FilterViewController: UIViewController {
 
     init(viewModel: FilterViewModel) {
         super.init(nibName: nil, bundle: nil)
-        self.rx.viewDidLoad.bind(onNext: self.configureUI).addDisposableTo(self.disposeBag)
-        self.rx.viewDidLoad.map(viewModel).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
+        self.rx.viewDidLoad.map(viewModel).bind(onNext: {[unowned self] viewModel in
+            self.configureUI()
+            self.bind(to: viewModel)
+        }).addDisposableTo(self.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {

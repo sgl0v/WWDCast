@@ -26,14 +26,16 @@ class FilterViewModel: FilterViewModelType {
     func transform(input: FilterViewModelInput) -> FilterViewModelOutput {
         let initialFilter = input.loading.withLatestFrom(self.useCase.filterObservable.asDriverOnErrorJustComplete())
         let initialSections = initialFilter.map(FilterSectionsViewModelBuilder.build)
-        let currentFilter = input.selection.map({ indexPath in
+        let currentFilter = input.selection.map({[unowned self] indexPath in
             self.filter(from: self.useCase.value, with: indexPath)
-        }).do(onNext: { filter in
+        }).do(onNext: {[unowned self] filter in
             self.useCase.value = filter
         })
         let filterSections = currentFilter.map(FilterSectionsViewModelBuilder.build)
         let sections = Driver.merge(initialSections, filterSections)
-        input.cancel.drive(onNext: self.navigator.dismiss).addDisposableTo(self.disposeBag)
+        input.cancel.drive(onNext: {[unowned self] _ in
+            self.navigator.dismiss()
+        }).addDisposableTo(self.disposeBag)
         input.apply.drive(onNext: {[unowned self] in
             self.useCase.save()
             self.navigator.dismiss()

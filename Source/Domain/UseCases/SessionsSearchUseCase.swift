@@ -35,9 +35,9 @@ class SessionsSearchUseCase: SessionsSearchUseCaseType {
     }
 
     func search(with query: String) -> Observable<[Session]> {
-        return Observable.just(self.filterRepository.value).map({ filter in
-            return Filter(query: query, years: filter.years, platforms: filter.platforms, tracks: filter.tracks)
-        }).flatMap(self.sessions)
+        let filter = self.filterRepository.value
+        self.filterRepository.value = Filter(query: query, years: filter.years, platforms: filter.platforms, tracks: filter.tracks)
+        return self.sessions
     }
 
     private func applyFilter(sessions: [Session], filter: Filter) -> [Session] {
