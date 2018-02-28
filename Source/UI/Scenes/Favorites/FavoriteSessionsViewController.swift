@@ -87,8 +87,8 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         self.previewController = previewController
     }
 
-    private var errorBinding: UIBindingObserver<UIViewController, Error> {
-        return UIBindingObserver(UIElement: self, binding: { (vc, error) in
+    private var errorBinding: Binder<Error> {
+        return Binder(self, binding: { (vc, error) in
             vc.showAlert(for: error)
         })
     }

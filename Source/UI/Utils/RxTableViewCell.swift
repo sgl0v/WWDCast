@@ -49,7 +49,7 @@ extension Reactive where Base: RxTableViewCell {
 
             return existingBase.onSelected.map({ _ in true }).startWith(getter(existingBase))
         }
-        let valueSink = UIBindingObserver(UIElement: base) { control, value in
+        let valueSink = Binder(base) { control, value in
             setter(control, value)
         }
         return ControlProperty(values: values, valueSink: valueSink)

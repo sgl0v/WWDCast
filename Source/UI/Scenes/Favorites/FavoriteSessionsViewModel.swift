@@ -34,7 +34,7 @@ class FavoriteSessionsViewModel: FavoriteSessionsViewModelType {
 
         input.selection.map({ session in
             return session.id
-        }).drive(onNext: self.navigator?.showDetails).addDisposableTo(self.disposeBag)
+        }).drive(onNext: self.navigator?.showDetails).disposed(by: self.disposeBag)
 
         let empty = favorites.map { sessions in
             return sessions.isEmpty

@@ -33,13 +33,13 @@ final class CompositeDataSource<T: Comparable>: DataSourceType {
             .sort()
             .subscribeOn(Scheduler.backgroundWorkScheduler)
             .observeOn(Scheduler.mainScheduler)
-            .shareReplayLatestWhileConnected()
+            .share(replay: 1)
     }()
 
     func get(byId id: String) -> Observable<T> {
         let cachedObject = self.coreDataSource.get(byId: id)
         let loadedObject = self.networkDataSource.get(byId: id)
-        return Observable.of(cachedObject, loadedObject).merge().shareReplayLatestWhileConnected()
+        return Observable.of(cachedObject, loadedObject).merge().share(replay: 1)
     }
 
     func add(_ items: [Item]) -> Observable<[Item]> {

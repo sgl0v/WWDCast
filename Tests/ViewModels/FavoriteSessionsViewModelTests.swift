@@ -40,7 +40,7 @@ class FavoriteSessionsViewModelTests: XCTestCase {
             expectation.fulfill()
         }, onError: { _ in
             isError = true
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
 
         // THEN
         waitForExpectations(timeout: 1.0, handler: nil)

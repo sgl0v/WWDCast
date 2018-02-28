@@ -26,7 +26,7 @@ class SessionsSearchUseCase: SessionsSearchUseCaseType {
     lazy var sessions: Observable<[Session]> = {
         let sessions = self.dataSource.allObjects()
         return Observable.combineLatest(sessions, self.filterRepository.asObservable(),
-                                        resultSelector: self.applyFilter).shareReplayLatestWhileConnected()
+                                        resultSelector: self.applyFilter).share(replay: 1)
     }()
 
     init(dataSource: AnyDataSource<Session>, filterRepository: Repository<Filter>) {

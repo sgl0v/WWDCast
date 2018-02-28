@@ -24,8 +24,8 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
 
     init(viewModel: SessionDetailsViewModelType) {
         super.init(nibName: nil, bundle: nil)
-        self.rx.viewDidLoad.bind(onNext: self.configureUI).addDisposableTo(self.disposeBag)
-        self.rx.viewDidLoad.map(viewModel).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
+        self.rx.viewDidLoad.bind(onNext: self.configureUI).disposed(by: self.disposeBag)
+        self.rx.viewDidLoad.map(viewModel).bind(onNext: self.bind).disposed(by: self.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -50,18 +50,18 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         let output = viewModel.transform(input: input)
 
         // ViewModel's output
-        output.session.drive(self.sessionBinding).addDisposableTo(self.disposeBag)
-        output.devices.drive(self.devicesBinding).addDisposableTo(self.disposeBag)
-        output.playback.drive().addDisposableTo(disposeBag)
-        output.error.drive(self.errorBinding).addDisposableTo(self.disposeBag)
+        output.session.drive(self.sessionBinding).disposed(by: self.disposeBag)
+        output.devices.drive(self.devicesBinding).disposed(by: self.disposeBag)
+        output.playback.drive().disposed(by: disposeBag)
+        output.error.drive(self.errorBinding).disposed(by: self.disposeBag)
     }
 
-    private var sessionBinding: UIBindingObserver<SessionDetailsViewController, SessionItemViewModel> {
-        return UIBindingObserver(UIElement: self, binding: { (vc, viewModel) in
+    private var sessionBinding: Binder<SessionItemViewModel> {
+        return Binder(self, binding: { (vc, viewModel) in
             Observable.just(viewModel.thumbnailURL)
                 .asObservable()
                 .bind(to: vc.image.rx.imageURL)
-                .addDisposableTo(vc.disposeBag)
+                .disposed(by: vc.disposeBag)
             vc.header.text = viewModel.title
             vc.summary.text = viewModel.summary
             vc.subtitle.text = viewModel.subtitle
@@ -69,17 +69,17 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
         })
     }
 
-    private var devicesBinding: UIBindingObserver<SessionDetailsViewController, [String]> {
-        return UIBindingObserver(UIElement: self, binding: { (vc, devices) in
+    private var devicesBinding: Binder<[String]> {
+        return Binder(self, binding: { (vc, devices) in
             let cancelAction = NSLocalizedString("Cancel", comment: "Cancel ActionSheet button title")
             vc.showAlert(with: nil, message: nil, cancelAction: cancelAction, actions: devices).subscribe(onNext: { idx in
                 vc.playbackTrigger.onNext(idx)
-            }).addDisposableTo(vc.disposeBag)
+            }).disposed(by: vc.disposeBag)
         })
     }
 
-    private var errorBinding: UIBindingObserver<SessionDetailsViewController, Error> {
-        return UIBindingObserver(UIElement: self, binding: { (vc, error) in
+    private var errorBinding: Binder<Error> {
+        return Binder(self, binding: { (vc, error) in
             vc.showAlert(for: error)
         })
     }

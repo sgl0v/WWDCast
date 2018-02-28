@@ -19,7 +19,7 @@ class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProv
     override func awakeFromNib() {
         self.onPrepareForReuse.subscribe(onNext: {[unowned self] _ in
             self.imageView?.image = nil
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
     }
 //}
 //
@@ -32,7 +32,7 @@ class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProv
         Observable.just(viewModel.thumbnailURL)
             .takeUntil(self.onPrepareForReuse)
             .bind(to: self.thumbnailImage.rx.imageURL)
-            .addDisposableTo(self.disposeBag)
+            .disposed(by: self.disposeBag)
         self.layoutMargins = UIEdgeInsets.zero
         self.separatorInset = UIEdgeInsets.zero
     }

@@ -24,7 +24,7 @@ class FilterViewController: UIViewController {
         self.rx.viewDidLoad.map(viewModel).bind(onNext: {[unowned self] viewModel in
             self.configureUI()
             self.bind(to: viewModel)
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {

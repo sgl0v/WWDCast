@@ -35,11 +35,11 @@ class FilterViewModel: FilterViewModelType {
         let sections = Driver.merge(initialSections, filterSections)
         input.cancel.drive(onNext: {[unowned self] _ in
             self.navigator.dismiss()
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         input.apply.drive(onNext: {[unowned self] in
             self.useCase.save()
             self.navigator.dismiss()
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
 
         return FilterViewModelOutput(filterSections: sections)
     }

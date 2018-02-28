@@ -130,7 +130,9 @@ final class GoogleCastService: NSObject, GoogleCastServiceType {
                     observer.onCompleted()
                     return Disposables.create()
                 }
-                let request = remoteMediaClient.loadMedia(mediaInfo, autoplay: true)
+                let options = GCKMediaLoadOptions()
+                options.autoplay = true
+                let request = remoteMediaClient.loadMedia(mediaInfo, with: options)
 
                 let didCompleteSubscription = request.rx.didComplete.subscribe(onNext: { _ in
                     observer.onNext(())

@@ -64,7 +64,7 @@ class SessionDetailsViewModelTests: XCTestCase {
         self.viewModel = SessionDetailsViewModel(sessionId: self.sessionId, api: self.api)
         self.viewModel.error.asObservable().subscribe(onNext: { _ in
             expectation.fulfill()
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
 
         // WHEN
         self.viewModel.startPlaybackOnDevice(at: selectedDevice)
@@ -87,7 +87,7 @@ class SessionDetailsViewModelTests: XCTestCase {
         self.viewModel.session.asObservable().skip(1).subscribe(onNext: { viewModel in
             XCTAssertTrue(viewModel!.favorite)
             expectation.fulfill()
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
 
         // WHEN
         self.viewModel.toggleFavorite()

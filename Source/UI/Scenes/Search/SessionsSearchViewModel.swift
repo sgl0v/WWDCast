@@ -43,9 +43,9 @@ class SessionsSearchViewModel: SessionsSearchViewModelType {
 
         input.selection.map({ session in
             return session.id
-        }).drive(onNext: self.navigator?.showDetails).addDisposableTo(self.disposeBag)
+        }).drive(onNext: self.navigator?.showDetails).disposed(by: self.disposeBag)
 
-        input.filter.drive(onNext: self.navigator?.showFilter).addDisposableTo(self.disposeBag)
+        input.filter.drive(onNext: self.navigator?.showFilter).disposed(by: self.disposeBag)
 
         let error = errorTracker.asDriver()
         let loading = activityIndicator.asDriver()
