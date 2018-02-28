@@ -81,7 +81,7 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSourceType, NSFetc
             do {
                 try context.execute(deleteRequest)
                 try context.save()
-                observer.onNext()
+                observer.onNext(())
             } catch {
 
                 assertionFailure(error.localizedDescription)

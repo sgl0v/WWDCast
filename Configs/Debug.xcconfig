@@ -5,9 +5,7 @@
 // This should be set at the project level for the Debug configuration.
 //
 
-#include "../Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"
 #include "Common/Common.xcconfig"
 #include "Environment/Develop.xcconfig"
 #include "BuildType/Debug.xcconfig"
 #include "Provisioning/Debug.xcconfig"
-#include "Common/Combine.xcconfig"

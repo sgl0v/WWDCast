@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import SDWebImage
+import WebImage
 
 extension Reactive where Base: UIImageView {
 
@@ -19,7 +19,7 @@ extension Reactive where Base: UIImageView {
                 return
             }
             base?.image = nil
-            base?.sd_setImage(with: value, completed: { [weak base] _ in
+            base?.sd_setImage(with: value, completed: { [weak base] (_, _, _, _) in
                 let transition = CATransition()
                 transition.duration = 0.3
                 transition.timingFunction =

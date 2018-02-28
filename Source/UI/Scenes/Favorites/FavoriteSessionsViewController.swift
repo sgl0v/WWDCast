@@ -20,8 +20,8 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
     init(viewModel: FavoriteSessionsViewModelType) {
         self.viewModel = viewModel
         super.init()
-        self.rx.viewDidLoad.bind(onNext: self.configureUI).addDisposableTo(self.disposeBag)
-        self.rx.viewDidLoad.map(viewModel).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
+        self.rx.viewDidLoad.bind(onNext: self.configureUI).disposed(by: self.disposeBag)
+        self.rx.viewDidLoad.map(viewModel).bind(onNext: self.bind).disposed(by: self.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -43,10 +43,10 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         let output = viewModel.transform(input: input)
 
         // ViewModel's output
-        output.favorites.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
-        output.empty.drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
-        output.empty.not().drive(self.emptyDataSetView.rx.isHidden).addDisposableTo(self.disposeBag)
-        output.error.drive(self.errorBinding).addDisposableTo(self.disposeBag)
+        output.favorites.drive(self.tableView.rx.items(dataSource: self.source)).disposed(by: self.disposeBag)
+        output.empty.drive(self.tableView.rx.isHidden).disposed(by: self.disposeBag)
+        output.empty.not().drive(self.emptyDataSetView.rx.isHidden).disposed(by: self.disposeBag)
+        output.error.drive(self.errorBinding).disposed(by: self.disposeBag)
     }
 
     private func configureUI() {

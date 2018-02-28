@@ -25,7 +25,7 @@ extension Reactive where Base: NSManagedObjectContext {
     func save() -> Observable<Void> {
         return Observable.deferred {
             if !self.base.hasChanges {
-                return Observable.just()
+                return Observable.just(())
             }
 
             do {
@@ -34,7 +34,7 @@ extension Reactive where Base: NSManagedObjectContext {
                 assertionFailure("Failed to save the context with error: \(error)")
                 return Observable.error(error)
             }
-            return Observable.just()
+            return Observable.just(())
         }
     }
 

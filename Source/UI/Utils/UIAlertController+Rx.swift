@@ -6,7 +6,7 @@
 //  Copyright © 2016 Maksym Shcheglov. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 import RxCocoa
 

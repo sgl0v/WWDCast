@@ -7,11 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0368EE34C657ED46DDCE25D3 /* Pods_WWDCastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */; };
 		5E89B1D61D480B6300E611AC /* SessionDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */; };
 		B6F929EF1D2AB283009E4B83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F929EB1D2AB283009E4B83 /* LaunchScreen.storyboard */; };
 		B6F92A1D1D2C0E8A009E4B83 /* SessionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */; };
 		E7043A6A1FE2FA2C00AD8DA2 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7043A691FE2FA2C00AD8DA2 /* ErrorTracker.swift */; };
+		E704AC3F204750600016D227 /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704AC36204750600016D227 /* RxDataSources.framework */; };
+		E704AC40204750600016D227 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704AC37204750600016D227 /* SwiftyJSON.framework */; };
+		E704AC41204750600016D227 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704AC38204750600016D227 /* RxCocoa.framework */; };
+		E704AC42204750600016D227 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704AC39204750600016D227 /* WebImage.framework */; };
+		E704AC43204750600016D227 /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704AC3A204750600016D227 /* Differentiator.framework */; };
+		E704AC44204750600016D227 /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704AC3B204750600016D227 /* GoogleCast.framework */; };
+		E704AC45204750600016D227 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704AC3C204750600016D227 /* RxSwift.framework */; };
+		E704AC46204750600016D227 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704AC3D204750600016D227 /* RxBlocking.framework */; };
+		E704AC47204750600016D227 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704AC3E204750600016D227 /* RxTest.framework */; };
 		E718A10A1E5900BE003463B0 /* MockSessionsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A1081E58FC27003463B0 /* MockSessionsSearchViewModel.swift */; };
 		E718A10B1E5900C1003463B0 /* MockViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718A1061E58F7F3003463B0 /* MockViewControllerFactory.swift */; };
 		E72A1CF71E68A11B005A3EAE /* sessions.json in Resources */ = {isa = PBXBuildFile; fileRef = E72A1CF51E689B27005A3EAE /* sessions.json */; };
@@ -115,7 +123,6 @@
 		E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */; };
 		E7D76F141F588245005C95DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7D76F131F588245005C95DB /* Assets.xcassets */; };
 		E7FC18171EE0A5E6000D2FAB /* WWDCast.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */; };
-		EFE1B5FC98F16067BBB5DFAE /* Pods_WWDCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,21 +136,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		081F76A23C03510729799A91 /* Pods-WWDCast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.release.xcconfig"; sourceTree = "<group>"; };
-		0F296124C6052AB9AF4576B0 /* Pods-Tests-WWDCastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-WWDCastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-WWDCastTests/Pods-Tests-WWDCastTests.release.xcconfig"; sourceTree = "<group>"; };
-		218FDCB7EB2025EE42E172F6 /* Pods-WWDCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.debug.xcconfig"; sourceTree = "<group>"; };
-		4A6EBFABAC79034FF2973338 /* Pods-WWDCastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests.release.xcconfig"; sourceTree = "<group>"; };
 		5E89B1D51D480B6300E611AC /* SessionDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionDetailsViewController.xib; path = Resources/SessionDetailsViewController.xib; sourceTree = SOURCE_ROOT; };
-		7D60F791C276BA391873661A /* Pods_Tests_WWDCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_WWDCastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F929BB1D2A5DD5009E4B83 /* WWDCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWDCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F929CA1D2A5DD5009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6F929CF1D2A5DD6009E4B83 /* WWDCastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WWDCastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F929D51D2A5DD6009E4B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6F929EC1D2AB283009E4B83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		B6F92A1C1D2C0E8A009E4B83 /* SessionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SessionTableViewCell.xib; path = Resources/SessionTableViewCell.xib; sourceTree = SOURCE_ROOT; };
-		BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WWDCastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7043A691FE2FA2C00AD8DA2 /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
+		E704AC36204750600016D227 /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Frameworks/RxDataSources.framework; sourceTree = "<group>"; };
+		E704AC37204750600016D227 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Frameworks/SwiftyJSON.framework; sourceTree = "<group>"; };
+		E704AC38204750600016D227 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Frameworks/RxCocoa.framework; sourceTree = "<group>"; };
+		E704AC39204750600016D227 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Frameworks/WebImage.framework; sourceTree = "<group>"; };
+		E704AC3A204750600016D227 /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Frameworks/Differentiator.framework; sourceTree = "<group>"; };
+		E704AC3B204750600016D227 /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = Frameworks/GoogleCast.framework; sourceTree = "<group>"; };
+		E704AC3C204750600016D227 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Frameworks/RxSwift.framework; sourceTree = "<group>"; };
+		E704AC3D204750600016D227 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Frameworks/RxBlocking.framework; sourceTree = "<group>"; };
+		E704AC3E204750600016D227 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Frameworks/RxTest.framework; sourceTree = "<group>"; };
 		E718A1061E58F7F3003463B0 /* MockViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockViewControllerFactory.swift; sourceTree = "<group>"; };
 		E718A1081E58FC27003463B0 /* MockSessionsSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSessionsSearchViewModel.swift; sourceTree = "<group>"; };
 		E72A1CEC1E677FEF005A3EAE /* MockWWDCastAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockWWDCastAPI.swift; sourceTree = "<group>"; };
@@ -252,7 +261,6 @@
 		E7D76F131F588245005C95DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7F044F61F7B0126007DE5C3 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		E7F044F71F7B0126007DE5C3 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
-		E7F044F91F7B0126007DE5C3 /* Combine.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Combine.xcconfig; sourceTree = "<group>"; };
 		E7F044FA1F7B0126007DE5C3 /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		E7F044FB1F7B0126007DE5C3 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		E7F044FD1F7B0126007DE5C3 /* Production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
@@ -261,8 +269,6 @@
 		E7F045031F7B0126007DE5C3 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		E7F045041F7B0126007DE5C3 /* Team.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Team.xcconfig; sourceTree = "<group>"; };
 		E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = WWDCast.xcdatamodel; path = Resources/WWDCast.xcdatamodel; sourceTree = SOURCE_ROOT; };
-		EBF25D25558B02375133B1A5 /* Pods-Tests-WWDCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-WWDCastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-WWDCastTests/Pods-Tests-WWDCastTests.debug.xcconfig"; sourceTree = "<group>"; };
-		EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WWDCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,7 +276,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFE1B5FC98F16067BBB5DFAE /* Pods_WWDCast.framework in Frameworks */,
+				E704AC44204750600016D227 /* GoogleCast.framework in Frameworks */,
+				E704AC41204750600016D227 /* RxCocoa.framework in Frameworks */,
+				E704AC47204750600016D227 /* RxTest.framework in Frameworks */,
+				E704AC45204750600016D227 /* RxSwift.framework in Frameworks */,
+				E704AC46204750600016D227 /* RxBlocking.framework in Frameworks */,
+				E704AC43204750600016D227 /* Differentiator.framework in Frameworks */,
+				E704AC40204750600016D227 /* SwiftyJSON.framework in Frameworks */,
+				E704AC3F204750600016D227 /* RxDataSources.framework in Frameworks */,
+				E704AC42204750600016D227 /* WebImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +292,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0368EE34C657ED46DDCE25D3 /* Pods_WWDCastTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,11 +301,17 @@
 		33442D9E13E505A9141431FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E704AC3A204750600016D227 /* Differentiator.framework */,
+				E704AC3B204750600016D227 /* GoogleCast.framework */,
+				E704AC3D204750600016D227 /* RxBlocking.framework */,
+				E704AC38204750600016D227 /* RxCocoa.framework */,
+				E704AC36204750600016D227 /* RxDataSources.framework */,
+				E704AC3C204750600016D227 /* RxSwift.framework */,
+				E704AC3E204750600016D227 /* RxTest.framework */,
+				E704AC37204750600016D227 /* SwiftyJSON.framework */,
+				E704AC39204750600016D227 /* WebImage.framework */,
 				E76BFDC91DC3FE0900B269B8 /* libsqlite3.0.tbd */,
 				E76BFDC71DC3FD7400B269B8 /* libsqlite3.tbd */,
-				057956E721FFC946DFA1FC83 /* Pods_WWDCast.framework */,
-				BBEA79B51C963F813BC71C0B /* Pods_WWDCastTests.framework */,
-				7D60F791C276BA391873661A /* Pods_Tests_WWDCastTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -305,7 +324,6 @@
 				E7840B4A1F741E030039AFE1 /* Configs */,
 				B6F929BD1D2A5DD5009E4B83 /* Resources */,
 				B6F929BC1D2A5DD5009E4B83 /* Products */,
-				E48D05A0B2806D9C6BFBB79F /* Pods */,
 				33442D9E13E505A9141431FD /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -345,19 +363,6 @@
 				B6F929D51D2A5DD6009E4B83 /* Info.plist */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		E48D05A0B2806D9C6BFBB79F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				EF0C2C23293FE3B813CE8E29 /* Pods-WWDCast.debug.xcconfig */,
-				081F76A23C03510729799A91 /* Pods-WWDCast.release.xcconfig */,
-				218FDCB7EB2025EE42E172F6 /* Pods-WWDCastTests.debug.xcconfig */,
-				4A6EBFABAC79034FF2973338 /* Pods-WWDCastTests.release.xcconfig */,
-				EBF25D25558B02375133B1A5 /* Pods-Tests-WWDCastTests.debug.xcconfig */,
-				0F296124C6052AB9AF4576B0 /* Pods-Tests-WWDCastTests.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		E718A1051E58F7E2003463B0 /* Mocks */ = {
@@ -703,7 +708,6 @@
 		E7F044F81F7B0126007DE5C3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				E7F044F91F7B0126007DE5C3 /* Combine.xcconfig */,
 				E7F044FA1F7B0126007DE5C3 /* Common.xcconfig */,
 				E7F044FB1F7B0126007DE5C3 /* Version.xcconfig */,
 			);
@@ -736,13 +740,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6F929D81D2A5DD6009E4B83 /* Build configuration list for PBXNativeTarget "WWDCast" */;
 			buildPhases = (
-				D214ACFBD5C00700D8C35E13 /* [CP] Check Pods Manifest.lock */,
 				E7E3F9951E283ACA00A67149 /* ShellScript */,
 				B6F929B71D2A5DD5009E4B83 /* Sources */,
 				B6F929B81D2A5DD5009E4B83 /* Frameworks */,
 				B6F929B91D2A5DD5009E4B83 /* Resources */,
-				AA720D3C39D46761CAD54C0B /* [CP] Embed Pods Frameworks */,
-				DE9F671286CAF4D10C6EC682 /* [CP] Copy Pods Resources */,
+				E773A99F203B859E00AF412B /* Carthage */,
 				E7FA71731F89386400244EC9 /* Strip unused architectures */,
 			);
 			buildRules = (
@@ -758,12 +760,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6F929DB1D2A5DD6009E4B83 /* Build configuration list for PBXNativeTarget "WWDCastTests" */;
 			buildPhases = (
-				8E3AA1B0C4AD391EF6533174 /* [CP] Check Pods Manifest.lock */,
 				B6F929CB1D2A5DD6009E4B83 /* Sources */,
 				B6F929CC1D2A5DD6009E4B83 /* Frameworks */,
 				B6F929CD1D2A5DD6009E4B83 /* Resources */,
-				E5248526D49A453158D9CD89 /* [CP] Embed Pods Frameworks */,
-				5242DE3CBC7A13DD7008ECA0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -844,117 +843,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5242DE3CBC7A13DD7008ECA0 /* [CP] Copy Pods Resources */ = {
+		E773A99F203B859E00AF412B /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Frameworks/RxCocoa.framework",
+				"$(SRCROOT)/Frameworks/RxSwift.framework",
+				"$(SRCROOT)/Frameworks/WebImage.framework",
+				"$(SRCROOT)/Frameworks/SwiftyJSON.framework",
+				"$(SRCROOT)/Frameworks/RxDataSources.framework",
+				"$(SRCROOT)/Frameworks/Differentiator.framework",
+				"$(SRCROOT)/Frameworks/GoogleCast.framework",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = Carthage;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8E3AA1B0C4AD391EF6533174 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WWDCastTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AA720D3C39D46761CAD54C0B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D214ACFBD5C00700D8C35E13 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WWDCast-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DE9F671286CAF4D10C6EC682 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-resources.sh",
-				"${PODS_ROOT}/google-cast-sdk/GoogleCastSDK-Public-3.1.1-Release/GoogleCast.framework/Versions/A/Resources/GoogleCastResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCast/Pods-WWDCast-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E5248526D49A453158D9CD89 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WWDCastTests/Pods-WWDCastTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 		E7E3F9951E283ACA00A67149 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1124,6 +1032,7 @@
 /* Begin XCBuildConfiguration section */
 		B6F929D61D2A5DD6009E4B83 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7840B501F741F9E0039AFE1 /* Debug.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 213;
 				INFOPLIST_FILE = Resources/Info.plist;
@@ -1132,6 +1041,7 @@
 		};
 		B6F929D71D2A5DD6009E4B83 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 213;
 				INFOPLIST_FILE = Resources/Info.plist;
@@ -1142,6 +1052,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E7840B501F741F9E0039AFE1 /* Debug.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/GoogleCastSDK-ios-4.0.2",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 			};
 			name = Debug;
 		};
@@ -1149,6 +1065,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/GoogleCastSDK-ios-4.0.2",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 			};
 			name = Release;
 		};

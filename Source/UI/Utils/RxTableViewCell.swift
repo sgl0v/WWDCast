@@ -22,13 +22,13 @@ class RxTableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        _onPrepareForReuse.onNext()
+        _onPrepareForReuse.onNext(())
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         if selected {
-            _onSelected.onNext()
+            _onSelected.onNext(())
         }
     }
 }

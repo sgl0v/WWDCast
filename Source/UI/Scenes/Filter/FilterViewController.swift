@@ -44,16 +44,15 @@ class FilterViewController: UIViewController {
         let output = viewModel.transform(input: input)
 
         // ViewModel's output
-        output.filterSections.drive(self.tableView.rx.items(dataSource: self.dataSource)).addDisposableTo(self.disposeBag)
+        output.filterSections.drive(self.tableView.rx.items(dataSource: self.dataSource)).disposed(by: self.disposeBag)
     }
 
     lazy var dataSource: RxTableViewSectionedReloadDataSource<SectionViewModel> = {
-        let dataSource = RxTableViewSectionedReloadDataSource<SectionViewModel>()
-        dataSource.configureCell = { (dataSource, tableView, indexPath, element) in
+        let dataSource = RxTableViewSectionedReloadDataSource<SectionViewModel>(configureCell: { (_, tableView, indexPath, element) in
             let cell = tableView.dequeueReusableCell(withClass: Cell.self, forIndexPath: indexPath)
             cell.bind(to: element)
             return cell
-        }
+        })
         dataSource.titleForHeaderInSection = { (dataSource: TableViewSectionedDataSource<SectionViewModel>, sectionIndex: Int) -> String? in
             return dataSource[sectionIndex].title
         }
@@ -73,7 +72,7 @@ class FilterViewController: UIViewController {
         self.tableView.registerNib(cellClass: Cell.self)
         self.tableView.rx.itemSelected.asDriver().drive(onNext: {[unowned self] indexPath in
             self.tableView.deselectRow(at: indexPath, animated: true)
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.setClearsSelectionOnViewWillAppear()
 
@@ -86,7 +85,7 @@ class FilterViewController: UIViewController {
     func setClearsSelectionOnViewWillAppear() {
         self.tableView.rx.itemSelected.asDriver().drive(onNext: {[unowned self] indexPath in
             self.tableView.deselectRow(at: indexPath, animated: true)
-        }).addDisposableTo(self.disposeBag)
+        }).disposed(by: self.disposeBag)
     }
 
 }

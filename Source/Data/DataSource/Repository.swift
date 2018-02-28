@@ -18,7 +18,7 @@ class Repository<Element: Equatable> {
     ///
     /// Whenever a new value is set, all the observers are notified of the change.
     ///
-    /// Even if the newly set value is same as the old value, observers are still notified for change.
+    /// If the newly set value is same as the old value, observers are not notified for change.
     public var value: Element {
         get {
             return self._value.value

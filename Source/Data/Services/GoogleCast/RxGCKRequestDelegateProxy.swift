@@ -11,32 +11,34 @@ import GoogleCast
 import RxSwift
 import RxCocoa
 
-final class RxGCKRequestDelegateProxy: DelegateProxy, GCKRequestDelegate, DelegateProxyType {
+final class RxGCKRequestDelegateProxy: DelegateProxy<GCKRequest, GCKRequestDelegate>, GCKRequestDelegate, DelegateProxyType {
+
+    public init(request: GCKRequest) {
+        super.init(parentObject: request, delegateProxy: RxGCKRequestDelegateProxy.self)
+    }
+
+    static func registerKnownImplementations() {
+        self.register { RxGCKRequestDelegateProxy(request: $0) }
+    }
 
     //We need a way to read the current delegate
-    static func currentDelegateFor(_ object: AnyObject) -> AnyObject? {
-        guard let request = object as? GCKRequest else {
-            return nil
-        }
-        return request.delegate
+    static func currentDelegate(for object: GCKRequest) -> GCKRequestDelegate? {
+        return object.delegate
     }
 
     //We need a way to set the current delegate
-    static func setCurrentDelegate(_ delegate: AnyObject?, toObject object: AnyObject) {
-        guard let request = object as? GCKRequest,
-            let delegate = delegate as? GCKRequestDelegate else {
-                return
-        }
-        request.delegate = delegate
+    static func setCurrentDelegate(_ delegate: GCKRequestDelegate?, to object: GCKRequest) {
+        object.delegate = delegate
     }
+
 }
 
 // swiftlint:disable force_cast
 
 extension Reactive where Base: GCKRequest {
 
-    var delegate: DelegateProxy {
-        return RxGCKRequestDelegateProxy.proxyForObject(base)
+    var delegate: DelegateProxy<GCKRequest, GCKRequestDelegate> {
+        return RxGCKRequestDelegateProxy.proxy(for: base)
     }
 
     var didComplete: Observable<GCKRequest> {

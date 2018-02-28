@@ -25,7 +25,7 @@ final class GoogleCastService: NSObject, GoogleCastServiceType {
 
     init(applicationID: String) {
         super.init()
-        let options = GCKCastOptions(receiverApplicationID: applicationID)
+        let options = GCKCastOptions(discoveryCriteria: GCKDiscoveryCriteria(applicationID: applicationID))
         GCKCastContext.setSharedInstanceWith(options)
         self.context.useDefaultExpandedMediaControls = true
         self.enableLogging()
@@ -53,24 +53,24 @@ final class GoogleCastService: NSObject, GoogleCastServiceType {
     }
 
     func pausePlayback() {
-        guard let currentSession = self.currentSession else {
+        guard let remoteMediaClient = self.currentSession?.remoteMediaClient else {
             return
         }
-        currentSession.remoteMediaClient.pause()
+        remoteMediaClient.pause()
     }
 
     func resumePlayback() {
-        guard let currentSession = self.currentSession else {
+        guard let remoteMediaClient = self.currentSession?.remoteMediaClient else {
             return
         }
-        currentSession.remoteMediaClient.play()
+        remoteMediaClient.play()
     }
 
     func stopPlayback() {
-        guard let currentSession = self.currentSession else {
+        guard let remoteMediaClient = self.currentSession?.remoteMediaClient else {
             return
         }
-        currentSession.remoteMediaClient.stop()
+        remoteMediaClient.stop()
     }
 
     // MARK: Private
@@ -125,10 +125,15 @@ final class GoogleCastService: NSObject, GoogleCastServiceType {
     private func loadMedia(_ mediaInfo: GCKMediaInformation) -> (GCKCastSession) -> Observable<Void> {
         return { castSession in
             return Observable.create({ observer in
-                let request = castSession.remoteMediaClient.loadMedia(mediaInfo, autoplay: true)
+                guard let remoteMediaClient = castSession.remoteMediaClient else {
+                    observer.onError(GoogleCastServiceError.connectionError)
+                    observer.onCompleted()
+                    return Disposables.create()
+                }
+                let request = remoteMediaClient.loadMedia(mediaInfo, autoplay: true)
 
                 let didCompleteSubscription = request.rx.didComplete.subscribe(onNext: { _ in
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 })
                 let didFailWithErrorSubscription = request.rx.didFailWithError.subscribe(onNext: { _ in
@@ -150,7 +155,7 @@ extension GoogleCastService: GCKLoggerDelegate {
 
     func enableLogging() {
         let logFilter = GCKLoggerFilter()
-        logFilter.addClassNames([
+        logFilter.setLoggingLevel(.warning, forClasses: [
 //            "GCKEventLogger",
             "\(GCKCastContext.self)",
             "\(GCKDeviceProvider.self)",
@@ -159,9 +164,8 @@ extension GoogleCastService: GCKLoggerDelegate {
             "\(GCKUICastButton.self)",
             "\(GCKUIMediaController.self)",
             "\(GCKUIMiniMediaControlsViewController.self)",
-            "\(GCKCastChannel.self)",
-            "\(GCKMediaControlChannel.self)"
-            ])
+            "\(GCKCastChannel.self)"
+        ])
         GCKLogger.sharedInstance().filter = logFilter
         GCKLogger.sharedInstance().delegate = self
     }

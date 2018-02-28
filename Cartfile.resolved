@@ -1,0 +1,4 @@
+github "ReactiveX/RxSwift" "4.1.2"
+github "rs/SDWebImage" "3.8.2"
+github "SwiftyJSON/SwiftyJSON" "3.1.4"
+github "RxSwiftCommunity/RxDataSources" "3.0.0-rc.0"

@@ -23,8 +23,8 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
     init(viewModel: SessionsSearchViewModelType) {
         self.viewModel = viewModel
         super.init()
-        self.rx.viewDidLoad.bind(onNext: self.configureUI).addDisposableTo(self.disposeBag)
-        self.rx.viewDidLoad.map(viewModel).bind(onNext: self.bind).addDisposableTo(self.disposeBag)
+        self.rx.viewDidLoad.bind(onNext: self.configureUI).disposed(by: self.disposeBag)
+        self.rx.viewDidLoad.map(viewModel).bind(onNext: self.bind).disposed(by: self.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -62,10 +62,10 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         let output = viewModel.transform(input: input)
 
         // ViewModel's output
-        output.sessions.drive(self.tableView.rx.items(dataSource: self.source)).addDisposableTo(self.disposeBag)
-        output.loading.drive(self.tableView.rx.isHidden).addDisposableTo(self.disposeBag)
-        output.loading.drive(self.loadingIndicator.rx.isAnimating).addDisposableTo(self.disposeBag)
-        output.error.drive(self.errorBinding).addDisposableTo(self.disposeBag)
+        output.sessions.drive(self.tableView.rx.items(dataSource: self.source)).disposed(by: self.disposeBag)
+        output.loading.drive(self.tableView.rx.isHidden).disposed(by: self.disposeBag)
+        output.loading.drive(self.loadingIndicator.rx.isAnimating).disposed(by: self.disposeBag)
+        output.error.drive(self.errorBinding).disposed(by: self.disposeBag)
     }
 
     private func configureUI() {
@@ -92,7 +92,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
                 return !self.searchController.isBeingPresented && self.searchBar.isFirstResponder
             }).drive(onNext: {[unowned self] _ in
                 self.searchBar.resignFirstResponder()
-            }).addDisposableTo(self.disposeBag)
+            }).disposed(by: self.disposeBag)
         }
 
         self.tableView.tableFooterView = UIView()
