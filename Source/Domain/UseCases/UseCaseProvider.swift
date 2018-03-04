@@ -32,8 +32,8 @@ final class UseCaseProvider {
         return FilterUseCase(filterRepository: self.filterRepository)
     }
 
-    func sessionDetailsUseCase(sessionId: String) -> SessionsDetailsUseCaseType {
-        return SessionsDetailsUseCase(sessionId: sessionId, googleCast: self.googleCastService, dataSource: self.sessionsDataSource)
+    func sessionDetailsUseCase(sessionId: String) -> SessionDetailsUseCaseType {
+        return SessionDetailsUseCase(sessionId: sessionId, googleCast: self.googleCastService, dataSource: self.sessionsDataSource)
     }
 
 }

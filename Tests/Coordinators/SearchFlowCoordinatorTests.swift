@@ -15,12 +15,12 @@ class SearchFlowCoordinatorTests: XCTestCase {
     private let timeout = 5.0
     private var flowCoordinator: SearchFlowCoordinator!
     private var rootViewController: UINavigationController!
-    private var dependencyProvider: MockViewControllerFactory!
+    private var dependencyProvider: MockApplicationComponentsFactory!
 
     override func setUp() {
         super.setUp()
         self.rootViewController = UINavigationController()
-        self.dependencyProvider = MockViewControllerFactory()
+        self.dependencyProvider = MockApplicationComponentsFactory()
         self.flowCoordinator = SearchFlowCoordinator(rootController: self.rootViewController, dependencyProvider: self.dependencyProvider)
         UIApplication.shared.delegate!.window??.rootViewController = self.rootViewController
     }
@@ -38,7 +38,7 @@ class SearchFlowCoordinatorTests: XCTestCase {
 
         // WHEN
         self.flowCoordinator.start()
-        self.flowCoordinator.sessionsSearchViewModel(MockSessionsSearchViewModel(), wantsToShowSessionDetailsWith: self.sessionId)
+        self.flowCoordinator.showDetails(forSession: self.sessionId)
 
         // THEN
         let predicate = NSPredicate(format: "viewControllers.@count == 2")
@@ -58,7 +58,7 @@ class SearchFlowCoordinatorTests: XCTestCase {
 
         // WHEN
         self.flowCoordinator.start()
-        self.flowCoordinator.sessionsSearchViewModel(MockSessionsSearchViewModel(), wantsToShow: Filter(), completion: { _ in })
+        self.flowCoordinator.showFilter()
 
         // THEN
         let predicate = NSPredicate(format: "viewControllers.@count == 1 && presentedViewController != nil")
@@ -69,47 +69,20 @@ class SearchFlowCoordinatorTests: XCTestCase {
     /// Tests the flow from search to session filter screen and back (new filter object)
     func testFilterFlowFinished() {
         // GIVEN
-        var filterCompletion: FilterViewModelCompletion!
         self.dependencyProvider.searchHandler = { _ in
             return UIViewController()
         }
-        self.dependencyProvider.filterHandler = { _, completion in
-            filterCompletion = completion
+        self.dependencyProvider.filterHandler = { _ in
             return UIViewController()
         }
 
         // WHEN
         self.flowCoordinator.start()
-        self.flowCoordinator.sessionsSearchViewModel(MockSessionsSearchViewModel(), wantsToShow: Filter(), completion: { _ in })
-        filterCompletion(.finished(Filter()))
+        self.flowCoordinator.showFilter()
+        self.flowCoordinator.dismiss()
 
         // THEN
 
-        let showPredicate = NSPredicate(format: "viewControllers.@count == 1 && presentedViewController != nil")
-        expectation(for: showPredicate, evaluatedWith: self.rootViewController, handler: nil)
-        let hidePredicate = NSPredicate(format: "viewControllers.@count == 1 && presentedViewController == nil")
-        expectation(for: hidePredicate, evaluatedWith: self.rootViewController, handler: nil)
-        waitForExpectations(timeout: self.timeout, handler: nil)
-    }
-
-    /// Tests the flow from search to session filter screen and back (cancel)
-    func testFilterFlowCancelled() {
-        // GIVEN
-        var filterCompletion: FilterViewModelCompletion!
-        self.dependencyProvider.searchHandler = { _ in
-            return UIViewController()
-        }
-        self.dependencyProvider.filterHandler = { _, completion in
-            filterCompletion = completion
-            return UIViewController()
-        }
-
-        // WHEN
-        self.flowCoordinator.start()
-        self.flowCoordinator.sessionsSearchViewModel(MockSessionsSearchViewModel(), wantsToShow: Filter(), completion: { _ in })
-        filterCompletion(.cancelled)
-
-        // THEN
         let showPredicate = NSPredicate(format: "viewControllers.@count == 1 && presentedViewController != nil")
         expectation(for: showPredicate, evaluatedWith: self.rootViewController, handler: nil)
         let hidePredicate = NSPredicate(format: "viewControllers.@count == 1 && presentedViewController == nil")

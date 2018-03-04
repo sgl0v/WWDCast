@@ -14,12 +14,12 @@ import SwiftyJSON
 class FavoriteSessionsViewModelTests: XCTestCase {
 
     private var viewModel: FavoriteSessionsViewModel!
-    private var api: MockWWDCastAPI!
+    private var api: MockUseCase!
     private var delegate: MockFavoriteSessionsViewModelDelegate!
     private var disposeBag: DisposeBag!
 
     override func setUp() {
-        self.api = MockWWDCastAPI()
+        self.api = MockUseCase()
         self.delegate = MockFavoriteSessionsViewModelDelegate()
         self.viewModel = FavoriteSessionsViewModel(api: self.api, delegate: self.delegate)
         self.disposeBag = DisposeBag()

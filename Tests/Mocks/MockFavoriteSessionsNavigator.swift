@@ -9,16 +9,16 @@
 import UIKit
 @testable import WWDCast
 
-class MockFavoriteSessionsViewModelDelegate: FavoriteSessionsViewModelDelegate {
+class MockFavoriteSessionsNavigator: FavoriteSessionsNavigator {
 
-    typealias DetailsHandler = (FavoriteSessionsViewModelType, String) -> Void
+    typealias DetailsHandler = (String) -> Void
 
     var detailsHandler: DetailsHandler?
 
-    func favoriteSessionsViewModel(_ viewModel: FavoriteSessionsViewModelType, wantsToShowSessionDetailsWith sessionId: String) {
+    func showDetails(forSession sessionId: String) {
         guard let handler = self.detailsHandler else {
             fatalError("Not implemented")
         }
-        return handler(viewModel, sessionId)
+        return handler(sessionId)
     }
 }

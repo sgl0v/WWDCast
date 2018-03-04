@@ -1,5 +1,5 @@
 //
-//  SessionsDetailsPresenterImpl.swift
+//  SessionDetailsPresenterImpl.swift
 //  WWDCast
 //
 //  Created by Maksym Shcheglov on 06/07/16.
@@ -12,9 +12,9 @@ import RxCocoa
 
 class SessionDetailsViewModel: SessionDetailsViewModelType {
     private let disposeBag = DisposeBag()
-    private let useCase: SessionsDetailsUseCaseType
+    private let useCase: SessionDetailsUseCaseType
 
-    init(useCase: SessionsDetailsUseCaseType) {
+    init(useCase: SessionDetailsUseCaseType) {
         self.useCase = useCase
     }
 

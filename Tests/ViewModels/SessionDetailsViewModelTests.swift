@@ -8,18 +8,19 @@
 
 import XCTest
 import RxSwift
+import RxCocoa
 @testable import WWDCast
 
 class SessionDetailsViewModelTests: XCTestCase {
 
     private let sessionId = "sessionId"
     private var viewModel: SessionDetailsViewModel!
-    private var api: MockWWDCastAPI!
-    private var delegate: MockSessionsSearchViewModelDelegate!
+    private var useCase: MockSessionDetailsUseCase!
+    private var delegate: MockSessionsSearchNavigator!
     private var disposeBag: DisposeBag!
 
     override func setUp() {
-        self.api = MockWWDCastAPI()
+        self.useCase = MockSessionDetailsUseCase()
         self.disposeBag = DisposeBag()
     }
 
@@ -27,22 +28,25 @@ class SessionDetailsViewModelTests: XCTestCase {
     func testSessionPlaybackStarts() {
         // GIVEN
         let expectation = self.expectation(description: "didStartPlaying")
-        self.api.sessionObservable = { sessionId in
-            return Observable.just(Session.dummySession)
-        }
+        self.useCase.sessionObservable = BehaviorSubject<Session>(value: Session.dummySession)
         let devices = [GoogleCastDevice(name: "#1", id: "1"), GoogleCastDevice(name: "#2", id: "2")]
         let selectedDevice = 1
-        self.api.devicesObservable = Observable.just(devices)
-        self.api.playObservable = { session, device in
-            XCTAssertEqual(session.id, Session.dummySession.id)
+        self.useCase.devicesObservable = BehaviorSubject<[GoogleCastDevice]>(value: devices)
+        self.useCase.playObservable = { device in
             XCTAssertEqual(device.id, devices[selectedDevice].id)
             expectation.fulfill()
             return Observable.empty()
         }
-        self.viewModel = SessionDetailsViewModel(sessionId: self.sessionId, api: self.api)
+        self.viewModel = SessionDetailsViewModel(useCase: self.useCase)
+        let startPlayback = PublishSubject<Int>()
+        let input = SessionDetailsViewModelInput(load: Driver.just(),
+                                                 toggleFavorite: Driver.empty(),
+                                                 showDevices: Driver.empty(),
+                                                 startPlayback: startPlayback.asDriverOnErrorJustComplete())
+        _ = self.viewModel.transform(input: input)
 
         // WHEN
-        self.viewModel.startPlaybackOnDevice(at: selectedDevice)
+        startPlayback.onNext(selectedDevice)
 
         // THEN
         self.waitForExpectations(timeout: 1.0, handler: nil)
@@ -52,22 +56,26 @@ class SessionDetailsViewModelTests: XCTestCase {
     func testSessionPlaybackFails() {
         // GIVEN
         let expectation = self.expectation(description: "didFailPlaying")
-        self.api.sessionObservable = { sessionId in
-            return Observable.just(Session.dummySession)
-        }
+        self.useCase.sessionObservable = Observable.just(Session.dummySession)
         let devices = [GoogleCastDevice(name: "#1", id: "1"), GoogleCastDevice(name: "#2", id: "2")]
         let selectedDevice = 1
-        self.api.devicesObservable = Observable.just(devices)
-        self.api.playObservable = { _ in
+        self.useCase.devicesObservable = Observable.just(devices)
+        self.useCase.playObservable = { _ in
             return Observable.error(GoogleCastServiceError.playbackError)
         }
-        self.viewModel = SessionDetailsViewModel(sessionId: self.sessionId, api: self.api)
-        self.viewModel.error.asObservable().subscribe(onNext: { _ in
+        self.viewModel = SessionDetailsViewModel(useCase: self.useCase)
+        let startPlayback = PublishSubject<Int>()
+        let input = SessionDetailsViewModelInput(load: Driver.just(),
+                                                 toggleFavorite: Driver.empty(),
+                                                 showDevices: Driver.empty(),
+                                                 startPlayback: startPlayback.asDriverOnErrorJustComplete())
+        let output = self.viewModel.transform(input: input)
+        output.error.asObservable().subscribe(onNext: { _ in
             expectation.fulfill()
         }).disposed(by: self.disposeBag)
 
         // WHEN
-        self.viewModel.startPlaybackOnDevice(at: selectedDevice)
+        startPlayback.onNext(selectedDevice)
 
         // THEN
         self.waitForExpectations(timeout: 1.0, handler: nil)
@@ -77,20 +85,22 @@ class SessionDetailsViewModelTests: XCTestCase {
     func testFavoriteSessionToggle() {
         // GIVEN
         let expectation = self.expectation(description: "didToggleFavorite")
-        self.api.sessionObservable = { sessionId in
-            return Observable.just(Session.dummySession)
-        }
-        self.api.toggleObservable = { session in
-            return Observable.just(Session.favoriteSession)
-        }
-        self.viewModel = SessionDetailsViewModel(sessionId: self.sessionId, api: self.api)
-        self.viewModel.session.asObservable().skip(1).subscribe(onNext: { viewModel in
-            XCTAssertTrue(viewModel!.favorite)
+        self.useCase.sessionObservable = Observable.just(Session.dummySession)
+        self.useCase.toggleObservable = Observable.just()
+        self.viewModel = SessionDetailsViewModel(useCase: self.useCase)
+        let toggleFavorite = PublishSubject<Void>()
+        let input = SessionDetailsViewModelInput(load: Driver.just(),
+                                                 toggleFavorite: toggleFavorite.asDriverOnErrorJustComplete(),
+                                                 showDevices: Driver.empty(),
+                                                 startPlayback: Driver.empty())
+        let output = self.viewModel.transform(input: input)
+        output.session.asObservable().skip(1).subscribe(onNext: { viewModel in
+            XCTAssertTrue(viewModel.favorite)
             expectation.fulfill()
         }).disposed(by: self.disposeBag)
 
         // WHEN
-        self.viewModel.toggleFavorite()
+        toggleFavorite.onNext()
 
         // THEN
         self.waitForExpectations(timeout: 1.0, handler: nil)

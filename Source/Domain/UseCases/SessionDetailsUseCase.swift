@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-protocol SessionsDetailsUseCaseType {
+protocol SessionDetailsUseCaseType {
 
     /// Currently available google cast devices
     var devices: Observable<[GoogleCastDevice]> { get }
@@ -24,7 +24,7 @@ protocol SessionsDetailsUseCaseType {
     var toggle: Observable<Void> { get }
 }
 
-class SessionsDetailsUseCase: SessionsDetailsUseCaseType {
+class SessionDetailsUseCase: SessionDetailsUseCaseType {
 
     private let sessionId: String
     private let googleCast: GoogleCastServiceType

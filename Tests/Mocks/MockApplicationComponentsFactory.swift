@@ -9,19 +9,21 @@
 import UIKit
 @testable import WWDCast
 
-class MockViewControllerFactory: ApplicationFlowCoordinatorDependencyProvider, SearchFlowCoordinatorDependencyProvider, FavoritesFlowCoordinatorDependencyProvider {
-
+class MockApplicationComponentsFactory {
     typealias TabBarHandler = () -> UITabBarController
-    typealias SearchHandler = (SessionsSearchViewModelDelegate,  TableViewControllerPreviewProvider) -> UIViewController
-    typealias FavoritesHandler = (FavoriteSessionsViewModelDelegate,  TableViewControllerPreviewProvider) -> UIViewController
+    typealias SearchHandler = (SessionsSearchNavigator,  TableViewControllerPreviewProvider) -> UIViewController
+    typealias FavoritesHandler = (FavoriteSessionsNavigator,  TableViewControllerPreviewProvider) -> UIViewController
     typealias DetailsHandler = (String) -> UIViewController
-    typealias FilterHandler = (Filter, @escaping FilterViewModelCompletion) -> UIViewController
+    typealias FilterHandler = () -> UIViewController
 
     var tabBarHandler: TabBarHandler?
     var searchHandler: SearchHandler?
     var favoritesHandler: FavoritesHandler?
     var detailsHandler: DetailsHandler?
     var filterHandler: FilterHandler?
+}
+
+extension MockApplicationComponentsFactory: ApplicationFlowCoordinatorDependencyProvider {
 
     func tabBarController() -> UITabBarController {
         guard let handler = self.tabBarHandler else {
@@ -30,18 +32,22 @@ class MockViewControllerFactory: ApplicationFlowCoordinatorDependencyProvider, S
         return handler()
     }
 
-    func sessionsSearchController(delegate: SessionsSearchViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
+}
+
+extension MockApplicationComponentsFactory: SearchFlowCoordinatorDependencyProvider, FavoritesFlowCoordinatorDependencyProvider {
+
+    func sessionsSearchController(navigator: SessionsSearchNavigator, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
         guard let handler = self.searchHandler else {
             fatalError("Not implemented")
         }
-        return handler(delegate, previewProvider)
+        return handler(navigator, previewProvider)
     }
 
-    func favoriteSessionsController(delegate: FavoriteSessionsViewModelDelegate, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
+    func favoriteSessionsController(navigator: FavoriteSessionsNavigator, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
         guard let handler = self.favoritesHandler else {
             fatalError("Not implemented")
         }
-        return handler(delegate, previewProvider)
+        return handler(navigator, previewProvider)
     }
 
     func sessionDetailsController(_ sessionId: String) -> UIViewController {
@@ -51,10 +57,11 @@ class MockViewControllerFactory: ApplicationFlowCoordinatorDependencyProvider, S
         return handler(sessionId)
     }
 
-    func filterController(_ filter: Filter, completion: @escaping FilterViewModelCompletion) -> UIViewController {
+    func filterController(navigator: FilterNavigator) -> UIViewController {
         guard let handler = self.filterHandler else {
             fatalError("Not implemented")
         }
-        return handler(filter, completion)
+        return handler()
     }
 }
+

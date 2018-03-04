@@ -12,14 +12,13 @@
 # This is the minimum version number required.
 # Update this, if you use features of a newer version
 fastlane_version "2.60.1"
-REQUIRED_XCODE_VERSION = "9.0.1"
+REQUIRED_XCODE_VERSION = "9.2"
 default_platform :ios
 
 platform :ios do
   before_all do
     verify_xcode_version
     git_pull(only_tags: true)
-    cocoapods
   end
 
   after_all do
