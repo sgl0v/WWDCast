@@ -42,11 +42,12 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
     private func bind(to viewModel: SessionDetailsViewModelType) {
         // ViewModel's input
         let viewWillAppear = self.rx.viewWillAppear.mapToVoid().asDriverOnErrorJustComplete()
+        let viewDidDisappear = self.rx.viewDidDisappear.mapToVoid().asDriverOnErrorJustComplete()
         let toggleFavorite = self.favoriteButton.rx.tap.mapToVoid().asDriverOnErrorJustComplete()
         let showDevices = self.playButton.rx.tap.mapToVoid().asDriverOnErrorJustComplete()
         let startPlayback = self.playbackTrigger.asDriverOnErrorJustComplete()
 
-        let input = SessionDetailsViewModelInput(load: viewWillAppear, toggleFavorite: toggleFavorite, showDevices: showDevices, startPlayback: startPlayback)
+        let input = SessionDetailsViewModelInput(appear: viewWillAppear, disappear: viewDidDisappear, toggleFavorite: toggleFavorite, showDevices: showDevices, startPlayback: startPlayback)
         let output = viewModel.transform(input: input)
 
         // ViewModel's output

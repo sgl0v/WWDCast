@@ -28,22 +28,25 @@ class SessionDetailsViewModelTests: XCTestCase {
     func testSessionPlaybackStarts() {
         // GIVEN
         let expectation = self.expectation(description: "didStartPlaying")
-        self.useCase.sessionObservable = BehaviorSubject<Session>(value: Session.dummySession)
+        self.useCase.sessionObservable = Observable.just(Session.dummySession)
         let devices = [GoogleCastDevice(name: "#1", id: "1"), GoogleCastDevice(name: "#2", id: "2")]
         let selectedDevice = 1
-        self.useCase.devicesObservable = BehaviorSubject<[GoogleCastDevice]>(value: devices)
+        self.useCase.devicesObservable = Observable.just(devices)
         self.useCase.playObservable = { device in
             XCTAssertEqual(device.id, devices[selectedDevice].id)
-            expectation.fulfill()
-            return Observable.empty()
+            return Observable.just(())
         }
         self.viewModel = SessionDetailsViewModel(useCase: self.useCase)
         let startPlayback = PublishSubject<Int>()
-        let input = SessionDetailsViewModelInput(load: Driver.just(),
-                                                 toggleFavorite: Driver.empty(),
-                                                 showDevices: Driver.empty(),
+        let input = SessionDetailsViewModelInput(appear: Driver.just(()),
+                                                 disappear: Driver.never(),
+                                                 toggleFavorite: Driver.never(),
+                                                 showDevices: Driver.never(),
                                                  startPlayback: startPlayback.asDriverOnErrorJustComplete())
-        _ = self.viewModel.transform(input: input)
+        let output = self.viewModel.transform(input: input)
+        output.playback.drive(onNext: { _ in
+            expectation.fulfill()
+        }).disposed(by: self.disposeBag)
 
         // WHEN
         startPlayback.onNext(selectedDevice)
@@ -65,14 +68,16 @@ class SessionDetailsViewModelTests: XCTestCase {
         }
         self.viewModel = SessionDetailsViewModel(useCase: self.useCase)
         let startPlayback = PublishSubject<Int>()
-        let input = SessionDetailsViewModelInput(load: Driver.just(),
-                                                 toggleFavorite: Driver.empty(),
-                                                 showDevices: Driver.empty(),
+        let input = SessionDetailsViewModelInput(appear: Driver.just(()),
+                                                 disappear: Driver.never(),
+                                                 toggleFavorite: Driver.never(),
+                                                 showDevices: Driver.never(),
                                                  startPlayback: startPlayback.asDriverOnErrorJustComplete())
         let output = self.viewModel.transform(input: input)
         output.error.asObservable().subscribe(onNext: { _ in
             expectation.fulfill()
         }).disposed(by: self.disposeBag)
+        output.playback.drive().disposed(by: self.disposeBag)
 
         // WHEN
         startPlayback.onNext(selectedDevice)
@@ -86,21 +91,22 @@ class SessionDetailsViewModelTests: XCTestCase {
         // GIVEN
         let expectation = self.expectation(description: "didToggleFavorite")
         self.useCase.sessionObservable = Observable.just(Session.dummySession)
-        self.useCase.toggleObservable = Observable.just()
+        self.useCase.toggleObservable = Observable.just(())
+        self.useCase.devicesObservable = Observable.never()
         self.viewModel = SessionDetailsViewModel(useCase: self.useCase)
         let toggleFavorite = PublishSubject<Void>()
-        let input = SessionDetailsViewModelInput(load: Driver.just(),
+        let input = SessionDetailsViewModelInput(appear: Driver.just(()),
+                                                 disappear: Driver.never(),
                                                  toggleFavorite: toggleFavorite.asDriverOnErrorJustComplete(),
-                                                 showDevices: Driver.empty(),
-                                                 startPlayback: Driver.empty())
+                                                 showDevices: Driver.never(),
+                                                 startPlayback: Driver.never())
         let output = self.viewModel.transform(input: input)
-        output.session.asObservable().skip(1).subscribe(onNext: { viewModel in
-            XCTAssertTrue(viewModel.favorite)
+        output.session.skip(1).drive(onNext: { viewModel in
             expectation.fulfill()
         }).disposed(by: self.disposeBag)
 
         // WHEN
-        toggleFavorite.onNext()
+        toggleFavorite.onNext(())
 
         // THEN
         self.waitForExpectations(timeout: 1.0, handler: nil)

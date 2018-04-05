@@ -24,9 +24,10 @@ class FavoriteSessionsUseCase: FavoriteSessionsUseCaseType {
     }
 
     lazy var favoriteSessions: Observable<[Session]> = {
-        return self.dataSource.allObjects().map({ sessions in
-            return sessions.filter({ $0.favorite })
-        })
+        return self.dataSource
+            .allObjects()
+            .map({ sessions in return sessions.filter({ $0.favorite }) })
+            .subscribeOn(Scheduler.backgroundWorkScheduler)
+            .observeOn(Scheduler.mainScheduler)
     }()
-
 }

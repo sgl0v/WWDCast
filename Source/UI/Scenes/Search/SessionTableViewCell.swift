@@ -14,13 +14,14 @@ class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProv
     @IBOutlet private weak var thumbnailImage: UIImageView!
     @IBOutlet private weak var title: UILabel!
     @IBOutlet private weak var summary: UILabel!
-    private let disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
 
-    override func awakeFromNib() {
-        self.onPrepareForReuse.subscribe(onNext: {[unowned self] _ in
-            self.imageView?.image = nil
-        }).disposed(by: self.disposeBag)
+    override public func prepareForReuse() {
+        super.prepareForReuse()
+        self.thumbnailImage?.image = nil
+        self.disposeBag = DisposeBag()
     }
+
 //}
 //
 //extension SessionTableViewCell: BindableView {

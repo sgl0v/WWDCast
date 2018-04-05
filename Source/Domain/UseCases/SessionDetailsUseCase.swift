@@ -38,6 +38,8 @@ class SessionDetailsUseCase: SessionDetailsUseCaseType {
 
     lazy var session: Observable<Session> = {
         return self.dataSource.get(byId: self.sessionId)
+            .subscribeOn(Scheduler.backgroundWorkScheduler)
+            .observeOn(Scheduler.mainScheduler)
     }()
 
     var devices: Observable<[GoogleCastDevice]> {
@@ -58,6 +60,8 @@ class SessionDetailsUseCase: SessionDetailsUseCaseType {
         })
             .flatMap(self.dataSource.update)
             .mapToVoid()
+            .subscribeOn(Scheduler.backgroundWorkScheduler)
+            .observeOn(Scheduler.mainScheduler)
     }
 
 }

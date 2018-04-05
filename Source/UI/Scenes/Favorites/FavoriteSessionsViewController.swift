@@ -33,13 +33,14 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
     private func bind(to viewModel: FavoriteSessionsViewModelType) {
         // ViewModel's input
         let viewWillAppear = self.rx.viewWillAppear.mapToVoid().asDriverOnErrorJustComplete()
+        let viewDidDisappear = self.rx.viewDidDisappear.mapToVoid().asDriverOnErrorJustComplete()
         let modelSelected = self.tableView.rx.modelSelected(SessionItemViewModel.self).asDriverOnErrorJustComplete()
         let commitPreview = self.previewController?.commitPreview.map({[unowned self] indexPath in
             return self.source[indexPath]
         }).asDriverOnErrorJustComplete() ?? Driver.empty()
         let selection = Driver.merge(modelSelected, commitPreview)
 
-        let input = FavoriteSessionsViewModelInput(loading: viewWillAppear, selection: selection)
+        let input = FavoriteSessionsViewModelInput(appear: viewWillAppear, disappear: viewDidDisappear, selection: selection)
         let output = viewModel.transform(input: input)
 
         // ViewModel's output

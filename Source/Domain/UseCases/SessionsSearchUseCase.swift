@@ -26,7 +26,9 @@ class SessionsSearchUseCase: SessionsSearchUseCaseType {
     lazy var sessions: Observable<[Session]> = {
         let sessions = self.dataSource.allObjects()
         return Observable.combineLatest(sessions, self.filterRepository.asObservable(),
-                                        resultSelector: self.applyFilter).share(replay: 1)
+                                        resultSelector: self.applyFilter)
+            .subscribeOn(Scheduler.backgroundWorkScheduler)
+            .observeOn(Scheduler.mainScheduler)
     }()
 
     init(dataSource: AnyDataSource<Session>, filterRepository: Repository<Filter>) {

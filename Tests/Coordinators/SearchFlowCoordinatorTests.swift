@@ -28,7 +28,7 @@ class SearchFlowCoordinatorTests: XCTestCase {
     /// Tests the flow from search to session details screen
     func testSearchDetailsFlow() {
         // GIVEN
-        self.dependencyProvider.searchHandler = { _ in
+        self.dependencyProvider.searchHandler = { (_, _) in
             return UIViewController()
         }
         self.dependencyProvider.detailsHandler = { sessionId in
@@ -49,10 +49,10 @@ class SearchFlowCoordinatorTests: XCTestCase {
     /// Tests the flow from search to session filter screen
     func testFilterFlow() {
         // GIVEN
-        self.dependencyProvider.searchHandler = { _ in
+        self.dependencyProvider.searchHandler = { (_, _) in
             return UIViewController()
         }
-        self.dependencyProvider.filterHandler = { _ in
+        self.dependencyProvider.filterHandler = {
             return UIViewController()
         }
 
@@ -69,10 +69,10 @@ class SearchFlowCoordinatorTests: XCTestCase {
     /// Tests the flow from search to session filter screen and back (new filter object)
     func testFilterFlowFinished() {
         // GIVEN
-        self.dependencyProvider.searchHandler = { _ in
+        self.dependencyProvider.searchHandler = { (_, _) in
             return UIViewController()
         }
-        self.dependencyProvider.filterHandler = { _ in
+        self.dependencyProvider.filterHandler = { () in
             return UIViewController()
         }
 

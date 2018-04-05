@@ -47,6 +47,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
     private func bind(to viewModel: SessionsSearchViewModelType) {
         // ViewModel's input
         let viewWillAppear = self.rx.viewWillAppear.mapToVoid().asDriverOnErrorJustComplete()
+        let viewDidDisappear = self.rx.viewDidDisappear.mapToVoid().asDriverOnErrorJustComplete()
         let modelSelected = self.tableView.rx.modelSelected(SessionItemViewModel.self).asDriverOnErrorJustComplete()
         let commitPreview = self.previewController?.commitPreview.map({[unowned self] indexPath in
             return self.source[indexPath]
@@ -55,7 +56,8 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         let filter = self.filterButton.rx.tap.asDriverOnErrorJustComplete()
         let search = self.searchQuery
 
-        let input = SessionsSearchViewModelInput(loading: viewWillAppear,
+        let input = SessionsSearchViewModelInput(appear: viewWillAppear,
+                                                 disappear: viewDidDisappear,
                                                  selection: selection,
                                                  filter: filter,
                                                  search: search)

@@ -12,8 +12,10 @@ import RxCocoa
 
 // INPUT
 struct SessionDetailsViewModelInput {
-    /// triggers a screen's content loading
-    let load: Driver<Void>
+    /// called when a screen becomes visible
+    let appear: Driver<Void>
+    /// called when a screen becomes hidden
+    let disappear: Driver<Void>
     /// add or remove the session from favorites
     let toggleFavorite: Driver<Void>
     /// called when the user would like to choose ChromeCast device for playback

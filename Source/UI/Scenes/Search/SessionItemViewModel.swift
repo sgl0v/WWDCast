@@ -33,5 +33,5 @@ extension SessionItemViewModel: Hashable {
 }
 
 func == (lhs: SessionItemViewModel, rhs: SessionItemViewModel) -> Bool {
-    return lhs.id == rhs.id
+    return lhs.id == rhs.id && lhs.favorite == rhs.favorite
 }

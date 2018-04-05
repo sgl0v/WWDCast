@@ -25,7 +25,7 @@ class FavoriteSessionsViewModel: FavoriteSessionsViewModelType {
     func transform(input: FavoriteSessionsViewModelInput) -> FavoriteSessionsViewModelOutput {
         let errorTracker = ErrorTracker()
 
-        let favorites: Driver<[SessionSectionViewModel]> = input.loading.flatMapLatest {
+        let favorites: Driver<[SessionSectionViewModel]> = input.appear.flatMapLatest {
             self.useCase.favoriteSessions
                 .map(SessionSectionViewModelBuilder.build)
                 .trackError(errorTracker)

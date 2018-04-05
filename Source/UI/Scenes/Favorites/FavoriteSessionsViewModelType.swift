@@ -11,8 +11,10 @@ import RxSwift
 import RxCocoa
 
 struct FavoriteSessionsViewModelInput {
-    /// triggers a screen's content loading
-    let loading: Driver<Void>
+    /// called when a screen becomes visible
+    let appear: Driver<Void>
+    /// called when a screen becomes hidden
+    let disappear: Driver<Void>
     /// called when the user selected an item from the list
     let selection: Driver<SessionItemViewModel>
 }

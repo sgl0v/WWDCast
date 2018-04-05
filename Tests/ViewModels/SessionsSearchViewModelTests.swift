@@ -32,26 +32,23 @@ class SessionsSearchViewModelTests: XCTestCase {
         var sessionViewModels: [SessionSectionViewModel]?
         self.useCase.sessionsObservable = Observable.just(sessions)
         let expectation = self.expectation(description: "didFinishDataLoading")
-        var isError = false
         let loading = PublishSubject<Void>()
-        let input = SessionsSearchViewModelInput(loading: loading.asDriverOnErrorJustComplete(),
-                                                 selection: Driver.empty(),
-                                                 filter: Driver.empty(),
-                                                 search: Driver.empty())
+        let input = SessionsSearchViewModelInput(appear: loading.asDriverOnErrorJustComplete(),
+                                                 disappear: Driver.never(),
+                                                 selection: Driver.never(),
+                                                 filter: Driver.never(),
+                                                 search: Driver.never())
         let output = self.viewModel.transform(input: input)
-        output.sessions.asObservable().subscribe(onNext: { sessions in
+        output.sessions.drive(onNext: { sessions in
             sessionViewModels = sessions
             expectation.fulfill()
-        }, onError: { _ in
-            isError = true
         }).disposed(by: self.disposeBag)
 
         // WHEN
-        loading.onNext()
+        loading.onNext(())
 
         // THEN
         waitForExpectations(timeout: 1.0, handler: nil)
-        XCTAssertFalse(isError)
         XCTAssertNotNil(sessionViewModels)
     }
 
@@ -68,18 +65,16 @@ class SessionsSearchViewModelTests: XCTestCase {
             return searchSessions.asObservable()
         }
         let expectation = self.expectation(description: "didFinishDataLoading")
-        var isError = false
         let search = PublishSubject<String>()
-        let input = SessionsSearchViewModelInput(loading: Driver.just(),
-                                                 selection: Driver.empty(),
-                                                 filter: Driver.empty(),
+        let input = SessionsSearchViewModelInput(appear: Driver.just(()),
+                                                 disappear: Driver.never(),
+                                                 selection: Driver.never(),
+                                                 filter: Driver.never(),
                                                  search: search.asDriverOnErrorJustComplete())
         let output = self.viewModel.transform(input: input)
-        output.sessions.asObservable().skip(1).subscribe(onNext: { sessions in
+        output.sessions.skip(1).drive(onNext: { sessions in
             sessionViewModels = sessions
             expectation.fulfill()
-        }, onError: { _ in
-            isError = true
         }).disposed(by: self.disposeBag)
 
         // WHEN
@@ -87,7 +82,6 @@ class SessionsSearchViewModelTests: XCTestCase {
 
         // THEN
         waitForExpectations(timeout: 1.0, handler: nil)
-        XCTAssertFalse(isError)
         XCTAssertNotNil(sessionViewModels)
     }
 
@@ -102,10 +96,11 @@ class SessionsSearchViewModelTests: XCTestCase {
             expectation.fulfill()
         }
         let selection = PublishSubject<SessionItemViewModel>()
-        let input = SessionsSearchViewModelInput(loading: Driver.just(),
+        let input = SessionsSearchViewModelInput(appear: Driver.just(()),
+                                                 disappear: Driver.never(),
                                                  selection: selection.asDriverOnErrorJustComplete(),
-                                                 filter: Driver.empty(),
-                                                 search: Driver.empty())
+                                                 filter: Driver.never(),
+                                                 search: Driver.never())
         _ = self.viewModel.transform(input: input)
 
         // WHEN
@@ -120,19 +115,20 @@ class SessionsSearchViewModelTests: XCTestCase {
     /// The navigator should be notified when the user taps the filter button
     func testNotifyDelegateOnFilterButtonTap() {
         //GIVEN
-        let expectation = self.expectation(description: "didTapFilter")
-        self.navigator.filterHandler = { _ in
+        let expectation = self.expectation(description: "didTapFilter") 
+        self.navigator.filterHandler = {
             expectation.fulfill()
         }
         let filter = PublishSubject<Void>()
-        let input = SessionsSearchViewModelInput(loading: Driver.just(),
-                                                 selection: Driver.empty(),
+        let input = SessionsSearchViewModelInput(appear: Driver.just(()),
+                                                 disappear: Driver.never(),
+                                                 selection: Driver.never(),
                                                  filter: filter.asDriverOnErrorJustComplete(),
-                                                 search: Driver.empty())
+                                                 search: Driver.never())
         _ = self.viewModel.transform(input: input)
 
         // WHEN
-        filter.onNext()
+        filter.onNext(())
 
         // THEN
         waitForExpectations(timeout: 1.0, handler: nil)

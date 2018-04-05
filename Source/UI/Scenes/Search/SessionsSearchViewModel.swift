@@ -27,12 +27,13 @@ class SessionsSearchViewModel: SessionsSearchViewModelType {
         let errorTracker = ErrorTracker()
         let activityIndicator = ActivityIndicator()
 
-        let initialSessions: Driver<[SessionSectionViewModel]> = input.loading.flatMap {
+        let initialSessions: Driver<[SessionSectionViewModel]> = input.appear.flatMap({_ in
             return self.useCase.sessions
                 .map(SessionSectionViewModelBuilder.build)
+                .takeUntil(input.disappear.asObservable())
                 .trackError(errorTracker)
                 .asDriverOnErrorJustComplete()
-        }
+        })
         let searchSessions: Driver<[SessionSectionViewModel]> = input.search.flatMapLatest {query in
                 return self.useCase.search(with: query)
                 .map(SessionSectionViewModelBuilder.build)

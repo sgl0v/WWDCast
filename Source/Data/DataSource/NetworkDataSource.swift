@@ -23,7 +23,6 @@ final class NetworkDataSource: DataSourceType {
     func allObjects() -> Observable<[Item]> {
         return self.loadSessions()
             .retryOnBecomesReachable([], reachabilityService: self.reachability)
-            .share(replay: 1)
     }
 
     func get(byId id: String) -> Observable<Item> {

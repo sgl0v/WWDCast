@@ -23,7 +23,7 @@ class SessionDetailsViewModel: SessionDetailsViewModelType {
     func transform(input: SessionDetailsViewModelInput) -> SessionDetailsViewModelOutput {
         let errorTracker = ErrorTracker()
 
-        let sessionObservable = input.load.flatMapLatest {
+        let sessionObservable = input.appear.flatMapLatest {
             self.useCase.session
                 .trackError(errorTracker)
                 .asDriverOnErrorJustComplete()
