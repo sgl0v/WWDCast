@@ -32,7 +32,7 @@ protocol DataSourceType: class {
     /// Updates items in the data source.
     ///
     /// - Parameter items: an array of records to update.
-    /// - Returns: true if the operation succeeded, false otherwise.
+    /// - Returns: an observable sequence of recently updated items
     func update(_ items: [Item]) -> Observable<[Item]>
 
     /// Removes all items of type Item from the data source

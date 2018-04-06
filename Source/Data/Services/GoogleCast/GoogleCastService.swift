@@ -34,16 +34,20 @@ final class GoogleCastService: NSObject, GoogleCastServiceType {
     // MARK: GoogleCastServiceProtocol
 
     var devices: Observable<[GoogleCastDevice]> {
-        let discoveryManager = self.context.discoveryManager
-        guard discoveryManager.hasDiscoveredDevices else {
-            return Observable.error(GoogleCastServiceError.noDevicesFound)
+        let devices: Observable<[GCKDevice]> = Observable.deferred {
+            let discoveryManager = self.context.discoveryManager
+            guard discoveryManager.hasDiscoveredDevices else {
+                return Observable.error(GoogleCastServiceError.noDevicesFound)
+            }
+            let devices = (0..<discoveryManager.deviceCount).map({ idx in
+                return discoveryManager.device(at: idx)
+            })
+            return .just(devices)
         }
-        let devices = (0..<discoveryManager.deviceCount).map({ idx in
-            return discoveryManager.device(at: idx)
-        }).map({ device in
-            return GoogleCastDevice(name: device.friendlyName ?? "Unknown", id: device.deviceID)
-        })
-        return Observable.just(devices)
+        return Observable.merge(devices, self.context.discoveryManager.rx.didUpdateDeviceList)
+            .map(self.devices)
+            .distinctUntilChanged(==)
+            .share(replay: 1)
     }
 
     func play(media: GoogleCastMedia, onDevice device: GoogleCastDevice) -> Observable<Void> {
@@ -74,6 +78,12 @@ final class GoogleCastService: NSObject, GoogleCastServiceType {
     }
 
     // MARK: Private
+
+    private func devices(from gckDevices: [GCKDevice]) -> [GoogleCastDevice] {
+        return gckDevices.map { device in
+            return GoogleCastDevice(name: device.friendlyName ?? "Unknown", id: device.deviceID)
+        }
+    }
 
     private func device(withId id: String) -> GCKDevice? {
         return (0..<self.context.discoveryManager.deviceCount).map({ idx in

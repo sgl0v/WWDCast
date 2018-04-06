@@ -145,6 +145,7 @@
 		E7FC18171EE0A5E6000D2FAB /* WWDCast.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */; };
 		E7FEA2532076837400CBDB1C /* FavoriteSessionsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1D2A1E68B054005A3EAE /* FavoriteSessionsViewModelTests.swift */; };
 		E7FEA256207683EB00CBDB1C /* MockFavoriteSessionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA254207683E800CBDB1C /* MockFavoriteSessionsUseCase.swift */; };
+		E7FEA2582077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA2572077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -326,6 +327,7 @@
 		E7F045041F7B0126007DE5C3 /* Team.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Team.xcconfig; sourceTree = "<group>"; };
 		E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = WWDCast.xcdatamodel; path = Resources/WWDCast.xcdatamodel; sourceTree = SOURCE_ROOT; };
 		E7FEA254207683E800CBDB1C /* MockFavoriteSessionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoriteSessionsUseCase.swift; sourceTree = "<group>"; };
+		E7FEA2572077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxGCKDiscoveryManagerListenerProxy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -481,9 +483,9 @@
 			isa = PBXGroup;
 			children = (
 				E74C02001FE0973200D98A76 /* UI */,
-				E74C01CA1FE0973200D98A76 /* Common */,
 				E74C01CC1FE0973200D98A76 /* Data */,
 				E74C01EE1FE0973200D98A76 /* Domain */,
+				E74C01CA1FE0973200D98A76 /* Common */,
 				E74C01FD1FE0973200D98A76 /* ThirdParty */,
 				E74C022D1FE0973200D98A76 /* ApplicationComponentsFactory.swift */,
 				E74C022E1FE0973200D98A76 /* Environment.swift */,
@@ -562,6 +564,7 @@
 				E74C01E31FE0973200D98A76 /* GoogleCastServiceType.swift */,
 				E74C01E41FE0973200D98A76 /* RxGCKRequestDelegateProxy.swift */,
 				E74C01E51FE0973200D98A76 /* RxGCKSessionManagerListenerProxy.swift */,
+				E7FEA2572077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift */,
 			);
 			path = GoogleCast;
 			sourceTree = "<group>";
@@ -984,6 +987,7 @@
 				E7416E8E1FFFE6370062B812 /* ServicesProvider.swift in Sources */,
 				E74C026E1FE0973300D98A76 /* SessionSectionViewModelBuilder.swift in Sources */,
 				E74C02351FE0973200D98A76 /* NSManagedObjectContext+Rx.swift in Sources */,
+				E7FEA2582077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift in Sources */,
 				E74C02671FE0973300D98A76 /* FilterSectionViewModel.swift in Sources */,
 				E74C022F1FE0973200D98A76 /* AppDelegate.swift in Sources */,
 				E74C026A1FE0973300D98A76 /* FilterViewModel.swift in Sources */,
