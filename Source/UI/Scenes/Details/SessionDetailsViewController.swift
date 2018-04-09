@@ -59,10 +59,7 @@ class SessionDetailsViewController: UIViewController, NibProvidable {
 
     private var sessionBinding: Binder<SessionItemViewModel> {
         return Binder(self, binding: { (vc, viewModel) in
-            Observable.just(viewModel.thumbnailURL)
-                .asObservable()
-                .bind(to: vc.image.rx.imageURL)
-                .disposed(by: vc.disposeBag)
+            viewModel.thumbnail.asDriver(onErrorJustReturn: UIImage()).drive(vc.image.rx.image).disposed(by: vc.disposeBag)
             vc.header.text = viewModel.title
             vc.summary.text = viewModel.summary
             vc.subtitle.text = viewModel.subtitle

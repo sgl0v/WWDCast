@@ -11,19 +11,32 @@ import UIKit
 
 struct SessionItemViewModelBuilder {
 
-    static func build(_ session: Session) -> SessionItemViewModel {
+    private let imageLoadUseCase: ImageLoadUseCaseType
 
+    init(imageLoadUseCase: ImageLoadUseCaseType) {
+        self.imageLoadUseCase = imageLoadUseCase
+    }
+
+    func build(_ session: Session) -> SessionItemViewModel {
+        let thumbnail = self.imageLoadUseCase.loadImage(for: session.thumbnail)
         return SessionItemViewModel(id: session.id, title: session.title,
-                                    subtitle: session.subtitle, summary: session.summary, thumbnailURL: session.thumbnail, favorite: session.favorite)
+                                    subtitle: session.subtitle, summary: session.summary, thumbnail: thumbnail, favorite: session.favorite)
     }
 
 }
 
 struct SessionSectionViewModelBuilder {
 
-    static func build(_ sessions: [Session]) -> [SessionSectionViewModel] {
+    private let imageLoadUseCase: ImageLoadUseCaseType
+
+    init(imageLoadUseCase: ImageLoadUseCaseType) {
+        self.imageLoadUseCase = imageLoadUseCase
+    }
+
+    func build(_ sessions: [Session]) -> [SessionSectionViewModel] {
+        let itemBuilder = SessionItemViewModelBuilder(imageLoadUseCase: self.imageLoadUseCase)
         let sessions: [SessionSectionViewModel] = Session.Track.all.map({ track in
-            let sessions = sessions.sorted().filter({ session in session.track == track }).map(SessionItemViewModelBuilder.build)
+            let sessions = sessions.sorted().filter({ session in session.track == track }).map(itemBuilder.build)
             return SessionSectionViewModel(title: track.description, items: sessions)
         }).filter({ sessionSectionViewModel in
             return !sessionSectionViewModel.items.isEmpty

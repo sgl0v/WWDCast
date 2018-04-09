@@ -6,15 +6,16 @@
 //  Copyright © 2016 Maksym Shcheglov. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import RxDataSources
+import RxSwift
 
 struct SessionItemViewModel {
     var id: String
     var title: String
     var subtitle: String
     var summary: String
-    var thumbnailURL: URL
+    var thumbnail: Observable<UIImage>
     var favorite: Bool
 }
 

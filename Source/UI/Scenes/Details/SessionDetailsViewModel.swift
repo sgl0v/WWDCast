@@ -13,15 +13,18 @@ import RxCocoa
 class SessionDetailsViewModel: SessionDetailsViewModelType {
     private let disposeBag = DisposeBag()
     private let useCase: SessionDetailsUseCaseType
+    private let imageLoadUseCase: ImageLoadUseCaseType
 
-    init(useCase: SessionDetailsUseCaseType) {
+    init(useCase: SessionDetailsUseCaseType, imageLoadUseCase: ImageLoadUseCaseType) {
         self.useCase = useCase
+        self.imageLoadUseCase = imageLoadUseCase
     }
 
     // MARK: SessionDetailsViewModel
 
     func transform(input: SessionDetailsViewModelInput) -> SessionDetailsViewModelOutput {
         let errorTracker = ErrorTracker()
+        let viewModelBuilder = SessionItemViewModelBuilder(imageLoadUseCase: self.imageLoadUseCase)
 
         let sessionObservable = input.appear.flatMapLatest {
             self.useCase.session
@@ -35,7 +38,7 @@ class SessionDetailsViewModel: SessionDetailsViewModelType {
         }).withLatestFrom(sessionObservable)
 
         let session = Driver.merge(sessionObservable, favoriteObservable)
-            .map(SessionItemViewModelBuilder.build)
+            .map(viewModelBuilder.build)
 
         let devices = input.showDevices.flatMap({ _ in
             return self.useCase.devices.map({ devices in

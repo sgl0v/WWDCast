@@ -37,14 +37,14 @@ final class GoogleCastService: NSObject, GoogleCastServiceType {
         let devices: Observable<[GCKDevice]> = Observable.deferred {
             let discoveryManager = self.context.discoveryManager
             guard discoveryManager.hasDiscoveredDevices else {
-                return Observable.error(GoogleCastServiceError.noDevicesFound)
+                return .error(GoogleCastServiceError.noDevicesFound)
             }
             let devices = (0..<discoveryManager.deviceCount).map({ idx in
                 return discoveryManager.device(at: idx)
             })
             return .just(devices)
         }
-        return Observable.merge(devices, self.context.discoveryManager.rx.didUpdateDeviceList)
+        return Observable.concat(devices, self.context.discoveryManager.rx.didUpdateDeviceList)
             .map(self.devices)
             .distinctUntilChanged(==)
             .share(replay: 1)

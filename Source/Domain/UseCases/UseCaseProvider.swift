@@ -11,11 +11,13 @@ import Foundation
 final class UseCaseProvider {
 
     private let googleCastService: GoogleCastServiceType
+    private let reachabilityService: ReachabilityServiceType
     private let sessionsDataSource: AnyDataSource<Session>
     private let filterRepository: Repository<Filter>
 
-    init(googleCastService: GoogleCastServiceType, sessionsDataSource: AnyDataSource<Session>, filterRepository: Repository<Filter>) {
+    init(googleCastService: GoogleCastServiceType, reachabilityService: ReachabilityServiceType, sessionsDataSource: AnyDataSource<Session>, filterRepository: Repository<Filter>) {
         self.googleCastService = googleCastService
+        self.reachabilityService = reachabilityService
         self.sessionsDataSource = sessionsDataSource
         self.filterRepository = filterRepository
     }
@@ -35,5 +37,9 @@ final class UseCaseProvider {
     func sessionDetailsUseCase(sessionId: String) -> SessionDetailsUseCaseType {
         return SessionDetailsUseCase(sessionId: sessionId, googleCast: self.googleCastService, dataSource: self.sessionsDataSource)
     }
+
+    lazy var imageLoadUseCase: ImageLoadUseCaseType = {
+        return ImageLoadUseCase(reachability: self.reachabilityService)
+    }()
 
 }

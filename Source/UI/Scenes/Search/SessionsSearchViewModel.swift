@@ -13,30 +13,33 @@ import RxCocoa
 class SessionsSearchViewModel: SessionsSearchViewModelType {
 
     private let useCase: SessionsSearchUseCaseType
+    private let imageLoadUseCase: ImageLoadUseCaseType
     private weak var navigator: SessionsSearchNavigator?
     private let disposeBag = DisposeBag()
 
-    init(useCase: SessionsSearchUseCaseType, navigator: SessionsSearchNavigator) {
+    init(useCase: SessionsSearchUseCaseType, imageLoadUseCase: ImageLoadUseCaseType, navigator: SessionsSearchNavigator) {
         self.useCase = useCase
+        self.imageLoadUseCase = imageLoadUseCase
         self.navigator = navigator
     }
 
     // MARK: SessionsSearchViewModelType
 
     func transform(input: SessionsSearchViewModelInput) -> SessionsSearchViewModelOuput {
+        let viewModelBuilder = SessionSectionViewModelBuilder(imageLoadUseCase: self.imageLoadUseCase)
         let errorTracker = ErrorTracker()
         let activityIndicator = ActivityIndicator()
 
         let initialSessions: Driver<[SessionSectionViewModel]> = input.appear.flatMap({_ in
             return self.useCase.sessions
-                .map(SessionSectionViewModelBuilder.build)
+                .map(viewModelBuilder.build)
                 .takeUntil(input.disappear.asObservable())
                 .trackError(errorTracker)
                 .asDriverOnErrorJustComplete()
         })
         let searchSessions: Driver<[SessionSectionViewModel]> = input.search.flatMapLatest {query in
                 return self.useCase.search(with: query)
-                .map(SessionSectionViewModelBuilder.build)
+                .map(viewModelBuilder.build)
                 .trackError(errorTracker)
                 .asDriverOnErrorJustComplete()
         }

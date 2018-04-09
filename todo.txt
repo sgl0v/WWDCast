@@ -1,0 +1,3 @@
+- remove SwiftyJSON
+- Change project's structure
+- use repo instead of data source

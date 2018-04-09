@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProvidable {
+class SessionTableViewCell: RxTableViewCell, ReusableView, NibProvidable {
     @IBOutlet private weak var thumbnailImage: UIImageView!
     @IBOutlet private weak var title: UILabel!
     @IBOutlet private weak var summary: UILabel!
@@ -22,17 +22,17 @@ class SessionTableViewCell: RxTableViewCell, ReusableView, BindableView, NibProv
         self.disposeBag = DisposeBag()
     }
 
-//}
-//
-//extension SessionTableViewCell: BindableView {
+}
+
+extension SessionTableViewCell: BindableView {
     typealias ViewModel = SessionItemViewModel
 
     func bind(to viewModel: ViewModel) {
         self.title.text = viewModel.title
         self.summary.text = viewModel.summary
-        Observable.just(viewModel.thumbnailURL)
-            .takeUntil(self.onPrepareForReuse)
-            .bind(to: self.thumbnailImage.rx.imageURL)
+        viewModel.thumbnail
+            .asDriver(onErrorJustReturn: UIImage())
+            .drive(self.thumbnailImage.rx.image)
             .disposed(by: self.disposeBag)
         self.layoutMargins = UIEdgeInsets.zero
         self.separatorInset = UIEdgeInsets.zero

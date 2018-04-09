@@ -129,7 +129,6 @@
 		E74C02751FE0973300D98A76 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C02251FE0973200D98A76 /* TableViewController.swift */; };
 		E74C02761FE0973300D98A76 /* UIAlertController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C02261FE0973200D98A76 /* UIAlertController+Rx.swift */; };
 		E74C02771FE0973300D98A76 /* UIBarButtonItem+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C02271FE0973200D98A76 /* UIBarButtonItem+Common.swift */; };
-		E74C02781FE0973300D98A76 /* UIImageView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C02281FE0973200D98A76 /* UIImageView+Rx.swift */; };
 		E74C02791FE0973300D98A76 /* UITableView+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C02291FE0973200D98A76 /* UITableView+Common.swift */; };
 		E74C027A1FE0973300D98A76 /* UIView+LayoutConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C022A1FE0973200D98A76 /* UIView+LayoutConstraints.swift */; };
 		E74C027B1FE0973300D98A76 /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C022B1FE0973200D98A76 /* UIViewController+Common.swift */; };
@@ -146,6 +145,7 @@
 		E7FEA2532076837400CBDB1C /* FavoriteSessionsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1D2A1E68B054005A3EAE /* FavoriteSessionsViewModelTests.swift */; };
 		E7FEA256207683EB00CBDB1C /* MockFavoriteSessionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA254207683E800CBDB1C /* MockFavoriteSessionsUseCase.swift */; };
 		E7FEA2582077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA2572077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift */; };
+		E7FEA267207B6A4D00CBDB1C /* ImageLoadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA266207B6A4D00CBDB1C /* ImageLoadUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -302,7 +302,6 @@
 		E74C02251FE0973200D98A76 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		E74C02261FE0973200D98A76 /* UIAlertController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Rx.swift"; sourceTree = "<group>"; };
 		E74C02271FE0973200D98A76 /* UIBarButtonItem+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Common.swift"; sourceTree = "<group>"; };
-		E74C02281FE0973200D98A76 /* UIImageView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Rx.swift"; sourceTree = "<group>"; };
 		E74C02291FE0973200D98A76 /* UITableView+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Common.swift"; sourceTree = "<group>"; };
 		E74C022A1FE0973200D98A76 /* UIView+LayoutConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+LayoutConstraints.swift"; sourceTree = "<group>"; };
 		E74C022B1FE0973200D98A76 /* UIViewController+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
@@ -328,6 +327,7 @@
 		E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = WWDCast.xcdatamodel; path = Resources/WWDCast.xcdatamodel; sourceTree = SOURCE_ROOT; };
 		E7FEA254207683E800CBDB1C /* MockFavoriteSessionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoriteSessionsUseCase.swift; sourceTree = "<group>"; };
 		E7FEA2572077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxGCKDiscoveryManagerListenerProxy.swift; sourceTree = "<group>"; };
+		E7FEA266207B6A4D00CBDB1C /* ImageLoadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -625,6 +625,7 @@
 				E74C01F91FE0973200D98A76 /* FavoriteSessionsUseCase.swift */,
 				E74C01FA1FE0973200D98A76 /* SessionDetailsUseCase.swift */,
 				E74C01FB1FE0973200D98A76 /* SessionsSearchUseCase.swift */,
+				E7FEA266207B6A4D00CBDB1C /* ImageLoadUseCase.swift */,
 				E74C01FC1FE0973200D98A76 /* UseCaseProvider.swift */,
 				E7416E1D1FFBC8190062B812 /* FilterUseCase.swift */,
 			);
@@ -739,7 +740,6 @@
 				E74C02251FE0973200D98A76 /* TableViewController.swift */,
 				E74C02261FE0973200D98A76 /* UIAlertController+Rx.swift */,
 				E74C02271FE0973200D98A76 /* UIBarButtonItem+Common.swift */,
-				E74C02281FE0973200D98A76 /* UIImageView+Rx.swift */,
 				E74C02291FE0973200D98A76 /* UITableView+Common.swift */,
 				E74C022A1FE0973200D98A76 /* UIView+LayoutConstraints.swift */,
 				E74C022B1FE0973200D98A76 /* UIViewController+Common.swift */,
@@ -994,6 +994,7 @@
 				E74C02471FE0973200D98A76 /* NetworkServiceType.swift in Sources */,
 				E74C02301FE0973200D98A76 /* RxExtensions.swift in Sources */,
 				E74C02631FE0973300D98A76 /* FavoriteSessionsViewController.swift in Sources */,
+				E7FEA267207B6A4D00CBDB1C /* ImageLoadUseCase.swift in Sources */,
 				E74C02561FE0973300D98A76 /* UseCaseProvider.swift in Sources */,
 				E74C02311FE0973200D98A76 /* CoreDataController.swift in Sources */,
 				E74C02361FE0973200D98A76 /* Session+CoreDataRepresentable.swift in Sources */,
@@ -1019,7 +1020,6 @@
 				E7416E1E1FFBC8190062B812 /* FilterUseCase.swift in Sources */,
 				E74C02791FE0973300D98A76 /* UITableView+Common.swift in Sources */,
 				E74C02681FE0973300D98A76 /* FilterTableViewCell.swift in Sources */,
-				E74C02781FE0973300D98A76 /* UIImageView+Rx.swift in Sources */,
 				E74C023D1FE0973200D98A76 /* DataSourceType.swift in Sources */,
 				E74C02391FE0973200D98A76 /* SessionManagedObject+Ext.swift in Sources */,
 				E74C027B1FE0973300D98A76 /* UIViewController+Common.swift in Sources */,

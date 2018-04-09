@@ -12,22 +12,25 @@ import RxCocoa
 
 class FavoriteSessionsViewModel: FavoriteSessionsViewModelType {
     private let useCase: FavoriteSessionsUseCaseType
+    private let imageLoadUseCase: ImageLoadUseCaseType
     private weak var navigator: FavoriteSessionsNavigator?
     private let disposeBag = DisposeBag()
 
-    init(useCase: FavoriteSessionsUseCaseType, navigator: FavoriteSessionsNavigator) {
+    init(useCase: FavoriteSessionsUseCaseType, imageLoadUseCase: ImageLoadUseCaseType, navigator: FavoriteSessionsNavigator) {
         self.useCase = useCase
+        self.imageLoadUseCase = imageLoadUseCase
         self.navigator = navigator
     }
 
     // MARK: FavoriteSessionsViewModel
 
     func transform(input: FavoriteSessionsViewModelInput) -> FavoriteSessionsViewModelOutput {
+        let viewModelBuilder = SessionSectionViewModelBuilder(imageLoadUseCase: self.imageLoadUseCase)
         let errorTracker = ErrorTracker()
 
         let favorites: Driver<[SessionSectionViewModel]> = input.appear.flatMapLatest {
             self.useCase.favoriteSessions
-                .map(SessionSectionViewModelBuilder.build)
+                .map(viewModelBuilder.build)
                 .trackError(errorTracker)
                 .asDriverOnErrorJustComplete()
         }

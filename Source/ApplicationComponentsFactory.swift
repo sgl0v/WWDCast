@@ -29,7 +29,7 @@ final class ApplicationComponentsFactory {
     }()
 
     fileprivate lazy var useCaseProvider: UseCaseProvider = {
-        return UseCaseProvider(googleCastService: self.servicesProvider.googleCast, sessionsDataSource: self.sessionsDataSource, filterRepository: self.filterRepository)
+        return UseCaseProvider(googleCastService: self.servicesProvider.googleCast, reachabilityService: self.servicesProvider.reachability, sessionsDataSource: self.sessionsDataSource, filterRepository: self.filterRepository)
     }()
 
 }
@@ -46,7 +46,8 @@ extension ApplicationComponentsFactory: SearchFlowCoordinatorDependencyProvider 
 
     func sessionsSearchController(navigator: SessionsSearchNavigator, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
         let useCase = self.useCaseProvider.sessionsSearchUseCase
-        let viewModel = SessionsSearchViewModel(useCase: useCase, navigator: navigator)
+        let imageLoadUseCase = self.useCaseProvider.imageLoadUseCase
+        let viewModel = SessionsSearchViewModel(useCase: useCase, imageLoadUseCase: imageLoadUseCase, navigator: navigator)
         let view = SessionsSearchViewController(viewModel: viewModel)
         view.previewProvider = previewProvider
         return view
@@ -54,7 +55,8 @@ extension ApplicationComponentsFactory: SearchFlowCoordinatorDependencyProvider 
 
     func sessionDetailsController(_ sessionId: String) -> UIViewController {
         let useCase = self.useCaseProvider.sessionDetailsUseCase(sessionId: sessionId)
-        let viewModel = SessionDetailsViewModel(useCase: useCase)
+        let imageLoadUseCase = self.useCaseProvider.imageLoadUseCase
+        let viewModel = SessionDetailsViewModel(useCase: useCase, imageLoadUseCase: imageLoadUseCase)
         return SessionDetailsViewController(viewModel: viewModel)
     }
 
@@ -72,7 +74,8 @@ extension ApplicationComponentsFactory: FavoritesFlowCoordinatorDependencyProvid
 
     func favoriteSessionsController(navigator: FavoriteSessionsNavigator, previewProvider: TableViewControllerPreviewProvider) -> UIViewController {
         let useCase = self.useCaseProvider.favoriteSessionsUseCase
-        let viewModel = FavoriteSessionsViewModel(useCase: useCase, navigator: navigator)
+        let imageLoadUseCase = self.useCaseProvider.imageLoadUseCase
+        let viewModel = FavoriteSessionsViewModel(useCase: useCase, imageLoadUseCase: imageLoadUseCase, navigator: navigator)
         let view =  FavoriteSessionsViewController(viewModel: viewModel)
         view.previewProvider = previewProvider
         return view
