@@ -29,7 +29,7 @@ extension CoreDataRepresentable where Self.CoreDataType: NSManagedObject {
     }
 }
 
-extension Sequence where Iterator.Element : CoreDataRepresentable, Iterator.Element.CoreDataType: NSManagedObject {
+extension Sequence where Iterator.Element: CoreDataRepresentable, Iterator.Element.CoreDataType: NSManagedObject {
 
     typealias CoreDataType = Iterator.Element.CoreDataType
 

@@ -29,7 +29,7 @@ final class ApplicationComponentsFactory {
     }()
 
     fileprivate lazy var useCaseProvider: UseCaseProvider = {
-        return UseCaseProvider(googleCastService: self.servicesProvider.googleCast, reachabilityService: self.servicesProvider.reachability, sessionsDataSource: self.sessionsDataSource, filterRepository: self.filterRepository)
+        return UseCaseProvider(googleCastService: self.servicesProvider.googleCast, networkService: self.servicesProvider.network, reachabilityService: self.servicesProvider.reachability, sessionsDataSource: self.sessionsDataSource, filterRepository: self.filterRepository)
     }()
 
 }

@@ -17,9 +17,10 @@ extension String {
 
 struct Resource<T> {
 
+    typealias Parser = (Data) throws -> T
     let url: URL
     let parameters: [String: AnyObject]
-    let parser: (_ json: JSON) throws -> T
+    let parser: Parser
     var request: URLRequest? {
         guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             return nil
@@ -33,13 +34,16 @@ struct Resource<T> {
         return URLRequest(url: url)
     }
 
-    init(url: URL, parser: @escaping (_ json: JSON) throws -> T) {
-        self.init(url: url, parameters: [:], parser: parser)
-    }
-
-    init(url: URL, parameters: [String: AnyObject], parser: @escaping (_ json: JSON) throws -> T) {
+    init(url: URL, parameters: [String: AnyObject] = [:], parser: @escaping Parser) {
         self.url = url
         self.parameters = parameters
         self.parser = parser
+    }
+}
+
+extension Resource where T == Data {
+
+    init(url: URL) {
+        self.init(url: url, parser: { $0 })
     }
 }

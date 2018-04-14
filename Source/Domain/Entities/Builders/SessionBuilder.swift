@@ -11,9 +11,10 @@ import SwiftyJSON
 
 class SessionBuilder: EntityBuilderType {
 
+    typealias Input = JSON
     typealias EntityType = Session
 
-    static func build(_ json: JSON) throws -> EntityType {
+    static func build(from json: JSON) throws -> EntityType {
         let media = json["media"]
         let captions = URL(string: media["subtitles"].stringValue)
         let track = Session.Track(id: json["trackId"].intValue)

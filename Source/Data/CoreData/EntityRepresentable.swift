@@ -14,7 +14,7 @@ protocol EntityRepresentable {
     func asEntity() -> EntityType
 }
 
-extension Sequence where Iterator.Element : EntityRepresentable {
+extension Sequence where Iterator.Element: EntityRepresentable {
 
     func asDomainTypes() -> [Iterator.Element.EntityType] {
         return self.map({ record in

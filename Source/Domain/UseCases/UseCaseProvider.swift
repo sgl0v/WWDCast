@@ -12,11 +12,13 @@ final class UseCaseProvider {
 
     private let googleCastService: GoogleCastServiceType
     private let reachabilityService: ReachabilityServiceType
+    private let networkService: NetworkServiceType
     private let sessionsDataSource: AnyDataSource<Session>
     private let filterRepository: Repository<Filter>
 
-    init(googleCastService: GoogleCastServiceType, reachabilityService: ReachabilityServiceType, sessionsDataSource: AnyDataSource<Session>, filterRepository: Repository<Filter>) {
+    init(googleCastService: GoogleCastServiceType, networkService: NetworkServiceType, reachabilityService: ReachabilityServiceType, sessionsDataSource: AnyDataSource<Session>, filterRepository: Repository<Filter>) {
         self.googleCastService = googleCastService
+        self.networkService = networkService
         self.reachabilityService = reachabilityService
         self.sessionsDataSource = sessionsDataSource
         self.filterRepository = filterRepository
@@ -39,7 +41,7 @@ final class UseCaseProvider {
     }
 
     lazy var imageLoadUseCase: ImageLoadUseCaseType = {
-        return ImageLoadUseCase(reachability: self.reachabilityService)
+        return ImageLoadUseCase(network: self.networkService, reachability: self.reachabilityService)
     }()
 
 }

@@ -13,7 +13,8 @@ class AppConfigBuilder: EntityBuilderType {
 
     typealias EntityType = AppConfig
 
-    static func build(_ json: JSON) throws -> EntityType {
+    static func build(from data: Data) throws -> EntityType {
+        let json = JSON(data)
         guard let videosURL = URL(string: json["urls"]["videos"].stringValue),
             let sessionsURL = URL(string: json["urls"]["sessions"].stringValue),
             let isWWDCWeek = json["features"]["liveStreaming"].bool else {

@@ -26,21 +26,28 @@ protocol ImageLoadUseCaseType {
 
 class ImageLoadUseCase: ImageLoadUseCaseType {
 
+    private let network: NetworkServiceType
     private let reachability: ReachabilityServiceType
 
-    init(reachability: ReachabilityServiceType) {
+    init(network: NetworkServiceType, reachability: ReachabilityServiceType) {
+        self.network = network
         self.reachability = reachability
-        // cost is approx memory usage
-        let MB = 1024 * 1024
-        _imageDataCache.totalCostLimit = 10 * MB
-        _imageCache.countLimit = 20
     }
 
-    // 1st level cache
-    private let _imageCache = NSCache<AnyObject, AnyObject>()
+    // 1st level cache, that contains decoded img
+    private lazy var imageCache: NSCache<AnyObject, AnyObject> = {
+        let cache = NSCache<AnyObject, AnyObject>()
+        cache.countLimit = 20
+        return cache
+    }()
 
-    // 2nd level cache
-    private let _imageDataCache = NSCache<AnyObject, AnyObject>()
+    // 2nd level cache, that contains raw img data
+    private lazy var imageDataCache: NSCache<AnyObject, AnyObject> = {
+        let cache = NSCache<AnyObject, AnyObject>()
+        let MB = 1024 * 1024
+        cache.totalCostLimit = 10 * MB // cost is approx memory usage
+        return cache
+    }()
 
     let loadingImage = ActivityIndicator()
 
@@ -54,36 +61,28 @@ class ImageLoadUseCase: ImageLoadUseCaseType {
         }
     }
 
-    private func _imageFromURL(_ url: URL) -> Observable<UIImage> {
+    private func imageFromURL(_ url: URL) -> Observable<UIImage> {
         return Observable.deferred {
-            let maybeImage = self._imageCache.object(forKey: url as AnyObject) as? UIImage
-
             let decodedImage: Observable<UIImage>
-
             // best case scenario, it's already decoded an in memory
-            if let image = maybeImage {
+            if let image = self.imageCache.object(forKey: url as AnyObject) as? UIImage {
                 decodedImage = Observable.just(image)
-            }
-            else {
-                let cachedData = self._imageDataCache.object(forKey: url as AnyObject) as? Data
-
-                // does image data cache contain anything
-                if let cachedData = cachedData {
-                    decodedImage = self.decodeImage(cachedData)
-                }
-                else {
-                    // fetch from network
-                    decodedImage = URLSession.shared.rx.data(request: URLRequest(url: url))
-                        .do(onNext: { data in
-                            self._imageDataCache.setObject(data as AnyObject, forKey: url as AnyObject)
-                        })
-                        .flatMap(self.decodeImage)
-                        .trackActivity(self.loadingImage)
-                }
+            } else if let cachedData = self.imageDataCache.object(forKey: url as AnyObject) as? Data {
+                // image data cache contain data
+                decodedImage = self.decodeImage(cachedData)
+            } else {
+                // fetch from network
+                let resource = Resource<Data>(url: url)
+                decodedImage = self.network.load(resource)
+                    .do(onNext: { data in
+                        self.imageDataCache.setObject(data as AnyObject, forKey: url as AnyObject)
+                    })
+                    .flatMap(self.decodeImage)
+                    .trackActivity(self.loadingImage)
             }
 
             return decodedImage.do(onNext: { image in
-                self._imageCache.setObject(image, forKey: url as AnyObject)
+                self.imageCache.setObject(image, forKey: url as AnyObject)
             })
         }
     }
@@ -97,7 +96,7 @@ class ImageLoadUseCase: ImageLoadUseCaseType {
      After image is successfully downloaded, sequence is completed.
      */
     func loadImage(for url: URL) -> Observable<UIImage> {
-        return _imageFromURL(url)
+        return imageFromURL(url)
             .retryOnBecomesReachable(UIImage(), reachabilityService: self.reachability)
             .subscribeOn(Scheduler.backgroundWorkScheduler)
             .observeOn(Scheduler.mainScheduler)

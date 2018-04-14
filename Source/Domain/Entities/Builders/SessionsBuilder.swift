@@ -11,16 +11,18 @@ import SwiftyJSON
 
 class SessionsBuilder: EntityBuilderType {
 
+    typealias Input = Data
     typealias EntityType = [Session]
 
-    static func build(_ json: JSON) throws -> EntityType {
+    static func build(from data: Data) throws -> EntityType {
+        let json = JSON(data: data)
         Log.verbose(json)
         return try json["contents"].arrayValue.filter({ sessionJSON in
             let media = sessionJSON["media"]
             let videoUrl = media["tvOShls"].string ?? media["downloadHD"].string
             return videoUrl != nil
-        }).map({ sessionJSON in
-            return try SessionBuilder.build(sessionJSON)
+        }).map({ json in
+            return try SessionBuilder.build(from: json)
         })
     }
 

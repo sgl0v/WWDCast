@@ -16,8 +16,9 @@ enum EntityBuilderError: Error {
 /// A type that creates model object from the JSON representation
 protocol EntityBuilderType {
 
+    associatedtype Input
     associatedtype EntityType
 
-    static func build(_ json: JSON) throws -> EntityType
+    static func build(from input: Input) throws -> EntityType
 
 }

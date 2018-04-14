@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 @testable import WWDCast
 
 extension SessionItemViewModel {
@@ -16,7 +17,8 @@ extension SessionItemViewModel {
         guard let thumbnailUrl = URL(string: thumbnail) else {
             fatalError("Failed to create url from string: \(thumbnail).")
         }
-        return SessionItemViewModel(id: "uniqueID", title: "title", subtitle: "subtitle", summary: "summary", thumbnailURL: thumbnailUrl, favorite: false)
+        let thumbnail = Obsetvable.just(thumbnailUrl)
+        return SessionItemViewModel(id: "uniqueID", title: "title", subtitle: "subtitle", summary: "summary", thumbnail: thumbnail, favorite: false)
     }
 
 }

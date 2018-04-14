@@ -108,7 +108,7 @@ extension SharedSequenceConvertibleType where E == Bool {
     }
 }
 
-extension Observable where Element : Sequence, Element.Iterator.Element : Comparable {
+extension Observable where Element: Sequence, Element.Iterator.Element: Comparable {
 
     /// Sorts each element of an observable sequence. 
     ///

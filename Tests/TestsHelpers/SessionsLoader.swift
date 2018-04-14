@@ -15,7 +15,7 @@ class SessionsLoader {
     static func sessionsFromFile(withName name: String) -> [Session] {
         guard let path = Bundle(for: SessionsLoader.self).path(forResource: name, ofType: nil),
             let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
-            let sessions = try? SessionsBuilder.build(JSON(data: data)) else {
+            let sessions = try? SessionsBuilder.build(from: data) else {
                 fatalError("Failed to load sessions from file with name: \(name).")
         }
         return sessions
