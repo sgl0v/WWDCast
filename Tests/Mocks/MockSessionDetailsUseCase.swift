@@ -8,18 +8,22 @@
 
 import Foundation
 import RxSwift
+import UIKit
 @testable import WWDCast
 
 class MockSessionDetailsUseCase: SessionDetailsUseCaseType {
+
     typealias DevicesObservable = Observable<[GoogleCastDevice]>
     typealias SessionObservable = Observable<Session>
     typealias PlayObservable = (GoogleCastDevice) -> Observable<Void>
+    typealias ImageLoadObservable = (URL) -> Observable<UIImage>
     typealias ToggleObservable = Observable<Void>
 
     var devicesObservable: DevicesObservable?
     var sessionObservable: SessionObservable?
     var playObservable: PlayObservable?
     var toggleObservable: ToggleObservable?
+    var imageLoadObservable: ImageLoadObservable?
 
     var devices: Observable<[GoogleCastDevice]> {
         guard let observable = self.devicesObservable else {
@@ -48,4 +52,12 @@ class MockSessionDetailsUseCase: SessionDetailsUseCaseType {
         }
         return observable
     }
+
+    func loadImage(for url: URL) -> Observable<UIImage> {
+        guard let observable = self.imageLoadObservable else {
+            fatalError("Not implemented")
+        }
+        return observable(url)
+    }
+
 }

@@ -8,15 +8,18 @@
 
 import Foundation
 import RxSwift
+import UIKit
 @testable import WWDCast
 
 class MockSessionsSearchUseCase: SessionsSearchUseCaseType {
 
     typealias SessionsObservable = Observable<[Session]>
     typealias SearchObservable = (String) -> Observable<[Session]>
+    typealias ImageLoadObservable = (URL) -> Observable<UIImage>
 
     var sessionsObservable: SessionsObservable?
     var searchObservable: SearchObservable?
+    var imageLoadObservable: ImageLoadObservable?
 
     var sessions: Observable<[Session]> {
         guard let observable = self.sessionsObservable else {
@@ -30,6 +33,13 @@ class MockSessionsSearchUseCase: SessionsSearchUseCaseType {
             fatalError("Not implemented")
         }
         return observable(query)
-
     }
+
+    func loadImage(for url: URL) -> Observable<UIImage> {
+        guard let observable = self.imageLoadObservable else {
+            fatalError("Not implemented")
+        }
+        return observable(url)
+    }
+
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import RxSwift
 
 protocol SessionDetailsUseCaseType {
@@ -22,6 +23,9 @@ protocol SessionDetailsUseCaseType {
 
     /// Toggles favorite session.
     var toggle: Observable<Void> { get }
+
+    // Loads image for the given URL
+    func loadImage(for url: URL) -> Observable<UIImage>
 }
 
 class SessionDetailsUseCase: SessionDetailsUseCaseType {
@@ -33,11 +37,13 @@ class SessionDetailsUseCase: SessionDetailsUseCaseType {
     private let sessionId: String
     private let googleCast: GoogleCastServiceType
     private let sessionsRepository: AnyRepository<[Session]>
+    private let imageLoader: ImageLoaderServiceType
 
-    init(sessionId: String, googleCast: GoogleCastServiceType, sessionsRepository: AnyRepository<[Session]>) {
+    init(sessionId: String, googleCast: GoogleCastServiceType, sessionsRepository: AnyRepository<[Session]>, imageLoader: ImageLoaderServiceType) {
         self.sessionId = sessionId
         self.googleCast = googleCast
         self.sessionsRepository = sessionsRepository
+        self.imageLoader = imageLoader
     }
 
     lazy var session: Observable<Session> = {
@@ -75,6 +81,10 @@ class SessionDetailsUseCase: SessionDetailsUseCaseType {
             .mapToVoid()
             .subscribeOn(Scheduler.backgroundWorkScheduler)
             .observeOn(Scheduler.mainScheduler)
+    }
+
+    func loadImage(for url: URL) -> Observable<UIImage> {
+        return self.imageLoader.loadImage(for: url)
     }
 
 }

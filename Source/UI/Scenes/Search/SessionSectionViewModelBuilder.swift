@@ -8,17 +8,19 @@
 
 import Foundation
 import UIKit
+import RxSwift
 
 struct SessionItemViewModelBuilder {
 
-    private let imageLoadUseCase: ImageLoadUseCaseType
+    typealias ImageLoader = (URL) -> Observable<UIImage>
+    private let imageLoader: ImageLoader
 
-    init(imageLoadUseCase: ImageLoadUseCaseType) {
-        self.imageLoadUseCase = imageLoadUseCase
+    init(imageLoader: @escaping ImageLoader) {
+        self.imageLoader = imageLoader
     }
 
     func build(_ session: Session) -> SessionItemViewModel {
-        let thumbnail = self.imageLoadUseCase.loadImage(for: session.thumbnail)
+        let thumbnail = self.imageLoader(session.thumbnail)
         return SessionItemViewModel(id: session.id, title: session.title,
                                     subtitle: session.subtitle, summary: session.summary, thumbnail: thumbnail, favorite: session.favorite)
     }
@@ -27,14 +29,14 @@ struct SessionItemViewModelBuilder {
 
 struct SessionSectionViewModelBuilder {
 
-    private let imageLoadUseCase: ImageLoadUseCaseType
+    private let imageLoader: SessionItemViewModelBuilder.ImageLoader
 
-    init(imageLoadUseCase: ImageLoadUseCaseType) {
-        self.imageLoadUseCase = imageLoadUseCase
+    init(imageLoader: @escaping SessionItemViewModelBuilder.ImageLoader) {
+        self.imageLoader = imageLoader
     }
 
     func build(_ sessions: [Session]) -> [SessionSectionViewModel] {
-        let itemBuilder = SessionItemViewModelBuilder(imageLoadUseCase: self.imageLoadUseCase)
+        let itemBuilder = SessionItemViewModelBuilder(imageLoader: self.imageLoader)
         let sessions: [SessionSectionViewModel] = Session.Track.all.map({ track in
             let sessions = sessions.sorted().filter({ session in session.track == track }).map(itemBuilder.build)
             return SessionSectionViewModel(title: track.description, items: sessions)

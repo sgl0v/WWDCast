@@ -9,6 +9,7 @@
 import XCTest
 import RxSwift
 import RxCocoa
+import UIKit
 @testable import WWDCast
 
 class FavoriteSessionsViewModelTests: XCTestCase {
@@ -32,6 +33,9 @@ class FavoriteSessionsViewModelTests: XCTestCase {
         let sessions = SessionsLoader.sessionsFromFile(withName: "sessions.json")
         var sessionViewModels: [SessionSectionViewModel]?
         self.useCase.sessionsObservable = Observable.just(sessions)
+        self.useCase.imageLoadObservable = { _ in
+            Observable.just(UIImage())
+        }
         let expectation = self.expectation(description: "didFinishDataLoading")
         let loading = PublishSubject<Void>()
         let input = FavoriteSessionsViewModelInput(appear: loading.asDriverOnErrorJustComplete(),

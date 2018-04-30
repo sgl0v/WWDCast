@@ -13,18 +13,16 @@ import RxCocoa
 class SessionDetailsViewModel: SessionDetailsViewModelType {
     private let disposeBag = DisposeBag()
     private let useCase: SessionDetailsUseCaseType
-    private let imageLoadUseCase: ImageLoadUseCaseType
 
-    init(useCase: SessionDetailsUseCaseType, imageLoadUseCase: ImageLoadUseCaseType) {
+    init(useCase: SessionDetailsUseCaseType) {
         self.useCase = useCase
-        self.imageLoadUseCase = imageLoadUseCase
     }
 
     // MARK: SessionDetailsViewModel
 
     func transform(input: SessionDetailsViewModelInput) -> SessionDetailsViewModelOutput {
         let errorTracker = ErrorTracker()
-        let viewModelBuilder = SessionItemViewModelBuilder(imageLoadUseCase: self.imageLoadUseCase)
+        let viewModelBuilder = SessionItemViewModelBuilder(imageLoader: self.useCase.loadImage)
 
         let sessionObservable = input.appear.flatMapLatest {
             self.useCase.session

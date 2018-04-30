@@ -31,6 +31,9 @@ class SessionsSearchViewModelTests: XCTestCase {
         let sessions = SessionsLoader.sessionsFromFile(withName: "sessions.json")
         var sessionViewModels: [SessionSectionViewModel]?
         self.useCase.sessionsObservable = Observable.just(sessions)
+        self.useCase.imageLoadObservable = { _ in
+            Observable.just(UIImage())
+        }
         let expectation = self.expectation(description: "didFinishDataLoading")
         let loading = PublishSubject<Void>()
         let input = SessionsSearchViewModelInput(appear: loading.asDriverOnErrorJustComplete(),
@@ -63,6 +66,9 @@ class SessionsSearchViewModelTests: XCTestCase {
             let filteredSessions = sessions.apply(Filter(query: query))
             searchSessions.onNext(filteredSessions)
             return searchSessions.asObservable()
+        }
+        self.useCase.imageLoadObservable = { _ in
+            Observable.just(UIImage())
         }
         let expectation = self.expectation(description: "didFinishDataLoading")
         let search = PublishSubject<String>()

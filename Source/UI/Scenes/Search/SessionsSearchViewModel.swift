@@ -13,20 +13,18 @@ import RxCocoa
 class SessionsSearchViewModel: SessionsSearchViewModelType {
 
     private let useCase: SessionsSearchUseCaseType
-    private let imageLoadUseCase: ImageLoadUseCaseType
     private weak var navigator: SessionsSearchNavigator?
     private let disposeBag = DisposeBag()
 
-    init(useCase: SessionsSearchUseCaseType, imageLoadUseCase: ImageLoadUseCaseType, navigator: SessionsSearchNavigator) {
+    init(useCase: SessionsSearchUseCaseType, navigator: SessionsSearchNavigator) {
         self.useCase = useCase
-        self.imageLoadUseCase = imageLoadUseCase
         self.navigator = navigator
     }
 
     // MARK: SessionsSearchViewModelType
 
     func transform(input: SessionsSearchViewModelInput) -> SessionsSearchViewModelOuput {
-        let viewModelBuilder = SessionSectionViewModelBuilder(imageLoadUseCase: self.imageLoadUseCase)
+        let viewModelBuilder = SessionSectionViewModelBuilder(imageLoader: self.useCase.loadImage)
         let errorTracker = ErrorTracker()
         let activityIndicator = ActivityIndicator()
 

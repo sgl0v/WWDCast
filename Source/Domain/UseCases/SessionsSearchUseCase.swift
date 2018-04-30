@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import RxSwift
 
 protocol SessionsSearchUseCaseType {
@@ -16,12 +17,16 @@ protocol SessionsSearchUseCaseType {
 
     /// Runs session search with a query string
     func search(with query: String) -> Observable<[Session]>
+
+    // Loads image for the given URL
+    func loadImage(for url: URL) -> Observable<UIImage>
 }
 
 class SessionsSearchUseCase: SessionsSearchUseCaseType {
 
     private let sessionsRepository: AnyRepository<[Session]>
     private let filterRepository: AnyRepository<Filter>
+    private let imageLoader: ImageLoaderServiceType
 
     lazy var sessions: Observable<[Session]> = {
         let sessions = self.sessionsRepository.asObservable().sort()
@@ -31,9 +36,10 @@ class SessionsSearchUseCase: SessionsSearchUseCaseType {
             .observeOn(Scheduler.mainScheduler)
     }()
 
-    init(sessionsRepository: AnyRepository<[Session]>, filterRepository: AnyRepository<Filter>) {
+    init(sessionsRepository: AnyRepository<[Session]>, filterRepository: AnyRepository<Filter>, imageLoader: ImageLoaderServiceType) {
         self.sessionsRepository = sessionsRepository
         self.filterRepository = filterRepository
+        self.imageLoader = imageLoader
     }
 
     func search(with query: String) -> Observable<[Session]> {
@@ -49,6 +55,10 @@ class SessionsSearchUseCase: SessionsSearchUseCaseType {
 
     private func applyFilter(sessions: [Session], filter: Filter) -> [Session] {
         return sessions.apply(filter)
+    }
+
+    func loadImage(for url: URL) -> Observable<UIImage> {
+        return self.imageLoader.loadImage(for: url)
     }
 
 }

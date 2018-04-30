@@ -18,13 +18,7 @@ extension UIImage {
     }
 }
 
-protocol ImageLoadUseCaseType {
-
-    ///
-    func loadImage(for url: URL) -> Observable<UIImage>
-}
-
-class ImageLoadUseCase: ImageLoadUseCaseType {
+class ImageLoaderService: ImageLoaderServiceType {
 
     private let network: NetworkServiceType
     private let reachability: ReachabilityServiceType

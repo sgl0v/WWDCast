@@ -135,13 +135,14 @@
 		E7BC448C2097B94400A276A8 /* InMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44862097B94300A276A8 /* InMemoryRepository.swift */; };
 		E7BC448D2097B94400A276A8 /* CompositeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44872097B94300A276A8 /* CompositeRepository.swift */; };
 		E7BC448E2097B94400A276A8 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44882097B94300A276A8 /* LocalRepository.swift */; };
+		E7BC44932097BB6E00A276A8 /* ImageLoaderServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44922097BB6E00A276A8 /* ImageLoaderServiceType.swift */; };
+		E7BC44952097BCBA00A276A8 /* ImageLoaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44942097BCBA00A276A8 /* ImageLoaderService.swift */; };
 		E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */; };
 		E7D76F141F588245005C95DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7D76F131F588245005C95DB /* Assets.xcassets */; };
 		E7FC18171EE0A5E6000D2FAB /* WWDCast.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */; };
 		E7FEA2532076837400CBDB1C /* FavoriteSessionsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1D2A1E68B054005A3EAE /* FavoriteSessionsViewModelTests.swift */; };
 		E7FEA256207683EB00CBDB1C /* MockFavoriteSessionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA254207683E800CBDB1C /* MockFavoriteSessionsUseCase.swift */; };
 		E7FEA2582077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA2572077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift */; };
-		E7FEA267207B6A4D00CBDB1C /* ImageLoadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA266207B6A4D00CBDB1C /* ImageLoadUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -306,6 +307,8 @@
 		E7BC44862097B94300A276A8 /* InMemoryRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryRepository.swift; sourceTree = "<group>"; };
 		E7BC44872097B94300A276A8 /* CompositeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositeRepository.swift; sourceTree = "<group>"; };
 		E7BC44882097B94300A276A8 /* LocalRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
+		E7BC44922097BB6E00A276A8 /* ImageLoaderServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderServiceType.swift; sourceTree = "<group>"; };
+		E7BC44942097BCBA00A276A8 /* ImageLoaderService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoaderService.swift; sourceTree = "<group>"; };
 		E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataSetView.xib; path = Resources/EmptyDataSetView.xib; sourceTree = SOURCE_ROOT; };
 		E7D76F131F588245005C95DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7F044F61F7B0126007DE5C3 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -320,7 +323,6 @@
 		E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = WWDCast.xcdatamodel; path = Resources/WWDCast.xcdatamodel; sourceTree = SOURCE_ROOT; };
 		E7FEA254207683E800CBDB1C /* MockFavoriteSessionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoriteSessionsUseCase.swift; sourceTree = "<group>"; };
 		E7FEA2572077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxGCKDiscoveryManagerListenerProxy.swift; sourceTree = "<group>"; };
-		E7FEA266207B6A4D00CBDB1C /* ImageLoadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -521,6 +523,7 @@
 		E74C01DD1FE0973200D98A76 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E7BC448F2097BB5500A276A8 /* ImageLoader */,
 				E74C01DE1FE0973200D98A76 /* GoogleCast */,
 				E74C01E61FE0973200D98A76 /* Network */,
 				E74C01EA1FE0973200D98A76 /* Reachability */,
@@ -602,7 +605,6 @@
 				E74C01F91FE0973200D98A76 /* FavoriteSessionsUseCase.swift */,
 				E74C01FA1FE0973200D98A76 /* SessionDetailsUseCase.swift */,
 				E74C01FB1FE0973200D98A76 /* SessionsSearchUseCase.swift */,
-				E7FEA266207B6A4D00CBDB1C /* ImageLoadUseCase.swift */,
 				E74C01FC1FE0973200D98A76 /* UseCaseProvider.swift */,
 				E7416E1D1FFBC8190062B812 /* FilterUseCase.swift */,
 			);
@@ -749,6 +751,15 @@
 				E7BC44882097B94300A276A8 /* LocalRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		E7BC448F2097BB5500A276A8 /* ImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				E7BC44922097BB6E00A276A8 /* ImageLoaderServiceType.swift */,
+				E7BC44942097BCBA00A276A8 /* ImageLoaderService.swift */,
+			);
+			path = ImageLoader;
 			sourceTree = "<group>";
 		};
 		E7F044F51F7B0126007DE5C3 /* BuildType */ = {
@@ -953,6 +964,7 @@
 				E74C02431FE0973200D98A76 /* GoogleCastServiceType.swift in Sources */,
 				E7BC448E2097B94400A276A8 /* LocalRepository.swift in Sources */,
 				E74C02601FE0973300D98A76 /* SessionDetailsViewModelType.swift in Sources */,
+				E7BC44932097BB6E00A276A8 /* ImageLoaderServiceType.swift in Sources */,
 				E74C024B1FE0973200D98A76 /* Scheduler.swift in Sources */,
 				E74C02581FE0973300D98A76 /* Reachability.swift in Sources */,
 				E74C02571FE0973300D98A76 /* ActivityIndicator.swift in Sources */,
@@ -981,13 +993,13 @@
 				E74C02351FE0973200D98A76 /* NSManagedObjectContext+Rx.swift in Sources */,
 				E7FEA2582077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift in Sources */,
 				E74C02671FE0973300D98A76 /* FilterSectionViewModel.swift in Sources */,
+				E7BC44952097BCBA00A276A8 /* ImageLoaderService.swift in Sources */,
 				E74C022F1FE0973200D98A76 /* AppDelegate.swift in Sources */,
 				E74C026A1FE0973300D98A76 /* FilterViewModel.swift in Sources */,
 				E74C02471FE0973200D98A76 /* NetworkServiceType.swift in Sources */,
 				E7BC44892097B94400A276A8 /* RepositoryType.swift in Sources */,
 				E74C02301FE0973200D98A76 /* RxExtensions.swift in Sources */,
 				E74C02631FE0973300D98A76 /* FavoriteSessionsViewController.swift in Sources */,
-				E7FEA267207B6A4D00CBDB1C /* ImageLoadUseCase.swift in Sources */,
 				E74C02561FE0973300D98A76 /* UseCaseProvider.swift in Sources */,
 				E74C02311FE0973200D98A76 /* CoreDataController.swift in Sources */,
 				E74C02361FE0973200D98A76 /* Session+CoreDataRepresentable.swift in Sources */,

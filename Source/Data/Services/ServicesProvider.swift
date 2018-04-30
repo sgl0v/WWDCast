@@ -10,9 +10,10 @@ import Foundation
 
 struct ServicesProvider {
 
-    let googleCast: GoogleCastService
-    let network: NetworkService
-    let reachability: ReachabilityService
+    let googleCast: GoogleCastServiceType
+    let network: NetworkServiceType
+    let reachability: ReachabilityServiceType
+    let imageLoader: ImageLoaderServiceType
 
     static func defaultProvider() -> ServicesProvider {
         let googleCast = GoogleCastService(applicationID: Environment.googleCastAppID)
@@ -20,12 +21,13 @@ struct ServicesProvider {
         guard let reachability = ReachabilityService() else {
             fatalError("Failed to create reachability service!")
         }
+        let imageLoader = ImageLoaderService(network: network, reachability: reachability)
         #if DEBUG
         // configure the logging service, that is available all over the project
         let consoleDestination = ConsoleDestination()
         Log.addDestination(consoleDestination)
         #endif
-        return ServicesProvider(googleCast: googleCast, network: network, reachability: reachability)
+        return ServicesProvider(googleCast: googleCast, network: network, reachability: reachability, imageLoader: imageLoader)
     }
 
 }

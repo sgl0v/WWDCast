@@ -93,6 +93,9 @@ class SessionDetailsViewModelTests: XCTestCase {
         self.useCase.sessionObservable = Observable.just(Session.dummySession)
         self.useCase.toggleObservable = Observable.just(())
         self.useCase.devicesObservable = Observable.never()
+        self.useCase.imageLoadObservable = { _ in
+            Observable.just(UIImage())
+        }
         self.viewModel = SessionDetailsViewModel(useCase: self.useCase)
         let toggleFavorite = PublishSubject<Void>()
         let input = SessionDetailsViewModelInput(appear: Driver.just(()),
