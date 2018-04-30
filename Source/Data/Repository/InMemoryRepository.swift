@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 /// In-memory repository.
-class Repository<T: Equatable>: DataSourceType {
+class InMemoryRepository<T: Equatable>: RepositoryType {
 
     typealias Element = T
 

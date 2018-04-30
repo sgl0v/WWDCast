@@ -1,5 +1,5 @@
 //
-//  NetworkDataSource.swift
+//  RemoteRepository.swift
 //  WWDCast
 //
 //  Created by Maksym Shcheglov on 07/06/2017.
@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-final class NetworkDataSource: DataSourceType {
+final class RemoteRepository: RepositoryType {
     typealias Element = [Session]
 
     private let reachability: ReachabilityServiceType

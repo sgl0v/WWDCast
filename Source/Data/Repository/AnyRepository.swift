@@ -1,5 +1,5 @@
 //
-//  AnyDataSource.swift
+//  AnyRepository.swift
 //  WWDCast
 //
 //  Created by Maksym Shcheglov on 07/06/2017.
@@ -9,10 +9,10 @@
 import Foundation
 import RxSwift
 
-/// A type-erased `DataSourceType`.
+/// A type-erased `RepositoryType`.
 ///
-/// Forwards operations to an arbitrary underlying observer with the same `Element` type, hiding the specifics of the underlying data source type.
-final class AnyDataSource<T>: DataSourceType {
+/// Forwards operations to an arbitrary underlying observer with the same `Element` type, hiding the specifics of the underlying repository type.
+final class AnyRepository<T>: RepositoryType {
     typealias Element = T
 
     private let _asObservable: () -> Observable<Element>
@@ -20,11 +20,11 @@ final class AnyDataSource<T>: DataSourceType {
     private let _update: (Element) -> Observable<Element>
     private let _clean: () -> Observable<Void>
 
-    init<Concrete: DataSourceType>(dataSource: Concrete) where Concrete.Element == T {
-        _asObservable = dataSource.asObservable
-        _add = dataSource.add
-        _update = dataSource.update
-        _clean = dataSource.clean
+    init<Concrete: RepositoryType>(repository: Concrete) where Concrete.Element == T {
+        _asObservable = repository.asObservable
+        _add = repository.add
+        _update = repository.update
+        _clean = repository.clean
     }
 
     func asObservable() -> Observable<Element> {

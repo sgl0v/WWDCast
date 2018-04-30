@@ -17,14 +17,14 @@ protocol FavoriteSessionsUseCaseType {
 
 class FavoriteSessionsUseCase: FavoriteSessionsUseCaseType {
 
-    private let dataSource: AnyDataSource<[Session]>
+    private let sessionsRepository: AnyRepository<[Session]>
 
-    init(dataSource: AnyDataSource<[Session]>) {
-        self.dataSource = dataSource
+    init(sessionsRepository: AnyRepository<[Session]>) {
+        self.sessionsRepository = sessionsRepository
     }
 
     lazy var favoriteSessions: Observable<[Session]> = {
-        return self.dataSource
+        return self.sessionsRepository
             .asObservable()
             .sort()
             .map({ sessions in return sessions.filter({ $0.favorite }) })

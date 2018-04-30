@@ -1,5 +1,5 @@
 //
-//  CoreDataSource.swift
+//  LocalRepository.swift
 //  WWDCast
 //
 //  Created by Maksym Shcheglov on 07/06/2017.
@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import CoreData
 
-final class CoreDataSource<T: NSManagedObject>: NSObject, DataSourceType, NSFetchedResultsControllerDelegate
+final class LocalRepository<T: NSManagedObject>: NSObject, RepositoryType, NSFetchedResultsControllerDelegate
     where T: EntityRepresentable, T.EntityType.CoreDataType == T {
 
     typealias Element = [T.EntityType]

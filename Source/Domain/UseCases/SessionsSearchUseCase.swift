@@ -20,19 +20,19 @@ protocol SessionsSearchUseCaseType {
 
 class SessionsSearchUseCase: SessionsSearchUseCaseType {
 
-    private let dataSource: AnyDataSource<[Session]>
-    private let filterRepository: AnyDataSource<Filter>
+    private let sessionsRepository: AnyRepository<[Session]>
+    private let filterRepository: AnyRepository<Filter>
 
     lazy var sessions: Observable<[Session]> = {
-        let sessions = self.dataSource.asObservable().sort()
+        let sessions = self.sessionsRepository.asObservable().sort()
         return Observable.combineLatest(sessions, self.filterRepository.asObservable(),
                                         resultSelector: self.applyFilter)
             .subscribeOn(Scheduler.backgroundWorkScheduler)
             .observeOn(Scheduler.mainScheduler)
     }()
 
-    init(dataSource: AnyDataSource<[Session]>, filterRepository: AnyDataSource<Filter>) {
-        self.dataSource = dataSource
+    init(sessionsRepository: AnyRepository<[Session]>, filterRepository: AnyRepository<Filter>) {
+        self.sessionsRepository = sessionsRepository
         self.filterRepository = filterRepository
     }
 

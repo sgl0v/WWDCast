@@ -13,23 +13,23 @@ final class UseCaseProvider {
     private let googleCastService: GoogleCastServiceType
     private let reachabilityService: ReachabilityServiceType
     private let networkService: NetworkServiceType
-    private let sessionsDataSource: AnyDataSource<[Session]>
-    private let filterRepository: AnyDataSource<Filter>
+    private let sessionsRepository: AnyRepository<[Session]>
+    private let filterRepository: AnyRepository<Filter>
 
-    init(googleCastService: GoogleCastServiceType, networkService: NetworkServiceType, reachabilityService: ReachabilityServiceType, sessionsDataSource: AnyDataSource<[Session]>, filterRepository: AnyDataSource<Filter>) {
+    init(googleCastService: GoogleCastServiceType, networkService: NetworkServiceType, reachabilityService: ReachabilityServiceType, sessionsRepository: AnyRepository<[Session]>, filterRepository: AnyRepository<Filter>) {
         self.googleCastService = googleCastService
         self.networkService = networkService
         self.reachabilityService = reachabilityService
-        self.sessionsDataSource = sessionsDataSource
+        self.sessionsRepository = sessionsRepository
         self.filterRepository = filterRepository
     }
 
     var sessionsSearchUseCase: SessionsSearchUseCaseType {
-        return SessionsSearchUseCase(dataSource: self.sessionsDataSource, filterRepository: self.filterRepository)
+        return SessionsSearchUseCase(sessionsRepository: self.sessionsRepository, filterRepository: self.filterRepository)
     }
 
     lazy var favoriteSessionsUseCase: FavoriteSessionsUseCaseType = {
-        return FavoriteSessionsUseCase(dataSource: self.sessionsDataSource)
+        return FavoriteSessionsUseCase(sessionsRepository: self.sessionsRepository)
     }()
 
     var filterUseCase: FilterUseCaseType {
@@ -37,7 +37,7 @@ final class UseCaseProvider {
     }
 
     func sessionDetailsUseCase(sessionId: String) -> SessionDetailsUseCaseType {
-        return SessionDetailsUseCase(sessionId: sessionId, googleCast: self.googleCastService, dataSource: self.sessionsDataSource)
+        return SessionDetailsUseCase(sessionId: sessionId, googleCast: self.googleCastService, sessionsRepository: self.sessionsRepository)
     }
 
     lazy var imageLoadUseCase: ImageLoadUseCaseType = {

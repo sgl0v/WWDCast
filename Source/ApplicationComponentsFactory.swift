@@ -17,20 +17,20 @@ final class ApplicationComponentsFactory {
         self.servicesProvider = servicesProvider
     }
 
-    fileprivate lazy var sessionsDataSource: AnyDataSource<[Session]> = {
+    fileprivate lazy var sessionsRepository: AnyRepository<[Session]> = {
         let coreDataController = CoreDataController(name: "WWDCast")
-        let cacheDataSource: AnyDataSource<[Session]> = AnyDataSource(dataSource: CoreDataSource<SessionManagedObject>(coreDataController: coreDataController))
-        let networkDataSource: AnyDataSource<[Session]> = AnyDataSource(dataSource: NetworkDataSource(network: self.servicesProvider.network, reachability: self.servicesProvider.reachability))
-        return AnyDataSource(dataSource: CompositeDataSource(networkDataSource: networkDataSource, coreDataSource: cacheDataSource))
+        let localRepository: AnyRepository<[Session]> = AnyRepository(repository: LocalRepository<SessionManagedObject>(coreDataController: coreDataController))
+        let remoteRepository: AnyRepository<[Session]> = AnyRepository(repository: RemoteRepository(network: self.servicesProvider.network, reachability: self.servicesProvider.reachability))
+        return AnyRepository(repository: CompositeRepository(remoteRepository: remoteRepository, localRepository: localRepository))
     }()
 
-    fileprivate lazy var filterRepository: AnyDataSource<Filter> = {
-        let filterRepository = Repository<Filter>(value: Filter())
-        return AnyDataSource(dataSource: filterRepository)
+    fileprivate lazy var filterRepository: AnyRepository<Filter> = {
+        let filterRepository = InMemoryRepository<Filter>(value: Filter())
+        return AnyRepository(repository: filterRepository)
     }()
 
     fileprivate lazy var useCaseProvider: UseCaseProvider = {
-        return UseCaseProvider(googleCastService: self.servicesProvider.googleCast, networkService: self.servicesProvider.network, reachabilityService: self.servicesProvider.reachability, sessionsDataSource: self.sessionsDataSource, filterRepository: self.filterRepository)
+        return UseCaseProvider(googleCastService: self.servicesProvider.googleCast, networkService: self.servicesProvider.network, reachabilityService: self.servicesProvider.reachability, sessionsRepository: self.sessionsRepository, filterRepository: self.filterRepository)
     }()
 
 }

@@ -27,14 +27,14 @@ protocol FilterUseCaseType {
 
 class FilterUseCase: FilterUseCaseType {
 
-    private let repository: AnyDataSource<Filter>
+    private let repository: AnyRepository<Filter>
     private let value: PublishSubject<Filter>
 
     lazy var filterObservable: Observable<Filter> = {
         return Observable.merge(self.repository.asObservable(), self.value.asObservable()).share(replay: 1)
     }()
 
-    init(repository: AnyDataSource<Filter>) {
+    init(repository: AnyRepository<Filter>) {
         self.repository = repository
         self.value = PublishSubject<Filter>()
     }

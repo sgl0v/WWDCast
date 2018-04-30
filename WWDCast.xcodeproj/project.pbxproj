@@ -64,11 +64,6 @@
 		E74C02371FE0973200D98A76 /* SessionManagedObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01D41FE0973200D98A76 /* SessionManagedObject+CoreDataClass.swift */; };
 		E74C02381FE0973200D98A76 /* SessionManagedObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01D51FE0973200D98A76 /* SessionManagedObject+CoreDataProperties.swift */; };
 		E74C02391FE0973200D98A76 /* SessionManagedObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01D61FE0973200D98A76 /* SessionManagedObject+Ext.swift */; };
-		E74C023A1FE0973200D98A76 /* AnyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01D81FE0973200D98A76 /* AnyDataSource.swift */; };
-		E74C023B1FE0973200D98A76 /* CompositeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01D91FE0973200D98A76 /* CompositeDataSource.swift */; };
-		E74C023C1FE0973200D98A76 /* CoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01DA1FE0973200D98A76 /* CoreDataSource.swift */; };
-		E74C023D1FE0973200D98A76 /* DataSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01DB1FE0973200D98A76 /* DataSourceType.swift */; };
-		E74C023E1FE0973200D98A76 /* NetworkDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01DC1FE0973200D98A76 /* NetworkDataSource.swift */; };
 		E74C023F1FE0973200D98A76 /* GoogleCastDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01DF1FE0973200D98A76 /* GoogleCastDevice.swift */; };
 		E74C02401FE0973200D98A76 /* GoogleCastMedia+GCK.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01E01FE0973200D98A76 /* GoogleCastMedia+GCK.swift */; };
 		E74C02411FE0973200D98A76 /* GoogleCastMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01E11FE0973200D98A76 /* GoogleCastMedia.swift */; };
@@ -132,9 +127,14 @@
 		E74C027D1FE0973300D98A76 /* ApplicationComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C022D1FE0973200D98A76 /* ApplicationComponentsFactory.swift */; };
 		E74C027E1FE0973300D98A76 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C022E1FE0973200D98A76 /* Environment.swift */; };
 		E74DD0132051F56800F36DC4 /* SessionDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1D2F1E68C13A005A3EAE /* SessionDetailsViewModelTests.swift */; };
-		E7811EAD2022673F0044533A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7811EAC2022673F0044533A /* Repository.swift */; };
 		E7811EAF2022693C0044533A /* FilterSectionsViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7811EAE2022693C0044533A /* FilterSectionsViewModelBuilder.swift */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
+		E7BC44892097B94400A276A8 /* RepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44832097B94300A276A8 /* RepositoryType.swift */; };
+		E7BC448A2097B94400A276A8 /* AnyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44842097B94300A276A8 /* AnyRepository.swift */; };
+		E7BC448B2097B94400A276A8 /* RemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44852097B94300A276A8 /* RemoteRepository.swift */; };
+		E7BC448C2097B94400A276A8 /* InMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44862097B94300A276A8 /* InMemoryRepository.swift */; };
+		E7BC448D2097B94400A276A8 /* CompositeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44872097B94300A276A8 /* CompositeRepository.swift */; };
+		E7BC448E2097B94400A276A8 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44882097B94300A276A8 /* LocalRepository.swift */; };
 		E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */; };
 		E7D76F141F588245005C95DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7D76F131F588245005C95DB /* Assets.xcassets */; };
 		E7FC18171EE0A5E6000D2FAB /* WWDCast.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */; };
@@ -234,11 +234,6 @@
 		E74C01D41FE0973200D98A76 /* SessionManagedObject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E74C01D51FE0973200D98A76 /* SessionManagedObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E74C01D61FE0973200D98A76 /* SessionManagedObject+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+Ext.swift"; sourceTree = "<group>"; };
-		E74C01D81FE0973200D98A76 /* AnyDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyDataSource.swift; sourceTree = "<group>"; };
-		E74C01D91FE0973200D98A76 /* CompositeDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositeDataSource.swift; sourceTree = "<group>"; };
-		E74C01DA1FE0973200D98A76 /* CoreDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataSource.swift; sourceTree = "<group>"; };
-		E74C01DB1FE0973200D98A76 /* DataSourceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceType.swift; sourceTree = "<group>"; };
-		E74C01DC1FE0973200D98A76 /* NetworkDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDataSource.swift; sourceTree = "<group>"; };
 		E74C01DF1FE0973200D98A76 /* GoogleCastDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDevice.swift; sourceTree = "<group>"; };
 		E74C01E01FE0973200D98A76 /* GoogleCastMedia+GCK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GoogleCastMedia+GCK.swift"; sourceTree = "<group>"; };
 		E74C01E11FE0973200D98A76 /* GoogleCastMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastMedia.swift; sourceTree = "<group>"; };
@@ -301,11 +296,16 @@
 		E74C022C1FE0973200D98A76 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		E74C022D1FE0973200D98A76 /* ApplicationComponentsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationComponentsFactory.swift; sourceTree = "<group>"; };
 		E74C022E1FE0973200D98A76 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		E7811EAC2022673F0044533A /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		E7811EAE2022693C0044533A /* FilterSectionsViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSectionsViewModelBuilder.swift; sourceTree = "<group>"; };
 		E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		E7840B501F741F9E0039AFE1 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		E7BC44832097B94300A276A8 /* RepositoryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryType.swift; sourceTree = "<group>"; };
+		E7BC44842097B94300A276A8 /* AnyRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyRepository.swift; sourceTree = "<group>"; };
+		E7BC44852097B94300A276A8 /* RemoteRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRepository.swift; sourceTree = "<group>"; };
+		E7BC44862097B94300A276A8 /* InMemoryRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryRepository.swift; sourceTree = "<group>"; };
+		E7BC44872097B94300A276A8 /* CompositeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositeRepository.swift; sourceTree = "<group>"; };
+		E7BC44882097B94300A276A8 /* LocalRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
 		E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataSetView.xib; path = Resources/EmptyDataSetView.xib; sourceTree = SOURCE_ROOT; };
 		E7D76F131F588245005C95DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7F044F61F7B0126007DE5C3 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -495,8 +495,8 @@
 		E74C01CC1FE0973200D98A76 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				E7BC44822097B94300A276A8 /* Repository */,
 				E74C01CD1FE0973200D98A76 /* CoreData */,
-				E74C01D71FE0973200D98A76 /* DataSource */,
 				E74C01DD1FE0973200D98A76 /* Services */,
 			);
 			path = Data;
@@ -516,19 +516,6 @@
 				E74C01D61FE0973200D98A76 /* SessionManagedObject+Ext.swift */,
 			);
 			path = CoreData;
-			sourceTree = "<group>";
-		};
-		E74C01D71FE0973200D98A76 /* DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				E74C01D81FE0973200D98A76 /* AnyDataSource.swift */,
-				E74C01D91FE0973200D98A76 /* CompositeDataSource.swift */,
-				E74C01DA1FE0973200D98A76 /* CoreDataSource.swift */,
-				E74C01DB1FE0973200D98A76 /* DataSourceType.swift */,
-				E74C01DC1FE0973200D98A76 /* NetworkDataSource.swift */,
-				E7811EAC2022673F0044533A /* Repository.swift */,
-			);
-			path = DataSource;
 			sourceTree = "<group>";
 		};
 		E74C01DD1FE0973200D98A76 /* Services */ = {
@@ -751,6 +738,19 @@
 			path = Configs;
 			sourceTree = "<group>";
 		};
+		E7BC44822097B94300A276A8 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				E7BC44832097B94300A276A8 /* RepositoryType.swift */,
+				E7BC44842097B94300A276A8 /* AnyRepository.swift */,
+				E7BC44852097B94300A276A8 /* RemoteRepository.swift */,
+				E7BC44862097B94300A276A8 /* InMemoryRepository.swift */,
+				E7BC44872097B94300A276A8 /* CompositeRepository.swift */,
+				E7BC44882097B94300A276A8 /* LocalRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		E7F044F51F7B0126007DE5C3 /* BuildType */ = {
 			isa = PBXGroup;
 			children = (
@@ -949,12 +949,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E74C02421FE0973200D98A76 /* GoogleCastService.swift in Sources */,
+				E7BC448B2097B94400A276A8 /* RemoteRepository.swift in Sources */,
 				E74C02431FE0973200D98A76 /* GoogleCastServiceType.swift in Sources */,
+				E7BC448E2097B94400A276A8 /* LocalRepository.swift in Sources */,
 				E74C02601FE0973300D98A76 /* SessionDetailsViewModelType.swift in Sources */,
-				E74C023A1FE0973200D98A76 /* AnyDataSource.swift in Sources */,
 				E74C024B1FE0973200D98A76 /* Scheduler.swift in Sources */,
 				E74C02581FE0973300D98A76 /* Reachability.swift in Sources */,
 				E74C02571FE0973300D98A76 /* ActivityIndicator.swift in Sources */,
+				E7BC448D2097B94400A276A8 /* CompositeRepository.swift in Sources */,
 				E74C026F1FE0973300D98A76 /* SessionsSearchViewController.swift in Sources */,
 				E74C026C1FE0973300D98A76 /* SessionItemViewModel.swift in Sources */,
 				E74C02551FE0973300D98A76 /* SessionsSearchUseCase.swift in Sources */,
@@ -982,6 +984,7 @@
 				E74C022F1FE0973200D98A76 /* AppDelegate.swift in Sources */,
 				E74C026A1FE0973300D98A76 /* FilterViewModel.swift in Sources */,
 				E74C02471FE0973200D98A76 /* NetworkServiceType.swift in Sources */,
+				E7BC44892097B94400A276A8 /* RepositoryType.swift in Sources */,
 				E74C02301FE0973200D98A76 /* RxExtensions.swift in Sources */,
 				E74C02631FE0973300D98A76 /* FavoriteSessionsViewController.swift in Sources */,
 				E7FEA267207B6A4D00CBDB1C /* ImageLoadUseCase.swift in Sources */,
@@ -998,9 +1001,8 @@
 				E74C024E1FE0973200D98A76 /* EntityBuilderType.swift in Sources */,
 				E74C024C1FE0973200D98A76 /* AppConfig.swift in Sources */,
 				E74C02331FE0973200D98A76 /* CoreDataRepresentable.swift in Sources */,
-				E74C023B1FE0973200D98A76 /* CompositeDataSource.swift in Sources */,
 				E74C02751FE0973300D98A76 /* TableViewController.swift in Sources */,
-				E74C023C1FE0973200D98A76 /* CoreDataSource.swift in Sources */,
+				E7BC448C2097B94400A276A8 /* InMemoryRepository.swift in Sources */,
 				E74C025A1FE0973300D98A76 /* FavoritesFlowCoordinator.swift in Sources */,
 				E7416E841FFFAAE90062B812 /* Log.swift in Sources */,
 				E74C026B1FE0973300D98A76 /* FilterViewModelType.swift in Sources */,
@@ -1010,11 +1012,9 @@
 				E7416E1E1FFBC8190062B812 /* FilterUseCase.swift in Sources */,
 				E74C02791FE0973300D98A76 /* UITableView+Common.swift in Sources */,
 				E74C02681FE0973300D98A76 /* FilterTableViewCell.swift in Sources */,
-				E74C023D1FE0973200D98A76 /* DataSourceType.swift in Sources */,
 				E74C02391FE0973200D98A76 /* SessionManagedObject+Ext.swift in Sources */,
 				E74C027B1FE0973300D98A76 /* UIViewController+Common.swift in Sources */,
 				E74C02731FE0973300D98A76 /* TabBarController.swift in Sources */,
-				E7811EAD2022673F0044533A /* Repository.swift in Sources */,
 				E74C02741FE0973300D98A76 /* RxTableViewCell.swift in Sources */,
 				E74C02771FE0973300D98A76 /* UIBarButtonItem+Common.swift in Sources */,
 				E74C027D1FE0973300D98A76 /* ApplicationComponentsFactory.swift in Sources */,
@@ -1026,10 +1026,10 @@
 				E74C02721FE0973300D98A76 /* SessionTableViewCell.swift in Sources */,
 				E74C02501FE0973200D98A76 /* SessionsBuilder.swift in Sources */,
 				E74C02371FE0973200D98A76 /* SessionManagedObject+CoreDataClass.swift in Sources */,
-				E74C023E1FE0973200D98A76 /* NetworkDataSource.swift in Sources */,
 				E74C02691FE0973300D98A76 /* FilterViewController.swift in Sources */,
 				E74C02441FE0973200D98A76 /* RxGCKRequestDelegateProxy.swift in Sources */,
 				E7811EAF2022693C0044533A /* FilterSectionsViewModelBuilder.swift in Sources */,
+				E7BC448A2097B94400A276A8 /* AnyRepository.swift in Sources */,
 				E74C02641FE0973300D98A76 /* FavoriteSessionsViewModel.swift in Sources */,
 				E74C02611FE0973300D98A76 /* EmptyDataSetView.swift in Sources */,
 				E74C026D1FE0973300D98A76 /* SessionSectionViewModel.swift in Sources */,

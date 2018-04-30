@@ -1,5 +1,5 @@
 //
-//  DataSource.swift
+//  RepositoryType.swift
 //  WWDCast
 //
 //  Created by Maksym Shcheglov on 23/05/2017.
@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-protocol DataSourceType: class {
+protocol RepositoryType: class {
     associatedtype Element
 
     /// Returns an observable element
@@ -17,19 +17,19 @@ protocol DataSourceType: class {
     /// - Returns: an observable element
     func asObservable() -> Observable<Element>
 
-    /// Adds items to the data source
+    /// Adds items to the repository
     ///
     /// - Parameter items: an object to add
     /// - Returns: an observable element
     func add(_ element: Element) -> Observable<Element>
 
-    /// Updates items in the data source.
+    /// Updates items in the repository.
     ///
     /// - Parameter items: an object to update
     /// - Returns: an observable element
     func update(_ element: Element) -> Observable<Element>
 
-    /// Performs data source cleanup
+    /// Performs repository cleanup
     ///
     /// - Returns: an observable sequence
     func clean() -> Observable<Void>

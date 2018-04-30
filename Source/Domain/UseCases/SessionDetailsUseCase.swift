@@ -32,16 +32,16 @@ class SessionDetailsUseCase: SessionDetailsUseCaseType {
 
     private let sessionId: String
     private let googleCast: GoogleCastServiceType
-    private let dataSource: AnyDataSource<[Session]>
+    private let sessionsRepository: AnyRepository<[Session]>
 
-    init(sessionId: String, googleCast: GoogleCastServiceType, dataSource: AnyDataSource<[Session]>) {
+    init(sessionId: String, googleCast: GoogleCastServiceType, sessionsRepository: AnyRepository<[Session]>) {
         self.sessionId = sessionId
         self.googleCast = googleCast
-        self.dataSource = dataSource
+        self.sessionsRepository = sessionsRepository
     }
 
     lazy var session: Observable<Session> = {
-        return self.dataSource.asObservable()
+        return self.sessionsRepository.asObservable()
             .flatMap({ items -> Observable<Session> in
                 let item = items.filter({ item in
                     return item.uid == self.sessionId
@@ -71,7 +71,7 @@ class SessionDetailsUseCase: SessionDetailsUseCaseType {
             let newSession = Session(id: session.id, contentId: session.contentId, type: session.type, year: session.year, track: session.track, platforms: session.platforms, title: session.title, summary: session.summary, video: session.video, captions: session.captions, duration: session.duration, thumbnail: session.thumbnail, favorite: !session.favorite)
             return [newSession]
         })
-            .flatMap(self.dataSource.update)
+            .flatMap(self.sessionsRepository.update)
             .mapToVoid()
             .subscribeOn(Scheduler.backgroundWorkScheduler)
             .observeOn(Scheduler.mainScheduler)
