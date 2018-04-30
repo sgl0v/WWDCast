@@ -9,9 +9,9 @@
 import Foundation
 import RxSwift
 
-final class CompositeDataSource<T: Comparable>: DataSourceType {
+final class CompositeDataSource<T>: DataSourceType {
 
-    typealias Item = T
+    typealias Element = T
 
     private let networkDataSource: AnyDataSource<T>
     private let coreDataSource: AnyDataSource<T>
@@ -21,40 +21,28 @@ final class CompositeDataSource<T: Comparable>: DataSourceType {
         self.coreDataSource = coreDataSource
     }
 
-    func allObjects() -> Observable<[Item]> {
+    func asObservable() -> Observable<Element> {
         return self._allObjects
     }
 
-    lazy var _allObjects: Observable<[Item]> = {
-        let cachedObjects = self.coreDataSource.allObjects()
-        let loadedObjects = self.networkDataSource.allObjects().flatMap(self.coreDataSource.add)
+    lazy var _allObjects: Observable<Element> = {
+        let cachedObjects = self.coreDataSource.asObservable()
+        let loadedObjects = self.networkDataSource.asObservable().flatMap(self.coreDataSource.add)
         return Observable.of(cachedObjects, loadedObjects)
             .merge()
-            .sort()
             .share(replay: 1)
     }()
 
-    func get(byId id: String) -> Observable<T> {
-        let cachedObject = self.coreDataSource.get(byId: id)
-        let loadedObject = self.networkDataSource.get(byId: id)
-        return Observable.of(cachedObject, loadedObject)
-            .merge()
+    func add(_ value: Element) -> Observable<Element> {
+        return self.networkDataSource.add(value).concat(self.coreDataSource.add(value))
     }
 
-    func add(_ items: [Item]) -> Observable<[Item]> {
-        return self.networkDataSource.add(items).concat(self.coreDataSource.add(items))
-    }
-
-    func update(_ items: [Item]) -> Observable<[Item]> {
-        return self.networkDataSource.update(items).concat(self.coreDataSource.update(items))
+    func update(_ value: Element) -> Observable<Element> {
+        return self.networkDataSource.update(value).concat(self.coreDataSource.update(value))
     }
 
     func clean() -> Observable<Void> {
         return self.networkDataSource.clean().concat(self.coreDataSource.clean())
-    }
-
-    func delete(byId id: String) -> Observable<Void> {
-        return self.networkDataSource.delete(byId: id).concat(self.coreDataSource.delete(byId: id))
     }
 
 }

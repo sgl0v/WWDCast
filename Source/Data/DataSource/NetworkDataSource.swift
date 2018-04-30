@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 final class NetworkDataSource: DataSourceType {
-    typealias Item = Session
+    typealias Element = [Session]
 
     private let reachability: ReachabilityServiceType
     private let network: NetworkServiceType
@@ -20,32 +20,22 @@ final class NetworkDataSource: DataSourceType {
         self.reachability = reachability
     }
 
-    func allObjects() -> Observable<[Item]> {
+    func asObservable() -> Observable<Element> {
         return self.loadSessions()
             .retryOnBecomesReachable([], reachabilityService: self.reachability)
     }
 
-    func get(byId id: String) -> Observable<Item> {
+    func add(_ value: Element) -> Observable<Element> {
         // Currently not supported
         return Observable.empty()
     }
 
-    func add(_ items: [Item]) -> Observable<[Item]> {
-        // Currently not supported
-        return Observable.empty()
-    }
-
-    func update(_ items: [Item]) -> Observable<[Item]> {
+    func update(_ value: Element) -> Observable<Element> {
         // Currently not supported
         return Observable.empty()
     }
 
     func clean() -> Observable<Void> {
-        // Currently not supported
-        return Observable.empty()
-    }
-
-    func delete(byId id: String) -> Observable<Void> {
         // Currently not supported
         return Observable.empty()
     }

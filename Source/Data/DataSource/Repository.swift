@@ -10,33 +10,34 @@ import Foundation
 import RxSwift
 
 /// In-memory repository.
-class Repository<Element: Equatable> {
+class Repository<T: Equatable>: DataSourceType {
 
-    private let _value: Variable<Element>
+    typealias Element = T
 
-    /// Gets or sets current value of variable.
-    ///
-    /// Whenever a new value is set, all the observers are notified of the change.
-    ///
-    /// If the newly set value is same as the old value, observers are not notified for change.
-    public var value: Element {
-        get {
-            return self._value.value
-        }
-        set(newValue) {
-            self._value.value = newValue
-        }
-    }
+    private let value: BehaviorSubject<Element>
 
-    /// Initializes variable with initial value.
+    /// Initializes repository with initial value.
     ///
     /// - parameter value: Initial variable value.
     init(value: Element) {
-        self._value = Variable(value)
+        self.value = BehaviorSubject(value: value)
     }
 
-    public func asObservable() -> Observable<Element> {
-        return self._value.asObservable().distinctUntilChanged()
+    func asObservable() -> Observable<Element> {
+        return self.value.asObservable().distinctUntilChanged()
     }
 
+    func add(_ element: T) -> Observable<T> {
+        self.value.on(.next(element))
+        return self.asObservable()
+    }
+
+    func update(_ element: T) -> Observable<T> {
+        self.value.on(.next(element))
+        return self.asObservable()
+    }
+
+    func clean() -> Observable<Void> {
+        return .just(())
+    }
 }

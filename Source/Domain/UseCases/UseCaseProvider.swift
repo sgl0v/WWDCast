@@ -13,10 +13,10 @@ final class UseCaseProvider {
     private let googleCastService: GoogleCastServiceType
     private let reachabilityService: ReachabilityServiceType
     private let networkService: NetworkServiceType
-    private let sessionsDataSource: AnyDataSource<Session>
-    private let filterRepository: Repository<Filter>
+    private let sessionsDataSource: AnyDataSource<[Session]>
+    private let filterRepository: AnyDataSource<Filter>
 
-    init(googleCastService: GoogleCastServiceType, networkService: NetworkServiceType, reachabilityService: ReachabilityServiceType, sessionsDataSource: AnyDataSource<Session>, filterRepository: Repository<Filter>) {
+    init(googleCastService: GoogleCastServiceType, networkService: NetworkServiceType, reachabilityService: ReachabilityServiceType, sessionsDataSource: AnyDataSource<[Session]>, filterRepository: AnyDataSource<Filter>) {
         self.googleCastService = googleCastService
         self.networkService = networkService
         self.reachabilityService = reachabilityService
@@ -33,7 +33,7 @@ final class UseCaseProvider {
     }()
 
     var filterUseCase: FilterUseCaseType {
-        return FilterUseCase(filterRepository: self.filterRepository)
+        return FilterUseCase(repository: self.filterRepository)
     }
 
     func sessionDetailsUseCase(sessionId: String) -> SessionDetailsUseCaseType {

@@ -38,7 +38,7 @@ class SessionsSearchViewModel: SessionsSearchViewModelType {
                 .asDriverOnErrorJustComplete()
         })
         let searchSessions: Driver<[SessionSectionViewModel]> = input.search.flatMapLatest {query in
-                return self.useCase.search(with: query)
+            return self.useCase.search(with: query)
                 .map(viewModelBuilder.build)
                 .trackError(errorTracker)
                 .asDriverOnErrorJustComplete()

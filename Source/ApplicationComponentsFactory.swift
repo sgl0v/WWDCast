@@ -17,15 +17,16 @@ final class ApplicationComponentsFactory {
         self.servicesProvider = servicesProvider
     }
 
-    fileprivate lazy var sessionsDataSource: AnyDataSource<Session> = {
+    fileprivate lazy var sessionsDataSource: AnyDataSource<[Session]> = {
         let coreDataController = CoreDataController(name: "WWDCast")
-        let cacheDataSource: AnyDataSource<Session> = AnyDataSource(dataSource: CoreDataSource<SessionManagedObject>(coreDataController: coreDataController))
-        let networkDataSource: AnyDataSource<Session> = AnyDataSource(dataSource: NetworkDataSource(network: self.servicesProvider.network, reachability: self.servicesProvider.reachability))
+        let cacheDataSource: AnyDataSource<[Session]> = AnyDataSource(dataSource: CoreDataSource<SessionManagedObject>(coreDataController: coreDataController))
+        let networkDataSource: AnyDataSource<[Session]> = AnyDataSource(dataSource: NetworkDataSource(network: self.servicesProvider.network, reachability: self.servicesProvider.reachability))
         return AnyDataSource(dataSource: CompositeDataSource(networkDataSource: networkDataSource, coreDataSource: cacheDataSource))
     }()
 
-    fileprivate lazy var filterRepository: Repository<Filter> = {
-        return Repository<Filter>(value: Filter())
+    fileprivate lazy var filterRepository: AnyDataSource<Filter> = {
+        let filterRepository = Repository<Filter>(value: Filter())
+        return AnyDataSource(dataSource: filterRepository)
     }()
 
     fileprivate lazy var useCaseProvider: UseCaseProvider = {

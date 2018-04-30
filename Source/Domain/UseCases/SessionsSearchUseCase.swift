@@ -20,26 +20,31 @@ protocol SessionsSearchUseCaseType {
 
 class SessionsSearchUseCase: SessionsSearchUseCaseType {
 
-    private let dataSource: AnyDataSource<Session>
-    private let filterRepository: Repository<Filter>
+    private let dataSource: AnyDataSource<[Session]>
+    private let filterRepository: AnyDataSource<Filter>
 
     lazy var sessions: Observable<[Session]> = {
-        let sessions = self.dataSource.allObjects()
+        let sessions = self.dataSource.asObservable().sort()
         return Observable.combineLatest(sessions, self.filterRepository.asObservable(),
                                         resultSelector: self.applyFilter)
             .subscribeOn(Scheduler.backgroundWorkScheduler)
             .observeOn(Scheduler.mainScheduler)
     }()
 
-    init(dataSource: AnyDataSource<Session>, filterRepository: Repository<Filter>) {
+    init(dataSource: AnyDataSource<[Session]>, filterRepository: AnyDataSource<Filter>) {
         self.dataSource = dataSource
         self.filterRepository = filterRepository
     }
 
     func search(with query: String) -> Observable<[Session]> {
-        let filter = self.filterRepository.value
-        self.filterRepository.value = Filter(query: query, years: filter.years, platforms: filter.platforms, tracks: filter.tracks)
-        return self.sessions
+        return self.filterRepository
+            .asObservable()
+            .map({ filter in
+                return Filter(query: query, years: filter.years, platforms: filter.platforms, tracks: filter.tracks)
+            })
+            .flatMap(self.filterRepository.update)
+            .mapToVoid()
+            .flatMap(self.sessions)
     }
 
     private func applyFilter(sessions: [Session], filter: Filter) -> [Session] {

@@ -17,15 +17,16 @@ protocol FavoriteSessionsUseCaseType {
 
 class FavoriteSessionsUseCase: FavoriteSessionsUseCaseType {
 
-    private let dataSource: AnyDataSource<Session>
+    private let dataSource: AnyDataSource<[Session]>
 
-    init(dataSource: AnyDataSource<Session>) {
+    init(dataSource: AnyDataSource<[Session]>) {
         self.dataSource = dataSource
     }
 
     lazy var favoriteSessions: Observable<[Session]> = {
         return self.dataSource
-            .allObjects()
+            .asObservable()
+            .sort()
             .map({ sessions in return sessions.filter({ $0.favorite }) })
             .subscribeOn(Scheduler.backgroundWorkScheduler)
             .observeOn(Scheduler.mainScheduler)

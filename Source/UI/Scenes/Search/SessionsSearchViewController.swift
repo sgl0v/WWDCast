@@ -46,7 +46,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
 
     private func bind(to viewModel: SessionsSearchViewModelType) {
         // ViewModel's input
-        let viewWillAppear = self.rx.viewWillAppear.mapToVoid().asDriverOnErrorJustComplete()
+        let viewWillAppear = self.rx.viewDidAppear.mapToVoid().asDriverOnErrorJustComplete()
         let viewDidDisappear = self.rx.viewDidDisappear.mapToVoid().asDriverOnErrorJustComplete()
         let modelSelected = self.tableView.rx.modelSelected(SessionItemViewModel.self).asDriverOnErrorJustComplete()
         let commitPreview = self.previewController?.commitPreview.map({[unowned self] indexPath in

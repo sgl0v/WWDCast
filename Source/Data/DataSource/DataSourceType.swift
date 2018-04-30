@@ -10,38 +10,27 @@ import Foundation
 import RxSwift
 
 protocol DataSourceType: class {
-    associatedtype Item
+    associatedtype Element
 
-    /// Fetches and returns all available items if type Item
+    /// Returns an observable element
     ///
-    /// - Returns: an observable sequence of items
-    func allObjects() -> Observable<[Item]>
-
-    /// Fetches an item with specified id
-    ///
-    /// - Parameter id: The items identifier
-    /// - Returns: an observable sequence
-    func get(byId id: String) -> Observable<Item>
+    /// - Returns: an observable element
+    func asObservable() -> Observable<Element>
 
     /// Adds items to the data source
     ///
-    /// - Parameter items: The items to add
-    /// - Returns: an observable sequence of recently added items
-    func add(_ items: [Item]) -> Observable<[Item]>
+    /// - Parameter items: an object to add
+    /// - Returns: an observable element
+    func add(_ element: Element) -> Observable<Element>
 
     /// Updates items in the data source.
     ///
-    /// - Parameter items: an array of records to update.
-    /// - Returns: an observable sequence of recently updated items
-    func update(_ items: [Item]) -> Observable<[Item]>
+    /// - Parameter items: an object to update
+    /// - Returns: an observable element
+    func update(_ element: Element) -> Observable<Element>
 
-    /// Removes all items of type Item from the data source
+    /// Performs data source cleanup
     ///
     /// - Returns: an observable sequence
     func clean() -> Observable<Void>
-
-    /// Removes item with specified id from the data source
-    ///
-    /// - Returns: an observable sequence
-    func delete(byId id: String) -> Observable<Void>
 }

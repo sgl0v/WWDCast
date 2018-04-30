@@ -26,18 +26,31 @@ protocol SessionDetailsUseCaseType {
 
 class SessionDetailsUseCase: SessionDetailsUseCaseType {
 
+    enum Error: Swift.Error {
+        case itemNotFound
+    }
+
     private let sessionId: String
     private let googleCast: GoogleCastServiceType
-    private let dataSource: AnyDataSource<Session>
+    private let dataSource: AnyDataSource<[Session]>
 
-    init(sessionId: String, googleCast: GoogleCastServiceType, dataSource: AnyDataSource<Session>) {
+    init(sessionId: String, googleCast: GoogleCastServiceType, dataSource: AnyDataSource<[Session]>) {
         self.sessionId = sessionId
         self.googleCast = googleCast
         self.dataSource = dataSource
     }
 
     lazy var session: Observable<Session> = {
-        return self.dataSource.get(byId: self.sessionId)
+        return self.dataSource.asObservable()
+            .flatMap({ items -> Observable<Session> in
+                let item = items.filter({ item in
+                    return item.uid == self.sessionId
+                }).first
+                if let item = item {
+                    return Observable.just(item)
+                }
+                return Observable.error(Error.itemNotFound)
+            })
             .subscribeOn(Scheduler.backgroundWorkScheduler)
             .observeOn(Scheduler.mainScheduler)
     }()

@@ -19,7 +19,7 @@ class FilterViewController: UIViewController {
     typealias SectionViewModel = FilterSectionViewModel
     typealias Cell = FilterTableViewCell
 
-    init(viewModel: FilterViewModel) {
+    init(viewModel: FilterViewModelType) {
         super.init(nibName: nil, bundle: nil)
         self.rx.viewDidLoad.map(viewModel).bind(onNext: {[unowned self] viewModel in
             self.configureUI()
@@ -33,7 +33,7 @@ class FilterViewController: UIViewController {
 
     // MARK: Private
 
-    private func bind(to viewModel: FilterViewModel) {
+    private func bind(to viewModel: FilterViewModelType) {
         // ViewModel's input
         let viewWillAppear = self.rx.viewWillAppear.mapToVoid().asDriverOnErrorJustComplete()
         let selection = self.tableView.rx.itemSelected.asDriverOnErrorJustComplete()

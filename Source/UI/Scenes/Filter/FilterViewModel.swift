@@ -26,27 +26,30 @@ class FilterViewModel: FilterViewModelType {
     func transform(input: FilterViewModelInput) -> FilterViewModelOutput {
         let initialFilter = input.loading.withLatestFrom(self.useCase.filterObservable.asDriverOnErrorJustComplete())
         let initialSections = initialFilter.map(FilterSectionsViewModelBuilder.build)
-        let currentFilter = input.selection.map({[unowned self] indexPath in
-            self.filter(from: self.useCase.value, with: indexPath)
-        }).do(onNext: {[unowned self] filter in
-            self.useCase.value = filter
+        let currentFilter = input.selection.withLatestFrom(self.useCase.filterObservable.asDriverOnErrorJustComplete(), resultSelector: {[unowned self] (indexPath, filter) in
+            print(filter)
+            return self.filter(filter, with: indexPath)
+        }).flatMap({[unowned self] filter in
+            return self.useCase.update(filter).asDriverOnErrorJustComplete()
         })
+
         let filterSections = currentFilter.map(FilterSectionsViewModelBuilder.build)
         let sections = Driver.merge(initialSections, filterSections)
         input.cancel.drive(onNext: {[unowned self] _ in
             self.navigator.dismiss()
         }).disposed(by: self.disposeBag)
-        input.apply.drive(onNext: {[unowned self] in
-            self.useCase.save()
-            self.navigator.dismiss()
-        }).disposed(by: self.disposeBag)
+        input.apply.flatMap({_ in
+            return self.useCase.save()
+                .mapToVoid()
+                .asDriverOnErrorJustComplete()
+        }).drive(onNext: self.navigator.dismiss).disposed(by: self.disposeBag)
 
         return FilterViewModelOutput(filterSections: sections)
     }
 
     // MARK: Private
 
-    private func filter(from filter: Filter, with selection: IndexPath) -> Filter {
+    private func filter(_ filter: Filter, with selection: IndexPath) -> Filter {
         var selectedYears = filter.years
         var selectedPlatforms = filter.platforms
         var selectedTracks = filter.tracks

@@ -10,40 +10,44 @@ import Foundation
 import RxSwift
 
 protocol FilterUseCaseType {
-    /// The session search filter
-    var value: Filter {get set}
 
     var filterObservable: Observable<Filter> { get }
 
-    /// saves filter to the repo
-    func save()
+    /// Updates filter with the specified value
+    ///
+    /// - Parameter filter: the new filter value
+    /// - Returns: The filter observable.
+    func update(_ filter: Filter) -> Observable<Filter>
+
+    /// Saves the current filter value to the repository
+    ///
+    /// - Returns: The filter observable.
+    func save() -> Observable<Filter>
 }
 
 class FilterUseCase: FilterUseCaseType {
 
-    private let filterRepository: Repository<Filter>
-    private let _value: Variable<Filter>
+    private let repository: AnyDataSource<Filter>
+    private let value: PublishSubject<Filter>
 
-    public var value: Filter {
-        get {
-            return self._value.value
-        }
-        set(newValue) {
-            self._value.value = newValue
-        }
+    lazy var filterObservable: Observable<Filter> = {
+        return Observable.merge(self.repository.asObservable(), self.value.asObservable()).share(replay: 1)
+    }()
+
+    init(repository: AnyDataSource<Filter>) {
+        self.repository = repository
+        self.value = PublishSubject<Filter>()
     }
 
-    public var filterObservable: Observable<Filter> {
-        return self._value.asObservable()
+    func update(_ filter: Filter) -> Observable<Filter> {
+        self.value.on(.next(filter))
+        return self.filterObservable
     }
 
-    init(filterRepository: Repository<Filter>) {
-        self.filterRepository = filterRepository
-        self._value = Variable(self.filterRepository.value)
-    }
-
-    func save() {
-        self.filterRepository.value = self.value
+    func save() -> Observable<Filter> {
+        return self.filterObservable.take(1).flatMap({ filter in
+            return self.repository.update(filter)
+        })
     }
 
 }

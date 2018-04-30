@@ -13,14 +13,10 @@ import CoreData
 final class CoreDataSource<T: NSManagedObject>: NSObject, DataSourceType, NSFetchedResultsControllerDelegate
     where T: EntityRepresentable, T.EntityType.CoreDataType == T {
 
-    typealias Item = T.EntityType
-
-    enum Error: Swift.Error {
-        case itemNotFound
-    }
+    typealias Element = [T.EntityType]
 
     fileprivate let coreDataController: CoreDataController
-    fileprivate let allObjectsSubject: BehaviorSubject<[Item]>
+    fileprivate let allObjectsSubject: BehaviorSubject<Element>
     fileprivate let frc: NSFetchedResultsController<T>
 
     init(coreDataController: CoreDataController) {
@@ -41,34 +37,22 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSourceType, NSFetc
         }
     }
 
-    func allObjects() -> Observable<[Item]> {
+    func asObservable() -> Observable<Element> {
         return self.allObjectsSubject.asObservable()
     }
 
-    func get(byId id: String) -> Observable<Item> {
-        return self.allObjects().flatMap({ items -> Observable<Item> in
-            let item = items.filter({ item in
-                return item.uid == id
-            }).first
-            if let item = item {
-                return Observable.just(item)
-            }
-            return Observable.error(Error.itemNotFound)
-        })
-    }
-
-    func add(_ items: [Item]) -> Observable<[Item]> {
+    func add(_ value: Element) -> Observable<Element> {
         let context = self.coreDataController.newBackgroundContext()
-        Log.debug("Added \(items.count) records!")
-        return items.sync(in: context).flatMap({ items in
+        Log.debug("Added \(value.count) records!")
+        return value.sync(in: context).flatMap({ items in
             return context.rx.save().flatMap(Observable.just(items.asDomainTypes()))
         })
     }
 
-    func update(_ items: [Item]) -> Observable<[Item]> {
+    func update(_ value: Element) -> Observable<Element> {
         let context = self.coreDataController.newBackgroundContext()
-        Log.debug("Updated \(items.count) records!")
-        return items.update(in: context).flatMap({ items in
+        Log.debug("Updated \(value.count) records!")
+        return value.update(in: context).flatMap({ items in
             return context.rx.save().flatMap(Observable.just(items.asDomainTypes()))
         })
     }
@@ -90,12 +74,6 @@ final class CoreDataSource<T: NSManagedObject>: NSObject, DataSourceType, NSFetc
             observer.onCompleted()
             return Disposables.create()
         })
-    }
-
-    func delete(byId id: String) -> Observable<Void> {
-        let bgContext = self.coreDataController.newBackgroundContext()
-        let item: Observable<T?> = bgContext.rx.first(with: id)
-        return item.rejectNil().unwrap().map(bgContext.delete).flatMap(bgContext.rx.save)
     }
 
     // MARK: Private
