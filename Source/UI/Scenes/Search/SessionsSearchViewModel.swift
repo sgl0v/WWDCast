@@ -47,7 +47,12 @@ class SessionsSearchViewModel: SessionsSearchViewModelType {
             return session.id
         }).drive(onNext: self.navigator?.showDetails).disposed(by: self.disposeBag)
 
-        input.filter.drive(onNext: self.navigator?.showFilter).disposed(by: self.disposeBag)
+        input.filter.drive(onNext: { [weak self] in
+            guard let navigator = self?.navigator else {
+                return
+            }
+            navigator.showFilter()
+        }).disposed(by: self.disposeBag)
 
         let error = errorTracker.asDriver()
         let loading = activityIndicator.asDriver()

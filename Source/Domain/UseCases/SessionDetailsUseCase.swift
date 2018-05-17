@@ -57,6 +57,7 @@ class SessionDetailsUseCase: SessionDetailsUseCaseType {
                 }
                 return Observable.error(Error.itemNotFound)
             })
+            .share(replay: 1)
             .subscribeOn(Scheduler.backgroundWorkScheduler)
             .observeOn(Scheduler.mainScheduler)
     }()

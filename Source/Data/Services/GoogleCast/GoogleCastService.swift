@@ -95,17 +95,17 @@ final class GoogleCastService: NSObject, GoogleCastServiceType {
 
     private func startSession(_ device: GoogleCastDevice) -> Observable<GCKCastSession> {
         return Observable.create({[weak self] observer in
-            guard let strongSelf = self else {
+            guard let `self` = self else {
                 assertionFailure("The \(GoogleCastService.self) object is deallocated!")
                 return Disposables.create()
             }
-            guard let gckDevice = strongSelf.device(withId: device.id) else {
+            guard let gckDevice = self.device(withId: device.id) else {
                 observer.onError(GoogleCastServiceError.connectionError)
                 observer.onCompleted()
                 return Disposables.create()
             }
 
-            let didStartSubscription = strongSelf.sessionManager.rx.didStart.subscribe(onNext: { sessionManager in
+            let didStartSubscription = self.sessionManager.rx.didStart.subscribe(onNext: { sessionManager in
                 if let currentCastSession = sessionManager.currentCastSession {
                     observer.onNext(currentCastSession)
                 } else {
@@ -113,15 +113,15 @@ final class GoogleCastService: NSObject, GoogleCastServiceType {
                 }
                 observer.onCompleted()
             })
-            let didFailToStartSubscription = strongSelf.sessionManager.rx.didFailToStart.subscribe(onNext: { _ in
+            let didFailToStartSubscription = self.sessionManager.rx.didFailToStart.subscribe(onNext: { _ in
                 observer.onError(GoogleCastServiceError.connectionError)
                 observer.onCompleted()
             })
 
-            if let castSession = strongSelf.sessionManager.currentCastSession {
+            if let castSession = self.sessionManager.currentCastSession {
                 observer.onNext(castSession)
                 observer.onCompleted()
-            } else if !strongSelf.sessionManager.startSession(with: gckDevice) {
+            } else if !self.sessionManager.startSession(with: gckDevice) {
                 observer.onError(GoogleCastServiceError.connectionError)
                 observer.onCompleted()
             }
@@ -142,13 +142,15 @@ final class GoogleCastService: NSObject, GoogleCastServiceType {
                 }
                 let options = GCKMediaLoadOptions()
                 options.autoplay = true
+                Log.debug("Load media: \(mediaInfo) options: \(options)")
                 let request = remoteMediaClient.loadMedia(mediaInfo, with: options)
 
                 let didCompleteSubscription = request.rx.didComplete.subscribe(onNext: { _ in
                     observer.onNext(())
                     observer.onCompleted()
                 })
-                let didFailWithErrorSubscription = request.rx.didFailWithError.subscribe(onNext: { _ in
+                let didFailWithErrorSubscription = request.rx.didFailWithError.subscribe(onNext: { error in
+                    Log.debug("Error: \(error.localizedDescription)")
                     observer.onError(GoogleCastServiceError.connectionError)
                     observer.onCompleted()
                 })

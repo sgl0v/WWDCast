@@ -9,3 +9,4 @@ SWIFT_OPTIMIZATION_LEVEL = -Owholemodule
 BUILD_GCC_PREPROCESSOR_DEFINITIONS = NDEBUG
 // The optimization level (0, 1, 2, 3, s) for the produced binary
 GCC_OPTIMIZATION_LEVEL = s
+SWIFT_COMPILATION_MODE = wholemodule
