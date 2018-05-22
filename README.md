@@ -3,7 +3,7 @@
 
 [![Build Status](https://www.bitrise.io/app/08e3f4df4a3bb96a/status.svg?token=w30mFKoUI1f7Xzd7M8xS0Q)](https://www.bitrise.io/app/08e3f4df4a3bb96a)
 
-The unofficial WWDC app, that makes it possible to cast WWDC videos and sessions on your ChromeCast.
+The unofficial WWDC iOS application to watch WWDC videos and sessions on your ChromeCast.
 
 If you would like to test the latest changes, you can join the **TestFlight** beta by sending your e-mail address to [@sgl0v](mailto:maxscheglov@gmail.com).
 
