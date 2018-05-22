@@ -315,6 +315,27 @@ GCK_EXPORT
     GCK_DEPRECATED("Use seekWithOptions:");
 
 /**
+ * Requests the list of item IDs for the queue. The results are passed to the delegate callback
+ * GCKRemoteMediaClientDelegate::remoteMediaClient:didReceiveQueueItemIDs:.
+ *
+ * @return The GCKRequest object for tracking this request.
+ *
+ * @since 4.1
+ */
+- (GCKRequest *)queueFetchItemIDs;
+
+/**
+ * Requests complete information for the queue items with the given item IDs. The results are
+ * passed to the delegate callback
+ * GCKRemoteMediaClientDelegate::remoteMediaClient:didReceiveQueueItems:.
+ *
+ * @return The GCKRequest object for tracking this request.
+ *
+ * @since 4.1
+ */
+- (GCKRequest *)queueFetchItemsForIDs:(NSArray<NSNumber *> *)queueItemIDs;
+
+/**
  * Loads and optionally starts playback of a new queue of media items.
  *
  * @param queueItems An array of GCKMediaQueueItem instances to load. Must not be <code>nil</code>
@@ -322,10 +343,12 @@ GCK_EXPORT
  * @param startIndex The index of the item in the items array that should be played first.
  * @param repeatMode The repeat mode for playing the queue.
  * @return The GCKRequest object for tracking this request.
+ * @deprecated Use queueLoadItems:withOptions:.
  */
 - (GCKRequest *)queueLoadItems:(NSArray<GCKMediaQueueItem *> *)queueItems
                     startIndex:(NSUInteger)startIndex
-                    repeatMode:(GCKMediaRepeatMode)repeatMode;
+                    repeatMode:(GCKMediaRepeatMode)repeatMode
+    GCK_DEPRECATED("Use queueLoadItems:withOptions:");
 
 /**
  * Loads and optionally starts playback of a new queue of media items.
@@ -338,11 +361,13 @@ GCK_EXPORT
  * an object that can be serialized to JSON using
  * <a href="https://goo.gl/0vd4Q2"><b>NSJSONSerialization</b></a>, or <code>nil</code>.
  * @return The GCKRequest object for tracking this request.
+ * @deprecated Use queueLoadItems:withOptions:.
  */
 - (GCKRequest *)queueLoadItems:(NSArray<GCKMediaQueueItem *> *)queueItems
                     startIndex:(NSUInteger)startIndex
                     repeatMode:(GCKMediaRepeatMode)repeatMode
-                    customData:(id GCK_NULLABLE_TYPE)customData;
+                    customData:(id GCK_NULLABLE_TYPE)customData
+    GCK_DEPRECATED("Use queueLoadItems:withOptions:");
 
 /**
  * Loads and optionally starts playback of a new queue of media items.
@@ -359,12 +384,14 @@ GCK_EXPORT
  * an object that can be serialized to JSON using
  * <a href="https://goo.gl/0vd4Q2"><b>NSJSONSerialization</b></a>, or <code>nil</code>.
  * @return The GCKRequest object for tracking this request.
+ * @deprecated Use queueLoadItems:withOptions:.
  */
 - (GCKRequest *)queueLoadItems:(NSArray<GCKMediaQueueItem *> *)queueItems
                     startIndex:(NSUInteger)startIndex
                   playPosition:(NSTimeInterval)playPosition
                     repeatMode:(GCKMediaRepeatMode)repeatMode
-                    customData:(id GCK_NULLABLE_TYPE)customData;
+                    customData:(id GCK_NULLABLE_TYPE)customData
+    GCK_DEPRECATED("Use queueLoadItems:withOptions:");
 
 /**
  * Inserts a list of new media items into the queue.
@@ -698,6 +725,65 @@ GCK_EXPORT
  * @param client The client.
  */
 - (void)remoteMediaClientDidUpdatePreloadStatus:(GCKRemoteMediaClient *)client;
+
+/**
+ * Called when the list of media queue item IDs has been received.
+ *
+ * @param client The client.
+ * @param queueItemIDs The list of media queue item IDs.
+ *
+ * @since 4.1
+ */
+- (void)remoteMediaClient:(GCKRemoteMediaClient *)client
+    didReceiveQueueItemIDs:(NSArray<NSNumber *> *)queueItemIDs;
+
+/**
+ * Called when a contiguous sequence of items has been inserted into the media queue.
+ *
+ * @param client The client.
+ * @param queueItemIDs The item IDs of the inserted items.
+ * @param beforeItemID The item ID of the item in front of which the new items have been inserted.
+ * If the value is kGCKMediaQueueInvalidItemID, it indicates that the items were appended at the
+ * end of the queue.
+ *
+ * @since 4.1
+ */
+- (void)remoteMediaClient:(GCKRemoteMediaClient *)client
+    didInsertQueueItemsWithIDs:(NSArray<NSNumber *> *)queueItemIDs
+              beforeItemWithID:(GCKMediaQueueItemID)beforeItemID;
+
+/**
+ * Called when existing items has been updated in the media queue.
+ *
+ * @param client The client.
+ * @param queueItemIDs The item IDs of the updated items.
+ *
+ * @since 4.1
+ */
+- (void)remoteMediaClient:(GCKRemoteMediaClient *)client
+    didUpdateQueueItemsWithIDs:(NSArray<NSNumber *> *)queueItemIDs;
+
+/**
+ * Called when a contiguous sequence of items has been removed from the media queue.
+ *
+ * @param client The client.
+ * @param queueItemIDs The item IDs of the removed items.
+ *
+ * @since 4.1
+ */
+- (void)remoteMediaClient:(GCKRemoteMediaClient *)client
+    didRemoveQueueItemsWithIDs:(NSArray<NSNumber *> *)queueItemIDs;
+
+/**
+ * Called when detailed information has been received for one or more items in the queue.
+ *
+ * @param client The client.
+ * @param queueItems The queue items.
+ *
+ * @since 4.1
+ */
+- (void)remoteMediaClient:(GCKRemoteMediaClient *)client
+     didReceiveQueueItems:(NSArray<GCKMediaQueueItem *> *)queueItems;
 
 @end
 

@@ -1,6 +1,6 @@
 // GoogleCast Framework
-// Build generated on Tue Dec  5 11:46:23 PST 2017.
-// Copyright 2013-2017 Google Inc.
+// Build generated on Thu Apr 19 15:00:58 PDT 2018.
+// Copyright 2013-2018 Google Inc.
 
 
 #import <GoogleCast/GCKAdBreakClipInfo.h>
@@ -39,6 +39,7 @@
 #import <GoogleCast/GCKMediaTrack.h>
 #import <GoogleCast/GCKMultizoneDevice.h>
 #import <GoogleCast/GCKMultizoneStatus.h>
+#import <GoogleCast/GCKNetworkAddress.h>
 #import <GoogleCast/GCKOpenURLOptions.h>
 #import <GoogleCast/GCKRemoteMediaClient+Protected.h>
 #import <GoogleCast/GCKRemoteMediaClient.h>
