@@ -38,7 +38,7 @@ class FilterViewModel: FilterViewModelType {
         input.cancel.drive(onNext: {[unowned self] _ in
             self.navigator.dismiss()
         }).disposed(by: self.disposeBag)
-        input.apply.flatMap({_ in
+        input.apply.flatMap({[unowned self] _ in
             return self.useCase.save()
                 .mapToVoid()
                 .asDriverOnErrorJustComplete()
