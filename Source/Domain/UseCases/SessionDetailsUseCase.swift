@@ -57,9 +57,9 @@ class SessionDetailsUseCase: SessionDetailsUseCaseType {
                 }
                 return Observable.error(Error.itemNotFound)
             })
-            .share(replay: 1)
             .subscribeOn(Scheduler.backgroundWorkScheduler)
             .observeOn(Scheduler.mainScheduler)
+            .share(replay: 1)
     }()
 
     var devices: Observable<[GoogleCastDevice]> {
@@ -68,7 +68,7 @@ class SessionDetailsUseCase: SessionDetailsUseCaseType {
 
     func play(on device: GoogleCastDevice) -> Observable<Void> {
         return Observable.just(device).withLatestFrom(self.session).flatMap({ session -> Observable<Void> in
-            let media = GoogleCastMedia(id: session.id, title: session.title, subtitle: session.subtitle, thumbnail: session.thumbnail, video: session.video.absoluteString, captions: session.captions?.absoluteString)
+            let media = GoogleCastMedia(id: session.id, title: session.title, subtitle: session.subtitle, thumbnail: session.thumbnail, video: session.video.absoluteString, duration: session.duration, captions: session.captions?.absoluteString)
             return self.googleCast.play(media: media, onDevice: device)
         })
     }

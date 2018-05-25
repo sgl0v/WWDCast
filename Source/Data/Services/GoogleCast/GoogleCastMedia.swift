@@ -14,6 +14,7 @@ struct GoogleCastMedia {
     let subtitle: String
     let thumbnail: URL
     let video: String
+    let duration: TimeInterval
     let captions: String?
 }
 

@@ -12,16 +12,13 @@ import GoogleCast
 extension GoogleCastMedia {
 
     var gckMedia: GCKMediaInformation {
-        let metadata = GCKMediaMetadata(metadataType: .generic)
+        let metadata = GCKMediaMetadata(metadataType: .movie)
         metadata.setString(self.title, forKey: kGCKMetadataKeyTitle)
         metadata.setString(self.subtitle, forKey: kGCKMetadataKeySubtitle)
         metadata.addImage(GCKImage(url: self.thumbnail, width: 734, height: 413))
-        let mediaTrack = GCKMediaTrack(identifier: self.id.hashValue, contentIdentifier: self.captions,
-                                       contentType: "text/vtt", type: .text, textSubtype: .captions,
-                                       name: "English Captions", languageCode: "en", customData: nil)
 
-        return GCKMediaInformation(contentID: self.video, streamType: .none, contentType: "video/mp4",
-                                   metadata: metadata, streamDuration: 0, mediaTracks: [mediaTrack],
+        return GCKMediaInformation(contentID: self.video, streamType: .none, contentType: "videos/mp4",
+                                   metadata: metadata, streamDuration: self.duration, mediaTracks: [],
                                    textTrackStyle: GCKMediaTextTrackStyle.createDefault(), customData: nil)
     }
 }

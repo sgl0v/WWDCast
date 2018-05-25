@@ -31,7 +31,7 @@ class SessionBuilder: EntityBuilderType {
         let contentId = json["eventContentId"].intValue
         let title = json["title"].stringValue
         let summary = json["description"].stringValue
-        let duration = json["duration"].doubleValue
+        let duration = media["duration"].doubleValue
 
         let platforms: Session.Platform = focus.reduce([]) { (platforms, focusItem) -> Session.Platform in
             guard let platformName = focusItem as? String,
