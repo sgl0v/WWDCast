@@ -56,9 +56,13 @@ class SessionsSearchViewModel: SessionsSearchViewModelType {
 
         let error = errorTracker.asDriver()
         let loading = activityIndicator.asDriver()
+        let empty = sessions.map({ sessions in
+            return sessions.isEmpty
+        }).startWith(false)
 
         return SessionsSearchViewModelOuput(sessions: sessions,
                                             loading: loading,
+                                            empty: empty,
                                             error: error)
 
     }

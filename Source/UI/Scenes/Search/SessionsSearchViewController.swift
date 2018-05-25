@@ -17,6 +17,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
     private var previewController: SessionDetailsPreview?
     private var loadingIndicator: UIActivityIndicatorView!
     private var filterButton: UIBarButtonItem!
+    private var emptyDataSetView: EmptyDataSetView!
     private let viewModel: SessionsSearchViewModelType
     private let sessions = Variable([SessionSectionViewModel]())
 
@@ -67,6 +68,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         output.sessions.drive(self.tableView.rx.items(dataSource: self.source)).disposed(by: self.disposeBag)
         output.loading.drive(self.tableView.rx.isHidden).disposed(by: self.disposeBag)
         output.loading.drive(self.loadingIndicator.rx.isAnimating).disposed(by: self.disposeBag)
+        output.empty.not().drive(self.emptyDataSetView.rx.isHidden).disposed(by: self.disposeBag)
         output.error.drive(self.errorBinding).disposed(by: self.disposeBag)
     }
 
@@ -103,6 +105,17 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
         self.view.addSubview(self.loadingIndicator, constraints: [
             equal(\.centerXAnchor),
             equal(\.centerYAnchor)
+        ])
+        let emptyTitle = NSLocalizedString("No Results", comment: "No Results")
+        let emptyDescription = NSLocalizedString("Please try searching again",
+                                                 comment: "Please try searching again")
+        let emptySearchImage = UIImage(named: "search") ?? UIImage()
+        self.emptyDataSetView = EmptyDataSetView.view(emptyTitle, description: emptyDescription, image: emptySearchImage)
+        self.view.addSubview(self.emptyDataSetView, constraints: [
+            equal(\.leadingAnchor),
+            equal(\.trailingAnchor),
+            equal(\.topAnchor),
+            equal(\.bottomAnchor)
         ])
     }
 

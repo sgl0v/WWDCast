@@ -37,9 +37,9 @@ class FavoriteSessionsViewModel: FavoriteSessionsViewModelType {
             return session.id
         }).drive(onNext: self.navigator?.showDetails).disposed(by: self.disposeBag)
 
-        let empty = favorites.map { sessions in
+        let empty = favorites.map({ sessions in
             return sessions.isEmpty
-        }
+        }).startWith(false)
 
         let error = errorTracker.asDriver()
 

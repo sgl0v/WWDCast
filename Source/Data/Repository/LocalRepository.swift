@@ -16,12 +16,12 @@ final class LocalRepository<T: NSManagedObject>: NSObject, RepositoryType, NSFet
     typealias Element = [T.EntityType]
 
     fileprivate let coreDataController: CoreDataController
-    fileprivate let allObjectsSubject: BehaviorSubject<Element>
+    fileprivate let allObjectsSubject: PublishSubject<Element>
     fileprivate let frc: NSFetchedResultsController<T>
 
     init(coreDataController: CoreDataController) {
         self.coreDataController = coreDataController
-        self.allObjectsSubject = BehaviorSubject(value: [])
+        self.allObjectsSubject = PublishSubject()
 
         self.frc = NSFetchedResultsController(fetchRequest: T.fetchRequest(),
                                               managedObjectContext: self.coreDataController.viewContext,

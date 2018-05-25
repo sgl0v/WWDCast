@@ -63,7 +63,8 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
         let emptyTitle = NSLocalizedString("No Favorites", comment: "The are no sessions added to favorites")
         let emptyDescription = NSLocalizedString("Add your favorite sessions to the bookmarks",
                                                  comment: "Add your favorite sessions to the bookmarks")
-        self.emptyDataSetView = EmptyDataSetView.view(emptyTitle, description: emptyDescription)
+        let emptyFavoritesImage = UIImage(named: "bookmark") ?? UIImage()
+        self.emptyDataSetView = EmptyDataSetView.view(emptyTitle, description: emptyDescription, image: emptyFavoritesImage)
         self.view.addSubview(self.emptyDataSetView, constraints: [
             equal(\.leadingAnchor),
             equal(\.trailingAnchor),

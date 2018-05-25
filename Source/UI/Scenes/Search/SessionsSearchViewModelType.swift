@@ -31,6 +31,8 @@ struct SessionsSearchViewModelOuput {
     let sessions: Driver<[SessionSectionViewModel]>
     // Emits when the content is loading
     let loading: Driver<Bool>
+    // Emits when there are no no favorite sessions
+    let empty: Driver<Bool>
     /// Emits when a signup error has occurred and a message should be displayed.
     let error: Driver<Error>
 }
