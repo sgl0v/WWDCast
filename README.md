@@ -1,6 +1,7 @@
 
 # WWDCast
 
+![Swift](https://img.shields.io/badge/Swift-4.1-brightgreen.svg)
 [![Build Status](https://www.bitrise.io/app/08e3f4df4a3bb96a/status.svg?token=w30mFKoUI1f7Xzd7M8xS0Q)](https://www.bitrise.io/app/08e3f4df4a3bb96a)
 
 The unofficial WWDC iOS application to watch WWDC videos and sessions on your ChromeCast.
@@ -13,6 +14,7 @@ You can watch WWDC videos on your ChromeCast. Just select a video, click the pla
 
 ![screen1](./.github/screen1.png)
 ![screen2](./.github/screen2.png)
+![screen3](./.github/screen3.png)
 
 ## Building the app
 
@@ -27,6 +29,16 @@ carthage update --platform iOS
 ```
 
 Eventually you should open the `WWDCast.xcworkspace` and build/run WWDCast.
+
+## Other projects
+
+- [WWDC app for iOS](https://appsto.re/br/w0kkM.i). Apple's official WWDC app for iOS where you can see the schedule, maps, videos and news.
+
+- [WWDC app for macOS](https://wwdc.io). The unofficial WWDC app for macOS.
+
+- [Parties for WWDC](https://appsto.re/br/InPC0.i). An aggregator of developer parties happening in San Jose mostly exclusively for attendees of WWDC.
+
+- [ASCIIwwdc](http://asciiwwdc.com/). Searchable full-text transcripts of WWDC sessions.
 
 ## License
 

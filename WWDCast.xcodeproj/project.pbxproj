@@ -473,9 +473,9 @@
 		E74C01C81FE0973200D98A76 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				E74C02001FE0973200D98A76 /* UI */,
-				E74C01CC1FE0973200D98A76 /* Data */,
-				E74C01EE1FE0973200D98A76 /* Domain */,
+				E74C02001FE0973200D98A76 /* Scenes */,
+				E74C01EE1FE0973200D98A76 /* UseCases */,
+				E74C01CC1FE0973200D98A76 /* Core */,
 				E74C01CA1FE0973200D98A76 /* Common */,
 				E74C01FD1FE0973200D98A76 /* ThirdParty */,
 				E74C022D1FE0973200D98A76 /* ApplicationComponentsFactory.swift */,
@@ -493,14 +493,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		E74C01CC1FE0973200D98A76 /* Data */ = {
+		E74C01CC1FE0973200D98A76 /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				E7BC44822097B94300A276A8 /* Repository */,
 				E74C01CD1FE0973200D98A76 /* CoreData */,
 				E74C01DD1FE0973200D98A76 /* Services */,
 			);
-			path = Data;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		E74C01CD1FE0973200D98A76 /* CoreData */ = {
@@ -567,13 +567,17 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
-		E74C01EE1FE0973200D98A76 /* Domain */ = {
+		E74C01EE1FE0973200D98A76 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
 				E74C01EF1FE0973200D98A76 /* Entities */,
-				E74C01F81FE0973200D98A76 /* UseCases */,
+				E74C01F91FE0973200D98A76 /* FavoriteSessionsUseCase.swift */,
+				E74C01FA1FE0973200D98A76 /* SessionDetailsUseCase.swift */,
+				E74C01FB1FE0973200D98A76 /* SessionsSearchUseCase.swift */,
+				E74C01FC1FE0973200D98A76 /* UseCaseProvider.swift */,
+				E7416E1D1FFBC8190062B812 /* FilterUseCase.swift */,
 			);
-			path = Domain;
+			path = UseCases;
 			sourceTree = "<group>";
 		};
 		E74C01EF1FE0973200D98A76 /* Entities */ = {
@@ -598,18 +602,6 @@
 			path = Builders;
 			sourceTree = "<group>";
 		};
-		E74C01F81FE0973200D98A76 /* UseCases */ = {
-			isa = PBXGroup;
-			children = (
-				E74C01F91FE0973200D98A76 /* FavoriteSessionsUseCase.swift */,
-				E74C01FA1FE0973200D98A76 /* SessionDetailsUseCase.swift */,
-				E74C01FB1FE0973200D98A76 /* SessionsSearchUseCase.swift */,
-				E74C01FC1FE0973200D98A76 /* UseCaseProvider.swift */,
-				E7416E1D1FFBC8190062B812 /* FilterUseCase.swift */,
-			);
-			path = UseCases;
-			sourceTree = "<group>";
-		};
 		E74C01FD1FE0973200D98A76 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,17 +612,17 @@
 			path = ThirdParty;
 			sourceTree = "<group>";
 		};
-		E74C02001FE0973200D98A76 /* UI */ = {
+		E74C02001FE0973200D98A76 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				E74C02011FE0973200D98A76 /* Coordinators */,
-				E74C02071FE0973200D98A76 /* Scenes */,
+				E74C02011FE0973200D98A76 /* FlowCoordinators */,
+				E74C02071FE0973200D98A76 /* Screens */,
 				E74C02231FE0973200D98A76 /* Utils */,
 			);
-			path = UI;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
-		E74C02011FE0973200D98A76 /* Coordinators */ = {
+		E74C02011FE0973200D98A76 /* FlowCoordinators */ = {
 			isa = PBXGroup;
 			children = (
 				E74C02021FE0973200D98A76 /* ApplicationFlowCoordinator.swift */,
@@ -639,10 +631,10 @@
 				E74C02051FE0973200D98A76 /* FlowCoordinatorDependencyProviders.swift */,
 				E74C02061FE0973200D98A76 /* SearchFlowCoordinator.swift */,
 			);
-			path = Coordinators;
+			path = FlowCoordinators;
 			sourceTree = "<group>";
 		};
-		E74C02071FE0973200D98A76 /* Scenes */ = {
+		E74C02071FE0973200D98A76 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				E74C02081FE0973200D98A76 /* Details */,
@@ -652,7 +644,7 @@
 				E74C021A1FE0973200D98A76 /* Search */,
 				E74C02221FE0973200D98A76 /* TabBarController.swift */,
 			);
-			path = Scenes;
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		E74C02081FE0973200D98A76 /* Details */ = {
