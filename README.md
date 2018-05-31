@@ -16,11 +16,16 @@ You can watch WWDC videos on your ChromeCast. Just select a video, click the pla
 ![screen2](./.github/screen2.png)
 ![screen3](./.github/screen3.png)
 
+## Dependencies
+
+* Xcode 9.3 or later
+* iOS 10 or later
+* [Carthage](https://github.com/Carthage/Carthage) (`brew install carthage`)
+* [Swiftlint](https://github.com/realm/SwiftLint) (`brew install swiftlint`)
+
 ## Building the app
 
-**Building requires Xcode 9.3 or later.**
-
-To get started, you will need to install [Carthage](https://github.com/Carthage/Carthage) (`brew install carthage`). Then run these instructions:
+Just run these instructions:
 
 ```sh
 git clone https://github.com/sgl0v/WWDCast.git
