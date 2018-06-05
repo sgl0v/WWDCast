@@ -1088,7 +1088,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E7840B501F741F9E0039AFE1 /* Debug.xcconfig */;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 213;
+				CURRENT_PROJECT_VERSION = 269;
 				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 			};
@@ -1098,7 +1098,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 213;
+				CURRENT_PROJECT_VERSION = 269;
 				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 			};
