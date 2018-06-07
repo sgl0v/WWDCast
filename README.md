@@ -2,7 +2,7 @@
 # WWDCast
 
 ![Swift](https://img.shields.io/badge/Swift-4.1-brightgreen.svg)
-[![Build Status](https://www.bitrise.io/app/08e3f4df4a3bb96a/status.svg?token=w30mFKoUI1f7Xzd7M8xS0Q)](https://www.bitrise.io/app/08e3f4df4a3bb96a)
+[![Build Status](https://www.bitrise.io/app/08e3f4df4a3bb96a/status.svg?token=w30mFKoUI1f7Xzd7M8xS0Q&branch=develop)](https://www.bitrise.io/app/08e3f4df4a3bb96a)
 
 The unofficial WWDC iOS application to watch WWDC videos and sessions on your ChromeCast.
 

@@ -48,46 +48,8 @@
 		E72C1072204C2D6900B4715E /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704AC3E204750600016D227 /* RxTest.framework */; };
 		E72C1073204C2D6900B4715E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704AC37204750600016D227 /* SwiftyJSON.framework */; };
 		E72C1077204C3F1100B4715E /* MockFavoriteSessionsNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1D151E68AD49005A3EAE /* MockFavoriteSessionsNavigator.swift */; };
-		E7416E1E1FFBC8190062B812 /* FilterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7416E1D1FFBC8190062B812 /* FilterUseCase.swift */; };
-		E7416E831FFFAAE90062B812 /* ConsoleDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7416E801FFFAAE90062B812 /* ConsoleDestination.swift */; };
-		E7416E841FFFAAE90062B812 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7416E811FFFAAE90062B812 /* Log.swift */; };
-		E7416E851FFFAAE90062B812 /* LogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7416E821FFFAAE90062B812 /* LogDestination.swift */; };
-		E7416E8E1FFFE6370062B812 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7416E8D1FFFE6370062B812 /* ServicesProvider.swift */; };
 		E74C022F1FE0973200D98A76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01C91FE0973200D98A76 /* AppDelegate.swift */; };
 		E74C02301FE0973200D98A76 /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01CB1FE0973200D98A76 /* RxExtensions.swift */; };
-		E74C02311FE0973200D98A76 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01CE1FE0973200D98A76 /* CoreDataController.swift */; };
-		E74C02321FE0973200D98A76 /* CoreDataPersistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01CF1FE0973200D98A76 /* CoreDataPersistable.swift */; };
-		E74C02331FE0973200D98A76 /* CoreDataRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01D01FE0973200D98A76 /* CoreDataRepresentable.swift */; };
-		E74C02341FE0973200D98A76 /* EntityRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01D11FE0973200D98A76 /* EntityRepresentable.swift */; };
-		E74C02351FE0973200D98A76 /* NSManagedObjectContext+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01D21FE0973200D98A76 /* NSManagedObjectContext+Rx.swift */; };
-		E74C02361FE0973200D98A76 /* Session+CoreDataRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01D31FE0973200D98A76 /* Session+CoreDataRepresentable.swift */; };
-		E74C02371FE0973200D98A76 /* SessionManagedObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01D41FE0973200D98A76 /* SessionManagedObject+CoreDataClass.swift */; };
-		E74C02381FE0973200D98A76 /* SessionManagedObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01D51FE0973200D98A76 /* SessionManagedObject+CoreDataProperties.swift */; };
-		E74C02391FE0973200D98A76 /* SessionManagedObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01D61FE0973200D98A76 /* SessionManagedObject+Ext.swift */; };
-		E74C023F1FE0973200D98A76 /* GoogleCastDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01DF1FE0973200D98A76 /* GoogleCastDevice.swift */; };
-		E74C02401FE0973200D98A76 /* GoogleCastMedia+GCK.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01E01FE0973200D98A76 /* GoogleCastMedia+GCK.swift */; };
-		E74C02411FE0973200D98A76 /* GoogleCastMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01E11FE0973200D98A76 /* GoogleCastMedia.swift */; };
-		E74C02421FE0973200D98A76 /* GoogleCastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01E21FE0973200D98A76 /* GoogleCastService.swift */; };
-		E74C02431FE0973200D98A76 /* GoogleCastServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01E31FE0973200D98A76 /* GoogleCastServiceType.swift */; };
-		E74C02441FE0973200D98A76 /* RxGCKRequestDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01E41FE0973200D98A76 /* RxGCKRequestDelegateProxy.swift */; };
-		E74C02451FE0973200D98A76 /* RxGCKSessionManagerListenerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01E51FE0973200D98A76 /* RxGCKSessionManagerListenerProxy.swift */; };
-		E74C02461FE0973200D98A76 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01E71FE0973200D98A76 /* NetworkService.swift */; };
-		E74C02471FE0973200D98A76 /* NetworkServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01E81FE0973200D98A76 /* NetworkServiceType.swift */; };
-		E74C02481FE0973200D98A76 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01E91FE0973200D98A76 /* Resource.swift */; };
-		E74C02491FE0973200D98A76 /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01EB1FE0973200D98A76 /* ReachabilityService.swift */; };
-		E74C024A1FE0973200D98A76 /* ReachabilityServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01EC1FE0973200D98A76 /* ReachabilityServiceType.swift */; };
-		E74C024B1FE0973200D98A76 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01ED1FE0973200D98A76 /* Scheduler.swift */; };
-		E74C024C1FE0973200D98A76 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01F01FE0973200D98A76 /* AppConfig.swift */; };
-		E74C024D1FE0973200D98A76 /* AppConfigBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01F21FE0973200D98A76 /* AppConfigBuilder.swift */; };
-		E74C024E1FE0973200D98A76 /* EntityBuilderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01F31FE0973200D98A76 /* EntityBuilderType.swift */; };
-		E74C024F1FE0973200D98A76 /* SessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01F41FE0973200D98A76 /* SessionBuilder.swift */; };
-		E74C02501FE0973200D98A76 /* SessionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01F51FE0973200D98A76 /* SessionsBuilder.swift */; };
-		E74C02511FE0973200D98A76 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01F61FE0973200D98A76 /* Filter.swift */; };
-		E74C02521FE0973200D98A76 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01F71FE0973200D98A76 /* Session.swift */; };
-		E74C02531FE0973200D98A76 /* FavoriteSessionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01F91FE0973200D98A76 /* FavoriteSessionsUseCase.swift */; };
-		E74C02541FE0973200D98A76 /* SessionDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01FA1FE0973200D98A76 /* SessionDetailsUseCase.swift */; };
-		E74C02551FE0973300D98A76 /* SessionsSearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01FB1FE0973200D98A76 /* SessionsSearchUseCase.swift */; };
-		E74C02561FE0973300D98A76 /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01FC1FE0973200D98A76 /* UseCaseProvider.swift */; };
 		E74C02571FE0973300D98A76 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01FE1FE0973200D98A76 /* ActivityIndicator.swift */; };
 		E74C02581FE0973300D98A76 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01FF1FE0973200D98A76 /* Reachability.swift */; };
 		E74C02591FE0973300D98A76 /* ApplicationFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C02021FE0973200D98A76 /* ApplicationFlowCoordinator.swift */; };
@@ -127,22 +89,65 @@
 		E74C027D1FE0973300D98A76 /* ApplicationComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C022D1FE0973200D98A76 /* ApplicationComponentsFactory.swift */; };
 		E74C027E1FE0973300D98A76 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C022E1FE0973200D98A76 /* Environment.swift */; };
 		E74DD0132051F56800F36DC4 /* SessionDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1D2F1E68C13A005A3EAE /* SessionDetailsViewModelTests.swift */; };
+		E751DB3220C928BF0009A3AC /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DAF520C928BF0009A3AC /* Log.swift */; };
+		E751DB3320C928BF0009A3AC /* ConsoleDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DAF620C928BF0009A3AC /* ConsoleDestination.swift */; };
+		E751DB3420C928BF0009A3AC /* LogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DAF720C928BF0009A3AC /* LogDestination.swift */; };
+		E751DB3520C928BF0009A3AC /* NetworkServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DAF920C928BF0009A3AC /* NetworkServiceType.swift */; };
+		E751DB3620C928BF0009A3AC /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DAFA20C928BF0009A3AC /* NetworkService.swift */; };
+		E751DB3720C928BF0009A3AC /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DAFB20C928BF0009A3AC /* Resource.swift */; };
+		E751DB3820C928BF0009A3AC /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DAFC20C928BF0009A3AC /* ServicesProvider.swift */; };
+		E751DB3920C928BF0009A3AC /* ImageLoaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DAFE20C928BF0009A3AC /* ImageLoaderService.swift */; };
+		E751DB3A20C928BF0009A3AC /* ImageLoaderServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DAFF20C928BF0009A3AC /* ImageLoaderServiceType.swift */; };
+		E751DB3B20C928BF0009A3AC /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB0120C928BF0009A3AC /* ReachabilityService.swift */; };
+		E751DB3C20C928BF0009A3AC /* ReachabilityServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB0220C928BF0009A3AC /* ReachabilityServiceType.swift */; };
+		E751DB3D20C928BF0009A3AC /* RxGCKSessionManagerListenerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB0420C928BF0009A3AC /* RxGCKSessionManagerListenerProxy.swift */; };
+		E751DB3E20C928BF0009A3AC /* GoogleCastDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB0520C928BF0009A3AC /* GoogleCastDevice.swift */; };
+		E751DB3F20C928BF0009A3AC /* RxGCKRequestDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB0620C928BF0009A3AC /* RxGCKRequestDelegateProxy.swift */; };
+		E751DB4020C928BF0009A3AC /* GoogleCastMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB0720C928BF0009A3AC /* GoogleCastMedia.swift */; };
+		E751DB4120C928BF0009A3AC /* GoogleCastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB0820C928BF0009A3AC /* GoogleCastService.swift */; };
+		E751DB4220C928BF0009A3AC /* GoogleCastMedia+GCK.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB0920C928BF0009A3AC /* GoogleCastMedia+GCK.swift */; };
+		E751DB4320C928BF0009A3AC /* GoogleCastServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB0A20C928BF0009A3AC /* GoogleCastServiceType.swift */; };
+		E751DB4420C928BF0009A3AC /* RxGCKDiscoveryManagerListenerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB0B20C928BF0009A3AC /* RxGCKDiscoveryManagerListenerProxy.swift */; };
+		E751DB4520C928BF0009A3AC /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB0C20C928BF0009A3AC /* Scheduler.swift */; };
+		E751DB4620C928BF0009A3AC /* CoreDataRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB0E20C928BF0009A3AC /* CoreDataRepresentable.swift */; };
+		E751DB4720C928BF0009A3AC /* NSManagedObjectContext+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB0F20C928BF0009A3AC /* NSManagedObjectContext+Rx.swift */; };
+		E751DB4820C928BF0009A3AC /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB1020C928BF0009A3AC /* CoreDataController.swift */; };
+		E751DB4920C928BF0009A3AC /* SessionManagedObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB1120C928BF0009A3AC /* SessionManagedObject+Ext.swift */; };
+		E751DB4A20C928BF0009A3AC /* EntityRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB1220C928BF0009A3AC /* EntityRepresentable.swift */; };
+		E751DB4B20C928BF0009A3AC /* Session+CoreDataRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB1320C928BF0009A3AC /* Session+CoreDataRepresentable.swift */; };
+		E751DB4C20C928BF0009A3AC /* CoreDataPersistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB1420C928BF0009A3AC /* CoreDataPersistable.swift */; };
+		E751DB4D20C928BF0009A3AC /* SessionManagedObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB1520C928BF0009A3AC /* SessionManagedObject+CoreDataProperties.swift */; };
+		E751DB4E20C928BF0009A3AC /* SessionManagedObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB1620C928BF0009A3AC /* SessionManagedObject+CoreDataClass.swift */; };
+		E751DB4F20C928BF0009A3AC /* RepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB1820C928BF0009A3AC /* RepositoryType.swift */; };
+		E751DB5020C928BF0009A3AC /* AnyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB1920C928BF0009A3AC /* AnyRepository.swift */; };
+		E751DB5120C928BF0009A3AC /* RemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB1A20C928BF0009A3AC /* RemoteRepository.swift */; };
+		E751DB5220C928BF0009A3AC /* InMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB1B20C928BF0009A3AC /* InMemoryRepository.swift */; };
+		E751DB5320C928BF0009A3AC /* CompositeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB1C20C928BF0009A3AC /* CompositeRepository.swift */; };
+		E751DB5420C928BF0009A3AC /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB1D20C928BF0009A3AC /* LocalRepository.swift */; };
+		E751DB5520C928BF0009A3AC /* SessionDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB1F20C928BF0009A3AC /* SessionDetailsUseCase.swift */; };
+		E751DB5620C928BF0009A3AC /* SessionsSearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB2020C928BF0009A3AC /* SessionsSearchUseCase.swift */; };
+		E751DB5720C928BF0009A3AC /* FavoriteSessionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB2120C928BF0009A3AC /* FavoriteSessionsUseCase.swift */; };
+		E751DB5820C928BF0009A3AC /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB2220C928BF0009A3AC /* UseCaseProvider.swift */; };
+		E751DB5920C928BF0009A3AC /* FilterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB2320C928BF0009A3AC /* FilterUseCase.swift */; };
+		E751DB5A20C928BF0009A3AC /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB2520C928BF0009A3AC /* Session.swift */; };
+		E751DB5B20C928BF0009A3AC /* EntityBuilderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB2720C928BF0009A3AC /* EntityBuilderType.swift */; };
+		E751DB5C20C928BF0009A3AC /* SessionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB2820C928BF0009A3AC /* SessionsBuilder.swift */; };
+		E751DB5D20C928BF0009A3AC /* AppConfigBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB2920C928BF0009A3AC /* AppConfigBuilder.swift */; };
+		E751DB5E20C928BF0009A3AC /* SessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB2A20C928BF0009A3AC /* SessionBuilder.swift */; };
+		E751DB5F20C928BF0009A3AC /* Session+Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB2B20C928BF0009A3AC /* Session+Topic.swift */; };
+		E751DB6020C928BF0009A3AC /* Session+Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB2C20C928BF0009A3AC /* Session+Year.swift */; };
+		E751DB6120C928BF0009A3AC /* Session+Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB2D20C928BF0009A3AC /* Session+Platform.swift */; };
+		E751DB6220C928BF0009A3AC /* Session+Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB2E20C928BF0009A3AC /* Session+Track.swift */; };
+		E751DB6320C928BF0009A3AC /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB2F20C928BF0009A3AC /* Filter.swift */; };
+		E751DB6420C928BF0009A3AC /* Session+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB3020C928BF0009A3AC /* Session+Event.swift */; };
+		E751DB6520C928BF0009A3AC /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E751DB3120C928BF0009A3AC /* AppConfig.swift */; };
 		E7811EAF2022693C0044533A /* FilterSectionsViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7811EAE2022693C0044533A /* FilterSectionsViewModelBuilder.swift */; };
 		E79718091D6080B000C4DD7C /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */; };
-		E7BC44892097B94400A276A8 /* RepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44832097B94300A276A8 /* RepositoryType.swift */; };
-		E7BC448A2097B94400A276A8 /* AnyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44842097B94300A276A8 /* AnyRepository.swift */; };
-		E7BC448B2097B94400A276A8 /* RemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44852097B94300A276A8 /* RemoteRepository.swift */; };
-		E7BC448C2097B94400A276A8 /* InMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44862097B94300A276A8 /* InMemoryRepository.swift */; };
-		E7BC448D2097B94400A276A8 /* CompositeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44872097B94300A276A8 /* CompositeRepository.swift */; };
-		E7BC448E2097B94400A276A8 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44882097B94300A276A8 /* LocalRepository.swift */; };
-		E7BC44932097BB6E00A276A8 /* ImageLoaderServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44922097BB6E00A276A8 /* ImageLoaderServiceType.swift */; };
-		E7BC44952097BCBA00A276A8 /* ImageLoaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC44942097BCBA00A276A8 /* ImageLoaderService.swift */; };
 		E7C27FA31DD231400082EC45 /* EmptyDataSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */; };
 		E7D76F141F588245005C95DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7D76F131F588245005C95DB /* Assets.xcassets */; };
 		E7FC18171EE0A5E6000D2FAB /* WWDCast.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */; };
 		E7FEA2532076837400CBDB1C /* FavoriteSessionsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1D2A1E68B054005A3EAE /* FavoriteSessionsViewModelTests.swift */; };
 		E7FEA256207683EB00CBDB1C /* MockFavoriteSessionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA254207683E800CBDB1C /* MockFavoriteSessionsUseCase.swift */; };
-		E7FEA2582077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FEA2572077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,46 +224,8 @@
 		E72A1D2F1E68C13A005A3EAE /* SessionDetailsViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		E72A1D321E68C45E005A3EAE /* Session+Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Tests.swift"; sourceTree = "<group>"; };
 		E72C1055204C1E4400B4715E /* MockSessionDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSessionDetailsUseCase.swift; sourceTree = "<group>"; };
-		E7416E1D1FFBC8190062B812 /* FilterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUseCase.swift; sourceTree = "<group>"; };
-		E7416E801FFFAAE90062B812 /* ConsoleDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleDestination.swift; sourceTree = "<group>"; };
-		E7416E811FFFAAE90062B812 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
-		E7416E821FFFAAE90062B812 /* LogDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogDestination.swift; sourceTree = "<group>"; };
-		E7416E8D1FFFE6370062B812 /* ServicesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesProvider.swift; sourceTree = "<group>"; };
 		E74C01C91FE0973200D98A76 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E74C01CB1FE0973200D98A76 /* RxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
-		E74C01CE1FE0973200D98A76 /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
-		E74C01CF1FE0973200D98A76 /* CoreDataPersistable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataPersistable.swift; sourceTree = "<group>"; };
-		E74C01D01FE0973200D98A76 /* CoreDataRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataRepresentable.swift; sourceTree = "<group>"; };
-		E74C01D11FE0973200D98A76 /* EntityRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityRepresentable.swift; sourceTree = "<group>"; };
-		E74C01D21FE0973200D98A76 /* NSManagedObjectContext+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Rx.swift"; sourceTree = "<group>"; };
-		E74C01D31FE0973200D98A76 /* Session+CoreDataRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataRepresentable.swift"; sourceTree = "<group>"; };
-		E74C01D41FE0973200D98A76 /* SessionManagedObject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E74C01D51FE0973200D98A76 /* SessionManagedObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		E74C01D61FE0973200D98A76 /* SessionManagedObject+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+Ext.swift"; sourceTree = "<group>"; };
-		E74C01DF1FE0973200D98A76 /* GoogleCastDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDevice.swift; sourceTree = "<group>"; };
-		E74C01E01FE0973200D98A76 /* GoogleCastMedia+GCK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GoogleCastMedia+GCK.swift"; sourceTree = "<group>"; };
-		E74C01E11FE0973200D98A76 /* GoogleCastMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastMedia.swift; sourceTree = "<group>"; };
-		E74C01E21FE0973200D98A76 /* GoogleCastService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastService.swift; sourceTree = "<group>"; };
-		E74C01E31FE0973200D98A76 /* GoogleCastServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastServiceType.swift; sourceTree = "<group>"; };
-		E74C01E41FE0973200D98A76 /* RxGCKRequestDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGCKRequestDelegateProxy.swift; sourceTree = "<group>"; };
-		E74C01E51FE0973200D98A76 /* RxGCKSessionManagerListenerProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGCKSessionManagerListenerProxy.swift; sourceTree = "<group>"; };
-		E74C01E71FE0973200D98A76 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		E74C01E81FE0973200D98A76 /* NetworkServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceType.swift; sourceTree = "<group>"; };
-		E74C01E91FE0973200D98A76 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
-		E74C01EB1FE0973200D98A76 /* ReachabilityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
-		E74C01EC1FE0973200D98A76 /* ReachabilityServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityServiceType.swift; sourceTree = "<group>"; };
-		E74C01ED1FE0973200D98A76 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
-		E74C01F01FE0973200D98A76 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
-		E74C01F21FE0973200D98A76 /* AppConfigBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigBuilder.swift; sourceTree = "<group>"; };
-		E74C01F31FE0973200D98A76 /* EntityBuilderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityBuilderType.swift; sourceTree = "<group>"; };
-		E74C01F41FE0973200D98A76 /* SessionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionBuilder.swift; sourceTree = "<group>"; };
-		E74C01F51FE0973200D98A76 /* SessionsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsBuilder.swift; sourceTree = "<group>"; };
-		E74C01F61FE0973200D98A76 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
-		E74C01F71FE0973200D98A76 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		E74C01F91FE0973200D98A76 /* FavoriteSessionsUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsUseCase.swift; sourceTree = "<group>"; };
-		E74C01FA1FE0973200D98A76 /* SessionDetailsUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsUseCase.swift; sourceTree = "<group>"; };
-		E74C01FB1FE0973200D98A76 /* SessionsSearchUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchUseCase.swift; sourceTree = "<group>"; };
-		E74C01FC1FE0973200D98A76 /* UseCaseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
 		E74C01FE1FE0973200D98A76 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		E74C01FF1FE0973200D98A76 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		E74C02021FE0973200D98A76 /* ApplicationFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -297,18 +264,62 @@
 		E74C022C1FE0973200D98A76 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		E74C022D1FE0973200D98A76 /* ApplicationComponentsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationComponentsFactory.swift; sourceTree = "<group>"; };
 		E74C022E1FE0973200D98A76 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		E751DAF520C928BF0009A3AC /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		E751DAF620C928BF0009A3AC /* ConsoleDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleDestination.swift; sourceTree = "<group>"; };
+		E751DAF720C928BF0009A3AC /* LogDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogDestination.swift; sourceTree = "<group>"; };
+		E751DAF920C928BF0009A3AC /* NetworkServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceType.swift; sourceTree = "<group>"; };
+		E751DAFA20C928BF0009A3AC /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		E751DAFB20C928BF0009A3AC /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		E751DAFC20C928BF0009A3AC /* ServicesProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesProvider.swift; sourceTree = "<group>"; };
+		E751DAFE20C928BF0009A3AC /* ImageLoaderService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoaderService.swift; sourceTree = "<group>"; };
+		E751DAFF20C928BF0009A3AC /* ImageLoaderServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoaderServiceType.swift; sourceTree = "<group>"; };
+		E751DB0120C928BF0009A3AC /* ReachabilityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
+		E751DB0220C928BF0009A3AC /* ReachabilityServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityServiceType.swift; sourceTree = "<group>"; };
+		E751DB0420C928BF0009A3AC /* RxGCKSessionManagerListenerProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGCKSessionManagerListenerProxy.swift; sourceTree = "<group>"; };
+		E751DB0520C928BF0009A3AC /* GoogleCastDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastDevice.swift; sourceTree = "<group>"; };
+		E751DB0620C928BF0009A3AC /* RxGCKRequestDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGCKRequestDelegateProxy.swift; sourceTree = "<group>"; };
+		E751DB0720C928BF0009A3AC /* GoogleCastMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastMedia.swift; sourceTree = "<group>"; };
+		E751DB0820C928BF0009A3AC /* GoogleCastService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastService.swift; sourceTree = "<group>"; };
+		E751DB0920C928BF0009A3AC /* GoogleCastMedia+GCK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GoogleCastMedia+GCK.swift"; sourceTree = "<group>"; };
+		E751DB0A20C928BF0009A3AC /* GoogleCastServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCastServiceType.swift; sourceTree = "<group>"; };
+		E751DB0B20C928BF0009A3AC /* RxGCKDiscoveryManagerListenerProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxGCKDiscoveryManagerListenerProxy.swift; sourceTree = "<group>"; };
+		E751DB0C20C928BF0009A3AC /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
+		E751DB0E20C928BF0009A3AC /* CoreDataRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataRepresentable.swift; sourceTree = "<group>"; };
+		E751DB0F20C928BF0009A3AC /* NSManagedObjectContext+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Rx.swift"; sourceTree = "<group>"; };
+		E751DB1020C928BF0009A3AC /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
+		E751DB1120C928BF0009A3AC /* SessionManagedObject+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+Ext.swift"; sourceTree = "<group>"; };
+		E751DB1220C928BF0009A3AC /* EntityRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityRepresentable.swift; sourceTree = "<group>"; };
+		E751DB1320C928BF0009A3AC /* Session+CoreDataRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataRepresentable.swift"; sourceTree = "<group>"; };
+		E751DB1420C928BF0009A3AC /* CoreDataPersistable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataPersistable.swift; sourceTree = "<group>"; };
+		E751DB1520C928BF0009A3AC /* SessionManagedObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E751DB1620C928BF0009A3AC /* SessionManagedObject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SessionManagedObject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E751DB1820C928BF0009A3AC /* RepositoryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryType.swift; sourceTree = "<group>"; };
+		E751DB1920C928BF0009A3AC /* AnyRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyRepository.swift; sourceTree = "<group>"; };
+		E751DB1A20C928BF0009A3AC /* RemoteRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRepository.swift; sourceTree = "<group>"; };
+		E751DB1B20C928BF0009A3AC /* InMemoryRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryRepository.swift; sourceTree = "<group>"; };
+		E751DB1C20C928BF0009A3AC /* CompositeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositeRepository.swift; sourceTree = "<group>"; };
+		E751DB1D20C928BF0009A3AC /* LocalRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
+		E751DB1F20C928BF0009A3AC /* SessionDetailsUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsUseCase.swift; sourceTree = "<group>"; };
+		E751DB2020C928BF0009A3AC /* SessionsSearchUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsSearchUseCase.swift; sourceTree = "<group>"; };
+		E751DB2120C928BF0009A3AC /* FavoriteSessionsUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteSessionsUseCase.swift; sourceTree = "<group>"; };
+		E751DB2220C928BF0009A3AC /* UseCaseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
+		E751DB2320C928BF0009A3AC /* FilterUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterUseCase.swift; sourceTree = "<group>"; };
+		E751DB2520C928BF0009A3AC /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		E751DB2720C928BF0009A3AC /* EntityBuilderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityBuilderType.swift; sourceTree = "<group>"; };
+		E751DB2820C928BF0009A3AC /* SessionsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsBuilder.swift; sourceTree = "<group>"; };
+		E751DB2920C928BF0009A3AC /* AppConfigBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigBuilder.swift; sourceTree = "<group>"; };
+		E751DB2A20C928BF0009A3AC /* SessionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionBuilder.swift; sourceTree = "<group>"; };
+		E751DB2B20C928BF0009A3AC /* Session+Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Topic.swift"; sourceTree = "<group>"; };
+		E751DB2C20C928BF0009A3AC /* Session+Year.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Year.swift"; sourceTree = "<group>"; };
+		E751DB2D20C928BF0009A3AC /* Session+Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Platform.swift"; sourceTree = "<group>"; };
+		E751DB2E20C928BF0009A3AC /* Session+Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Track.swift"; sourceTree = "<group>"; };
+		E751DB2F20C928BF0009A3AC /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		E751DB3020C928BF0009A3AC /* Session+Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Event.swift"; sourceTree = "<group>"; };
+		E751DB3120C928BF0009A3AC /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		E7811EAE2022693C0044533A /* FilterSectionsViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSectionsViewModelBuilder.swift; sourceTree = "<group>"; };
 		E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		E7840B501F741F9E0039AFE1 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		E79718081D6080B000C4DD7C /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = Resources/FilterTableViewCell.xib; sourceTree = SOURCE_ROOT; };
-		E7BC44832097B94300A276A8 /* RepositoryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryType.swift; sourceTree = "<group>"; };
-		E7BC44842097B94300A276A8 /* AnyRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyRepository.swift; sourceTree = "<group>"; };
-		E7BC44852097B94300A276A8 /* RemoteRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRepository.swift; sourceTree = "<group>"; };
-		E7BC44862097B94300A276A8 /* InMemoryRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryRepository.swift; sourceTree = "<group>"; };
-		E7BC44872097B94300A276A8 /* CompositeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositeRepository.swift; sourceTree = "<group>"; };
-		E7BC44882097B94300A276A8 /* LocalRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
-		E7BC44922097BB6E00A276A8 /* ImageLoaderServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderServiceType.swift; sourceTree = "<group>"; };
-		E7BC44942097BCBA00A276A8 /* ImageLoaderService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoaderService.swift; sourceTree = "<group>"; };
 		E7C27FA21DD231400082EC45 /* EmptyDataSetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyDataSetView.xib; path = Resources/EmptyDataSetView.xib; sourceTree = SOURCE_ROOT; };
 		E7D76F131F588245005C95DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7F044F61F7B0126007DE5C3 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -321,7 +332,6 @@
 		E7F045041F7B0126007DE5C3 /* Team.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Team.xcconfig; sourceTree = "<group>"; };
 		E7FC18131EE0A5E6000D2FAB /* WWDCast.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = WWDCast.xcdatamodel; path = Resources/WWDCast.xcdatamodel; sourceTree = SOURCE_ROOT; };
 		E7FEA254207683E800CBDB1C /* MockFavoriteSessionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoriteSessionsUseCase.swift; sourceTree = "<group>"; };
-		E7FEA2572077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxGCKDiscoveryManagerListenerProxy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,22 +470,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		E7416E7F1FFFAAE90062B812 /* Logger */ = {
-			isa = PBXGroup;
-			children = (
-				E7416E801FFFAAE90062B812 /* ConsoleDestination.swift */,
-				E7416E811FFFAAE90062B812 /* Log.swift */,
-				E7416E821FFFAAE90062B812 /* LogDestination.swift */,
-			);
-			path = Logger;
-			sourceTree = "<group>";
-		};
 		E74C01C81FE0973200D98A76 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				E74C02001FE0973200D98A76 /* Scenes */,
-				E74C01EE1FE0973200D98A76 /* UseCases */,
-				E74C01CC1FE0973200D98A76 /* Core */,
+				E751DB1E20C928BF0009A3AC /* UseCases */,
+				E751DB1720C928BF0009A3AC /* Repository */,
+				E751DAF320C928BF0009A3AC /* Services */,
+				E751DB0D20C928BF0009A3AC /* CoreData */,
 				E74C01CA1FE0973200D98A76 /* Common */,
 				E74C01FD1FE0973200D98A76 /* ThirdParty */,
 				E74C022D1FE0973200D98A76 /* ApplicationComponentsFactory.swift */,
@@ -491,115 +493,6 @@
 				E74C01CB1FE0973200D98A76 /* RxExtensions.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		E74C01CC1FE0973200D98A76 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				E7BC44822097B94300A276A8 /* Repository */,
-				E74C01CD1FE0973200D98A76 /* CoreData */,
-				E74C01DD1FE0973200D98A76 /* Services */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		E74C01CD1FE0973200D98A76 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				E74C01CE1FE0973200D98A76 /* CoreDataController.swift */,
-				E74C01CF1FE0973200D98A76 /* CoreDataPersistable.swift */,
-				E74C01D01FE0973200D98A76 /* CoreDataRepresentable.swift */,
-				E74C01D11FE0973200D98A76 /* EntityRepresentable.swift */,
-				E74C01D21FE0973200D98A76 /* NSManagedObjectContext+Rx.swift */,
-				E74C01D31FE0973200D98A76 /* Session+CoreDataRepresentable.swift */,
-				E74C01D41FE0973200D98A76 /* SessionManagedObject+CoreDataClass.swift */,
-				E74C01D51FE0973200D98A76 /* SessionManagedObject+CoreDataProperties.swift */,
-				E74C01D61FE0973200D98A76 /* SessionManagedObject+Ext.swift */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
-		E74C01DD1FE0973200D98A76 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				E7BC448F2097BB5500A276A8 /* ImageLoader */,
-				E74C01DE1FE0973200D98A76 /* GoogleCast */,
-				E74C01E61FE0973200D98A76 /* Network */,
-				E74C01EA1FE0973200D98A76 /* Reachability */,
-				E7416E7F1FFFAAE90062B812 /* Logger */,
-				E74C01ED1FE0973200D98A76 /* Scheduler.swift */,
-				E7416E8D1FFFE6370062B812 /* ServicesProvider.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		E74C01DE1FE0973200D98A76 /* GoogleCast */ = {
-			isa = PBXGroup;
-			children = (
-				E74C01DF1FE0973200D98A76 /* GoogleCastDevice.swift */,
-				E74C01E01FE0973200D98A76 /* GoogleCastMedia+GCK.swift */,
-				E74C01E11FE0973200D98A76 /* GoogleCastMedia.swift */,
-				E74C01E21FE0973200D98A76 /* GoogleCastService.swift */,
-				E74C01E31FE0973200D98A76 /* GoogleCastServiceType.swift */,
-				E74C01E41FE0973200D98A76 /* RxGCKRequestDelegateProxy.swift */,
-				E74C01E51FE0973200D98A76 /* RxGCKSessionManagerListenerProxy.swift */,
-				E7FEA2572077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift */,
-			);
-			path = GoogleCast;
-			sourceTree = "<group>";
-		};
-		E74C01E61FE0973200D98A76 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				E74C01E71FE0973200D98A76 /* NetworkService.swift */,
-				E74C01E81FE0973200D98A76 /* NetworkServiceType.swift */,
-				E74C01E91FE0973200D98A76 /* Resource.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		E74C01EA1FE0973200D98A76 /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				E74C01EB1FE0973200D98A76 /* ReachabilityService.swift */,
-				E74C01EC1FE0973200D98A76 /* ReachabilityServiceType.swift */,
-			);
-			path = Reachability;
-			sourceTree = "<group>";
-		};
-		E74C01EE1FE0973200D98A76 /* UseCases */ = {
-			isa = PBXGroup;
-			children = (
-				E74C01EF1FE0973200D98A76 /* Entities */,
-				E74C01F91FE0973200D98A76 /* FavoriteSessionsUseCase.swift */,
-				E74C01FA1FE0973200D98A76 /* SessionDetailsUseCase.swift */,
-				E74C01FB1FE0973200D98A76 /* SessionsSearchUseCase.swift */,
-				E74C01FC1FE0973200D98A76 /* UseCaseProvider.swift */,
-				E7416E1D1FFBC8190062B812 /* FilterUseCase.swift */,
-			);
-			path = UseCases;
-			sourceTree = "<group>";
-		};
-		E74C01EF1FE0973200D98A76 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				E74C01F01FE0973200D98A76 /* AppConfig.swift */,
-				E74C01F11FE0973200D98A76 /* Builders */,
-				E74C01F61FE0973200D98A76 /* Filter.swift */,
-				E74C01F71FE0973200D98A76 /* Session.swift */,
-			);
-			path = Entities;
-			sourceTree = "<group>";
-		};
-		E74C01F11FE0973200D98A76 /* Builders */ = {
-			isa = PBXGroup;
-			children = (
-				E74C01F21FE0973200D98A76 /* AppConfigBuilder.swift */,
-				E74C01F31FE0973200D98A76 /* EntityBuilderType.swift */,
-				E74C01F41FE0973200D98A76 /* SessionBuilder.swift */,
-				E74C01F51FE0973200D98A76 /* SessionsBuilder.swift */,
-			);
-			path = Builders;
 			sourceTree = "<group>";
 		};
 		E74C01FD1FE0973200D98A76 /* ThirdParty */ = {
@@ -718,6 +611,142 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		E751DAF320C928BF0009A3AC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E751DAF420C928BF0009A3AC /* Logger */,
+				E751DAF820C928BF0009A3AC /* Network */,
+				E751DAFC20C928BF0009A3AC /* ServicesProvider.swift */,
+				E751DAFD20C928BF0009A3AC /* ImageLoader */,
+				E751DB0020C928BF0009A3AC /* Reachability */,
+				E751DB0320C928BF0009A3AC /* GoogleCast */,
+				E751DB0C20C928BF0009A3AC /* Scheduler.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E751DAF420C928BF0009A3AC /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				E751DAF520C928BF0009A3AC /* Log.swift */,
+				E751DAF620C928BF0009A3AC /* ConsoleDestination.swift */,
+				E751DAF720C928BF0009A3AC /* LogDestination.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		E751DAF820C928BF0009A3AC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E751DAF920C928BF0009A3AC /* NetworkServiceType.swift */,
+				E751DAFA20C928BF0009A3AC /* NetworkService.swift */,
+				E751DAFB20C928BF0009A3AC /* Resource.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		E751DAFD20C928BF0009A3AC /* ImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				E751DAFE20C928BF0009A3AC /* ImageLoaderService.swift */,
+				E751DAFF20C928BF0009A3AC /* ImageLoaderServiceType.swift */,
+			);
+			path = ImageLoader;
+			sourceTree = "<group>";
+		};
+		E751DB0020C928BF0009A3AC /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				E751DB0120C928BF0009A3AC /* ReachabilityService.swift */,
+				E751DB0220C928BF0009A3AC /* ReachabilityServiceType.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		E751DB0320C928BF0009A3AC /* GoogleCast */ = {
+			isa = PBXGroup;
+			children = (
+				E751DB0420C928BF0009A3AC /* RxGCKSessionManagerListenerProxy.swift */,
+				E751DB0520C928BF0009A3AC /* GoogleCastDevice.swift */,
+				E751DB0620C928BF0009A3AC /* RxGCKRequestDelegateProxy.swift */,
+				E751DB0720C928BF0009A3AC /* GoogleCastMedia.swift */,
+				E751DB0820C928BF0009A3AC /* GoogleCastService.swift */,
+				E751DB0920C928BF0009A3AC /* GoogleCastMedia+GCK.swift */,
+				E751DB0A20C928BF0009A3AC /* GoogleCastServiceType.swift */,
+				E751DB0B20C928BF0009A3AC /* RxGCKDiscoveryManagerListenerProxy.swift */,
+			);
+			path = GoogleCast;
+			sourceTree = "<group>";
+		};
+		E751DB0D20C928BF0009A3AC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E751DB0E20C928BF0009A3AC /* CoreDataRepresentable.swift */,
+				E751DB0F20C928BF0009A3AC /* NSManagedObjectContext+Rx.swift */,
+				E751DB1020C928BF0009A3AC /* CoreDataController.swift */,
+				E751DB1120C928BF0009A3AC /* SessionManagedObject+Ext.swift */,
+				E751DB1220C928BF0009A3AC /* EntityRepresentable.swift */,
+				E751DB1320C928BF0009A3AC /* Session+CoreDataRepresentable.swift */,
+				E751DB1420C928BF0009A3AC /* CoreDataPersistable.swift */,
+				E751DB1520C928BF0009A3AC /* SessionManagedObject+CoreDataProperties.swift */,
+				E751DB1620C928BF0009A3AC /* SessionManagedObject+CoreDataClass.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		E751DB1720C928BF0009A3AC /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				E751DB1820C928BF0009A3AC /* RepositoryType.swift */,
+				E751DB1920C928BF0009A3AC /* AnyRepository.swift */,
+				E751DB1A20C928BF0009A3AC /* RemoteRepository.swift */,
+				E751DB1B20C928BF0009A3AC /* InMemoryRepository.swift */,
+				E751DB1C20C928BF0009A3AC /* CompositeRepository.swift */,
+				E751DB1D20C928BF0009A3AC /* LocalRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		E751DB1E20C928BF0009A3AC /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				E751DB1F20C928BF0009A3AC /* SessionDetailsUseCase.swift */,
+				E751DB2020C928BF0009A3AC /* SessionsSearchUseCase.swift */,
+				E751DB2120C928BF0009A3AC /* FavoriteSessionsUseCase.swift */,
+				E751DB2220C928BF0009A3AC /* UseCaseProvider.swift */,
+				E751DB2320C928BF0009A3AC /* FilterUseCase.swift */,
+				E751DB2420C928BF0009A3AC /* Entities */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		E751DB2420C928BF0009A3AC /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				E751DB2520C928BF0009A3AC /* Session.swift */,
+				E751DB2620C928BF0009A3AC /* Builders */,
+				E751DB2B20C928BF0009A3AC /* Session+Topic.swift */,
+				E751DB2C20C928BF0009A3AC /* Session+Year.swift */,
+				E751DB2D20C928BF0009A3AC /* Session+Platform.swift */,
+				E751DB2E20C928BF0009A3AC /* Session+Track.swift */,
+				E751DB2F20C928BF0009A3AC /* Filter.swift */,
+				E751DB3020C928BF0009A3AC /* Session+Event.swift */,
+				E751DB3120C928BF0009A3AC /* AppConfig.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		E751DB2620C928BF0009A3AC /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				E751DB2720C928BF0009A3AC /* EntityBuilderType.swift */,
+				E751DB2820C928BF0009A3AC /* SessionsBuilder.swift */,
+				E751DB2920C928BF0009A3AC /* AppConfigBuilder.swift */,
+				E751DB2A20C928BF0009A3AC /* SessionBuilder.swift */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
 		E7840B4A1F741E030039AFE1 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
@@ -729,28 +758,6 @@
 				E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */,
 			);
 			path = Configs;
-			sourceTree = "<group>";
-		};
-		E7BC44822097B94300A276A8 /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-				E7BC44832097B94300A276A8 /* RepositoryType.swift */,
-				E7BC44842097B94300A276A8 /* AnyRepository.swift */,
-				E7BC44852097B94300A276A8 /* RemoteRepository.swift */,
-				E7BC44862097B94300A276A8 /* InMemoryRepository.swift */,
-				E7BC44872097B94300A276A8 /* CompositeRepository.swift */,
-				E7BC44882097B94300A276A8 /* LocalRepository.swift */,
-			);
-			path = Repository;
-			sourceTree = "<group>";
-		};
-		E7BC448F2097BB5500A276A8 /* ImageLoader */ = {
-			isa = PBXGroup;
-			children = (
-				E7BC44922097BB6E00A276A8 /* ImageLoaderServiceType.swift */,
-				E7BC44942097BCBA00A276A8 /* ImageLoaderService.swift */,
-			);
-			path = ImageLoader;
 			sourceTree = "<group>";
 		};
 		E7F044F51F7B0126007DE5C3 /* BuildType */ = {
@@ -949,96 +956,101 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E74C02421FE0973200D98A76 /* GoogleCastService.swift in Sources */,
-				E7BC448B2097B94400A276A8 /* RemoteRepository.swift in Sources */,
-				E74C02431FE0973200D98A76 /* GoogleCastServiceType.swift in Sources */,
-				E7BC448E2097B94400A276A8 /* LocalRepository.swift in Sources */,
 				E74C02601FE0973300D98A76 /* SessionDetailsViewModelType.swift in Sources */,
-				E7BC44932097BB6E00A276A8 /* ImageLoaderServiceType.swift in Sources */,
-				E74C024B1FE0973200D98A76 /* Scheduler.swift in Sources */,
+				E751DB6420C928BF0009A3AC /* Session+Event.swift in Sources */,
+				E751DB6320C928BF0009A3AC /* Filter.swift in Sources */,
 				E74C02581FE0973300D98A76 /* Reachability.swift in Sources */,
+				E751DB3220C928BF0009A3AC /* Log.swift in Sources */,
 				E74C02571FE0973300D98A76 /* ActivityIndicator.swift in Sources */,
-				E7BC448D2097B94400A276A8 /* CompositeRepository.swift in Sources */,
 				E74C026F1FE0973300D98A76 /* SessionsSearchViewController.swift in Sources */,
+				E751DB4620C928BF0009A3AC /* CoreDataRepresentable.swift in Sources */,
+				E751DB5720C928BF0009A3AC /* FavoriteSessionsUseCase.swift in Sources */,
 				E74C026C1FE0973300D98A76 /* SessionItemViewModel.swift in Sources */,
-				E74C02551FE0973300D98A76 /* SessionsSearchUseCase.swift in Sources */,
+				E751DB3C20C928BF0009A3AC /* ReachabilityServiceType.swift in Sources */,
+				E751DB5520C928BF0009A3AC /* SessionDetailsUseCase.swift in Sources */,
+				E751DB5E20C928BF0009A3AC /* SessionBuilder.swift in Sources */,
 				E74C025C1FE0973300D98A76 /* FlowCoordinatorDependencyProviders.swift in Sources */,
+				E751DB4A20C928BF0009A3AC /* EntityRepresentable.swift in Sources */,
+				E751DB4220C928BF0009A3AC /* GoogleCastMedia+GCK.swift in Sources */,
 				E74C025D1FE0973300D98A76 /* SearchFlowCoordinator.swift in Sources */,
-				E74C024A1FE0973200D98A76 /* ReachabilityServiceType.swift in Sources */,
-				E7416E831FFFAAE90062B812 /* ConsoleDestination.swift in Sources */,
+				E751DB5820C928BF0009A3AC /* UseCaseProvider.swift in Sources */,
 				E74C02651FE0973300D98A76 /* FavoriteSessionsViewModelType.swift in Sources */,
-				E74C02401FE0973200D98A76 /* GoogleCastMedia+GCK.swift in Sources */,
 				E74C02701FE0973300D98A76 /* SessionsSearchViewModel.swift in Sources */,
+				E751DB5020C928BF0009A3AC /* AnyRepository.swift in Sources */,
+				E751DB5F20C928BF0009A3AC /* Session+Topic.swift in Sources */,
+				E751DB3620C928BF0009A3AC /* NetworkService.swift in Sources */,
+				E751DB4E20C928BF0009A3AC /* SessionManagedObject+CoreDataClass.swift in Sources */,
+				E751DB6120C928BF0009A3AC /* Session+Platform.swift in Sources */,
+				E751DB4020C928BF0009A3AC /* GoogleCastMedia.swift in Sources */,
+				E751DB6520C928BF0009A3AC /* AppConfig.swift in Sources */,
 				E74C02661FE0973300D98A76 /* FilterItemViewModel.swift in Sources */,
 				E74C02761FE0973300D98A76 /* UIAlertController+Rx.swift in Sources */,
-				E74C02321FE0973200D98A76 /* CoreDataPersistable.swift in Sources */,
 				E7043A6A1FE2FA2C00AD8DA2 /* ErrorTracker.swift in Sources */,
+				E751DB3520C928BF0009A3AC /* NetworkServiceType.swift in Sources */,
+				E751DB5120C928BF0009A3AC /* RemoteRepository.swift in Sources */,
 				E74C025F1FE0973300D98A76 /* SessionDetailsViewModel.swift in Sources */,
 				E74C02591FE0973300D98A76 /* ApplicationFlowCoordinator.swift in Sources */,
-				E74C02541FE0973200D98A76 /* SessionDetailsUseCase.swift in Sources */,
 				E74C027E1FE0973300D98A76 /* Environment.swift in Sources */,
-				E74C02461FE0973200D98A76 /* NetworkService.swift in Sources */,
-				E7416E8E1FFFE6370062B812 /* ServicesProvider.swift in Sources */,
 				E74C026E1FE0973300D98A76 /* SessionSectionViewModelBuilder.swift in Sources */,
-				E74C02351FE0973200D98A76 /* NSManagedObjectContext+Rx.swift in Sources */,
-				E7FEA2582077B92200CBDB1C /* RxGCKDiscoveryManagerListenerProxy.swift in Sources */,
 				E74C02671FE0973300D98A76 /* FilterSectionViewModel.swift in Sources */,
-				E7BC44952097BCBA00A276A8 /* ImageLoaderService.swift in Sources */,
+				E751DB4720C928BF0009A3AC /* NSManagedObjectContext+Rx.swift in Sources */,
+				E751DB3720C928BF0009A3AC /* Resource.swift in Sources */,
+				E751DB3D20C928BF0009A3AC /* RxGCKSessionManagerListenerProxy.swift in Sources */,
 				E74C022F1FE0973200D98A76 /* AppDelegate.swift in Sources */,
+				E751DB3F20C928BF0009A3AC /* RxGCKRequestDelegateProxy.swift in Sources */,
 				E74C026A1FE0973300D98A76 /* FilterViewModel.swift in Sources */,
-				E74C02471FE0973200D98A76 /* NetworkServiceType.swift in Sources */,
-				E7BC44892097B94400A276A8 /* RepositoryType.swift in Sources */,
 				E74C02301FE0973200D98A76 /* RxExtensions.swift in Sources */,
+				E751DB3420C928BF0009A3AC /* LogDestination.swift in Sources */,
 				E74C02631FE0973300D98A76 /* FavoriteSessionsViewController.swift in Sources */,
-				E74C02561FE0973300D98A76 /* UseCaseProvider.swift in Sources */,
-				E74C02311FE0973200D98A76 /* CoreDataController.swift in Sources */,
-				E74C02361FE0973200D98A76 /* Session+CoreDataRepresentable.swift in Sources */,
-				E7416E851FFFAAE90062B812 /* LogDestination.swift in Sources */,
-				E74C023F1FE0973200D98A76 /* GoogleCastDevice.swift in Sources */,
-				E74C024D1FE0973200D98A76 /* AppConfigBuilder.swift in Sources */,
-				E74C02381FE0973200D98A76 /* SessionManagedObject+CoreDataProperties.swift in Sources */,
 				E74C025E1FE0973300D98A76 /* SessionDetailsViewController.swift in Sources */,
-				E74C02491FE0973200D98A76 /* ReachabilityService.swift in Sources */,
 				E7FC18171EE0A5E6000D2FAB /* WWDCast.xcdatamodel in Sources */,
-				E74C024E1FE0973200D98A76 /* EntityBuilderType.swift in Sources */,
-				E74C024C1FE0973200D98A76 /* AppConfig.swift in Sources */,
-				E74C02331FE0973200D98A76 /* CoreDataRepresentable.swift in Sources */,
 				E74C02751FE0973300D98A76 /* TableViewController.swift in Sources */,
-				E7BC448C2097B94400A276A8 /* InMemoryRepository.swift in Sources */,
 				E74C025A1FE0973300D98A76 /* FavoritesFlowCoordinator.swift in Sources */,
-				E7416E841FFFAAE90062B812 /* Log.swift in Sources */,
+				E751DB4320C928BF0009A3AC /* GoogleCastServiceType.swift in Sources */,
+				E751DB6020C928BF0009A3AC /* Session+Year.swift in Sources */,
+				E751DB5920C928BF0009A3AC /* FilterUseCase.swift in Sources */,
+				E751DB4520C928BF0009A3AC /* Scheduler.swift in Sources */,
+				E751DB5620C928BF0009A3AC /* SessionsSearchUseCase.swift in Sources */,
 				E74C026B1FE0973300D98A76 /* FilterViewModelType.swift in Sources */,
-				E74C02531FE0973200D98A76 /* FavoriteSessionsUseCase.swift in Sources */,
-				E74C02481FE0973200D98A76 /* Resource.swift in Sources */,
-				E74C02511FE0973200D98A76 /* Filter.swift in Sources */,
-				E7416E1E1FFBC8190062B812 /* FilterUseCase.swift in Sources */,
 				E74C02791FE0973300D98A76 /* UITableView+Common.swift in Sources */,
 				E74C02681FE0973300D98A76 /* FilterTableViewCell.swift in Sources */,
-				E74C02391FE0973200D98A76 /* SessionManagedObject+Ext.swift in Sources */,
 				E74C027B1FE0973300D98A76 /* UIViewController+Common.swift in Sources */,
+				E751DB5220C928BF0009A3AC /* InMemoryRepository.swift in Sources */,
+				E751DB4D20C928BF0009A3AC /* SessionManagedObject+CoreDataProperties.swift in Sources */,
 				E74C02731FE0973300D98A76 /* TabBarController.swift in Sources */,
+				E751DB4920C928BF0009A3AC /* SessionManagedObject+Ext.swift in Sources */,
+				E751DB5A20C928BF0009A3AC /* Session.swift in Sources */,
+				E751DB5320C928BF0009A3AC /* CompositeRepository.swift in Sources */,
 				E74C02741FE0973300D98A76 /* RxTableViewCell.swift in Sources */,
 				E74C02771FE0973300D98A76 /* UIBarButtonItem+Common.swift in Sources */,
 				E74C027D1FE0973300D98A76 /* ApplicationComponentsFactory.swift in Sources */,
 				E74C027C1FE0973300D98A76 /* UIViewController+Rx.swift in Sources */,
-				E74C02521FE0973200D98A76 /* Session.swift in Sources */,
-				E74C02411FE0973200D98A76 /* GoogleCastMedia.swift in Sources */,
+				E751DB3E20C928BF0009A3AC /* GoogleCastDevice.swift in Sources */,
 				E74C025B1FE0973300D98A76 /* FlowCoordinator.swift in Sources */,
-				E74C02341FE0973200D98A76 /* EntityRepresentable.swift in Sources */,
+				E751DB4820C928BF0009A3AC /* CoreDataController.swift in Sources */,
 				E74C02721FE0973300D98A76 /* SessionTableViewCell.swift in Sources */,
-				E74C02501FE0973200D98A76 /* SessionsBuilder.swift in Sources */,
-				E74C02371FE0973200D98A76 /* SessionManagedObject+CoreDataClass.swift in Sources */,
+				E751DB5C20C928BF0009A3AC /* SessionsBuilder.swift in Sources */,
+				E751DB3B20C928BF0009A3AC /* ReachabilityService.swift in Sources */,
+				E751DB5420C928BF0009A3AC /* LocalRepository.swift in Sources */,
+				E751DB4C20C928BF0009A3AC /* CoreDataPersistable.swift in Sources */,
+				E751DB4420C928BF0009A3AC /* RxGCKDiscoveryManagerListenerProxy.swift in Sources */,
 				E74C02691FE0973300D98A76 /* FilterViewController.swift in Sources */,
-				E74C02441FE0973200D98A76 /* RxGCKRequestDelegateProxy.swift in Sources */,
+				E751DB4F20C928BF0009A3AC /* RepositoryType.swift in Sources */,
 				E7811EAF2022693C0044533A /* FilterSectionsViewModelBuilder.swift in Sources */,
-				E7BC448A2097B94400A276A8 /* AnyRepository.swift in Sources */,
+				E751DB3320C928BF0009A3AC /* ConsoleDestination.swift in Sources */,
+				E751DB3A20C928BF0009A3AC /* ImageLoaderServiceType.swift in Sources */,
 				E74C02641FE0973300D98A76 /* FavoriteSessionsViewModel.swift in Sources */,
 				E74C02611FE0973300D98A76 /* EmptyDataSetView.swift in Sources */,
 				E74C026D1FE0973300D98A76 /* SessionSectionViewModel.swift in Sources */,
 				E74C02711FE0973300D98A76 /* SessionsSearchViewModelType.swift in Sources */,
+				E751DB4120C928BF0009A3AC /* GoogleCastService.swift in Sources */,
+				E751DB3920C928BF0009A3AC /* ImageLoaderService.swift in Sources */,
+				E751DB6220C928BF0009A3AC /* Session+Track.swift in Sources */,
+				E751DB3820C928BF0009A3AC /* ServicesProvider.swift in Sources */,
+				E751DB5D20C928BF0009A3AC /* AppConfigBuilder.swift in Sources */,
 				E74C027A1FE0973300D98A76 /* UIView+LayoutConstraints.swift in Sources */,
-				E74C024F1FE0973200D98A76 /* SessionBuilder.swift in Sources */,
-				E74C02451FE0973200D98A76 /* RxGCKSessionManagerListenerProxy.swift in Sources */,
+				E751DB4B20C928BF0009A3AC /* Session+CoreDataRepresentable.swift in Sources */,
+				E751DB5B20C928BF0009A3AC /* EntityBuilderType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
