@@ -69,8 +69,7 @@ platform :ios do
     certificates # fetch profiles & certificates
     gym(scheme: "WWDCast") # Build your app - more options available
     pilot(skip_waiting_for_build_processing: true)
-    copy_artifacts(target_path: ENV["ARTIFACTS_PATH"], artifacts: ["*.xcarchive", "*.ipa", "*.dSYM.zip", "*.dSYM"])
-
+    copy_build_artifacts
     slack_new_version("Testflight")
   end
 
@@ -83,8 +82,16 @@ platform :ios do
     certificates # fetch profiles & certificates
     gym(scheme: "WWDCast") # Build your app - more options available
     deliver(force: true)
-
+    copy_build_artifacts
     slack_new_version("App Store")
+  end
+
+  private_lane :copy_build_artifacts do
+    artifacts = []
+    artifacts << lane_context[SharedValues::IPA_OUTPUT_PATH] if lane_context[SharedValues::IPA_OUTPUT_PATH]
+    artifacts << lane_context[SharedValues::DSYM_OUTPUT_PATH] if lane_context[SharedValues::DSYM_OUTPUT_PATH]
+    artifacts << lane_context[SharedValues::XCODEBUILD_ARCHIVE] if lane_context[SharedValues::XCODEBUILD_ARCHIVE]
+    copy_artifacts(target_path: ENV["ARTIFACTS_PATH"], artifacts: artifacts)
   end
 
   private_lane :verify_xcode_version do
