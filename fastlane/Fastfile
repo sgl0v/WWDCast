@@ -69,7 +69,7 @@ platform :ios do
     certificates # fetch profiles & certificates
     gym(scheme: "WWDCast") # Build your app - more options available
     pilot(skip_waiting_for_build_processing: true)
-    copy_artifacts(target_path: ARTIFACTS_PATH, artifacts: ["*.xcarchive", "*.ipa", "*.dSYM.zip", "*.dSYM"])
+    copy_artifacts(target_path: ENV["ARTIFACTS_PATH"], artifacts: ["*.xcarchive", "*.ipa", "*.dSYM.zip", "*.dSYM"])
 
     slack_new_version("Testflight")
   end
