@@ -80,7 +80,9 @@ final class LocalRepository<T: NSManagedObject>: NSObject, RepositoryType, NSFet
 
     fileprivate func sendNextElement() {
         self.frc.managedObjectContext.perform {
-            let records = self.frc.fetchedObjects ?? []
+            guard let records = self.frc.fetchedObjects, !records.isEmpty else {
+                return
+            }
             Log.debug("Fetched \(records.count) records!")
             self.allObjectsSubject.on(.next(records.asDomainTypes()))
         }

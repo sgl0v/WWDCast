@@ -26,7 +26,6 @@ class SessionsSearchViewModel: SessionsSearchViewModelType {
     func transform(input: SessionsSearchViewModelInput) -> SessionsSearchViewModelOuput {
         let viewModelBuilder = SessionSectionViewModelBuilder(imageLoader: self.useCase.loadImage)
         let errorTracker = ErrorTracker()
-        let activityIndicator = ActivityIndicator()
 
         let initialSessions: Driver<[SessionSectionViewModel]> = input.appear.flatMap({_ in
             return self.useCase.sessions
@@ -55,7 +54,7 @@ class SessionsSearchViewModel: SessionsSearchViewModelType {
         }).disposed(by: self.disposeBag)
 
         let error = errorTracker.asDriver()
-        let loading = activityIndicator.asDriver()
+        let loading = sessions.map({ _ in false }).startWith(true)
         let empty = sessions.map({ sessions in
             return sessions.isEmpty
         }).startWith(false)
