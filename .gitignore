@@ -41,6 +41,7 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/.env
+fastlane/artifacts
 
 ## Environment normalization:
 /.bundle
