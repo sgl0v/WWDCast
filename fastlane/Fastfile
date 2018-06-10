@@ -110,8 +110,8 @@ platform :ios do
     version_number = get_version_number
     build_number = increment_build_number(build_number: number_of_commits) # Increment the build number (not the version number)
     complete_version_number = version_string(version_number, build_number)
-    add_git_tag(tag: tag_name(build_type, version_number, build_number)) # Add a git tag for this build. This will automatically use an appropriate git tag name
     commit_version_bump(message:"Version Bump to #{complete_version_number}") # Commit the version bump
+    add_git_tag(tag: tag_name(build_type, version_number, build_number)) # Add a git tag for this build. This will automatically use an appropriate git tag name
     push_to_git_remote # Push the new commit and tag back to your git remote
   end
 
