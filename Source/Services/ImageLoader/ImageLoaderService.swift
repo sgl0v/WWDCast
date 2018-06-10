@@ -9,15 +9,7 @@
 import UIKit
 import RxSwift
 
-extension UIImage {
-    func forceLazyImageDecompression() -> UIImage {
-        UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
-        self.draw(at: CGPoint.zero)
-        UIGraphicsEndImageContext()
-        return self
-    }
-}
-
+/// Service that takes responsibility of image download from URL.
 class ImageLoaderService: ImageLoaderServiceType {
 
     private let network: NetworkServiceType
@@ -42,8 +34,6 @@ class ImageLoaderService: ImageLoaderServiceType {
         cache.totalCostLimit = 10 * MB // cost is approx memory usage
         return cache
     }()
-
-    let loadingImage = ActivityIndicator()
 
     private func decodeImage(_ imageData: Data) -> Observable<UIImage> {
         return Observable.just(imageData)
@@ -72,7 +62,6 @@ class ImageLoaderService: ImageLoaderServiceType {
                         self.imageDataCache.setObject(data as AnyObject, forKey: url as AnyObject)
                     })
                     .flatMap(self.decodeImage)
-                    .trackActivity(self.loadingImage)
             }
 
             return decodedImage.do(onNext: { image in
@@ -81,14 +70,12 @@ class ImageLoaderService: ImageLoaderServiceType {
         }
     }
 
-    /**
-     Service that tries to download image from URL.
-
-     In case there were some problems with network connectivity and image wasn't downloaded, automatic retry will be fired when networks becomes
-     available.
-
-     After image is successfully downloaded, sequence is completed.
-     */
+    /// Downloads image from the url.
+    ///
+    /// In case there were some problems with network connectivity and image wasn't downloaded, automatic retry will be fired when networks becomes
+    ///
+    /// - Parameter url: image url
+    /// - Returns: image observable. After image is successfully downloaded, sequence is completed.
     func loadImage(for url: URL) -> Observable<UIImage> {
         return imageFromURL(url)
             .retryOnBecomesReachable(UIImage(), reachabilityService: self.reachability)
@@ -96,4 +83,13 @@ class ImageLoaderService: ImageLoaderServiceType {
             .observeOn(Scheduler.mainScheduler)
     }
 
+}
+
+extension UIImage {
+    fileprivate func forceLazyImageDecompression() -> UIImage {
+        UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+        self.draw(at: CGPoint.zero)
+        UIGraphicsEndImageContext()
+        return self
+    }
 }

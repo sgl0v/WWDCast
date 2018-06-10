@@ -76,7 +76,7 @@ class SessionBuilder: EntityBuilderType {
 
     private static func imageURL(`for` year: Session.Year, contentId: Int) throws -> URL {
         let bucketMapping = [ Session.Year._2018: 42, Session.Year._2017: 7, Session.Year._2016: 1, Session.Year._2015: 2,
-                              Session.Year._2014: 3, Session.Year._2013: 4]
+                              Session.Year._2014: 3]
         guard let bucket = bucketMapping[year] else {
             throw EntityBuilderError.parsingError
         }
