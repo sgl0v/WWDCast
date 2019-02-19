@@ -1,5 +1,5 @@
 //
-//  SessionsSearchWireframeImpl.swift
+//  ApplicationComponentsFactory.swift
 //  WWDCast
 //
 //  Created by Maksym Shcheglov on 04/07/16.

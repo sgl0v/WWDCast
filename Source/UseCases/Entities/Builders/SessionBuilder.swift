@@ -37,8 +37,9 @@ class SessionBuilder: EntityBuilderType {
     }
 
     private static func year(from eventId: String) throws -> Session.Year {
-        let eventsMap: [String: Session.Year] = ["wwdc2018": ._2018, "insights": ._2018, "tech-talks": ._2017, "wwdc2017": ._2017,
-                                                 "wwdc2016": ._2016, "wwdc2015": ._2015, "wwdc2014": ._2014]
+        let eventsMap: [String: Session.Year] = ["wwdc2018": ._2018, "insights": ._2018, "app-store-connect": ._2018,
+                                                 "tech-talks": ._2017, "wwdc2017": ._2017, "wwdc2016": ._2016,
+                                                 "wwdc2015": ._2015, "wwdc2014": ._2014]
 
         guard let year = eventsMap[eventId] else {
             throw EntityBuilderError.parsingError
