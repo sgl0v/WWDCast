@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Log {
+class Log {
 
     // a set of active destinations
     private(set) static var destinations = Set<AnyLogDestination>()

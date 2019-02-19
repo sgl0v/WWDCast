@@ -7,24 +7,43 @@
 //
 
 import Foundation
+import os
 
 class ConsoleDestination: LogDestination {
 
     private let level: Log.Level
     private let queue: DispatchQueue // serial queue to async output
+    private let log: OSLog
+    private let identifier = "\(String(describing: Bundle.main.bundleIdentifier)).logger"
 
     init(_ level: Log.Level = .verbose) {
         self.level = level
-        self.queue = DispatchQueue(label: "com.sgl0v.wwdcast.logger", qos: .utility)
+        self.queue = DispatchQueue(label: identifier, qos: .utility)
+        self.log = OSLog(subsystem: identifier, category: "application")
     }
 
     func log(level: Log.Level, message: @autoclosure () -> Any, path: String, function: String, line: Int) {
         guard isLogging(level) else {
             return
         }
-        let formattedMessage = "[\(level)] [\(getFile(path)):\(line) \(function)] \(message())"
+        let formattedMessage = "[\(getFile(path)):\(line) \(function)] \(message())"
         self.queue.async {
-            NSLog("%@", formattedMessage)
+            os_log("%@", log: self.log, type: self.osLogType(from: level), formattedMessage)
+        }
+    }
+
+    private func osLogType(from logLevel: Log.Level) -> OSLogType {
+        switch logLevel {
+        case .debug:
+            return .debug
+        case .info:
+            return .info
+        case .verbose:
+            return .default
+        case .warning:
+            return .fault
+        case .error:
+            return .error
         }
     }
 
