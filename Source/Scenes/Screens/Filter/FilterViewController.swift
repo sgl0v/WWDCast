@@ -48,12 +48,11 @@ class FilterViewController: UIViewController {
     }
 
     lazy var dataSource: RxTableViewSectionedReloadDataSource<SectionViewModel> = {
-        let dataSource = RxTableViewSectionedReloadDataSource<SectionViewModel>()
-        dataSource.configureCell = { (_, tableView, indexPath, element) in
+        let dataSource = RxTableViewSectionedReloadDataSource<SectionViewModel>(configureCell: {(_, tableView, indexPath, element) in
             let cell = tableView.dequeueReusableCell(withClass: Cell.self, forIndexPath: indexPath)
             cell.bind(to: element)
             return cell
-        }
+        })
         dataSource.titleForHeaderInSection = { (dataSource: TableViewSectionedDataSource<SectionViewModel>, sectionIndex: Int) -> String? in
             return dataSource[sectionIndex].title
         }
@@ -74,7 +73,7 @@ class FilterViewController: UIViewController {
         self.tableView.rx.itemSelected.asDriver().drive(onNext: {[unowned self] indexPath in
             self.tableView.deselectRow(at: indexPath, animated: true)
         }).disposed(by: self.disposeBag)
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.setClearsSelectionOnViewWillAppear()
 
         self.cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)

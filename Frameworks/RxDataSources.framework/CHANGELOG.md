@@ -3,7 +3,33 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [2.0.2(https://github.com/RxSwiftCommunity/RxDataSources/releases/tag/2.0.2)
+#### Enhancements
+* Reduce computational complexity. #242
+* Adapted for RxSwift 4.2
+
+## [3.1.0](https://github.com/RxSwiftCommunity/RxDataSources/releases/tag/3.1.0)
+
+* Xcode 10.0 compatibility.
+
+## [3.0.2](https://github.com/RxSwiftCommunity/RxDataSources/releases/tag/3.0.2)
+
+* Makes `configureSupplementaryView` optional for reload data source. #186
+
+## [3.0.1](https://github.com/RxSwiftCommunity/RxDataSources/releases/tag/3.0.1)
+
+* Adds custom logic to control should perform animated updates.
+* Fixes SPM integration.
+
+## [3.0.0](https://github.com/RxSwiftCommunity/RxDataSources/releases/tag/3.0.0)
+
+* Adapted for RxSwift 4.0
+
+## [3.0.0-rc.0](https://github.com/RxSwiftCommunity/RxDataSources/releases/tag/3.0.0-rc.0)
+
+* Cleans up public interface to use initializers vs nillable properties and deprecates nillable properties in favor of passing parameters
+through init.
+
+## [2.0.2](https://github.com/RxSwiftCommunity/RxDataSources/releases/tag/2.0.2)
 
 * Adds Swift Package Manager support
 

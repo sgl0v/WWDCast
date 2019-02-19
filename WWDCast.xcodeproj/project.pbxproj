@@ -48,6 +48,8 @@
 		E72C1072204C2D6900B4715E /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704AC3E204750600016D227 /* RxTest.framework */; };
 		E72C1073204C2D6900B4715E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704AC37204750600016D227 /* SwiftyJSON.framework */; };
 		E72C1077204C3F1100B4715E /* MockFavoriteSessionsNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A1D151E68AD49005A3EAE /* MockFavoriteSessionsNavigator.swift */; };
+		E730121A221C6931008DAC1E /* RxAtomic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7301219221C6931008DAC1E /* RxAtomic.framework */; };
+		E730121B221C6943008DAC1E /* RxAtomic.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7301219221C6931008DAC1E /* RxAtomic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E74C022F1FE0973200D98A76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01C91FE0973200D98A76 /* AppDelegate.swift */; };
 		E74C02301FE0973200D98A76 /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01CB1FE0973200D98A76 /* RxExtensions.swift */; };
 		E74C02581FE0973300D98A76 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74C01FF1FE0973200D98A76 /* Reachability.swift */; };
@@ -164,6 +166,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E730121B221C6943008DAC1E /* RxAtomic.framework in CopyFiles */,
 				E72C1059204C2AA500B4715E /* Differentiator.framework in CopyFiles */,
 				E72C105A204C2AA500B4715E /* GoogleCast.framework in CopyFiles */,
 				E72C105C204C2AA500B4715E /* RxCocoa.framework in CopyFiles */,
@@ -221,6 +224,7 @@
 		E72A1D2F1E68C13A005A3EAE /* SessionDetailsViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		E72A1D321E68C45E005A3EAE /* Session+Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Tests.swift"; sourceTree = "<group>"; };
 		E72C1055204C1E4400B4715E /* MockSessionDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSessionDetailsUseCase.swift; sourceTree = "<group>"; };
+		E7301219221C6931008DAC1E /* RxAtomic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxAtomic.framework; path = Frameworks/RxAtomic.framework; sourceTree = "<group>"; };
 		E74C01C91FE0973200D98A76 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E74C01CB1FE0973200D98A76 /* RxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
 		E74C01FF1FE0973200D98A76 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -337,6 +341,7 @@
 				E704AC41204750600016D227 /* RxCocoa.framework in Frameworks */,
 				E704AC45204750600016D227 /* RxSwift.framework in Frameworks */,
 				E704AC43204750600016D227 /* Differentiator.framework in Frameworks */,
+				E730121A221C6931008DAC1E /* RxAtomic.framework in Frameworks */,
 				E704AC40204750600016D227 /* SwiftyJSON.framework in Frameworks */,
 				E704AC3F204750600016D227 /* RxDataSources.framework in Frameworks */,
 			);
@@ -362,6 +367,7 @@
 		33442D9E13E505A9141431FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E7301219221C6931008DAC1E /* RxAtomic.framework */,
 				E704AC3A204750600016D227 /* Differentiator.framework */,
 				E704AC3B204750600016D227 /* GoogleCast.framework */,
 				E704AC38204750600016D227 /* RxCocoa.framework */,
@@ -843,7 +849,7 @@
 					B6F929BA1D2A5DD5009E4B83 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 76874MD7C6;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Manual;
 					};
 					B6F929CE1D2A5DD6009E4B83 = {
@@ -938,7 +944,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/Tools/strip_unused_archs.sh\"";
+			shellScript = "\"${PROJECT_DIR}/Tools/strip_unused_archs.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1089,8 +1095,6 @@
 			baseConfigurationReference = E7840B501F741F9E0039AFE1 /* Debug.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 290;
-				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -1099,8 +1103,6 @@
 			baseConfigurationReference = E7840B4E1F741F9E0039AFE1 /* Release.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 290;
-				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};

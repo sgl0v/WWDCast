@@ -23,9 +23,9 @@ class TabBarController: UITabBarController, GCKUIMiniMediaControlsViewController
         let castContext = GCKCastContext.sharedInstance()
         miniMediaControlsViewController = castContext.createMiniMediaControlsViewController()
         miniMediaControlsViewController.delegate = self
-        self.addChildViewController(miniMediaControlsViewController)
+        self.addChild(miniMediaControlsViewController)
         self.view.addSubview(miniMediaControlsViewController.view)
-        miniMediaControlsViewController.didMove(toParentViewController: self)
+        miniMediaControlsViewController.didMove(toParent: self)
         miniMediaControlsViewController.view.isHidden = !miniMediaControlsViewController.active
     }
 

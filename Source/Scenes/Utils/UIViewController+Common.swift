@@ -16,7 +16,7 @@ extension UIViewController {
         let title = NSLocalizedString("Error", comment: "Error Alert Title")
         let alert = UIAlertController(title: title, message: "\(error)", preferredStyle: .alert)
         let action = UIAlertAction(title: NSLocalizedString("Dismiss", comment: "Dimiss button title"),
-                                   style: UIAlertActionStyle.cancel,
+                                   style: UIAlertAction.Style.cancel,
                                    handler: nil)
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)

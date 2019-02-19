@@ -56,7 +56,7 @@ class FavoriteSessionsViewController: TableViewController<SessionSectionViewMode
 
         self.setClearsSelectionOnViewWillAppear()
         self.registerForPreviewing()
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 100
         self.tableView.tableFooterView = UIView()
 

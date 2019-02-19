@@ -84,7 +84,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
 
         self.view.backgroundColor = UIColor.white
 
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 100
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = self.searchController
@@ -101,7 +101,7 @@ class SessionsSearchViewController: TableViewController<SessionSectionViewModel,
 
         self.tableView.tableFooterView = UIView()
 
-        self.loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        self.loadingIndicator = UIActivityIndicatorView(style: .gray)
         self.view.addSubview(self.loadingIndicator, constraints: [
             equal(\.centerXAnchor),
             equal(\.centerYAnchor)
